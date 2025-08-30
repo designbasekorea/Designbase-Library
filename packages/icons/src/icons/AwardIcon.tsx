@@ -1,0 +1,62 @@
+/**
+ * AwardIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface AwardIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const AwardIcon: React.FC<AwardIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} d="M11.753 15.5c-1.8 0-3.5-.7-4.77-1.98a6.74 6.74 0 0 1-1.98-4.77c0-1.8.7-3.5 1.98-4.77A6.74 6.74 0 0 1 11.753 2c1.8 0 3.5.7 4.77 1.98a6.74 6.74 0 0 1 1.98 4.77c0 1.8-.7 3.5-1.98 4.77a6.74 6.74 0 0 1-4.77 1.98m0-12c-1.4 0-2.72.55-3.71 1.54a5.22 5.22 0 0 0-1.54 3.71c0 1.4.55 2.72 1.54 3.71a5.22 5.22 0 0 0 3.71 1.54c1.4 0 2.72-.55 3.71-1.54a5.22 5.22 0 0 0 1.54-3.71c0-1.4-.55-2.72-1.54-3.71a5.22 5.22 0 0 0-3.71-1.54"/><path fill={getColorValue()} d="M15.313 21.5a.74.74 0 0 1-.64-.37l-3.56-5.96a.751.751 0 1 1 1.29-.77l2.86 4.8 1.06-2.07a.76.76 0 0 1 .72-.41l2.33.17-2.95-4.99a.76.76 0 0 1 .26-1.03c.36-.21.82-.09 1.03.26l3.68 6.22c.14.24.14.54 0 .78s-.4.37-.69.35l-3.27-.23-1.45 2.83c-.12.24-.37.4-.64.41h-.02z"/><path fill={getColorValue()} d="M8.193 21.5h-.02c-.27 0-.52-.17-.64-.41l-1.45-2.83-3.28.23a.75.75 0 0 1-.69-.35.73.73 0 0 1 0-.78l3.69-6.18c.21-.36.67-.47 1.03-.26s.47.67.26 1.03l-2.95 4.95 2.34-.17c.31-.01.58.14.72.41l1.06 2.07 2.86-4.8c.21-.36.67-.47 1.03-.26s.47.67.26 1.03l-3.56 5.96c-.14.23-.38.37-.64.37z"/>
+    </svg>
+  );
+};
+
+AwardIcon.displayName = 'AwardIcon';
+export default AwardIcon;

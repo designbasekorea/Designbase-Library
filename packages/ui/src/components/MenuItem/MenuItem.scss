@@ -1,0 +1,422 @@
+.designbase-menu-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-gap-xs, 4px);
+        padding: var(--spacing-semantic-padding-xs, 4px) var(--spacing-semantic-padding-s, 8px);
+        border-radius: var(--border-radius-action-md);
+        transition: all 0.2s ease;
+        cursor: default;
+
+        &--clickable {
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--color-background-hover, #f3f4f6);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--color-border-focus, #3b82f6);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--color-text-secondary, #6b7280);
+        transition: color var(--transition-duration, 0.2s) ease;
+
+        // Variant별 아이콘 컬러
+        &--primary {
+            color: var(--color-primary-600, #2563eb);
+        }
+
+        &--success {
+            color: var(--color-success-600, #059669);
+        }
+
+        &--warning {
+            color: var(--color-warning-600, #d97706);
+        }
+
+        &--danger {
+            color: var(--color-error-600, #dc2626);
+        }
+
+        &--info {
+            color: var(--color-info-600, #2563eb);
+        }
+
+        // Active 상태
+        &--active {
+            color: var(--color-primary-600, #2563eb);
+        }
+
+        // Disabled 상태
+        &--disabled {
+            color: var(--color-text-disabled, #9ca3af);
+        }
+    }
+
+    &__label {
+        flex: 1;
+        font-size: var(--typography-body-sm-font-size, 14px);
+        font-weight: var(--typography-body-sm-font-weight, 500);
+        color: var(--color-text-primary, #111827);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+
+    &__expand-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        color: var(--color-text-secondary, #6b7280);
+        transition: transform 0.2s ease;
+    }
+
+    &__children {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-semantic-gap-xs, 4px);
+
+        // Dropdown 스타일 (Navbar용) - absolute로 떠있는 형태
+        &--dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background-color: var(--color-background-primary, #ffffff);
+            border: 1px solid var(--color-border-primary, #e5e7eb);
+            border-radius: var(--border-radius-card-md, 6px);
+            box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+            z-index: 1000;
+            padding: var(--spacing-semantic-padding-xs, 4px);
+            margin-top: var(--spacing-semantic-margin-xs, 4px);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+
+        // Accordion 스타일 (Sidebar용) - 아래로 밀어내는 형태
+        &--accordion {
+            margin-left: var(--spacing-semantic-margin-m, 16px);
+            margin-top: var(--spacing-semantic-margin-xs, 4px);
+            overflow: hidden;
+            max-height: 0;
+            transition: all 0.3s ease;
+        }
+    }
+
+    // 드롭다운 스타일일 때 부모 컨테이너에 relative 포지션 적용
+    &--dropdown {
+        position: relative;
+    }
+
+    // 확장된 상태에서의 스타일
+    &--expanded {
+        .designbase-menu-item__children {
+            &--dropdown {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            &--accordion {
+                max-height: 500px; // 충분한 높이
+            }
+        }
+    }
+
+    &__child {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-gap-xs, 4px);
+        padding: var(--spacing-semantic-padding-xs, 4px) var(--spacing-semantic-padding-s, 8px);
+        border-radius: var(--border-radius-action-md);
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--color-background-hover, #f3f4f6);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-border-focus, #3b82f6);
+            outline-offset: 2px;
+        }
+
+        &--active {
+            background-color: var(--color-primary-50, #eff6ff);
+            color: var(--color-primary-700, #1d4ed8);
+
+            .designbase-menu-item__child-icon {
+                color: var(--color-primary-600, #2563eb);
+            }
+
+            .designbase-menu-item__child-label {
+                color: var(--color-primary-700, #1d4ed8);
+                font-weight: var(--typography-body-sm-font-weight, 600);
+            }
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+
+    &__child-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--color-text-secondary, #6b7280);
+    }
+
+    &__child-label {
+        flex: 1;
+        font-size: var(--typography-body-sm-font-size, 14px);
+        color: var(--color-text-primary, #111827);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+
+    // Types
+    &--inline {
+        width: auto;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+
+        .designbase-menu-item__content {
+            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+        }
+    }
+
+    &--block {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    // Sizes
+    &--sm {
+        .designbase-menu-item__content {
+            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
+        }
+
+        .designbase-menu-item__label {
+            font-size: var(--typography-body-xs-font-size, 12px);
+        }
+
+        .designbase-menu-item__children {
+            margin-left: var(--spacing-sm, 8px);
+        }
+
+        .designbase-menu-item__child {
+            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
+        }
+
+        .designbase-menu-item__child-label {
+            font-size: var(--typography-body-xs-font-size, 12px);
+        }
+    }
+
+    &--md {
+        .designbase-menu-item__content {
+            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+        }
+
+        .designbase-menu-item__label {
+            font-size: var(--typography-body-sm-font-size, 14px);
+        }
+
+        .designbase-menu-item__children {
+            margin-left: var(--spacing-md, 16px);
+        }
+
+        .designbase-menu-item__child {
+            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+        }
+
+        .designbase-menu-item__child-label {
+            font-size: var(--typography-body-sm-font-size, 14px);
+        }
+    }
+
+    &--lg {
+        .designbase-menu-item__content {
+            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+        }
+
+        .designbase-menu-item__label {
+            font-size: var(--typography-body-md-font-size, 16px);
+        }
+
+        .designbase-menu-item__children {
+            margin-left: var(--spacing-lg, 24px);
+        }
+
+        .designbase-menu-item__child {
+            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+        }
+
+        .designbase-menu-item__child-label {
+            font-size: var(--typography-body-md-font-size, 16px);
+        }
+    }
+
+    // Variants
+    &--default {
+        .designbase-menu-item__content {
+            color: var(--color-text-primary, #111827);
+        }
+    }
+
+    &--primary {
+        .designbase-menu-item__content {
+            color: var(--color-primary-700, #1d4ed8);
+        }
+
+        .designbase-menu-item__icon {
+            color: var(--color-primary-600, #2563eb);
+        }
+    }
+
+    &--success {
+        .designbase-menu-item__content {
+            color: var(--color-success-700, #047857);
+        }
+
+        .designbase-menu-item__icon {
+            color: var(--color-success-600, #059669);
+        }
+    }
+
+    &--warning {
+        .designbase-menu-item__content {
+            color: var(--color-warning-700, #b45309);
+        }
+
+        .designbase-menu-item__icon {
+            color: var(--color-warning-600, #d97706);
+        }
+    }
+
+    &--danger {
+        .designbase-menu-item__content {
+            color: var(--color-error-700, #b91c1c);
+        }
+
+        .designbase-menu-item__icon {
+            color: var(--color-error-600, #dc2626);
+        }
+    }
+
+    &--info {
+        .designbase-menu-item__content {
+            color: var(--color-info-700, #1d4ed8);
+        }
+
+        .designbase-menu-item__icon {
+            color: var(--color-info-600, #2563eb);
+        }
+    }
+
+    // Depth별 스타일 (최대 3뎁스)
+    &--depth-0 {
+        // 최상위 레벨
+    }
+
+    &--depth-1 {
+
+        // 1뎁스 하위
+        .designbase-menu-item__content {
+            padding-left: var(--spacing-semantic-padding-m, 16px);
+        }
+    }
+
+    &--depth-2 {
+
+        // 2뎁스 하위
+        .designbase-menu-item__content {
+            padding-left: var(--spacing-semantic-padding-l, 24px);
+        }
+    }
+
+    &--depth-3 {
+
+        // 3뎁스 하위 (최대)
+        .designbase-menu-item__content {
+            padding-left: var(--spacing-semantic-padding-xl, 32px);
+        }
+    }
+
+    // States
+    &--active {
+        .designbase-menu-item__content {
+            background-color: var(--color-primary-50, #eff6ff);
+            color: var(--color-primary-700, #1d4ed8);
+        }
+
+        .designbase-menu-item__icon {
+            color: var(--color-primary-600, #2563eb);
+        }
+
+        .designbase-menu-item__label {
+            color: var(--color-primary-700, #1d4ed8);
+            font-weight: var(--typography-body-sm-font-weight, 600);
+        }
+    }
+
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+
+        .designbase-menu-item__content {
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+
+    &--expanded {
+        .designbase-menu-item__expand-icon {
+            // 아이콘 컴포넌트를 사용하므로 회전 애니메이션 제거
+        }
+    }
+
+    // Responsive
+    @media (max-width: 640px) {
+        &__label {
+            max-width: 120px;
+        }
+
+        &__child-label {
+            max-width: 100px;
+        }
+    }
+}

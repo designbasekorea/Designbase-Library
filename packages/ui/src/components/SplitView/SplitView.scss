@@ -1,0 +1,203 @@
+/**
+ * SplitView 컴포넌트 스타일
+ */
+
+.designbase-split-view {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+
+    // 전체 너비/높이
+    &--full-width {
+        width: 100%;
+    }
+
+    &--full-height {
+        height: 100%;
+    }
+
+    // 드래그 중일 때
+    &--dragging {
+        cursor: col-resize;
+
+        * {
+            pointer-events: none;
+        }
+
+        .designbase-split-view__splitter {
+            pointer-events: auto;
+        }
+    }
+
+    // 방향별 스타일
+    &--direction-horizontal {
+        flex-direction: row;
+
+        .designbase-split-view__first {
+            width: var(--split-value);
+            min-width: 0;
+            flex-shrink: 0;
+        }
+
+        .designbase-split-view__second {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .designbase-split-view__splitter {
+            width: var(--splitter-size, 4px);
+            cursor: col-resize;
+            flex-shrink: 0;
+
+            &:hover {
+                background-color: var(--splitter-hover-color, var(--color-semantic-border-strong, #94a3b8));
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 2px;
+                height: 20px;
+                background-color: var(--splitter-color, var(--color-semantic-border-default, #cbd5e1));
+                border-radius: 1px;
+            }
+        }
+    }
+
+    &--direction-vertical {
+        flex-direction: column;
+
+        .designbase-split-view__first {
+            height: var(--split-value);
+            min-height: 0;
+            flex-shrink: 0;
+        }
+
+        .designbase-split-view__second {
+            flex: 1;
+            min-height: 0;
+        }
+
+        .designbase-split-view__splitter {
+            height: var(--splitter-size, 4px);
+            cursor: row-resize;
+            flex-shrink: 0;
+
+            &:hover {
+                background-color: var(--splitter-hover-color, var(--color-semantic-border-strong, #94a3b8));
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;
+                height: 2px;
+                background-color: var(--splitter-color, var(--color-semantic-border-default, #cbd5e1));
+                border-radius: 1px;
+            }
+        }
+    }
+
+    // 패널 스타일
+    &__first,
+    &__second {
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    // 분할선 스타일
+    &__splitter {
+        position: relative;
+        background-color: var(--splitter-color, var(--color-semantic-border-subtle, #f1f5f9));
+        transition: background-color 0.2s ease;
+        z-index: 10;
+
+        &:hover {
+            background-color: var(--splitter-hover-color, var(--color-semantic-border-strong, #94a3b8));
+        }
+
+        &:active {
+            background-color: var(--splitter-hover-color, var(--color-semantic-border-strong, #94a3b8));
+        }
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-split-view {
+        &__splitter {
+            background-color: var(--splitter-color, var(--color-semantic-border-subtle, #334155));
+
+            &:hover {
+                background-color: var(--splitter-hover-color, var(--color-semantic-border-strong, #94a3b8));
+            }
+
+            &:active {
+                background-color: var(--splitter-hover-color, var(--color-semantic-border-strong, #94a3b8));
+            }
+
+            &::before {
+                background-color: var(--splitter-color, var(--color-semantic-border-default, #64748b));
+            }
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-split-view {
+        &--direction-horizontal {
+            .designbase-split-view__splitter {
+                width: 6px;
+
+                &::before {
+                    width: 3px;
+                    height: 16px;
+                }
+            }
+        }
+
+        &--direction-vertical {
+            .designbase-split-view__splitter {
+                height: 6px;
+
+                &::before {
+                    width: 16px;
+                    height: 3px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-split-view {
+        &--direction-horizontal {
+            .designbase-split-view__splitter {
+                width: 8px;
+
+                &::before {
+                    width: 4px;
+                    height: 12px;
+                }
+            }
+        }
+
+        &--direction-vertical {
+            .designbase-split-view__splitter {
+                height: 8px;
+
+                &::before {
+                    width: 12px;
+                    height: 4px;
+                }
+            }
+        }
+    }
+}

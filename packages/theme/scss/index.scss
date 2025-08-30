@@ -1,0 +1,21 @@
+/**
+ * Designbase Theme 메인 스타일시트
+ * 
+ * 목적: 모든 테마 관련 스타일을 통합하여 제공
+ * 기능: 변수, 믹스인, 테마, 유틸리티 클래스 포함
+ * 사용법: @import '@designbase/theme/scss' 또는 CSS 파일로 로드
+ */
+
+// Base styles and reset
+@import 'reset';
+
+// Core system files
+@import 'variables';
+@import 'mixins';
+@import 'themes';
+
+// Utility classes
+@import 'utilities';
+
+// Component base styles (minimal, for when components are used without JS)
+@import 'components';

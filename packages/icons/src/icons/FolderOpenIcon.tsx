@@ -1,0 +1,62 @@
+/**
+ * FolderOpenIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface FolderOpenIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const FolderOpenIcon: React.FC<FolderOpenIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} fillRule="evenodd" d="M5 4.75c-.69 0-1.25.56-1.25 1.25v8.824l1.303-2.606a1.75 1.75 0 0 1 1.565-.968H18.25V8c0-.69-.56-1.25-1.25-1.25h-6.31L9.055 5.116a1.25 1.25 0 0 0-.884-.366zm14.75 6.5h.632a1.75 1.75 0 0 1 1.565 2.533m0 0-2.724 5.446a2.75 2.75 0 0 1-2.46 1.521H5A2.75 2.75 0 0 1 2.25 18V6A2.75 2.75 0 0 1 5 3.25h3.172c.73 0 1.429.29 1.944.806l1.195 1.194H17A2.75 2.75 0 0 1 19.75 8v3.25M3.76 18.157l2.635-5.268a.25.25 0 0 1 .223-.139h13.764a.25.25 0 0 1 .223.361l-2.724 5.447a1.25 1.25 0 0 1-1.118.692H5a1.25 1.25 0 0 1-1.24-1.093" clipRule="evenodd"/>
+    </svg>
+  );
+};
+
+FolderOpenIcon.displayName = 'FolderOpenIcon';
+export default FolderOpenIcon;

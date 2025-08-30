@@ -1,0 +1,265 @@
+/**
+ * Stepper 컴포넌트 스타일
+ */
+
+.designbase-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-semantic-margin-xs, 4px);
+    border-radius: var(--border-radius-semantic-radius-md, 8px);
+    background-color: var(--color-semantic-background-default, #ffffff);
+    border: 1px solid var(--color-semantic-border-default, #e2e8f0);
+    transition: all 0.2s ease;
+
+    // 크기별 스타일
+    &--size-sm {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+
+        .designbase-stepper__button {
+            width: 28px;
+            height: 28px;
+        }
+
+        .designbase-stepper__value {
+            min-width: 40px;
+            padding: 0 var(--spacing-semantic-padding-sm, 8px);
+        }
+
+        .designbase-stepper__value-text {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+        }
+    }
+
+    &--size-md {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+
+        .designbase-stepper__button {
+            width: 32px;
+            height: 32px;
+        }
+
+        .designbase-stepper__value {
+            min-width: 48px;
+            padding: 0 var(--spacing-semantic-padding-md, 12px);
+        }
+
+        .designbase-stepper__value-text {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+        }
+    }
+
+    &--size-lg {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+
+        .designbase-stepper__button {
+            width: 36px;
+            height: 36px;
+        }
+
+        .designbase-stepper__value {
+            min-width: 56px;
+            padding: 0 var(--spacing-semantic-padding-lg, 16px);
+        }
+
+        .designbase-stepper__value-text {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        border-color: var(--color-semantic-border-default, #e2e8f0);
+        background-color: var(--color-semantic-background-default, #ffffff);
+    }
+
+    &--variant-outlined {
+        border-color: var(--color-semantic-border-default, #e2e8f0);
+        background-color: transparent;
+    }
+
+    &--variant-filled {
+        border-color: var(--color-semantic-border-subtle, #f1f5f9);
+        background-color: var(--color-semantic-background-subtle, #f8fafc);
+    }
+
+    // 비활성화 상태
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // 읽기 전용 상태
+    &--readonly {
+        .designbase-stepper__button {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+
+    // 호버 효과
+    &:hover:not(.designbase-stepper--disabled) {
+        border-color: var(--color-semantic-primary-default, #3b82f6);
+        box-shadow: var(--shadow-semantic-shadow-sm, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06));
+    }
+
+    // 포커스 효과
+    &:focus-within {
+        outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+        outline-offset: 2px;
+    }
+
+    // 버튼 스타일
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        border-radius: var(--border-radius-semantic-radius-sm, 4px);
+        color: var(--color-semantic-text-primary, #1e293b);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+
+        &:hover:not(.designbase-stepper__button--disabled) {
+            background-color: var(--color-semantic-background-subtle, #f8fafc);
+            color: var(--color-semantic-primary-default, #3b82f6);
+        }
+
+        &:active:not(.designbase-stepper__button--disabled) {
+            background-color: var(--color-semantic-background-subtle, #f1f5f9);
+            transform: scale(0.95);
+        }
+
+        &:focus {
+            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        // 비활성화된 버튼
+        &--disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            color: var(--color-semantic-text-tertiary, #94a3b8);
+
+            &:hover {
+                background-color: transparent;
+                color: var(--color-semantic-text-tertiary, #94a3b8);
+            }
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+    }
+
+    // 값 표시 영역
+    &__value {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: var(--typography-semantic-font-weight-medium, 500);
+        color: var(--color-semantic-text-primary, #1e293b);
+        user-select: none;
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__value-text {
+        font-weight: var(--typography-semantic-font-weight-semibold, 600);
+        line-height: 1;
+    }
+}
+
+// 스크린 리더 전용 텍스트
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-stepper {
+        &--variant-default {
+            border-color: var(--color-semantic-border-default, #475569);
+            background-color: var(--color-semantic-background-default, #0f172a);
+        }
+
+        &--variant-outlined {
+            border-color: var(--color-semantic-border-default, #475569);
+            background-color: transparent;
+        }
+
+        &--variant-filled {
+            border-color: var(--color-semantic-border-subtle, #334155);
+            background-color: var(--color-semantic-background-subtle, #1e293b);
+        }
+
+        &:hover:not(.designbase-stepper--disabled) {
+            border-color: var(--color-semantic-primary-default, #3b82f6);
+        }
+
+        &__button {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+
+            &:hover:not(.designbase-stepper__button--disabled) {
+                background-color: var(--color-semantic-background-subtle, #1e293b);
+                color: var(--color-semantic-primary-default, #3b82f6);
+            }
+
+            &:active:not(.designbase-stepper__button--disabled) {
+                background-color: var(--color-semantic-background-subtle, #334155);
+            }
+
+            &--disabled {
+                color: var(--color-semantic-text-tertiary, #64748b);
+
+                &:hover {
+                    color: var(--color-semantic-text-tertiary, #64748b);
+                }
+            }
+        }
+
+        &__value-text {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 480px) {
+    .designbase-stepper {
+        &--size-lg {
+            .designbase-stepper__button {
+                width: 32px;
+                height: 32px;
+            }
+
+            .designbase-stepper__value {
+                min-width: 48px;
+                padding: 0 var(--spacing-semantic-padding-md, 12px);
+            }
+
+            .designbase-stepper__value-text {
+                font-size: var(--typography-semantic-font-size-md, 16px);
+            }
+        }
+    }
+}

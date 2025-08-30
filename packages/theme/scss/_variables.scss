@@ -1,0 +1,468 @@
+/**
+ * 디자인 시스템 SCSS 변수
+ * 
+ * 목적: 토큰 기반 SCSS 변수를 정의하여 스타일 일관성 보장
+ * 기능: 색상, 간격, 타이포그래피, 그림자 등의 변수 제공
+ * 사용법: @import '@designbase/theme/scss/variables'
+ */
+
+// ============================================================================
+// Foundation Color Variables (from tokens)
+// ============================================================================
+
+// Neutral Colors
+$color-neutral-0: #FFFFFF !default;
+$color-neutral-100: #F2F8FC !default;
+$color-neutral-200: #E8EEF2 !default;
+$color-neutral-300: #BBC5CC !default;
+$color-neutral-400: #A4ADB2 !default;
+$color-neutral-500: #8C9499 !default;
+$color-neutral-600: #757B80 !default;
+$color-neutral-700: #5E6366 !default;
+$color-neutral-800: #464A4D !default;
+$color-neutral-900: #2F3133 !default;
+$color-neutral-1000: #17191A !default;
+$color-neutral-1100: #000000 !default;
+
+// Blue Colors
+$color-blue-50: #EDF9FF !default;
+$color-blue-100: #D6F0FF !default;
+$color-blue-200: #B5E7FF !default;
+$color-blue-300: #83D9FF !default;
+$color-blue-400: #48C3FF !default;
+$color-blue-500: #1EA2FF !default;
+$color-blue-600: #0683FF !default;
+$color-blue-700: #006FFF !default;
+$color-blue-800: #0855C5 !default;
+$color-blue-900: #0D4B9B !default;
+
+// Red Colors
+$color-red-50: #FEF2F2 !default;
+$color-red-100: #FEE2E2 !default;
+$color-red-200: #FECACA !default;
+$color-red-300: #FCA5A5 !default;
+$color-red-400: #F87171 !default;
+$color-red-500: #EF4444 !default;
+$color-red-600: #DC2626 !default;
+$color-red-700: #B91C1C !default;
+$color-red-800: #991B1B !default;
+$color-red-900: #7F1D1D !default;
+
+// Green Colors
+$color-green-50: #F0FDF5 !default;
+$color-green-100: #DCFCE8 !default;
+$color-green-200: #BBF7D1 !default;
+$color-green-300: #86EFAD !default;
+$color-green-400: #4ADE80 !default;
+$color-green-500: #22C55E !default;
+$color-green-600: #16A34A !default;
+$color-green-700: #15803C !default;
+$color-green-800: #166533 !default;
+$color-green-900: #14532B !default;
+
+// Orange Colors
+$color-orange-50: #FFF7EC !default;
+$color-orange-100: #FFECD3 !default;
+$color-orange-200: #FFD5A5 !default;
+$color-orange-300: #FFB66D !default;
+$color-orange-400: #FF8C32 !default;
+$color-orange-500: #FF6B0A !default;
+$color-orange-600: #FF5100 !default;
+$color-orange-700: #CC3802 !default;
+$color-orange-800: #82270C !default;
+$color-orange-900: #82270C !default;
+
+// Yellow Colors
+$color-yellow-50: #FFFFE7 !default;
+$color-yellow-100: #FEFFC1 !default;
+$color-yellow-200: #FFFD86 !default;
+$color-yellow-300: #FFF441 !default;
+$color-yellow-400: #FFE50D !default;
+$color-yellow-500: #FFD600 !default;
+$color-yellow-600: #D1B400 !default;
+$color-yellow-700: #A67102 !default;
+$color-yellow-800: #89570A !default;
+$color-yellow-900: #74470F !default;
+
+// Teal Colors
+$color-teal-50: #F0FDFC !default;
+$color-teal-100: #CCFBF6 !default;
+$color-teal-200: #99F6EC !default;
+$color-teal-300: #5EEADB !default;
+$color-teal-400: #2DD4C2 !default;
+$color-teal-500: #14B8A6 !default;
+$color-teal-600: #0D9485 !default;
+$color-teal-700: #0F766B !default;
+$color-teal-800: #115E56 !default;
+$color-teal-900: #134E48 !default;
+
+// Purple Colors
+$color-purple-50: #FAF5FF !default;
+$color-purple-100: #F3E8FF !default;
+$color-purple-200: #E9D5FF !default;
+$color-purple-300: #D8B4FE !default;
+$color-purple-400: #C084FC !default;
+$color-purple-500: #A855F7 !default;
+$color-purple-600: #9333EA !default;
+$color-purple-700: #7C3AED !default;
+$color-purple-800: #6B21A8 !default;
+$color-purple-900: #581C87 !default;
+
+// ============================================================================
+// Semantic Color Variables (from tokens)
+// ============================================================================
+
+// Text Colors
+$color-text-primary: $color-neutral-900 !default;
+$color-text-secondary: $color-neutral-600 !default;
+$color-text-muted: $color-neutral-500 !default;
+$color-text-disabled: $color-neutral-400 !default;
+$color-text-inverse: $color-neutral-0 !default;
+$color-text-link: $color-blue-600 !default;
+$color-text-link-hover: $color-blue-700 !default;
+
+// Background Colors
+$color-bg-primary: $color-neutral-0 !default;
+$color-bg-secondary: $color-neutral-100 !default;
+$color-bg-tertiary: $color-neutral-200 !default;
+$color-bg-inverse: $color-neutral-900 !default;
+$color-bg-overlay: rgba(0, 0, 0, 0.5) !default;
+
+// Border Colors
+$color-border-primary: $color-neutral-300 !default;
+$color-border-secondary: $color-neutral-400 !default;
+$color-border-muted: $color-neutral-200 !default;
+$color-border-focus: $color-blue-500 !default;
+
+// Component Colors
+$color-component-icon-primary: $color-neutral-900 !default;
+$color-component-icon-secondary: $color-neutral-600 !default;
+$color-component-icon-success: $color-green-600 !default;
+$color-component-icon-warning: $color-yellow-600 !default;
+$color-component-icon-danger: $color-red-500 !default;
+$color-component-icon-info: $color-blue-700 !default;
+$color-component-icon-muted: $color-neutral-400 !default;
+$color-component-icon-inverse: $color-neutral-0 !default;
+
+// Button Colors
+$color-button-primary-bg: $color-blue-700 !default;
+$color-button-primary-bg-hover: $color-blue-800 !default;
+$color-button-primary-bg-active: $color-blue-900 !default;
+$color-button-primary-bg-disabled: $color-neutral-300 !default;
+$color-button-primary-text: $color-neutral-0 !default;
+$color-button-primary-text-disabled: $color-neutral-500 !default;
+
+$color-button-secondary-bg: $color-blue-50 !default;
+$color-button-secondary-bg-hover: $color-blue-100 !default;
+$color-button-secondary-bg-active: $color-blue-200 !default;
+$color-button-secondary-border: $color-blue-300 !default;
+$color-button-secondary-border-hover: $color-blue-400 !default;
+$color-button-secondary-text: $color-blue-700 !default;
+$color-button-secondary-text-hover: $color-blue-800 !default;
+
+$color-button-tertiary-bg: $color-neutral-0 !default;
+$color-button-tertiary-bg-hover: $color-neutral-100 !default;
+$color-button-tertiary-bg-active: $color-neutral-200 !default;
+$color-button-tertiary-border: $color-neutral-200 !default;
+$color-button-tertiary-border-hover: $color-neutral-300 !default;
+$color-button-tertiary-text: $color-neutral-800 !default;
+$color-button-tertiary-text-hover: $color-neutral-900 !default;
+
+$color-button-danger-bg: $color-red-600 !default;
+$color-button-danger-bg-hover: $color-red-700 !default;
+$color-button-danger-bg-active: $color-red-800 !default;
+$color-button-danger-text: $color-neutral-0 !default;
+
+// Checkbox Colors
+$color-checkbox-bg: $color-neutral-0 !default;
+$color-checkbox-bg-selected: $color-blue-600 !default;
+$color-checkbox-bg-indeterminate: $color-blue-600 !default;
+$color-checkbox-bg-disabled: $color-neutral-100 !default;
+$color-checkbox-border: $color-neutral-300 !default;
+$color-checkbox-border-selected: $color-blue-600 !default;
+$color-checkbox-border-indeterminate: $color-blue-600 !default;
+$color-checkbox-border-hover: $color-neutral-400 !default;
+$color-checkbox-border-disabled: $color-neutral-200 !default;
+$color-checkbox-icon: $color-neutral-0 !default;
+
+// Action Colors (범용 액션 컴포넌트용)
+$color-action-interactive-bg: $color-neutral-0 !default;
+$color-action-interactive-bg-hover: $color-neutral-100 !default;
+$color-action-interactive-bg-active: $color-neutral-100 !default;
+$color-action-interactive-bg-selected: $color-blue-600 !default;
+$color-action-interactive-bg-disabled: $color-neutral-100 !default;
+$color-action-interactive-border: $color-neutral-300 !default;
+$color-action-interactive-border-hover: $color-neutral-400 !default;
+$color-action-interactive-border-active: $color-neutral-500 !default;
+$color-action-interactive-border-selected: $color-blue-600 !default;
+$color-action-interactive-border-disabled: $color-neutral-200 !default;
+$color-action-interactive-text: $color-neutral-900 !default;
+$color-action-interactive-text-hover: $color-neutral-900 !default;
+$color-action-interactive-text-selected: $color-neutral-0 !default;
+$color-action-interactive-text-disabled: $color-neutral-400 !default;
+$color-action-interactive-icon: $color-neutral-600 !default;
+$color-action-interactive-icon-selected: $color-neutral-0 !default;
+$color-action-interactive-icon-disabled: $color-neutral-400 !default;
+
+$color-action-primary-bg: $color-blue-600 !default;
+$color-action-primary-bg-hover: $color-blue-700 !default;
+$color-action-primary-bg-active: $color-blue-800 !default;
+$color-action-primary-bg-selected: $color-blue-600 !default;
+$color-action-primary-bg-disabled: $color-neutral-300 !default;
+$color-action-primary-border: $color-blue-600 !default;
+$color-action-primary-border-hover: $color-blue-700 !default;
+$color-action-primary-border-active: $color-blue-800 !default;
+$color-action-primary-border-selected: $color-blue-600 !default;
+$color-action-primary-border-disabled: $color-neutral-300 !default;
+$color-action-primary-text: $color-neutral-0 !default;
+$color-action-primary-text-hover: $color-neutral-0 !default;
+$color-action-primary-text-selected: $color-neutral-0 !default;
+$color-action-primary-text-disabled: $color-neutral-500 !default;
+$color-action-primary-icon: $color-neutral-0 !default;
+$color-action-primary-icon-selected: $color-neutral-0 !default;
+$color-action-primary-icon-disabled: $color-neutral-500 !default;
+
+$color-action-secondary-bg: transparent !default;
+$color-action-secondary-bg-hover: $color-neutral-100 !default;
+$color-action-secondary-bg-active: $color-neutral-200 !default;
+$color-action-secondary-bg-selected: $color-neutral-200 !default;
+$color-action-secondary-bg-disabled: $color-neutral-100 !default;
+$color-action-secondary-border: $color-neutral-300 !default;
+$color-action-secondary-border-hover: $color-neutral-400 !default;
+$color-action-secondary-border-active: $color-neutral-500 !default;
+$color-action-secondary-border-selected: $color-neutral-400 !default;
+$color-action-secondary-border-disabled: $color-neutral-200 !default;
+$color-action-secondary-text: $color-neutral-700 !default;
+$color-action-secondary-text-hover: $color-neutral-900 !default;
+$color-action-secondary-text-selected: $color-neutral-900 !default;
+$color-action-secondary-text-disabled: $color-neutral-400 !default;
+$color-action-secondary-icon: $color-neutral-600 !default;
+$color-action-secondary-icon-selected: $color-neutral-800 !default;
+$color-action-secondary-icon-disabled: $color-neutral-400 !default;
+
+$color-action-danger-bg: $color-red-600 !default;
+$color-action-danger-bg-hover: $color-red-700 !default;
+$color-action-danger-bg-active: $color-red-800 !default;
+$color-action-danger-bg-selected: $color-red-600 !default;
+$color-action-danger-bg-disabled: $color-neutral-300 !default;
+$color-action-danger-border: $color-red-600 !default;
+$color-action-danger-border-hover: $color-red-700 !default;
+$color-action-danger-border-active: $color-red-800 !default;
+$color-action-danger-border-selected: $color-red-600 !default;
+$color-action-danger-border-disabled: $color-neutral-300 !default;
+$color-action-danger-text: $color-neutral-0 !default;
+$color-action-danger-text-hover: $color-neutral-0 !default;
+$color-action-danger-text-selected: $color-neutral-0 !default;
+$color-action-danger-text-disabled: $color-neutral-500 !default;
+$color-action-danger-icon: $color-neutral-0 !default;
+$color-action-danger-icon-selected: $color-neutral-0 !default;
+$color-action-danger-icon-disabled: $color-neutral-500 !default;
+
+// ============================================================================
+// Foundation Spacing Variables (from tokens)
+// ============================================================================
+
+$spacing-0: 0 !default;
+$spacing-1: 4px !default;
+$spacing-2: 8px !default;
+$spacing-3: 12px !default;
+$spacing-4: 16px !default;
+$spacing-5: 20px !default;
+$spacing-6: 24px !default;
+$spacing-7: 28px !default;
+$spacing-8: 32px !default;
+$spacing-9: 36px !default;
+$spacing-10: 40px !default;
+$spacing-11: 44px !default;
+$spacing-12: 48px !default;
+$spacing-14: 56px !default;
+$spacing-16: 64px !default;
+$spacing-20: 80px !default;
+$spacing-24: 96px !default;
+$spacing-28: 112px !default;
+$spacing-32: 128px !default;
+$spacing-36: 144px !default;
+$spacing-40: 160px !default;
+$spacing-44: 176px !default;
+$spacing-48: 192px !default;
+$spacing-52: 208px !default;
+$spacing-56: 224px !default;
+$spacing-60: 240px !default;
+$spacing-64: 256px !default;
+$spacing-72: 288px !default;
+$spacing-80: 320px !default;
+$spacing-96: 384px !default;
+
+// ============================================================================
+// Semantic Spacing Variables (from tokens)
+// ============================================================================
+
+// Margin
+$spacing-margin-xs: $spacing-1 !default;
+$spacing-margin-s: $spacing-2 !default;
+$spacing-margin-m: $spacing-4 !default;
+$spacing-margin-l: $spacing-6 !default;
+$spacing-margin-xl: $spacing-10 !default;
+$spacing-margin-xxl: $spacing-20 !default;
+
+// Padding
+$spacing-padding-xxs: $spacing-1 !default;
+$spacing-padding-xs: $spacing-2 !default;
+$spacing-padding-s: $spacing-3 !default;
+$spacing-padding-m: $spacing-4 !default;
+$spacing-padding-l: $spacing-6 !default;
+$spacing-padding-xl: $spacing-8 !default;
+
+// Gap
+$spacing-gap-xs: $spacing-1 !default;
+$spacing-gap-s: $spacing-2 !default;
+$spacing-gap-m: $spacing-3 !default;
+$spacing-gap-l: $spacing-4 !default;
+$spacing-gap-xl: $spacing-6 !default;
+
+// ============================================================================
+// Foundation Border Radius Variables (from tokens)
+// ============================================================================
+
+$border-radius-none: 0 !default;
+$border-radius-sm: 2px !default;
+$border-radius-base: 4px !default;
+$border-radius-md: 6px !default;
+$border-radius-lg: 8px !default;
+$border-radius-xl: 12px !default;
+$border-radius-2xl: 16px !default;
+$border-radius-3xl: 24px !default;
+$border-radius-full: 9999px !default;
+
+// ============================================================================
+// Semantic Border Radius Variables (from tokens)
+// ============================================================================
+
+// Button Border Radius
+$border-radius-button-sm: $border-radius-sm !default;
+$border-radius-button-md: $border-radius-base !default;
+$border-radius-button-lg: $border-radius-md !default;
+$border-radius-button-pill: $border-radius-full !default;
+
+// Input Border Radius
+$border-radius-input-sm: $border-radius-sm !default;
+$border-radius-input-md: $border-radius-base !default;
+$border-radius-input-lg: $border-radius-md !default;
+
+// Card Border Radius
+$border-radius-card-sm: $border-radius-base !default;
+$border-radius-card-md: $border-radius-md !default;
+$border-radius-card-lg: $border-radius-lg !default;
+
+// Modal Border Radius
+$border-radius-modal-sm: $border-radius-md !default;
+$border-radius-modal-md: $border-radius-lg !default;
+$border-radius-modal-lg: $border-radius-xl !default;
+
+$border-radius-checkbox-sm: $border-radius-sm !default;
+$border-radius-checkbox-md: $border-radius-sm !default;
+$border-radius-checkbox-lg: $border-radius-md !default;
+
+$border-radius-action-sm: $border-radius-sm !default;
+$border-radius-action-md: $border-radius-md !default;
+$border-radius-action-lg: $border-radius-lg !default;
+$border-radius-action-pill: $border-radius-full !default;
+
+// ============================================================================
+// Typography Variables (from tokens)
+// ============================================================================
+
+// Font Families
+$font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
+$font-family-mono: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Source Code Pro', monospace !default;
+
+// Font Sizes
+$font-size-xs: 0.75rem !default; // 12px
+$font-size-sm: 0.875rem !default; // 14px
+$font-size-base: 1rem !default; // 16px
+$font-size-lg: 1.125rem !default; // 18px
+$font-size-xl: 1.25rem !default; // 20px
+$font-size-2xl: 1.5rem !default; // 24px
+$font-size-3xl: 1.875rem !default; // 30px
+$font-size-4xl: 2.25rem !default; // 36px
+$font-size-5xl: 3rem !default; // 48px
+$font-size-6xl: 3.75rem !default; // 60px
+
+// Font Weights
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extrabold: 800 !default;
+
+// Line Heights
+$line-height-none: 1 !default;
+$line-height-tight: 1.25 !default;
+$line-height-snug: 1.375 !default;
+$line-height-normal: 1.5 !default;
+$line-height-relaxed: 1.625 !default;
+$line-height-loose: 2 !default;
+
+// ============================================================================
+// Shadow Variables (from tokens)
+// ============================================================================
+
+$shadow-none: none !default;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !default;
+$shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !default;
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !default;
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !default;
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !default;
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !default;
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06) !default;
+
+// ============================================================================
+// Z-Index Variables (from tokens)
+// ============================================================================
+
+$z-index-auto: auto !default;
+$z-index-0: 0 !default;
+$z-index-10: 10 !default;
+$z-index-20: 20 !default;
+$z-index-30: 30 !default;
+$z-index-40: 40 !default;
+$z-index-50: 50 !default;
+$z-index-modal: 1000 !default;
+$z-index-popover: 1010 !default;
+$z-index-tooltip: 1020 !default;
+$z-index-toast: 1030 !default;
+
+// ============================================================================
+// Transition Variables
+// ============================================================================
+
+$transition-duration-fast: 150ms !default;
+$transition-duration-normal: 300ms !default;
+$transition-duration-slow: 500ms !default;
+
+$transition-timing-ease: ease !default;
+$transition-timing-ease-in: ease-in !default;
+$transition-timing-ease-out: ease-out !default;
+$transition-timing-ease-in-out: ease-in-out !default;
+
+// Action Sizes (범용 액션 컴포넌트용)
+$size-action-interactive-xs-width: $spacing-4 !default;
+$size-action-interactive-xs-height: $spacing-4 !default;
+$size-action-interactive-xs-font-size: 12px !default;
+
+$size-action-interactive-sm-width: $spacing-5 !default;
+$size-action-interactive-sm-height: $spacing-5 !default;
+$size-action-interactive-sm-font-size: 14px !default;
+
+$size-action-interactive-md-width: $spacing-6 !default;
+$size-action-interactive-md-height: $spacing-6 !default;
+$size-action-interactive-md-font-size: 16px !default;
+
+$size-action-interactive-lg-width: $spacing-8 !default;
+$size-action-interactive-lg-height: $spacing-8 !default;
+$size-action-interactive-lg-font-size: 18px !default;
+
+$size-action-interactive-xl-width: $spacing-10 !default;
+$size-action-interactive-xl-height: $spacing-10 !default;
+$size-action-interactive-xl-font-size: 20px !default;

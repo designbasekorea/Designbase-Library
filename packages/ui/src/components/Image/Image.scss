@@ -1,0 +1,294 @@
+/**
+ * Image 컴포넌트 스타일
+ */
+
+.designbase-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background-color: var(--color-background-secondary, #f3f4f6);
+    border: 1px solid var(--color-border-subtle, #e5e7eb);
+
+    // 기본 이미지 스타일
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+
+        &--loaded {
+            opacity: 1;
+        }
+
+        &--error {
+            opacity: 0;
+        }
+    }
+
+    // Aspect Ratio 스타일
+    &--ratio-auto {
+        .designbase-image__img {
+            object-fit: contain;
+        }
+    }
+
+    &--ratio-1-1 {
+        aspect-ratio: 1 / 1;
+    }
+
+    &--ratio-16-9 {
+        aspect-ratio: 16 / 9;
+    }
+
+    &--ratio-4-3 {
+        aspect-ratio: 4 / 3;
+    }
+
+    &--ratio-3-2 {
+        aspect-ratio: 3 / 2;
+    }
+
+    &--ratio-3-4 {
+        aspect-ratio: 3 / 4;
+    }
+
+    &--ratio-2-1 {
+        aspect-ratio: 2 / 1;
+    }
+
+    // Object Fit 스타일
+    &--fit-cover {
+        .designbase-image__img {
+            object-fit: cover;
+        }
+    }
+
+    &--fit-contain {
+        .designbase-image__img {
+            object-fit: contain;
+        }
+    }
+
+    &--fit-fill {
+        .designbase-image__img {
+            object-fit: fill;
+        }
+    }
+
+    &--fit-none {
+        .designbase-image__img {
+            object-fit: none;
+        }
+    }
+
+    &--fit-scale-down {
+        .designbase-image__img {
+            object-fit: scale-down;
+        }
+    }
+
+    // 둥근 모서리 스타일
+    &--rounded {
+        border-radius: var(--border-radius-action-md, 6px);
+    }
+
+    &--rounded-sm {
+        border-radius: var(--border-radius-action-sm, 4px);
+    }
+
+    &--rounded-md {
+        border-radius: var(--border-radius-action-md, 6px);
+    }
+
+    &--rounded-lg {
+        border-radius: var(--border-radius-action-lg, 8px);
+    }
+
+    &--rounded-full {
+        border-radius: var(--border-radius-action-pill, 9999px);
+    }
+
+    // 그림자 스타일
+    &--shadow {
+        box-shadow: var(--effect-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+    }
+
+    &--shadow-sm {
+        box-shadow: var(--effect-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+    }
+
+    &--shadow-md {
+        box-shadow: var(--effect-shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+    }
+
+    &--shadow-lg {
+        box-shadow: var(--effect-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+    }
+
+    // 호버 효과
+    &--hover {
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--effect-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    // 전체 너비/높이
+    &--full-width {
+        width: 100%;
+    }
+
+    &--full-height {
+        height: 100%;
+    }
+
+    // 클릭 가능한 상태
+    &--clickable {
+        cursor: pointer;
+    }
+
+    // 로딩 상태
+    &--loading {
+        .designbase-image__img {
+            opacity: 0;
+        }
+    }
+
+    // 에러 상태
+    &--error {
+        .designbase-image__img {
+            opacity: 0;
+        }
+    }
+
+    // 플레이스홀더
+    &__placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-background-secondary, #f3f4f6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        &--visible {
+            opacity: 1;
+        }
+
+        // 스켈레톤 플레이스홀더
+        &--skeleton {
+            .designbase-image__skeleton {
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg,
+                        var(--color-background-tertiary, #f9fafb) 25%,
+                        var(--color-background-secondary, #f3f4f6) 50%,
+                        var(--color-background-tertiary, #f9fafb) 75%);
+                background-size: 200% 100%;
+                animation: skeleton-loading 1.5s infinite;
+            }
+        }
+
+        // 블러 플레이스홀더
+        &--blur {
+            .designbase-image__blur {
+                width: 100%;
+                height: 100%;
+                background-color: var(--color-background-secondary, #f3f4f6);
+                filter: blur(10px);
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    // 에러 상태
+    &__error {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-background-secondary, #f3f4f6);
+        color: var(--color-text-secondary, #6b7280);
+        padding: var(--spacing-semantic-padding-md, 16px);
+        text-align: center;
+
+        &-text {
+            margin-top: var(--spacing-semantic-margin-sm, 8px);
+            font-size: var(--typography-size-sm, 14px);
+            line-height: var(--typography-line-height-sm, 1.25);
+        }
+    }
+
+    // 스켈레톤 애니메이션
+    @keyframes skeleton-loading {
+        0% {
+            background-position: 200% 0;
+        }
+
+        100% {
+            background-position: -200% 0;
+        }
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-image {
+        background-color: var(--color-background-secondary-dark, #374151);
+        border-color: var(--color-border-subtle-dark, #4b5563);
+
+        &__placeholder {
+            background-color: var(--color-background-secondary-dark, #374151);
+
+            &--skeleton {
+                .designbase-image__skeleton {
+                    background: linear-gradient(90deg,
+                            var(--color-background-tertiary-dark, #4b5563) 25%,
+                            var(--color-background-secondary-dark, #374151) 50%,
+                            var(--color-background-tertiary-dark, #4b5563) 75%);
+                }
+            }
+
+            &--blur {
+                .designbase-image__blur {
+                    background-color: var(--color-background-secondary-dark, #374151);
+                }
+            }
+        }
+
+        &__error {
+            background-color: var(--color-background-secondary-dark, #374151);
+            color: var(--color-text-secondary-dark, #9ca3af);
+        }
+    }
+}
+
+// 반응형 지원
+@media (max-width: 768px) {
+    .designbase-image {
+        &__error {
+            padding: var(--spacing-semantic-padding-sm, 12px);
+
+            &-text {
+                font-size: var(--typography-size-xs, 12px);
+            }
+        }
+    }
+}

@@ -1,0 +1,215 @@
+/**
+ * FileUploader 컴포넌트 스타일
+ */
+
+.designbase-file-uploader {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-semantic-margin-lg, 24px);
+
+    // 크기별 스타일
+    &--size-sm {
+        gap: var(--spacing-semantic-margin-md, 16px);
+    }
+
+    &--size-md {
+        gap: var(--spacing-semantic-margin-lg, 24px);
+    }
+
+    &--size-lg {
+        gap: var(--spacing-semantic-margin-xl, 32px);
+    }
+
+    &--size-xl {
+        gap: var(--spacing-semantic-margin-2xl, 48px);
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        // 기본 스타일
+    }
+
+    &--variant-outlined {
+        // 아웃라인 스타일
+    }
+
+    &--variant-filled {
+        // 채워진 스타일
+    }
+
+    // 비활성화 상태
+    &--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    // 파일 목록 스타일
+    &__file-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-semantic-margin-md, 16px);
+    }
+
+    &__file-list-title {
+        margin: 0;
+        font-size: var(--typography-semantic-font-size-lg, 18px);
+        font-weight: var(--typography-semantic-font-weight-semibold, 600);
+        color: var(--color-semantic-text-primary, #1e293b);
+    }
+
+    // 파일 아이템 스타일
+    &__file-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-semantic-margin-md, 16px);
+        padding: var(--spacing-semantic-padding-md, 16px);
+        background-color: var(--color-semantic-background-default, #ffffff);
+        border: 1px solid var(--color-semantic-border-subtle, #f1f5f9);
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: var(--color-semantic-border-default, #e2e8f0);
+            box-shadow: var(--shadow-semantic-shadow-sm, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06));
+        }
+    }
+
+    // 파일 정보 스타일
+    &__file-info {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-margin-md, 16px);
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__file-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        background-color: var(--color-semantic-background-subtle, #f8fafc);
+        color: var(--color-semantic-text-tertiary, #94a3b8);
+        flex-shrink: 0;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__file-details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-semantic-margin-xs, 4px);
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__file-name {
+        font-size: var(--typography-semantic-font-size-md, 16px);
+        font-weight: var(--typography-semantic-font-weight-medium, 500);
+        color: var(--color-semantic-text-primary, #1e293b);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__file-size {
+        font-size: var(--typography-semantic-font-size-sm, 14px);
+        color: var(--color-semantic-text-tertiary, #94a3b8);
+    }
+
+    &__file-error {
+        font-size: var(--typography-semantic-font-size-sm, 14px);
+        color: var(--color-semantic-danger-default, #ef4444);
+    }
+
+    // 파일 액션 스타일
+    &__file-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-margin-sm, 8px);
+        flex-shrink: 0;
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-file-uploader {
+        &__file-list-title {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+        }
+
+        &__file-item {
+            background-color: var(--color-semantic-background-default, #0f172a);
+            border-color: var(--color-semantic-border-subtle, #334155);
+
+            &:hover {
+                border-color: var(--color-semantic-border-default, #475569);
+            }
+        }
+
+        &__file-icon {
+            background-color: var(--color-semantic-background-subtle, #1e293b);
+            color: var(--color-semantic-text-tertiary, #64748b);
+        }
+
+        &__file-name {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+        }
+
+        &__file-size {
+            color: var(--color-semantic-text-tertiary, #94a3b8);
+        }
+
+        &__file-error {
+            color: var(--color-semantic-danger-default, #ef4444);
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-file-uploader {
+        &__file-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &__file-actions {
+            width: 100%;
+            justify-content: flex-end;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-file-uploader {
+        &__file-info {
+            gap: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &__file-icon {
+            width: 24px;
+            height: 24px;
+
+            svg {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        &__file-name {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+        }
+
+        &__file-size {
+            font-size: var(--typography-semantic-font-size-xs, 12px);
+        }
+    }
+}

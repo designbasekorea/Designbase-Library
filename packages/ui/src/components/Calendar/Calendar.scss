@@ -1,0 +1,542 @@
+/**
+ * Calendar 컴포넌트 스타일
+ */
+
+.designbase-calendar {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-semantic-surface-default, #ffffff);
+    border: 1px solid var(--color-semantic-border-default, #e5e7eb);
+    border-radius: var(--border-radius-semantic-radius-lg, 12px);
+    overflow: hidden;
+    font-family: var(--typography-semantic-body-md-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+
+    // 크기별 스타일
+    &--size-sm {
+        width: 280px;
+        font-size: var(--typography-semantic-body-sm-font-size, 14px);
+
+        .designbase-calendar__header {
+            padding: var(--spacing-semantic-spacing-sm, 8px);
+        }
+
+        .designbase-calendar__weekdays {
+            padding: var(--spacing-semantic-spacing-xs, 4px) var(--spacing-semantic-spacing-sm, 8px);
+        }
+
+        .designbase-calendar__day {
+            height: 32px;
+            font-size: var(--typography-semantic-body-sm-font-size, 14px);
+        }
+
+        .designbase-calendar__footer {
+            padding: var(--spacing-semantic-spacing-sm, 8px);
+        }
+    }
+
+    &--size-md {
+        width: 320px;
+        font-size: var(--typography-semantic-body-md-font-size, 16px);
+
+        .designbase-calendar__header {
+            padding: var(--spacing-semantic-spacing-md, 12px);
+        }
+
+        .designbase-calendar__weekdays {
+            padding: var(--spacing-semantic-spacing-sm, 8px) var(--spacing-semantic-spacing-md, 12px);
+        }
+
+        .designbase-calendar__day {
+            height: 40px;
+            font-size: var(--typography-semantic-body-md-font-size, 16px);
+        }
+
+        .designbase-calendar__footer {
+            padding: var(--spacing-semantic-spacing-md, 12px);
+        }
+    }
+
+    &--size-lg {
+        width: 360px;
+        font-size: var(--typography-semantic-body-lg-font-size, 18px);
+
+        .designbase-calendar__header {
+            padding: var(--spacing-semantic-spacing-lg, 16px);
+        }
+
+        .designbase-calendar__weekdays {
+            padding: var(--spacing-semantic-spacing-md, 12px) var(--spacing-semantic-spacing-lg, 16px);
+        }
+
+        .designbase-calendar__day {
+            height: 48px;
+            font-size: var(--typography-semantic-body-lg-font-size, 18px);
+        }
+
+        .designbase-calendar__footer {
+            padding: var(--spacing-semantic-spacing-lg, 16px);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        background: var(--color-semantic-surface-default, #ffffff);
+        border-color: var(--color-semantic-border-default, #e5e7eb);
+    }
+
+    &--variant-outlined {
+        background: transparent;
+        border-color: var(--color-semantic-border-default, #e5e7eb);
+    }
+
+    &--variant-filled {
+        background: var(--color-semantic-surface-secondary, #f9fafb);
+        border-color: var(--color-semantic-border-default, #e5e7eb);
+    }
+
+    // 헤더
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        background: var(--color-semantic-surface-default, #ffffff);
+    }
+
+    // 네비게이션 버튼
+    &__nav-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        color: var(--color-semantic-text-default, #111827);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--color-semantic-surface-hover, #f3f4f6);
+        }
+
+        &:focus {
+            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            &:hover {
+                background: transparent;
+            }
+        }
+    }
+
+    // 현재 월 표시
+    &__current-month {
+        font-weight: var(--typography-semantic-body-lg-font-weight, 600);
+        color: var(--color-semantic-text-default, #111827);
+        text-align: center;
+        flex: 1;
+    }
+
+    // 요일 헤더
+    &__weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        background: var(--color-semantic-border-default, #e5e7eb);
+    }
+
+    // 요일
+    &__weekday {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-semantic-spacing-xs, 4px);
+        background: var(--color-semantic-surface-default, #ffffff);
+        font-weight: var(--typography-semantic-body-md-font-weight, 500);
+        color: var(--color-semantic-text-secondary, #6b7280);
+        font-size: 0.875em;
+
+        &--weekend {
+            color: var(--color-semantic-error-default, #ef4444);
+        }
+    }
+
+    // 날짜 그리드
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        background: var(--color-semantic-border-default, #e5e7eb);
+        flex: 1;
+    }
+
+    // 날짜 셀
+    &__day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: var(--color-semantic-surface-default, #ffffff);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+        min-height: 40px;
+
+        &:hover:not(&--disabled) {
+            background: var(--color-semantic-surface-hover, #f3f4f6);
+        }
+
+        &:focus {
+            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline-offset: -2px;
+        }
+
+        // 외부 날짜 (이전/다음 달)
+        &--outside {
+            color: var(--color-semantic-text-tertiary, #9ca3af);
+            background: var(--color-semantic-surface-tertiary, #f9fafb);
+        }
+
+        // 비활성화된 날짜
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            color: var(--color-semantic-text-tertiary, #9ca3af);
+
+            &:hover {
+                background: var(--color-semantic-surface-default, #ffffff);
+            }
+        }
+
+        // 오늘 날짜
+        &--today {
+            font-weight: var(--typography-semantic-body-md-font-weight, 600);
+            color: var(--color-semantic-primary-default, #3b82f6);
+
+            .designbase-calendar__day-number {
+                background: var(--color-semantic-primary-default, #3b82f6);
+                color: var(--color-semantic-primary-foreground, #ffffff);
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        // 선택된 날짜
+        &--selected {
+            background: var(--color-semantic-primary-default, #3b82f6);
+            color: var(--color-semantic-primary-foreground, #ffffff);
+
+            .designbase-calendar__day-number {
+                font-weight: var(--typography-semantic-body-md-font-weight, 600);
+            }
+
+            &:hover {
+                background: var(--color-semantic-primary-hover, #2563eb);
+            }
+        }
+
+        // 호버된 날짜
+        &--hovered {
+            background: var(--color-semantic-primary-light, #dbeafe);
+            color: var(--color-semantic-primary-default, #3b82f6);
+        }
+
+        // 범위 내 날짜
+        &--in-range {
+            background: var(--color-semantic-primary-light, #dbeafe);
+            color: var(--color-semantic-primary-default, #3b82f6);
+        }
+
+        // 범위 시작/끝
+        &--range-start,
+        &--range-end {
+            background: var(--color-semantic-primary-default, #3b82f6);
+            color: var(--color-semantic-primary-foreground, #ffffff);
+            font-weight: var(--typography-semantic-body-md-font-weight, 600);
+
+            &:hover {
+                background: var(--color-semantic-primary-hover, #2563eb);
+            }
+        }
+
+        // 주말
+        &--weekend {
+            color: var(--color-semantic-error-default, #ef4444);
+        }
+
+        // 이벤트가 있는 날짜
+        &--has-events {
+            .designbase-calendar__day-number {
+                font-weight: var(--typography-semantic-body-md-font-weight, 600);
+            }
+        }
+    }
+
+    // 날짜 번호
+    &__day-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: inherit;
+        line-height: 1;
+    }
+
+    // 이벤트 컨테이너
+    &__events {
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        max-width: calc(100% - 4px);
+    }
+
+    // 이벤트
+    &__event {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--color-semantic-primary-default, #3b82f6);
+        flex-shrink: 0;
+
+        &--badge {
+            width: auto;
+            height: auto;
+            padding: 1px 4px;
+            border-radius: var(--border-radius-semantic-radius-sm, 4px);
+            font-size: 0.75em;
+            font-weight: var(--typography-semantic-body-sm-font-weight, 500);
+            color: var(--color-semantic-primary-foreground, #ffffff);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 20px;
+        }
+
+        &--label {
+            width: auto;
+            height: auto;
+            padding: 1px 3px;
+            border-radius: var(--border-radius-semantic-radius-sm, 4px);
+            font-size: 0.75em;
+            font-weight: var(--typography-semantic-body-sm-font-weight, 500);
+            background: var(--color-semantic-surface-secondary, #f3f4f6);
+            color: var(--color-semantic-text-default, #111827);
+        }
+    }
+
+    // 이벤트 라벨
+    &__event-label {
+        font-size: 0.75em;
+        font-weight: var(--typography-semantic-body-sm-font-weight, 500);
+        line-height: 1;
+    }
+
+    // 더 많은 이벤트 표시
+    &__event-more {
+        font-size: 0.75em;
+        font-weight: var(--typography-semantic-body-sm-font-weight, 500);
+        color: var(--color-semantic-text-secondary, #6b7280);
+        background: var(--color-semantic-surface-secondary, #f3f4f6);
+        padding: 1px 3px;
+        border-radius: var(--border-radius-semantic-radius-sm, 4px);
+        line-height: 1;
+    }
+
+    // 푸터
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        background: var(--color-semantic-surface-default, #ffffff);
+    }
+
+    // 오늘 버튼
+    &__today-button {
+        padding: var(--spacing-semantic-spacing-xs, 4px) var(--spacing-semantic-spacing-sm, 8px);
+        border: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        background: var(--color-semantic-surface-default, #ffffff);
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        color: var(--color-semantic-text-default, #111827);
+        font-size: 0.875em;
+        font-weight: var(--typography-semantic-body-sm-font-weight, 500);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--color-semantic-surface-hover, #f3f4f6);
+            border-color: var(--color-semantic-border-hover, #d1d5db);
+        }
+
+        &:focus {
+            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline-offset: 2px;
+        }
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-calendar {
+        background: var(--color-semantic-surface-default-dark, #1f2937);
+        border-color: var(--color-semantic-border-default-dark, #374151);
+
+        &--variant-outlined {
+            background: transparent;
+            border-color: var(--color-semantic-border-default-dark, #374151);
+        }
+
+        &--variant-filled {
+            background: var(--color-semantic-surface-secondary-dark, #111827);
+            border-color: var(--color-semantic-border-default-dark, #374151);
+        }
+
+        &__header {
+            background: var(--color-semantic-surface-default-dark, #1f2937);
+            border-color: var(--color-semantic-border-default-dark, #374151);
+        }
+
+        &__nav-button {
+            color: var(--color-semantic-text-default-dark, #f9fafb);
+
+            &:hover {
+                background: var(--color-semantic-surface-hover-dark, #374151);
+            }
+        }
+
+        &__current-month {
+            color: var(--color-semantic-text-default-dark, #f9fafb);
+        }
+
+        &__weekdays {
+            background: var(--color-semantic-border-default-dark, #374151);
+        }
+
+        &__weekday {
+            background: var(--color-semantic-surface-default-dark, #1f2937);
+            color: var(--color-semantic-text-secondary-dark, #9ca3af);
+
+            &--weekend {
+                color: var(--color-semantic-error-default-dark, #f87171);
+            }
+        }
+
+        &__grid {
+            background: var(--color-semantic-border-default-dark, #374151);
+        }
+
+        &__day {
+            background: var(--color-semantic-surface-default-dark, #1f2937);
+            color: var(--color-semantic-text-default-dark, #f9fafb);
+
+            &:hover:not(&--disabled) {
+                background: var(--color-semantic-surface-hover-dark, #374151);
+            }
+
+            &--outside {
+                color: var(--color-semantic-text-tertiary-dark, #6b7280);
+                background: var(--color-semantic-surface-tertiary-dark, #111827);
+            }
+
+            &--disabled {
+                color: var(--color-semantic-text-tertiary-dark, #6b7280);
+
+                &:hover {
+                    background: var(--color-semantic-surface-default-dark, #1f2937);
+                }
+            }
+
+            &--weekend {
+                color: var(--color-semantic-error-default-dark, #f87171);
+            }
+        }
+
+        &__footer {
+            background: var(--color-semantic-surface-default-dark, #1f2937);
+            border-color: var(--color-semantic-border-default-dark, #374151);
+        }
+
+        &__today-button {
+            background: var(--color-semantic-surface-default-dark, #1f2937);
+            border-color: var(--color-semantic-border-default-dark, #374151);
+            color: var(--color-semantic-text-default-dark, #f9fafb);
+
+            &:hover {
+                background: var(--color-semantic-surface-hover-dark, #374151);
+                border-color: var(--color-semantic-border-hover-dark, #4b5563);
+            }
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-calendar {
+        &--size-lg {
+            width: 320px;
+
+            .designbase-calendar__day {
+                height: 40px;
+                font-size: var(--typography-semantic-body-md-font-size, 16px);
+            }
+        }
+
+        &--size-md {
+            width: 280px;
+
+            .designbase-calendar__day {
+                height: 36px;
+                font-size: var(--typography-semantic-body-sm-font-size, 14px);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-calendar {
+
+        &--size-lg,
+        &--size-md {
+            width: 100%;
+            max-width: 320px;
+
+            .designbase-calendar__day {
+                height: 32px;
+                font-size: var(--typography-semantic-body-sm-font-size, 14px);
+            }
+        }
+
+        &__events {
+            bottom: 1px;
+            max-width: calc(100% - 2px);
+        }
+
+        &__event {
+            width: 3px;
+            height: 3px;
+
+            &--badge {
+                padding: 0 2px;
+                font-size: 0.7em;
+                max-width: 16px;
+            }
+        }
+    }
+}

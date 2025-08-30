@@ -1,0 +1,182 @@
+/**
+ * Grid 컴포넌트 스타일
+ */
+
+.designbase-grid {
+    display: grid;
+    box-sizing: border-box;
+
+    // 전체 너비/높이
+    &--full-width {
+        width: 100%;
+    }
+
+    &--full-height {
+        height: 100%;
+    }
+
+    // 컬럼 수에 따른 그리드 템플릿
+    &--columns-1 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    &--columns-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &--columns-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--columns-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    &--columns-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    &--columns-6 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    &--columns-12 {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    // 간격 스타일
+    &--gap-none {
+        gap: 0;
+    }
+
+    &--gap-xs {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+    }
+
+    &--gap-sm {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+    }
+
+    &--gap-md {
+        gap: var(--spacing-semantic-margin-md, 16px);
+    }
+
+    &--gap-lg {
+        gap: var(--spacing-semantic-margin-lg, 24px);
+    }
+
+    &--gap-xl {
+        gap: var(--spacing-semantic-margin-xl, 32px);
+    }
+
+    // 정렬 스타일
+    &--alignment-start {
+        align-items: start;
+    }
+
+    &--alignment-center {
+        align-items: center;
+    }
+
+    &--alignment-end {
+        align-items: end;
+    }
+
+    &--alignment-stretch {
+        align-items: stretch;
+    }
+}
+
+// GridItem 스타일
+.designbase-grid-item {
+    box-sizing: border-box;
+
+    // 정렬 스타일
+    &--alignment-start {
+        align-self: start;
+    }
+
+    &--alignment-center {
+        align-self: center;
+    }
+
+    &--alignment-end {
+        align-self: end;
+    }
+
+    &--alignment-stretch {
+        align-self: stretch;
+    }
+}
+
+// 반응형 그리드
+@media (max-width: 1024px) {
+    .designbase-grid {
+        &--columns-6 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &--columns-5 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &--columns-4 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &--columns-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .designbase-grid {
+
+        &--columns-6,
+        &--columns-5,
+        &--columns-4 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &--columns-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &--gap-lg {
+            gap: var(--spacing-semantic-margin-md, 16px);
+        }
+
+        &--gap-xl {
+            gap: var(--spacing-semantic-margin-lg, 24px);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-grid {
+
+        &--columns-6,
+        &--columns-5,
+        &--columns-4,
+        &--columns-3 {
+            grid-template-columns: 1fr;
+        }
+
+        &--columns-2 {
+            grid-template-columns: 1fr;
+        }
+
+        &--gap-md {
+            gap: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &--gap-lg {
+            gap: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &--gap-xl {
+            gap: var(--spacing-semantic-margin-md, 16px);
+        }
+    }
+}

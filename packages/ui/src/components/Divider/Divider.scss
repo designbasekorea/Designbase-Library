@@ -1,0 +1,155 @@
+@import '../../../../theme/scss/variables';
+@import '../../../../theme/scss/mixins';
+
+.designbase-divider {
+    display: block;
+    border: none;
+    background: none;
+    outline: none;
+
+    // 기본 색상 (테마 변수 사용)
+    border-color: var(--designbase-color-border, #e0e0e0);
+
+    // Horizontal 기본 스타일
+    &--horizontal {
+        width: 100%;
+        margin: 16px 0;
+        border-top-width: 1px;
+        border-top-style: solid;
+    }
+
+    // Vertical 기본 스타일
+    &--vertical {
+        display: inline-block;
+        width: 1px;
+        height: 1em;
+        margin: 0 8px;
+        border-left-width: 1px;
+        border-left-style: solid;
+        vertical-align: middle;
+    }
+
+    // 변형 스타일
+    &--dashed {
+        border-style: dashed;
+    }
+
+    &--dotted {
+        border-style: dotted;
+    }
+
+    // 크기 변형
+    &--horizontal {
+        &.designbase-divider--thick {
+            border-top-width: 2px;
+        }
+
+        &.designbase-divider--thin {
+            border-top-width: 0.5px;
+        }
+    }
+
+    &--vertical {
+        &.designbase-divider--thick {
+            border-left-width: 2px;
+        }
+
+        &.designbase-divider--thin {
+            border-left-width: 0.5px;
+        }
+    }
+
+    // 색상 변형
+    &--primary {
+        border-color: var(--designbase-color-primary, #007bff);
+    }
+
+    &--secondary {
+        border-color: var(--designbase-color-secondary, #6c757d);
+    }
+
+    &--success {
+        border-color: var(--designbase-color-success, #28a745);
+    }
+
+    &--warning {
+        border-color: var(--designbase-color-warning, #ffc107);
+    }
+
+    &--danger {
+        border-color: var(--designbase-color-danger, #dc3545);
+    }
+
+    &--info {
+        border-color: var(--designbase-color-info, #17a2b8);
+    }
+
+    &--light {
+        border-color: var(--designbase-color-light, #f8f9fa);
+    }
+
+    &--dark {
+        border-color: var(--designbase-color-dark, #343a40);
+    }
+
+    // 마진 유틸리티
+    &--no-margin {
+        margin: 0;
+    }
+
+    &--margin-sm {
+        margin: 8px 0;
+    }
+
+    &--margin-md {
+        margin: 16px 0;
+    }
+
+    &--margin-lg {
+        margin: 24px 0;
+    }
+
+    &--margin-xl {
+        margin: 32px 0;
+    }
+
+    // Vertical 마진 유틸리티
+    &--vertical {
+        &.designbase-divider--no-margin {
+            margin: 0;
+        }
+
+        &.designbase-divider--margin-sm {
+            margin: 0 4px;
+        }
+
+        &.designbase-divider--margin-md {
+            margin: 0 8px;
+        }
+
+        &.designbase-divider--margin-lg {
+            margin: 0 12px;
+        }
+
+        &.designbase-divider--margin-xl {
+            margin: 0 16px;
+        }
+    }
+
+    // 반응형 스타일
+    @media (max-width: 768px) {
+        &--horizontal {
+            margin: 12px 0;
+        }
+
+        &--vertical {
+            margin: 0 6px;
+        }
+    }
+
+    // 접근성 개선
+    &:focus {
+        outline: 2px solid var(--designbase-color-primary, #007bff);
+        outline-offset: 2px;
+    }
+}

@@ -1,0 +1,285 @@
+/**
+ * Dropzone 컴포넌트 스타일
+ */
+
+.designbase-dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--color-semantic-border-default, #e2e8f0);
+    border-radius: var(--border-radius-semantic-radius-lg, 12px);
+    background-color: var(--color-semantic-background-subtle, #f8fafc);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+
+    // 크기별 스타일
+    &--size-sm {
+        min-height: 120px;
+        padding: var(--spacing-semantic-padding-lg, 24px);
+
+        .designbase-dropzone__icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .designbase-dropzone__title {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+        }
+
+        .designbase-dropzone__description {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+        }
+    }
+
+    &--size-md {
+        min-height: 160px;
+        padding: var(--spacing-semantic-padding-xl, 32px);
+
+        .designbase-dropzone__icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .designbase-dropzone__title {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+        }
+
+        .designbase-dropzone__description {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+        }
+    }
+
+    &--size-lg {
+        min-height: 200px;
+        padding: var(--spacing-semantic-padding-2xl, 48px);
+
+        .designbase-dropzone__icon {
+            width: 64px;
+            height: 64px;
+        }
+
+        .designbase-dropzone__title {
+            font-size: var(--typography-semantic-font-size-xl, 20px);
+        }
+
+        .designbase-dropzone__description {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+        }
+    }
+
+    &--size-xl {
+        min-height: 240px;
+        padding: var(--spacing-semantic-padding-3xl, 64px);
+
+        .designbase-dropzone__icon {
+            width: 80px;
+            height: 80px;
+        }
+
+        .designbase-dropzone__title {
+            font-size: var(--typography-semantic-font-size-2xl, 24px);
+        }
+
+        .designbase-dropzone__description {
+            font-size: var(--typography-semantic-font-size-xl, 20px);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        border-color: var(--color-semantic-border-default, #e2e8f0);
+        background-color: var(--color-semantic-background-subtle, #f8fafc);
+    }
+
+    &--variant-outlined {
+        border-color: var(--color-semantic-border-default, #e2e8f0);
+        background-color: transparent;
+    }
+
+    &--variant-filled {
+        border-color: var(--color-semantic-border-subtle, #f1f5f9);
+        background-color: var(--color-semantic-background-default, #ffffff);
+    }
+
+    // 드래그 오버 상태
+    &--drag-over {
+        border-color: var(--color-semantic-primary-default, #3b82f6);
+        background-color: var(--color-semantic-primary-subtle, #dbeafe);
+        transform: scale(1.02);
+    }
+
+    // 비활성화 상태
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // 호버 효과
+    &:hover:not(.designbase-dropzone--disabled) {
+        border-color: var(--color-semantic-primary-default, #3b82f6);
+        background-color: var(--color-semantic-primary-subtle, #dbeafe);
+    }
+
+    // 포커스 효과
+    &:focus {
+        outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+        outline-offset: 2px;
+    }
+
+    // 콘텐츠 스타일
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--spacing-semantic-margin-md, 16px);
+    }
+
+    // 아이콘 스타일
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-semantic-text-tertiary, #94a3b8);
+        transition: color 0.2s ease;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    // 제목 스타일
+    &__title {
+        margin: 0;
+        font-weight: var(--typography-semantic-font-weight-semibold, 600);
+        color: var(--color-semantic-text-primary, #1e293b);
+        line-height: 1.4;
+    }
+
+    // 설명 스타일
+    &__description {
+        margin: 0;
+        color: var(--color-semantic-text-secondary, #64748b);
+        line-height: 1.5;
+    }
+
+    // 크기 제한 스타일
+    &__size-limit {
+        margin: 0;
+        font-size: var(--typography-semantic-font-size-sm, 14px);
+        color: var(--color-semantic-text-tertiary, #94a3b8);
+        line-height: 1.4;
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-dropzone {
+        &--variant-default {
+            border-color: var(--color-semantic-border-default, #475569);
+            background-color: var(--color-semantic-background-subtle, #1e293b);
+        }
+
+        &--variant-outlined {
+            border-color: var(--color-semantic-border-default, #475569);
+            background-color: transparent;
+        }
+
+        &--variant-filled {
+            border-color: var(--color-semantic-border-subtle, #334155);
+            background-color: var(--color-semantic-background-default, #0f172a);
+        }
+
+        &--drag-over {
+            border-color: var(--color-semantic-primary-default, #3b82f6);
+            background-color: var(--color-semantic-primary-subtle, #1e3a8a);
+        }
+
+        &:hover:not(.designbase-dropzone--disabled) {
+            border-color: var(--color-semantic-primary-default, #3b82f6);
+            background-color: var(--color-semantic-primary-subtle, #1e3a8a);
+        }
+
+        &__icon {
+            color: var(--color-semantic-text-tertiary, #64748b);
+        }
+
+        &__title {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+        }
+
+        &__description {
+            color: var(--color-semantic-text-secondary, #cbd5e1);
+        }
+
+        &__size-limit {
+            color: var(--color-semantic-text-tertiary, #94a3b8);
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-dropzone {
+        &--size-lg {
+            min-height: 160px;
+            padding: var(--spacing-semantic-padding-xl, 32px);
+
+            .designbase-dropzone__icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .designbase-dropzone__title {
+                font-size: var(--typography-semantic-font-size-lg, 18px);
+            }
+
+            .designbase-dropzone__description {
+                font-size: var(--typography-semantic-font-size-md, 16px);
+            }
+        }
+
+        &--size-xl {
+            min-height: 200px;
+            padding: var(--spacing-semantic-padding-2xl, 48px);
+
+            .designbase-dropzone__icon {
+                width: 64px;
+                height: 64px;
+            }
+
+            .designbase-dropzone__title {
+                font-size: var(--typography-semantic-font-size-xl, 20px);
+            }
+
+            .designbase-dropzone__description {
+                font-size: var(--typography-semantic-font-size-lg, 18px);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-dropzone {
+        &--size-md {
+            min-height: 120px;
+            padding: var(--spacing-semantic-padding-lg, 24px);
+
+            .designbase-dropzone__icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .designbase-dropzone__title {
+                font-size: var(--typography-semantic-font-size-md, 16px);
+            }
+
+            .designbase-dropzone__description {
+                font-size: var(--typography-semantic-font-size-sm, 14px);
+            }
+        }
+    }
+}

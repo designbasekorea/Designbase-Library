@@ -1,0 +1,458 @@
+/**
+ * 디자인 시스템 SCSS 믹스인
+ * 
+ * 목적: 재사용 가능한 스타일 패턴과 믹스인을 제공
+ * 기능: 플렉스 레이아웃, 버튼 스타일, 입력 필드, 포커스 등
+ * 사용법: @include flex-center; @include button-variant(primary);
+ */
+
+@import 'variables';
+
+// ============================================================================
+// Layout Mixins
+// ============================================================================
+
+// Flex 레이아웃 유틸리티
+@mixin flex($direction: row, $wrap: nowrap, $justify: flex-start, $align: stretch) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-center {
+    @include flex($justify: center, $align: center);
+}
+
+@mixin flex-between {
+    @include flex($justify: space-between, $align: center);
+}
+
+@mixin flex-around {
+    @include flex($justify: space-around, $align: center);
+}
+
+@mixin flex-column {
+    @include flex($direction: column);
+}
+
+@mixin flex-column-center {
+    @include flex($direction: column, $justify: center, $align: center);
+}
+
+// Grid 레이아웃 유틸리티
+@mixin grid($columns: 1fr, $rows: auto, $gap: $spacing-4) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-template-rows: $rows;
+    gap: $gap;
+}
+
+// 절대 위치 중앙 정렬
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// ============================================================================
+// Typography Mixins
+// ============================================================================
+
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin text-multiline-truncate($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@mixin heading($size: 'base', $weight: $font-weight-semibold) {
+    font-family: $font-family-primary;
+    font-weight: $weight;
+    line-height: $line-height-tight;
+
+    @if $size =='xs' {
+        font-size: $font-size-xs;
+    }
+
+    @else if $size =='sm' {
+        font-size: $font-size-sm;
+    }
+
+    @else if $size =='base' {
+        font-size: $font-size-base;
+    }
+
+    @else if $size =='lg' {
+        font-size: $font-size-lg;
+    }
+
+    @else if $size =='xl' {
+        font-size: $font-size-xl;
+    }
+
+    @else if $size =='2xl' {
+        font-size: $font-size-2xl;
+    }
+
+    @else if $size =='3xl' {
+        font-size: $font-size-3xl;
+    }
+
+    @else if $size =='4xl' {
+        font-size: $font-size-4xl;
+    }
+}
+
+@mixin body-text($size: 'base', $weight: $font-weight-normal) {
+    font-family: $font-family-primary;
+    font-weight: $weight;
+    line-height: $line-height-normal;
+
+    @if $size =='xs' {
+        font-size: $font-size-xs;
+    }
+
+    @else if $size =='sm' {
+        font-size: $font-size-sm;
+    }
+
+    @else if $size =='base' {
+        font-size: $font-size-base;
+    }
+
+    @else if $size =='lg' {
+        font-size: $font-size-lg;
+    }
+
+    @else if $size =='xl' {
+        font-size: $font-size-xl;
+    }
+}
+
+// ============================================================================
+// Component Mixins
+// ============================================================================
+
+// 버튼 베이스 스타일
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: $border-radius-md;
+    font-family: $font-family-primary;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-duration-fast $transition-timing-ease-in-out;
+    white-space: nowrap;
+    user-select: none;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($color-blue-500, 0.1);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+}
+
+// 버튼 크기 variants
+@mixin button-size($size: 'md') {
+    @if $size =='xs' {
+        padding: $spacing-1 $spacing-2;
+        font-size: $font-size-xs;
+        line-height: $line-height-tight;
+    }
+
+    @else if $size =='sm' {
+        padding: $spacing-2 $spacing-3;
+        font-size: $font-size-sm;
+        line-height: $line-height-tight;
+    }
+
+    @else if $size =='md' {
+        padding: $spacing-3 $spacing-4;
+        font-size: $font-size-sm;
+        line-height: $line-height-snug;
+    }
+
+    @else if $size =='lg' {
+        padding: $spacing-3 $spacing-6;
+        font-size: $font-size-base;
+        line-height: $line-height-snug;
+    }
+
+    @else if $size =='xl' {
+        padding: $spacing-4 $spacing-8;
+        font-size: $font-size-lg;
+        line-height: $line-height-snug;
+    }
+}
+
+// 버튼 색상 variants
+@mixin button-variant($variant: 'primary') {
+    @if $variant =='primary' {
+        background-color: $color-button-primary-bg;
+        border-color: $color-button-primary-bg;
+        color: $color-button-primary-text;
+
+        &:hover:not(:disabled) {
+            background-color: $color-button-primary-bg-hover;
+            border-color: $color-button-primary-bg-hover;
+        }
+
+        &:active:not(:disabled) {
+            background-color: $color-button-primary-bg-active;
+            border-color: $color-button-primary-bg-active;
+        }
+    }
+
+    @else if $variant =='secondary' {
+        background-color: $color-button-secondary-bg;
+        border-color: $color-button-secondary-border;
+        color: $color-button-secondary-text;
+
+        &:hover:not(:disabled) {
+            background-color: $color-button-secondary-bg-hover;
+            border-color: $color-button-secondary-border-hover;
+            color: $color-button-secondary-text-hover;
+        }
+
+        &:active:not(:disabled) {
+            background-color: $color-button-secondary-bg-active;
+        }
+    }
+
+    @else if $variant =='danger' {
+        background-color: $color-button-danger-bg;
+        border-color: $color-button-danger-bg;
+        color: $color-button-danger-text;
+
+        &:hover:not(:disabled) {
+            background-color: $color-button-danger-bg-hover;
+            border-color: $color-button-danger-bg-hover;
+        }
+
+        &:active:not(:disabled) {
+            background-color: $color-button-danger-bg-active;
+            border-color: $color-button-danger-bg-active;
+        }
+    }
+
+    @else if $variant =='ghost' {
+        background-color: transparent;
+        border-color: transparent;
+        color: $color-text-primary;
+
+        &:hover:not(:disabled) {
+            background-color: $color-bg-secondary;
+        }
+
+        &:active:not(:disabled) {
+            background-color: $color-bg-tertiary;
+        }
+    }
+}
+
+// 입력 필드 베이스 스타일
+@mixin input-base {
+    display: block;
+    width: 100%;
+    padding: $spacing-3 $spacing-4;
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    line-height: $line-height-snug;
+    color: $color-text-primary;
+    background-color: $color-bg-primary;
+    border: 1px solid $color-border-primary;
+    border-radius: $border-radius-md;
+    transition: border-color $transition-duration-fast $transition-timing-ease-in-out,
+        box-shadow $transition-duration-fast $transition-timing-ease-in-out;
+
+    &::placeholder {
+        color: $color-text-muted;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $color-border-focus;
+        box-shadow: 0 0 0 3px rgba($color-blue-500, 0.1);
+    }
+
+    &:disabled {
+        background-color: $color-bg-secondary;
+        color: $color-text-disabled;
+        cursor: not-allowed;
+    }
+
+    &.error {
+        border-color: $color-red-500;
+
+        &:focus {
+            border-color: $color-red-500;
+            box-shadow: 0 0 0 3px rgba($color-red-500, 0.1);
+        }
+    }
+}
+
+// ============================================================================
+// State Mixins
+// ============================================================================
+
+// 포커스 스타일
+@mixin focus-ring($color: $color-blue-500, $width: 3px, $opacity: 0.1) {
+    outline: none;
+    box-shadow: 0 0 0 #{$width} rgba($color, $opacity);
+}
+
+// 호버 효과
+@mixin hover-lift {
+    transition: transform $transition-duration-fast $transition-timing-ease-out,
+        box-shadow $transition-duration-fast $transition-timing-ease-out;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: $shadow-md;
+    }
+}
+
+// 로딩 상태
+@mixin loading-state {
+    position: relative;
+    pointer-events: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1rem;
+        height: 1rem;
+        margin: -0.5rem 0 0 -0.5rem;
+        border: 2px solid transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+}
+
+// ============================================================================
+// Animation Mixins
+// ============================================================================
+
+@mixin fadeIn($duration: $transition-duration-normal) {
+    animation: fadeIn $duration $transition-timing-ease-out;
+}
+
+@mixin slideUp($duration: $transition-duration-normal) {
+    animation: slideUp $duration $transition-timing-ease-out;
+}
+
+@mixin slideDown($duration: $transition-duration-normal) {
+    animation: slideDown $duration $transition-timing-ease-out;
+}
+
+// 키프레임 애니메이션
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ============================================================================
+// Utility Mixins
+// ============================================================================
+
+// 시각적으로 숨기기 (스크린 리더용)
+@mixin visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+// 컨테이너 최대 너비
+@mixin container($max-width: 1200px) {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+}
+
+// 반응형 브레이크포인트
+@mixin responsive($breakpoint) {
+    @if $breakpoint =='sm' {
+        @media (min-width: 640px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='md' {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='lg' {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='xl' {
+        @media (min-width: 1280px) {
+            @content;
+        }
+    }
+}

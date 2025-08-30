@@ -1,0 +1,261 @@
+.designbase-progressbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs, 4px);
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs, 4px);
+
+        &--top {
+            flex-direction: column;
+        }
+
+        &--bottom {
+            flex-direction: column-reverse;
+        }
+
+        &--inside {
+            flex-direction: column;
+        }
+    }
+
+    &__track {
+        width: 100%;
+        background-color: var(--color-background-secondary, #f3f4f6);
+        border-radius: var(--border-radius-full, 9999px);
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__fill {
+        height: 100%;
+        background-color: var(--color-primary-500, #3b82f6);
+        border-radius: var(--border-radius-full, 9999px);
+        transition: width 0.3s ease-in-out;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__fill-label {
+        color: var(--color-text-inverse, #ffffff);
+        font-size: var(--typography-body-xs-font-size, 12px);
+        font-weight: var(--typography-body-xs-font-weight, 500);
+        line-height: var(--typography-body-xs-line-height, 16px);
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    &__label {
+        font-size: var(--typography-body-sm-font-size, 14px);
+        font-weight: var(--typography-body-sm-font-weight, 500);
+        line-height: var(--typography-body-sm-line-height, 20px);
+        color: var(--color-text-primary, #111827);
+
+        &--top {
+            text-align: left;
+        }
+
+        &--bottom {
+            text-align: left;
+        }
+
+        &--inside {
+            display: none;
+        }
+    }
+
+    // Sizes
+    &--xs {
+        .designbase-progressbar__track {
+            height: 4px;
+        }
+
+        .designbase-progressbar__label {
+            font-size: var(--typography-body-xs-font-size, 12px);
+            line-height: var(--typography-body-xs-line-height, 16px);
+        }
+    }
+
+    &--sm {
+        .designbase-progressbar__track {
+            height: 6px;
+        }
+
+        .designbase-progressbar__label {
+            font-size: var(--typography-body-xs-font-size, 12px);
+            line-height: var(--typography-body-xs-line-height, 16px);
+        }
+    }
+
+    &--md {
+        .designbase-progressbar__track {
+            height: 8px;
+        }
+
+        .designbase-progressbar__label {
+            font-size: var(--typography-body-sm-font-size, 14px);
+            line-height: var(--typography-body-sm-line-height, 20px);
+        }
+    }
+
+    &--lg {
+        .designbase-progressbar__track {
+            height: 12px;
+        }
+
+        .designbase-progressbar__label {
+            font-size: var(--typography-body-md-font-size, 16px);
+            line-height: var(--typography-body-md-line-height, 24px);
+        }
+    }
+
+    &--xl {
+        .designbase-progressbar__track {
+            height: 16px;
+        }
+
+        .designbase-progressbar__label {
+            font-size: var(--typography-body-lg-font-size, 18px);
+            line-height: var(--typography-body-lg-line-height, 28px);
+        }
+    }
+
+    // Variants
+    &--default {
+        .designbase-progressbar__fill {
+            background-color: var(--color-primary-500, #3b82f6);
+        }
+    }
+
+    &--primary {
+        .designbase-progressbar__fill {
+            background-color: var(--color-primary-500, #3b82f6);
+        }
+    }
+
+    &--success {
+        .designbase-progressbar__fill {
+            background-color: var(--color-success-500, #10b981);
+        }
+    }
+
+    &--warning {
+        .designbase-progressbar__fill {
+            background-color: var(--color-warning-500, #f59e0b);
+        }
+    }
+
+    &--danger {
+        .designbase-progressbar__fill {
+            background-color: var(--color-error-500, #ef4444);
+        }
+    }
+
+    // Styles
+    &--solid {
+        .designbase-progressbar__fill {
+            background: linear-gradient(90deg, currentColor, currentColor);
+        }
+    }
+
+    &--striped {
+        .designbase-progressbar__fill {
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 1rem 1rem;
+        }
+    }
+
+    &--animated {
+        .designbase-progressbar__fill {
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 1rem 1rem;
+            animation: progressbar-stripes 1s linear infinite;
+        }
+    }
+
+    // States
+    &--disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        .designbase-progressbar__track {
+            background-color: var(--color-background-disabled, #f9fafb);
+        }
+
+        .designbase-progressbar__fill {
+            background-color: var(--color-text-disabled, #9ca3af);
+        }
+
+        .designbase-progressbar__label {
+            color: var(--color-text-disabled, #9ca3af);
+        }
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+
+    // Animations
+    @keyframes progressbar-stripes {
+        0% {
+            background-position: 1rem 0;
+        }
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    // Responsive
+    @media (max-width: 640px) {
+        &--lg {
+            .designbase-progressbar__track {
+                height: 10px;
+            }
+
+            .designbase-progressbar__label {
+                font-size: var(--typography-body-sm-font-size, 14px);
+                line-height: var(--typography-body-sm-line-height, 20px);
+            }
+        }
+
+        &--xl {
+            .designbase-progressbar__track {
+                height: 14px;
+            }
+
+            .designbase-progressbar__label {
+                font-size: var(--typography-body-md-font-size, 16px);
+                line-height: var(--typography-body-md-line-height, 24px);
+            }
+        }
+    }
+
+    // Focus styles for accessibility
+    &:focus-visible {
+        outline: 2px solid var(--color-primary-500, #3b82f6);
+        outline-offset: 2px;
+        border-radius: var(--border-radius-sm, 4px);
+    }
+}

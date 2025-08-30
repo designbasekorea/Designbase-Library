@@ -1,0 +1,62 @@
+/**
+ * VolumeUpIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface VolumeUpIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const VolumeUpIcon: React.FC<VolumeUpIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} fillRule="evenodd" d="M12.075 4.174a.75.75 0 0 1 .425.676v14a.75.75 0 0 1-1.219.586L6.488 15.6H2.75a.75.75 0 0 1-.75-.75v-6a.75.75 0 0 1 .75-.75h3.737l4.794-3.836a.75.75 0 0 1 .794-.09M11 6.41 7.219 9.436a.75.75 0 0 1-.469.164H3.5v4.5h3.25a.75.75 0 0 1 .469.164L11 17.29zM17.32 4.22a.75.75 0 0 1 1.06 0c2.046 2.046 3.12 4.739 3.12 7.63 0 2.908-1.185 5.589-3.106 7.616a.75.75 0 1 1-1.088-1.032C18.986 16.661 20 14.342 20 11.85c0-2.509-.926-4.815-2.68-6.57a.75.75 0 0 1 0-1.06" clipRule="evenodd"/><path fill={getColorValue()} fillRule="evenodd" d="M14.72 7.82a.75.75 0 0 1 1.06 0c1.025 1.025 1.72 2.51 1.72 4.03 0 1.485-.571 2.998-1.748 4.057a.75.75 0 1 1-1.004-1.114C15.571 14.052 16 12.965 16 11.85c0-1.08-.505-2.195-1.28-2.97a.75.75 0 0 1 0-1.06" clipRule="evenodd"/>
+    </svg>
+  );
+};
+
+VolumeUpIcon.displayName = 'VolumeUpIcon';
+export default VolumeUpIcon;

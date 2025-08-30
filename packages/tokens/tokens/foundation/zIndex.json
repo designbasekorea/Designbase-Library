@@ -1,0 +1,50 @@
+{
+    "zIndex": {
+        "foundation": {
+            "auto": {
+                "value": "auto",
+                "type": "zIndex"
+            },
+            "0": {
+                "value": "0",
+                "type": "zIndex"
+            },
+            "10": {
+                "value": "10",
+                "type": "zIndex"
+            },
+            "20": {
+                "value": "20",
+                "type": "zIndex"
+            },
+            "30": {
+                "value": "30",
+                "type": "zIndex"
+            },
+            "40": {
+                "value": "40",
+                "type": "zIndex"
+            },
+            "50": {
+                "value": "50",
+                "type": "zIndex"
+            },
+            "modal": {
+                "value": "1000",
+                "type": "zIndex"
+            },
+            "popover": {
+                "value": "1010",
+                "type": "zIndex"
+            },
+            "tooltip": {
+                "value": "1020",
+                "type": "zIndex"
+            },
+            "toast": {
+                "value": "1030",
+                "type": "zIndex"
+            }
+        }
+    }
+}

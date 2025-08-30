@@ -1,0 +1,62 @@
+/**
+ * BellActiveIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface BellActiveIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const BellActiveIcon: React.FC<BellActiveIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} fillRule="evenodd" d="M6.5 10.765v2.985c0 1.445-.466 2.453-1.06 3.25h12.62c-.594-.797-1.06-1.805-1.06-3.25v-2.985c-.047-1.117-.55-2.449-1.465-3.497C14.629 6.229 13.35 5.5 11.75 5.5s-2.878.73-3.785 1.768c-.914 1.048-1.418 2.38-1.465 3.497m.335-4.483C7.979 4.971 9.65 4 11.75 4s3.772.97 4.915 2.282c1.132 1.298 1.778 2.96 1.835 4.44v3.028c0 1.67.788 2.477 1.78 3.47a.75.75 0 0 1-.53 1.28h-16a.75.75 0 0 1-.53-1.28c.992-.992 1.78-1.8 1.78-3.47v-3.029c.058-1.48.703-3.141 1.835-4.439" clipRule="evenodd"/><path fill={getColorValue()} fillRule="evenodd" d="M8.75 17a.75.75 0 0 1 .75.75v1c0 1.286.964 2.25 2.25 2.25S14 20.036 14 18.75v-1a.75.75 0 0 1 1.5 0v1c0 2.114-1.636 3.75-3.75 3.75S8 20.864 8 18.75v-1a.75.75 0 0 1 .75-.75M17.174 3.27a.75.75 0 0 1 1.056-.096c1.307 1.089 2.464 2.786 3.191 4.24a.75.75 0 0 1-1.342.671c-.672-1.345-1.716-2.848-2.809-3.759a.75.75 0 0 1-.096-1.056M6.326 3.27a.75.75 0 0 1-.096 1.056c-1.093.911-2.136 2.414-2.809 3.76a.75.75 0 0 1-1.342-.671C2.807 5.96 3.964 4.263 5.27 3.174a.75.75 0 0 1 1.056.096M11.75 2a.75.75 0 0 1 .75.75v2a.75.75 0 1 1-1.5 0v-2a.75.75 0 0 1 .75-.75" clipRule="evenodd"/>
+    </svg>
+  );
+};
+
+BellActiveIcon.displayName = 'BellActiveIcon';
+export default BellActiveIcon;

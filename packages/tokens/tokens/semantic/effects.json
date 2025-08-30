@@ -1,0 +1,86 @@
+{
+    "shadow": {
+        "semantic": {
+            "button": {
+                "default": {
+                    "value": "{shadow.foundation.none}",
+                    "type": "boxShadow"
+                },
+                "hover": {
+                    "value": "{shadow.foundation.sm}",
+                    "type": "boxShadow"
+                },
+                "active": {
+                    "value": "{shadow.foundation.inner}",
+                    "type": "boxShadow"
+                }
+            },
+            "card": {
+                "default": {
+                    "value": "{shadow.foundation.base}",
+                    "type": "boxShadow"
+                },
+                "hover": {
+                    "value": "{shadow.foundation.md}",
+                    "type": "boxShadow"
+                },
+                "elevated": {
+                    "value": "{shadow.foundation.lg}",
+                    "type": "boxShadow"
+                }
+            },
+            "modal": {
+                "overlay": {
+                    "value": "{shadow.foundation.xl}",
+                    "type": "boxShadow"
+                },
+                "content": {
+                    "value": "{shadow.foundation.2xl}",
+                    "type": "boxShadow"
+                }
+            },
+            "dropdown": {
+                "default": {
+                    "value": "{shadow.foundation.md}",
+                    "type": "boxShadow"
+                }
+            },
+            "tooltip": {
+                "default": {
+                    "value": "{shadow.foundation.sm}",
+                    "type": "boxShadow"
+                }
+            }
+        }
+    },
+    "opacity": {
+        "semantic": {
+            "disabled": {
+                "value": "{opacity.foundation.50}",
+                "type": "opacity"
+            },
+            "overlay": {
+                "light": {
+                    "value": "{opacity.foundation.25}",
+                    "type": "opacity"
+                },
+                "medium": {
+                    "value": "{opacity.foundation.50}",
+                    "type": "opacity"
+                },
+                "dark": {
+                    "value": "{opacity.foundation.75}",
+                    "type": "opacity"
+                }
+            },
+            "hover": {
+                "value": "{opacity.foundation.80}",
+                "type": "opacity"
+            },
+            "focus": {
+                "value": "{opacity.foundation.90}",
+                "type": "opacity"
+            }
+        }
+    }
+}

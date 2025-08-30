@@ -1,0 +1,230 @@
+.designbase-search-bar {
+    display: inline-flex;
+    width: auto;
+    position: relative;
+
+    &--full-width {
+        width: 100%;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        background-color: var(--color-background-primary, #ffffff);
+        border: 1px solid var(--color-border-primary, #e5e7eb);
+        border-radius: var(--border-radius-md, 6px);
+        transition: all var(--transition-duration, 0.2s) ease;
+
+        &:hover {
+            border-color: var(--color-border-hover, #d1d5db);
+        }
+
+        &:focus-within {
+            border-color: var(--color-border-focus, #3b82f6);
+            box-shadow: 0 0 0 3px var(--color-border-focus-alpha, rgba(59, 130, 246, 0.1));
+        }
+    }
+
+    &__search-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 40px;
+        height: 100%;
+        color: var(--color-text-secondary, #6b7280);
+        pointer-events: none;
+    }
+
+    &__input {
+        flex: 1;
+        width: 100%;
+        min-width: 0;
+        padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: var(--typography-body-sm-font-size, 14px);
+        font-weight: var(--typography-body-sm-font-weight, 400);
+        color: var(--color-text-primary, #111827);
+        line-height: 1.5;
+
+        &::placeholder {
+            color: var(--color-text-placeholder, #9ca3af);
+        }
+
+        &:disabled {
+            color: var(--color-text-disabled, #9ca3af);
+            cursor: not-allowed;
+        }
+
+        &:read-only {
+            color: var(--color-text-secondary, #6b7280);
+        }
+    }
+
+    &__clear-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        margin-right: var(--spacing-xs, 4px);
+        border: none;
+        border-radius: var(--border-radius-sm, 4px);
+        background: transparent;
+        color: var(--color-text-secondary, #6b7280);
+        cursor: pointer;
+        transition: all var(--transition-duration, 0.2s) ease;
+
+        &:hover {
+            background-color: var(--color-background-hover, #f3f4f6);
+            color: var(--color-text-primary, #111827);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-border-focus, #3b82f6);
+            outline-offset: 2px;
+        }
+
+        &:active {
+            background-color: var(--color-background-active, #e5e7eb);
+        }
+    }
+
+    // Sizes
+    &--sm {
+        .designbase-search-bar__container {
+            min-height: 32px;
+        }
+
+        .designbase-search-bar__search-icon {
+            width: 32px;
+        }
+
+        .designbase-search-bar__input {
+            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+            font-size: var(--typography-body-xs-font-size, 12px);
+        }
+
+        .designbase-search-bar__clear-button {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &--md {
+        .designbase-search-bar__container {
+            min-height: 40px;
+        }
+
+        .designbase-search-bar__search-icon {
+            width: 40px;
+        }
+
+        .designbase-search-bar__input {
+            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+            font-size: var(--typography-body-sm-font-size, 14px);
+        }
+
+        .designbase-search-bar__clear-button {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    &--lg {
+        .designbase-search-bar__container {
+            min-height: 48px;
+        }
+
+        .designbase-search-bar__search-icon {
+            width: 48px;
+        }
+
+        .designbase-search-bar__input {
+            padding: var(--spacing-md, 16px) var(--spacing-lg, 24px);
+            font-size: var(--typography-body-md-font-size, 16px);
+        }
+
+        .designbase-search-bar__clear-button {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    // Variants
+    &--default {
+        .designbase-search-bar__container {
+            background-color: var(--color-background-primary, #ffffff);
+            border-color: var(--color-border-primary, #e5e7eb);
+        }
+    }
+
+    &--outlined {
+        .designbase-search-bar__container {
+            background-color: transparent;
+            border-color: var(--color-border-primary, #e5e7eb);
+        }
+    }
+
+    &--filled {
+        .designbase-search-bar__container {
+            background-color: var(--color-background-secondary, #f9fafb);
+            border-color: transparent;
+        }
+
+        &:hover .designbase-search-bar__container {
+            background-color: var(--color-background-hover, #f3f4f6);
+        }
+
+        &:focus-within .designbase-search-bar__container {
+            background-color: var(--color-background-primary, #ffffff);
+            border-color: var(--color-border-focus, #3b82f6);
+        }
+    }
+
+    // States
+    &--disabled {
+        .designbase-search-bar__container {
+            background-color: var(--color-background-disabled, #f9fafb);
+            border-color: var(--color-border-disabled, #e5e7eb);
+            cursor: not-allowed;
+        }
+
+        .designbase-search-bar__search-icon {
+            color: var(--color-text-disabled, #9ca3af);
+        }
+
+        .designbase-search-bar__clear-button {
+            display: none;
+        }
+    }
+
+    &--readonly {
+        .designbase-search-bar__container {
+            background-color: var(--color-background-secondary, #f9fafb);
+        }
+
+        .designbase-search-bar__clear-button {
+            display: none;
+        }
+    }
+
+    // Focus states
+    &:focus-within {
+        .designbase-search-bar__search-icon {
+            color: var(--color-primary-600, #2563eb);
+        }
+    }
+
+    // Value state
+    &--has-value {
+        .designbase-search-bar__search-icon {
+            color: var(--color-primary-600, #2563eb);
+        }
+    }
+}

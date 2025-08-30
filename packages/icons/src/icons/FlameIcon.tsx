@@ -1,0 +1,62 @@
+/**
+ * FlameIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface FlameIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const FlameIcon: React.FC<FlameIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} fillRule="evenodd" d="M11.122 2.76 11 3.5c.121-.74.122-.74.123-.74h.003l.005.001.01.002a1 1 0 0 1 .1.023q.088.022.218.07c.174.067.4.175.65.349.508.352 1.092.957 1.57 1.976.66 1.406.872 3.149.395 5.419.558-.457 1.112-1.23 1.123-2.578a.75.75 0 0 1 1.359-.432l-.609.438.609-.438.001.002.002.003.007.009.021.03.074.11c.062.094.149.23.252.403.205.345.476.842.747 1.457.54 1.224 1.09 2.948 1.09 4.896 0 1.631-.41 2.904-1.064 3.885-.65.975-1.512 1.616-2.35 2.036a8.1 8.1 0 0 1-2.275.725 8 8 0 0 1-.969.102l-.063.002h-.027s-.002 0-.002-.75v.75h-.03l-.062-.002a8.154 8.154 0 0 1-.968-.102 8.1 8.1 0 0 1-2.275-.725c-.84-.42-1.701-1.06-2.352-2.036-.653-.98-1.063-2.254-1.063-3.885 0-1.59.266-2.823.83-3.936.555-1.096 1.375-2.026 2.387-3.038a6.2 6.2 0 0 0 1.56-2.702c.113-.4.169-.742.196-.98a5 5 0 0 0 .027-.335v-.012.002a.75.75 0 0 1 .871-.74M12 19.75h.005a3 3 0 0 0 .2-.01c.143-.01.354-.031.61-.073a6.6 6.6 0 0 0 1.85-.588c.66-.33 1.299-.814 1.774-1.526.471-.707.811-1.684.811-3.053 0-1.673-.476-3.185-.963-4.292l-.026-.058c-.347.77-.86 1.33-1.38 1.723a5 5 0 0 1-1.625.807l-.124.031-.039.009-.012.003h-.007c0 .001-.002.001-.145-.735l.143.736a.75.75 0 0 1-.858-.963c.904-2.843.709-4.66.107-5.942-.24-.511-.498-.857-.726-1.09a8 8 0 0 1-.125.503 7.7 7.7 0 0 1-1.943 3.354c-.988.988-1.666 1.78-2.11 2.656-.434.859-.667 1.848-.667 3.258 0 1.369.34 2.346.812 3.053.474.712 1.112 1.196 1.773 1.526a6.6 6.6 0 0 0 1.85.587 7 7 0 0 0 .81.084z" clipRule="evenodd"/>
+    </svg>
+  );
+};
+
+FlameIcon.displayName = 'FlameIcon';
+export default FlameIcon;

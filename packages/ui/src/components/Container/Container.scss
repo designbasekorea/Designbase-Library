@@ -1,0 +1,189 @@
+/**
+ * Container 컴포넌트 스타일
+ */
+
+.designbase-container {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    // 크기별 스타일
+    &--size-sm {
+        max-width: 640px;
+    }
+
+    &--size-md {
+        max-width: 768px;
+    }
+
+    &--size-lg {
+        max-width: 1200px;
+    }
+
+    &--size-xl {
+        max-width: 1400px;
+    }
+
+    &--size-full {
+        max-width: 100%;
+    }
+
+    // 패딩 스타일
+    &--padding-none {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &--padding-sm {
+        padding-left: var(--spacing-semantic-padding-sm, 12px);
+        padding-right: var(--spacing-semantic-padding-sm, 12px);
+    }
+
+    &--padding-md {
+        padding-left: var(--spacing-semantic-padding-md, 16px);
+        padding-right: var(--spacing-semantic-padding-md, 16px);
+    }
+
+    &--padding-lg {
+        padding-left: var(--spacing-semantic-padding-lg, 24px);
+        padding-right: var(--spacing-semantic-padding-lg, 24px);
+    }
+
+    &--padding-xl {
+        padding-left: var(--spacing-semantic-padding-xl, 32px);
+        padding-right: var(--spacing-semantic-padding-xl, 32px);
+    }
+
+    // 마진 스타일
+    &--margin-none {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &--margin-sm {
+        margin-top: var(--spacing-semantic-margin-sm, 8px);
+        margin-bottom: var(--spacing-semantic-margin-sm, 8px);
+    }
+
+    &--margin-md {
+        margin-top: var(--spacing-semantic-margin-md, 16px);
+        margin-bottom: var(--spacing-semantic-margin-md, 16px);
+    }
+
+    &--margin-lg {
+        margin-top: var(--spacing-semantic-margin-lg, 24px);
+        margin-bottom: var(--spacing-semantic-margin-lg, 24px);
+    }
+
+    &--margin-xl {
+        margin-top: var(--spacing-semantic-margin-xl, 32px);
+        margin-bottom: var(--spacing-semantic-margin-xl, 32px);
+    }
+
+    // 테두리 스타일
+    &--border {
+        border: 1px solid var(--color-border-subtle, #e5e7eb);
+    }
+
+    // 둥근 모서리 스타일
+    &--rounded {
+        border-radius: var(--border-radius-action-md, 6px);
+    }
+
+    &--rounded-sm {
+        border-radius: var(--border-radius-action-sm, 4px);
+    }
+
+    &--rounded-md {
+        border-radius: var(--border-radius-action-md, 6px);
+    }
+
+    &--rounded-lg {
+        border-radius: var(--border-radius-action-lg, 8px);
+    }
+
+    // 그림자 스타일
+    &--shadow {
+        box-shadow: var(--effect-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+    }
+
+    &--shadow-sm {
+        box-shadow: var(--effect-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+    }
+
+    &--shadow-md {
+        box-shadow: var(--effect-shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1));
+    }
+
+    &--shadow-lg {
+        box-shadow: var(--effect-shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1));
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-container {
+        &--padding-lg {
+            padding-left: var(--spacing-semantic-padding-md, 16px);
+            padding-right: var(--spacing-semantic-padding-md, 16px);
+        }
+
+        &--padding-xl {
+            padding-left: var(--spacing-semantic-padding-lg, 24px);
+            padding-right: var(--spacing-semantic-padding-lg, 24px);
+        }
+
+        &--margin-lg {
+            margin-top: var(--spacing-semantic-margin-md, 16px);
+            margin-bottom: var(--spacing-semantic-margin-md, 16px);
+        }
+
+        &--margin-xl {
+            margin-top: var(--spacing-semantic-margin-lg, 24px);
+            margin-bottom: var(--spacing-semantic-margin-lg, 24px);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-container {
+        &--padding-md {
+            padding-left: var(--spacing-semantic-padding-sm, 12px);
+            padding-right: var(--spacing-semantic-padding-sm, 12px);
+        }
+
+        &--padding-lg {
+            padding-left: var(--spacing-semantic-padding-sm, 12px);
+            padding-right: var(--spacing-semantic-padding-sm, 12px);
+        }
+
+        &--padding-xl {
+            padding-left: var(--spacing-semantic-padding-md, 16px);
+            padding-right: var(--spacing-semantic-padding-md, 16px);
+        }
+
+        &--margin-md {
+            margin-top: var(--spacing-semantic-margin-sm, 8px);
+            margin-bottom: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &--margin-lg {
+            margin-top: var(--spacing-semantic-margin-sm, 8px);
+            margin-bottom: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &--margin-xl {
+            margin-top: var(--spacing-semantic-margin-md, 16px);
+            margin-bottom: var(--spacing-semantic-margin-md, 16px);
+        }
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-container {
+        &--border {
+            border-color: var(--color-border-subtle-dark, #4b5563);
+        }
+    }
+}

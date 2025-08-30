@@ -1,0 +1,130 @@
+/**
+ * Stack 컴포넌트 스타일
+ */
+
+.designbase-stack {
+    display: flex;
+    box-sizing: border-box;
+
+    // 기본 방향 (세로)
+    flex-direction: column;
+
+    // 전체 너비/높이
+    &--full-width {
+        width: 100%;
+    }
+
+    &--full-height {
+        height: 100%;
+    }
+
+    // 줄바꿈
+    &--wrap {
+        flex-wrap: wrap;
+    }
+
+    // 방향 스타일
+    &--direction-vertical {
+        flex-direction: column;
+    }
+
+    &--direction-horizontal {
+        flex-direction: row;
+    }
+
+    // 정렬 스타일 (세로 정렬)
+    &--alignment-start {
+        align-items: flex-start;
+    }
+
+    &--alignment-center {
+        align-items: center;
+    }
+
+    &--alignment-end {
+        align-items: flex-end;
+    }
+
+    &--alignment-stretch {
+        align-items: stretch;
+    }
+
+    // 정렬 스타일 (가로 정렬)
+    &--justify-start {
+        justify-content: flex-start;
+    }
+
+    &--justify-center {
+        justify-content: center;
+    }
+
+    &--justify-end {
+        justify-content: flex-end;
+    }
+
+    &--justify-space-between {
+        justify-content: space-between;
+    }
+
+    &--justify-space-around {
+        justify-content: space-around;
+    }
+
+    &--justify-space-evenly {
+        justify-content: space-evenly;
+    }
+
+    // 간격 스타일
+    &--spacing-none {
+        gap: 0;
+    }
+
+    &--spacing-xs {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+    }
+
+    &--spacing-sm {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+    }
+
+    &--spacing-md {
+        gap: var(--spacing-semantic-margin-md, 16px);
+    }
+
+    &--spacing-lg {
+        gap: var(--spacing-semantic-margin-lg, 24px);
+    }
+
+    &--spacing-xl {
+        gap: var(--spacing-semantic-margin-xl, 32px);
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-stack {
+        &--spacing-lg {
+            gap: var(--spacing-semantic-margin-md, 16px);
+        }
+
+        &--spacing-xl {
+            gap: var(--spacing-semantic-margin-lg, 24px);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-stack {
+        &--spacing-md {
+            gap: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &--spacing-lg {
+            gap: var(--spacing-semantic-margin-sm, 8px);
+        }
+
+        &--spacing-xl {
+            gap: var(--spacing-semantic-margin-md, 16px);
+        }
+    }
+}

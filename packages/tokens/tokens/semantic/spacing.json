@@ -1,0 +1,154 @@
+{
+    "spacing": {
+        "semantic": {
+            "margin": {
+                "xs": {
+                    "value": "{spacing.foundation.1}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.foundation.2}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.foundation.3}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.foundation.4}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.foundation.6}",
+                    "type": "spacing"
+                },
+                "xxl": {
+                    "value": "{spacing.foundation.8}",
+                    "type": "spacing"
+                }
+            },
+            "padding": {
+                "xxs": {
+                    "value": "{spacing.foundation.1}",
+                    "type": "spacing"
+                },
+                "xs": {
+                    "value": "{spacing.foundation.2}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.foundation.3}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.foundation.4}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.foundation.6}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.foundation.8}",
+                    "type": "spacing"
+                }
+            },
+            "gap": {
+                "xs": {
+                    "value": "{spacing.foundation.1}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.foundation.2}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.foundation.3}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.foundation.4}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.foundation.6}",
+                    "type": "spacing"
+                }
+            },
+            "size": {
+                "interactive": {
+                    "xs": {
+                        "width": {
+                            "value": "{spacing.foundation.4}",
+                            "type": "spacing"
+                        },
+                        "height": {
+                            "value": "{spacing.foundation.4}",
+                            "type": "spacing"
+                        },
+                        "fontSize": {
+                            "value": "12px",
+                            "type": "typography"
+                        }
+                    },
+                    "sm": {
+                        "width": {
+                            "value": "{spacing.foundation.5}",
+                            "type": "spacing"
+                        },
+                        "height": {
+                            "value": "{spacing.foundation.5}",
+                            "type": "spacing"
+                        },
+                        "fontSize": {
+                            "value": "14px",
+                            "type": "typography"
+                        }
+                    },
+                    "md": {
+                        "width": {
+                            "value": "{spacing.foundation.6}",
+                            "type": "spacing"
+                        },
+                        "height": {
+                            "value": "{spacing.foundation.6}",
+                            "type": "spacing"
+                        },
+                        "fontSize": {
+                            "value": "16px",
+                            "type": "typography"
+                        }
+                    },
+                    "lg": {
+                        "width": {
+                            "value": "{spacing.foundation.8}",
+                            "type": "spacing"
+                        },
+                        "height": {
+                            "value": "{spacing.foundation.8}",
+                            "type": "spacing"
+                        },
+                        "fontSize": {
+                            "value": "18px",
+                            "type": "typography"
+                        }
+                    },
+                    "xl": {
+                        "width": {
+                            "value": "{spacing.foundation.10}",
+                            "type": "spacing"
+                        },
+                        "height": {
+                            "value": "{spacing.foundation.10}",
+                            "type": "spacing"
+                        },
+                        "fontSize": {
+                            "value": "20px",
+                            "type": "typography"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,197 @@
+/**
+ * Rating 컴포넌트 스타일
+ */
+
+.designbase-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-semantic-margin-xs, 4px);
+
+    // 크기별 스타일
+    &--size-sm {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+
+        .designbase-rating__star {
+            width: 16px;
+            height: 16px;
+        }
+
+        .designbase-rating__text {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+        }
+    }
+
+    &--size-md {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+
+        .designbase-rating__star {
+            width: 20px;
+            height: 20px;
+        }
+
+        .designbase-rating__text {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+        }
+    }
+
+    &--size-lg {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+
+        .designbase-rating__star {
+            width: 24px;
+            height: 24px;
+        }
+
+        .designbase-rating__text {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+        }
+    }
+
+    &--size-xl {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+
+        .designbase-rating__star {
+            width: 28px;
+            height: 28px;
+        }
+
+        .designbase-rating__text {
+            font-size: var(--typography-semantic-font-size-xl, 20px);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        .designbase-rating__star {
+            color: var(--color-semantic-border-subtle, #e2e8f0);
+        }
+    }
+
+    &--variant-filled {
+        .designbase-rating__star {
+            color: var(--color-semantic-border-subtle, #e2e8f0);
+        }
+    }
+
+    &--variant-outlined {
+        .designbase-rating__star {
+            color: var(--color-semantic-border-subtle, #e2e8f0);
+            stroke-width: 1.5;
+        }
+    }
+
+    // 읽기 전용 모드
+    &--readonly {
+        .designbase-rating__star {
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    // 별 스타일
+    &__stars {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-margin-xs, 4px);
+    }
+
+    &__star {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--color-semantic-border-subtle, #e2e8f0);
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:focus {
+            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        &:disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        // 채워진 별
+        &--filled {
+            color: var(--color-semantic-warning-default, #f59e0b);
+        }
+
+        // 반채워진 별
+        &--half {
+            color: var(--color-semantic-warning-default, #f59e0b);
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background: currentColor;
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            }
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+    }
+
+    // 텍스트 스타일
+    &__text {
+        margin-left: var(--spacing-semantic-margin-sm, 8px);
+        color: var(--color-semantic-text-secondary, #64748b);
+        font-weight: var(--typography-semantic-font-weight-medium, 500);
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-rating {
+
+        &--variant-default,
+        &--variant-filled,
+        &--variant-outlined {
+            .designbase-rating__star {
+                color: var(--color-semantic-border-subtle, #475569);
+            }
+        }
+
+        &__star {
+            color: var(--color-semantic-border-subtle, #475569);
+        }
+
+        &__text {
+            color: var(--color-semantic-text-secondary, #cbd5e1);
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 480px) {
+    .designbase-rating {
+        &--size-xl {
+            .designbase-rating__star {
+                width: 24px;
+                height: 24px;
+            }
+
+            .designbase-rating__text {
+                font-size: var(--typography-semantic-font-size-lg, 18px);
+            }
+        }
+    }
+}

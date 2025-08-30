@@ -1,0 +1,310 @@
+/**
+ * Stat 컴포넌트 스타일
+ */
+
+.designbase-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-semantic-margin-md, 16px);
+    box-sizing: border-box;
+
+    // 전체 너비
+    &--full-width {
+        width: 100%;
+    }
+
+    // 크기별 스타일
+    &--size-sm {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+
+        .designbase-stat__icon {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+        }
+
+        .designbase-stat__value {
+            font-size: var(--typography-semantic-font-size-xl, 20px);
+            line-height: var(--typography-semantic-line-height-xl, 1.3);
+        }
+
+        .designbase-stat__label {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+            line-height: var(--typography-semantic-line-height-sm, 1.6);
+        }
+
+        .designbase-stat__description {
+            font-size: var(--typography-semantic-font-size-xs, 12px);
+            line-height: var(--typography-semantic-line-height-xs, 1.5);
+        }
+    }
+
+    &--size-md {
+        gap: var(--spacing-semantic-margin-md, 16px);
+
+        .designbase-stat__icon {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .designbase-stat__value {
+            font-size: var(--typography-semantic-font-size-2xl, 24px);
+            line-height: var(--typography-semantic-line-height-2xl, 1.2);
+        }
+
+        .designbase-stat__label {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+            line-height: var(--typography-semantic-line-height-md, 1.5);
+        }
+
+        .designbase-stat__description {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+            line-height: var(--typography-semantic-line-height-sm, 1.6);
+        }
+    }
+
+    &--size-lg {
+        gap: var(--spacing-semantic-margin-lg, 24px);
+
+        .designbase-stat__icon {
+            width: 48px;
+            height: 48px;
+            font-size: 18px;
+        }
+
+        .designbase-stat__value {
+            font-size: var(--typography-semantic-font-size-3xl, 30px);
+            line-height: var(--typography-semantic-line-height-3xl, 1.1);
+        }
+
+        .designbase-stat__label {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+            line-height: var(--typography-semantic-line-height-lg, 1.4);
+        }
+
+        .designbase-stat__description {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+            line-height: var(--typography-semantic-line-height-md, 1.5);
+        }
+    }
+
+    &--size-xl {
+        gap: var(--spacing-semantic-margin-xl, 32px);
+
+        .designbase-stat__icon {
+            width: 56px;
+            height: 56px;
+            font-size: 20px;
+        }
+
+        .designbase-stat__value {
+            font-size: var(--typography-semantic-font-size-4xl, 36px);
+            line-height: var(--typography-semantic-line-height-4xl, 1);
+        }
+
+        .designbase-stat__label {
+            font-size: var(--typography-semantic-font-size-xl, 20px);
+            line-height: var(--typography-semantic-line-height-xl, 1.3);
+        }
+
+        .designbase-stat__description {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+            line-height: var(--typography-semantic-line-height-lg, 1.4);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+    }
+
+    &--variant-elevated {
+        padding: var(--spacing-semantic-padding-lg, 24px);
+        background-color: var(--color-semantic-background-default, #ffffff);
+        border: 1px solid var(--color-semantic-border-subtle, #f1f5f9);
+        border-radius: var(--border-radius-semantic-radius-lg, 12px);
+        box-shadow: var(--shadow-semantic-shadow-sm, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06));
+    }
+
+    &--variant-outlined {
+        padding: var(--spacing-semantic-padding-lg, 24px);
+        background-color: transparent;
+        border: 1px solid var(--color-semantic-border-default, #e2e8f0);
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        box-shadow: none;
+    }
+
+    &--variant-filled {
+        padding: var(--spacing-semantic-padding-lg, 24px);
+        background-color: var(--color-semantic-background-subtle, #f8fafc);
+        border: 1px solid var(--color-semantic-border-subtle, #f1f5f9);
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        box-shadow: none;
+    }
+
+    // 아이콘 스타일
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        background-color: var(--color-semantic-primary-subtle, #dbeafe);
+        color: var(--color-semantic-primary-default, #3b82f6);
+        flex-shrink: 0;
+    }
+
+    // 콘텐츠 스타일
+    &__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    // 헤더 스타일
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--spacing-semantic-margin-sm, 8px);
+        margin-bottom: var(--spacing-semantic-margin-xs, 4px);
+    }
+
+    // 값 스타일
+    &__value {
+        margin: 0;
+        font-weight: var(--typography-semantic-font-weight-bold, 700);
+        color: var(--color-semantic-text-primary, #1e293b);
+    }
+
+    // 라벨 스타일
+    &__label {
+        margin: 0 0 var(--spacing-semantic-margin-xs, 4px) 0;
+        font-weight: var(--typography-semantic-font-weight-medium, 500);
+        color: var(--color-semantic-text-secondary, #64748b);
+    }
+
+    // 설명 스타일
+    &__description {
+        margin: 0 0 var(--spacing-semantic-margin-xs, 4px) 0;
+        color: var(--color-semantic-text-tertiary, #94a3b8);
+    }
+
+    // 트렌드 스타일
+    &__trend {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-margin-xs, 4px);
+        font-size: var(--typography-semantic-font-size-sm, 14px);
+        font-weight: var(--typography-semantic-font-weight-medium, 500);
+        flex-shrink: 0;
+
+        &--up {
+            color: var(--color-semantic-success-default, #10b981);
+        }
+
+        &--down {
+            color: var(--color-semantic-danger-default, #ef4444);
+        }
+
+        &--neutral {
+            color: var(--color-semantic-text-tertiary, #94a3b8);
+        }
+
+        svg {
+            width: 1em;
+            height: 1em;
+        }
+    }
+
+    // 트렌드 값 스타일
+    &__trend-value {
+        font-weight: var(--typography-semantic-font-weight-semibold, 600);
+    }
+
+    // 트렌드 기간 스타일
+    &__trend-period {
+        font-size: var(--typography-semantic-font-size-xs, 12px);
+        color: var(--color-semantic-text-tertiary, #94a3b8);
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-stat {
+        &--variant-elevated {
+            background-color: var(--color-semantic-background-default, #1e293b);
+            border-color: var(--color-semantic-border-subtle, #334155);
+        }
+
+        &--variant-outlined {
+            border-color: var(--color-semantic-border-default, #475569);
+        }
+
+        &--variant-filled {
+            background-color: var(--color-semantic-background-subtle, #0f172a);
+            border-color: var(--color-semantic-border-subtle, #334155);
+        }
+
+        &__value {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+        }
+
+        &__label {
+            color: var(--color-semantic-text-secondary, #cbd5e1);
+        }
+
+        &__description {
+            color: var(--color-semantic-text-tertiary, #94a3b8);
+        }
+
+        &__trend-period {
+            color: var(--color-semantic-text-tertiary, #94a3b8);
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-stat {
+        &__header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-semantic-margin-xs, 4px);
+        }
+
+        &__trend {
+            align-self: flex-start;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-stat {
+        &--size-lg {
+            .designbase-stat__icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .designbase-stat__value {
+                font-size: var(--typography-semantic-font-size-2xl, 24px);
+            }
+        }
+
+        &--size-xl {
+            .designbase-stat__icon {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+
+            .designbase-stat__value {
+                font-size: var(--typography-semantic-font-size-3xl, 30px);
+            }
+        }
+    }
+}

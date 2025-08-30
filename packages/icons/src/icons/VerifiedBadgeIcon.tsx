@@ -1,0 +1,62 @@
+/**
+ * VerifiedBadgeIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface VerifiedBadgeIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const VerifiedBadgeIcon: React.FC<VerifiedBadgeIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} d="M12.02 22.75a4.46 4.46 0 0 1-3.64-2.01c-.6.12-1.21.12-1.81 0-.81-.17-1.56-.56-2.16-1.12-.6-.63-.99-1.38-1.15-2.19-.12-.6-.12-1.21 0-1.8a4.46 4.46 0 0 1-2.01-3.6c.02-.87.28-1.68.73-2.37.34-.51.77-.94 1.28-1.28-.12-.59-.13-1.21 0-1.81.17-.81.56-1.56 1.12-2.16.63-.6 1.38-.99 2.19-1.16.6-.12 1.21-.12 1.81 0a4.43 4.43 0 0 1 3.59-2.01c.87.02 1.67.27 2.36.73.51.33.95.77 1.28 1.28.59-.12 1.21-.12 1.8 0 .81.17 1.56.56 2.16 1.13.6.63.99 1.38 1.16 2.19.12.6.12 1.22 0 1.81a4.46 4.46 0 0 1 2.01 3.6v.04c-.02.83-.28 1.63-.73 2.32-.33.51-.76.94-1.26 1.27.13.59.14 1.21.02 1.82-.17.82-.58 1.57-1.17 2.17s-1.34 1-2.17 1.17c-.6.13-1.22.12-1.82-.02-.33.5-.76.94-1.27 1.27-.69.45-1.5.71-2.33.73zm-3.28-3.64c.28 0 .55.16.68.43.23.5.6.92 1.06 1.22s.99.47 1.54.48a2.9 2.9 0 0 0 1.5-.48c.46-.3.82-.72 1.06-1.22.17-.36.59-.53.96-.38.51.2 1.06.25 1.6.14s1.02-.37 1.41-.76a2.79 2.79 0 0 0 .62-3.01c-.15-.37.02-.79.38-.96.5-.23.92-.6 1.22-1.06.3-.45.46-.98.48-1.52a3.03 3.03 0 0 0-.48-1.52c-.3-.46-.72-.83-1.22-1.06a.76.76 0 0 1-.39-.94 2.94 2.94 0 0 0-.63-3.04 2.94 2.94 0 0 0-3.01-.6.75.75 0 0 1-.94-.39c-.23-.5-.6-.92-1.06-1.22s-.99-.47-1.54-.48c-.51.01-1.04.18-1.5.48s-.82.72-1.05 1.22c-.16.35-.57.52-.94.39-.52-.19-1.07-.23-1.61-.12s-1.04.37-1.44.75a2.946 2.946 0 0 0-.6 3.01c.14.37-.03.77-.39.94-.5.23-.92.6-1.23 1.06-.3.46-.47.99-.49 1.54.02.51.19 1.04.49 1.5s.73.83 1.23 1.06c.35.17.52.57.39.94a2.94 2.94 0 0 0-.12 1.61c.11.54.37 1.03.74 1.43.37.35.86.6 1.4.72.54.11 1.09.07 1.61-.12.08-.03.17-.04.25-.04z"/><path fill={getColorValue()} d="m10.91 16.07-3.93-3.85 1.04-1.07 2.84 2.78 5.09-5.44 1.1 1.02z"/>
+    </svg>
+  );
+};
+
+VerifiedBadgeIcon.displayName = 'VerifiedBadgeIcon';
+export default VerifiedBadgeIcon;

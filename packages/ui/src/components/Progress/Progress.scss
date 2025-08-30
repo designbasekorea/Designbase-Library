@@ -1,0 +1,223 @@
+/**
+ * Progress 컴포넌트 스타일
+ */
+
+.designbase-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-semantic-margin-sm, 8px);
+
+    // 크기별 스타일
+    &--size-sm {
+        gap: var(--spacing-semantic-margin-xs, 4px);
+
+        .designbase-progress__value {
+            font-size: var(--typography-semantic-font-size-xs, 12px);
+        }
+
+        .designbase-progress__circular-value {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+        }
+    }
+
+    &--size-md {
+        gap: var(--spacing-semantic-margin-sm, 8px);
+
+        .designbase-progress__value {
+            font-size: var(--typography-semantic-font-size-sm, 14px);
+        }
+
+        .designbase-progress__circular-value {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+        }
+    }
+
+    &--size-lg {
+        gap: var(--spacing-semantic-margin-md, 16px);
+
+        .designbase-progress__value {
+            font-size: var(--typography-semantic-font-size-md, 16px);
+        }
+
+        .designbase-progress__circular-value {
+            font-size: var(--typography-semantic-font-size-lg, 18px);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        .designbase-progress__bar {
+            background-color: var(--color-semantic-primary-default, #3b82f6);
+        }
+
+        .designbase-progress__circular-bar {
+            stroke: var(--color-semantic-primary-default, #3b82f6);
+        }
+    }
+
+    &--variant-success {
+        .designbase-progress__bar {
+            background-color: var(--color-semantic-success-default, #10b981);
+        }
+
+        .designbase-progress__circular-bar {
+            stroke: var(--color-semantic-success-default, #10b981);
+        }
+    }
+
+    &--variant-warning {
+        .designbase-progress__bar {
+            background-color: var(--color-semantic-warning-default, #f59e0b);
+        }
+
+        .designbase-progress__circular-bar {
+            stroke: var(--color-semantic-warning-default, #f59e0b);
+        }
+    }
+
+    &--variant-danger {
+        .designbase-progress__bar {
+            background-color: var(--color-semantic-danger-default, #ef4444);
+        }
+
+        .designbase-progress__circular-bar {
+            stroke: var(--color-semantic-danger-default, #ef4444);
+        }
+    }
+
+    // 애니메이션 효과
+    &--animated {
+        .designbase-progress__bar {
+            transition: width 0.3s ease;
+        }
+
+        .designbase-progress__circular-bar {
+            transition: stroke-dashoffset 0.3s ease;
+        }
+    }
+
+    // 스트라이프 효과
+    &--striped {
+        .designbase-progress__bar {
+            background-image: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.15) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    rgba(255, 255, 255, 0.15) 75%,
+                    transparent 75%,
+                    transparent);
+            background-size: 1rem 1rem;
+            animation: progress-bar-stripes 1s linear infinite;
+        }
+    }
+
+    // 선형 진행률 스타일
+    &__linear {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-semantic-margin-sm, 8px);
+        width: 100%;
+    }
+
+    &__track {
+        flex: 1;
+        height: 8px;
+        background-color: var(--color-semantic-background-subtle, #f1f5f9);
+        border-radius: var(--border-radius-semantic-radius-full, 9999px);
+        overflow: hidden;
+    }
+
+    &__bar {
+        height: 100%;
+        background-color: var(--color-semantic-primary-default, #3b82f6);
+        border-radius: var(--border-radius-semantic-radius-full, 9999px);
+        transition: width 0.3s ease;
+    }
+
+    &__value {
+        color: var(--color-semantic-text-secondary, #64748b);
+        font-weight: var(--typography-semantic-font-weight-medium, 500);
+        white-space: nowrap;
+        min-width: 3em;
+        text-align: right;
+    }
+
+    // 원형 진행률 스타일
+    &__circular {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__circular-svg {
+        transform: rotate(-90deg);
+    }
+
+    &__circular-track {
+        fill: none;
+        stroke: var(--color-semantic-background-subtle, #f1f5f9);
+        stroke-linecap: round;
+    }
+
+    &__circular-bar {
+        fill: none;
+        stroke: var(--color-semantic-primary-default, #3b82f6);
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.3s ease;
+    }
+
+    &__circular-value {
+        position: absolute;
+        color: var(--color-semantic-text-primary, #1e293b);
+        font-weight: var(--typography-semantic-font-weight-semibold, 600);
+    }
+}
+
+// 스트라이프 애니메이션
+@keyframes progress-bar-stripes {
+    0% {
+        background-position: 1rem 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-progress {
+        &__track {
+            background-color: var(--color-semantic-background-subtle, #334155);
+        }
+
+        &__circular-track {
+            stroke: var(--color-semantic-background-subtle, #334155);
+        }
+
+        &__value {
+            color: var(--color-semantic-text-secondary, #cbd5e1);
+        }
+
+        &__circular-value {
+            color: var(--color-semantic-text-primary, #f1f5f9);
+        }
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 480px) {
+    .designbase-progress {
+        &--size-lg {
+            .designbase-progress__value {
+                font-size: var(--typography-semantic-font-size-sm, 14px);
+            }
+
+            .designbase-progress__circular-value {
+                font-size: var(--typography-semantic-font-size-md, 16px);
+            }
+        }
+    }
+}

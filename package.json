@@ -1,0 +1,58 @@
+{
+    "name": "@designbase/library",
+    "version": "1.0.0",
+    "description": "Designbase 피그마 플러그인 공통 디자인시스템 및 컴포넌트 라이브러리",
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "test": "turbo run test",
+        "clean": "turbo run clean",
+        "changeset": "changeset",
+        "version-packages": "changeset version",
+        "release": "changeset publish",
+        "docs:dev": "cd docs && npm run dev",
+        "docs:build": "cd docs && npm run build",
+        "storybook": "storybook dev -p 6006",
+        "storybook:build": "storybook build",
+        "storybook:deploy": "storybook-to-ghpages"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.26.2",
+        "@storybook/addon-essentials": "^8.6.14",
+        "@storybook/addon-interactions": "^8.6.14",
+        "@storybook/react": "^8.6.14",
+        "@storybook/react-vite": "^8.6.14",
+        "@storybook/testing-library": "^0.2.2",
+        "@typescript-eslint/eslint-plugin": "^6.7.3",
+        "@typescript-eslint/parser": "^6.7.3",
+        "chalk": "^4.1.2",
+        "chokidar": "^3.5.3",
+        "eslint": "^8.50.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.1.0",
+        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "prettier": "^3.0.3",
+        "storybook": "^8.6.14",
+        "turbo": "^1.10.14",
+        "typescript": "^5.2.2",
+        "vite": "^5.0.0"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/designbase/designbase-library.git"
+    },
+    "license": "MIT"
+}

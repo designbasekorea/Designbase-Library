@@ -1,0 +1,225 @@
+.designbase-spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm, 8px);
+    color: var(--spinner-color, var(--color-primary-500, #3b82f6));
+
+    &__label {
+        font-size: var(--typography-body-sm-font-size, 14px);
+        color: var(--color-text-secondary, #6b7280);
+        white-space: nowrap;
+    }
+
+    // Circular Spinner
+    &--circular {
+        .designbase-spinner__circular {
+            width: 1em;
+            height: 1em;
+
+            animation: spin var(--spinner-speed, 1s) linear infinite;
+        }
+
+        .designbase-spinner__circular-track {
+            opacity: 0.2;
+        }
+
+        .designbase-spinner__circular-indicator {
+            stroke-dasharray: 80;
+            stroke-dashoffset: 80;
+            animation: circular-progress var(--spinner-speed, 1s) ease-in-out infinite;
+        }
+    }
+
+    // Dots Spinner
+    &--dots {
+        .designbase-spinner__dots {
+            display: flex;
+            gap: var(--spacing-xs, 4px);
+        }
+
+        .designbase-spinner__dot {
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            background-color: currentColor;
+            animation: dots-bounce var(--spinner-speed, 1s) ease-in-out infinite;
+
+            &:nth-child(1) {
+                animation-delay: -0.32s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: -0.16s;
+            }
+        }
+    }
+
+    // Bars Spinner
+    &--bars {
+        .designbase-spinner__bars {
+            display: flex;
+            gap: 2px;
+            height: 1em;
+        }
+
+        .designbase-spinner__bar {
+            width: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
+            animation: bars-wave var(--spinner-speed, 1s) ease-in-out infinite;
+
+            &:nth-child(1) {
+                animation-delay: -0.4s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: -0.3s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: -0.2s;
+            }
+
+            &:nth-child(4) {
+                animation-delay: -0.1s;
+            }
+        }
+    }
+
+    // Pulse Spinner
+    &--pulse {
+        .designbase-spinner__pulse {
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            background-color: currentColor;
+            animation: pulse-scale var(--spinner-speed, 1s) ease-in-out infinite;
+        }
+    }
+
+    // Ripple Spinner
+    &--ripple {
+        position: relative;
+        width: 1em;
+        height: 1em;
+
+        .designbase-spinner__ripple-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            animation: ripple-expand var(--spinner-speed, 1s) ease-out infinite;
+
+            &:nth-child(2) {
+                animation-delay: calc(var(--spinner-speed, 1s) * 0.5);
+            }
+        }
+    }
+
+    // Sizes
+    &--xs {
+        font-size: 12px;
+    }
+
+    &--sm {
+        font-size: 14px;
+    }
+
+    &--md {
+        font-size: 16px;
+    }
+
+    &--lg {
+        font-size: 20px;
+    }
+
+    &--xl {
+        font-size: 24px;
+    }
+}
+
+// Animations
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes circular-progress {
+    0% {
+        stroke-dashoffset: 70;
+    }
+
+    50% {
+        stroke-dashoffset: 80;
+    }
+
+    100% {
+        stroke-dashoffset: 70;
+    }
+}
+
+@keyframes dots-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bars-wave {
+
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.4);
+    }
+
+    20% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes pulse-scale {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+@keyframes ripple-expand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}

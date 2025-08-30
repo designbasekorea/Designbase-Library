@@ -1,0 +1,199 @@
+/**
+ * Button 컴포넌트 스타일
+ * 
+ * 목적: 디자인 토큰 기반 버튼 스타일 정의
+ * 기능: 다양한 variant, size, state 지원
+ */
+
+.designbase-button {
+    // 기본 스타일
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-gap-s);
+    border: 1px solid transparent;
+    font-weight: 500;
+    transition: all 150ms ease;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--color-border-focus);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    // Variant 스타일
+    &--primary {
+        background-color: var(--color-button-primary-bg);
+        border-color: var(--color-button-primary-bg);
+        color: var(--color-button-primary-text);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-button-primary-bg-hover);
+            border-color: var(--color-button-primary-bg-hover);
+        }
+
+        &:active:not(:disabled) {
+            background-color: var(--color-button-primary-bg-active);
+            border-color: var(--color-button-primary-bg-active);
+        }
+    }
+
+    &--secondary {
+        background-color: var(--color-button-secondary-bg);
+        border-color: var(--color-button-secondary-border);
+        color: var(--color-button-secondary-text);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-button-secondary-bg-hover);
+            border-color: var(--color-button-secondary-border-hover);
+            color: var(--color-button-secondary-text-hover);
+        }
+
+        &:active:not(:disabled) {
+            background-color: var(--color-button-secondary-bg-active);
+        }
+    }
+
+    &--tertiary {
+        background-color: var(--color-button-tertiary-bg);
+        border-color: var(--color-button-tertiary-border);
+        color: var(--color-button-tertiary-text);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-button-tertiary-bg-hover);
+            border-color: var(--color-button-tertiary-border-hover);
+            color: var(--color-button-tertiary-text-hover);
+        }
+
+        &:active:not(:disabled) {
+            background-color: var(--color-button-tertiary-bg-active);
+            border-color: var(--color-button-tertiary-border-hover);
+        }
+    }
+
+    &--danger {
+        background-color: var(--color-button-danger-bg);
+        border-color: var(--color-button-danger-bg);
+        color: var(--color-button-danger-text);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-button-danger-bg-hover);
+            border-color: var(--color-button-danger-bg-hover);
+        }
+
+        &:active:not(:disabled) {
+            background-color: var(--color-button-danger-bg-active);
+            border-color: var(--color-button-danger-bg-active);
+        }
+    }
+
+    &--ghost {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--color-text-primary);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-bg-secondary);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px var(--color-border-focus);
+        }
+    }
+
+    // Size 스타일
+    &--xs {
+        font-size: 0.75rem;
+        padding: var(--spacing-padding-xxs) var(--spacing-padding-xs);
+    }
+
+    &--sm {
+        font-size: 0.875rem;
+        padding: var(--spacing-padding-xs) var(--spacing-padding-s);
+    }
+
+    &--md {
+        font-size: 0.875rem;
+        padding: var(--spacing-padding-s) var(--spacing-padding-m);
+    }
+
+    &--lg {
+        font-size: 1rem;
+        padding: var(--spacing-padding-s) var(--spacing-padding-l);
+    }
+
+    &--xl {
+        font-size: 1.125rem;
+        padding: var(--spacing-padding-m) var(--spacing-padding-xl);
+    }
+
+    // Border radius variants
+    &--radius-sm {
+        border-radius: var(--border-radius-button-sm);
+    }
+
+    &--radius-md {
+        border-radius: var(--border-radius-button-md);
+    }
+
+    &--radius-lg {
+        border-radius: var(--border-radius-button-lg);
+    }
+
+    &--radius-pill {
+        border-radius: var(--border-radius-button-pill);
+    }
+
+    // Icon only 버튼
+    &--icon-only {
+        gap: 0;
+
+        &.designbase-button--xs {
+            padding: var(--spacing-padding-xxs);
+        }
+
+        &.designbase-button--sm,
+        &.designbase-button--md {
+            padding: var(--spacing-padding-xs);
+        }
+
+        &.designbase-button--lg {
+            padding: var(--spacing-padding-s);
+        }
+
+        &.designbase-button--xl {
+            padding: var(--spacing-padding-m);
+        }
+    }
+
+    // Full width
+    &--full-width {
+        width: 100%;
+    }
+
+    // Loading 상태
+    &--loading {
+        pointer-events: none;
+    }
+
+    // 로딩 스피너
+    .designbase-button__spinner {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

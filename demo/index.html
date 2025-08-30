@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designbase Library Demo</title>
+  <link rel="stylesheet" href="../packages/tokens/dist/css/tokens.css">
+  <link rel="stylesheet" href="../packages/theme/dist/css/theme.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--color-semantic-text-primary);
+      background: var(--color-semantic-background-primary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--color-semantic-border-primary);
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-semantic-text-primary);
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      color: var(--color-semantic-text-secondary);
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-semantic-text-primary);
+      border-bottom: 2px solid var(--color-semantic-border-primary);
+      padding-bottom: 0.5rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .demo-card {
+      border: 1px solid var(--color-semantic-border-primary);
+      border-radius: 8px;
+      padding: 1.5rem;
+      background: var(--color-semantic-background-secondary);
+    }
+
+    .demo-card h3 {
+      margin-bottom: 1rem;
+      color: var(--color-semantic-text-primary);
+    }
+
+    .demo-item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--color-semantic-border-secondary);
+      border-radius: 4px;
+      background: var(--color-semantic-background-primary);
+    }
+
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .color-item {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--color-semantic-border-secondary);
+    }
+
+    .color-swatch {
+      width: 100%;
+      height: 60px;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .color-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .color-value {
+      font-size: 0.75rem;
+      color: var(--color-semantic-text-muted);
+    }
+
+    .button-demo {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--color-semantic-component-button-primary-bg);
+      color: var(--color-semantic-component-button-primary-text);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-semantic-component-button-primary-bg-hover);
+    }
+
+    .btn-secondary {
+      background: var(--color-semantic-component-button-secondary-bg);
+      color: var(--color-semantic-component-button-secondary-text);
+      border: 1px solid var(--color-semantic-component-button-secondary-border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-semantic-component-button-secondary-bg-hover);
+      border-color: var(--color-semantic-component-button-secondary-border-hover);
+      color: var(--color-semantic-component-button-secondary-text-hover);
+    }
+
+    .btn-danger {
+      background: var(--color-semantic-component-button-danger-bg);
+      color: var(--color-semantic-component-button-danger-text);
+    }
+
+    .btn-danger:hover {
+      background: var(--color-semantic-component-button-danger-bg-hover);
+    }
+
+    .input-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .input-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-semantic-text-primary);
+    }
+
+    .input-field {
+      padding: 0.75rem;
+      border: 1px solid var(--color-semantic-border-primary);
+      border-radius: 6px;
+      font-size: 0.875rem;
+      background: var(--color-semantic-background-primary);
+      color: var(--color-semantic-text-primary);
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--color-semantic-border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .input-field::placeholder {
+      color: var(--color-semantic-text-muted);
+    }
+
+    .icon-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      border: 1px solid var(--color-semantic-border-secondary);
+      border-radius: 6px;
+      background: var(--color-semantic-background-primary);
+    }
+
+    .icon-placeholder {
+      width: 24px;
+      height: 24px;
+      background: var(--color-semantic-text-muted);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+    }
+
+    .icon-name {
+      font-size: 0.75rem;
+      text-align: center;
+      color: var(--color-semantic-text-secondary);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-semantic-border-primary);
+      border-radius: 6px;
+      background: var(--color-semantic-background-primary);
+      color: var(--color-semantic-text-primary);
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    [data-theme="dark"] {
+      --color-semantic-text-primary: #ffffff;
+      --color-semantic-text-secondary: #d1d5db;
+      --color-semantic-text-muted: #9ca3af;
+      --color-semantic-background-primary: #111827;
+      --color-semantic-background-secondary: #1f2937;
+      --color-semantic-border-primary: #374151;
+      --color-semantic-border-secondary: #4b5563;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 다크모드</button>
+
+  <div class="container">
+    <header class="header">
+      <h1>🎨 Designbase Library</h1>
+      <p>피그마 플러그인을 위한 공통 디자인시스템 및 컴포넌트 라이브러리</p>
+    </header>
+
+    <!-- 색상 팔레트 -->
+    <section class="section">
+      <h2>🎨 색상 팔레트</h2>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>Foundation Colors</h3>
+          <div class="color-palette">
+            <div class="color-item">
+              <div class="color-swatch" style="background: var(--color-foundation-blue-500)"></div>
+              <div class="color-name">Blue 500</div>
+              <div class="color-value">#3b82f6</div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background: var(--color-foundation-green-500)"></div>
+              <div class="color-name">Green 500</div>
+              <div class="color-value">#10b981</div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background: var(--color-foundation-red-500)"></div>
+              <div class="color-name">Red 500</div>
+              <div class="color-value">#ef4444</div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background: var(--color-foundation-yellow-500)"></div>
+              <div class="color-name">Yellow 500</div>
+              <div class="color-value">#f59e0b</div>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch" style="background: var(--color-foundation-gray-500)"></div>
+              <div class="color-name">Gray 500</div>
+              <div class="color-value">#6b7280</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <h3>Semantic Colors</h3>
+          <div class="demo-item">
+            <strong>Primary Text:</strong> <span style="color: var(--color-semantic-text-primary)">이것은 주요 텍스트입니다</span>
+          </div>
+          <div class="demo-item">
+            <strong>Secondary Text:</strong> <span style="color: var(--color-semantic-text-secondary)">이것은 보조
+              텍스트입니다</span>
+          </div>
+          <div class="demo-item">
+            <strong>Muted Text:</strong> <span style="color: var(--color-semantic-text-muted)">이것은 흐린 텍스트입니다</span>
+          </div>
+          <div class="demo-item">
+            <strong>Link:</strong> <a href="#" style="color: var(--color-semantic-text-link)">링크 텍스트</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 버튼 컴포넌트 -->
+    <section class="section">
+      <h2>🔘 버튼 컴포넌트</h2>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>Button Variants</h3>
+          <div class="button-demo">
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary Button</button>
+            <button class="btn btn-danger">Danger Button</button>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <h3>Button States</h3>
+          <div class="button-demo">
+            <button class="btn btn-primary">Normal</button>
+            <button class="btn btn-primary" disabled>Disabled</button>
+            <button class="btn btn-secondary">Normal</button>
+            <button class="btn btn-secondary" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 입력 컴포넌트 -->
+    <section class="section">
+      <h2>📝 입력 컴포넌트</h2>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>Input Fields</h3>
+          <div class="input-demo">
+            <div class="input-group">
+              <label class="input-label">이름</label>
+              <input type="text" class="input-field" placeholder="이름을 입력하세요">
+            </div>
+            <div class="input-group">
+              <label class="input-label">이메일</label>
+              <input type="email" class="input-field" placeholder="이메일을 입력하세요">
+            </div>
+            <div class="input-group">
+              <label class="input-label">비밀번호</label>
+              <input type="password" class="input-field" placeholder="비밀번호를 입력하세요">
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <h3>Input States</h3>
+          <div class="input-demo">
+            <div class="input-group">
+              <label class="input-label">Normal</label>
+              <input type="text" class="input-field" value="일반 상태">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Focused</label>
+              <input type="text" class="input-field" value="포커스 상태" autofocus>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Disabled</label>
+              <input type="text" class="input-field" value="비활성화" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 아이콘 라이브러리 -->
+    <section class="section">
+      <h2>🔍 아이콘 라이브러리</h2>
+      <div class="demo-card">
+        <h3>Available Icons (384개)</h3>
+        <p style="margin-bottom: 1rem; color: var(--color-semantic-text-secondary);">
+          아이콘들은 React 컴포넌트로 제공되며, size, color, className 등의 props를 지원합니다.
+        </p>
+        <div class="icon-demo">
+          <div class="icon-item">
+            <div class="icon-placeholder">🔍</div>
+            <div class="icon-name">SearchIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">⚙️</div>
+            <div class="icon-name">SettingsIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">✅</div>
+            <div class="icon-name">CheckIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">❌</div>
+            <div class="icon-name">CloseIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">➡️</div>
+            <div class="icon-name">ArrowRightIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">✏️</div>
+            <div class="icon-name">WriteIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">🌍</div>
+            <div class="icon-name">WorldIcon</div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-placeholder">💰</div>
+            <div class="icon-name">WonIcon</div>
+          </div>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-semantic-text-muted);">
+          * 실제 아이콘은 SVG로 렌더링되며, 여기서는 플레이스홀더로 표시됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 사용법 -->
+    <section class="section">
+      <h2>📖 사용법</h2>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>설치</h3>
+          <div class="demo-item">
+            <code>npm install @designbase/ui @designbase/theme @designbase/icons</code>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <h3>기본 사용법</h3>
+          <div class="demo-item">
+            <pre><code>import { Button, Input } from '@designbase/ui';
+import { CheckIcon } from '@designbase/icons';
+import '@designbase/theme/dist/css/theme.css';</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const button = document.querySelector('.theme-toggle');
+
+      if (body.getAttribute('data-theme') === 'light') {
+        body.setAttribute('data-theme', 'dark');
+        button.textContent = '☀️ 라이트모드';
+      } else {
+        body.setAttribute('data-theme', 'light');
+        button.textContent = '🌙 다크모드';
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+/**
+ * StarIcon 아이콘 컴포넌트
+ * 자동 생성됨 - 수정하지 마세요
+ */
+
+import React, { type CSSProperties } from 'react';
+
+export interface StarIconProps {
+  size?: string | number;
+  className?: string;
+  color?: string;
+  style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
+}
+
+const StarIcon: React.FC<StarIconProps> = ({
+  size = 16,
+  className,
+  color,
+  style,
+  variant = 'primary',
+  ...props
+}) => {
+  const styleSafe = (style && typeof style === 'object') ? style : undefined;
+  const sizeValue = typeof size === 'number' ? `${size}px` : size;
+
+  // 디자인 토큰 기반 색상 결정
+  const getColorValue = () => {
+    if (color) return color;
+    
+    const colorMap = {
+      primary: 'var(--color-semantic-component-icon-primary)',
+      secondary: 'var(--color-semantic-component-icon-secondary)',
+      success: 'var(--color-semantic-component-icon-success)',
+      warning: 'var(--color-semantic-component-icon-warning)',
+      danger: 'var(--color-semantic-component-icon-danger)',
+      info: 'var(--color-semantic-component-icon-info)',
+      muted: 'var(--color-semantic-component-icon-muted)',
+      inverse: 'var(--color-semantic-component-icon-inverse)'
+    };
+    
+    return colorMap[variant] || colorMap.primary;
+  };
+
+  return (
+    <svg
+      width={sizeValue}
+      height={sizeValue}
+      className={className}
+      style={styleSafe}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fill={getColorValue()} fillRule="evenodd" d="M11.75 2a.75.75 0 0 1 .673.419l2.926 5.945 6.509.944a.75.75 0 0 1 .417 1.278l-4.718 4.624 1.132 6.511a.75.75 0 0 1-1.083.796l-5.856-3.023-5.856 3.023a.75.75 0 0 1-1.083-.796l1.133-6.511-4.719-4.624a.75.75 0 0 1 .417-1.278l6.51-.944 2.925-5.945A.75.75 0 0 1 11.75 2m0 2.449L9.323 9.38a.75.75 0 0 1-.565.411l-5.4.783 3.917 3.84a.75.75 0 0 1 .214.664l-.941 5.412 4.858-2.508a.75.75 0 0 1 .688 0l4.858 2.508-.94-5.412a.75.75 0 0 1 .213-.665l3.918-3.84-5.4-.782a.75.75 0 0 1-.566-.41z" clipRule="evenodd"/>
+    </svg>
+  );
+};
+
+StarIcon.displayName = 'StarIcon';
+export default StarIcon;

@@ -1,0 +1,124 @@
+.designbase-context-menu {
+    position: fixed;
+    min-width: 200px;
+    max-width: 300px;
+    background-color: var(--color-semantic-background-primary, #ffffff);
+    border: 1px solid var(--color-semantic-border-primary, #e5e7eb);
+    border-radius: var(--border-radius-md, 6px);
+    box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+    padding: var(--spacing-xs, 4px);
+    z-index: 1000;
+    animation: contextMenuFadeIn 0.15s ease-out;
+
+    &__item-wrapper {
+        position: relative;
+    }
+
+    &__submenu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        min-width: 200px;
+        max-width: 300px;
+        background-color: var(--color-semantic-background-primary, #ffffff);
+        border: 1px solid var(--color-semantic-border-primary, #e5e7eb);
+        border-radius: var(--border-radius-md, 6px);
+        box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+        padding: var(--spacing-xs, 4px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-10px);
+        transition: all 0.15s ease-out;
+        z-index: 1001;
+
+        &--open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+    }
+
+    // MenuItem 스타일 오버라이드
+    .designbase-menu-item {
+        border-radius: var(--border-radius-sm, 4px);
+        margin: var(--spacing-xs, 2px);
+
+        &:hover {
+            background-color: var(--color-semantic-background-hover, #f9fafb);
+        }
+
+        &:focus {
+            background-color: var(--color-semantic-background-hover, #f9fafb);
+            outline: 2px solid var(--color-semantic-primary-500, #3b82f6);
+            outline-offset: -2px;
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+
+    // Divider 스타일 오버라이드
+    .designbase-divider {
+        margin: var(--spacing-xs, 4px) 0;
+        border-color: var(--color-semantic-border-primary, #e5e7eb);
+    }
+}
+
+// 애니메이션
+@keyframes contextMenuFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+// 다크 모드 지원
+@media (prefers-color-scheme: dark) {
+    .designbase-context-menu {
+        background-color: var(--color-semantic-background-primary-dark, #1f2937);
+        border-color: var(--color-semantic-border-primary-dark, #374151);
+
+        &__submenu {
+            background-color: var(--color-semantic-background-primary-dark, #1f2937);
+            border-color: var(--color-semantic-border-primary-dark, #374151);
+        }
+
+        .designbase-menu-item {
+            &:hover {
+                background-color: var(--color-semantic-background-hover-dark, #374151);
+            }
+
+            &:focus {
+                background-color: var(--color-semantic-background-hover-dark, #374151);
+            }
+        }
+
+        .designbase-divider {
+            border-color: var(--color-semantic-border-primary-dark, #374151);
+        }
+    }
+}
+
+// 반응형
+@media (max-width: 640px) {
+    .designbase-context-menu {
+        min-width: 180px;
+        max-width: calc(100vw - 32px);
+
+        &__submenu {
+            min-width: 180px;
+            max-width: calc(100vw - 64px);
+        }
+    }
+}

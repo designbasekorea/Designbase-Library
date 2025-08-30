@@ -1,0 +1,183 @@
+.designbase-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--typography-heading-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    font-weight: var(--typography-heading-font-weight, 700);
+    line-height: 1;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+
+    &__text {
+        color: var(--color-text-primary, #111827);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__image {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: inherit;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    // Sizes
+    &--xs {
+        .designbase-logo__text {
+            font-size: var(--typography-body-xs-font-size, 12px);
+            line-height: var(--typography-body-xs-line-height, 16px);
+        }
+
+        .designbase-logo__image {
+            max-height: 16px;
+        }
+    }
+
+    &--sm {
+        .designbase-logo__text {
+            font-size: var(--typography-body-sm-font-size, 14px);
+            line-height: var(--typography-body-sm-line-height, 20px);
+        }
+
+        .designbase-logo__image {
+            max-height: 20px;
+        }
+    }
+
+    &--md {
+        .designbase-logo__text {
+            font-size: var(--typography-body-md-font-size, 16px);
+            line-height: var(--typography-body-md-line-height, 24px);
+        }
+
+        .designbase-logo__image {
+            max-height: 24px;
+        }
+    }
+
+    &--lg {
+        .designbase-logo__text {
+            font-size: var(--typography-heading-sm-font-size, 20px);
+            line-height: var(--typography-heading-sm-line-height, 28px);
+        }
+
+        .designbase-logo__image {
+            max-height: 32px;
+        }
+    }
+
+    &--xl {
+        .designbase-logo__text {
+            font-size: var(--typography-heading-md-font-size, 24px);
+            line-height: var(--typography-heading-md-line-height, 32px);
+        }
+
+        .designbase-logo__image {
+            max-height: 40px;
+        }
+    }
+
+    // Variants
+    &--default {
+        .designbase-logo__text {
+            color: var(--color-text-primary, #111827);
+        }
+    }
+
+    &--primary {
+        .designbase-logo__text {
+            color: var(--color-primary-600, #2563eb);
+        }
+    }
+
+    &--secondary {
+        .designbase-logo__text {
+            color: var(--color-text-secondary, #6b7280);
+        }
+    }
+
+    &--white {
+        .designbase-logo__text {
+            color: var(--color-text-inverse, #ffffff);
+        }
+    }
+
+    &--dark {
+        .designbase-logo__text {
+            color: var(--color-text-primary, #111827);
+        }
+    }
+
+    // States
+    &--clickable {
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &--full-width {
+        width: 100%;
+        justify-content: flex-start;
+
+        .designbase-logo__text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .designbase-logo__image {
+            flex-shrink: 0;
+        }
+    }
+
+    // Responsive
+    @media (max-width: 640px) {
+        &--lg {
+            .designbase-logo__text {
+                font-size: var(--typography-body-md-font-size, 16px);
+                line-height: var(--typography-body-md-line-height, 24px);
+            }
+
+            .designbase-logo__image {
+                max-height: 24px;
+            }
+        }
+
+        &--xl {
+            .designbase-logo__text {
+                font-size: var(--typography-heading-sm-font-size, 20px);
+                line-height: var(--typography-heading-sm-line-height, 28px);
+            }
+
+            .designbase-logo__image {
+                max-height: 32px;
+            }
+        }
+    }
+
+    // Focus styles for accessibility
+    &:focus-visible {
+        outline: 2px solid var(--color-primary-500, #3b82f6);
+        outline-offset: 2px;
+        border-radius: var(--border-radius-sm, 4px);
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "borderRadius": {
+        "semantic": {
+            "button": {
+                "sm": {
+                    "value": "{borderRadius.foundation.sm}",
+                    "type": "borderRadius"
+                },
+                "md": {
+                    "value": "{borderRadius.foundation.base}",
+                    "type": "borderRadius"
+                },
+                "lg": {
+                    "value": "{borderRadius.foundation.md}",
+                    "type": "borderRadius"
+                },
+                "pill": {
+                    "value": "{borderRadius.foundation.full}",
+                    "type": "borderRadius"
+                }
+            },
+            "input": {
+                "sm": {
+                    "value": "{borderRadius.foundation.sm}",
+                    "type": "borderRadius"
+                },
+                "md": {
+                    "value": "{borderRadius.foundation.base}",
+                    "type": "borderRadius"
+                },
+                "lg": {
+                    "value": "{borderRadius.foundation.md}",
+                    "type": "borderRadius"
+                }
+            },
+            "card": {
+                "sm": {
+                    "value": "{borderRadius.foundation.base}",
+                    "type": "borderRadius"
+                },
+                "md": {
+                    "value": "{borderRadius.foundation.md}",
+                    "type": "borderRadius"
+                },
+                "lg": {
+                    "value": "{borderRadius.foundation.lg}",
+                    "type": "borderRadius"
+                }
+            },
+            "modal": {
+                "sm": {
+                    "value": "{borderRadius.foundation.md}",
+                    "type": "borderRadius"
+                },
+                "md": {
+                    "value": "{borderRadius.foundation.lg}",
+                    "type": "borderRadius"
+                },
+                "lg": {
+                    "value": "{borderRadius.foundation.xl}",
+                    "type": "borderRadius"
+                }
+            },
+            "checkbox": {
+                "sm": {
+                    "value": "{borderRadius.foundation.sm}",
+                    "type": "borderRadius"
+                },
+                "md": {
+                    "value": "{borderRadius.foundation.sm}",
+                    "type": "borderRadius"
+                },
+                "lg": {
+                    "value": "{borderRadius.foundation.md}",
+                    "type": "borderRadius"
+                }
+            },
+            "action": {
+                "sm": {
+                    "value": "{borderRadius.foundation.sm}",
+                    "type": "borderRadius"
+                },
+                "md": {
+                    "value": "{borderRadius.foundation.sm}",
+                    "type": "borderRadius"
+                },
+                "lg": {
+                    "value": "{borderRadius.foundation.md}",
+                    "type": "borderRadius"
+                },
+                "pill": {
+                    "value": "{borderRadius.foundation.full}",
+                    "type": "borderRadius"
+                }
+            }
+        }
+    }
+}

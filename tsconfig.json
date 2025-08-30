@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@designbase/tokens": ["./packages/tokens/src"],
+      "@designbase/theme": ["./packages/theme/src"],
+      "@designbase/ui": ["./packages/ui/src"],
+      "@designbase/icons": ["./packages/icons/src"],
+      "@designbase/motion": ["./packages/motion/src"],
+      "@designbase/utils": ["./packages/utils/src"],
+      "@designbase/i18n": ["./packages/i18n/src"],
+      "@designbase/figma-bridge": ["./packages/figma-bridge/src"],
+      "@designbase/plugin-kit": ["./packages/plugin-kit/src"]
+    }
+  },
+  "include": [
+    "packages/*/src/**/*",
+    "apps/*/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build"
+  ]
+}
