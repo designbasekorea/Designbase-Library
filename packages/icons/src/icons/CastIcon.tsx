@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M1 20.75v-3c1.7 0 3 1.3 3 3z" clip-rule="evenodd"/><path fill="currentColor" d="M8 20.75H6c0-2.8-2.2-5-5-5v-2c3.9 0 7 3.1 7 7"/><path fill="currentColor" d="M12 20.75h-2c0-5-4-9-9-9v-2c6.1 0 11 4.9 11 11"/><path fill="currentColor" fill-rule="evenodd" d="M4 4.5c-.686 0-1.25.564-1.25 1.25v2h-1.5v-2A2.756 2.756 0 0 1 4 3h16a2.756 2.756 0 0 1 2.75 2.75v12A2.756 2.756 0 0 1 20 20.5h-6V19h6c.686 0 1.25-.564 1.25-1.25v-12c0-.686-.564-1.25-1.25-1.25z" clip-rule="evenodd"/></svg>
+
+export default CastIcon;

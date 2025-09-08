@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M21.144 3.112a.75.75 0 0 1 .356.638v14a.75.75 0 0 1-.415.67l-6 3a.75.75 0 0 1-.67 0L8.75 18.589l-5.665 2.833A.75.75 0 0 1 2 20.75v-14a.75.75 0 0 1 .415-.67l6-3a.75.75 0 0 1 .67 0L14.75 5.91l5.665-2.832a.75.75 0 0 1 .73.033M3.5 7.214v12.323l4.915-2.458a.75.75 0 0 1 .67 0l5.665 2.832L20 17.287V4.965L15.085 7.42a.75.75 0 0 1-.67 0L8.75 4.589z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M8 17.75v-14h1.5v14zM14 20.75v-14h1.5v14z" clip-rule="evenodd"/></svg>
+
+export default MapIcon;

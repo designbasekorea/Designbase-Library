@@ -5,172 +5,319 @@
 .designbase-file-uploader {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-semantic-margin-lg, 24px);
+    gap: var(--db-gap-l);
 
     // 크기별 스타일
     &--size-sm {
-        gap: var(--spacing-semantic-margin-md, 16px);
+        .designbase-file-uploader__file-list-title {
+            font-size: var(--db-text-sm);
+            font-weight: var(--db-weight-medium);
+        }
+
+        .designbase-file-uploader__file-name {
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-file-uploader__file-size {
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-file-uploader__file-error {
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-file-uploader__retry-button,
+        .designbase-file-uploader__remove-button {
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-xs);
+        }
     }
 
     &--size-md {
-        gap: var(--spacing-semantic-margin-lg, 24px);
+        .designbase-file-uploader__file-list-title {
+            font-size: var(--db-text-base);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        .designbase-file-uploader__file-name {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-file-uploader__file-size {
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-file-uploader__file-error {
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-file-uploader__retry-button,
+        .designbase-file-uploader__remove-button {
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-sm);
+        }
     }
 
     &--size-lg {
-        gap: var(--spacing-semantic-margin-xl, 32px);
-    }
+        .designbase-file-uploader__file-list-title {
+            font-size: var(--db-text-lg);
+            font-weight: var(--db-weight-semibold);
+        }
 
-    &--size-xl {
-        gap: var(--spacing-semantic-margin-2xl, 48px);
+        .designbase-file-uploader__file-name {
+            font-size: var(--db-text-lg);
+        }
+
+        .designbase-file-uploader__file-size {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-file-uploader__file-error {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-file-uploader__retry-button,
+        .designbase-file-uploader__remove-button {
+            padding: var(--db-padding-m) var(--db-padding-l);
+            font-size: var(--db-text-base);
+        }
     }
 
     // 변형별 스타일
     &--variant-default {
-        // 기본 스타일
+        .designbase-file-uploader__file-list {
+            background: var(--db-bg-primary);
+            border: 1px solid var(--db-border-primary);
+        }
     }
 
     &--variant-outlined {
-        // 아웃라인 스타일
+        .designbase-file-uploader__file-list {
+            background: transparent;
+            border: 1px solid var(--db-border-primary);
+        }
     }
 
     &--variant-filled {
-        // 채워진 스타일
+        .designbase-file-uploader__file-list {
+            background: var(--db-bg-secondary);
+            border: 1px solid var(--db-border-primary);
+        }
     }
 
     // 비활성화 상태
     &--disabled {
-        opacity: 0.5;
+        opacity: var(--db-opacity-50);
         pointer-events: none;
     }
 
-    // 파일 목록 스타일
+    // 읽기 전용 상태
+    &--readonly {
+
+        .designbase-file-uploader__retry-button,
+        .designbase-file-uploader__remove-button {
+            cursor: default;
+            opacity: var(--db-opacity-50);
+        }
+    }
+
+    // 파일 목록
     &__file-list {
+        border-radius: var(--db-radius-lg);
+        overflow: hidden;
+    }
+
+    // 파일 목록 제목
+    &__file-list-title {
+        padding: var(--db-padding-m) var(--db-padding-l);
+        background: var(--db-bg-secondary);
+        border-bottom: 1px solid var(--db-border-primary);
+        color: var(--db-text-primary);
+    }
+
+    // 파일 아이템들
+    &__file-items {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-semantic-margin-md, 16px);
     }
 
-    &__file-list-title {
-        margin: 0;
-        font-size: var(--typography-semantic-font-size-lg, 18px);
-        font-weight: var(--typography-semantic-font-weight-semibold, 600);
-        color: var(--color-semantic-text-primary, #1e293b);
-    }
-
-    // 파일 아이템 스타일
+    // 파일 아이템
     &__file-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--spacing-semantic-margin-md, 16px);
-        padding: var(--spacing-semantic-padding-md, 16px);
-        background-color: var(--color-semantic-background-default, #ffffff);
-        border: 1px solid var(--color-semantic-border-subtle, #f1f5f9);
-        border-radius: var(--border-radius-semantic-radius-md, 8px);
-        transition: all 0.2s ease;
+        gap: var(--db-gap-m);
+        padding: var(--db-padding-m);
+        border-bottom: 1px solid var(--db-border-primary);
+        transition: background-color var(--db-animation-speed) var(--db-animation-ease);
+
+        &:last-child {
+            border-bottom: none;
+        }
 
         &:hover {
-            border-color: var(--color-semantic-border-default, #e2e8f0);
-            box-shadow: var(--shadow-semantic-shadow-sm, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06));
+            background: var(--db-bg-hover);
+        }
+
+        // 상태별 스타일
+        &--pending {
+            .designbase-file-uploader__file-icon {
+                color: var(--db-text-secondary);
+            }
+        }
+
+        &--uploading {
+            .designbase-file-uploader__file-icon {
+                color: var(--db-blue-500);
+            }
+        }
+
+        &--success {
+            .designbase-file-uploader__file-icon {
+                color: var(--db-green-500);
+            }
+        }
+
+        &--error {
+            .designbase-file-uploader__file-icon {
+                color: var(--db-red-500);
+            }
         }
     }
 
-    // 파일 정보 스타일
+    // 파일 정보
     &__file-info {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-margin-md, 16px);
+        gap: var(--db-gap-m);
         flex: 1;
         min-width: 0;
     }
 
+    // 파일 아이콘
     &__file-icon {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: var(--border-radius-semantic-radius-md, 8px);
-        background-color: var(--color-semantic-background-subtle, #f8fafc);
-        color: var(--color-semantic-text-tertiary, #94a3b8);
         flex-shrink: 0;
+        width: var(--db-size-md);
+        height: var(--db-size-md);
+        color: var(--db-text-secondary);
 
-        svg {
-            width: 16px;
-            height: 16px;
+        // Spinner 컴포넌트 스타일 조정
+        .designbase-spinner {
+            width: var(--db-size-sm);
+            height: var(--db-size-sm);
         }
     }
 
+    // 파일 상세 정보
     &__file-details {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-semantic-margin-xs, 4px);
+        gap: var(--db-gap-xs);
         min-width: 0;
         flex: 1;
     }
 
+    // 파일 이름
     &__file-name {
-        font-size: var(--typography-semantic-font-size-md, 16px);
-        font-weight: var(--typography-semantic-font-weight-medium, 500);
-        color: var(--color-semantic-text-primary, #1e293b);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
+    // 파일 크기
     &__file-size {
-        font-size: var(--typography-semantic-font-size-sm, 14px);
-        color: var(--color-semantic-text-tertiary, #94a3b8);
+        color: var(--db-text-secondary);
     }
 
+    // 파일 에러
     &__file-error {
-        font-size: var(--typography-semantic-font-size-sm, 14px);
-        color: var(--color-semantic-danger-default, #ef4444);
+        color: var(--db-red-500);
+        font-weight: var(--db-weight-medium);
     }
 
-    // 파일 액션 스타일
+    // 진행률
+    &__progress {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        min-width: 120px;
+        margin: 0 var(--db-margin-l);
+    }
+
+
+
+    // 파일 액션
     &__file-actions {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-margin-sm, 8px);
+        gap: var(--db-gap-s);
         flex-shrink: 0;
     }
-}
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-file-uploader {
-        &__file-list-title {
-            color: var(--color-semantic-text-primary, #f1f5f9);
+    // 재시도 버튼
+    &__retry-button {
+        padding: var(--db-padding-s) var(--db-padding-m);
+        border: 1px solid var(--db-blue-500);
+        background: var(--db-bg-primary);
+        color: var(--db-blue-500);
+        border-radius: var(--db-radius-md);
+        cursor: pointer;
+        font-weight: var(--db-weight-medium);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover:not(:disabled) {
+            background: var(--db-blue-500);
+            color: var(--db-white);
         }
 
-        &__file-item {
-            background-color: var(--color-semantic-background-default, #0f172a);
-            border-color: var(--color-semantic-border-subtle, #334155);
-
-            &:hover {
-                border-color: var(--color-semantic-border-default, #475569);
-            }
+        &:focus {
+            outline: 2px solid var(--db-blue-500);
+            outline-offset: 2px;
         }
 
-        &__file-icon {
-            background-color: var(--color-semantic-background-subtle, #1e293b);
-            color: var(--color-semantic-text-tertiary, #64748b);
+        &:disabled {
+            opacity: var(--db-opacity-50);
+            cursor: not-allowed;
+        }
+    }
+
+    // 삭제 버튼
+    &__remove-button {
+        padding: var(--db-padding-s) var(--db-padding-m);
+        border: 1px solid var(--db-border-primary);
+        background: var(--db-bg-primary);
+        color: var(--db-text-secondary);
+        border-radius: var(--db-radius-md);
+        cursor: pointer;
+        font-weight: var(--db-weight-medium);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover:not(:disabled) {
+            border-color: var(--db-red-500);
+            color: var(--db-red-500);
+            background: var(--db-red-50);
         }
 
-        &__file-name {
-            color: var(--color-semantic-text-primary, #f1f5f9);
+        &:focus {
+            outline: 2px solid var(--db-red-500);
+            outline-offset: 2px;
         }
 
-        &__file-size {
-            color: var(--color-semantic-text-tertiary, #94a3b8);
-        }
-
-        &__file-error {
-            color: var(--color-semantic-danger-default, #ef4444);
+        &:disabled {
+            opacity: var(--db-opacity-50);
+            cursor: not-allowed;
         }
     }
 }
+
+
+
+// 다크 모드는 상위에서 관리됩니다
 
 // 반응형 스타일
 @media (max-width: 768px) {
@@ -178,7 +325,17 @@
         &__file-item {
             flex-direction: column;
             align-items: flex-start;
-            gap: var(--spacing-semantic-margin-sm, 8px);
+            gap: var(--db-gap-m);
+        }
+
+        &__file-info {
+            width: 100%;
+        }
+
+        &__progress {
+            width: 100%;
+            margin: 0;
+            min-width: auto;
         }
 
         &__file-actions {
@@ -190,26 +347,18 @@
 
 @media (max-width: 480px) {
     .designbase-file-uploader {
-        &__file-info {
-            gap: var(--spacing-semantic-margin-sm, 8px);
+        &__file-item {
+            padding: var(--db-padding-s) var(--db-padding-m);
         }
 
-        &__file-icon {
-            width: 24px;
-            height: 24px;
-
-            svg {
-                width: 12px;
-                height: 12px;
-            }
+        &__file-list-title {
+            padding: var(--db-padding-s) var(--db-padding-m);
         }
 
-        &__file-name {
-            font-size: var(--typography-semantic-font-size-sm, 14px);
-        }
-
-        &__file-size {
-            font-size: var(--typography-semantic-font-size-xs, 12px);
+        &__retry-button,
+        &__remove-button {
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-xs);
         }
     }
 }

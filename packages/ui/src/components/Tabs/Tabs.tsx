@@ -57,7 +57,7 @@ export const Tabs: React.FC<TabsProps> = ({
         selectedId ?? defaultSelectedId ?? items[0]?.id ?? ''
     );
     const [focusedTabId, setFocusedTabId] = useState<string>('');
-    
+
     const tabListRef = useRef<HTMLDivElement>(null);
     const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
@@ -126,7 +126,7 @@ export const Tabs: React.FC<TabsProps> = ({
                 tabRefs.current.get(nextTab.id)?.focus();
                 break;
             }
-            
+
             if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
                 nextIndex = nextIndex > 0 ? nextIndex - 1 : items.length - 1;
             } else {

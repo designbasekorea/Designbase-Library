@@ -5,82 +5,225 @@
 .designbase-rating {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-semantic-margin-xs, 4px);
+    gap: var(--db-gap-xs);
+    font-family: var(--db-font-primary);
 
     // 크기별 스타일
-    &--size-sm {
-        gap: var(--spacing-semantic-margin-xs, 4px);
+    &--size-xs {
+        gap: var(--db-gap-xs);
 
         .designbase-rating__star {
-            width: 16px;
-            height: 16px;
+            font-size: 12px;
         }
 
-        .designbase-rating__text {
-            font-size: var(--typography-semantic-font-size-sm, 14px);
+        .designbase-rating__number {
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-rating__review-count {
+            font-size: var(--db-text-xs);
+        }
+    }
+
+    &--size-sm {
+        gap: var(--db-gap-sm);
+
+        .designbase-rating__star {
+            font-size: 16px;
+        }
+
+        .designbase-rating__number {
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-rating__review-count {
+            font-size: var(--db-text-sm);
         }
     }
 
     &--size-md {
-        gap: var(--spacing-semantic-margin-xs, 4px);
+        gap: var(--db-gap-sm);
 
         .designbase-rating__star {
-            width: 20px;
-            height: 20px;
+            font-size: 20px;
         }
 
-        .designbase-rating__text {
-            font-size: var(--typography-semantic-font-size-md, 16px);
+        .designbase-rating__number {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-rating__review-count {
+            font-size: var(--db-text-base);
         }
     }
 
     &--size-lg {
-        gap: var(--spacing-semantic-margin-sm, 8px);
+        gap: var(--db-gap-md);
 
         .designbase-rating__star {
-            width: 24px;
-            height: 24px;
+            font-size: 24px;
         }
 
-        .designbase-rating__text {
-            font-size: var(--typography-semantic-font-size-lg, 18px);
+        .designbase-rating__number {
+            font-size: var(--db-text-lg);
+        }
+
+        .designbase-rating__review-count {
+            font-size: var(--db-text-lg);
         }
     }
 
     &--size-xl {
-        gap: var(--spacing-semantic-margin-sm, 8px);
+        gap: var(--db-gap-md);
 
         .designbase-rating__star {
-            width: 28px;
-            height: 28px;
+            font-size: 32px;
         }
 
-        .designbase-rating__text {
-            font-size: var(--typography-semantic-font-size-xl, 20px);
+        .designbase-rating__number {
+            font-size: var(--db-text-xl);
+        }
+
+        .designbase-rating__review-count {
+            font-size: var(--db-text-xl);
         }
     }
 
     // 변형별 스타일
     &--variant-default {
+        // 기본 스타일
+    }
+
+    &--variant-minimal {
         .designbase-rating__star {
-            color: var(--color-semantic-border-subtle, #e2e8f0);
+            opacity: 0.7;
+        }
+
+        .designbase-rating__number,
+        .designbase-rating__review-count {
+            opacity: 0.8;
         }
     }
 
-    &--variant-filled {
-        .designbase-rating__star {
-            color: var(--color-semantic-border-subtle, #e2e8f0);
+    &--variant-card {
+        padding: var(--db-padding-md);
+        background: var(--db-bg-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-md);
+        box-shadow: var(--db-shadow-sm);
+    }
+
+    &--variant-inline {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    &--variant-large {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--db-gap-md);
+        text-align: center;
+
+        .designbase-rating__stars {
+            justify-content: center;
+        }
+
+        .designbase-rating__number {
+            font-size: var(--db-text-2xl);
+            font-weight: var(--db-weight-bold);
+        }
+
+        .designbase-rating__review-count {
+            font-size: var(--db-text-base);
         }
     }
 
-    &--variant-outlined {
-        .designbase-rating__star {
-            color: var(--color-semantic-border-subtle, #e2e8f0);
-            stroke-width: 1.5;
+    // 타입별 스타일
+    &--type-star {
+        // 별점 타입은 기본 스타일
+    }
+
+    &--type-number {
+        .designbase-rating__number {
+            font-weight: var(--db-weight-semibold);
         }
     }
 
-    // 읽기 전용 모드
+    &--type-percentage {
+        .designbase-rating__number {
+            font-weight: var(--db-weight-semibold);
+            color: var(--db-blue-600);
+        }
+    }
+
+    &--type-text {
+        .designbase-rating__number {
+            font-style: italic;
+        }
+    }
+
+    // 표시 방식별 스타일
+    &--display-stars {
+        // 별점만 표시
+    }
+
+    &--display-number {
+        // 숫자만 표시
+    }
+
+    &--display-both {
+        // 별점과 숫자 모두 표시
+    }
+
+    &--display-reviews {
+
+        // 리뷰 수만 표시
+        .designbase-rating__review-count {
+            font-weight: var(--typography-semantic-body-md-font-weight, 500);
+        }
+    }
+
+    &--display-detailed {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--db-gap-s);
+
+        .designbase-rating__stars {
+            justify-content: flex-start;
+        }
+
+        .designbase-rating__detailed {
+            width: 100%;
+        }
+    }
+
+    // 색상별 스타일 - @colors.json 토큰 사용
+    &--color-primary {
+        --rating-color: var(--db-blue-600);
+    }
+
+    &--color-secondary {
+        --rating-color: var(--db-text-secondary);
+    }
+
+    &--color-success {
+        --rating-color: var(--db-green-600);
+    }
+
+    &--color-warning {
+        --rating-color: var(--db-yellow-600);
+    }
+
+    &--color-error {
+        --rating-color: var(--db-red-600);
+    }
+
+    &--color-custom {
+        // 커스텀 색상은 CSS 변수로 설정
+    }
+
+    // 상태별 스타일
     &--readonly {
         .designbase-rating__star {
             cursor: default;
@@ -88,109 +231,162 @@
         }
     }
 
-    // 별 스타일
+    &--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+
+        .designbase-rating__star {
+            cursor: not-allowed;
+        }
+    }
+
+    &--clickable {
+        .designbase-rating__star {
+            cursor: pointer;
+        }
+    }
+
+    &--animated {
+        .designbase-rating__star {
+            transition: all 0.2s ease;
+        }
+    }
+
+    &--hovering {
+        .designbase-rating__star {
+            transform: scale(1.05);
+        }
+    }
+
+    // 별점 컨테이너
     &__stars {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-margin-xs, 4px);
+        gap: var(--db-gap-xs);
     }
 
+    // 별 아이콘
     &__star {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
+        color: var(--rating-color, var(--db-blue-600));
         transition: all 0.2s ease;
-        color: var(--color-semantic-border-subtle, #e2e8f0);
 
         &:hover {
             transform: scale(1.1);
         }
 
-        &:focus {
-            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
-            outline-offset: 2px;
-            border-radius: 2px;
-        }
+        &--clickable {
+            cursor: pointer;
 
-        &:disabled {
-            cursor: default;
-            pointer-events: none;
-        }
+            &:hover {
+                color: var(--db-blue-700);
+            }
 
-        // 채워진 별
-        &--filled {
-            color: var(--color-semantic-warning-default, #f59e0b);
-        }
-
-        // 반채워진 별
-        &--half {
-            color: var(--color-semantic-warning-default, #f59e0b);
-            position: relative;
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 50%;
-                height: 100%;
-                background: currentColor;
-                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            &:active {
+                transform: scale(0.95);
             }
         }
 
-        svg {
-            width: 100%;
-            height: 100%;
-            fill: currentColor;
+        &--animated {
+            animation: rating-pulse 0.3s ease;
         }
     }
 
-    // 텍스트 스타일
-    &__text {
-        margin-left: var(--spacing-semantic-margin-sm, 8px);
-        color: var(--color-semantic-text-secondary, #64748b);
-        font-weight: var(--typography-semantic-font-weight-medium, 500);
+    // 숫자 평점 컨테이너
+    &__number-container {
+        display: flex;
+        align-items: center;
+    }
+
+    // 숫자 평점
+    &__number {
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+    }
+
+    // 리뷰 컨테이너
+    &__reviews {
+        display: flex;
+        align-items: center;
+    }
+
+    // 리뷰 수
+    &__review-count {
+        color: var(--db-text-secondary);
+        font-size: var(--db-text-sm);
+    }
+
+    // 상세 정보
+    &__detailed {
+        width: 100%;
+    }
+
+    // 평점 정보
+    &__rating-info {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        flex-wrap: wrap;
     }
 }
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-rating {
+// 애니메이션
+@keyframes rating-pulse {
+    0% {
+        transform: scale(1);
+    }
 
-        &--variant-default,
-        &--variant-filled,
-        &--variant-outlined {
-            .designbase-rating__star {
-                color: var(--color-semantic-border-subtle, #475569);
-            }
-        }
+    50% {
+        transform: scale(1.2);
+    }
 
-        &__star {
-            color: var(--color-semantic-border-subtle, #475569);
-        }
-
-        &__text {
-            color: var(--color-semantic-text-secondary, #cbd5e1);
-        }
+    100% {
+        transform: scale(1);
     }
 }
 
+// 테마는 상위에서 관리됩니다.
 // 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-rating {
+        &--variant-large {
+            gap: var(--db-gap-s);
+
+            .designbase-rating__number {
+                font-size: var(--db-text-xl);
+            }
+
+            .designbase-rating__review-count {
+                font-size: var(--db-text-sm);
+            }
+        }
+
+        &--display-detailed {
+            gap: var(--db-gap-xs);
+        }
+    }
+}
+
 @media (max-width: 480px) {
     .designbase-rating {
-        &--size-xl {
-            .designbase-rating__star {
-                width: 24px;
-                height: 24px;
-            }
+        &--size-lg {
+            gap: var(--db-gap-s);
 
-            .designbase-rating__text {
-                font-size: var(--typography-semantic-font-size-lg, 18px);
+            .designbase-rating__star {
+                font-size: 20px;
+            }
+        }
+
+        &--size-xl {
+            gap: var(--db-gap-s);
+
+            .designbase-rating__star {
+                font-size: 24px;
+            }
+        }
+
+        &--variant-large {
+            .designbase-rating__number {
+                font-size: var(--db-text-lg);
             }
         }
     }

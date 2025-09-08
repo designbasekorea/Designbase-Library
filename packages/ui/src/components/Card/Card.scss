@@ -1,0 +1,504 @@
+.designbase-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--db-bg-primary);
+    border-radius: var(--db-radius-lg);
+    overflow: hidden;
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+    // 기본 스타일
+    &--default {
+        border: 1px solid var(--db-border-primary);
+        box-shadow: var(--db-shadow-sm);
+    }
+
+    // 변형별 스타일
+    &--elevated {
+        border: none;
+        box-shadow: var(--db-shadow-lg);
+    }
+
+    &--outlined {
+        border: 2px solid var(--db-border-primary);
+        box-shadow: none;
+    }
+
+    &--filled {
+        border: none;
+        background-color: var(--db-bg-secondary);
+        box-shadow: none;
+    }
+
+    &--flat {
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    // 크기별 스타일
+    &--sm {
+        .designbase-card__title {
+            font-size: var(--db-text-base);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        .designbase-card__subtitle {
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-card__description {
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-card__content {
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-card__icon {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    &--md {
+        .designbase-card__title {
+            font-size: var(--db-text-lg);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        .designbase-card__subtitle {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-card__description {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-card__content {
+            padding: var(--db-padding-l);
+        }
+
+        .designbase-card__icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    &--lg {
+        .designbase-card__title {
+            font-size: var(--db-text-xl);
+            font-weight: var(--db-weight-bold);
+        }
+
+        .designbase-card__subtitle {
+            font-size: var(--db-text-lg);
+        }
+
+        .designbase-card__description {
+            font-size: var(--db-text-lg);
+        }
+
+        .designbase-card__content {
+            padding: var(--db-padding-xl);
+        }
+
+        .designbase-card__icon {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    &--xl {
+        .designbase-card__title {
+            font-size: var(--db-text-2xl);
+            font-weight: var(--db-weight-bold);
+        }
+
+        .designbase-card__subtitle {
+            font-size: var(--db-text-xl);
+        }
+
+        .designbase-card__description {
+            font-size: var(--db-text-xl);
+        }
+
+        .designbase-card__content {
+            padding: var(--db-padding-2xl);
+        }
+
+        .designbase-card__icon {
+            width: 56px;
+            height: 56px;
+        }
+    }
+
+    // 레이아웃별 스타일
+    &--horizontal {
+        flex-direction: row;
+
+        .designbase-card__image--left {
+            flex: 0 0 auto;
+            width: 200px;
+        }
+
+        .designbase-card__image--right {
+            flex: 0 0 auto;
+            width: 200px;
+            order: 2;
+        }
+
+        .designbase-card__content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    &--compact {
+        .designbase-card__content {
+            padding: var(--db-padding-s);
+        }
+
+        .designbase-card__title {
+            margin-bottom: var(--db-margin-xs);
+        }
+
+        .designbase-card__description {
+            margin-bottom: var(--db-margin-xs);
+        }
+    }
+
+    // 전체 너비
+    &--full-width {
+        width: 100%;
+    }
+
+    // 클릭 가능
+    &--clickable {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--db-shadow-xl);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--db-blue-500);
+            outline-offset: 2px;
+        }
+    }
+
+    // 호버 효과
+    &--hoverable {
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--db-shadow-xl);
+        }
+    }
+
+    // 선택 가능
+    &--selectable {
+        cursor: pointer;
+
+        &:hover {
+            border-color: var(--db-blue-500);
+        }
+    }
+
+    &--selected {
+        border-color: var(--db-blue-500);
+        background-color: var(--db-blue-50);
+    }
+
+    // 비활성화
+    &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    // 로딩 상태
+    &--loading {
+        pointer-events: none;
+    }
+
+    // 이미지 스타일
+    &__image {
+        position: relative;
+        overflow: hidden;
+
+        &--top {
+            order: -1;
+        }
+
+        &--bottom {
+            order: 1;
+        }
+
+        &--left {
+            flex: 0 0 auto;
+        }
+
+        &--right {
+            flex: 0 0 auto;
+        }
+
+        &--background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+    }
+
+    &__image-element {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // 오버레이 (배경 이미지용)
+    &__overlay {
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(to bottom,
+                rgba(0, 0, 0, 0.1) 0%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.7) 100%);
+        color: var(--db-text-inverse);
+        padding: var(--db-padding-l);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 200px;
+
+        .designbase-card__title,
+        .designbase-card__subtitle,
+        .designbase-card__description {
+            color: var(--db-text-inverse);
+        }
+    }
+
+    // 콘텐츠
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    // 아이콘
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--db-margin-m);
+        color: var(--db-blue-500);
+    }
+
+    &__icon-element {
+        width: 100%;
+        height: 100%;
+    }
+
+    // 헤더
+    &__header {
+        margin-bottom: var(--db-margin-m);
+    }
+
+    &__title {
+        margin: 0 0 var(--db-margin-xs) 0;
+        color: var(--db-text-primary);
+        line-height: 1.3;
+    }
+
+    &__subtitle {
+        margin: 0;
+        color: var(--db-text-secondary);
+        font-weight: var(--db-weight-normal);
+        line-height: 1.4;
+    }
+
+    // 설명
+    &__description {
+        margin: 0 0 var(--db-margin-m) 0;
+        color: var(--db-text-secondary);
+        line-height: 1.6;
+    }
+
+    // 본문
+    &__body {
+        margin-bottom: var(--db-margin-m);
+        color: var(--db-text-primary);
+        line-height: 1.6;
+    }
+
+    // 태그
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--db-gap-xs);
+        margin-bottom: var(--db-margin-m);
+    }
+
+    &__tag {
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        background-color: var(--db-blue-50);
+        color: var(--db-blue-600);
+        border-radius: var(--db-radius-sm);
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-medium);
+    }
+
+    // 메타 정보
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--db-gap-s);
+        margin-bottom: var(--db-margin-m);
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
+    }
+
+    &__meta-item {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    &__meta-label {
+        font-weight: var(--db-weight-medium);
+    }
+
+    &__meta-value {
+        color: var(--db-text-primary);
+    }
+
+    // 액션
+    &__actions {
+        display: flex;
+        gap: var(--db-gap-s);
+        margin-top: auto;
+        padding-top: var(--db-padding-m);
+        border-top: 1px solid var(--db-border-primary);
+    }
+
+    // 선택 오버레이
+    &__select-overlay {
+        position: absolute;
+        top: var(--db-spacing-2);
+        left: var(--db-spacing-2);
+        z-index: 10;
+        background-color: var(--db-bg-overlay);
+        border-radius: var(--db-radius-sm);
+        padding: var(--db-padding-xs);
+    }
+
+    &__select-input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+
+    // 로딩 오버레이
+    &__loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--db-bg-overlay);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+    }
+
+    &__loading-spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid var(--db-border-primary);
+        border-top: 3px solid var(--db-blue-500);
+        border-radius: 50%;
+        animation: cardLoadingSpin 1s linear infinite;
+    }
+}
+
+// 로딩 애니메이션
+@keyframes cardLoadingSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .designbase-card {
+        &--horizontal {
+            flex-direction: column;
+
+            .designbase-card__image--left,
+            .designbase-card__image--right {
+                width: 100%;
+                order: -1;
+            }
+        }
+
+        &__actions {
+            flex-direction: column;
+
+            .designbase-button {
+                width: 100%;
+            }
+        }
+
+        &__meta {
+            flex-direction: column;
+            gap: var(--db-gap-xs);
+        }
+    }
+}
+
+// 접근성 개선
+.designbase-card {
+    &--clickable:focus-visible {
+        outline: 2px solid var(--db-blue-500);
+        outline-offset: 2px;
+    }
+
+    &__image-element {
+        &:focus-visible {
+            outline: 2px solid var(--db-blue-500);
+            outline-offset: 2px;
+        }
+    }
+}
+
+// 애니메이션
+.designbase-card {
+    animation: cardSlideIn 0.3s ease;
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

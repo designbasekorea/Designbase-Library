@@ -9,108 +9,177 @@ import React from 'react';
 import clsx from 'clsx';
 import './Stat.scss';
 
+// 타입 정의
 export type StatSize = 'sm' | 'md' | 'lg' | 'xl';
-export type StatVariant = 'default' | 'elevated' | 'outlined' | 'filled';
-export type StatTrend = 'up' | 'down' | 'neutral';
+export type StatVariant = 'default' | 'minimal' | 'card' | 'colored';
+export type StatLayout = 'horizontal' | 'vertical' | 'reverse';
+export type StatColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'custom';
 
 export interface StatProps {
     /** 통계 값 */
     value: string | number;
     /** 통계 라벨 */
     label: string;
-    /** 통계 설명 */
-    description?: string;
-    /** 통계 아이콘 */
+    /** 아이콘 */
     icon?: React.ReactNode;
+    /** 아이콘 위치 */
+    iconPosition?: 'left' | 'right';
     /** 통계 크기 */
     size?: StatSize;
     /** 통계 스타일 변형 */
     variant?: StatVariant;
-    /** 트렌드 방향 */
-    trend?: StatTrend;
-    /** 트렌드 값 */
-    trendValue?: string | number;
-    /** 트렌드 기간 */
-    trendPeriod?: string;
-    /** 전체 너비 사용 */
-    fullWidth?: boolean;
+    /** 레이아웃 방향 */
+    layout?: StatLayout;
+    /** 색상 */
+    color?: StatColor;
+    /** 커스텀 색상 */
+    customColor?: string;
+    /** 진행률 (0-100) */
+    progress?: number;
+    /** 진행률 표시 */
+    showProgress?: boolean;
+    /** 변화율 */
+    change?: {
+        value: number;
+        type: 'increase' | 'decrease';
+        period?: string;
+    };
+    /** 변화율 표시 */
+    showChange?: boolean;
+    /** 설명 텍스트 */
+    description?: string;
+    /** 설명 표시 */
+    showDescription?: boolean;
+    /** 클릭 가능 */
+    clickable?: boolean;
+    /** 비활성화 */
+    disabled?: boolean;
+    /** 애니메이션 */
+    animated?: boolean;
+    /** 클릭 핸들러 */
+    onClick?: () => void;
     /** 추가 CSS 클래스 */
     className?: string;
 }
 
-export const Stat: React.FC<StatProps> = ({
+const Stat: React.FC<StatProps> = ({
     value,
     label,
-    description,
     icon,
+    iconPosition = 'left',
     size = 'md',
     variant = 'default',
-    trend,
-    trendValue,
-    trendPeriod,
-    fullWidth = false,
+    layout = 'horizontal',
+    color = 'primary',
+    customColor,
+    progress,
+    showProgress = false,
+    change,
+    showChange = false,
+    description,
+    showDescription = false,
+    clickable = false,
+    disabled = false,
+    animated = false,
+    onClick,
     className,
 }) => {
+    // 변화율 텍스트 생성
+    const getChangeText = () => {
+        if (!change) return '';
+
+        const sign = change.type === 'increase' ? '+' : '-';
+        const period = change.period ? ` ${change.period}` : '';
+        return `${sign}${Math.abs(change.value)}%${period}`;
+    };
+
+    // 변화율 클래스 생성
+    const getChangeClass = () => {
+        if (!change) return '';
+        return change.type === 'increase' ? 'designbase-stat__change--increase' : 'designbase-stat__change--decrease';
+    };
+
+    // 클래스명 생성
     const classes = clsx(
         'designbase-stat',
         `designbase-stat--size-${size}`,
         `designbase-stat--variant-${variant}`,
+        `designbase-stat--layout-${layout}`,
+        `designbase-stat--color-${color}`,
         {
-            'designbase-stat--full-width': fullWidth,
+            'designbase-stat--clickable': clickable,
+            'designbase-stat--disabled': disabled,
+            'designbase-stat--animated': animated,
+            'designbase-stat--with-progress': showProgress,
+            'designbase-stat--with-change': showChange && change,
+            'designbase-stat--with-description': showDescription && description,
         },
         className
     );
 
-    const trendClasses = clsx(
-        'designbase-stat__trend',
-        `designbase-stat__trend--${trend}`
-    );
+    // 커스텀 색상 스타일
+    const customStyle = customColor ? { '--stat-color': customColor } as React.CSSProperties : undefined;
+
+    // 클릭 핸들러
+    const handleClick = () => {
+        if (disabled || !clickable) return;
+        onClick?.();
+    };
 
     return (
-        <div className={classes}>
+        <div
+            className={classes}
+            style={customStyle}
+            onClick={handleClick}
+            role={clickable ? 'button' : undefined}
+            tabIndex={clickable ? 0 : undefined}
+        >
+            {/* 아이콘 */}
             {icon && (
-                <div className="designbase-stat__icon">
+                <div className={clsx(
+                    'designbase-stat__icon',
+                    `designbase-stat__icon--${iconPosition}`
+                )}>
                     {icon}
                 </div>
             )}
 
+            {/* 콘텐츠 */}
             <div className="designbase-stat__content">
-                <div className="designbase-stat__header">
-                    <h3 className="designbase-stat__value">{value}</h3>
-                    {trend && (
-                        <div className={trendClasses}>
-                            {trend === 'up' && (
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M7 14l5-5 5 5" />
-                                </svg>
-                            )}
-                            {trend === 'down' && (
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M7 10l5 5 5-5" />
-                                </svg>
-                            )}
-                            {trend === 'neutral' && (
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M5 12h14" />
-                                </svg>
-                            )}
-                            {trendValue && (
-                                <span className="designbase-stat__trend-value">{trendValue}</span>
-                            )}
-                        </div>
-                    )}
+                {/* 값과 라벨 */}
+                <div className="designbase-stat__main">
+                    <div className="designbase-stat__value">
+                        {value}
+                    </div>
+                    <div className="designbase-stat__label">
+                        {label}
+                    </div>
                 </div>
 
-                <h4 className="designbase-stat__label">{label}</h4>
-
-                {description && (
-                    <p className="designbase-stat__description">{description}</p>
+                {/* 변화율 */}
+                {showChange && change && (
+                    <div className={clsx('designbase-stat__change', getChangeClass())}>
+                        {getChangeText()}
+                    </div>
                 )}
 
-                {trendPeriod && (
-                    <span className="designbase-stat__trend-period">{trendPeriod}</span>
+                {/* 설명 */}
+                {showDescription && description && (
+                    <div className="designbase-stat__description">
+                        {description}
+                    </div>
                 )}
             </div>
+
+            {/* 진행률 바 */}
+            {showProgress && progress !== undefined && (
+                <div className="designbase-stat__progress">
+                    <div
+                        className="designbase-stat__progress-bar"
+                        style={{ width: `${Math.min(Math.max(progress, 0), 100)}%` }}
+                    />
+                </div>
+            )}
         </div>
     );
 };

@@ -1,0 +1,654 @@
+/**
+ * MarkdownEditor 컴포넌트 스타일
+ */
+
+.designbase-markdown-editor {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--db-border-primary);
+    border-radius: var(--db-radius-lg);
+    background: var(--db-bg-primary);
+    font-family: var(--db-font-primary);
+    transition: all 0.2s ease;
+
+    // 크기별 스타일
+    &--size-sm {
+        .designbase-markdown-editor__toolbar {
+            padding: var(--db-padding-s);
+            gap: var(--db-gap-xs);
+        }
+
+        .designbase-markdown-editor__toolbar-item {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-markdown-editor__mode-button {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-markdown-editor__textarea {
+            font-size: var(--db-text-sm);
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-markdown-editor__preview {
+            font-size: var(--db-text-sm);
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-markdown-editor__code-view {
+            font-size: var(--db-text-sm);
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-markdown-editor__status {
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-xs);
+        }
+    }
+
+    &--size-md {
+        .designbase-markdown-editor__toolbar {
+            padding: var(--db-padding-m);
+            gap: var(--db-gap-s);
+        }
+
+        .designbase-markdown-editor__toolbar-item {
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-markdown-editor__mode-button {
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-sm);
+        }
+
+        .designbase-markdown-editor__textarea {
+            font-size: var(--db-text-base);
+            padding: var(--db-padding-l);
+        }
+
+        .designbase-markdown-editor__preview {
+            font-size: var(--db-text-base);
+            padding: var(--db-padding-l);
+        }
+
+        .designbase-markdown-editor__code-view {
+            font-size: var(--db-text-base);
+            padding: var(--db-padding-l);
+        }
+
+        .designbase-markdown-editor__status {
+            padding: var(--db-padding-m) var(--db-padding-l);
+            font-size: var(--db-text-sm);
+        }
+    }
+
+    &--size-lg {
+        .designbase-markdown-editor__toolbar {
+            padding: var(--db-padding-l);
+            gap: var(--db-gap-m);
+        }
+
+        .designbase-markdown-editor__toolbar-item {
+            padding: var(--db-padding-m);
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-markdown-editor__mode-button {
+            padding: var(--db-padding-m);
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-markdown-editor__textarea {
+            font-size: var(--db-text-lg);
+            padding: var(--db-padding-xl);
+        }
+
+        .designbase-markdown-editor__preview {
+            font-size: var(--db-text-lg);
+            padding: var(--db-padding-xl);
+        }
+
+        .designbase-markdown-editor__code-view {
+            font-size: var(--db-text-lg);
+            padding: var(--db-padding-xl);
+        }
+
+        .designbase-markdown-editor__status {
+            padding: var(--db-padding-l) var(--db-padding-xl);
+            font-size: var(--db-text-base);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        background: var(--db-bg-primary);
+        border-color: var(--db-border-primary);
+    }
+
+    &--variant-outlined {
+        background: transparent;
+        border-color: var(--db-border-primary);
+    }
+
+    &--variant-filled {
+        background: var(--db-bg-secondary);
+        border-color: var(--db-border-primary);
+    }
+
+    // 모드별 스타일
+    &--mode-edit {
+        .designbase-markdown-editor__content {
+            display: block;
+        }
+    }
+
+    &--mode-preview {
+        .designbase-markdown-editor__content {
+            display: block;
+        }
+    }
+
+    &--mode-split {
+        .designbase-markdown-editor__content {
+            display: flex;
+            gap: var(--db-gap-m);
+        }
+
+        .designbase-markdown-editor__edit-panel,
+        .designbase-markdown-editor__preview-panel {
+            flex: 1;
+        }
+    }
+
+    &--mode-code {
+        .designbase-markdown-editor__content {
+            display: block;
+        }
+    }
+
+    // 테마별 스타일
+    &--theme-light {
+        color: var(--db-text-primary);
+    }
+
+    &--theme-dark {
+        background: var(--db-bg-inverse);
+        border-color: var(--db-border-primary);
+        color: var(--db-text-inverse);
+    }
+
+    // 상태별 스타일
+    &--focused {
+        border-color: var(--db-blue-600);
+        box-shadow: 0 0 0 3px var(--db-blue-100);
+    }
+
+    &--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &--readonly {
+        .designbase-markdown-editor__toolbar {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    // 툴바
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        background: var(--db-bg-secondary);
+        border-bottom: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-lg) var(--db-radius-lg) 0 0;
+    }
+
+    // 모드 버튼들
+    &__mode-buttons {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        margin-right: var(--db-margin-md);
+    }
+
+    // 모드 버튼
+    &__mode-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-sm);
+        background: transparent;
+        border: none;
+        border-radius: var(--db-radius-sm);
+        color: var(--db-text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: var(--db-weight-medium);
+
+        &:hover:not(&--disabled) {
+            background: var(--db-bg-tertiary);
+            color: var(--db-text-primary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: 2px;
+        }
+
+        &--active {
+            background: var(--db-blue-600);
+            color: var(--db-white);
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    // 툴바 구분선
+    &__toolbar-separator {
+        width: 1px;
+        height: 24px;
+        background: var(--db-border-primary);
+        margin: 0 var(--db-margin-md);
+    }
+
+    // 툴바 아이템
+    &__toolbar-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-sm);
+        background: transparent;
+        border: none;
+        border-radius: var(--db-radius-sm);
+        color: var(--db-text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+        font-weight: var(--db-weight-medium);
+
+        &:hover:not(&--disabled) {
+            background: var(--db-bg-tertiary);
+            color: var(--db-text-primary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: 2px;
+        }
+
+        &--active {
+            background: var(--db-blue-600);
+            color: var(--db-white);
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    // 툴바 단축키
+    &__toolbar-shortcut {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--db-bg-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-sm);
+        padding: 2px 6px;
+        font-size: var(--db-text-xs);
+        color: var(--db-text-secondary);
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        z-index: 10;
+    }
+
+    &__toolbar-item:hover &__toolbar-shortcut {
+        opacity: 1;
+    }
+
+    // 파일 업로드
+    &__file-upload {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-sm);
+        background: transparent;
+        border: none;
+        border-radius: var(--db-radius-sm);
+        color: var(--db-text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--db-bg-tertiary);
+            color: var(--db-text-primary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: 2px;
+        }
+    }
+
+    // 콘텐츠
+    &__content {
+        flex: 1;
+        min-height: 200px;
+    }
+
+    // 편집 패널
+    &__edit-panel {
+        height: 100%;
+    }
+
+    // 텍스트 영역
+    &__textarea {
+        width: 100%;
+        height: 100%;
+        min-height: inherit;
+        background: transparent;
+        border: none;
+        outline: none;
+        resize: vertical;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        line-height: 1.6;
+        color: inherit;
+
+        &::placeholder {
+            color: var(--db-text-muted);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    // 미리보기 패널
+    &__preview-panel {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    // 미리보기
+    &__preview {
+        line-height: 1.6;
+        color: inherit;
+
+        // 제목
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: var(--db-margin-lg) 0 var(--db-margin-md) 0;
+            font-weight: var(--db-weight-semibold);
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: var(--db-text-3xl);
+        }
+
+        h2 {
+            font-size: var(--db-text-2xl);
+        }
+
+        h3 {
+            font-size: var(--db-text-xl);
+        }
+
+        // 단락
+        p {
+            margin: 0 0 var(--db-margin-m) 0;
+        }
+
+        // 강조
+        strong {
+            font-weight: var(--db-weight-semibold);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        del {
+            text-decoration: line-through;
+        }
+
+        // 코드
+        code {
+            background: var(--db-bg-secondary);
+            border: 1px solid var(--db-border-primary);
+            border-radius: var(--db-radius-sm);
+            padding: 2px 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: var(--db-text-primary);
+        }
+
+        pre {
+            background: var(--db-bg-secondary);
+            border: 1px solid var(--db-border-primary);
+            border-radius: var(--db-radius-md);
+            padding: var(--db-padding-lg);
+            overflow-x: auto;
+            margin: var(--db-margin-lg) 0;
+
+            code {
+                background: none;
+                border: none;
+                padding: 0;
+                color: inherit;
+            }
+        }
+
+        // 링크
+        a {
+            color: var(--db-blue-600);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        // 이미지
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--db-radius-md);
+        }
+
+        // 인용구
+        blockquote {
+            border-left: 4px solid var(--db-blue-600);
+            margin: var(--db-margin-lg) 0;
+            padding: var(--db-padding-md) var(--db-padding-lg);
+            background: var(--db-bg-secondary);
+            border-radius: 0 var(--db-radius-md) var(--db-radius-md) 0;
+            font-style: italic;
+        }
+
+        // 목록
+        ul,
+        ol {
+            margin: var(--db-margin-md) 0;
+            padding-left: var(--db-padding-xl);
+        }
+
+        li {
+            margin: var(--db-margin-xs) 0;
+        }
+
+        // 테이블
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--db-margin-lg) 0;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--db-border-primary);
+            padding: var(--db-padding-sm) var(--db-padding-md);
+            text-align: left;
+        }
+
+        th {
+            background: var(--db-bg-secondary);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        // 수평선
+        hr {
+            border: none;
+            border-top: 1px solid var(--db-border-primary);
+            margin: var(--db-margin-xl) 0;
+        }
+    }
+
+    // 코드 보기 패널
+    &__code-panel {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    // 코드 보기
+    &__code-view {
+        width: 100%;
+        height: 100%;
+        min-height: inherit;
+        background: var(--db-bg-secondary);
+        border: none;
+        outline: none;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        line-height: 1.6;
+        color: var(--db-text-primary);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        margin: 0;
+        border-radius: 0;
+
+        code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: inherit;
+            font-family: inherit;
+            font-size: inherit;
+        }
+    }
+
+    // 상태
+    &__status {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-lg);
+        background: var(--db-bg-secondary);
+        border-top: 1px solid var(--db-border-primary);
+        border-radius: 0 0 var(--db-radius-lg) var(--db-radius-lg);
+        color: var(--db-text-secondary);
+    }
+
+    // 단어 수
+    &__word-count {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    // 라인 수
+    &__line-count {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    // 마지막 저장
+    &__last-saved {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        color: var(--db-green-600);
+    }
+
+    // 저장 중
+    &__saving {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        color: var(--db-blue-600);
+    }
+}
+
+// 테마는 상위에서 관리됩니다.
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-markdown-editor {
+        &--mode-split {
+            .designbase-markdown-editor__content {
+                flex-direction: column;
+            }
+        }
+
+        &__toolbar {
+            gap: var(--db-gap-xs);
+        }
+
+        &__mode-buttons {
+            margin-right: var(--db-margin-s);
+        }
+
+        &__toolbar-item {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-xs);
+        }
+
+        &__mode-button {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-xs);
+        }
+
+        &__status {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--db-gap-s);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-markdown-editor {
+        &__toolbar {
+            padding: var(--db-padding-s);
+        }
+
+        &__textarea,
+        &__preview,
+        &__code-view {
+            padding: var(--db-padding-m);
+            font-size: var(--db-text-sm);
+        }
+
+        &__status {
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-xs);
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Navbar } from './Navbar';
+import { UserIcon, SettingsIcon } from '@designbase/icons';
 
 const meta: Meta<typeof Navbar> = {
     title: 'Components/Navbar',
@@ -74,19 +75,19 @@ const userMenuItems = [
         id: 'profile',
         label: '프로필',
         href: '#',
-        icon: 'designbase-icon-user',
+        icon: UserIcon,
     },
     {
         id: 'settings',
         label: '설정',
         href: '#',
-        icon: 'designbase-icon-settings',
+        icon: SettingsIcon,
     },
     {
         id: 'logout',
         label: '로그아웃',
         href: '#',
-        icon: 'designbase-icon-logout',
+        icon: SettingsIcon,
     },
 ];
 
@@ -157,7 +158,7 @@ export const WithSearch: Story = {
         items: sampleItems,
         showSearch: true,
         searchPlaceholder: '검색어를 입력하세요...',
-        onSearch: (query) => console.log('Search:', query),
+        onSearch: (query: string) => console.log('Search:', query),
     },
 };
 
@@ -171,7 +172,7 @@ export const WithUserMenu: Story = {
             avatar: 'https://via.placeholder.com/32x32',
         },
         userMenuItems,
-        onUserMenuItemClick: (item) => console.log('User menu clicked:', item),
+        onUserMenuItemClick: (item: { id: string; label: string; href?: string; icon?: React.ComponentType<any> }) => console.log('User menu clicked:', item),
     },
 };
 

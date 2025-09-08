@@ -1,0 +1,420 @@
+.designbase-share {
+    position: relative;
+    display: inline-block;
+
+    // 트리거 버튼
+    &__trigger {
+        position: relative;
+    }
+
+    // 공유 콘텐츠
+    &__content {
+        padding: var(--db-padding-l);
+        background-color: var(--db-bg-primary);
+        border-radius: var(--db-radius-lg);
+        box-shadow: var(--db-shadow-lg);
+        border: 1px solid var(--db-border-primary);
+    }
+
+    // 플랫폼 버튼들
+    &__platforms {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: var(--db-gap-s);
+        margin-bottom: var(--db-margin-l);
+    }
+
+    // 플랫폼 버튼
+    &__platform-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        padding: var(--db-padding-m);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-md);
+        background-color: var(--db-bg-primary);
+        color: var(--db-text-primary);
+        font-size: var(--db-font-sm);
+        font-weight: var(--db-font-medium);
+        cursor: pointer;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--db-shadow-md);
+            border-color: var(--platform-color, #007bff);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--platform-color, #007bff);
+            outline-offset: 2px;
+        }
+
+        // 플랫폼별 색상
+        &--facebook {
+            --platform-color: #1877f2;
+
+            &:hover {
+                background-color: rgba(24, 119, 242, 0.1);
+                color: #1877f2;
+            }
+        }
+
+        &--twitter {
+            --platform-color: #1da1f2;
+
+            &:hover {
+                background-color: rgba(29, 161, 242, 0.1);
+                color: #1da1f2;
+            }
+        }
+
+        &--instagram {
+            --platform-color: #e4405f;
+
+            &:hover {
+                background-color: rgba(228, 64, 95, 0.1);
+                color: #e4405f;
+            }
+        }
+
+        &--linkedin {
+            --platform-color: #0077b5;
+
+            &:hover {
+                background-color: rgba(0, 119, 181, 0.1);
+                color: #0077b5;
+            }
+        }
+
+        &--pinterest {
+            --platform-color: #bd081c;
+
+            &:hover {
+                background-color: rgba(189, 8, 28, 0.1);
+                color: #bd081c;
+            }
+        }
+
+        &--whatsapp {
+            --platform-color: #25d366;
+
+            &:hover {
+                background-color: rgba(37, 211, 102, 0.1);
+                color: #25d366;
+            }
+        }
+
+        &--telegram {
+            --platform-color: #0088cc;
+
+            &:hover {
+                background-color: rgba(0, 136, 204, 0.1);
+                color: #0088cc;
+            }
+        }
+
+        &--email {
+            --platform-color: #ea4335;
+
+            &:hover {
+                background-color: rgba(234, 67, 53, 0.1);
+                color: #ea4335;
+            }
+        }
+
+        &--link {
+            --platform-color: #6c757d;
+
+            &:hover {
+                background-color: rgba(108, 117, 125, 0.1);
+                color: #6c757d;
+            }
+
+            &.designbase-share__platform-button--copied {
+                background-color: var(--db-green-600);
+                color: white;
+                border-color: var(--db-green-600);
+            }
+        }
+
+        &--qr {
+            --platform-color: #6c757d;
+
+            &:hover {
+                background-color: rgba(108, 117, 125, 0.1);
+                color: #6c757d;
+            }
+        }
+    }
+
+    // 플랫폼 아이콘
+    &__platform-icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+    }
+
+    // 플랫폼 이름
+    &__platform-name {
+        font-size: var(--db-font-xs);
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    // 복사 성공 표시
+    &__copy-success {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--db-green-600);
+        color: white;
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-sm);
+        font-size: var(--db-font-xs);
+        font-weight: var(--db-weight-bold);
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        animation: copySuccessFadeIn 0.3s ease;
+        z-index: 10;
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    // QR 코드 섹션
+    &__qr-section {
+        text-align: center;
+        margin-bottom: var(--db-margin-l);
+        padding: var(--db-padding-m);
+        background-color: var(--db-bg-secondary);
+        border-radius: var(--db-radius-md);
+    }
+
+    &__qr-title {
+        margin: 0 0 var(--db-margin-s) 0;
+        font-size: var(--db-font-md);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+    }
+
+    &__qr-code {
+        margin-bottom: var(--db-margin-s);
+
+        img {
+            border-radius: var(--db-radius-sm);
+            box-shadow: var(--db-shadow-sm);
+        }
+    }
+
+    &__qr-description {
+        margin: 0;
+        font-size: var(--db-font-sm);
+        color: var(--db-text-secondary);
+    }
+
+    // 링크 미리보기
+    &__link-preview {
+        margin-bottom: var(--db-margin-m);
+    }
+
+    &__link-title {
+        margin: 0 0 var(--db-margin-s) 0;
+        font-size: var(--db-font-md);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+    }
+
+    &__link-container {
+        display: flex;
+        gap: var(--db-gap-s);
+        align-items: center;
+    }
+
+    &__link-input {
+        flex: 1;
+        padding: var(--db-padding-s) var(--db-padding-m);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-md);
+        font-size: var(--db-font-sm);
+        background-color: var(--db-bg-secondary);
+        color: var(--db-text-primary);
+        cursor: text;
+
+        &:focus {
+            outline: none;
+            border-color: var(--db-blue-600);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+    }
+
+    &__copy-button {
+        flex-shrink: 0;
+    }
+
+    // 드롭다운 변형
+    &--dropdown {
+        position: relative;
+    }
+
+    // 모달 변형
+    &--modal {
+        // Modal 컴포넌트가 처리하므로 스타일 제거
+    }
+
+    // 인라인 변형
+    &--inline {
+        display: block;
+        width: 100%;
+
+        .designbase-share__content {
+            box-shadow: none;
+            border: 1px solid var(--db-border-primary);
+        }
+    }
+
+    // 크기별 스타일
+    &--sm {
+        .designbase-share__platform-button {
+            padding: var(--db-padding-s);
+            font-size: var(--db-font-xs);
+        }
+
+        .designbase-share__platform-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .designbase-share__platform-name {
+            font-size: var(--db-font-xs);
+        }
+    }
+
+    &--lg {
+        .designbase-share__platform-button {
+            padding: var(--db-padding-l);
+            font-size: var(--db-font-md);
+        }
+
+        .designbase-share__platform-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .designbase-share__platform-name {
+            font-size: var(--db-font-sm);
+        }
+    }
+
+    // 반응형 디자인
+    @media (max-width: 768px) {
+        .designbase-share__platforms {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: var(--db-gap-xs);
+        }
+
+        .designbase-share__platform-button {
+            padding: var(--db-padding-s);
+            font-size: var(--db-font-xs);
+        }
+
+        .designbase-share__platform-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .designbase-share__platform-name {
+            font-size: var(--db-font-xs);
+        }
+
+        .designbase-share__content {
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-share__link-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .designbase-share__copy-button {
+            width: 100%;
+        }
+    }
+
+    // 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
+
+    // 접근성 개선
+    &__platform-button:focus-visible {
+        outline: 2px solid var(--platform-color, #007bff);
+        outline-offset: 2px;
+    }
+
+    // 애니메이션
+    &__platform-button {
+        animation: platformButtonSlideIn 0.3s ease;
+    }
+}
+
+
+
+@keyframes copySuccessFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes platformButtonSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 플랫폼별 아이콘 색상 (기본값)
+.designbase-share__platform-button {
+    svg {
+        fill: currentColor;
+    }
+}
+
+// 로딩 상태
+.designbase-share--loading {
+    pointer-events: none;
+    opacity: 0.7;
+
+    .designbase-share__platform-button {
+        cursor: not-allowed;
+    }
+}
+
+// 비활성화 상태
+.designbase-share--disabled {
+    pointer-events: none;
+    opacity: 0.5;
+
+    .designbase-share__platform-button {
+        cursor: not-allowed;
+    }
+}

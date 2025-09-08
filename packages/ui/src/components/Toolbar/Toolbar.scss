@@ -5,22 +5,22 @@
 .designbase-toolbar {
     display: flex;
     align-items: center;
-    background: var(--color-semantic-surface-default, #ffffff);
-    border: 1px solid var(--color-semantic-border-default, #e5e7eb);
-    transition: all 0.2s ease;
+    background: var(--db-bg-primary);
+    border: 1px solid var(--db-border-primary);
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
     position: relative;
-    z-index: 10;
+    z-index: var(--db-z-10);
 
     // 크기별 스타일
     &--size-sm {
-        padding: var(--spacing-semantic-spacing-xs, 4px);
-        gap: var(--spacing-semantic-spacing-xs, 4px);
+        padding: var(--db-padding-xs);
+        gap: var(--db-gap-xs);
         min-height: 32px;
 
         .designbase-toolbar__item {
-            padding: var(--spacing-semantic-spacing-xs, 4px) var(--spacing-semantic-spacing-sm, 8px);
-            font-size: var(--typography-semantic-body-sm-font-size, 14px);
-            border-radius: var(--border-radius-semantic-radius-sm, 4px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-sm);
+            border-radius: var(--db-radius-sm);
         }
 
         .designbase-toolbar__item-icon {
@@ -30,14 +30,14 @@
     }
 
     &--size-md {
-        padding: var(--spacing-semantic-spacing-sm, 8px);
-        gap: var(--spacing-semantic-spacing-sm, 8px);
+        padding: var(--db-padding-s);
+        gap: var(--db-gap-s);
         min-height: 40px;
 
         .designbase-toolbar__item {
-            padding: var(--spacing-semantic-spacing-sm, 8px) var(--spacing-semantic-spacing-md, 12px);
-            font-size: var(--typography-semantic-body-md-font-size, 16px);
-            border-radius: var(--border-radius-semantic-radius-md, 8px);
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-base);
+            border-radius: var(--db-radius-md);
         }
 
         .designbase-toolbar__item-icon {
@@ -47,14 +47,14 @@
     }
 
     &--size-lg {
-        padding: var(--spacing-semantic-spacing-md, 12px);
-        gap: var(--spacing-semantic-spacing-md, 12px);
+        padding: var(--db-padding-m);
+        gap: var(--db-gap-m);
         min-height: 48px;
 
         .designbase-toolbar__item {
-            padding: var(--spacing-semantic-spacing-md, 12px) var(--spacing-semantic-spacing-lg, 16px);
-            font-size: var(--typography-semantic-body-lg-font-size, 18px);
-            border-radius: var(--border-radius-semantic-radius-lg, 12px);
+            padding: var(--db-padding-m) var(--db-padding-l);
+            font-size: var(--db-text-lg);
+            border-radius: var(--db-radius-lg);
         }
 
         .designbase-toolbar__item-icon {
@@ -65,18 +65,18 @@
 
     // 변형별 스타일
     &--variant-default {
-        background: var(--color-semantic-surface-default, #ffffff);
-        border-color: var(--color-semantic-border-default, #e5e7eb);
+        background: var(--db-bg-primary);
+        border-color: var(--db-border-primary);
     }
 
     &--variant-outlined {
         background: transparent;
-        border-color: var(--color-semantic-border-default, #e5e7eb);
+        border-color: var(--db-border-primary);
     }
 
     &--variant-filled {
-        background: var(--color-semantic-surface-secondary, #f9fafb);
-        border-color: var(--color-semantic-border-default, #e5e7eb);
+        background: var(--db-bg-secondary);
+        border-color: var(--db-border-primary);
     }
 
     &--variant-ghost {
@@ -86,27 +86,27 @@
 
     // 위치별 스타일
     &--position-top {
-        border-bottom: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        border-bottom: 1px solid var(--db-border-primary);
     }
 
     &--position-bottom {
-        border-top: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        border-top: 1px solid var(--db-border-primary);
     }
 
     &--position-left {
         flex-direction: column;
-        border-right: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        border-right: 1px solid var(--db-border-primary);
     }
 
     &--position-right {
         flex-direction: column;
-        border-left: 1px solid var(--color-semantic-border-default, #e5e7eb);
+        border-left: 1px solid var(--db-border-primary);
     }
 
     &--position-floating {
         position: absolute;
-        border-radius: var(--border-radius-semantic-radius-lg, 12px);
-        box-shadow: var(--shadow-semantic-shadow-lg, 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+        border-radius: var(--db-radius-lg);
+        box-shadow: var(--db-shadow-lg);
     }
 
     // 전체 너비
@@ -117,17 +117,17 @@
     // 고정 위치
     &--fixed {
         position: fixed;
-        z-index: 1000;
+        z-index: var(--db-z-50);
     }
 
     // 그림자
     &--shadow {
-        box-shadow: var(--shadow-semantic-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+        box-shadow: var(--db-shadow-sm);
     }
 
     // 둥근 모서리
     &--rounded {
-        border-radius: var(--border-radius-semantic-radius-lg, 12px);
+        border-radius: var(--db-radius-lg);
     }
 
     // 콘텐츠 영역
@@ -149,8 +149,8 @@
     &__group-separator {
         width: 1px;
         height: 24px;
-        background: var(--color-semantic-border-default, #e5e7eb);
-        margin: 0 var(--spacing-semantic-spacing-xs, 4px);
+        background: var(--db-border-primary);
+        margin: 0 var(--db-margin-xs);
     }
 
     // 자식 요소
@@ -166,34 +166,34 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--spacing-semantic-spacing-xs, 4px);
+        gap: var(--db-gap-xs);
         border: none;
         background: transparent;
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         white-space: nowrap;
         user-select: none;
 
         &:hover:not(&--disabled) {
-            background: var(--color-semantic-surface-hover, #f3f4f6);
+            background: var(--db-bg-tertiary);
         }
 
         &:focus {
-            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
 
         &--active {
-            background: var(--color-semantic-primary-default, #3b82f6);
-            color: var(--color-semantic-primary-foreground, #ffffff);
+            background: var(--db-blue-500);
+            color: var(--db-text-inverse);
 
             &:hover {
-                background: var(--color-semantic-primary-hover, #2563eb);
+                background: var(--db-blue-600);
             }
         }
 
         &--disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-50);
             cursor: not-allowed;
 
             &:hover {
@@ -212,20 +212,20 @@
         }
 
         &--open {
-            background: var(--color-semantic-surface-hover, #f3f4f6);
+            background: var(--db-bg-tertiary);
         }
 
         // 구분선 아이템
         &--separator {
             width: 1px;
             height: 24px;
-            background: var(--color-semantic-border-default, #e5e7eb);
+            background: var(--db-border-primary);
             padding: 0;
-            margin: 0 var(--spacing-semantic-spacing-xs, 4px);
+            margin: 0 var(--db-margin-xs);
             cursor: default;
 
             &:hover {
-                background: var(--color-semantic-border-default, #e5e7eb);
+                background: var(--db-border-primary);
             }
         }
 
@@ -245,14 +245,14 @@
 
     // 아이템 라벨
     &__item-label {
-        font-weight: var(--typography-semantic-body-md-font-weight, 500);
+        font-weight: var(--db-weight-medium);
     }
 
     // 드롭다운 트리거
     &__dropdown-trigger {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-spacing-xs, 4px);
+        gap: var(--db-gap-xs);
         border: none;
         background: transparent;
         cursor: pointer;
@@ -283,13 +283,13 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--color-semantic-surface-default, #ffffff);
-        border: 1px solid var(--color-semantic-border-default, #e5e7eb);
-        border-radius: var(--border-radius-semantic-radius-md, 8px);
-        box-shadow: var(--shadow-semantic-shadow-lg, 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
-        z-index: 1000;
+        background: var(--db-bg-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-md);
+        box-shadow: var(--db-shadow-lg);
+        z-index: var(--db-z-popover);
         min-width: 160px;
-        margin-top: var(--spacing-semantic-spacing-xs, 4px);
+        margin-top: var(--db-margin-xs);
         overflow: hidden;
     }
 
@@ -297,37 +297,37 @@
     &__dropdown-option {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-spacing-sm, 8px);
+        gap: var(--db-gap-s);
         width: 100%;
-        padding: var(--spacing-semantic-spacing-sm, 8px) var(--spacing-semantic-spacing-md, 12px);
+        padding: var(--db-padding-s) var(--db-padding-m);
         border: none;
         background: transparent;
         cursor: pointer;
-        font-size: var(--typography-semantic-body-sm-font-size, 14px);
-        color: var(--color-semantic-text-default, #111827);
-        transition: background-color 0.2s ease;
+        font-size: var(--db-text-sm);
+        color: var(--db-text-primary);
+        transition: background-color var(--db-animation-speed) var(--db-animation-ease);
         text-align: left;
 
         &:hover:not(&--disabled) {
-            background: var(--color-semantic-surface-hover, #f3f4f6);
+            background: var(--db-bg-tertiary);
         }
 
         &:focus {
-            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: -2px;
         }
 
         &--selected {
-            background: var(--color-semantic-primary-default, #3b82f6);
-            color: var(--color-semantic-primary-foreground, #ffffff);
+            background: var(--db-blue-500);
+            color: var(--db-text-inverse);
 
             &:hover {
-                background: var(--color-semantic-primary-hover, #2563eb);
+                background: var(--db-blue-600);
             }
         }
 
         &--disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-50);
             cursor: not-allowed;
 
             &:hover {
@@ -353,61 +353,17 @@
     }
 }
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-toolbar {
-        background: var(--color-semantic-surface-default-dark, #1f2937);
-        border-color: var(--color-semantic-border-default-dark, #374151);
-
-        &--variant-outlined {
-            background: transparent;
-            border-color: var(--color-semantic-border-default-dark, #374151);
-        }
-
-        &--variant-filled {
-            background: var(--color-semantic-surface-secondary-dark, #111827);
-            border-color: var(--color-semantic-border-default-dark, #374151);
-        }
-
-        &__item {
-            color: var(--color-semantic-text-default-dark, #f9fafb);
-
-            &:hover:not(&--disabled) {
-                background: var(--color-semantic-surface-hover-dark, #374151);
-            }
-        }
-
-        &__dropdown-menu {
-            background: var(--color-semantic-surface-default-dark, #1f2937);
-            border-color: var(--color-semantic-border-default-dark, #374151);
-        }
-
-        &__dropdown-option {
-            color: var(--color-semantic-text-default-dark, #f9fafb);
-
-            &:hover:not(&--disabled) {
-                background: var(--color-semantic-surface-hover-dark, #374151);
-            }
-        }
-
-        &__group-separator,
-        &__item--separator {
-            background: var(--color-semantic-border-default-dark, #374151);
-        }
-    }
-}
-
 // 반응형 스타일
 @media (max-width: 768px) {
     .designbase-toolbar {
         &--size-lg {
-            padding: var(--spacing-semantic-spacing-sm, 8px);
-            gap: var(--spacing-semantic-spacing-sm, 8px);
+            padding: var(--db-padding-s);
+            gap: var(--db-gap-s);
             min-height: 40px;
 
             .designbase-toolbar__item {
-                padding: var(--spacing-semantic-spacing-sm, 8px) var(--spacing-semantic-spacing-md, 12px);
-                font-size: var(--typography-semantic-body-md-font-size, 16px);
+                padding: var(--db-padding-s) var(--db-padding-m);
+                font-size: var(--db-text-base);
             }
         }
 
@@ -426,13 +382,13 @@
 @media (max-width: 480px) {
     .designbase-toolbar {
         &--size-md {
-            padding: var(--spacing-semantic-spacing-xs, 4px);
-            gap: var(--spacing-semantic-spacing-xs, 4px);
+            padding: var(--db-padding-xs);
+            gap: var(--db-gap-xs);
             min-height: 32px;
 
             .designbase-toolbar__item {
-                padding: var(--spacing-semantic-spacing-xs, 4px) var(--spacing-semantic-spacing-sm, 8px);
-                font-size: var(--typography-semantic-body-sm-font-size, 14px);
+                padding: var(--db-padding-xs) var(--db-padding-s);
+                font-size: var(--db-text-sm);
             }
         }
     }

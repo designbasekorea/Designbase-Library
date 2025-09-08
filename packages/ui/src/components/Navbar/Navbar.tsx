@@ -254,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                                     handleUserMenuItemClick(item);
                                                 }}
                                             >
-                                                {item.icon && <i className={item.icon} />}
+                                                {item.icon && React.createElement(item.icon, { size: 16 })}
                                                 {item.label}
                                             </a>
                                         </li>
@@ -333,7 +333,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                         handleItemClick(item);
                                     }}
                                 >
-                                    {item.icon && <i className={item.icon} />}
+                                    {item.icon && React.createElement(item.icon, { size: 16 })}
                                     {item.label}
                                 </a>
                                 {item.children && item.children.length > 0 && (
@@ -357,7 +357,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                                         handleItemClick(child);
                                                     }}
                                                 >
-                                                    {child.icon && <i className={child.icon} />}
+                                                    {child.icon && React.createElement(child.icon, { size: 16 })}
                                                     {child.label}
                                                 </a>
                                             </li>
@@ -412,7 +412,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                                 handleUserMenuItemClick(item);
                                             }}
                                         >
-                                            {item.icon && <i className={item.icon} />}
+                                            {item.icon && React.createElement(item.icon, { size: 16 })}
                                             {item.label}
                                         </a>
                                     </li>

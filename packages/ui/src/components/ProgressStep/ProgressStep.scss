@@ -1,0 +1,457 @@
+.designbase-progress-step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-gap-m);
+
+    // 변형별 스타일
+    &--default {
+        .designbase-progress-step__indicator {
+            background-color: var(--db-bg-primary);
+            border: 2px solid var(--db-border-primary);
+            color: var(--db-text-primary);
+        }
+    }
+
+    &--outlined {
+        .designbase-progress-step__indicator {
+            background-color: transparent;
+            border: 2px solid var(--db-border-primary);
+            color: var(--db-text-primary);
+        }
+    }
+
+    &--filled {
+        .designbase-progress-step__indicator {
+            background-color: var(--db-bg-secondary);
+            border: 2px solid var(--db-border-primary);
+            color: var(--db-text-primary);
+        }
+    }
+
+    &--minimal {
+        .designbase-progress-step__indicator {
+            background-color: transparent;
+            border: none;
+            color: var(--db-text-primary);
+        }
+    }
+
+    // 크기별 스타일
+    &--sm {
+        .designbase-progress-step__indicator {
+            width: var(--db-size-md);
+            height: var(--db-size-md);
+            font-size: var(--db-font-xs);
+        }
+
+        .designbase-progress-step__connector {
+            width: 2px;
+            margin-left: 11px; // (24px - 2px) / 2
+        }
+
+        .designbase-progress-step__title {
+            font-size: var(--db-font-sm);
+        }
+
+        .designbase-progress-step__description {
+            font-size: var(--db-font-xs);
+        }
+    }
+
+    &--md {
+        .designbase-progress-step__indicator {
+            width: var(--db-size-lg);
+            height: var(--db-size-lg);
+            font-size: var(--db-font-sm);
+        }
+
+        .designbase-progress-step__connector {
+            width: 2px;
+            margin-left: 15px; // (32px - 2px) / 2
+        }
+
+        .designbase-progress-step__title {
+            font-size: var(--db-font-md);
+        }
+
+        .designbase-progress-step__description {
+            font-size: var(--db-font-sm);
+        }
+    }
+
+    &--lg {
+        .designbase-progress-step__indicator {
+            width: var(--db-size-xl);
+            height: var(--db-size-xl);
+            font-size: var(--db-font-md);
+        }
+
+        .designbase-progress-step__connector {
+            width: 3px;
+            margin-left: 18.5px; // (40px - 3px) / 2
+        }
+
+        .designbase-progress-step__title {
+            font-size: var(--db-font-lg);
+        }
+
+        .designbase-progress-step__description {
+            font-size: var(--db-font-md);
+        }
+    }
+
+    // 레이아웃별 스타일
+    &--vertical {
+        .designbase-progress-step__item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--db-gap-m);
+        }
+
+        .designbase-progress-step__indicator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .designbase-progress-step__connector {
+            height: var(--db-spacing-24);
+            margin-top: var(--db-margin-xs);
+        }
+    }
+
+    &--horizontal {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--db-gap-s);
+
+        .designbase-progress-step__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .designbase-progress-step__indicator-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+        }
+
+        .designbase-progress-step__connector {
+            flex: 1;
+            height: 2px;
+            margin: 0 var(--db-margin-s);
+        }
+
+        .designbase-progress-step__content {
+            margin-top: var(--db-margin-s);
+            width: 100%;
+        }
+    }
+
+    &--alternating {
+        .designbase-progress-step__item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--db-gap-m);
+
+            &:nth-child(even) {
+                flex-direction: row-reverse;
+                text-align: right;
+
+                .designbase-progress-step__content {
+                    text-align: right;
+                }
+            }
+        }
+
+        .designbase-progress-step__indicator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .designbase-progress-step__connector {
+            height: var(--db-spacing-24);
+            margin-top: var(--db-margin-xs);
+        }
+    }
+
+    // 전체 너비
+    &--full-width {
+        width: 100%;
+
+        .designbase-progress-step__item {
+            width: 100%;
+        }
+    }
+
+    // 클릭 가능
+    &--clickable {
+        .designbase-progress-step__item--clickable {
+            cursor: pointer;
+
+            &:hover {
+                .designbase-progress-step__indicator {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+
+    // 비활성화
+    &--disabled {
+        opacity: var(--db-opacity-60);
+        pointer-events: none;
+    }
+
+    // 진행 단계 아이템
+    &__item {
+        position: relative;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+        // 상태별 스타일
+        &--pending {
+            .designbase-progress-step__indicator {
+                background-color: var(--db-bg-primary);
+                border-color: var(--db-border-primary);
+                color: var(--db-text-muted);
+            }
+
+            .designbase-progress-step__connector {
+                background-color: var(--db-border-primary);
+            }
+        }
+
+        &--active {
+            .designbase-progress-step__indicator {
+                background-color: var(--db-blue-600);
+                border-color: var(--db-blue-600);
+                color: var(--db-neutral-white);
+                box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+            }
+
+            .designbase-progress-step__connector {
+                background-color: var(--db-blue-600);
+            }
+
+            .designbase-progress-step__title {
+                color: var(--db-blue-600);
+                font-weight: var(--db-weight-bold);
+            }
+        }
+
+        &--completed {
+            .designbase-progress-step__indicator {
+                background-color: var(--db-green-600);
+                border-color: var(--db-green-600);
+                color: var(--db-neutral-white);
+            }
+
+            .designbase-progress-step__connector {
+                background-color: var(--db-green-600);
+            }
+
+            .designbase-progress-step__title {
+                color: var(--db-green-600);
+            }
+        }
+
+        &--error {
+            .designbase-progress-step__indicator {
+                background-color: var(--db-red-600);
+                border-color: var(--db-red-600);
+                color: var(--db-neutral-white);
+            }
+
+            .designbase-progress-step__connector {
+                background-color: var(--db-red-600);
+            }
+
+            .designbase-progress-step__title {
+                color: var(--db-red-600);
+            }
+        }
+
+        &--disabled {
+            opacity: var(--db-opacity-50);
+            pointer-events: none;
+        }
+    }
+
+    // 인디케이터 컨테이너
+    &__indicator-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    // 원형 인디케이터
+    &__indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: var(--db-weight-bold);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        position: relative;
+        z-index: 2;
+
+        &:focus-visible {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: 2px;
+        }
+    }
+
+    // 연결선
+    &__connector {
+        background-color: var(--db-border-primary);
+        transition: background-color var(--db-animation-speed) var(--db-animation-ease);
+        position: relative;
+        z-index: 1;
+    }
+
+    // 콘텐츠 영역
+    &__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    // 헤더
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--db-gap-s);
+        margin-bottom: var(--db-margin-xs);
+    }
+
+    // 제목
+    &__title {
+        margin: 0;
+        font-weight: var(--db-weight-semibold);
+        line-height: 1.4;
+        color: var(--db-text-primary);
+    }
+
+    // 타임스탬프
+    &__timestamp {
+        font-size: var(--db-font-xs);
+        color: var(--db-text-muted);
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    // 설명
+    &__description {
+        margin: 0;
+        color: var(--db-text-muted);
+        line-height: 1.5;
+    }
+
+    // 아이콘
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+        svg {
+            width: 60%;
+            height: 60%;
+            fill: currentColor;
+        }
+    }
+
+    // 번호
+    &__number {
+        font-weight: var(--db-weight-bold);
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .designbase-progress-step {
+        &--horizontal {
+            flex-direction: column;
+            gap: var(--db-gap-m);
+
+            .designbase-progress-step__item {
+                flex-direction: row;
+                text-align: left;
+                width: 100%;
+            }
+
+            .designbase-progress-step__indicator-container {
+                flex-direction: column;
+                width: auto;
+            }
+
+            .designbase-progress-step__connector {
+                flex: none;
+                height: var(--db-spacing-24);
+                margin: var(--db-margin-xs) 0 0 0;
+            }
+
+            .designbase-progress-step__content {
+                margin-top: 0;
+                margin-left: var(--db-margin-m);
+            }
+        }
+
+        &--alternating {
+            .designbase-progress-step__item {
+                flex-direction: row !important;
+                text-align: left !important;
+
+                .designbase-progress-step__content {
+                    text-align: left !important;
+                }
+            }
+        }
+    }
+}
+
+// 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
+
+// 접근성 개선
+.designbase-progress-step {
+    &__indicator:focus-visible {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+}
+
+// 애니메이션
+.designbase-progress-step__item {
+    animation: progressStepSlideIn 0.3s ease;
+}
+
+@keyframes progressStepSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 터치 디바이스 최적화
+@media (hover: none) and (pointer: coarse) {
+    .designbase-progress-step {
+        &__indicator {
+            min-width: 44px;
+            min-height: 44px;
+        }
+    }
+}

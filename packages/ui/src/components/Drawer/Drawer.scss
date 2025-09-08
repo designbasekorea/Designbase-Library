@@ -1,0 +1,279 @@
+.designbase-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--db-z-modal);
+    pointer-events: none;
+
+    // 오버레이
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--db-bg-overlay);
+        opacity: 0;
+        transition: opacity var(--db-animation-speed) var(--db-animation-ease-in);
+        pointer-events: auto;
+
+        &--open {
+            opacity: 1;
+        }
+    }
+
+    // 컨테이너
+    &__container {
+        position: absolute;
+        background-color: var(--db-bg-primary);
+        box-shadow: var(--db-shadow-lg);
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        transition: transform var(--db-animation-speed) var(--db-animation-ease-in);
+
+        // 위치별 스타일
+        &--left {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            transform: translateX(-100%);
+            border-right: 1px solid var(--db-border-primary);
+
+            &.designbase-drawer__container--open {
+                transform: translateX(0);
+            }
+        }
+
+        &--right {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            transform: translateX(100%);
+            border-left: 1px solid var(--db-border-primary);
+
+            &.designbase-drawer__container--open {
+                transform: translateX(0);
+            }
+        }
+
+        &--top {
+            top: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(-100%);
+            border-bottom: 1px solid var(--db-border-primary);
+
+            &.designbase-drawer__container--open {
+                transform: translateY(0);
+            }
+        }
+
+        &--bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            border-top: 1px solid var(--db-border-primary);
+
+            &.designbase-drawer__container--open {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    // 크기별 스타일
+    &--sm &__container {
+
+        &--left,
+        &--right {
+            width: 320px;
+        }
+
+        &--top,
+        &--bottom {
+            height: 320px;
+        }
+    }
+
+    &--md &__container {
+
+        &--left,
+        &--right {
+            width: 480px;
+        }
+
+        &--top,
+        &--bottom {
+            height: 480px;
+        }
+    }
+
+    &--lg &__container {
+
+        &--left,
+        &--right {
+            width: 640px;
+        }
+
+        &--top,
+        &--bottom {
+            height: 640px;
+        }
+    }
+
+    &--xl &__container {
+
+        &--left,
+        &--right {
+            width: 800px;
+        }
+
+        &--top,
+        &--bottom {
+            height: 800px;
+        }
+    }
+
+    &--full &__container {
+
+        &--left,
+        &--right {
+            width: 100vw;
+        }
+
+        &--top,
+        &--bottom {
+            height: 100vh;
+        }
+    }
+
+    // 헤더
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--db-padding-m);
+        border-bottom: 1px solid var(--db-border-primary);
+        background-color: var(--db-bg-primary);
+        flex-shrink: 0;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: var(--db-text-lg);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+        line-height: 1.4;
+    }
+
+    &__close-button {
+        margin-left: var(--db-margin-s);
+        flex-shrink: 0;
+    }
+
+    // 내용
+    &__content {
+        flex: 1;
+        padding: var(--db-padding-m);
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        // 스크롤바 스타일링
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--db-bg-secondary);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--db-border-primary);
+            border-radius: 3px;
+
+            &:hover {
+                background: var(--db-border-secondary);
+            }
+        }
+    }
+
+    // 애니메이션 상태
+    &--animating {
+        pointer-events: none;
+
+        .designbase-drawer__container {
+            pointer-events: auto;
+        }
+    }
+
+    // 반응형 디자인
+    @media (max-width: 768px) {
+
+        &--md &__container,
+        &--lg &__container,
+        &--xl &__container {
+
+            &--left,
+            &--right {
+                width: 100vw;
+            }
+
+            &--top,
+            &--bottom {
+                height: 100vh;
+            }
+        }
+
+        &__header {
+            padding: var(--db-padding-s);
+        }
+
+        &__content {
+            padding: var(--db-padding-s);
+        }
+
+        &__title {
+            font-size: var(--db-text-md);
+        }
+    }
+
+    @media (max-width: 480px) {
+        &--sm &__container {
+
+            &--left,
+            &--right {
+                width: 100vw;
+            }
+
+            &--top,
+            &--bottom {
+                height: 100vh;
+            }
+        }
+    }
+
+    // 다크 테마는 상위 테마에서 관리됩니다
+
+    // 접근성 개선
+    &:focus-visible {
+        outline: none;
+    }
+
+    &__container:focus-visible {
+        outline: 2px solid var(--db-blue-500);
+        outline-offset: -2px;
+    }
+
+    // 애니메이션 최적화
+    &__container {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+
+    &__overlay {
+        will-change: opacity;
+    }
+}

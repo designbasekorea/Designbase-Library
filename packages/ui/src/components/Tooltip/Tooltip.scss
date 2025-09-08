@@ -1,10 +1,10 @@
 .designbase-tooltip {
     position: fixed;
-    z-index: 9999;
+    z-index: var(--db-z-tooltip);
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transition: opacity var(--db-animation-speed) var(--db-animation-ease), visibility var(--db-animation-speed) var(--db-animation-ease), transform var(--db-animation-speed) var(--db-animation-ease);
     transform: scale(0.95);
 
     &--visible {
@@ -14,14 +14,14 @@
     }
 
     &__content {
-        background-color: var(--color-background-inverse, #1f2937);
-        color: var(--color-text-inverse, #ffffff);
-        padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
-        border-radius: var(--border-radius-md, 6px);
-        font-size: var(--typography-body-sm-font-size, 14px);
-        line-height: var(--typography-body-sm-line-height, 1.4);
+        background-color: var(--db-bg-inverse);
+        color: var(--db-text-inverse);
+        padding: var(--db-padding-s) var(--db-padding-m);
+        border-radius: var(--db-radius-md);
+        font-size: var(--db-text-sm);
+        line-height: var(--db-leading-tight);
         white-space: nowrap;
-        box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+        box-shadow: var(--db-shadow-lg);
         max-width: 100%;
         word-wrap: break-word;
         white-space: normal;
@@ -37,7 +37,7 @@
         &--top,
         &--top-start,
         &--top-end {
-            border-top-color: var(--color-background-inverse, #1f2937);
+            border-top-color: var(--db-bg-inverse);
             top: 100%;
         }
 
@@ -45,7 +45,7 @@
         &--bottom,
         &--bottom-start,
         &--bottom-end {
-            border-bottom-color: var(--color-background-inverse, #1f2937);
+            border-bottom-color: var(--db-bg-inverse);
             bottom: 100%;
         }
 
@@ -53,7 +53,7 @@
         &--left,
         &--left-start,
         &--left-end {
-            border-left-color: var(--color-background-inverse, #1f2937);
+            border-left-color: var(--db-bg-inverse);
             left: 100%;
         }
 
@@ -61,7 +61,7 @@
         &--right,
         &--right-start,
         &--right-end {
-            border-right-color: var(--color-background-inverse, #1f2937);
+            border-right-color: var(--db-bg-inverse);
             right: 100%;
         }
     }
@@ -69,220 +69,226 @@
     // Sizes
     &--sm {
         .designbase-tooltip__content {
-            padding: var(--spacing-xs, 6px) var(--spacing-sm, 8px);
-            font-size: var(--typography-body-xs-font-size, 12px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-xs);
         }
     }
 
     &--md {
         .designbase-tooltip__content {
-            padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
-            font-size: var(--typography-body-sm-font-size, 14px);
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-sm);
         }
     }
 
     &--lg {
         .designbase-tooltip__content {
-            padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
-            font-size: var(--typography-body-md-font-size, 16px);
+            padding: var(--db-padding-m) var(--db-padding-l);
+            font-size: var(--db-text-base);
         }
     }
 
     // Variants
     &--default {
         .designbase-tooltip__content {
-            background-color: var(--color-background-inverse, #1f2937);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-bg-inverse);
+            color: var(--db-text-inverse);
         }
 
         .designbase-tooltip__arrow {
+
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--color-background-inverse, #1f2937);
+                border-top-color: var(--db-bg-inverse);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--color-background-inverse, #1f2937);
+                border-bottom-color: var(--db-bg-inverse);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--color-background-inverse, #1f2937);
+                border-left-color: var(--db-bg-inverse);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--color-background-inverse, #1f2937);
+                border-right-color: var(--db-bg-inverse);
             }
         }
     }
 
     &--primary {
         .designbase-tooltip__content {
-            background-color: var(--color-primary-500, #3b82f6);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-blue-500);
+            color: var(--db-text-inverse);
         }
 
         .designbase-tooltip__arrow {
+
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--color-primary-500, #3b82f6);
+                border-top-color: var(--db-blue-500);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--color-primary-500, #3b82f6);
+                border-bottom-color: var(--db-blue-500);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--color-primary-500, #3b82f6);
+                border-left-color: var(--db-blue-500);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--color-primary-500, #3b82f6);
+                border-right-color: var(--db-blue-500);
             }
         }
     }
 
     &--success {
         .designbase-tooltip__content {
-            background-color: var(--color-success-500, #10b981);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-green-500);
+            color: var(--db-text-inverse);
         }
 
         .designbase-tooltip__arrow {
+
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--color-success-500, #10b981);
+                border-top-color: var(--db-green-500);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--color-success-500, #10b981);
+                border-bottom-color: var(--db-green-500);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--color-success-500, #10b981);
+                border-left-color: var(--db-green-500);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--color-success-500, #10b981);
+                border-right-color: var(--db-green-500);
             }
         }
     }
 
     &--warning {
         .designbase-tooltip__content {
-            background-color: var(--color-warning-500, #f59e0b);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-yellow-500);
+            color: var(--db-neutral-900);
         }
 
         .designbase-tooltip__arrow {
+
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--color-warning-500, #f59e0b);
+                border-top-color: var(--db-yellow-500);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--color-warning-500, #f59e0b);
+                border-bottom-color: var(--db-yellow-500);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--color-warning-500, #f59e0b);
+                border-left-color: var(--db-yellow-500);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--color-warning-500, #f59e0b);
+                border-right-color: var(--db-yellow-500);
             }
         }
     }
 
     &--danger {
         .designbase-tooltip__content {
-            background-color: var(--color-danger-500, #ef4444);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-red-500);
+            color: var(--db-text-inverse);
         }
 
         .designbase-tooltip__arrow {
+
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--color-danger-500, #ef4444);
+                border-top-color: var(--db-red-500);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--color-danger-500, #ef4444);
+                border-bottom-color: var(--db-red-500);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--color-danger-500, #ef4444);
+                border-left-color: var(--db-red-500);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--color-danger-500, #ef4444);
+                border-right-color: var(--db-red-500);
             }
         }
     }
 
     &--info {
         .designbase-tooltip__content {
-            background-color: var(--color-info-500, #06b6d4);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-blue-500);
+            color: var(--db-text-inverse);
         }
 
         .designbase-tooltip__arrow {
+
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--color-info-500, #06b6d4);
+                border-top-color: var(--db-blue-500);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--color-info-500, #06b6d4);
+                border-bottom-color: var(--db-blue-500);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--color-info-500, #06b6d4);
+                border-left-color: var(--db-blue-500);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--color-info-500, #06b6d4);
+                border-right-color: var(--db-blue-500);
             }
         }
     }

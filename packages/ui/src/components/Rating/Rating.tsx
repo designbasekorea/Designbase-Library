@@ -7,138 +7,264 @@
 
 import React, { useState, useCallback } from 'react';
 import clsx from 'clsx';
+import { StarIcon, StarFilledIcon, StarHalfIcon } from '@designbase/icons';
 import './Rating.scss';
 
-export type RatingSize = 'sm' | 'md' | 'lg' | 'xl';
-export type RatingVariant = 'default' | 'filled' | 'outlined';
+// 타입 정의
+export type RatingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type RatingVariant = 'default' | 'minimal' | 'card' | 'inline' | 'large';
+export type RatingType = 'star' | 'number' | 'percentage' | 'text';
+export type RatingDisplay = 'stars' | 'number' | 'both' | 'reviews' | 'detailed';
 
 export interface RatingProps {
-    /** 현재 평점 (0-5) */
-    value?: number;
+    /** 평점 값 (0-5 또는 0-100) */
+    value: number;
     /** 최대 평점 */
-    max?: number;
-    /** 평점 크기 */
+    maxValue?: number;
+    /** Rating 크기 */
     size?: RatingSize;
-    /** 평점 스타일 변형 */
+    /** Rating 스타일 변형 */
     variant?: RatingVariant;
-    /** 읽기 전용 모드 */
+    /** Rating 타입 */
+    type?: RatingType;
+    /** 표시 방식 */
+    display?: RatingDisplay;
+    /** 리뷰 수 */
+    reviewCount?: number;
+    /** 평점 텍스트 */
+    ratingText?: string;
+    /** 리뷰 텍스트 */
+    reviewText?: string;
+    /** 반올림 허용 */
+    allowHalf?: boolean;
+    /** 읽기 전용 */
     readonly?: boolean;
+    /** 비활성화 */
+    disabled?: boolean;
+    /** 클릭 가능 */
+    clickable?: boolean;
+    /** 색상 */
+    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'custom';
+    /** 커스텀 색상 */
+    customColor?: string;
+    /** 애니메이션 */
+    animated?: boolean;
+    /** 호버 효과 */
+    hoverEffect?: boolean;
     /** 평점 변경 핸들러 */
     onChange?: (value: number) => void;
-    /** 평점에 마우스 오버 시 핸들러 */
+    /** 호버 핸들러 */
     onHover?: (value: number) => void;
-    /** 평점에서 마우스 아웃 시 핸들러 */
-    onMouseLeave?: () => void;
-    /** 평점 텍스트 표시 */
-    showText?: boolean;
-    /** 평점 텍스트 포맷터 */
-    textFormatter?: (value: number, max: number) => string;
+    /** 클릭 핸들러 */
+    onClick?: (value: number) => void;
     /** 추가 CSS 클래스 */
     className?: string;
 }
 
-export const Rating: React.FC<RatingProps> = ({
-    value = 0,
-    max = 5,
+const Rating: React.FC<RatingProps> = ({
+    value,
+    maxValue = 5,
     size = 'md',
     variant = 'default',
+    type = 'star',
+    display = 'stars',
+    reviewCount,
+    ratingText,
+    reviewText,
+    allowHalf = false,
     readonly = false,
+    disabled = false,
+    clickable = false,
+    color = 'primary',
+    customColor,
+    animated = false,
+    hoverEffect = true,
     onChange,
     onHover,
-    onMouseLeave,
-    showText = false,
-    textFormatter,
+    onClick,
     className,
 }) => {
     const [hoverValue, setHoverValue] = useState<number | null>(null);
-    const [internalValue, setInternalValue] = useState(value);
+    const [isHovering, setIsHovering] = useState(false);
 
-    const displayValue = hoverValue !== null ? hoverValue : internalValue;
+    // 현재 표시할 값 (호버 중이면 호버 값, 아니면 실제 값)
+    const displayValue = hoverValue !== null ? hoverValue : value;
 
-    const handleStarClick = useCallback((starValue: number) => {
-        if (readonly) return;
+    // 별점 계산
+    const getStarValue = useCallback((index: number) => {
+        const starIndex = index + 1;
+        const normalizedValue = (displayValue / maxValue) * 5;
 
-        const newValue = starValue === internalValue ? 0 : starValue;
-        setInternalValue(newValue);
+        if (allowHalf) {
+            if (normalizedValue >= starIndex) return 1; // 완전한 별
+            if (normalizedValue >= starIndex - 0.5) return 0.5; // 반별
+            return 0; // 빈 별
+        } else {
+            return normalizedValue >= starIndex ? 1 : 0;
+        }
+    }, [displayValue, maxValue, allowHalf]);
+
+    // 평점 텍스트 생성
+    const getRatingText = useCallback(() => {
+        if (ratingText) return ratingText;
+
+        const normalizedValue = (value / maxValue) * 5;
+        if (type === 'percentage') {
+            return `${Math.round((value / maxValue) * 100)}%`;
+        } else if (type === 'number') {
+            return allowHalf ? normalizedValue.toFixed(1) : Math.round(normalizedValue).toString();
+        } else {
+            return `${normalizedValue.toFixed(1)}/5`;
+        }
+    }, [value, maxValue, type, allowHalf, ratingText]);
+
+    // 리뷰 텍스트 생성
+    const getReviewText = useCallback(() => {
+        if (reviewText) return reviewText;
+        if (!reviewCount) return '';
+
+        if (reviewCount === 1) return '1 리뷰';
+        return `${reviewCount.toLocaleString()} 리뷰`;
+    }, [reviewCount, reviewText]);
+
+    // 별점 클릭 핸들러
+    const handleStarClick = useCallback((index: number) => {
+        if (disabled || readonly || !clickable) return;
+
+        const clickedValue = index + 1;
+        const newValue = (clickedValue / 5) * maxValue;
         onChange?.(newValue);
-    }, [readonly, internalValue, onChange]);
+        onClick?.(newValue);
+    }, [disabled, readonly, clickable, maxValue, onChange, onClick]);
 
-    const handleStarHover = useCallback((starValue: number) => {
-        if (readonly) return;
+    // 별점 호버 핸들러
+    const handleStarHover = useCallback((index: number) => {
+        if (disabled || readonly || !hoverEffect) return;
 
-        setHoverValue(starValue);
-        onHover?.(starValue);
-    }, [readonly, onHover]);
+        const hoveredValue = index + 1;
+        const normalizedValue = (hoveredValue / 5) * maxValue;
+        setHoverValue(normalizedValue);
+        setIsHovering(true);
+        onHover?.(normalizedValue);
+    }, [disabled, readonly, hoverEffect, maxValue, onHover]);
 
-    const handleMouseLeave = useCallback(() => {
-        if (readonly) return;
+    // 호버 아웃 핸들러
+    const handleStarHoverOut = useCallback(() => {
+        if (disabled || readonly) return;
 
         setHoverValue(null);
-        onMouseLeave?.();
-    }, [readonly, onMouseLeave]);
+        setIsHovering(false);
+    }, [disabled, readonly]);
 
+    // 별 아이콘 렌더링
+    const renderStar = useCallback((index: number) => {
+        const starValue = getStarValue(index);
+        const isClickable = clickable && !disabled && !readonly;
+
+        const starProps = {
+            size: size === 'xs' ? 12 : size === 'sm' ? 16 : size === 'md' ? 20 : size === 'lg' ? 24 : 32,
+            className: clsx(
+                'designbase-rating__star',
+                {
+                    'designbase-rating__star--clickable': isClickable,
+                    'designbase-rating__star--animated': animated,
+                }
+            ),
+            onClick: () => handleStarClick(index),
+            onMouseEnter: () => handleStarHover(index),
+            onMouseLeave: handleStarHoverOut,
+        };
+
+        if (starValue === 1) {
+            return <StarFilledIcon key={index} {...starProps} />;
+        } else if (starValue === 0.5 && allowHalf) {
+            return <StarHalfIcon key={index} {...starProps} />;
+        } else {
+            return <StarIcon key={index} {...starProps} />;
+        }
+    }, [getStarValue, size, clickable, disabled, readonly, animated, allowHalf, handleStarClick, handleStarHover, handleStarHoverOut]);
+
+    // 숫자 평점 렌더링
+    const renderNumberRating = useCallback(() => {
+        return (
+            <span className="designbase-rating__number">
+                {getRatingText()}
+            </span>
+        );
+    }, [getRatingText]);
+
+    // 리뷰 수 렌더링
+    const renderReviewCount = useCallback(() => {
+        const text = getReviewText();
+        if (!text) return null;
+
+        return (
+            <span className="designbase-rating__review-count">
+                {text}
+            </span>
+        );
+    }, [getReviewText]);
+
+    // 상세 정보 렌더링
+    const renderDetailedInfo = useCallback(() => {
+        return (
+            <div className="designbase-rating__detailed">
+                <div className="designbase-rating__rating-info">
+                    {renderNumberRating()}
+                    {renderReviewCount()}
+                </div>
+            </div>
+        );
+    }, [renderNumberRating, renderReviewCount]);
+
+    // 클래스명 생성
     const classes = clsx(
         'designbase-rating',
         `designbase-rating--size-${size}`,
         `designbase-rating--variant-${variant}`,
+        `designbase-rating--type-${type}`,
+        `designbase-rating--display-${display}`,
+        `designbase-rating--color-${color}`,
         {
             'designbase-rating--readonly': readonly,
+            'designbase-rating--disabled': disabled,
+            'designbase-rating--clickable': clickable,
+            'designbase-rating--animated': animated,
+            'designbase-rating--hovering': isHovering,
         },
         className
     );
 
-    const defaultTextFormatter = (value: number, max: number) => {
-        if (value === 0) return '평점 없음';
-        if (value === 1) return '매우 나쁨';
-        if (value === 2) return '나쁨';
-        if (value === 3) return '보통';
-        if (value === 4) return '좋음';
-        if (value === 5) return '매우 좋음';
-        return `${value}/${max}`;
-    };
-
-    const renderStar = (starValue: number) => {
-        const isFilled = starValue <= displayValue;
-        const isHalf = !isFilled && starValue - 0.5 <= displayValue;
-
-        const starClasses = clsx(
-            'designbase-rating__star',
-            {
-                'designbase-rating__star--filled': isFilled,
-                'designbase-rating__star--half': isHalf,
-            }
-        );
-
-        return (
-            <button
-                key={starValue}
-                type="button"
-                className={starClasses}
-                onClick={() => handleStarClick(starValue)}
-                onMouseEnter={() => handleStarHover(starValue)}
-                onMouseLeave={handleMouseLeave}
-                disabled={readonly}
-                aria-label={`${starValue}점`}
-                aria-pressed={starValue <= internalValue}
-            >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-            </button>
-        );
-    };
+    // 커스텀 색상 스타일
+    const customStyle = customColor ? { '--rating-color': customColor } as React.CSSProperties : undefined;
 
     return (
-        <div className={classes}>
-            <div className="designbase-rating__stars">
-                {Array.from({ length: max }, (_, index) => renderStar(index + 1))}
-            </div>
+        <div className={classes} style={customStyle}>
+            {/* 별점 표시 */}
+            {display === 'stars' || display === 'both' || display === 'detailed' ? (
+                <div className="designbase-rating__stars">
+                    {Array.from({ length: 5 }, (_, index) => renderStar(index))}
+                </div>
+            ) : null}
 
-            {showText && (
-                <span className="designbase-rating__text">
-                    {textFormatter ? textFormatter(displayValue, max) : defaultTextFormatter(displayValue, max)}
-                </span>
-            )}
+            {/* 숫자 평점 표시 */}
+            {display === 'number' || display === 'both' ? (
+                <div className="designbase-rating__number-container">
+                    {renderNumberRating()}
+                </div>
+            ) : null}
+
+            {/* 리뷰 수 표시 */}
+            {display === 'reviews' ? (
+                <div className="designbase-rating__reviews">
+                    {renderReviewCount()}
+                </div>
+            ) : null}
+
+            {/* 상세 정보 표시 */}
+            {display === 'detailed' ? (
+                renderDetailedInfo()
+            ) : null}
         </div>
     );
 };

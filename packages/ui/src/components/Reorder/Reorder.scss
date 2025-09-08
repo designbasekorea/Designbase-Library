@@ -1,0 +1,384 @@
+.designbase-reorder {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-gap-xs);
+    user-select: none;
+
+    // 변형별 스타일
+    &--default {
+        .designbase-reorder__item {
+            background-color: var(--db-bg-primary);
+            border: 1px solid var(--db-border-primary);
+            border-radius: var(--db-radius-md);
+        }
+    }
+
+    &--bordered {
+        .designbase-reorder__item {
+            background-color: var(--db-bg-primary);
+            border: 2px solid var(--db-border-primary);
+            border-radius: var(--db-radius-lg);
+        }
+    }
+
+    &--filled {
+        .designbase-reorder__item {
+            background-color: var(--db-bg-secondary);
+            border: 1px solid var(--db-border-primary);
+            border-radius: var(--db-radius-md);
+        }
+    }
+
+    &--minimal {
+        .designbase-reorder__item {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid var(--db-border-primary);
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    // 크기별 스타일
+    &--sm {
+        .designbase-reorder__item {
+            padding: var(--db-padding-s);
+            min-height: 40px;
+        }
+
+        .designbase-reorder__drag-handle {
+            width: var(--db-size-md);
+            height: var(--db-size-md);
+        }
+
+        .designbase-reorder__checkbox {
+            width: var(--db-size-md);
+            height: var(--db-size-md);
+        }
+    }
+
+    &--md {
+        .designbase-reorder__item {
+            padding: var(--db-padding-m);
+            min-height: 56px;
+        }
+
+        .designbase-reorder__drag-handle {
+            width: var(--db-size-lg);
+            height: var(--db-size-lg);
+        }
+
+        .designbase-reorder__checkbox {
+            width: var(--db-size-lg);
+            height: var(--db-size-lg);
+        }
+    }
+
+    &--lg {
+        .designbase-reorder__item {
+            padding: var(--db-padding-l);
+            min-height: 72px;
+        }
+
+        .designbase-reorder__drag-handle {
+            width: var(--db-size-xl);
+            height: var(--db-size-xl);
+        }
+
+        .designbase-reorder__checkbox {
+            width: var(--db-size-xl);
+            height: var(--db-size-xl);
+        }
+    }
+
+    // 방향별 스타일
+    &--horizontal {
+        flex-direction: row;
+        gap: var(--db-gap-s);
+
+        .designbase-reorder__item {
+            flex: 1;
+            min-width: 120px;
+        }
+    }
+
+    // 전체 너비
+    &--full-width {
+        width: 100%;
+    }
+
+    // 비활성화
+    &--disabled {
+        opacity: var(--db-opacity-60);
+        pointer-events: none;
+
+        .designbase-reorder__item {
+            cursor: not-allowed;
+        }
+    }
+
+    // 드래그 중
+    &--dragging {
+        .designbase-reorder__item {
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
+        }
+
+        // 드래그 중일 때 아이템들이 자연스럽게 이동
+        .designbase-reorder__item:not(.designbase-reorder__item--dragged) {
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+    }
+
+    // 선택 가능
+    &--selectable {
+        .designbase-reorder__item {
+            cursor: pointer;
+        }
+    }
+
+    // 아이템 스타일
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        cursor: grab;
+        position: relative;
+
+        &:hover {
+            background-color: var(--db-bg-secondary);
+            transform: translateY(-1px);
+            box-shadow: var(--db-shadow-sm);
+        }
+
+        &:active {
+            cursor: grabbing;
+            transform: translateY(0);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: 2px;
+        }
+
+        // 선택된 상태
+        &--selected {
+            background-color: var(--db-blue-100);
+            border-color: var(--db-blue-600);
+
+            &:hover {
+                background-color: var(--db-blue-200);
+            }
+        }
+
+        // 드래그 중인 상태
+        &--dragged {
+            opacity: var(--db-opacity-30);
+            transform: none; // 회전과 스케일 제거
+            z-index: 1000;
+            cursor: grabbing;
+            box-shadow: var(--db-shadow-lg);
+            position: relative;
+
+            &:hover {
+                transform: none;
+            }
+
+            // 드래그 중일 때 원래 위치에 플레이스홀더 표시
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--db-bg-secondary);
+                border: 2px dashed var(--db-blue-600);
+                border-radius: inherit;
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+
+        // 드래그 오버 상태
+        &--drag-over {
+            border-color: var(--db-blue-600);
+            background-color: var(--db-blue-100);
+            transform: translateY(4px); // 아래로 살짝 밀리는 효과
+            transition: transform var(--db-animation-speed) var(--db-animation-ease);
+            position: relative;
+
+            // 드래그 오버 시 시각적 피드백
+            &::after {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background-color: var(--db-blue-600);
+                border-radius: 2px;
+                opacity: var(--db-opacity-80);
+            }
+        }
+
+        // 비활성화 상태
+        &--disabled {
+            opacity: var(--db-opacity-50);
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: inherit;
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    // 드래그 핸들
+    &__drag-handle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--db-text-secondary);
+        cursor: grab;
+        flex-shrink: 0;
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover {
+            color: var(--db-blue-600);
+        }
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    // 체크박스
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__checkbox-input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        accent-color: var(--db-blue-600);
+    }
+
+    // 콘텐츠
+    &__content {
+        flex: 1;
+        min-width: 0;
+        color: var(--db-text-primary);
+        line-height: 1.5;
+    }
+
+
+}
+
+
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .designbase-reorder {
+        &--horizontal {
+            flex-direction: column;
+            gap: var(--db-gap-xs);
+
+            .designbase-reorder__item {
+                min-width: auto;
+            }
+        }
+
+        &__item {
+            padding: var(--db-padding-s);
+            min-height: 48px;
+        }
+
+        &__drag-handle {
+            width: 18px;
+            height: 18px;
+        }
+
+        &__checkbox {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+// 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
+
+// 접근성 개선
+.designbase-reorder {
+    &__item:focus-visible {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+
+    &__drag-handle:focus-visible {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+        border-radius: var(--db-radius-sm);
+    }
+
+    &__checkbox-input:focus-visible {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+}
+
+// 애니메이션
+.designbase-reorder__item {
+    animation: reorderItemSlideIn 0.3s ease;
+}
+
+@keyframes reorderItemSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 드래그 중 스크롤 방지
+.designbase-reorder--dragging {
+    body {
+        overflow: hidden;
+    }
+}
+
+// 터치 디바이스 최적화
+@media (hover: none) and (pointer: coarse) {
+    .designbase-reorder {
+        &__item {
+            min-height: 60px; // 터치하기 쉽게 높이 증가
+        }
+
+        &__drag-handle {
+            min-width: 44px; // 터치 타겟 최소 크기
+            min-height: 44px;
+        }
+
+        &__checkbox {
+            min-width: 44px;
+            min-height: 44px;
+        }
+    }
+}

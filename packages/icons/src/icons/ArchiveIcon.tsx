@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M4.5 7.75v10c0 .69.56 1.25 1.25 1.25h12c.69 0 1.25-.56 1.25-1.25v-10h1.5v10a2.75 2.75 0 0 1-2.75 2.75h-12A2.75 2.75 0 0 1 3 17.75v-10z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M14.75 12.5h-6V11h6zM3.75 4.5a.25.25 0 0 0-.25.25v2c0 .138.112.25.25.25h16a.25.25 0 0 0 .25-.25v-2a.25.25 0 0 0-.25-.25zM2 4.75C2 3.784 2.784 3 3.75 3h16c.966 0 1.75.784 1.75 1.75v2a1.75 1.75 0 0 1-1.75 1.75h-16A1.75 1.75 0 0 1 2 6.75z" clip-rule="evenodd"/></svg>
+
+export default ArchiveIcon;

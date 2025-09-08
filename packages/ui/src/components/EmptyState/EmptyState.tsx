@@ -24,7 +24,7 @@ import {
     CalendarIcon,
     CameraIcon,
     BookIcon,
-    ImageIcon,
+    GalleryIcon,
     VideoIcon,
     MusicIcon,
     DownloadIcon,

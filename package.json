@@ -1,8 +1,8 @@
 {
     "name": "@designbase/library",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Designbase 피그마 플러그인 공통 디자인시스템 및 컴포넌트 라이브러리",
-    "private": true,
+    "private": false,
     "workspaces": [
         "packages/*",
         "apps/*"
@@ -20,15 +20,28 @@
         "docs:build": "cd docs && npm run build",
         "storybook": "storybook dev -p 6006",
         "storybook:build": "storybook build",
-        "storybook:deploy": "storybook-to-ghpages"
+        "storybook:deploy": "storybook-to-ghpages",
+        "prepublishOnly": "npm run clean && npm run build",
+        "publish:packages": "npm run build && npm publish --workspaces",
+        "publish:ui": "cd packages/ui && npm publish",
+        "publish:theme": "cd packages/theme && npm publish",
+        "publish:tokens": "cd packages/tokens && npm publish",
+        "publish:icons": "cd packages/icons && npm publish",
+        "tokens:build": "cd packages/tokens && npm run build",
+        "tokens:copy": "node scripts/copy-tokens.js",
+        "theme:copy": "node scripts/copy-theme.js",
+        "theme:build": "npm run tokens:copy && cd packages/theme && npm run build",
+        "ui:build": "npm run theme:build && cd packages/ui && npm run build",
+        "build:all": "npm run tokens:build && npm run theme:build && npm run ui:build"
     },
     "devDependencies": {
-        "@changesets/cli": "^2.26.2",
+        "@changesets/cli": "^2.29.6",
         "@storybook/addon-essentials": "^8.6.14",
         "@storybook/addon-interactions": "^8.6.14",
         "@storybook/react": "^8.6.14",
         "@storybook/react-vite": "^8.6.14",
         "@storybook/testing-library": "^0.2.2",
+        "@types/classnames": "^2.3.0",
         "@typescript-eslint/eslint-plugin": "^6.7.3",
         "@typescript-eslint/parser": "^6.7.3",
         "chalk": "^4.1.2",
@@ -54,5 +67,8 @@
         "type": "git",
         "url": "https://github.com/designbase/designbase-library.git"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "classnames": "^2.5.1"
+    }
 }

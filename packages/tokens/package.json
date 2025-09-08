@@ -1,21 +1,36 @@
 {
   "name": "@designbase/tokens",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Designbase 디자인 토큰 시스템 - 색상, 타이포그래피, 간격, 그림자 등의 디자인 토큰을 정의",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.esm.js"
+    },
+    "./css": "./dist/css/tokens.css",
+    "./scss": "./dist/scss/_tokens.scss",
+    "./json": "./dist/json/tokens.json",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
   "files": [
     "dist",
-    "tokens"
+    "tokens",
+    "style-dictionary.config.js"
   ],
   "scripts": {
-    "build": "npm run build:tokens && rollup -c",
-    "build:tokens": "style-dictionary build --config style-dictionary.config.js && style-dictionary build --config style-dictionary.dark.config.js",
-    "dev": "npm run build:tokens -- --watch",
     "clean": "rimraf dist",
+    "build:tokens": "style-dictionary build --config style-dictionary.config.js",
+    "build": "npm run clean && npm run build:tokens && rollup -c",
+    "dev": "style-dictionary build --config style-dictionary.config.js --watch",
     "lint": "eslint src --ext .ts,.tsx",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "color2k": "^2.0.2"

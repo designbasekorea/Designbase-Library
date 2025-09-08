@@ -130,7 +130,7 @@ export const WithHeader: Story = {
             { value: 'inactive', label: '비활성' },
             { value: 'pending', label: '대기' },
         ],
-        onFilterChange: (value) => console.log('Filter changed:', value),
+        onFilterChange: (value: string | string[]) => console.log('Filter changed:', value),
     },
 };
 
@@ -263,7 +263,7 @@ export const Interactive: Story = {
                     variant="hoverable"
                     selectedRows={selectedRows}
                     onSelectionChange={setSelectedRows}
-                    onSortChange={setSortConfig}
+                    onSortChange={(column, direction) => setSortConfig({ key: column, direction: direction || 'asc' })}
                     onRowClick={(row) => alert(`클릭된 행: ${row.name}`)}
                 />
             </div>

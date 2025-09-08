@@ -5,15 +5,15 @@
 .designbase-stepper {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-semantic-margin-xs, 4px);
-    border-radius: var(--border-radius-semantic-radius-md, 8px);
-    background-color: var(--color-semantic-background-default, #ffffff);
-    border: 1px solid var(--color-semantic-border-default, #e2e8f0);
+    gap: var(--db-gap-xs);
+    border-radius: var(--db-radius-md);
+    background-color: var(--db-bg-primary);
+    border: 1px solid var(--db-border-primary);
     transition: all 0.2s ease;
 
     // 크기별 스타일
     &--size-sm {
-        gap: var(--spacing-semantic-margin-xs, 4px);
+        gap: var(--db-gap-xs);
 
         .designbase-stepper__button {
             width: 28px;
@@ -22,16 +22,16 @@
 
         .designbase-stepper__value {
             min-width: 40px;
-            padding: 0 var(--spacing-semantic-padding-sm, 8px);
+            padding: 0 var(--db-padding-sm);
         }
 
         .designbase-stepper__value-text {
-            font-size: var(--typography-semantic-font-size-sm, 14px);
+            font-size: var(--db-text-sm);
         }
     }
 
     &--size-md {
-        gap: var(--spacing-semantic-margin-xs, 4px);
+        gap: var(--db-gap-xs);
 
         .designbase-stepper__button {
             width: 32px;
@@ -40,16 +40,16 @@
 
         .designbase-stepper__value {
             min-width: 48px;
-            padding: 0 var(--spacing-semantic-padding-md, 12px);
+            padding: 0 var(--db-padding-md);
         }
 
         .designbase-stepper__value-text {
-            font-size: var(--typography-semantic-font-size-md, 16px);
+            font-size: var(--db-text-base);
         }
     }
 
     &--size-lg {
-        gap: var(--spacing-semantic-margin-sm, 8px);
+        gap: var(--db-gap-sm);
 
         .designbase-stepper__button {
             width: 36px;
@@ -58,28 +58,28 @@
 
         .designbase-stepper__value {
             min-width: 56px;
-            padding: 0 var(--spacing-semantic-padding-lg, 16px);
+            padding: 0 var(--db-padding-lg);
         }
 
         .designbase-stepper__value-text {
-            font-size: var(--typography-semantic-font-size-lg, 18px);
+            font-size: var(--db-text-lg);
         }
     }
 
     // 변형별 스타일
     &--variant-default {
-        border-color: var(--color-semantic-border-default, #e2e8f0);
-        background-color: var(--color-semantic-background-default, #ffffff);
+        border-color: var(--db-border-primary);
+        background-color: var(--db-bg-primary);
     }
 
     &--variant-outlined {
-        border-color: var(--color-semantic-border-default, #e2e8f0);
+        border-color: var(--db-border-primary);
         background-color: transparent;
     }
 
     &--variant-filled {
-        border-color: var(--color-semantic-border-subtle, #f1f5f9);
-        background-color: var(--color-semantic-background-subtle, #f8fafc);
+        border-color: var(--db-border-secondary);
+        background-color: var(--db-bg-secondary);
     }
 
     // 비활성화 상태
@@ -99,13 +99,13 @@
 
     // 호버 효과
     &:hover:not(.designbase-stepper--disabled) {
-        border-color: var(--color-semantic-primary-default, #3b82f6);
-        box-shadow: var(--shadow-semantic-shadow-sm, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06));
+        border-color: var(--db-blue-600);
+        box-shadow: var(--db-shadow-sm);
     }
 
     // 포커스 효과
     &:focus-within {
-        outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+        outline: 2px solid var(--db-blue-600);
         outline-offset: 2px;
     }
 
@@ -116,24 +116,24 @@
         justify-content: center;
         background: none;
         border: none;
-        border-radius: var(--border-radius-semantic-radius-sm, 4px);
-        color: var(--color-semantic-text-primary, #1e293b);
+        border-radius: var(--db-radius-sm);
+        color: var(--db-text-primary);
         cursor: pointer;
         transition: all 0.2s ease;
         flex-shrink: 0;
 
         &:hover:not(.designbase-stepper__button--disabled) {
-            background-color: var(--color-semantic-background-subtle, #f8fafc);
-            color: var(--color-semantic-primary-default, #3b82f6);
+            background-color: var(--db-bg-secondary);
+            color: var(--db-blue-600);
         }
 
         &:active:not(.designbase-stepper__button--disabled) {
-            background-color: var(--color-semantic-background-subtle, #f1f5f9);
+            background-color: var(--db-bg-tertiary);
             transform: scale(0.95);
         }
 
         &:focus {
-            outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+            outline: 2px solid var(--db-blue-600);
             outline-offset: 2px;
         }
 
@@ -146,11 +146,11 @@
         &--disabled {
             cursor: not-allowed;
             opacity: 0.5;
-            color: var(--color-semantic-text-tertiary, #94a3b8);
+            color: var(--db-text-muted);
 
             &:hover {
                 background-color: transparent;
-                color: var(--color-semantic-text-tertiary, #94a3b8);
+                color: var(--db-text-muted);
             }
         }
 
@@ -168,15 +168,15 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        font-weight: var(--typography-semantic-font-weight-medium, 500);
-        color: var(--color-semantic-text-primary, #1e293b);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
         user-select: none;
         flex: 1;
         min-width: 0;
     }
 
     &__value-text {
-        font-weight: var(--typography-semantic-font-weight-semibold, 600);
+        font-weight: var(--db-weight-semibold);
         line-height: 1;
     }
 }
@@ -194,54 +194,7 @@
     border: 0;
 }
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-stepper {
-        &--variant-default {
-            border-color: var(--color-semantic-border-default, #475569);
-            background-color: var(--color-semantic-background-default, #0f172a);
-        }
-
-        &--variant-outlined {
-            border-color: var(--color-semantic-border-default, #475569);
-            background-color: transparent;
-        }
-
-        &--variant-filled {
-            border-color: var(--color-semantic-border-subtle, #334155);
-            background-color: var(--color-semantic-background-subtle, #1e293b);
-        }
-
-        &:hover:not(.designbase-stepper--disabled) {
-            border-color: var(--color-semantic-primary-default, #3b82f6);
-        }
-
-        &__button {
-            color: var(--color-semantic-text-primary, #f1f5f9);
-
-            &:hover:not(.designbase-stepper__button--disabled) {
-                background-color: var(--color-semantic-background-subtle, #1e293b);
-                color: var(--color-semantic-primary-default, #3b82f6);
-            }
-
-            &:active:not(.designbase-stepper__button--disabled) {
-                background-color: var(--color-semantic-background-subtle, #334155);
-            }
-
-            &--disabled {
-                color: var(--color-semantic-text-tertiary, #64748b);
-
-                &:hover {
-                    color: var(--color-semantic-text-tertiary, #64748b);
-                }
-            }
-        }
-
-        &__value-text {
-            color: var(--color-semantic-text-primary, #f1f5f9);
-        }
-    }
-}
+// 테마는 상위에서 관리됩니다.
 
 // 반응형 스타일
 @media (max-width: 480px) {
@@ -254,11 +207,11 @@
 
             .designbase-stepper__value {
                 min-width: 48px;
-                padding: 0 var(--spacing-semantic-padding-md, 12px);
+                padding: 0 var(--db-padding-md);
             }
 
             .designbase-stepper__value-text {
-                font-size: var(--typography-semantic-font-size-md, 16px);
+                font-size: var(--db-text-base);
             }
         }
     }

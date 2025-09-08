@@ -85,7 +85,7 @@
                     "type": "color"
                 },
                 "inverse": {
-                    "value": "{color.foundation.white}",
+                    "value": "{color.foundation.neutral.white}",
                     "type": "color"
                 },
                 "overlay": {
@@ -114,7 +114,7 @@
             "component": {
                 "icon": {
                     "primary": {
-                        "value": "{color.foundation.white}",
+                        "value": "{color.foundation.neutral.white}",
                         "type": "color"
                     },
                     "secondary": {
@@ -165,7 +165,7 @@
                             "type": "color"
                         },
                         "text": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textDisabled": {
@@ -247,7 +247,7 @@
                             "type": "color"
                         },
                         "text": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         }
                     }

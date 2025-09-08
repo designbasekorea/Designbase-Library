@@ -9,6 +9,8 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
+import sass from 'sass';
 
 export default {
     input: 'src/index.ts',
@@ -33,6 +35,16 @@ export default {
             browser: true,
         }),
         commonjs(),
+        postcss({
+            extract: true,
+            modules: false,
+            use: ['sass'],
+            // CSS import를 자동으로 해결
+            inject: false,
+            minimize: true,
+            // 외부 CSS 파일 import 해결
+            url: false
+        }),
         typescript({
             tsconfig: './tsconfig.json',
             declaration: true,

@@ -1,90 +1,169 @@
 # Designbase Library
 
-피그마 플러그인을 위한 공통 디자인시스템 및 컴포넌트 라이브러리입니다.
+Designbase 피그마 플러그인을 위한 공통 디자인시스템 및 컴포넌트 라이브러리입니다.
 
-## 개요
+## 📦 설치
 
-여러 개의 리액트 기반 피그마 플러그인에서 디자인 일관성과 유지보수성, 코드 재사용성을 극대화하기 위해 디자인시스템(토큰·스타일·컴포넌트·아이콘·패턴)을 **단일 소스 오브 트루스(SSoT)**로 묶어 npm 패키지로 배포합니다.
-
-## 목표 지표 (KPI)
-
-- 플러그인 간 UI 컴포넌트 코드 중복 70% 이상 축소
-- 공통 패키지 업데이트 후 플러그인 10개 반영 소요 시간 1/3 이하
-- 디자인 토큰 변경 후 UI 스냅샷 회귀 테스트 100% 자동화
-- 새 플러그인 스캐폴딩 시간 1시간 → 10분 이하
-
-## 프로젝트 구조
-
-```
-designbase-library/
-├─ apps/                     # 실제 피그마 플러그인 앱들
-│  ├─ plugin-detach-master/
-│  ├─ plugin-variables-doc/
-│  └─ plugin-.../
-├─ packages/                 # 재사용 가능한 라이브러리 묶음
-│  ├─ tokens/                # @designbase/tokens
-│  ├─ theme/                 # @designbase/theme
-│  ├─ ui/                    # @designbase/ui
-│  ├─ icons/                 # @designbase/icons
-│  ├─ motion/                # @designbase/motion
-│  ├─ utils/                 # @designbase/utils
-│  ├─ i18n/                  # @designbase/i18n
-│  ├─ figma-bridge/          # @designbase/figma-bridge
-│  └─ plugin-kit/            # @designbase/plugin-kit
-├─ docs/                     # 문서 사이트
-└─ scripts/                  # 레포 관리 스크립트
+### 전체 라이브러리 설치
+```bash
+npm install @designbase/library
 ```
 
-## 패키지 설명
+### 개별 패키지 설치
+```bash
+# UI 컴포넌트
+npm install @designbase/ui
 
-### Core Packages
+# 테마 시스템
+npm install @designbase/theme
 
-- **@designbase/tokens**: 디자인 토큰(원천 JSON) 및 빌드 아티팩트
-- **@designbase/theme**: 테마 프리셋(라이트/다크/브랜드), CSS 변수
-- **@designbase/ui**: 플러그인용 React UI 컴포넌트 라이브러리
-- **@designbase/icons**: 아이콘(소스 SVG + React 래퍼)
+# 디자인 토큰
+npm install @designbase/tokens
 
-### Utility Packages
+# 아이콘 시스템 (React)
+npm install @designbasekorea/icons
 
-- **@designbase/motion**: 모션 프리셋(애니메이션 토큰, 트랜지션 패턴)
-- **@designbase/utils**: 공통 유틸(날짜·숫자·포맷·검증·에러 등)
-- **@designbase/i18n**: 언어 리소스 및 i18n 초기화 헬퍼
-- **@designbase/figma-bridge**: UI <-> main 간 타입 세이프 메시징 브리지
-- **@designbase/plugin-kit**: 피그마 플러그인 보일러플레이트
+# 아이콘 웹폰트(CSS/WOFF)
+npm install @designbasekorea/icons-webfont
+```
 
-## 시작하기
+## 🚀 사용법
 
-### 설치
+### React 컴포넌트 사용
+```tsx
+import { Button, Card, Input } from '@designbase/ui';
+import '@designbase/theme/dist/css/theme.css';
 
+function App() {
+  return (
+    <div>
+      <Button variant="primary">클릭하세요</Button>
+      <Card>
+        <Input placeholder="입력하세요" />
+      </Card>
+    </div>
+  );
+}
+```
+
+### 테마 시스템 사용
+```tsx
+import { setTheme } from '@designbase/theme';
+import '@designbase/theme/dist/css/theme.css';
+
+// 다크모드 적용
+setTheme('dark');
+
+// 라이트모드 적용
+setTheme('light');
+```
+
+### 디자인 토큰 사용
+```tsx
+import { tokens } from '@designbase/tokens';
+
+// CSS 변수로 사용
+const primaryColor = getComputedStyle(document.documentElement)
+  .getPropertyValue('--color-semantic-primary');
+```
+
+### 아이콘 사용 (React)
+```tsx
+import { CheckIcon, UserIcon } from '@designbasekorea/icons';
+
+function App() {
+  return (
+    <div>
+      <CheckIcon size={24} />
+      <UserIcon size={20} />
+    </div>
+  );
+}
+```
+
+### 아이콘 웹폰트 사용 (CSS)
+```css
+@import '@designbasekorea/icons-webfont/css';
+```
+
+```html
+<i class="icon-check" aria-hidden="true"></i>
+<i class="icon-user" aria-hidden="true"></i>
+```
+
+## 🏗️ 개발
+
+### 의존성 설치
 ```bash
 npm install
 ```
 
-### 개발
-
+### 개발 서버 실행
 ```bash
 npm run dev
 ```
 
 ### 빌드
-
 ```bash
 npm run build
 ```
 
-### 테스트
-
+### Storybook 실행
 ```bash
-npm run test
+npm run storybook
 ```
 
-## 문서
+## 📚 패키지 구조
 
-- [컴포넌트 카탈로그](./docs/components)
-- [디자인 토큰 가이드](./docs/tokens)
-- [테마 사용법](./docs/theme)
-- [아이콘 가이드](./docs/icons)
+- **`@designbase/ui`**: React 컴포넌트 라이브러리
+- **`@designbase/theme`**: 테마 시스템 및 CSS 유틸리티
+- **`@designbase/tokens`**: 디자인 토큰 (색상, 간격, 타이포그래피 등)
+- **`@designbasekorea/icons`**: SVG 아이콘 React 컴포넌트
+- **`@designbasekorea/icons-webfont`**: 아이콘 웹폰트(CSS/WOFF/HTML/JSON)
 
-## 라이선스
+## 🔧 빌드 및 배포
 
-MIT
+### 전체 빌드
+```bash
+npm run build
+```
+
+### 개별 패키지 배포
+```bash
+# UI 패키지 배포
+npm run publish:ui
+
+# 테마 패키지 배포
+npm run publish:theme
+
+# 토큰 패키지 배포
+npm run publish:tokens
+
+# 아이콘 패키지 배포
+npm run publish:icons
+```
+
+### 모든 패키지 배포
+```bash
+npm run publish:packages
+```
+
+## 📖 문서
+
+자세한 사용법과 컴포넌트 예제는 Storybook을 참조하세요:
+
+```bash
+npm run storybook
+```
+
+## 🤝 기여
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.

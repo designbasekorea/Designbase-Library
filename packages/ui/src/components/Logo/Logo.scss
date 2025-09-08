@@ -2,14 +2,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--typography-heading-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-    font-weight: var(--typography-heading-font-weight, 700);
+    font-family: var(--db-font-primary);
+    font-weight: var(--db-weight-bold);
     line-height: 1;
     text-decoration: none;
     transition: all 0.15s ease-in-out;
 
     &__text {
-        color: var(--color-text-primary, #111827);
+        color: var(--db-text-primary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -37,8 +37,8 @@
     // Sizes
     &--xs {
         .designbase-logo__text {
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-normal);
         }
 
         .designbase-logo__image {
@@ -48,8 +48,8 @@
 
     &--sm {
         .designbase-logo__text {
-            font-size: var(--typography-body-sm-font-size, 14px);
-            line-height: var(--typography-body-sm-line-height, 20px);
+            font-size: var(--db-text-sm);
+            line-height: var(--db-leading-normal);
         }
 
         .designbase-logo__image {
@@ -59,8 +59,8 @@
 
     &--md {
         .designbase-logo__text {
-            font-size: var(--typography-body-md-font-size, 16px);
-            line-height: var(--typography-body-md-line-height, 24px);
+            font-size: var(--db-text-base);
+            line-height: var(--db-leading-normal);
         }
 
         .designbase-logo__image {
@@ -70,8 +70,8 @@
 
     &--lg {
         .designbase-logo__text {
-            font-size: var(--typography-heading-sm-font-size, 20px);
-            line-height: var(--typography-heading-sm-line-height, 28px);
+            font-size: var(--db-text-xl);
+            line-height: var(--db-leading-snug);
         }
 
         .designbase-logo__image {
@@ -81,8 +81,8 @@
 
     &--xl {
         .designbase-logo__text {
-            font-size: var(--typography-heading-md-font-size, 24px);
-            line-height: var(--typography-heading-md-line-height, 32px);
+            font-size: var(--db-text-2xl);
+            line-height: var(--db-leading-snug);
         }
 
         .designbase-logo__image {
@@ -93,31 +93,31 @@
     // Variants
     &--default {
         .designbase-logo__text {
-            color: var(--color-text-primary, #111827);
+            color: var(--db-text-primary);
         }
     }
 
     &--primary {
         .designbase-logo__text {
-            color: var(--color-primary-600, #2563eb);
+            color: var(--db-color-primary);
         }
     }
 
     &--secondary {
         .designbase-logo__text {
-            color: var(--color-text-secondary, #6b7280);
+            color: var(--db-text-secondary);
         }
     }
 
     &--white {
         .designbase-logo__text {
-            color: var(--color-text-inverse, #ffffff);
+            color: var(--db-text-inverse);
         }
     }
 
     &--dark {
         .designbase-logo__text {
-            color: var(--color-text-primary, #111827);
+            color: var(--db-text-primary);
         }
     }
 
@@ -153,8 +153,8 @@
     @media (max-width: 640px) {
         &--lg {
             .designbase-logo__text {
-                font-size: var(--typography-body-md-font-size, 16px);
-                line-height: var(--typography-body-md-line-height, 24px);
+                font-size: var(--db-text-base);
+                line-height: var(--db-leading-normal);
             }
 
             .designbase-logo__image {
@@ -164,8 +164,8 @@
 
         &--xl {
             .designbase-logo__text {
-                font-size: var(--typography-heading-sm-font-size, 20px);
-                line-height: var(--typography-heading-sm-line-height, 28px);
+                font-size: var(--db-text-xl);
+                line-height: var(--db-leading-snug);
             }
 
             .designbase-logo__image {
@@ -176,8 +176,8 @@
 
     // Focus styles for accessibility
     &:focus-visible {
-        outline: 2px solid var(--color-primary-500, #3b82f6);
+        outline: 2px solid var(--db-blue-500);
         outline-offset: 2px;
-        border-radius: var(--border-radius-sm, 4px);
+        border-radius: var(--db-radius-sm);
     }
 }

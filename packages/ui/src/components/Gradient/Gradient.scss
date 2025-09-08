@@ -16,25 +16,25 @@
     &--size-sm {
         width: 120px;
         height: 80px;
-        border-radius: var(--border-radius-semantic-radius-md, 8px);
+        border-radius: var(--db-radius-md);
     }
 
     &--size-md {
         width: 200px;
         height: 120px;
-        border-radius: var(--border-radius-semantic-radius-lg, 12px);
+        border-radius: var(--db-radius-lg);
     }
 
     &--size-lg {
         width: 300px;
         height: 180px;
-        border-radius: var(--border-radius-semantic-radius-xl, 16px);
+        border-radius: var(--db-radius-xl);
     }
 
     &--size-xl {
         width: 400px;
         height: 240px;
-        border-radius: var(--border-radius-semantic-radius-2xl, 20px);
+        border-radius: var(--db-radius-2xl);
     }
 
     &--size-full {
@@ -107,12 +107,12 @@
     // 호버 효과
     &:hover {
         transform: scale(1.02);
-        box-shadow: var(--shadow-semantic-shadow-lg, 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+        box-shadow: var(--db-shadow-lg);
     }
 
     // 포커스 효과
     &:focus {
-        outline: 2px solid var(--color-semantic-primary-default, #3b82f6);
+        outline: 2px solid var(--db-blue-600);
         outline-offset: 2px;
     }
 
@@ -124,12 +124,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-            45deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.05) 50%,
-            transparent 100%
-        );
+        background: linear-gradient(45deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%);
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.3s ease;
@@ -145,9 +143,11 @@
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -158,15 +158,19 @@
     0% {
         background-position: 0% 50%;
     }
+
     25% {
         background-position: 100% 50%;
     }
+
     50% {
         background-position: 100% 100%;
     }
+
     75% {
         background-position: 0% 100%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -177,19 +181,7 @@
     --gradient-colors: #ff6b6b, #4ecdc4, #45b7d1, #96ceb4;
 }
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-gradient {
-        &::before {
-            background: linear-gradient(
-                45deg,
-                rgba(0, 0, 0, 0.1) 0%,
-                rgba(0, 0, 0, 0.05) 50%,
-                transparent 100%
-            );
-        }
-    }
-}
+// 테마는 상위에서 관리됩니다.
 
 // 반응형 스타일
 @media (max-width: 768px) {

@@ -1,12 +1,12 @@
 .designbase-toggle {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-gap-s);
+    gap: var(--db-gap-s);
     cursor: pointer;
     user-select: none;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: var(--color-text-primary);
+    font-size: var(--db-text-sm);
+    line-height: var(--db-leading-tight);
+    color: var(--db-text-primary);
 
     &__input {
         position: absolute;
@@ -22,18 +22,18 @@
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        background-color: var(--color-action-interactive-bg);
-        border: 1px solid var(--color-action-interactive-border);
-        border-radius: var(--border-radius-action-pill);
-        transition: all 0.2s ease-in-out;
+        background-color: var(--db-bg-secondary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-action-pill);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
     }
 
     &__thumb {
         position: absolute;
         left: 2px;
-        background-color: var(--color-action-interactive-icon);
+        background-color: var(--db-bg-primary);
         border-radius: 50%;
-        transition: all 0.2s ease-in-out;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
     }
 
     &__label {
@@ -44,35 +44,35 @@
 
     // Default styles
     .designbase-toggle__track {
-        background-color: var(--color-action-interactive-bg);
-        border-color: var(--color-action-interactive-border);
+        background-color: var(--db-bg-secondary);
+        border-color: var(--db-border-primary);
     }
 
     .designbase-toggle__thumb {
-        background-color: var(--color-action-interactive-icon);
+        background-color: var(--db-bg-primary);
     }
 
     &:hover:not(.designbase-toggle--disabled) .designbase-toggle__track {
-        background-color: var(--color-action-interactive-bg-hover);
-        border-color: var(--color-action-interactive-border-hover);
+        background-color: var(--db-bg-tertiary);
+        border-color: var(--db-border-secondary);
     }
 
     &.designbase-toggle--selected .designbase-toggle__track {
-        background-color: var(--color-action-interactive-bg-selected);
-        border-color: var(--color-action-interactive-border-selected);
+        background-color: var(--db-blue-500);
+        border-color: var(--db-blue-500);
     }
 
     &.designbase-toggle--selected .designbase-toggle__thumb {
-        background-color: var(--color-action-interactive-icon-selected);
+        background-color: var(--db-bg-primary);
     }
 
     &.designbase-toggle--selected:hover:not(.designbase-toggle--disabled) .designbase-toggle__track {
-        background-color: var(--color-action-interactive-bg-selected);
-        border-color: var(--color-action-interactive-border-selected);
+        background-color: var(--db-blue-600);
+        border-color: var(--db-blue-600);
     }
 
     &.designbase-toggle--selected:hover:not(.designbase-toggle--disabled) .designbase-toggle__thumb {
-        background-color: var(--color-action-interactive-icon-selected);
+        background-color: var(--db-bg-primary);
     }
 
     // No label variant
@@ -82,116 +82,116 @@
 
     // Sizes
     &--xs {
-        font-size: 12px;
-        line-height: 16px;
+        font-size: var(--db-font-xs);
+        line-height: var(--db-leading-none);
 
         .designbase-toggle__track {
-            width: calc(var(--size-action-interactive-xs-width) * 1.75);
-            height: var(--size-action-interactive-xs-height);
+            width: calc(var(--db-size-sm) * 1.75);
+            height: var(--db-size-sm);
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--size-action-interactive-xs-height) - 4px);
-            height: calc(var(--size-action-interactive-xs-height) - 4px);
+            width: calc(var(--db-size-sm) - 4px);
+            height: calc(var(--db-size-sm) - 4px);
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--size-action-interactive-xs-width) * 0.75 - 2px));
+            transform: translateX(calc(var(--db-size-sm) * 0.75 - 2px));
         }
     }
 
     &--sm {
-        font-size: 14px;
-        line-height: 20px;
+        font-size: var(--db-font-sm);
+        line-height: var(--db-leading-tight);
 
         .designbase-toggle__track {
-            width: calc(var(--size-action-interactive-sm-width) * 1.75);
-            height: var(--size-action-interactive-sm-height);
+            width: calc(var(--db-size-md) * 1.75);
+            height: var(--db-size-md);
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--size-action-interactive-sm-height) - 4px);
-            height: calc(var(--size-action-interactive-sm-height) - 4px);
+            width: calc(var(--db-size-md) - 4px);
+            height: calc(var(--db-size-md) - 4px);
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--size-action-interactive-sm-width) * 0.75 - 2px));
+            transform: translateX(calc(var(--db-size-md) * 0.75 - 2px));
         }
     }
 
     &--md {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: var(--db-font-md);
+        line-height: var(--db-leading-normal);
 
         .designbase-toggle__track {
-            width: calc(var(--size-action-interactive-md-width) * 1.75);
-            height: var(--size-action-interactive-md-height);
+            width: calc(var(--db-size-lg) * 1.75);
+            height: var(--db-size-lg);
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--size-action-interactive-md-height) - 4px);
-            height: calc(var(--size-action-interactive-md-height) - 4px);
+            width: calc(var(--db-size-lg) - 4px);
+            height: calc(var(--db-size-lg) - 4px);
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--size-action-interactive-md-width) * 0.75 - 2px));
+            transform: translateX(calc(var(--db-size-lg) * 0.75 - 2px));
         }
     }
 
     &--lg {
-        font-size: 18px;
-        line-height: 28px;
+        font-size: var(--db-font-lg);
+        line-height: var(--db-leading-relaxed);
 
         .designbase-toggle__track {
-            width: calc(var(--size-action-interactive-lg-width) * 1.75);
-            height: var(--size-action-interactive-lg-height);
+            width: calc(var(--db-size-xl) * 1.75);
+            height: var(--db-size-xl);
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--size-action-interactive-lg-height) - 4px);
-            height: calc(var(--size-action-interactive-lg-height) - 4px);
+            width: calc(var(--db-size-xl) - 4px);
+            height: calc(var(--db-size-xl) - 4px);
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--size-action-interactive-lg-width) * 0.75 - 2px));
+            transform: translateX(calc(var(--db-size-xl) * 0.75 - 2px));
         }
     }
 
     &--xl {
-        font-size: 20px;
-        line-height: 28px;
+        font-size: var(--db-font-xl);
+        line-height: var(--db-leading-relaxed);
 
         .designbase-toggle__track {
-            width: calc(var(--size-action-interactive-xl-width) * 1.75);
-            height: var(--size-action-interactive-xl-height);
+            width: calc(var(--db-size-2xl) * 1.75);
+            height: var(--db-size-2xl);
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--size-action-interactive-xl-height) - 4px);
-            height: calc(var(--size-action-interactive-xl-height) - 4px);
+            width: calc(var(--db-size-2xl) - 4px);
+            height: calc(var(--db-size-2xl) - 4px);
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--size-action-interactive-xl-width) * 0.75 - 2px));
+            transform: translateX(calc(var(--db-size-2xl) * 0.75 - 2px));
         }
     }
 
     // States
     &--disabled {
         cursor: not-allowed;
-        opacity: 0.6;
+        opacity: var(--db-opacity-60);
 
         .designbase-toggle__track {
-            background-color: var(--color-action-interactive-bg-disabled);
-            border-color: var(--color-action-interactive-border-disabled);
+            background-color: var(--db-bg-secondary);
+            border-color: var(--db-border-muted);
         }
 
         .designbase-toggle__thumb {
-            background-color: var(--color-action-interactive-icon-disabled);
+            background-color: var(--db-bg-primary);
         }
 
         .designbase-toggle__label {
-            color: var(--color-action-interactive-text-disabled);
+            color: var(--db-text-disabled);
         }
     }
 
@@ -201,7 +201,7 @@
 
     // Focus styles
     &:focus-within .designbase-toggle__track {
-        outline: 2px solid var(--color-border-focus);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 }

@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 4.44A14.55 14.55 0 0 0 1.537 8.856L.463 7.81A16.05 16.05 0 0 1 12 2.94c4.525 0 8.611 1.864 11.538 4.87l-1.075 1.047A14.54 14.54 0 0 0 12 4.44" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M12 9.515a9.52 9.52 0 0 0-6.87 2.929l-1.08-1.04a11.02 11.02 0 0 1 15.9 0l-1.08 1.04A9.52 9.52 0 0 0 12 9.514M12 14.716c-1.257 0-2.389.53-3.176 1.392l-1.108-1.01A5.78 5.78 0 0 1 12 13.216c1.687 0 3.22.714 4.284 1.882l-1.108 1.01A4.28 4.28 0 0 0 12 14.716" clip-rule="evenodd"/><path fill="currentColor" d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/></svg>
+
+export default WifiIcon;

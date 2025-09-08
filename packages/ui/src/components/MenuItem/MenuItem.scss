@@ -7,21 +7,21 @@
     &__content {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-gap-xs, 4px);
-        padding: var(--spacing-semantic-padding-xs, 4px) var(--spacing-semantic-padding-s, 8px);
-        border-radius: var(--border-radius-action-md);
-        transition: all 0.2s ease;
+        gap: var(--db-gap-xs);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-action-md);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         cursor: default;
 
         &--clickable {
             cursor: pointer;
 
             &:hover {
-                background-color: var(--color-background-hover, #f3f4f6);
+                background-color: var(--db-bg-tertiary);
             }
 
             &:focus-visible {
-                outline: 2px solid var(--color-border-focus, #3b82f6);
+                outline: 2px solid var(--db-blue-500);
                 outline-offset: 2px;
             }
         }
@@ -32,46 +32,46 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        color: var(--color-text-secondary, #6b7280);
-        transition: color var(--transition-duration, 0.2s) ease;
+        color: var(--db-text-secondary);
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
 
         // Variant별 아이콘 컬러
         &--primary {
-            color: var(--color-primary-600, #2563eb);
+            color: var(--db-blue-600);
         }
 
         &--success {
-            color: var(--color-success-600, #059669);
+            color: var(--db-green-600);
         }
 
         &--warning {
-            color: var(--color-warning-600, #d97706);
+            color: var(--db-yellow-600);
         }
 
         &--danger {
-            color: var(--color-error-600, #dc2626);
+            color: var(--db-red-600);
         }
 
         &--info {
-            color: var(--color-info-600, #2563eb);
+            color: var(--db-blue-600);
         }
 
         // Active 상태
         &--active {
-            color: var(--color-primary-600, #2563eb);
+            color: var(--db-blue-600);
         }
 
         // Disabled 상태
         &--disabled {
-            color: var(--color-text-disabled, #9ca3af);
+            color: var(--db-text-disabled);
         }
     }
 
     &__label {
         flex: 1;
-        font-size: var(--typography-body-sm-font-size, 14px);
-        font-weight: var(--typography-body-sm-font-weight, 500);
-        color: var(--color-text-primary, #111827);
+        font-size: var(--db-text-sm);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -85,14 +85,14 @@
         justify-content: center;
         width: 16px;
         height: 16px;
-        color: var(--color-text-secondary, #6b7280);
+        color: var(--db-text-secondary);
         transition: transform 0.2s ease;
     }
 
     &__children {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-semantic-gap-xs, 4px);
+        gap: var(--db-gap-xs);
 
         // Dropdown 스타일 (Navbar용) - absolute로 떠있는 형태
         &--dropdown {
@@ -100,25 +100,25 @@
             top: 100%;
             left: 0;
             min-width: 200px;
-            background-color: var(--color-background-primary, #ffffff);
-            border: 1px solid var(--color-border-primary, #e5e7eb);
-            border-radius: var(--border-radius-card-md, 6px);
-            box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
-            z-index: 1000;
-            padding: var(--spacing-semantic-padding-xs, 4px);
-            margin-top: var(--spacing-semantic-margin-xs, 4px);
+            background-color: var(--db-bg-primary);
+            border: 1px solid var(--db-border-primary);
+            border-radius: var(--db-radius-card-md);
+            box-shadow: var(--db-shadow-lg);
+            z-index: var(--db-z-popover);
+            padding: var(--db-padding-xs);
+            margin-top: var(--db-margin-xs);
             opacity: 0;
             transform: translateY(-10px);
-            transition: all 0.2s ease;
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
         }
 
         // Accordion 스타일 (Sidebar용) - 아래로 밀어내는 형태
         &--accordion {
-            margin-left: var(--spacing-semantic-margin-m, 16px);
-            margin-top: var(--spacing-semantic-margin-xs, 4px);
+            margin-left: var(--db-margin-m);
+            margin-top: var(--db-margin-xs);
             overflow: hidden;
             max-height: 0;
-            transition: all 0.3s ease;
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
         }
     }
 
@@ -144,37 +144,37 @@
     &__child {
         display: flex;
         align-items: center;
-        gap: var(--spacing-semantic-gap-xs, 4px);
-        padding: var(--spacing-semantic-padding-xs, 4px) var(--spacing-semantic-padding-s, 8px);
-        border-radius: var(--border-radius-action-md);
-        transition: all 0.2s ease;
+        gap: var(--db-gap-xs);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-action-md);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         cursor: pointer;
 
         &:hover {
-            background-color: var(--color-background-hover, #f3f4f6);
+            background-color: var(--db-bg-tertiary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--color-border-focus, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
 
         &--active {
-            background-color: var(--color-primary-50, #eff6ff);
-            color: var(--color-primary-700, #1d4ed8);
+            background-color: var(--db-blue-50);
+            color: var(--db-blue-700);
 
             .designbase-menu-item__child-icon {
-                color: var(--color-primary-600, #2563eb);
+                color: var(--db-blue-600);
             }
 
             .designbase-menu-item__child-label {
-                color: var(--color-primary-700, #1d4ed8);
-                font-weight: var(--typography-body-sm-font-weight, 600);
+                color: var(--db-blue-700);
+                font-weight: var(--db-weight-semibold);
             }
         }
 
         &--disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-50);
             cursor: not-allowed;
 
             &:hover {
@@ -188,13 +188,13 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        color: var(--color-text-secondary, #6b7280);
+        color: var(--db-text-secondary);
     }
 
     &__child-label {
         flex: 1;
-        font-size: var(--typography-body-sm-font-size, 14px);
-        color: var(--color-text-primary, #111827);
+        font-size: var(--db-text-sm);
+        color: var(--db-text-primary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -210,7 +210,7 @@
         align-items: center;
 
         .designbase-menu-item__content {
-            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
         }
     }
 
@@ -223,124 +223,124 @@
     // Sizes
     &--sm {
         .designbase-menu-item__content {
-            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
+            padding: var(--db-padding-xs) var(--db-padding-xs);
         }
 
         .designbase-menu-item__label {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-menu-item__children {
-            margin-left: var(--spacing-sm, 8px);
+            margin-left: var(--db-margin-s);
         }
 
         .designbase-menu-item__child {
-            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
+            padding: var(--db-padding-xs) var(--db-padding-xs);
         }
 
         .designbase-menu-item__child-label {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
     }
 
     &--md {
         .designbase-menu-item__content {
-            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
         }
 
         .designbase-menu-item__label {
-            font-size: var(--typography-body-sm-font-size, 14px);
+            font-size: var(--db-text-sm);
         }
 
         .designbase-menu-item__children {
-            margin-left: var(--spacing-md, 16px);
+            margin-left: var(--db-margin-m);
         }
 
         .designbase-menu-item__child {
-            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
         }
 
         .designbase-menu-item__child-label {
-            font-size: var(--typography-body-sm-font-size, 14px);
+            font-size: var(--db-text-sm);
         }
     }
 
     &--lg {
         .designbase-menu-item__content {
-            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+            padding: var(--db-padding-s) var(--db-padding-m);
         }
 
         .designbase-menu-item__label {
-            font-size: var(--typography-body-md-font-size, 16px);
+            font-size: var(--db-text-base);
         }
 
         .designbase-menu-item__children {
-            margin-left: var(--spacing-lg, 24px);
+            margin-left: var(--db-margin-l);
         }
 
         .designbase-menu-item__child {
-            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+            padding: var(--db-padding-s) var(--db-padding-m);
         }
 
         .designbase-menu-item__child-label {
-            font-size: var(--typography-body-md-font-size, 16px);
+            font-size: var(--db-text-base);
         }
     }
 
     // Variants
     &--default {
         .designbase-menu-item__content {
-            color: var(--color-text-primary, #111827);
+            color: var(--db-text-primary);
         }
     }
 
     &--primary {
         .designbase-menu-item__content {
-            color: var(--color-primary-700, #1d4ed8);
+            color: var(--db-blue-700);
         }
 
         .designbase-menu-item__icon {
-            color: var(--color-primary-600, #2563eb);
+            color: var(--db-blue-600);
         }
     }
 
     &--success {
         .designbase-menu-item__content {
-            color: var(--color-success-700, #047857);
+            color: var(--db-green-700);
         }
 
         .designbase-menu-item__icon {
-            color: var(--color-success-600, #059669);
+            color: var(--db-green-600);
         }
     }
 
     &--warning {
         .designbase-menu-item__content {
-            color: var(--color-warning-700, #b45309);
+            color: var(--db-yellow-700);
         }
 
         .designbase-menu-item__icon {
-            color: var(--color-warning-600, #d97706);
+            color: var(--db-yellow-600);
         }
     }
 
     &--danger {
         .designbase-menu-item__content {
-            color: var(--color-error-700, #b91c1c);
+            color: var(--db-red-700);
         }
 
         .designbase-menu-item__icon {
-            color: var(--color-error-600, #dc2626);
+            color: var(--db-red-600);
         }
     }
 
     &--info {
         .designbase-menu-item__content {
-            color: var(--color-info-700, #1d4ed8);
+            color: var(--db-blue-700);
         }
 
         .designbase-menu-item__icon {
-            color: var(--color-info-600, #2563eb);
+            color: var(--db-blue-600);
         }
     }
 
@@ -353,7 +353,7 @@
 
         // 1뎁스 하위
         .designbase-menu-item__content {
-            padding-left: var(--spacing-semantic-padding-m, 16px);
+            padding-left: var(--db-padding-m);
         }
     }
 
@@ -361,7 +361,7 @@
 
         // 2뎁스 하위
         .designbase-menu-item__content {
-            padding-left: var(--spacing-semantic-padding-l, 24px);
+            padding-left: var(--db-padding-l);
         }
     }
 
@@ -369,29 +369,29 @@
 
         // 3뎁스 하위 (최대)
         .designbase-menu-item__content {
-            padding-left: var(--spacing-semantic-padding-xl, 32px);
+            padding-left: var(--db-padding-xl);
         }
     }
 
     // States
     &--active {
         .designbase-menu-item__content {
-            background-color: var(--color-primary-50, #eff6ff);
-            color: var(--color-primary-700, #1d4ed8);
+            background-color: var(--db-blue-50);
+            color: var(--db-blue-700);
         }
 
         .designbase-menu-item__icon {
-            color: var(--color-primary-600, #2563eb);
+            color: var(--db-blue-600);
         }
 
         .designbase-menu-item__label {
-            color: var(--color-primary-700, #1d4ed8);
-            font-weight: var(--typography-body-sm-font-weight, 600);
+            color: var(--db-blue-700);
+            font-weight: var(--db-weight-semibold);
         }
     }
 
     &--disabled {
-        opacity: 0.5;
+        opacity: var(--db-opacity-50);
         cursor: not-allowed;
 
         .designbase-menu-item__content {

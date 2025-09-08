@@ -1,25 +1,40 @@
 {
-  "name": "@designbase/icons",
-  "version": "1.0.0",
+  "name": "@designbasekorea/icons",
+  "version": "0.1.0",
   "description": "Designbase 아이콘 시스템 - 일관된 스타일의 SVG 아이콘과 React 컴포넌트를 제공",
-  "main": "dist/index.js",
+  "type": "commonjs",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.esm.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
   "files": [
-    "dist",
-    "svg",
-    "sprites"
+    "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "prebuild": "rimraf dist && node scripts/gen-index.cjs",
+    "build": "rollup -c rollup.config.cjs",
+    "build:webfont": "node scripts/build-webfont.cjs",
     "build:icons": "node scripts/build-icons.js",
     "build:sprites": "node scripts/build-sprites.js",
-    "dev": "rollup -c -w",
+    "dev": "rollup -c rollup.config.cjs -w",
     "clean": "rimraf dist",
     "lint": "eslint src --ext .ts,.tsx",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "react": ">=16.8.0"
+  },
+  "peerDependencies": {
     "react": ">=16.8.0"
   },
   "devDependencies": {
@@ -28,21 +43,21 @@
     "@rollup/plugin-typescript": "^11.1.3",
     "@svgr/core": "^8.1.0",
     "@types/react": "^18.2.21",
-    "glob": "^10.3.3",
-    "rimraf": "^5.0.1",
+    "fantasticon": "^3.0.0",
+    "fs-extra": "^11.3.1",
+    "glob": "^10.4.5",
+    "rimraf": "^5.0.10",
     "rollup": "^3.29.2",
+    "rollup-plugin-dts": "^6.1.1",
     "svgo": "^3.0.2",
     "typescript": "^5.2.2"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/designbase/designbase-library.git",
+    "url": "https://github.com/designbasekorea/Designbase-Library.git",
     "directory": "packages/icons"
   }
 }

@@ -50,7 +50,7 @@ export const Default: Story = {
     args: {
         currentPage: 1,
         totalPages: 10,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 
@@ -60,7 +60,7 @@ export const WithTotal: Story = {
         totalPages: 10,
         totalItems: 100,
         showTotal: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 
@@ -72,8 +72,8 @@ export const WithPageSizeSelector: Story = {
         pageSize: 10,
         pageSizeOptions: [5, 10, 20, 50],
         showPageSizeSelector: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
-        onPageSizeChange: (pageSize) => console.log('Page size changed to:', pageSize),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
+        onPageSizeChange: (pageSize: number) => console.log('Page size changed to:', pageSize),
     },
 };
 
@@ -82,7 +82,7 @@ export const WithFirstLastButtons: Story = {
         currentPage: 5,
         totalPages: 10,
         showFirstLast: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 
@@ -95,7 +95,7 @@ export const Sizes: Story = {
                     currentPage={1}
                     totalPages={10}
                     size="sm"
-                    onPageChange={(page) => console.log('Page changed to:', page)}
+                    onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
             <div>
@@ -104,7 +104,7 @@ export const Sizes: Story = {
                     currentPage={1}
                     totalPages={10}
                     size="md"
-                    onPageChange={(page) => console.log('Page changed to:', page)}
+                    onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
             <div>
@@ -113,7 +113,7 @@ export const Sizes: Story = {
                     currentPage={1}
                     totalPages={10}
                     size="lg"
-                    onPageChange={(page) => console.log('Page changed to:', page)}
+                    onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
         </div>
@@ -129,7 +129,7 @@ export const Variants: Story = {
                     currentPage={1}
                     totalPages={10}
                     variant="default"
-                    onPageChange={(page) => console.log('Page changed to:', page)}
+                    onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
             <div>
@@ -138,7 +138,7 @@ export const Variants: Story = {
                     currentPage={1}
                     totalPages={10}
                     variant="outlined"
-                    onPageChange={(page) => console.log('Page changed to:', page)}
+                    onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
             <div>
@@ -147,7 +147,7 @@ export const Variants: Story = {
                     currentPage={1}
                     totalPages={10}
                     variant="minimal"
-                    onPageChange={(page) => console.log('Page changed to:', page)}
+                    onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
         </div>
@@ -194,7 +194,7 @@ export const ManyPages: Story = {
         totalPages: 100,
         totalItems: 1000,
         showTotal: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 
@@ -204,7 +204,7 @@ export const FewPages: Story = {
         totalPages: 3,
         totalItems: 30,
         showTotal: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 
@@ -213,7 +213,7 @@ export const Disabled: Story = {
         currentPage: 1,
         totalPages: 10,
         disabled: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 
@@ -225,8 +225,8 @@ export const FullWidth: Story = {
         showTotal: true,
         showPageSizeSelector: true,
         fullWidth: true,
-        onPageChange: (page) => console.log('Page changed to:', page),
-        onPageSizeChange: (pageSize) => console.log('Page size changed to:', pageSize),
+        onPageChange: (page: number) => console.log('Page changed to:', page),
+        onPageSizeChange: (pageSize: number) => console.log('Page size changed to:', pageSize),
     },
 };
 
@@ -236,9 +236,9 @@ export const CustomTotalTemplate: Story = {
         totalPages: 10,
         totalItems: 100,
         showTotal: true,
-        totalTemplate: (total, [start, end]) =>
-            `총 ${total}개 중 ${start}번째부터 ${end}번째까지 표시`,
-        onPageChange: (page) => console.log('Page changed to:', page),
+        totalTemplate: (total: number, range: [number, number]) =>
+            `총 ${total}개 중 ${range[0]}번째부터 ${range[1]}번째까지 표시`,
+        onPageChange: (page: number) => console.log('Page changed to:', page),
     },
 };
 

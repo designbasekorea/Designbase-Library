@@ -1,17 +1,17 @@
 .designbase-chip {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-xs, 4px);
-    padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
-    background-color: var(--color-background-secondary, #f9fafb);
-    color: var(--color-text-primary, #111827);
-    border: 1px solid var(--color-border-primary, #e5e7eb);
-    border-radius: var(--border-radius-full, 9999px);
-    font-size: var(--typography-body-sm-font-size, 14px);
-    font-weight: var(--typography-body-sm-font-weight, 500);
+    gap: var(--db-gap-xs);
+    padding: var(--db-padding-xs) var(--db-padding-s);
+    background-color: var(--db-bg-secondary);
+    color: var(--db-text-primary);
+    border: 1px solid var(--db-border-primary);
+    border-radius: var(--db-radius-full);
+    font-size: var(--db-text-sm);
+    font-weight: var(--db-weight-medium);
     line-height: 1;
     white-space: nowrap;
-    transition: all 0.2s ease;
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
     user-select: none;
 
     &__start-icon,
@@ -19,9 +19,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: var(--typography-body-sm-font-size, 14px);
-        width: 16px;
-        height: 16px;
+        font-size: var(--db-text-sm);
+        width: var(--db-size-sm);
+        height: var(--db-size-sm);
     }
 
     &__label {
@@ -35,181 +35,181 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 16px;
-        height: 16px;
+        width: var(--db-size-sm);
+        height: var(--db-size-sm);
         background: none;
         border: none;
-        border-radius: var(--border-radius-full, 9999px);
-        color: var(--color-text-secondary, #6b7280);
+        border-radius: var(--db-radius-full);
+        color: var(--db-text-secondary);
         cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: var(--typography-body-xs-font-size, 12px);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        font-size: var(--db-text-xs);
 
         &:hover {
-            background-color: var(--color-background-hover, #f3f4f6);
-            color: var(--color-text-primary, #111827);
+            background-color: var(--db-bg-hover);
+            color: var(--db-text-primary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--color-primary-500, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-50);
             cursor: not-allowed;
         }
     }
 
     // Sizes
     &--sm {
-        padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
-        font-size: var(--typography-body-xs-font-size, 12px);
+        padding: var(--db-padding-xs) var(--db-padding-xs);
+        font-size: var(--db-text-xs);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon,
         .designbase-chip__delete-button {
-            width: 12px;
-            height: 12px;
-            font-size: var(--typography-body-xs-font-size, 12px);
+            width: var(--db-size-xs);
+            height: var(--db-size-xs);
+            font-size: var(--db-text-xs);
         }
     }
 
     &--md {
-        padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
-        font-size: var(--typography-body-sm-font-size, 14px);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        font-size: var(--db-text-sm);
     }
 
     &--lg {
-        padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
-        font-size: var(--typography-body-md-font-size, 16px);
+        padding: var(--db-padding-s) var(--db-padding-m);
+        font-size: var(--db-text-base);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon,
         .designbase-chip__delete-button {
-            width: 20px;
-            height: 20px;
-            font-size: var(--typography-body-md-font-size, 16px);
+            width: var(--db-size-md);
+            height: var(--db-size-md);
+            font-size: var(--db-text-base);
         }
     }
 
     // Variants
     &--default {
-        background-color: var(--color-background-secondary, #f9fafb);
-        color: var(--color-text-primary, #111827);
-        border-color: var(--color-border-primary, #e5e7eb);
+        background-color: var(--db-bg-secondary);
+        color: var(--db-text-primary);
+        border-color: var(--db-border-primary);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-text-primary, #111827);
+            color: var(--db-text-primary);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-text-secondary, #6b7280);
+            color: var(--db-text-secondary);
 
             &:hover {
-                background-color: var(--color-background-hover, #f3f4f6);
-                color: var(--color-text-primary, #111827);
+                background-color: var(--db-bg-hover);
+                color: var(--db-text-primary);
             }
         }
     }
 
     &--primary {
-        background-color: var(--color-primary-600, #2563eb);
-        color: var(--color-text-inverse, #ffffff);
-        border-color: var(--color-primary-600, #2563eb);
+        background-color: var(--db-blue-600);
+        color: var(--db-white);
+        border-color: var(--db-blue-600);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-text-inverse, #ffffff);
+            color: var(--db-white);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-text-inverse, #ffffff);
+            color: var(--db-white);
 
             &:hover {
                 background-color: rgba(255, 255, 255, 0.2);
-                color: var(--color-text-inverse, #ffffff);
+                color: var(--db-white);
             }
         }
     }
 
     &--success {
-        background-color: var(--color-success-100, #d1fae5);
-        color: var(--color-success-700, #047857);
-        border-color: var(--color-success-200, #a7f3d0);
+        background-color: var(--db-green-100);
+        color: var(--db-green-700);
+        border-color: var(--db-green-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-success-700, #047857);
+            color: var(--db-green-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-success-600, #059669);
+            color: var(--db-green-600);
 
             &:hover {
-                background-color: var(--color-success-200, #a7f3d0);
-                color: var(--color-success-800, #065f46);
+                background-color: var(--db-green-200);
+                color: var(--db-green-800);
             }
         }
     }
 
     &--warning {
-        background-color: var(--color-warning-100, #fef3c7);
-        color: var(--color-warning-700, #b45309);
-        border-color: var(--color-warning-200, #fde68a);
+        background-color: var(--db-yellow-100);
+        color: var(--db-yellow-700);
+        border-color: var(--db-yellow-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-warning-700, #b45309);
+            color: var(--db-yellow-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-warning-600, #d97706);
+            color: var(--db-yellow-600);
 
             &:hover {
-                background-color: var(--color-warning-200, #fde68a);
-                color: var(--color-warning-800, #92400e);
+                background-color: var(--db-yellow-200);
+                color: var(--db-yellow-800);
             }
         }
     }
 
     &--danger {
-        background-color: var(--color-error-100, #fee2e2);
-        color: var(--color-error-700, #b91c1c);
-        border-color: var(--color-error-200, #fecaca);
+        background-color: var(--db-red-100);
+        color: var(--db-red-700);
+        border-color: var(--db-red-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-error-700, #b91c1c);
+            color: var(--db-red-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-error-600, #dc2626);
+            color: var(--db-red-600);
 
             &:hover {
-                background-color: var(--color-error-200, #fecaca);
-                color: var(--color-error-800, #991b1b);
+                background-color: var(--db-red-200);
+                color: var(--db-red-800);
             }
         }
     }
 
     &--info {
-        background-color: var(--color-info-100, #dbeafe);
-        color: var(--color-info-700, #1d4ed8);
-        border-color: var(--color-info-200, #bfdbfe);
+        background-color: var(--db-blue-100);
+        color: var(--db-blue-700);
+        border-color: var(--db-blue-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-info-700, #1d4ed8);
+            color: var(--db-blue-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-info-600, #2563eb);
+            color: var(--db-blue-600);
 
             &:hover {
-                background-color: var(--color-info-200, #bfdbfe);
-                color: var(--color-info-800, #1e40af);
+                background-color: var(--db-blue-200);
+                color: var(--db-blue-800);
             }
         }
     }
@@ -219,96 +219,96 @@
         border-width: 2px;
 
         &.designbase-chip--primary {
-            color: var(--color-primary-600, #2563eb);
-            border-color: var(--color-primary-500, #3b82f6);
+            color: var(--db-blue-600);
+            border-color: var(--db-blue-500);
 
             .designbase-chip__start-icon,
             .designbase-chip__end-icon {
-                color: var(--color-primary-600, #2563eb);
+                color: var(--db-blue-600);
             }
 
             .designbase-chip__delete-button {
-                color: var(--color-primary-500, #3b82f6);
+                color: var(--db-blue-500);
 
                 &:hover {
-                    background-color: var(--color-primary-50, #eff6ff);
-                    color: var(--color-primary-700, #1d4ed8);
+                    background-color: var(--db-blue-50);
+                    color: var(--db-blue-700);
                 }
             }
         }
 
         &.designbase-chip--success {
-            color: var(--color-success-600, #059669);
-            border-color: var(--color-success-500, #10b981);
+            color: var(--db-green-600);
+            border-color: var(--db-green-500);
 
             .designbase-chip__start-icon,
             .designbase-chip__end-icon {
-                color: var(--color-success-600, #059669);
+                color: var(--db-green-600);
             }
 
             .designbase-chip__delete-button {
-                color: var(--color-success-500, #10b981);
+                color: var(--db-green-500);
 
                 &:hover {
-                    background-color: var(--color-success-50, #ecfdf5);
-                    color: var(--color-success-700, #047857);
+                    background-color: var(--db-green-50);
+                    color: var(--db-green-700);
                 }
             }
         }
 
         &.designbase-chip--warning {
-            color: var(--color-warning-600, #d97706);
-            border-color: var(--color-warning-500, #f59e0b);
+            color: var(--db-yellow-600);
+            border-color: var(--db-yellow-500);
 
             .designbase-chip__start-icon,
             .designbase-chip__end-icon {
-                color: var(--color-warning-600, #d97706);
+                color: var(--db-yellow-600);
             }
 
             .designbase-chip__delete-button {
-                color: var(--color-warning-500, #f59e0b);
+                color: var(--db-yellow-500);
 
                 &:hover {
-                    background-color: var(--color-warning-50, #fffbeb);
-                    color: var(--color-warning-700, #b45309);
+                    background-color: var(--db-yellow-50);
+                    color: var(--db-yellow-700);
                 }
             }
         }
 
         &.designbase-chip--danger {
-            color: var(--color-error-600, #dc2626);
-            border-color: var(--color-error-500, #ef4444);
+            color: var(--db-red-600);
+            border-color: var(--db-red-500);
 
             .designbase-chip__start-icon,
             .designbase-chip__end-icon {
-                color: var(--color-error-600, #dc2626);
+                color: var(--db-red-600);
             }
 
             .designbase-chip__delete-button {
-                color: var(--color-error-500, #ef4444);
+                color: var(--db-red-500);
 
                 &:hover {
-                    background-color: var(--color-error-50, #fef2f2);
-                    color: var(--color-error-700, #b91c1c);
+                    background-color: var(--db-red-50);
+                    color: var(--db-red-700);
                 }
             }
         }
 
         &.designbase-chip--info {
-            color: var(--color-info-600, #2563eb);
-            border-color: var(--color-info-500, #3b82f6);
+            color: var(--db-blue-600);
+            border-color: var(--db-blue-500);
 
             .designbase-chip__start-icon,
             .designbase-chip__end-icon {
-                color: var(--color-info-600, #2563eb);
+                color: var(--db-blue-600);
             }
 
             .designbase-chip__delete-button {
-                color: var(--color-info-500, #3b82f6);
+                color: var(--db-blue-500);
 
                 &:hover {
-                    background-color: var(--color-info-50, #eff6ff);
-                    color: var(--color-info-700, #1d4ed8);
+                    background-color: var(--db-blue-50);
+                    color: var(--db-blue-700);
                 }
             }
         }
@@ -316,40 +316,40 @@
 
     // Colors
     &--neutral {
-        background-color: var(--color-background-secondary, #f9fafb);
-        color: var(--color-text-secondary, #6b7280);
-        border-color: var(--color-border-primary, #e5e7eb);
+        background-color: var(--db-bg-secondary);
+        color: var(--db-text-secondary);
+        border-color: var(--db-border-primary);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--color-text-secondary, #6b7280);
+            color: var(--db-text-secondary);
         }
 
         .designbase-chip__delete-button {
-            color: var(--color-text-tertiary, #9ca3af);
+            color: var(--db-text-muted);
 
             &:hover {
-                background-color: var(--color-background-hover, #f3f4f6);
-                color: var(--color-text-secondary, #6b7280);
+                background-color: var(--db-bg-hover);
+                color: var(--db-text-secondary);
             }
         }
     }
 
     // States
     &--deletable {
-        padding-right: var(--spacing-xs, 4px);
+        padding-right: var(--db-padding-xs);
     }
 
     &--disabled {
-        opacity: 0.5;
+        opacity: var(--db-opacity-50);
         cursor: not-allowed;
         pointer-events: none;
     }
 
     &--selected {
-        background-color: var(--color-primary-500, #3b82f6);
-        color: var(--color-text-inverse, #ffffff);
-        border-color: var(--color-primary-500, #3b82f6);
+        background-color: var(--db-blue-500);
+        color: var(--db-white);
+        border-color: var(--db-blue-500);
     }
 
     &--clickable {
@@ -357,11 +357,11 @@
 
         &:hover {
             transform: translateY(-1px);
-            box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+            box-shadow: var(--db-shadow-sm);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--color-primary-500, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
     }

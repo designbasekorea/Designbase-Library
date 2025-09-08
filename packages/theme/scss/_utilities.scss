@@ -1,5 +1,5 @@
 /**
- * 유틸리티 클래스
+ * 유틸리티 클래스 - 토큰 기반
  * 
  * 목적: 자주 사용되는 스타일 패턴을 유틸리티 클래스로 제공
  * 기능: 간격, 색상, 타이포그래피, 레이아웃 등의 유틸리티
@@ -7,174 +7,173 @@
  */
 
 @import 'variables';
-@import 'mixins';
 
 // ============================================================================
-// Spacing Utilities
+// Spacing Utilities (토큰 기반)
 // ============================================================================
 
 // Padding utilities
 .p-0 {
-    padding: var(--spacing-0) !important;
+    padding: $spacing-0 !important;
 }
 
 .p-1 {
-    padding: var(--spacing-1) !important;
+    padding: $spacing-1 !important;
 }
 
 .p-2 {
-    padding: var(--spacing-2) !important;
+    padding: $spacing-2 !important;
 }
 
 .p-3 {
-    padding: var(--spacing-3) !important;
+    padding: $spacing-3 !important;
 }
 
 .p-4 {
-    padding: var(--spacing-4) !important;
+    padding: $spacing-4 !important;
 }
 
 .p-5 {
-    padding: var(--spacing-5) !important;
+    padding: $spacing-5 !important;
 }
 
 .p-6 {
-    padding: var(--spacing-6) !important;
+    padding: $spacing-6 !important;
 }
 
 .p-8 {
-    padding: var(--spacing-8) !important;
+    padding: $spacing-8 !important;
 }
 
-// Horizontal padding
+// Horizontal padding (좌우)
 .px-0 {
-    padding-left: var(--spacing-0) !important;
-    padding-right: var(--spacing-0) !important;
+    padding-left: $spacing-0 !important;
+    padding-right: $spacing-0 !important;
 }
 
 .px-1 {
-    padding-left: var(--spacing-1) !important;
-    padding-right: var(--spacing-1) !important;
+    padding-left: $spacing-1 !important;
+    padding-right: $spacing-1 !important;
 }
 
 .px-2 {
-    padding-left: var(--spacing-2) !important;
-    padding-right: var(--spacing-2) !important;
+    padding-left: $spacing-2 !important;
+    padding-right: $spacing-2 !important;
 }
 
 .px-3 {
-    padding-left: var(--spacing-3) !important;
-    padding-right: var(--spacing-3) !important;
+    padding-left: $spacing-3 !important;
+    padding-right: $spacing-3 !important;
 }
 
 .px-4 {
-    padding-left: var(--spacing-4) !important;
-    padding-right: var(--spacing-4) !important;
+    padding-left: $spacing-4 !important;
+    padding-right: $spacing-4 !important;
 }
 
 .px-5 {
-    padding-left: var(--spacing-5) !important;
-    padding-right: var(--spacing-5) !important;
+    padding-left: $spacing-5 !important;
+    padding-right: $spacing-5 !important;
 }
 
 .px-6 {
-    padding-left: var(--spacing-6) !important;
-    padding-right: var(--spacing-6) !important;
+    padding-left: $spacing-6 !important;
+    padding-right: $spacing-6 !important;
 }
 
-// Vertical padding
+// Vertical padding (상하)
 .py-0 {
-    padding-top: var(--spacing-0) !important;
-    padding-bottom: var(--spacing-0) !important;
+    padding-top: $spacing-0 !important;
+    padding-bottom: $spacing-0 !important;
 }
 
 .py-1 {
-    padding-top: var(--spacing-1) !important;
-    padding-bottom: var(--spacing-1) !important;
+    padding-top: $spacing-1 !important;
+    padding-bottom: $spacing-1 !important;
 }
 
 .py-2 {
-    padding-top: var(--spacing-2) !important;
-    padding-bottom: var(--spacing-2) !important;
+    padding-top: $spacing-2 !important;
+    padding-bottom: $spacing-2 !important;
 }
 
 .py-3 {
-    padding-top: var(--spacing-3) !important;
-    padding-bottom: var(--spacing-3) !important;
+    padding-top: $spacing-3 !important;
+    padding-bottom: $spacing-3 !important;
 }
 
 .py-4 {
-    padding-top: var(--spacing-4) !important;
-    padding-bottom: var(--spacing-4) !important;
+    padding-top: $spacing-4 !important;
+    padding-bottom: $spacing-4 !important;
 }
 
 .py-5 {
-    padding-top: var(--spacing-5) !important;
-    padding-bottom: var(--spacing-5) !important;
+    padding-top: $spacing-5 !important;
+    padding-bottom: $spacing-5 !important;
 }
 
 .py-6 {
-    padding-top: var(--spacing-6) !important;
-    padding-bottom: var(--spacing-6) !important;
+    padding-top: $spacing-6 !important;
+    padding-bottom: $spacing-6 !important;
 }
 
 // Margin utilities
 .m-0 {
-    margin: var(--spacing-0) !important;
+    margin: $spacing-0 !important;
 }
 
 .m-1 {
-    margin: var(--spacing-1) !important;
+    margin: $spacing-1 !important;
 }
 
 .m-2 {
-    margin: var(--spacing-2) !important;
+    margin: $spacing-2 !important;
 }
 
 .m-3 {
-    margin: var(--spacing-3) !important;
+    margin: $spacing-3 !important;
 }
 
 .m-4 {
-    margin: var(--spacing-4) !important;
+    margin: $spacing-4 !important;
 }
 
 .m-5 {
-    margin: var(--spacing-5) !important;
+    margin: $spacing-5 !important;
 }
 
 .m-6 {
-    margin: var(--spacing-6) !important;
+    margin: $spacing-6 !important;
 }
 
 .m-8 {
-    margin: var(--spacing-8) !important;
+    margin: $spacing-8 !important;
 }
 
-// Horizontal margin
+// Horizontal margin (좌우)
 .mx-0 {
-    margin-left: var(--spacing-0) !important;
-    margin-right: var(--spacing-0) !important;
+    margin-left: $spacing-0 !important;
+    margin-right: $spacing-0 !important;
 }
 
 .mx-1 {
-    margin-left: var(--spacing-1) !important;
-    margin-right: var(--spacing-1) !important;
+    margin-left: $spacing-1 !important;
+    margin-right: $spacing-1 !important;
 }
 
 .mx-2 {
-    margin-left: var(--spacing-2) !important;
-    margin-right: var(--spacing-2) !important;
+    margin-left: $spacing-2 !important;
+    margin-right: $spacing-2 !important;
 }
 
 .mx-3 {
-    margin-left: var(--spacing-3) !important;
-    margin-right: var(--spacing-3) !important;
+    margin-left: $spacing-3 !important;
+    margin-right: $spacing-3 !important;
 }
 
 .mx-4 {
-    margin-left: var(--spacing-4) !important;
-    margin-right: var(--spacing-4) !important;
+    margin-left: $spacing-4 !important;
+    margin-right: $spacing-4 !important;
 }
 
 .mx-auto {
@@ -182,110 +181,110 @@
     margin-right: auto !important;
 }
 
-// Vertical margin
+// Vertical margin (상하)
 .my-0 {
-    margin-top: var(--spacing-0) !important;
-    margin-bottom: var(--spacing-0) !important;
+    margin-top: $spacing-0 !important;
+    margin-bottom: $spacing-0 !important;
 }
 
 .my-1 {
-    margin-top: var(--spacing-1) !important;
-    margin-bottom: var(--spacing-1) !important;
+    margin-top: $spacing-1 !important;
+    margin-bottom: $spacing-1 !important;
 }
 
 .my-2 {
-    margin-top: var(--spacing-2) !important;
-    margin-bottom: var(--spacing-2) !important;
+    margin-top: $spacing-2 !important;
+    margin-bottom: $spacing-2 !important;
 }
 
 .my-3 {
-    margin-top: var(--spacing-3) !important;
-    margin-bottom: var(--spacing-3) !important;
+    margin-top: $spacing-3 !important;
+    margin-bottom: $spacing-3 !important;
 }
 
 .my-4 {
-    margin-top: var(--spacing-4) !important;
-    margin-bottom: var(--spacing-4) !important;
+    margin-top: $spacing-4 !important;
+    margin-bottom: $spacing-4 !important;
 }
 
 .my-5 {
-    margin-top: var(--spacing-5) !important;
-    margin-bottom: var(--spacing-5) !important;
+    margin-top: $spacing-5 !important;
+    margin-bottom: $spacing-5 !important;
 }
 
 .my-6 {
-    margin-top: var(--spacing-6) !important;
-    margin-bottom: var(--spacing-6) !important;
+    margin-top: $spacing-6 !important;
+    margin-bottom: $spacing-6 !important;
 }
 
 // ============================================================================
-// Color Utilities
+// Color Utilities (토큰 기반)
 // ============================================================================
 
 // Text colors
 .text-primary {
-    color: var(--color-text-primary) !important;
+    color: $text-primary !important;
 }
 
 .text-secondary {
-    color: var(--color-text-secondary) !important;
+    color: $text-secondary !important;
 }
 
 .text-muted {
-    color: var(--color-text-muted) !important;
+    color: $text-muted !important;
 }
 
 .text-disabled {
-    color: var(--color-text-disabled) !important;
+    color: $text-disabled !important;
 }
 
 .text-inverse {
-    color: var(--color-text-inverse) !important;
+    color: $text-inverse !important;
 }
 
 .text-link {
-    color: var(--color-text-link) !important;
+    color: $text-link !important;
 }
 
 .text-success {
-    color: var(--color-text-success) !important;
+    color: $green-600 !important;
 }
 
 .text-warning {
-    color: var(--color-text-warning) !important;
+    color: $yellow-600 !important;
 }
 
 .text-error {
-    color: var(--color-text-error) !important;
+    color: $red-600 !important;
 }
 
 // Background colors
 .bg-primary {
-    background-color: var(--color-bg-primary) !important;
+    background-color: $bg-primary !important;
 }
 
 .bg-secondary {
-    background-color: var(--color-bg-secondary) !important;
+    background-color: $bg-secondary !important;
 }
 
 .bg-tertiary {
-    background-color: var(--color-bg-tertiary) !important;
+    background-color: $bg-tertiary !important;
 }
 
 .bg-inverse {
-    background-color: var(--color-bg-inverse) !important;
+    background-color: $bg-inverse !important;
 }
 
 .bg-success {
-    background-color: var(--color-bg-success) !important;
+    background-color: $green-50 !important;
 }
 
 .bg-warning {
-    background-color: var(--color-bg-warning) !important;
+    background-color: $yellow-50 !important;
 }
 
 .bg-error {
-    background-color: var(--color-bg-error) !important;
+    background-color: $red-50 !important;
 }
 
 .bg-transparent {
@@ -294,123 +293,123 @@
 
 // Border colors
 .border-primary {
-    border-color: var(--color-border-primary) !important;
+    border-color: $border-primary !important;
 }
 
 .border-secondary {
-    border-color: var(--color-border-secondary) !important;
+    border-color: $border-secondary !important;
 }
 
 .border-muted {
-    border-color: var(--color-border-muted) !important;
+    border-color: $border-muted !important;
 }
 
 .border-focus {
-    border-color: var(--color-border-focus) !important;
+    border-color: $border-focus !important;
 }
 
 .border-success {
-    border-color: var(--color-border-success) !important;
+    border-color: $green-300 !important;
 }
 
 .border-warning {
-    border-color: var(--color-border-warning) !important;
+    border-color: $yellow-300 !important;
 }
 
 .border-error {
-    border-color: var(--color-border-error) !important;
+    border-color: $color-red-300 !important;
 }
 
 // ============================================================================
-// Typography Utilities
+// Typography Utilities (토큰 기반)
 // ============================================================================
 
 // Font sizes
 .text-xs {
-    font-size: var(--font-size-xs) !important;
+    font-size: $font-size-xs !important;
 }
 
 .text-sm {
-    font-size: var(--font-size-sm) !important;
+    font-size: $font-size-sm !important;
 }
 
 .text-base {
-    font-size: var(--font-size-base) !important;
+    font-size: $font-size-base !important;
 }
 
 .text-lg {
-    font-size: var(--font-size-lg) !important;
+    font-size: $font-size-lg !important;
 }
 
 .text-xl {
-    font-size: var(--font-size-xl) !important;
+    font-size: $font-size-xl !important;
 }
 
 .text-2xl {
-    font-size: var(--font-size-2xl) !important;
+    font-size: $font-size-2xl !important;
 }
 
 .text-3xl {
-    font-size: var(--font-size-3xl) !important;
+    font-size: $font-size-3xl !important;
 }
 
 .text-4xl {
-    font-size: var(--font-size-4xl) !important;
+    font-size: $font-size-4xl !important;
 }
 
 // Font weights
 .font-light {
-    font-weight: var(--font-weight-light) !important;
+    font-weight: $font-weight-light !important;
 }
 
 .font-normal {
-    font-weight: var(--font-weight-normal) !important;
+    font-weight: $font-weight-normal !important;
 }
 
 .font-medium {
-    font-weight: var(--font-weight-medium) !important;
+    font-weight: $font-weight-medium !important;
 }
 
 .font-semibold {
-    font-weight: var(--font-weight-semibold) !important;
+    font-weight: $font-weight-semibold !important;
 }
 
 .font-bold {
-    font-weight: var(--font-weight-bold) !important;
+    font-weight: $font-weight-bold !important;
 }
 
 // Font families
 .font-primary {
-    font-family: var(--font-family-primary) !important;
+    font-family: $font-family-primary !important;
 }
 
 .font-mono {
-    font-family: var(--font-family-mono) !important;
+    font-family: $font-family-mono !important;
 }
 
 // Line heights
 .leading-none {
-    line-height: var(--line-height-none) !important;
+    line-height: $line-height-none !important;
 }
 
 .leading-tight {
-    line-height: var(--line-height-tight) !important;
+    line-height: $line-height-tight !important;
 }
 
 .leading-snug {
-    line-height: var(--line-height-snug) !important;
+    line-height: $line-height-snug !important;
 }
 
 .leading-normal {
-    line-height: var(--line-height-normal) !important;
+    line-height: $line-height-normal !important;
 }
 
 .leading-relaxed {
-    line-height: var(--line-height-relaxed) !important;
+    line-height: $line-height-relaxed !important;
 }
 
 .leading-loose {
-    line-height: var(--line-height-loose) !important;
+    line-height: $line-height-loose !important;
 }
 
 // Text alignment
@@ -462,7 +461,9 @@
 
 // Text overflow
 .truncate {
-    @include text-truncate;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 // ============================================================================
@@ -527,6 +528,7 @@
     flex-wrap: nowrap !important;
 }
 
+// Flex alignment
 .items-start {
     align-items: flex-start !important;
 }
@@ -547,6 +549,7 @@
     align-items: stretch !important;
 }
 
+// Flex justify
 .justify-start {
     justify-content: flex-start !important;
 }
@@ -571,6 +574,7 @@
     justify-content: space-evenly !important;
 }
 
+// Flex sizing
 .flex-1 {
     flex: 1 1 0% !important;
 }

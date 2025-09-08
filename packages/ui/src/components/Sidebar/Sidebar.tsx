@@ -248,7 +248,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                                 handleUserMenuItemClick(item);
                                             }}
                                         >
-                                            {item.icon && <i className={item.icon} />}
+                                            {item.icon && React.createElement(item.icon, { size: 16 })}
                                             {item.label}
                                         </a>
                                     </li>

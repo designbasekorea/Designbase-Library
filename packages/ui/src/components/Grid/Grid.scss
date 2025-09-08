@@ -3,180 +3,310 @@
  */
 
 .designbase-grid {
-    display: grid;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--ion-grid-padding, 16px);
 
-    // 전체 너비/높이
-    &--full-width {
-        width: 100%;
+    // 고정 너비 그리드
+    &--fixed {
+        width: var(--ion-grid-width, 100%);
+        margin: 0 auto;
+
+        @media (min-width: 576px) {
+            width: var(--ion-grid-width-sm, 540px);
+        }
+
+        @media (min-width: 768px) {
+            width: var(--ion-grid-width-md, 720px);
+        }
+
+        @media (min-width: 992px) {
+            width: var(--ion-grid-width-lg, 960px);
+        }
+
+        @media (min-width: 1200px) {
+            width: var(--ion-grid-width-xl, 1140px);
+        }
     }
 
-    &--full-height {
-        height: 100%;
+    // 패딩 제거
+    &--no-padding {
+        padding: 0;
     }
 
-    // 컬럼 수에 따른 그리드 템플릿
-    &--columns-1 {
-        grid-template-columns: repeat(1, 1fr);
+    // 행
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: calc(var(--ion-grid-column-padding, 8px) * -1);
+
+        // 세로 정렬
+        &--align-start {
+            align-items: flex-start;
+        }
+
+        &--align-center {
+            align-items: center;
+        }
+
+        &--align-end {
+            align-items: flex-end;
+        }
+
+        &--align-stretch {
+            align-items: stretch;
+        }
+
+        // 가로 정렬
+        &--justify-start {
+            justify-content: flex-start;
+        }
+
+        &--justify-center {
+            justify-content: center;
+        }
+
+        &--justify-end {
+            justify-content: flex-end;
+        }
+
+        &--justify-around {
+            justify-content: space-around;
+        }
+
+        &--justify-between {
+            justify-content: space-between;
+        }
+
+        &--justify-evenly {
+            justify-content: space-evenly;
+        }
     }
 
-    &--columns-2 {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    // 컬럼
+    &__col {
+        flex: 1;
+        padding: var(--ion-grid-column-padding, 8px);
+        box-sizing: border-box;
 
-    &--columns-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
+        // 기본 크기 (xs)
+        @for $i from 1 through 12 {
+            &--xs-#{$i} {
+                flex: 0 0 calc(100% / 12 * #{$i});
+                max-width: calc(100% / 12 * #{$i});
+            }
+        }
 
-    &--columns-4 {
-        grid-template-columns: repeat(4, 1fr);
-    }
+        &--xs-auto {
+            flex: 0 0 auto;
+            max-width: none;
+        }
 
-    &--columns-5 {
-        grid-template-columns: repeat(5, 1fr);
-    }
+        // 오프셋 (xs)
+        @for $i from 1 through 11 {
+            &--xs-offset-#{$i} {
+                margin-left: calc(100% / 12 * #{$i});
+            }
+        }
 
-    &--columns-6 {
-        grid-template-columns: repeat(6, 1fr);
-    }
+        // 푸시 (xs)
+        @for $i from 1 through 11 {
+            &--xs-push-#{$i} {
+                margin-left: calc(100% / 12 * #{$i});
+            }
+        }
 
-    &--columns-12 {
-        grid-template-columns: repeat(12, 1fr);
-    }
+        // 풀 (xs)
+        @for $i from 1 through 11 {
+            &--xs-pull-#{$i} {
+                margin-left: calc(-100% / 12 * #{$i});
+            }
+        }
 
-    // 간격 스타일
-    &--gap-none {
-        gap: 0;
-    }
+        // sm 브레이크포인트 (576px 이상)
+        @media (min-width: 576px) {
+            @for $i from 1 through 12 {
+                &--sm-#{$i} {
+                    flex: 0 0 calc(100% / 12 * #{$i});
+                    max-width: calc(100% / 12 * #{$i});
+                }
+            }
 
-    &--gap-xs {
-        gap: var(--spacing-semantic-margin-xs, 4px);
-    }
+            &--sm-auto {
+                flex: 0 0 auto;
+                max-width: none;
+            }
 
-    &--gap-sm {
-        gap: var(--spacing-semantic-margin-sm, 8px);
-    }
+            @for $i from 1 through 11 {
+                &--sm-offset-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
 
-    &--gap-md {
-        gap: var(--spacing-semantic-margin-md, 16px);
-    }
+            @for $i from 1 through 11 {
+                &--sm-push-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
 
-    &--gap-lg {
-        gap: var(--spacing-semantic-margin-lg, 24px);
-    }
+            @for $i from 1 through 11 {
+                &--sm-pull-#{$i} {
+                    margin-left: calc(-100% / 12 * #{$i});
+                }
+            }
+        }
 
-    &--gap-xl {
-        gap: var(--spacing-semantic-margin-xl, 32px);
-    }
+        // md 브레이크포인트 (768px 이상)
+        @media (min-width: 768px) {
+            @for $i from 1 through 12 {
+                &--md-#{$i} {
+                    flex: 0 0 calc(100% / 12 * #{$i});
+                    max-width: calc(100% / 12 * #{$i});
+                }
+            }
 
-    // 정렬 스타일
-    &--alignment-start {
-        align-items: start;
-    }
+            &--md-auto {
+                flex: 0 0 auto;
+                max-width: none;
+            }
 
-    &--alignment-center {
-        align-items: center;
-    }
+            @for $i from 1 through 11 {
+                &--md-offset-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
 
-    &--alignment-end {
-        align-items: end;
-    }
+            @for $i from 1 through 11 {
+                &--md-push-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
 
-    &--alignment-stretch {
-        align-items: stretch;
+            @for $i from 1 through 11 {
+                &--md-pull-#{$i} {
+                    margin-left: calc(-100% / 12 * #{$i});
+                }
+            }
+        }
+
+        // lg 브레이크포인트 (992px 이상)
+        @media (min-width: 992px) {
+            @for $i from 1 through 12 {
+                &--lg-#{$i} {
+                    flex: 0 0 calc(100% / 12 * #{$i});
+                    max-width: calc(100% / 12 * #{$i});
+                }
+            }
+
+            &--lg-auto {
+                flex: 0 0 auto;
+                max-width: none;
+            }
+
+            @for $i from 1 through 11 {
+                &--lg-offset-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
+
+            @for $i from 1 through 11 {
+                &--lg-push-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
+
+            @for $i from 1 through 11 {
+                &--lg-pull-#{$i} {
+                    margin-left: calc(-100% / 12 * #{$i});
+                }
+            }
+        }
+
+        // xl 브레이크포인트 (1200px 이상)
+        @media (min-width: 1200px) {
+            @for $i from 1 through 12 {
+                &--xl-#{$i} {
+                    flex: 0 0 calc(100% / 12 * #{$i});
+                    max-width: calc(100% / 12 * #{$i});
+                }
+            }
+
+            &--xl-auto {
+                flex: 0 0 auto;
+                max-width: none;
+            }
+
+            @for $i from 1 through 11 {
+                &--xl-offset-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
+
+            @for $i from 1 through 11 {
+                &--xl-push-#{$i} {
+                    margin-left: calc(100% / 12 * #{$i});
+                }
+            }
+
+            @for $i from 1 through 11 {
+                &--xl-pull-#{$i} {
+                    margin-left: calc(-100% / 12 * #{$i});
+                }
+            }
+        }
     }
 }
 
-// GridItem 스타일
-.designbase-grid-item {
-    box-sizing: border-box;
+// CSS 변수 기본값
+:root {
+    // 그리드 패딩
+    --ion-grid-padding: 16px;
+    --ion-grid-padding-xs: 16px;
+    --ion-grid-padding-sm: 16px;
+    --ion-grid-padding-md: 16px;
+    --ion-grid-padding-lg: 16px;
+    --ion-grid-padding-xl: 16px;
 
-    // 정렬 스타일
-    &--alignment-start {
-        align-self: start;
-    }
+    // 컬럼 패딩
+    --ion-grid-column-padding: 8px;
+    --ion-grid-column-padding-xs: 8px;
+    --ion-grid-column-padding-sm: 8px;
+    --ion-grid-column-padding-md: 8px;
+    --ion-grid-column-padding-lg: 8px;
+    --ion-grid-column-padding-xl: 8px;
 
-    &--alignment-center {
-        align-self: center;
-    }
+    // 고정 그리드 너비
+    --ion-grid-width: 100%;
+    --ion-grid-width-xs: 100%;
+    --ion-grid-width-sm: 540px;
+    --ion-grid-width-md: 720px;
+    --ion-grid-width-lg: 960px;
+    --ion-grid-width-xl: 1140px;
 
-    &--alignment-end {
-        align-self: end;
-    }
-
-    &--alignment-stretch {
-        align-self: stretch;
-    }
+    // 컬럼 수 (기본값: 12)
+    --ion-grid-columns: 12;
 }
 
-// 반응형 그리드
-@media (max-width: 1024px) {
-    .designbase-grid {
-        &--columns-6 {
-            grid-template-columns: repeat(4, 1fr);
+// 테마는 상위에서 관리됩니다.
+
+// 접근성 개선
+.designbase-grid {
+
+    // 스크린 리더를 위한 시맨틱 마크업
+    &[role="grid"] {
+        .designbase-grid__row {
+            role: "row";
         }
 
-        &--columns-5 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        &--columns-4 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        &--columns-3 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .designbase-grid {
-
-        &--columns-6,
-        &--columns-5,
-        &--columns-4 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        &--columns-3 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        &--gap-lg {
-            gap: var(--spacing-semantic-margin-md, 16px);
-        }
-
-        &--gap-xl {
-            gap: var(--spacing-semantic-margin-lg, 24px);
+        .designbase-grid__col {
+            role: "gridcell";
         }
     }
 }
 
-@media (max-width: 480px) {
-    .designbase-grid {
-
-        &--columns-6,
-        &--columns-5,
-        &--columns-4,
-        &--columns-3 {
-            grid-template-columns: 1fr;
-        }
-
-        &--columns-2 {
-            grid-template-columns: 1fr;
-        }
-
-        &--gap-md {
-            gap: var(--spacing-semantic-margin-sm, 8px);
-        }
-
-        &--gap-lg {
-            gap: var(--spacing-semantic-margin-sm, 8px);
-        }
-
-        &--gap-xl {
-            gap: var(--spacing-semantic-margin-md, 16px);
-        }
-    }
+// 애니메이션 최적화
+.designbase-grid__col {
+    will-change: flex-basis, max-width, margin-left;
+    backface-visibility: hidden;
 }

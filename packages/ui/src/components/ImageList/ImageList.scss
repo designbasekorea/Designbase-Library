@@ -1,0 +1,317 @@
+.designbase-image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--db-gap-m);
+
+    // 그리드 레이아웃
+    &--grid {
+        display: grid;
+        grid-template-columns: repeat(var(--columns, 3), 1fr);
+        gap: var(--db-gap-m);
+
+        &.designbase-image-list--columns-1 {
+            grid-template-columns: 1fr;
+        }
+
+        &.designbase-image-list--columns-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &.designbase-image-list--columns-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &.designbase-image-list--columns-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.designbase-image-list--columns-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &.designbase-image-list--columns-6 {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+
+    // 리스트 레이아웃
+    &--list {
+        flex-direction: column;
+        gap: var(--db-gap-s);
+
+        .designbase-image-list__item {
+            display: flex;
+            align-items: center;
+            gap: var(--db-gap-m);
+            padding: var(--db-padding-s);
+            border-radius: var(--db-radius-md);
+            transition: background-color var(--db-animation-speed) var(--db-animation-ease);
+
+            &:hover {
+                background-color: var(--db-bg-hover);
+            }
+
+            .designbase-image-list__image {
+                width: 120px;
+                height: 80px;
+                flex-shrink: 0;
+            }
+
+            .designbase-image-list__overlay {
+                position: static;
+                background: none;
+                color: var(--db-text-primary);
+                padding: 0;
+                flex: 1;
+
+                .designbase-image-list__title {
+                    margin: 0 0 var(--db-margin-xs) 0;
+                    font-size: var(--db-font-md);
+                    font-weight: var(--db-font-medium);
+                }
+
+                .designbase-image-list__description {
+                    margin: 0;
+                    font-size: var(--db-font-sm);
+                    color: var(--db-text-secondary);
+                }
+            }
+        }
+    }
+
+    // 갤러리 레이아웃
+    &--gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--db-gap-m);
+
+        .designbase-image-list__item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--db-radius-lg);
+            box-shadow: var(--db-shadow-md);
+            transition: transform var(--db-animation-speed) var(--db-animation-ease), box-shadow var(--db-animation-speed) var(--db-animation-ease);
+
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.15));
+
+                .designbase-image-list__overlay {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // 캐러셀 레이아웃
+    &--carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: var(--db-gap-m);
+        padding: var(--db-padding-s) 0;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--db-bg-secondary);
+            border-radius: var(--db-radius-sm);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--db-border);
+            border-radius: var(--db-radius-sm);
+
+            &:hover {
+                background: var(--db-border-dark);
+            }
+        }
+
+        .designbase-image-list__carousel-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            min-width: 200px;
+            max-width: 300px;
+        }
+    }
+
+    // 간격 설정
+    &--spacing-xs {
+        gap: var(--db-gap-xs);
+    }
+
+    &--spacing-sm {
+        gap: var(--db-gap-s);
+    }
+
+    &--spacing-md {
+        gap: var(--db-gap-m);
+    }
+
+    &--spacing-lg {
+        gap: var(--db-gap-l);
+    }
+
+    &--spacing-xl {
+        gap: var(--db-gap-xl);
+    }
+
+    // 아이템 스타일
+    &__item {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--db-radius-md);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        cursor: pointer;
+
+        &:hover {
+            .designbase-image-list__overlay {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        transition: transform var(--db-animation-speed) var(--db-animation-ease);
+
+        .designbase-image-list--hover &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    // 오버레이
+    &__overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: var(--db-padding-m);
+        opacity: 0;
+        transition: opacity var(--db-animation-speed) var(--db-animation-ease);
+        pointer-events: none;
+    }
+
+    &__title {
+        margin: 0 0 var(--db-margin-xs) 0;
+        font-size: var(--db-font-md);
+        font-weight: var(--db-font-semibold);
+        line-height: 1.3;
+    }
+
+    &__description {
+        margin: 0;
+        font-size: var(--db-font-sm);
+        line-height: 1.4;
+        opacity: var(--db-opacity-90);
+    }
+
+    // 메타데이터
+    &__metadata {
+        position: absolute;
+        top: var(--db-margin-s);
+        right: var(--db-margin-s);
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+        font-size: var(--db-font-xs);
+        color: white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+    }
+
+    &__date,
+    &__size {
+        background: rgba(0, 0, 0, 0.6);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-sm);
+        font-weight: var(--db-font-medium);
+    }
+
+    // 반응형 디자인
+    &--responsive {
+        @media (max-width: 1200px) {
+            &.designbase-image-list--grid {
+
+                &.designbase-image-list--columns-6,
+                &.designbase-image-list--columns-5 {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
+        }
+
+        @media (max-width: 992px) {
+            &.designbase-image-list--grid {
+
+                &.designbase-image-list--columns-6,
+                &.designbase-image-list--columns-5,
+                &.designbase-image-list--columns-4 {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            &.designbase-image-list--grid {
+
+                &.designbase-image-list--columns-6,
+                &.designbase-image-list--columns-5,
+                &.designbase-image-list--columns-4,
+                &.designbase-image-list--columns-3 {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            &.designbase-image-list--list {
+                .designbase-image-list__item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: var(--db-gap-s);
+
+                    .designbase-image-list__image {
+                        width: 100%;
+                        height: 120px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            &.designbase-image-list--grid {
+                grid-template-columns: 1fr;
+            }
+
+            &.designbase-image-list--gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .designbase-image-list__carousel-item {
+                min-width: 150px;
+                max-width: 200px;
+            }
+        }
+    }
+
+    // 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
+
+    // 접근성 개선
+    &__item:focus-visible {
+        outline: 2px solid var(--db-primary);
+        outline-offset: var(--db-outline-offset);
+    }
+
+    // 애니메이션 최적화
+    &__item {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+
+    &__image {
+        will-change: transform;
+    }
+}

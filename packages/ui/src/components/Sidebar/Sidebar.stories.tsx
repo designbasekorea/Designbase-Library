@@ -1,6 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { Sidebar } from './Sidebar';
+import {
+    PhoneIcon,
+    UsersIcon,
+    ListUlIcon,
+    PlusIcon,
+    HideIcon,
+    PackageIcon,
+    FolderIcon,
+    CameraIcon,
+    BarChartIcon,
+    TrendingUpIcon,
+    SettingsIcon,
+    UserIcon,
+    LayoutIcon
+} from '@designbase/icons';
 
 const meta: Meta<typeof Sidebar> = {
     title: 'Components/Sidebar',
@@ -48,38 +63,38 @@ const sampleItems = [
         id: 'dashboard',
         label: '대시보드',
         href: '#',
-        icon: 'designbase-icon-home',
+        icon: PhoneIcon,
         active: true,
     },
     {
         id: 'users',
         label: '사용자 관리',
         href: '#',
-        icon: 'designbase-icon-users',
+        icon: UsersIcon,
         children: [
-            { id: 'user-list', label: '사용자 목록', href: '#', icon: 'designbase-icon-list' },
-            { id: 'user-add', label: '사용자 추가', href: '#', icon: 'designbase-icon-plus' },
-            { id: 'user-roles', label: '권한 관리', href: '#', icon: 'designbase-icon-shield' },
+            { id: 'user-list', label: '사용자 목록', href: '#', icon: ListUlIcon },
+            { id: 'user-add', label: '사용자 추가', href: '#', icon: PlusIcon },
+            { id: 'user-roles', label: '권한 관리', href: '#', icon: HideIcon },
         ],
     },
     {
         id: 'products',
         label: '제품 관리',
         href: '#',
-        icon: 'designbase-icon-package',
+        icon: PackageIcon,
         badge: 'New',
         badgeColor: 'success' as const,
         children: [
-            { id: 'product-list', label: '제품 목록', href: '#', icon: 'designbase-icon-list' },
-            { id: 'product-add', label: '제품 추가', href: '#', icon: 'designbase-icon-plus' },
-            { id: 'product-categories', label: '카테고리', href: '#', icon: 'designbase-icon-folder' },
+            { id: 'product-list', label: '제품 목록', href: '#', icon: ListUlIcon },
+            { id: 'product-add', label: '제품 추가', href: '#', icon: PlusIcon },
+            { id: 'product-categories', label: '카테고리', href: '#', icon: FolderIcon },
         ],
     },
     {
         id: 'orders',
         label: '주문 관리',
         href: '#',
-        icon: 'designbase-icon-shopping-cart',
+        icon: CameraIcon,
         badge: '5',
         badgeColor: 'warning' as const,
     },
@@ -87,21 +102,21 @@ const sampleItems = [
         id: 'analytics',
         label: '분석',
         href: '#',
-        icon: 'designbase-icon-bar-chart',
+        icon: BarChartIcon,
         children: [
-            { id: 'sales-analytics', label: '매출 분석', href: '#', icon: 'designbase-icon-trending-up' },
-            { id: 'user-analytics', label: '사용자 분석', href: '#', icon: 'designbase-icon-users' },
+            { id: 'sales-analytics', label: '매출 분석', href: '#', icon: TrendingUpIcon },
+            { id: 'user-analytics', label: '사용자 분석', href: '#', icon: UsersIcon },
         ],
     },
     {
         id: 'settings',
         label: '설정',
         href: '#',
-        icon: 'designbase-icon-settings',
+        icon: SettingsIcon,
         children: [
-            { id: 'general-settings', label: '일반 설정', href: '#', icon: 'designbase-icon-settings' },
-            { id: 'security-settings', label: '보안 설정', href: '#', icon: 'designbase-icon-lock' },
-            { id: 'notification-settings', label: '알림 설정', href: '#', icon: 'designbase-icon-bell' },
+            { id: 'general-settings', label: '일반 설정', href: '#', icon: SettingsIcon },
+            { id: 'security-settings', label: '보안 설정', href: '#', icon: HideIcon },
+            { id: 'notification-settings', label: '알림 설정', href: '#', icon: HideIcon },
         ],
     },
 ];
@@ -111,25 +126,25 @@ const userMenuItems = [
         id: 'profile',
         label: '프로필',
         href: '#',
-        icon: 'designbase-icon-user',
+        icon: UserIcon,
     },
     {
         id: 'settings',
         label: '설정',
         href: '#',
-        icon: 'designbase-icon-settings',
+        icon: SettingsIcon,
     },
     {
         id: 'help',
         label: '도움말',
         href: '#',
-        icon: 'designbase-icon-help-circle',
+        icon: HideIcon,
     },
     {
         id: 'logout',
         label: '로그아웃',
         href: '#',
-        icon: 'designbase-icon-logout',
+        icon: LayoutIcon,
     },
 ];
 

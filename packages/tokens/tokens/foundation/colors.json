@@ -6,6 +6,10 @@
                     "value": "#FFFFFF",
                     "type": "color"
                 },
+                "50": {
+                    "value": "#F8FAFC",
+                    "type": "color"
+                },
                 "100": {
                     "value": "#F2F8FC",
                     "type": "color"
@@ -48,6 +52,10 @@
                 },
                 "1100": {
                     "value": "#000000",
+                    "type": "color"
+                },
+                "white": {
+                    "value": "#FFFFFF",
                     "type": "color"
                 }
             },

@@ -2,12 +2,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm, 8px);
-    color: var(--spinner-color, var(--color-primary-500, #3b82f6));
+    gap: var(--db-gap-s);
+    color: var(--spinner-color, var(--db-blue-500));
 
     &__label {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        color: var(--color-text-secondary, #6b7280);
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
         white-space: nowrap;
     }
 
@@ -35,7 +35,7 @@
     &--dots {
         .designbase-spinner__dots {
             display: flex;
-            gap: var(--spacing-xs, 4px);
+            gap: var(--db-gap-xs);
         }
 
         .designbase-spinner__dot {

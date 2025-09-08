@@ -1,0 +1,340 @@
+/**
+ * BottomSheet 컴포넌트 스타일
+ * 
+ * 목적: 하단에서 슬라이드 업되는 모달 형태의 컴포넌트 스타일
+ * 기능: 드래그 제스처, 스냅 포인트, 애니메이션 효과, 반응형 지원
+ */
+
+.designbase-bottom-sheet {
+    // 기본 스타일
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--db-bg-primary);
+    border-radius: var(--db-radius-xl) var(--db-radius-xl) 0 0;
+    box-shadow: var(--db-shadow-xl);
+    transform: translateY(100%);
+    transition: transform var(--db-animation-speed, 300ms) ease-out;
+    z-index: var(--db-z-index, 1001);
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    // 열린 상태
+    &--open {
+        transform: translateY(0);
+    }
+
+    // 드래그 중 상태
+    &--dragging {
+        transition: none;
+        cursor: grabbing;
+        user-select: none; // 드래그 중 텍스트 선택 방지
+    }
+
+    // Size 스타일
+    &--sm {
+        max-height: 40vh;
+    }
+
+    &--md {
+        max-height: 60vh;
+    }
+
+    &--lg {
+        max-height: 80vh;
+    }
+
+    &--xl {
+        max-height: 90vh;
+    }
+
+    &--full {
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    // Variant 스타일
+    &--default {
+        // 기본 스타일
+    }
+
+    &--persistent {
+        // 배경 클릭으로 닫히지 않음
+    }
+
+    &--temporary {
+        // 임시 표시, 배경 클릭으로 닫힘
+    }
+
+    &--fullscreen {
+        border-radius: 0;
+        max-height: 100vh;
+    }
+
+    // 애니메이션 효과
+    &--slide {
+        // 기본 슬라이드 애니메이션
+    }
+
+    &--fade {
+        &.designbase-bottom-sheet--open {
+            animation: bottom-sheet-fade-in var(--db-animation-speed, 300ms) ease-out;
+        }
+
+        &:not(.designbase-bottom-sheet--open) {
+            animation: bottom-sheet-fade-out var(--db-animation-speed, 300ms) ease-in;
+        }
+    }
+
+    &--scale {
+        &.designbase-bottom-sheet--open {
+            animation: bottom-sheet-scale-in var(--db-animation-speed, 300ms) ease-out;
+        }
+
+        &:not(.designbase-bottom-sheet--open) {
+            animation: bottom-sheet-scale-out var(--db-animation-speed, 300ms) ease-in;
+        }
+    }
+
+    &--none {
+        transition: none;
+    }
+
+    // Handle (드래그 핸들)
+    &__handle {
+        width: 40px;
+        height: 4px;
+        background-color: var(--db-border-primary);
+        border-radius: 2px;
+        margin: var(--db-margin-s) auto;
+        cursor: grab;
+        transition: background-color var(--db-animation-speed, 0.2s) ease;
+
+        &:hover {
+            background-color: var(--db-border-secondary);
+        }
+
+        &:active {
+            cursor: grabbing;
+        }
+    }
+
+    // Header
+    &__header {
+        padding: var(--db-padding-m) var(--db-padding-l) var(--db-padding-xs);
+        border-bottom: 1px solid var(--db-border-primary);
+        background-color: var(--db-bg-primary);
+
+        &--sticky {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+    }
+
+    &__title {
+        margin: 0 0 var(--db-margin-xs) 0;
+        font-size: var(--db-text-xl);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+        line-height: var(--db-leading-normal);
+    }
+
+    &__subtitle {
+        margin: 0;
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
+        line-height: var(--db-leading-normal);
+    }
+
+    // Content
+    &__content {
+        flex: 1;
+        padding: var(--db-padding-m) var(--db-padding-l);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+
+        // 스크롤바 스타일링
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--db-border-primary);
+            border-radius: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: var(--db-border-secondary);
+        }
+    }
+
+    // Footer
+    &__footer {
+        padding: var(--db-padding-m) var(--db-padding-l);
+        border-top: 1px solid var(--db-border-primary);
+        background-color: var(--db-bg-primary);
+
+        &--sticky {
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+        }
+    }
+
+    // Snap Points Indicator 제거됨 - 드래그로 직접 조절
+
+    // 접근성 개선
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--db-blue-500);
+        outline-offset: 2px;
+    }
+
+    // 다크 테마는 --db- 변수 시스템으로 자동 처리됨
+
+    // 모션 감소 설정 지원
+    @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    // 터치 디바이스 최적화
+    @media (hover: none) and (pointer: coarse) {
+        .designbase-bottom-sheet__handle {
+            width: 60px;
+            height: 6px;
+            margin: var(--db-margin-m) auto;
+        }
+    }
+}
+
+// Backdrop 스타일 확장
+.designbase-backdrop--bottom-sheet {
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+// 애니메이션 키프레임
+@keyframes bottom-sheet-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(100%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes bottom-sheet-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(100%) scale(0.95);
+    }
+}
+
+@keyframes bottom-sheet-scale-in {
+    from {
+        transform: translateY(100%) scale(0.8);
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes bottom-sheet-scale-out {
+    from {
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateY(100%) scale(0.8);
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-bottom-sheet {
+        &__header {
+            padding: var(--db-padding-s) var(--db-padding-m) var(--db-padding-xs);
+        }
+
+        &__content {
+            padding: var(--db-padding-s) var(--db-padding-m);
+        }
+
+        &__footer {
+            padding: var(--db-padding-s) var(--db-padding-m);
+        }
+
+        &__title {
+            font-size: var(--db-text-lg);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-bottom-sheet {
+        border-radius: var(--db-radius-lg) var(--db-radius-lg) 0 0;
+
+        &__header {
+            padding: var(--db-padding-xs) var(--db-padding-s) var(--db-padding-xxs);
+        }
+
+        &__content {
+            padding: var(--db-padding-xs) var(--db-padding-s);
+        }
+
+        &__footer {
+            padding: var(--db-padding-xs) var(--db-padding-s);
+        }
+
+        &__title {
+            font-size: var(--db-text-base);
+        }
+
+        &__subtitle {
+            font-size: var(--db-text-xs);
+        }
+    }
+}
+
+// 고해상도 디스플레이 최적화
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .designbase-bottom-sheet {
+        // 고해상도에서 더 부드러운 그림자
+        box-shadow: var(--db-shadow-lg);
+    }
+}
+
+// 인쇄 스타일
+@media print {
+    .designbase-bottom-sheet {
+        display: none !important;
+    }
+}
+
+// 포커스 트랩 스타일
+.designbase-bottom-sheet:focus-within {
+    outline: 2px solid var(--db-blue-500);
+    outline-offset: 2px;
+}

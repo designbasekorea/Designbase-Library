@@ -1,12 +1,12 @@
 .designbase-progressbar {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs, 4px);
+    gap: var(--db-gap-xs);
 
     &__container {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-xs, 4px);
+        gap: var(--db-gap-xs);
 
         &--top {
             flex-direction: column;
@@ -23,17 +23,17 @@
 
     &__track {
         width: 100%;
-        background-color: var(--color-background-secondary, #f3f4f6);
-        border-radius: var(--border-radius-full, 9999px);
+        background-color: var(--db-bg-secondary);
+        border-radius: var(--db-radius-full);
         overflow: hidden;
         position: relative;
     }
 
     &__fill {
         height: 100%;
-        background-color: var(--color-primary-500, #3b82f6);
-        border-radius: var(--border-radius-full, 9999px);
-        transition: width 0.3s ease-in-out;
+        background-color: var(--db-blue-500);
+        border-radius: var(--db-radius-full);
+        transition: width var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
         display: flex;
         align-items: center;
@@ -41,19 +41,19 @@
     }
 
     &__fill-label {
-        color: var(--color-text-inverse, #ffffff);
-        font-size: var(--typography-body-xs-font-size, 12px);
-        font-weight: var(--typography-body-xs-font-weight, 500);
-        line-height: var(--typography-body-xs-line-height, 16px);
+        color: var(--db-text-inverse);
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-medium);
+        line-height: var(--db-leading-tight);
         white-space: nowrap;
         z-index: 1;
     }
 
     &__label {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        font-weight: var(--typography-body-sm-font-weight, 500);
-        line-height: var(--typography-body-sm-line-height, 20px);
-        color: var(--color-text-primary, #111827);
+        font-size: var(--db-text-sm);
+        font-weight: var(--db-weight-medium);
+        line-height: var(--db-leading-normal);
+        color: var(--db-text-primary);
 
         &--top {
             text-align: left;
@@ -75,8 +75,8 @@
         }
 
         .designbase-progressbar__label {
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-tight);
         }
     }
 
@@ -86,8 +86,8 @@
         }
 
         .designbase-progressbar__label {
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-tight);
         }
     }
 
@@ -97,8 +97,8 @@
         }
 
         .designbase-progressbar__label {
-            font-size: var(--typography-body-sm-font-size, 14px);
-            line-height: var(--typography-body-sm-line-height, 20px);
+            font-size: var(--db-text-sm);
+            line-height: var(--db-leading-normal);
         }
     }
 
@@ -108,8 +108,8 @@
         }
 
         .designbase-progressbar__label {
-            font-size: var(--typography-body-md-font-size, 16px);
-            line-height: var(--typography-body-md-line-height, 24px);
+            font-size: var(--db-text-base);
+            line-height: var(--db-leading-normal);
         }
     }
 
@@ -119,39 +119,39 @@
         }
 
         .designbase-progressbar__label {
-            font-size: var(--typography-body-lg-font-size, 18px);
-            line-height: var(--typography-body-lg-line-height, 28px);
+            font-size: var(--db-text-lg);
+            line-height: var(--db-leading-relaxed);
         }
     }
 
     // Variants
     &--default {
         .designbase-progressbar__fill {
-            background-color: var(--color-primary-500, #3b82f6);
+            background-color: var(--db-blue-500);
         }
     }
 
     &--primary {
         .designbase-progressbar__fill {
-            background-color: var(--color-primary-500, #3b82f6);
+            background-color: var(--db-blue-500);
         }
     }
 
     &--success {
         .designbase-progressbar__fill {
-            background-color: var(--color-success-500, #10b981);
+            background-color: var(--db-green-500);
         }
     }
 
     &--warning {
         .designbase-progressbar__fill {
-            background-color: var(--color-warning-500, #f59e0b);
+            background-color: var(--db-yellow-500);
         }
     }
 
     &--danger {
         .designbase-progressbar__fill {
-            background-color: var(--color-error-500, #ef4444);
+            background-color: var(--db-red-500);
         }
     }
 
@@ -164,32 +164,28 @@
 
     &--striped {
         .designbase-progressbar__fill {
-            background-image: linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.15) 25%,
-                transparent 25%,
-                transparent 50%,
-                rgba(255, 255, 255, 0.15) 50%,
-                rgba(255, 255, 255, 0.15) 75%,
-                transparent 75%,
-                transparent
-            );
+            background-image: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.15) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    rgba(255, 255, 255, 0.15) 75%,
+                    transparent 75%,
+                    transparent);
             background-size: 1rem 1rem;
         }
     }
 
     &--animated {
         .designbase-progressbar__fill {
-            background-image: linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.15) 25%,
-                transparent 25%,
-                transparent 50%,
-                rgba(255, 255, 255, 0.15) 50%,
-                rgba(255, 255, 255, 0.15) 75%,
-                transparent 75%,
-                transparent
-            );
+            background-image: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.15) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    rgba(255, 255, 255, 0.15) 75%,
+                    transparent 75%,
+                    transparent);
             background-size: 1rem 1rem;
             animation: progressbar-stripes 1s linear infinite;
         }
@@ -197,19 +193,19 @@
 
     // States
     &--disabled {
-        opacity: 0.6;
+        opacity: var(--db-opacity-60);
         cursor: not-allowed;
 
         .designbase-progressbar__track {
-            background-color: var(--color-background-disabled, #f9fafb);
+            background-color: var(--db-bg-secondary);
         }
 
         .designbase-progressbar__fill {
-            background-color: var(--color-text-disabled, #9ca3af);
+            background-color: var(--db-text-disabled);
         }
 
         .designbase-progressbar__label {
-            color: var(--color-text-disabled, #9ca3af);
+            color: var(--db-text-disabled);
         }
     }
 
@@ -222,6 +218,7 @@
         0% {
             background-position: 1rem 0;
         }
+
         100% {
             background-position: 0 0;
         }
@@ -235,8 +232,8 @@
             }
 
             .designbase-progressbar__label {
-                font-size: var(--typography-body-sm-font-size, 14px);
-                line-height: var(--typography-body-sm-line-height, 20px);
+                font-size: var(--db-text-sm);
+                line-height: var(--db-leading-normal);
             }
         }
 
@@ -246,16 +243,16 @@
             }
 
             .designbase-progressbar__label {
-                font-size: var(--typography-body-md-font-size, 16px);
-                line-height: var(--typography-body-md-line-height, 24px);
+                font-size: var(--db-text-base);
+                line-height: var(--db-leading-normal);
             }
         }
     }
 
     // Focus styles for accessibility
     &:focus-visible {
-        outline: 2px solid var(--color-primary-500, #3b82f6);
+        outline: 2px solid var(--db-blue-500);
         outline-offset: 2px;
-        border-radius: var(--border-radius-sm, 4px);
+        border-radius: var(--db-radius-sm);
     }
 }

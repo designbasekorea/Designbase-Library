@@ -9,7 +9,8 @@ import React, { useState, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 import './Dropzone.scss';
 
-export type DropzoneSize = 'sm' | 'md' | 'lg' | 'xl';
+// 타입 정의
+export type DropzoneSize = 'sm' | 'md' | 'lg';
 export type DropzoneVariant = 'default' | 'outlined' | 'filled';
 
 export interface DropzoneProps {
@@ -17,13 +18,21 @@ export interface DropzoneProps {
     size?: DropzoneSize;
     /** 드롭존 스타일 변형 */
     variant?: DropzoneVariant;
-    /** 드롭존 제목 */
-    title?: string;
-    /** 드롭존 설명 */
-    description?: string;
-    /** 드롭존 아이콘 */
+    /** 아이콘 표시 여부 */
+    showIcon?: boolean;
+    /** 커스텀 아이콘 */
     icon?: React.ReactNode;
-    /** 허용된 파일 타입 */
+    /** 그래픽 이미지 URL */
+    image?: string;
+    /** 메인 텍스트 */
+    title?: string;
+    /** 서브 텍스트 */
+    description?: string;
+    /** 버튼 텍스트 */
+    buttonText?: string;
+    /** 버튼 표시 여부 */
+    showButton?: boolean;
+    /** 허용할 파일 타입 */
     accept?: string;
     /** 최대 파일 크기 (bytes) */
     maxSize?: number;
@@ -33,129 +42,193 @@ export interface DropzoneProps {
     isDragOver?: boolean;
     /** 비활성화 상태 */
     disabled?: boolean;
+    /** 읽기 전용 상태 */
+    readonly?: boolean;
     /** 파일 선택 핸들러 */
     onFileSelect?: (files: File[]) => void;
     /** 드래그 오버 핸들러 */
-    onDragOver?: (isOver: boolean) => void;
+    onDragOver?: (event: React.DragEvent) => void;
+    /** 드래그 리브 핸들러 */
+    onDragLeave?: (event: React.DragEvent) => void;
+    /** 드롭 핸들러 */
+    onDrop?: (event: React.DragEvent) => void;
+    /** 클릭 핸들러 */
+    onClick?: (event: React.MouseEvent) => void;
     /** 추가 CSS 클래스 */
     className?: string;
+    /** 자식 요소 */
+    children?: React.ReactNode;
 }
 
-export const Dropzone: React.FC<DropzoneProps> = ({
+const Dropzone: React.FC<DropzoneProps> = ({
     size = 'md',
     variant = 'default',
-    title = '파일을 드래그하거나 클릭하여 업로드하세요',
-    description = '지원되는 파일 형식: 모든 파일',
+    showIcon = true,
     icon,
+    image,
+    title = '파일을 드래그하여 업로드하거나 클릭하여 선택하세요',
+    description,
+    buttonText = '파일 선택',
+    showButton = false,
     accept,
     maxSize,
     multiple = false,
-    isDragOver = false,
+    isDragOver: controlledIsDragOver,
     disabled = false,
+    readonly = false,
     onFileSelect,
     onDragOver,
+    onDragLeave,
+    onDrop,
+    onClick,
     className,
+    children,
 }) => {
-    const [internalDragOver, setInternalDragOver] = useState(false);
+    const [internalIsDragOver, setInternalIsDragOver] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const dragOver = isDragOver || internalDragOver;
+    // 드래그 오버 상태 관리
+    const isDragOver = controlledIsDragOver !== undefined ? controlledIsDragOver : internalIsDragOver;
 
+    // 파일 유효성 검사
+    const validateFile = useCallback((file: File): boolean => {
+        // 파일 타입 검사
+        if (accept) {
+            const acceptedTypes = accept.split(',').map(type => type.trim());
+            const fileType = file.type;
+            const fileExtension = `.${file.name.split('.').pop()?.toLowerCase()}`;
+
+            const isValidType = acceptedTypes.some(type => {
+                if (type.startsWith('.')) {
+                    return fileExtension === type.toLowerCase();
+                }
+                return fileType === type || fileType.startsWith(type.replace('*', ''));
+            });
+
+            if (!isValidType) return false;
+        }
+
+        // 파일 크기 검사
+        if (maxSize && file.size > maxSize) return false;
+
+        return true;
+    }, [accept, maxSize]);
+
+    // 파일 선택 처리
     const handleFileSelect = useCallback((files: FileList | null) => {
         if (!files || files.length === 0) return;
 
         const fileArray = Array.from(files);
+        const validFiles = fileArray.filter(validateFile);
 
-        // 파일 타입 검증
-        if (accept) {
-            const acceptedTypes = accept.split(',').map(type => type.trim());
-            const validFiles = fileArray.filter(file => {
-                return acceptedTypes.some(type => {
-                    if (type.startsWith('.')) {
-                        return file.name.toLowerCase().endsWith(type.toLowerCase());
-                    }
-                    return file.type.match(new RegExp(type.replace('*', '.*')));
-                });
-            });
-
-            if (validFiles.length !== fileArray.length) {
-                alert('일부 파일이 지원되지 않는 형식입니다.');
-                return;
-            }
+        if (validFiles.length > 0) {
+            onFileSelect?.(validFiles);
         }
+    }, [validateFile, onFileSelect]);
 
-        // 파일 크기 검증
-        if (maxSize) {
-            const validFiles = fileArray.filter(file => file.size <= maxSize);
-            if (validFiles.length !== fileArray.length) {
-                alert('일부 파일이 최대 크기를 초과했습니다.');
-                return;
-            }
-        }
+    // 드래그 오버 핸들러
+    const handleDragOver = useCallback((event: React.DragEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-        onFileSelect?.(fileArray);
-    }, [accept, maxSize, onFileSelect]);
+        if (disabled || readonly) return;
 
-    const handleDragOver = useCallback((e: React.DragEvent) => {
-        e.preventDefault();
-        if (disabled) return;
+        setInternalIsDragOver(true);
+        onDragOver?.(event);
+    }, [disabled, readonly, onDragOver]);
 
-        setInternalDragOver(true);
-        onDragOver?.(true);
-    }, [disabled, onDragOver]);
+    // 드래그 리브 핸들러
+    const handleDragLeave = useCallback((event: React.DragEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-    const handleDragLeave = useCallback((e: React.DragEvent) => {
-        e.preventDefault();
-        if (disabled) return;
+        if (disabled || readonly) return;
 
-        setInternalDragOver(false);
-        onDragOver?.(false);
-    }, [disabled, onDragOver]);
+        setInternalIsDragOver(false);
+        onDragLeave?.(event);
+    }, [disabled, readonly, onDragLeave]);
 
-    const handleDrop = useCallback((e: React.DragEvent) => {
-        e.preventDefault();
-        if (disabled) return;
+    // 드롭 핸들러
+    const handleDrop = useCallback((event: React.DragEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-        setInternalDragOver(false);
-        onDragOver?.(false);
+        if (disabled || readonly) return;
 
-        const files = e.dataTransfer.files;
+        setInternalIsDragOver(false);
+        const files = event.dataTransfer.files;
         handleFileSelect(files);
-    }, [disabled, onDragOver, handleFileSelect]);
+        onDrop?.(event);
+    }, [disabled, readonly, handleFileSelect, onDrop]);
 
-    const handleClick = useCallback(() => {
-        if (disabled) return;
+    // 클릭 핸들러
+    const handleClick = useCallback((event: React.MouseEvent) => {
+        if (disabled || readonly) return;
+
         fileInputRef.current?.click();
-    }, [disabled]);
+        onClick?.(event);
+    }, [disabled, readonly, onClick]);
 
-    const handleFileInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        handleFileSelect(e.target.files);
-        // 같은 파일을 다시 선택할 수 있도록 초기화
-        e.target.value = '';
+    // 파일 입력 변경 핸들러
+    const handleFileInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        handleFileSelect(files);
+
+        // 입력값 초기화 (같은 파일 재선택 가능하도록)
+        event.target.value = '';
     }, [handleFileSelect]);
 
-    const classes = clsx(
-        'designbase-dropzone',
-        `designbase-dropzone--size-${size}`,
-        `designbase-dropzone--variant-${variant}`,
-        {
-            'designbase-dropzone--drag-over': dragOver,
-            'designbase-dropzone--disabled': disabled,
-        },
-        className
-    );
-
+    // 기본 아이콘
     const defaultIcon = (
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7,10 12,15 17,10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M24 8L32 16H28V28H20V16H16L24 8Z" fill="currentColor" />
+            <path d="M8 32V40H40V32H36V36H12V32H8Z" fill="currentColor" />
         </svg>
     );
 
+    // 서브 텍스트 생성
+    const getDescription = useCallback((): string => {
+        if (description) return description;
+
+        if (accept) {
+            const types = accept.split(',').map(type => {
+                const trimmed = type.trim();
+                if (trimmed.startsWith('.')) {
+                    return trimmed.toUpperCase();
+                }
+                if (trimmed.includes('*')) {
+                    return trimmed.replace('*', '').toUpperCase();
+                }
+                return trimmed;
+            });
+
+            let desc = types.join(', ');
+            if (maxSize) {
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(maxSize) / Math.log(k));
+                const sizeText = parseFloat((maxSize / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+                desc += ` (최대 ${sizeText})`;
+            }
+            return desc;
+        }
+
+        return '모든 파일 형식 지원';
+    }, [description, accept, maxSize]);
+
     return (
         <div
-            className={classes}
+            className={clsx(
+                'designbase-dropzone',
+                `designbase-dropzone--size-${size}`,
+                `designbase-dropzone--variant-${variant}`,
+                {
+                    'designbase-dropzone--drag-over': isDragOver,
+                    'designbase-dropzone--disabled': disabled,
+                    'designbase-dropzone--readonly': readonly,
+                },
+                className
+            )}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
@@ -167,29 +240,49 @@ export const Dropzone: React.FC<DropzoneProps> = ({
                 accept={accept}
                 multiple={multiple}
                 onChange={handleFileInputChange}
+                disabled={disabled || readonly}
                 style={{ display: 'none' }}
-                disabled={disabled}
             />
 
-            <div className="designbase-dropzone__content">
-                <div className="designbase-dropzone__icon">
-                    {icon || defaultIcon}
+            {children || (
+                <div className="designbase-dropzone__content">
+                    {/* 그래픽 이미지 또는 아이콘 */}
+                    {image ? (
+                        <div className="designbase-dropzone__image">
+                            <img src={image} alt="Upload illustration" />
+                        </div>
+                    ) : showIcon && (
+                        <div className="designbase-dropzone__icon">
+                            {icon || defaultIcon}
+                        </div>
+                    )}
+
+                    {/* 메인 텍스트 */}
+                    {title && (
+                        <div className="designbase-dropzone__title">
+                            {title}
+                        </div>
+                    )}
+
+                    {/* 서브 텍스트 */}
+                    {getDescription() && (
+                        <div className="designbase-dropzone__description">
+                            {getDescription()}
+                        </div>
+                    )}
+
+                    {/* 버튼 */}
+                    {showButton && (
+                        <button
+                            className="designbase-dropzone__button"
+                            type="button"
+                            disabled={disabled || readonly}
+                        >
+                            {buttonText}
+                        </button>
+                    )}
                 </div>
-
-                <h3 className="designbase-dropzone__title">
-                    {title}
-                </h3>
-
-                <p className="designbase-dropzone__description">
-                    {description}
-                </p>
-
-                {maxSize && (
-                    <p className="designbase-dropzone__size-limit">
-                        최대 파일 크기: {(maxSize / 1024 / 1024).toFixed(1)}MB
-                    </p>
-                )}
-            </div>
+            )}
         </div>
     );
 };

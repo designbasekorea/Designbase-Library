@@ -1,100 +1,150 @@
 /**
- * Style Dictionary 설정
- * 
- * 목적: 디자인 토큰을 다양한 플랫폼 형식으로 변환
- * 기능: JSON 토큰을 CSS 변수, TypeScript 상수, SCSS 변수로 변환
- * 출력: CSS, TypeScript, SCSS, JSON 포맷 지원
+ * Style Dictionary 설정 (라이트+다크 한 파일 동시 출력, 표준 css/variables 재사용)
+ * - :root / [data-theme="dark"]를 한 파일에 출력
+ * - 기본 css/variables 포맷을 그대로 호출 → `--name: value;`와 `var(...)` 참조가 정확히 생성
  */
 
 const StyleDictionary = require('style-dictionary');
 
-// 커스텀 변환 함수 등록
+// ---------- 유틸 ----------
+const isPx = (val) => typeof val === 'string' && /^\d+(\.\d+)?px$/.test(val);
+const pxToRem = (px) => `${parseFloat(px) / 16}rem`;
+const isDarkToken = (token) => /[/\\]dark[/\\]/.test(token.filePath);
+
+// ---------- 커스텀 변환 ----------
 StyleDictionary.registerTransform({
-    name: 'size/pxToRem',
+    name: 'size/pxToRem-safe',
     type: 'value',
-    matcher: token => ['fontSize', 'spacing', 'borderRadius', 'borderWidth'].includes(token.type),
-    transformer: token => {
-        const value = parseFloat(token.value);
-        return `${value / 16}rem`;
-    }
+    matcher: (token) => {
+        const typeHit = ['fontSize', 'spacing', 'borderRadius', 'borderWidth', 'dimension'].includes(token.type);
+        return typeHit && typeof token.value === 'string' && isPx(token.value);
+    },
+    transformer: (token) => pxToRem(token.value),
 });
 
 StyleDictionary.registerTransform({
-    name: 'shadow/css',
+    name: 'shadow/css-array-safe',
     type: 'value',
-    matcher: token => token.type === 'boxShadow',
-    transformer: token => {
-        const { x, y, blur, spread, color } = token.value;
-        return `${x}px ${y}px ${blur}px ${spread}px ${color}`;
-    }
+    matcher: (token) => token.type === 'boxShadow',
+    transformer: (token) => {
+        const v = token.value;
+        const toCss = (s) => {
+            const { x = 0, y = 0, blur = 0, spread = 0, color = 'rgba(0,0,0,0.2)' } = s || {};
+            const numToPx = (n) => (typeof n === 'number' ? `${n}px` : n);
+            return `${numToPx(x)} ${numToPx(y)} ${numToPx(blur)} ${numToPx(spread)} ${color}`;
+        };
+        if (Array.isArray(v)) return v.map(toCss).join(', ');
+        return toCss(v);
+    },
 });
 
+// ---------- 기본 포맷 재사용한 멀티 스코프 포맷 ----------
+const { fileHeader } = StyleDictionary.formatHelpers;
+const baseCssVariables = StyleDictionary.format['css/variables'];
+
+StyleDictionary.registerFormat({
+    name: 'css/variables-multi-scope',
+    formatter: ({ dictionary, options = {}, file, platform }) => {
+        const lightSelector = options.lightSelector || ':root';
+        const darkSelector = options.darkSelector || '[data-theme="dark"]';
+        const outputReferences = options.outputReferences !== false;
+
+        const header = fileHeader({ file });
+
+        // 라이트/다크 토큰 분리
+        const lightAll = dictionary.allTokens.filter((t) => !isDarkToken(t));
+        const darkAll = dictionary.allTokens.filter((t) => isDarkToken(t));
+
+        // 기본 css/variables 포맷을 "그대로" 호출하여 블록 생성
+        const lightCss = baseCssVariables({
+            dictionary: { ...dictionary, allTokens: lightAll },
+            options: { ...options, selector: lightSelector, outputReferences },
+            file,
+            platform,
+        });
+
+        const darkCss = baseCssVariables({
+            dictionary: { ...dictionary, allTokens: darkAll },
+            options: { ...options, selector: darkSelector, outputReferences },
+            file,
+            platform,
+        });
+
+        // fileHeader + 두 블록 합치기 (중복 헤더 제거)
+        const stripHeader = (s) => s.replace(/\/\*\*[\s\S]*?\*\/\s*/m, '');
+        return [
+            header,
+            stripHeader(lightCss).trim(),
+            '',
+            stripHeader(darkCss).trim(),
+            '',
+        ].join('\n');
+    },
+});
+
+// ---------- 메인 설정 ----------
 module.exports = {
-    source: ['tokens/foundation/**/*.json', 'tokens/semantic/**/*.json'],
+    source: [
+        'tokens/foundation/**/*.json',
+        'tokens/semantic/**/*.json',
+        'tokens/dark/**/*.json',
+    ],
     platforms: {
-        // CSS 변수 출력
         css: {
             transformGroup: 'css',
-            transforms: ['attribute/cti', 'name/cti/kebab', 'time/seconds', 'size/pxToRem', 'color/css', 'shadow/css'],
+            transforms: [
+                'attribute/cti',
+                'name/cti/kebab',
+                'time/seconds',
+                'size/pxToRem-safe',
+                'color/css',
+                'shadow/css-array-safe',
+            ],
             buildPath: 'dist/css/',
             files: [
                 {
                     destination: 'tokens.css',
-                    format: 'css/variables',
+                    format: 'css/variables-multi-scope',
                     options: {
-                        selector: ':root'
-                    }
+                        outputReferences: true,
+                        lightSelector: ':root',
+                        darkSelector: '[data-theme="dark"]',
+                    },
                 },
-                {
-                    destination: 'tokens-dark.css',
-                    format: 'css/variables',
-                    filter: token => token.filePath.includes('dark'),
-                    options: {
-                        selector: '[data-theme="dark"]'
-                    }
-                }
-            ]
+            ],
         },
 
-        // TypeScript 상수 출력
-        ts: {
-            transformGroup: 'js',
-            transforms: ['attribute/cti', 'name/cti/constant', 'size/pxToRem', 'color/hex'],
-            buildPath: 'dist/ts/',
-            files: [
-                {
-                    destination: 'tokens.ts',
-                    format: 'javascript/es6',
-                    options: {
-                        outputReferences: true
-                    }
-                }
-            ]
-        },
-
-        // SCSS 변수 출력
+        // 선택: SCSS/TS/JSON 필요 시 유지
         scss: {
             transformGroup: 'scss',
-            transforms: ['attribute/cti', 'name/cti/kebab', 'time/seconds', 'size/pxToRem', 'color/css'],
+            transforms: [
+                'attribute/cti',
+                'name/cti/kebab',
+                'time/seconds',
+                'size/pxToRem-safe',
+                'color/css',
+            ],
             buildPath: 'dist/scss/',
-            files: [
-                {
-                    destination: '_tokens.scss',
-                    format: 'scss/variables'
-                }
-            ]
+            files: [{ destination: '_tokens.scss', format: 'scss/variables' }],
         },
-
-        // JSON 출력 (런타임 참조용)
+        ts: {
+            transformGroup: 'js',
+            transforms: [
+                'attribute/cti',
+                'name/cti/constant',
+                'size/pxToRem-safe',
+                'color/hex',
+            ],
+            buildPath: 'dist/ts/',
+            files: [
+                { destination: 'tokens.ts', format: 'javascript/es6', options: { outputReferences: true } },
+            ],
+        },
         json: {
             transformGroup: 'js',
+            transforms: ['attribute/cti', 'name/cti/kebab', 'size/pxToRem-safe', 'color/hex'],
             buildPath: 'dist/json/',
-            files: [
-                {
-                    destination: 'tokens.json',
-                    format: 'json/nested'
-                }
-            ]
-        }
-    }
+            files: [{ destination: 'tokens.json', format: 'json/nested' }],
+        },
+    },
 };

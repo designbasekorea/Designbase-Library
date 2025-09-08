@@ -1,0 +1,502 @@
+.designbase-animation-background {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    // 클릭 가능
+    &--clickable {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    // 비활성화
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // Canvas 스타일
+    &__canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    // ===== 애니메이션 타입 =====
+
+    // Gradient 애니메이션
+    &--gradient {
+        &.designbase-animation-background--visible {
+            animation: gradientMove var(--db-animation-speed) ease-in-out infinite;
+        }
+
+        &.designbase-animation-background--animating {
+            animation: gradientPulse var(--db-animation-speed) ease-in-out;
+        }
+    }
+
+    // Rainbow 애니메이션
+    &--rainbow {
+        &.designbase-animation-background--visible {
+            animation: rainbowMove var(--db-animation-speed) ease-in-out infinite;
+        }
+
+        &.designbase-animation-background--animating {
+            animation: rainbowPulse var(--db-animation-speed) ease-in-out;
+        }
+    }
+
+    // Pulse 애니메이션
+    &--pulse {
+        &.designbase-animation-background--visible {
+            animation: pulse var(--db-animation-speed) ease-in-out infinite;
+        }
+
+        &.designbase-animation-background--animating {
+            animation: pulseIntense var(--db-animation-speed) ease-in-out;
+        }
+    }
+
+    // Wave 애니메이션
+    &--wave {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--wave-colors));
+            background-size: 400% 400%;
+            animation: waveMove var(--db-animation-speed) ease-in-out infinite;
+            z-index: -1;
+        }
+
+        &.designbase-animation-background--visible {
+            animation: waveFadeIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-background--animating {
+            &::before {
+                animation: waveIntense var(--db-animation-speed) ease-in-out infinite;
+            }
+        }
+    }
+
+    // Aurora 애니메이션
+    &--aurora {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--aurora-colors));
+            background-size: 400% 400%;
+            animation: auroraMove var(--db-animation-speed) ease-in-out infinite;
+            z-index: -1;
+        }
+
+        &.designbase-animation-background--visible {
+            animation: auroraFadeIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-background--animating {
+            &::before {
+                animation: auroraIntense var(--db-animation-speed) ease-in-out infinite;
+            }
+        }
+    }
+
+    // Fire 애니메이션
+    &--fire {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, var(--fire-colors));
+            background-size: 200% 200%;
+            animation: fireMove var(--db-animation-speed) ease-in-out infinite;
+            z-index: -1;
+        }
+
+        &.designbase-animation-background--visible {
+            animation: fireFadeIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-background--animating {
+            &::before {
+                animation: fireIntense var(--db-animation-speed) ease-in-out infinite;
+            }
+        }
+    }
+
+    // Ocean 애니메이션
+    &--ocean {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, var(--ocean-colors));
+            background-size: 200% 200%;
+            animation: oceanMove var(--db-animation-speed) ease-in-out infinite;
+            z-index: -1;
+        }
+
+        &.designbase-animation-background--visible {
+            animation: oceanFadeIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-background--animating {
+            &::before {
+                animation: oceanIntense var(--db-animation-speed) ease-in-out infinite;
+            }
+        }
+    }
+
+    // Sunset 애니메이션
+    &--sunset {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, var(--sunset-colors));
+            background-size: 200% 200%;
+            animation: sunsetMove var(--db-animation-speed) ease-in-out infinite;
+            z-index: -1;
+        }
+
+        &.designbase-animation-background--visible {
+            animation: sunsetFadeIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-background--animating {
+            &::before {
+                animation: sunsetIntense var(--db-animation-speed) ease-in-out infinite;
+            }
+        }
+    }
+
+    // Particles & Stars는 Canvas로 처리되므로 별도 스타일 불필요
+}
+
+// ===== 키프레임 애니메이션 =====
+
+@keyframes gradientMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes gradientPulse {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        opacity: 1;
+    }
+
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.8;
+    }
+}
+
+@keyframes rainbowMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    75% {
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes rainbowPulse {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        transform: scale(1);
+    }
+
+    50% {
+        background-position: 100% 50%;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes pulseIntense {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes waveMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        transform: translateY(0);
+    }
+
+    50% {
+        background-position: 100% 50%;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes waveFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes waveIntense {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        background-position: 100% 50%;
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+@keyframes auroraMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        background-position: 100% 50%;
+        filter: hue-rotate(180deg);
+    }
+}
+
+@keyframes auroraFadeIn {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes auroraIntense {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg) brightness(1);
+    }
+
+    50% {
+        background-position: 100% 50%;
+        filter: hue-rotate(360deg) brightness(1.2);
+    }
+}
+
+@keyframes fireMove {
+
+    0%,
+    100% {
+        background-position: 50% 100%;
+        filter: brightness(1);
+    }
+
+    50% {
+        background-position: 50% 0%;
+        filter: brightness(1.3);
+    }
+}
+
+@keyframes fireFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fireIntense {
+
+    0%,
+    100% {
+        background-position: 50% 100%;
+        filter: brightness(1) saturate(1);
+    }
+
+    50% {
+        background-position: 50% 0%;
+        filter: brightness(1.5) saturate(1.5);
+    }
+}
+
+@keyframes oceanMove {
+
+    0%,
+    100% {
+        background-position: 0% 100%;
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        background-position: 100% 0%;
+        filter: hue-rotate(30deg);
+    }
+}
+
+@keyframes oceanFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes oceanIntense {
+
+    0%,
+    100% {
+        background-position: 0% 100%;
+        filter: hue-rotate(0deg) brightness(1);
+    }
+
+    50% {
+        background-position: 100% 0%;
+        filter: hue-rotate(60deg) brightness(1.2);
+    }
+}
+
+@keyframes sunsetMove {
+
+    0%,
+    100% {
+        background-position: 0% 0%;
+        filter: brightness(1);
+    }
+
+    50% {
+        background-position: 100% 100%;
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes sunsetFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes sunsetIntense {
+
+    0%,
+    100% {
+        background-position: 0% 0%;
+        filter: brightness(1) saturate(1);
+    }
+
+    50% {
+        background-position: 100% 100%;
+        filter: brightness(1.4) saturate(1.3);
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .designbase-animation-background {
+        &--clickable {
+            &:hover {
+                transform: none;
+            }
+        }
+    }
+}

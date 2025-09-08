@@ -7,7 +7,7 @@
  */
 
 // 테마 타입 정의
-export type Theme = 'light' | 'dark' | 'brand';
+export type Theme = 'light' | 'dark';
 
 /**
  * 현재 활성 테마 가져오기
@@ -20,7 +20,7 @@ export function getTheme(): Theme {
     const element = document.documentElement;
     const themeAttr = element.getAttribute('data-theme');
 
-    if (themeAttr === 'dark' || themeAttr === 'brand') {
+    if (themeAttr === 'dark') {
         return themeAttr;
     }
 
@@ -56,7 +56,7 @@ export function loadSavedTheme(): Theme {
 
     try {
         const savedTheme = localStorage.getItem('designbase-theme') as Theme;
-        if (savedTheme && ['light', 'dark', 'brand'].includes(savedTheme)) {
+        if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
             return savedTheme;
         }
     } catch (error) {
@@ -149,4 +149,57 @@ if (typeof document !== 'undefined') {
     } else {
         initializeTheme();
     }
+}
+
+/**
+ * 토큰 CSS 파일들을 동적으로 로드
+ * @param basePath 토큰 CSS 파일의 기본 경로 (기본값: @designbase/tokens/dist/css)
+ */
+export function loadTokens(basePath: string = '@designbase/tokens/dist/css'): Promise<void> {
+    return new Promise((resolve) => {
+        if (typeof document === 'undefined') {
+            resolve();
+            return;
+        }
+
+        // 1) 테마 CSS가 이미 토큰을 병합 포함하는지 빠른 확인
+        const themeLink = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+            .find((l) => typeof l.getAttribute === 'function' && /theme\.css$/.test(l.getAttribute('href') || ''));
+
+        if (themeLink) {
+            // theme.css 상단에 토큰이 병합되어 배포되는 경우 추가 로드 불필요
+            resolve();
+            return;
+        }
+
+        // 2) 병합되어 있지 않다면 단일 tokens.css 만 로드 (dark는 data-theme="dark"로 오버라이드됨)
+        const href = `${basePath}/tokens.css`;
+        const existingLink = document.querySelector(`link[href="${href}"]`);
+        if (existingLink) {
+            resolve();
+            return;
+        }
+
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.onload = () => resolve();
+        link.onerror = () => {
+            console.warn(`Failed to load token CSS: ${href}`);
+            resolve();
+        };
+        document.head.appendChild(link);
+    });
+}
+
+/**
+ * 토큰 CSS가 로드되었는지 확인
+ */
+export function areTokensLoaded(): boolean {
+    if (typeof document === 'undefined') {
+        return false;
+    }
+
+    const tokenLinks = document.querySelectorAll('link[href*="tokens"]');
+    return tokenLinks.length > 0;
 }

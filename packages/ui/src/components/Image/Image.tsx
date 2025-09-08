@@ -7,7 +7,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
-import { ImageIcon } from '@designbase/icons';
+import { GalleryIcon } from '@designbase/icons';
 import './Image.scss';
 
 export type ImageRatio = '1:1' | '16:9' | '4:3' | '3:2' | '3:4' | '2:1' | 'auto';
@@ -224,7 +224,7 @@ export const Image: React.FC<ImageProps> = ({
             {/* 에러 상태 */}
             {imageState === 'error' && (
                 <div className="designbase-image__error">
-                    <ImageIcon size={24} />
+                    <GalleryIcon size={24} />
                     <span className="designbase-image__error-text">
                         {alt || '이미지를 불러올 수 없습니다'}
                     </span>

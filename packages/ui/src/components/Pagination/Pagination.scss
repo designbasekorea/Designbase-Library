@@ -2,12 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md, 16px);
+    gap: var(--db-gap-m);
 
     &__container {
         display: flex;
         align-items: center;
-        gap: var(--spacing-md, 16px);
+        gap: var(--db-gap-m);
         flex-wrap: wrap;
 
         &--full-width {
@@ -17,8 +17,8 @@
     }
 
     &__total {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        color: var(--color-text-secondary, #6b7280);
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
         white-space: nowrap;
     }
 
@@ -33,7 +33,7 @@
         list-style: none;
         margin: 0;
         padding: 0;
-        gap: var(--spacing-xs, 4px);
+        gap: var(--db-gap-xs);
     }
 
     &__item {
@@ -47,43 +47,43 @@
         justify-content: center;
         min-width: 36px;
         height: 36px;
-        padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
-        background-color: var(--color-background-primary, #ffffff);
-        color: var(--color-text-primary, #111827);
-        border: 1px solid var(--color-border-primary, #e5e7eb);
-        border-radius: var(--border-radius-md, 6px);
-        font-size: var(--typography-body-sm-font-size, 14px);
-        font-weight: var(--typography-body-sm-font-weight, 500);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        background-color: var(--db-bg-primary);
+        color: var(--db-text-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-md);
+        font-size: var(--db-text-sm);
+        font-weight: var(--db-weight-medium);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         text-decoration: none;
 
         &:hover {
-            background-color: var(--color-background-hover, #f3f4f6);
-            border-color: var(--color-border-hover, #d1d5db);
-            color: var(--color-text-primary, #111827);
+            background-color: var(--db-bg-tertiary);
+            border-color: var(--db-border-secondary);
+            color: var(--db-text-primary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--color-primary-500, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-50);
             cursor: not-allowed;
             pointer-events: none;
         }
 
         &--active {
-            background-color: var(--color-primary-500, #3b82f6);
-            border-color: var(--color-primary-500, #3b82f6);
-            color: var(--color-text-inverse, #ffffff);
+            background-color: var(--db-blue-500);
+            border-color: var(--db-blue-500);
+            color: var(--db-text-inverse);
 
             &:hover {
-                background-color: var(--color-primary-600, #2563eb);
-                border-color: var(--color-primary-600, #2563eb);
-                color: var(--color-text-inverse, #ffffff);
+                background-color: var(--db-blue-600);
+                border-color: var(--db-blue-600);
+                color: var(--db-text-inverse);
             }
         }
 
@@ -92,7 +92,7 @@
         &--previous,
         &--next {
             i {
-                font-size: var(--typography-body-sm-font-size, 14px);
+                font-size: var(--db-text-sm);
             }
         }
     }
@@ -103,27 +103,27 @@
         justify-content: center;
         min-width: 36px;
         height: 36px;
-        padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+        padding: var(--db-padding-xs) var(--db-padding-s);
     }
 
     &__ellipsis-text {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        color: var(--color-text-secondary, #6b7280);
-        font-weight: var(--typography-body-sm-font-weight, 500);
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
+        font-weight: var(--db-weight-medium);
     }
 
     &__page-size {
         display: flex;
         align-items: center;
-        gap: var(--spacing-sm, 8px);
+        gap: var(--db-gap-s);
     }
 
     &__page-size-label {
         display: flex;
         align-items: center;
-        gap: var(--spacing-sm, 8px);
-        font-size: var(--typography-body-sm-font-size, 14px);
-        color: var(--color-text-secondary, #6b7280);
+        gap: var(--db-gap-s);
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
         cursor: pointer;
     }
 
@@ -140,26 +140,26 @@
         .designbase-pagination__button {
             min-width: 32px;
             height: 32px;
-            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
-            font-size: var(--typography-body-xs-font-size, 12px);
+            padding: var(--db-padding-xs) var(--db-padding-xs);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-pagination__ellipsis {
             min-width: 32px;
             height: 32px;
-            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
+            padding: var(--db-padding-xs) var(--db-padding-xs);
         }
 
         .designbase-pagination__ellipsis-text {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-pagination__total {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-pagination__page-size-label {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
     }
@@ -168,26 +168,26 @@
         .designbase-pagination__button {
             min-width: 36px;
             height: 36px;
-            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
-            font-size: var(--typography-body-sm-font-size, 14px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-sm);
         }
 
         .designbase-pagination__ellipsis {
             min-width: 36px;
             height: 36px;
-            padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
         }
 
         .designbase-pagination__ellipsis-text {
-            font-size: var(--typography-body-sm-font-size, 14px);
+            font-size: var(--db-text-sm);
         }
 
         .designbase-pagination__total {
-            font-size: var(--typography-body-sm-font-size, 14px);
+            font-size: var(--db-text-sm);
         }
 
         .designbase-pagination__page-size-label {
-            font-size: var(--typography-body-sm-font-size, 14px);
+            font-size: var(--db-text-sm);
         }
 
         .designbase-pagination__page-size-select {
@@ -199,26 +199,26 @@
         .designbase-pagination__button {
             min-width: 44px;
             height: 44px;
-            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
-            font-size: var(--typography-body-md-font-size, 16px);
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-base);
         }
 
         .designbase-pagination__ellipsis {
             min-width: 44px;
             height: 44px;
-            padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+            padding: var(--db-padding-s) var(--db-padding-m);
         }
 
         .designbase-pagination__ellipsis-text {
-            font-size: var(--typography-body-md-font-size, 16px);
+            font-size: var(--db-text-base);
         }
 
         .designbase-pagination__total {
-            font-size: var(--typography-body-md-font-size, 16px);
+            font-size: var(--db-text-base);
         }
 
         .designbase-pagination__page-size-label {
-            font-size: var(--typography-body-md-font-size, 16px);
+            font-size: var(--db-text-base);
         }
 
         .designbase-pagination__page-size-select {
@@ -230,20 +230,20 @@
     &--outlined {
         .designbase-pagination__button {
             background-color: transparent;
-            border: 2px solid var(--color-border-primary, #e5e7eb);
+            border: 2px solid var(--db-border-primary);
 
             &:hover {
-                border-color: var(--color-primary-500, #3b82f6);
-                color: var(--color-primary-600, #2563eb);
+                border-color: var(--db-blue-500);
+                color: var(--db-blue-600);
             }
 
             &--active {
                 background-color: transparent;
-                border-color: var(--color-primary-500, #3b82f6);
-                color: var(--color-primary-600, #2563eb);
+                border-color: var(--db-blue-500);
+                color: var(--db-blue-600);
 
                 &:hover {
-                    background-color: var(--color-primary-50, #eff6ff);
+                    background-color: var(--db-blue-50);
                 }
             }
         }
@@ -253,18 +253,18 @@
         .designbase-pagination__button {
             background-color: transparent;
             border: none;
-            border-radius: var(--border-radius-sm, 4px);
+            border-radius: var(--db-radius-sm);
 
             &:hover {
-                background-color: var(--color-background-hover, #f3f4f6);
+                background-color: var(--db-bg-tertiary);
             }
 
             &--active {
-                background-color: var(--color-primary-100, #dbeafe);
-                color: var(--color-primary-700, #1d4ed8);
+                background-color: var(--db-blue-100);
+                color: var(--db-blue-700);
 
                 &:hover {
-                    background-color: var(--color-primary-200, #bfdbfe);
+                    background-color: var(--db-blue-200);
                 }
             }
         }
@@ -285,7 +285,7 @@
 
     // States
     &--disabled {
-        opacity: 0.6;
+        opacity: var(--db-opacity-60);
         pointer-events: none;
 
         .designbase-pagination__button {
@@ -304,11 +304,11 @@
     // Responsive
     @media (max-width: 640px) {
         flex-direction: column;
-        gap: var(--spacing-sm, 8px);
+        gap: var(--db-gap-s);
 
         &__container {
             flex-direction: column;
-            gap: var(--spacing-sm, 8px);
+            gap: var(--db-gap-s);
             width: 100%;
 
             &--full-width {
@@ -324,7 +324,7 @@
         &__button {
             min-width: 32px;
             height: 32px;
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
         &__ellipsis {
@@ -333,11 +333,11 @@
         }
 
         &__ellipsis-text {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
         &__total {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
             text-align: center;
         }
 
@@ -346,42 +346,42 @@
         }
 
         &__page-size-label {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
 
         &__page-size-select {
-            font-size: var(--typography-body-xs-font-size, 12px);
-            padding: var(--spacing-xs, 4px) var(--spacing-xs, 4px);
+            font-size: var(--db-text-xs);
+            padding: var(--db-padding-xs) var(--db-padding-xs);
         }
     }
 
     @media (max-width: 480px) {
         &__list {
-            gap: var(--spacing-xs, 4px);
+            gap: var(--db-gap-xs);
         }
 
         &__button {
             min-width: 28px;
             height: 28px;
-            padding: var(--spacing-xs, 4px);
-            font-size: var(--typography-body-xs-font-size, 12px);
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-xs);
         }
 
         &__ellipsis {
             min-width: 28px;
             height: 28px;
-            padding: var(--spacing-xs, 4px);
+            padding: var(--db-padding-xs);
         }
 
         &__ellipsis-text {
-            font-size: var(--typography-body-xs-font-size, 12px);
+            font-size: var(--db-text-xs);
         }
     }
 
     // Focus styles for accessibility
     &:focus-visible {
-        outline: 2px solid var(--color-primary-500, #3b82f6);
+        outline: 2px solid var(--db-blue-500);
         outline-offset: 2px;
-        border-radius: var(--border-radius-sm, 4px);
+        border-radius: var(--db-radius-sm);
     }
 }

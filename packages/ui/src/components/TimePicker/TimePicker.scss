@@ -1,0 +1,362 @@
+/**
+ * TimePicker 컴포넌트 스타일
+ */
+
+.designbase-time-picker {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+
+    // 크기별 스타일
+    &--size-sm {
+        width: 160px;
+
+        .designbase-time-picker__trigger {
+            padding: var(--db-padding-xxs);
+            font-size: var(--db-text-sm);
+            min-height: 32px;
+        }
+
+        .designbase-time-picker__option {
+            padding: var(--db-padding-xxs);
+            font-size: var(--db-text-sm);
+            min-height: 28px;
+        }
+
+        .designbase-time-picker__column-header {
+            padding: var(--db-padding-xxs);
+            font-size: var(--db-text-sm);
+        }
+    }
+
+    &--size-md {
+        width: 200px;
+
+        .designbase-time-picker__trigger {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-base);
+            min-height: 40px;
+        }
+
+        .designbase-time-picker__option {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-base);
+            min-height: 36px;
+        }
+
+        .designbase-time-picker__column-header {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-base);
+        }
+    }
+
+    &--size-lg {
+        width: 240px;
+
+        .designbase-time-picker__trigger {
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-lg);
+            min-height: 48px;
+        }
+
+        .designbase-time-picker__option {
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-lg);
+            min-height: 44px;
+        }
+
+        .designbase-time-picker__column-header {
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-lg);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        .designbase-time-picker__trigger {
+            background: var(--db-bg-primary);
+            border: 1px solid var(--db-border-primary);
+        }
+    }
+
+    &--variant-outlined {
+        .designbase-time-picker__trigger {
+            background: transparent;
+            border: 1px solid var(--db-border-primary);
+        }
+    }
+
+    &--variant-filled {
+        .designbase-time-picker__trigger {
+            background: var(--db-bg-secondary);
+            border: 1px solid var(--db-border-primary);
+        }
+    }
+
+    // 트리거 버튼
+    &__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        border-radius: var(--db-radius-md);
+        color: var(--db-text-primary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: left;
+
+        &:hover:not(:disabled) {
+            border-color: var(--db-border-secondary);
+            background: var(--db-bg-tertiary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--db-bg-secondary);
+        }
+    }
+
+    // 표시 영역
+    &__display {
+        flex: 1;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    // 화살표
+    &__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: var(--db-margin-sm);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+
+        .designbase-time-picker--open & {
+            transform: rotate(180deg);
+        }
+    }
+
+    // 드롭다운
+    &__dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        margin-top: var(--spacing-semantic-spacing-xs, 4px);
+    }
+
+    // 드롭다운 콘텐츠
+    &__dropdown-content {
+        background: var(--db-bg-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-lg);
+        box-shadow: var(--db-shadow-lg);
+        overflow: hidden;
+        display: flex;
+        max-height: 300px;
+    }
+
+    // 인라인 모드
+    &__inline {
+        display: flex;
+        background: var(--db-bg-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-lg);
+        overflow: hidden;
+        max-height: 300px;
+    }
+
+    // 컬럼
+    &__column {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border-right: 1px solid var(--db-border-primary);
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    // 컬럼 헤더
+    &__column-header {
+        background: var(--db-bg-secondary);
+        border-bottom: 1px solid var(--db-border-primary);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-secondary);
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    // 옵션 컨테이너
+    &__options {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        max-height: 250px;
+
+        // 스크롤바 숨기기 (Webkit 브라우저)
+        &::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        // Firefox 스크롤바 숨기기
+        scrollbar-width: none;
+
+        // IE/Edge 스크롤바 숨기기
+        -ms-overflow-style: none;
+
+        // 스크롤 기능은 유지하되 시각적으로만 숨김
+        &:hover {
+
+            // 호버 시에만 얇은 스크롤바 표시 (선택사항)
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: var(--db-border-primary);
+                border-radius: 2px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: var(--db-border-secondary);
+            }
+        }
+    }
+
+    // 옵션
+    &__option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: transparent;
+        color: var(--db-text-primary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: center;
+        white-space: nowrap;
+        font-weight: var(--db-weight-medium);
+
+        &:hover:not(&--disabled) {
+            background: var(--db-bg-tertiary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-blue-600);
+            outline-offset: -2px;
+        }
+
+        &--selected {
+            background: var(--db-blue-600);
+            color: var(--db-white);
+
+            &:hover {
+                background: var(--db-blue-700);
+            }
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            color: var(--db-text-muted);
+
+            &:hover {
+                background: transparent;
+            }
+        }
+    }
+
+    // 비활성화 상태
+    &--disabled {
+        .designbase-time-picker__trigger {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--db-bg-secondary);
+        }
+    }
+
+    // 읽기 전용 상태
+    &--readonly {
+        .designbase-time-picker__trigger {
+            cursor: default;
+            background: var(--db-bg-secondary);
+
+            &:hover {
+                border-color: var(--db-border-primary);
+                background: var(--db-bg-secondary);
+            }
+        }
+    }
+}
+
+// 테마는 상위에서 관리됩니다.
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-time-picker {
+        &--size-lg {
+            width: 200px;
+
+            .designbase-time-picker__trigger {
+                padding: var(--db-padding-s);
+                font-size: var(--db-text-base);
+                min-height: 40px;
+            }
+
+            .designbase-time-picker__option {
+                padding: var(--db-padding-s);
+                font-size: var(--db-text-base);
+                min-height: 36px;
+            }
+        }
+
+        &__dropdown-content,
+        &__inline {
+            max-height: 250px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-time-picker {
+        width: 100%;
+        max-width: 200px;
+
+        &--size-lg,
+        &--size-md {
+            .designbase-time-picker__trigger {
+                padding: var(--db-padding-xs) var(--db-padding-s);
+                font-size: var(--db-text-sm);
+                min-height: 32px;
+            }
+
+            .designbase-time-picker__option {
+                padding: var(--db-padding-xs) var(--db-padding-s);
+                font-size: var(--db-text-sm);
+                min-height: 28px;
+            }
+        }
+
+        &__dropdown-content,
+        &__inline {
+            max-height: 200px;
+        }
+    }
+}

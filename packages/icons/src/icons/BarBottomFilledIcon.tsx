@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M18 3H6C4.346 3 3 4.346 3 6v12c0 1.654 1.346 3 3 3h12c1.654 0 3-1.346 3-3V6c0-1.654-1.346-3-3-3m0 16H6c-.551 0-1-.448-1-1v-2h14v2a1 1 0 0 1-1 1"/></svg>
+
+export default BarBottomFilledIcon;

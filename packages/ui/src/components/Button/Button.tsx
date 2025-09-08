@@ -116,15 +116,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         const getIconColor = () => {
             switch (variant) {
                 case 'primary':
-                    return 'var(--color-button-primary-text)';
+                    return 'var(--db-btn-primary-text)';
                 case 'secondary':
-                    return 'var(--color-button-secondary-text)';
+                    return 'var(--db-btn-secondary-text)';
                 case 'tertiary':
-                    return 'var(--color-button-tertiary-text)';
+                    return 'var(--db-text-primary)';
                 case 'danger':
-                    return 'var(--color-button-danger-text)';
+                    return 'var(--db-white)';
                 case 'ghost':
-                    return 'var(--color-text-primary)';
+                    return 'var(--db-text-primary)';
                 default:
                     return 'currentColor';
             }

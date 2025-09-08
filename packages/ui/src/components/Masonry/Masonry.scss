@@ -1,0 +1,329 @@
+.designbase-masonry {
+    display: flex;
+    gap: var(--db-gap-m);
+    width: 100%;
+
+    // 컬럼 스타일
+    &__column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-m);
+    }
+
+    // 컬럼 수별 스타일
+    &--columns-1 &__column {
+        flex: 1;
+    }
+
+    &--columns-2 &__column {
+        flex: 1;
+    }
+
+    &--columns-3 &__column {
+        flex: 1;
+    }
+
+    &--columns-4 &__column {
+        flex: 1;
+    }
+
+    &--columns-5 &__column {
+        flex: 1;
+    }
+
+    &--columns-6 &__column {
+        flex: 1;
+    }
+
+    // 간격 설정
+    &--spacing-xs {
+        gap: var(--db-gap-xs);
+
+        .designbase-masonry__column {
+            gap: var(--db-gap-xs);
+        }
+    }
+
+    &--spacing-sm {
+        gap: var(--db-gap-s);
+
+        .designbase-masonry__column {
+            gap: var(--db-gap-s);
+        }
+    }
+
+    &--spacing-md {
+        gap: var(--db-gap-m);
+
+        .designbase-masonry__column {
+            gap: var(--db-gap-m);
+        }
+    }
+
+    &--spacing-lg {
+        gap: var(--db-gap-l);
+
+        .designbase-masonry__column {
+            gap: var(--db-gap-l);
+        }
+    }
+
+    &--spacing-xl {
+        gap: var(--db-gap-xl);
+
+        .designbase-masonry__column {
+            gap: var(--db-gap-xl);
+        }
+    }
+
+    // 아이템 스타일
+    &__item {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--db-radius-md);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(20px);
+
+        &--visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &:hover {
+            .designbase-masonry__overlay {
+                opacity: 1;
+            }
+
+            .designbase-masonry__image {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        transition: transform var(--db-animation-speed) var(--db-animation-ease);
+        display: block;
+    }
+
+    // 오버레이
+    &__overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: var(--db-padding-m);
+        opacity: 0;
+        transition: opacity var(--db-animation-speed) var(--db-animation-ease);
+        pointer-events: none;
+    }
+
+    &__title {
+        margin: 0 0 var(--db-margin-xs) 0;
+        font-size: var(--db-text-lg);
+        font-weight: var(--db-weight-semibold);
+        line-height: 1.3;
+    }
+
+    &__description {
+        margin: 0;
+        font-size: var(--db-text-sm);
+        line-height: 1.4;
+        opacity: var(--db-opacity-90);
+    }
+
+    // 메타데이터
+    &__metadata {
+        position: absolute;
+        top: var(--db-margin-s);
+        right: var(--db-margin-s);
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+        font-size: var(--db-text-xs);
+        color: white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+    }
+
+    &__date,
+    &__size {
+        background: rgba(0, 0, 0, 0.6);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-sm);
+        font-weight: var(--db-weight-medium);
+    }
+
+    // 애니메이션
+    &--animation-fade &__item {
+        animation: masonryFadeIn 0.6s ease forwards;
+
+        &--visible {
+            animation: masonryFadeIn 0.6s ease forwards;
+        }
+    }
+
+    &--animation-slide &__item {
+        animation: masonrySlideIn 0.6s ease forwards;
+
+        &--visible {
+            animation: masonrySlideIn 0.6s ease forwards;
+        }
+    }
+
+    &--animation-zoom &__item {
+        animation: masonryZoomIn 0.6s ease forwards;
+
+        &--visible {
+            animation: masonryZoomIn 0.6s ease forwards;
+        }
+    }
+
+    &--animation-none &__item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    // 반응형 디자인
+    &--responsive {
+        @media (max-width: 1200px) {
+
+            &.designbase-masonry--columns-6,
+            &.designbase-masonry--columns-5 {
+                .designbase-masonry__column {
+                    &:nth-child(n+5) {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 992px) {
+
+            &.designbase-masonry--columns-6,
+            &.designbase-masonry--columns-5,
+            &.designbase-masonry--columns-4 {
+                .designbase-masonry__column {
+                    &:nth-child(n+4) {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            &.designbase-masonry--columns-6,
+            &.designbase-masonry--columns-5,
+            &.designbase-masonry--columns-4,
+            &.designbase-masonry--columns-3 {
+                .designbase-masonry__column {
+                    &:nth-child(n+3) {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            &.designbase-masonry--columns-6,
+            &.designbase-masonry--columns-5,
+            &.designbase-masonry--columns-4,
+            &.designbase-masonry--columns-3,
+            &.designbase-masonry--columns-2 {
+                .designbase-masonry__column {
+                    &:nth-child(n+2) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // 무한 스크롤
+    &--infinite-scroll {
+        max-height: 80vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--db-bg-secondary);
+            border-radius: var(--db-radius-sm);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--db-border-primary);
+            border-radius: var(--db-radius-sm);
+
+            &:hover {
+                background: var(--db-border-secondary);
+            }
+        }
+    }
+
+    // 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
+
+    // 접근성 개선
+    &__item:focus-visible {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+
+    // 애니메이션 최적화
+    &__item {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+    }
+
+    &__image {
+        will-change: transform;
+    }
+}
+
+// 애니메이션 키프레임
+@keyframes masonryFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes masonrySlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes masonryZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

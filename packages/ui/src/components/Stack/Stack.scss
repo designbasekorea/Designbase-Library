@@ -80,23 +80,23 @@
     }
 
     &--spacing-xs {
-        gap: var(--spacing-semantic-margin-xs, 4px);
+        gap: var(--db-gap-xs);
     }
 
     &--spacing-sm {
-        gap: var(--spacing-semantic-margin-sm, 8px);
+        gap: var(--db-gap-s);
     }
 
     &--spacing-md {
-        gap: var(--spacing-semantic-margin-md, 16px);
+        gap: var(--db-gap-m);
     }
 
     &--spacing-lg {
-        gap: var(--spacing-semantic-margin-lg, 24px);
+        gap: var(--db-gap-l);
     }
 
     &--spacing-xl {
-        gap: var(--spacing-semantic-margin-xl, 32px);
+        gap: var(--db-gap-xl);
     }
 }
 
@@ -104,11 +104,11 @@
 @media (max-width: 768px) {
     .designbase-stack {
         &--spacing-lg {
-            gap: var(--spacing-semantic-margin-md, 16px);
+            gap: var(--db-gap-m);
         }
 
         &--spacing-xl {
-            gap: var(--spacing-semantic-margin-lg, 24px);
+            gap: var(--db-gap-l);
         }
     }
 }
@@ -116,15 +116,15 @@
 @media (max-width: 480px) {
     .designbase-stack {
         &--spacing-md {
-            gap: var(--spacing-semantic-margin-sm, 8px);
+            gap: var(--db-gap-s);
         }
 
         &--spacing-lg {
-            gap: var(--spacing-semantic-margin-sm, 8px);
+            gap: var(--db-gap-s);
         }
 
         &--spacing-xl {
-            gap: var(--spacing-semantic-margin-md, 16px);
+            gap: var(--db-gap-m);
         }
     }
 }

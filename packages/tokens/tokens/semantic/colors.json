@@ -59,7 +59,7 @@
                     "type": "color"
                 },
                 "inverse": {
-                    "value": "{color.foundation.white}",
+                    "value": "{color.foundation.neutral.white}",
                     "type": "color"
                 },
                 "link": {
@@ -73,7 +73,7 @@
             },
             "background": {
                 "primary": {
-                    "value": "{color.foundation.white}",
+                    "value": "{color.foundation.neutral.white}",
                     "type": "color"
                 },
                 "secondary": {
@@ -142,7 +142,7 @@
                         "type": "color"
                     },
                     "inverse": {
-                        "value": "{color.foundation.white}",
+                        "value": "{color.foundation.neutral.white}",
                         "type": "color"
                     }
                 },
@@ -165,7 +165,7 @@
                             "type": "color"
                         },
                         "text": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textDisabled": {
@@ -247,14 +247,14 @@
                             "type": "color"
                         },
                         "text": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         }
                     }
                 },
                 "input": {
                     "bg": {
-                        "value": "{color.foundation.white}",
+                        "value": "{color.foundation.neutral.white}",
                         "type": "color"
                     },
                     "bgDisabled": {
@@ -289,7 +289,7 @@
                 "action": {
                     "interactive": {
                         "bg": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "bgHover": {
@@ -337,7 +337,7 @@
                             "type": "color"
                         },
                         "textSelected": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textDisabled": {
@@ -349,7 +349,7 @@
                             "type": "color"
                         },
                         "iconSelected": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "iconDisabled": {
@@ -399,15 +399,15 @@
                             "type": "color"
                         },
                         "text": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textHover": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textSelected": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textDisabled": {
@@ -415,11 +415,11 @@
                             "type": "color"
                         },
                         "icon": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "iconSelected": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "iconDisabled": {
@@ -539,15 +539,15 @@
                             "type": "color"
                         },
                         "text": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textHover": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textSelected": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "textDisabled": {
@@ -555,11 +555,11 @@
                             "type": "color"
                         },
                         "icon": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "iconSelected": {
-                            "value": "{color.foundation.white}",
+                            "value": "{color.foundation.neutral.white}",
                             "type": "color"
                         },
                         "iconDisabled": {

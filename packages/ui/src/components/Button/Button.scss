@@ -10,144 +10,144 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-gap-s);
+    gap: var(--db-gap-s);
     border: 1px solid transparent;
-    font-weight: 500;
+    font-weight: var(--db-weight-medium);
     transition: all 150ms ease;
     cursor: pointer;
     outline: none;
 
     &:focus {
         outline: none;
-        box-shadow: 0 0 0 2px var(--color-border-focus);
+        box-shadow: 0 0 0 2px var(--db-border-focus);
     }
 
     &:disabled {
         cursor: not-allowed;
-        opacity: 0.6;
+        opacity: var(--db-opacity-60);
     }
 
     // Variant 스타일
     &--primary {
-        background-color: var(--color-button-primary-bg);
-        border-color: var(--color-button-primary-bg);
-        color: var(--color-button-primary-text);
+        background-color: var(--db-btn-primary-bg);
+        border-color: var(--db-btn-primary-bg);
+        color: var(--db-btn-primary-text);
 
         &:hover:not(:disabled) {
-            background-color: var(--color-button-primary-bg-hover);
-            border-color: var(--color-button-primary-bg-hover);
+            background-color: var(--db-blue-700);
+            border-color: var(--db-blue-700);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--color-button-primary-bg-active);
-            border-color: var(--color-button-primary-bg-active);
+            background-color: var(--db-blue-800);
+            border-color: var(--db-blue-800);
         }
     }
 
     &--secondary {
-        background-color: var(--color-button-secondary-bg);
-        border-color: var(--color-button-secondary-border);
-        color: var(--color-button-secondary-text);
+        background-color: var(--db-btn-secondary-bg);
+        border-color: var(--db-btn-secondary-bg);
+        color: var(--db-btn-secondary-text);
 
         &:hover:not(:disabled) {
-            background-color: var(--color-button-secondary-bg-hover);
-            border-color: var(--color-button-secondary-border-hover);
-            color: var(--color-button-secondary-text-hover);
+            background-color: var(--db-neutral-100);
+            border-color: var(--db-neutral-300);
+            color: var(--db-text-primary);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--color-button-secondary-bg-active);
+            background-color: var(--db-neutral-200);
         }
     }
 
     &--tertiary {
-        background-color: var(--color-button-tertiary-bg);
-        border-color: var(--color-button-tertiary-border);
-        color: var(--color-button-tertiary-text);
+        background-color: var(--db-bg-secondary);
+        border-color: var(--db-border-secondary);
+        color: var(--db-text-primary);
 
         &:hover:not(:disabled) {
-            background-color: var(--color-button-tertiary-bg-hover);
-            border-color: var(--color-button-tertiary-border-hover);
-            color: var(--color-button-tertiary-text-hover);
+            background-color: var(--db-bg-tertiary);
+            border-color: var(--db-border-primary);
+            color: var(--db-text-primary);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--color-button-tertiary-bg-active);
-            border-color: var(--color-button-tertiary-border-hover);
+            background-color: var(--db-neutral-200);
+            border-color: var(--db-border-primary);
         }
     }
 
     &--danger {
-        background-color: var(--color-button-danger-bg);
-        border-color: var(--color-button-danger-bg);
-        color: var(--color-button-danger-text);
+        background-color: var(--db-red-600);
+        border-color: var(--db-red-600);
+        color: var(--db-white);
 
         &:hover:not(:disabled) {
-            background-color: var(--color-button-danger-bg-hover);
-            border-color: var(--color-button-danger-bg-hover);
+            background-color: var(--db-red-700);
+            border-color: var(--db-red-700);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--color-button-danger-bg-active);
-            border-color: var(--color-button-danger-bg-active);
+            background-color: var(--db-red-800);
+            border-color: var(--db-red-800);
         }
     }
 
     &--ghost {
         background-color: transparent;
         border-color: transparent;
-        color: var(--color-text-primary);
+        color: var(--db-text-primary);
 
         &:hover:not(:disabled) {
-            background-color: var(--color-bg-secondary);
+            background-color: var(--db-bg-secondary);
         }
 
         &:focus {
-            box-shadow: 0 0 0 2px var(--color-border-focus);
+            box-shadow: 0 0 0 2px var(--db-border-focus);
         }
     }
 
     // Size 스타일
     &--xs {
-        font-size: 0.75rem;
-        padding: var(--spacing-padding-xxs) var(--spacing-padding-xs);
+        font-size: var(--db-text-xs);
+        padding: var(--db-padding-xxs) var(--db-padding-xs);
     }
 
     &--sm {
-        font-size: 0.875rem;
-        padding: var(--spacing-padding-xs) var(--spacing-padding-s);
+        font-size: var(--db-text-sm);
+        padding: var(--db-padding-xs) var(--db-padding-s);
     }
 
     &--md {
-        font-size: 0.875rem;
-        padding: var(--spacing-padding-s) var(--spacing-padding-m);
+        font-size: var(--db-text-sm);
+        padding: var(--db-padding-s) var(--db-padding-m);
     }
 
     &--lg {
-        font-size: 1rem;
-        padding: var(--spacing-padding-s) var(--spacing-padding-l);
+        font-size: var(--db-text-base);
+        padding: var(--db-padding-s) var(--db-padding-l);
     }
 
     &--xl {
-        font-size: 1.125rem;
-        padding: var(--spacing-padding-m) var(--spacing-padding-xl);
+        font-size: var(--db-text-lg);
+        padding: var(--db-padding-m) var(--db-padding-xl);
     }
 
     // Border radius variants
     &--radius-sm {
-        border-radius: var(--border-radius-button-sm);
+        border-radius: var(--db-radius-btn-sm);
     }
 
     &--radius-md {
-        border-radius: var(--border-radius-button-md);
+        border-radius: var(--db-radius-btn-md);
     }
 
     &--radius-lg {
-        border-radius: var(--border-radius-button-lg);
+        border-radius: var(--db-radius-btn-lg);
     }
 
     &--radius-pill {
-        border-radius: var(--border-radius-button-pill);
+        border-radius: var(--db-radius-btn-pill);
     }
 
     // Icon only 버튼
@@ -155,20 +155,20 @@
         gap: 0;
 
         &.designbase-button--xs {
-            padding: var(--spacing-padding-xxs);
+            padding: var(--db-padding-xxs);
         }
 
         &.designbase-button--sm,
         &.designbase-button--md {
-            padding: var(--spacing-padding-xs);
+            padding: var(--db-padding-xs);
         }
 
         &.designbase-button--lg {
-            padding: var(--spacing-padding-s);
+            padding: var(--db-padding-s);
         }
 
         &.designbase-button--xl {
-            padding: var(--spacing-padding-m);
+            padding: var(--db-padding-m);
         }
     }
 

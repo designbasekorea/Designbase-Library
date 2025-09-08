@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M11.386 2.094a.75.75 0 0 1 .729 0l9 5a.75.75 0 0 1 0 1.312l-9 5a.75.75 0 0 1-.729 0l-9-5a.75.75 0 0 1 0-1.312zM4.295 7.75l7.455 4.142 7.456-4.142-7.456-4.142z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M2.095 11.386a.75.75 0 0 1 1.02-.292l8.635 4.798 8.636-4.798a.75.75 0 0 1 .728 1.312l-9 5a.75.75 0 0 1-.728 0l-9-5a.75.75 0 0 1-.291-1.02" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M2.095 15.386a.75.75 0 0 1 1.02-.292l8.635 4.798 8.636-4.798a.75.75 0 0 1 .728 1.312l-9 5a.75.75 0 0 1-.728 0l-9-5a.75.75 0 0 1-.291-1.02" clip-rule="evenodd"/></svg>
+
+export default LayerIcon;

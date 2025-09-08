@@ -7,28 +7,23 @@
 
 import React, { useState, useCallback } from 'react';
 import clsx from 'clsx';
-import { Dropzone } from '../Dropzone/Dropzone';
-import { Button } from '../Button/Button';
-import { Progress } from '../Progress/Progress';
+import Dropzone from '../Dropzone/Dropzone';
+import Spinner from '../Spinner/Spinner';
+import Progressbar from '../Progressbar/Progressbar';
 import './FileUploader.scss';
 
-export type FileUploaderSize = 'sm' | 'md' | 'lg' | 'xl';
+// 타입 정의
+export type FileUploaderSize = 'sm' | 'md' | 'lg';
 export type FileUploaderVariant = 'default' | 'outlined' | 'filled';
-export type FileStatus = 'pending' | 'uploading' | 'completed' | 'error';
+export type FileStatus = 'pending' | 'uploading' | 'success' | 'error';
 
 export interface UploadFile {
-    /** 파일 ID */
-    id: string;
-    /** 파일 객체 */
     file: File;
-    /** 파일 상태 */
+    id: string;
     status: FileStatus;
-    /** 업로드 진행률 (0-100) */
     progress?: number;
-    /** 에러 메시지 */
     error?: string;
-    /** 업로드된 URL */
-    url?: string;
+    uploadedAt?: Date;
 }
 
 export interface FileUploaderProps {
@@ -36,253 +31,289 @@ export interface FileUploaderProps {
     size?: FileUploaderSize;
     /** 파일 업로더 스타일 변형 */
     variant?: FileUploaderVariant;
-    /** 드롭존 제목 */
-    title?: string;
-    /** 드롭존 설명 */
-    description?: string;
-    /** 허용된 파일 타입 */
+    /** 허용할 파일 타입 */
     accept?: string;
     /** 최대 파일 크기 (bytes) */
     maxSize?: number;
     /** 다중 파일 선택 허용 */
     multiple?: boolean;
-    /** 최대 파일 개수 */
-    maxFiles?: number;
+    /** 파일 목록 표시 여부 */
+    showFileList?: boolean;
+    /** 진행률 표시 여부 */
+    showProgress?: boolean;
     /** 비활성화 상태 */
     disabled?: boolean;
-    /** 파일 목록 표시 */
-    showFileList?: boolean;
-    /** 진행률 표시 */
-    showProgress?: boolean;
+    /** 읽기 전용 상태 */
+    readonly?: boolean;
     /** 파일 업로드 핸들러 */
-    onUpload?: (files: UploadFile[]) => Promise<void>;
+    onUpload?: (files: UploadFile[]) => void;
     /** 파일 제거 핸들러 */
     onRemove?: (fileId: string) => void;
+    /** 파일 재시도 핸들러 */
+    onRetry?: (fileId: string) => void;
     /** 추가 CSS 클래스 */
     className?: string;
 }
 
-export const FileUploader: React.FC<FileUploaderProps> = ({
+const FileUploader: React.FC<FileUploaderProps> = ({
     size = 'md',
     variant = 'default',
-    title = '파일을 드래그하거나 클릭하여 업로드하세요',
-    description = '지원되는 파일 형식: 모든 파일',
     accept,
     maxSize,
     multiple = false,
-    maxFiles,
-    disabled = false,
     showFileList = true,
     showProgress = true,
+    disabled = false,
+    readonly = false,
     onUpload,
     onRemove,
+    onRetry,
     className,
 }) => {
-    const [files, setFiles] = useState<UploadFile[]>([]);
+    const [uploadedFiles, setUploadedFiles] = useState<UploadFile[]>([]);
     const [isUploading, setIsUploading] = useState(false);
 
-    const handleFileSelect = useCallback((selectedFiles: File[]) => {
-        if (disabled || isUploading) return;
+    // 파일 선택 처리
+    const handleFileSelect = useCallback((files: File[]) => {
+        if (disabled || readonly) return;
 
-        const newFiles: UploadFile[] = selectedFiles.map(file => ({
-            id: `${Date.now()}-${Math.random()}`,
+        const newUploadFiles: UploadFile[] = files.map(file => ({
             file,
+            id: `${Date.now()}-${Math.random()}`,
             status: 'pending' as FileStatus,
+            progress: 0,
         }));
 
-        if (maxFiles && files.length + newFiles.length > maxFiles) {
-            alert(`최대 ${maxFiles}개의 파일만 업로드할 수 있습니다.`);
-            return;
+        if (multiple) {
+            setUploadedFiles(prev => [...prev, ...newUploadFiles]);
+        } else {
+            setUploadedFiles(newUploadFiles);
         }
 
-        const updatedFiles = multiple ? [...files, ...newFiles] : newFiles;
-        setFiles(updatedFiles);
+        // 시뮬레이션된 업로드 진행
+        simulateUpload(newUploadFiles);
+    }, [disabled, readonly, multiple]);
 
-        // 자동 업로드
-        if (onUpload) {
-            handleUpload(updatedFiles);
-        }
-    }, [disabled, isUploading, files, multiple, maxFiles, onUpload]);
-
-    const handleUpload = useCallback(async (uploadFiles: UploadFile[]) => {
-        if (!onUpload) return;
-
+    // 업로드 시뮬레이션
+    const simulateUpload = useCallback((files: UploadFile[]) => {
         setIsUploading(true);
 
-        try {
-            // 업로드 중 상태로 변경
-            const uploadingFiles = uploadFiles.map(file => ({
-                ...file,
-                status: 'uploading' as FileStatus,
-                progress: 0,
-            }));
-            setFiles(uploadingFiles);
+        files.forEach((uploadFile, index) => {
+            // 업로드 시작
+            setUploadedFiles(prev =>
+                prev.map(f =>
+                    f.id === uploadFile.id
+                        ? { ...f, status: 'uploading' as FileStatus }
+                        : f
+                )
+            );
 
-            // 시뮬레이션된 진행률 업데이트
-            const progressInterval = setInterval(() => {
-                setFiles(prev => prev.map(file => {
-                    if (file.status === 'uploading' && file.progress !== undefined && file.progress < 90) {
-                        return {
-                            ...file,
-                            progress: file.progress + Math.random() * 10,
-                        };
-                    }
-                    return file;
-                }));
-            }, 200);
+            // 진행률 시뮬레이션
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
 
-            // 실제 업로드 실행
-            await onUpload(uploadingFiles);
+                    // 업로드 완료
+                    setTimeout(() => {
+                        setUploadedFiles(prev =>
+                            prev.map(f =>
+                                f.id === uploadFile.id
+                                    ? {
+                                        ...f,
+                                        status: 'success' as FileStatus,
+                                        progress: 100,
+                                        uploadedAt: new Date()
+                                    }
+                                    : f
+                            )
+                        );
 
-            clearInterval(progressInterval);
+                        // 모든 파일 업로드 완료 확인
+                        setTimeout(() => {
+                            const allCompleted = uploadedFiles.every(f => f.status === 'success');
+                            if (allCompleted) {
+                                setIsUploading(false);
+                            }
+                        }, 500);
+                    }, 200);
+                } else {
+                    setUploadedFiles(prev =>
+                        prev.map(f =>
+                            f.id === uploadFile.id
+                                ? { ...f, progress }
+                                : f
+                        )
+                    );
+                }
+            }, 100 + index * 50); // 각 파일마다 약간의 지연
+        });
+    }, [uploadedFiles]);
 
-            // 완료 상태로 변경
-            setFiles(prev => prev.map(file => ({
-                ...file,
-                status: 'completed' as FileStatus,
-                progress: 100,
-            })));
-
-        } catch (error) {
-            // 에러 상태로 변경
-            setFiles(prev => prev.map(file => ({
-                ...file,
-                status: 'error' as FileStatus,
-                error: error instanceof Error ? error.message : '업로드 실패',
-            })));
-        } finally {
-            setIsUploading(false);
-        }
-    }, [onUpload]);
-
+    // 파일 제거
     const handleRemove = useCallback((fileId: string) => {
-        setFiles(prev => prev.filter(file => file.id !== fileId));
+        if (disabled || readonly) return;
+
+        setUploadedFiles(prev => prev.filter(f => f.id !== fileId));
         onRemove?.(fileId);
-    }, [onRemove]);
+    }, [disabled, readonly, onRemove]);
 
+    // 파일 재시도
     const handleRetry = useCallback((fileId: string) => {
-        const fileToRetry = files.find(file => file.id === fileId);
-        if (fileToRetry) {
-            handleUpload([fileToRetry]);
+        if (disabled || readonly) return;
+
+        const file = uploadedFiles.find(f => f.id === fileId);
+        if (file) {
+            simulateUpload([file]);
         }
-    }, [files, handleUpload]);
+        onRetry?.(fileId);
+    }, [disabled, readonly, uploadedFiles, simulateUpload, onRetry]);
 
-    const classes = clsx(
-        'designbase-file-uploader',
-        `designbase-file-uploader--size-${size}`,
-        `designbase-file-uploader--variant-${variant}`,
-        {
-            'designbase-file-uploader--disabled': disabled,
-        },
-        className
-    );
+    // 파일 크기 포맷팅
+    const formatFileSize = useCallback((bytes: number): string => {
+        if (bytes === 0) return '0 Bytes';
 
-    const getStatusIcon = (status: FileStatus) => {
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }, []);
+
+    // 상태별 아이콘
+    const getStatusIcon = useCallback((status: FileStatus) => {
         switch (status) {
-            case 'completed':
+            case 'pending':
                 return (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 6L9 17l-5-5" />
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="2" fill="none" />
+                    </svg>
+                );
+            case 'uploading':
+                return <Spinner type="circular" size="sm" />;
+            case 'success':
+                return (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M13 5L6 12L3 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 );
             case 'error':
                 return (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="15" y1="9" x2="9" y2="15" />
-                        <line x1="9" y1="9" x2="15" y2="15" />
-                    </svg>
-                );
-            case 'uploading':
-                return (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 12a9 9 0 11-6.219-8.56" />
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 1L15 8L8 15L1 8L8 1Z" stroke="currentColor" strokeWidth="2" />
+                        <path d="M8 5V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        <circle cx="8" cy="12" r="1" fill="currentColor" />
                     </svg>
                 );
             default:
-                return (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10" />
-                    </svg>
-                );
+                return null;
         }
-    };
-
-    const formatFileSize = (bytes: number) => {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    };
+    }, []);
 
     return (
-        <div className={classes}>
+        <div
+            className={clsx(
+                'designbase-file-uploader',
+                `designbase-file-uploader--size-${size}`,
+                `designbase-file-uploader--variant-${variant}`,
+                {
+                    'designbase-file-uploader--disabled': disabled,
+                    'designbase-file-uploader--readonly': readonly,
+                },
+                className
+            )}
+        >
+            {/* Dropzone */}
             <Dropzone
                 size={size}
                 variant={variant}
-                title={title}
-                description={description}
                 accept={accept}
                 maxSize={maxSize}
                 multiple={multiple}
-                disabled={disabled || isUploading}
+                disabled={disabled}
+                readonly={readonly}
                 onFileSelect={handleFileSelect}
             />
 
-            {showFileList && files.length > 0 && (
+            {/* 파일 목록 */}
+            {showFileList && uploadedFiles.length > 0 && (
                 <div className="designbase-file-uploader__file-list">
-                    <h4 className="designbase-file-uploader__file-list-title">
-                        업로드된 파일 ({files.length})
-                    </h4>
+                    <div className="designbase-file-uploader__file-list-title">
+                        업로드된 파일들 ({uploadedFiles.length}개)
+                    </div>
 
-                    {files.map(file => (
-                        <div key={file.id} className="designbase-file-uploader__file-item">
-                            <div className="designbase-file-uploader__file-info">
-                                <div className="designbase-file-uploader__file-icon">
-                                    {getStatusIcon(file.status)}
+                    <div className="designbase-file-uploader__file-items">
+                        {uploadedFiles.map((uploadFile) => (
+                            <div
+                                key={uploadFile.id}
+                                className={clsx(
+                                    'designbase-file-uploader__file-item',
+                                    `designbase-file-uploader__file-item--${uploadFile.status}`
+                                )}
+                            >
+                                {/* 파일 정보 */}
+                                <div className="designbase-file-uploader__file-info">
+                                    <div className="designbase-file-uploader__file-icon">
+                                        {getStatusIcon(uploadFile.status)}
+                                    </div>
+
+                                    <div className="designbase-file-uploader__file-details">
+                                        <div className="designbase-file-uploader__file-name">
+                                            {uploadFile.file.name}
+                                        </div>
+                                        <div className="designbase-file-uploader__file-size">
+                                            {formatFileSize(uploadFile.file.size)}
+                                        </div>
+                                        {uploadFile.error && (
+                                            <div className="designbase-file-uploader__file-error">
+                                                {uploadFile.error}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
 
-                                <div className="designbase-file-uploader__file-details">
-                                    <span className="designbase-file-uploader__file-name">
-                                        {file.file.name}
-                                    </span>
-                                    <span className="designbase-file-uploader__file-size">
-                                        {formatFileSize(file.file.size)}
-                                    </span>
-                                    {file.error && (
-                                        <span className="designbase-file-uploader__file-error">
-                                            {file.error}
-                                        </span>
+                                {/* 진행률 */}
+                                {showProgress && uploadFile.status === 'uploading' && (
+                                    <div className="designbase-file-uploader__progress">
+                                        <Progressbar
+                                            value={uploadFile.progress || 0}
+                                            size="sm"
+                                            variant="primary"
+                                            style="solid"
+                                            showLabel={true}
+                                            labelPosition="inside"
+                                            fullWidth={true}
+                                        />
+                                    </div>
+                                )}
+
+                                {/* 액션 버튼 */}
+                                <div className="designbase-file-uploader__file-actions">
+                                    {uploadFile.status === 'error' && (
+                                        <button
+                                            className="designbase-file-uploader__retry-button"
+                                            onClick={() => handleRetry(uploadFile.id)}
+                                            disabled={disabled || readonly}
+                                            type="button"
+                                        >
+                                            재시도
+                                        </button>
                                     )}
+
+                                    <button
+                                        className="designbase-file-uploader__remove-button"
+                                        onClick={() => handleRemove(uploadFile.id)}
+                                        disabled={disabled || readonly}
+                                        type="button"
+                                    >
+                                        삭제
+                                    </button>
                                 </div>
                             </div>
-
-                            <div className="designbase-file-uploader__file-actions">
-                                {showProgress && file.status === 'uploading' && file.progress !== undefined && (
-                                    <Progress value={file.progress} size="sm" />
-                                )}
-
-                                {file.status === 'error' && (
-                                    <Button
-                                        variant="outlined"
-                                        size="sm"
-                                        onClick={() => handleRetry(file.id)}
-                                    >
-                                        재시도
-                                    </Button>
-                                )}
-
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => handleRemove(file.id)}
-                                >
-                                    삭제
-                                </Button>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

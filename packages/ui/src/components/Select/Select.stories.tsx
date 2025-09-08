@@ -170,7 +170,7 @@ export const SearchableMultiple: Story = {
                 label="검색 가능한 다중 선택"
                 options={longOptions}
                 value={value}
-                onChange={setValue}
+                onChange={(value) => setValue(Array.isArray(value) ? value : [value])}
                 multiple
                 searchable
                 placeholder="프레임워크를 검색하거나 선택하세요"
@@ -252,7 +252,7 @@ export const WithDefaultValue: Story = {
                 label="기본값이 있는 셀렉트"
                 options={longOptions}
                 value={value}
-                onChange={setValue}
+                onChange={(value) => setValue(Array.isArray(value) ? value[0] : value)}
                 placeholder="프레임워크를 선택하세요"
                 helperText="React가 기본값으로 선택되어 있습니다."
             />
@@ -269,7 +269,7 @@ export const WithDefaultValueMultiple: Story = {
                 label="기본값이 있는 다중 선택"
                 options={longOptions}
                 value={value}
-                onChange={setValue}
+                onChange={(value) => setValue(Array.isArray(value) ? value : [value])}
                 multiple
                 placeholder="프레임워크를 선택하세요"
                 helperText="React와 Vue가 기본값으로 선택되어 있습니다."
@@ -311,7 +311,7 @@ export const Interactive: Story = {
                         label="프레임워크 선택"
                         options={longOptions}
                         value={singleValue}
-                        onChange={setSingleValue}
+                        onChange={(value) => setSingleValue(Array.isArray(value) ? value[0] : value)}
                         placeholder="프레임워크를 선택하세요"
                     />
                     <p style={{ marginTop: '8px', fontSize: '14px', color: '#666' }}>
@@ -325,7 +325,7 @@ export const Interactive: Story = {
                         label="프레임워크 다중 선택"
                         options={longOptions}
                         value={multipleValue}
-                        onChange={setMultipleValue}
+                        onChange={(value) => setMultipleValue(Array.isArray(value) ? value : [value])}
                         multiple
                         searchable
                         placeholder="프레임워크를 선택하세요"

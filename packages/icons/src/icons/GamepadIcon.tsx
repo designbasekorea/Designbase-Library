@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M17 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2M15 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/><path fill="currentColor" fill-rule="evenodd" d="M5 6.75A2.25 2.25 0 0 0 2.75 9v6A2.25 2.25 0 0 0 5 17.25h14A2.25 2.25 0 0 0 21.25 15V9A2.25 2.25 0 0 0 19 6.75zM1.25 9A3.75 3.75 0 0 1 5 5.25h14A3.75 3.75 0 0 1 22.75 9v6A3.75 3.75 0 0 1 19 18.75H5A3.75 3.75 0 0 1 1.25 15z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M7.25 15V9h1.5v6z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M5 11.25h6v1.5H5z" clip-rule="evenodd"/></svg>
+
+export default GamepadIcon;

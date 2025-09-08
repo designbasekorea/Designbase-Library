@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M7 3.75a.25.25 0 0 0-.25.25v7.25h10.5V4a.25.25 0 0 0-.25-.25zM5.25 4c0-.966.784-1.75 1.75-1.75h10c.966 0 1.75.784 1.75 1.75v8a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-.75.75h-4.25V22a.75.75 0 0 1-.75.75h-4a.75.75 0 0 1-.75-.75v-5.25H5a.75.75 0 0 1-.75-.75zm1.5.75v2.5H10a.75.75 0 0 1 .75.75v5.25h2.5V16a.75.75 0 0 1 .75-.75h4.25v-2.5z" clip-rule="evenodd"/></svg>
+
+export default PaintbrushIcon;

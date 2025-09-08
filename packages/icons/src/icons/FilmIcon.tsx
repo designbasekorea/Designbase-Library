@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v14c0 .69.56 1.25 1.25 1.25h14c.69 0 1.25-.56 1.25-1.25v-14c0-.69-.56-1.25-1.25-1.25zM2 4.75A2.75 2.75 0 0 1 4.75 2h14a2.75 2.75 0 0 1 2.75 2.75v14a2.75 2.75 0 0 1-2.75 2.75h-14A2.75 2.75 0 0 1 2 18.75z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M7 20.75v-18h1.5v18z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M7.75 8.5h-5V7h5zM7.75 12.5h-5V11h5zM7.75 16.5h-5V15h5zM16.5 2.75v18H15v-18z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M15.75 15h5v1.5h-5zM15.75 11h5v1.5h-5zM15.75 7h5v1.5h-5z" clip-rule="evenodd"/></svg>
+
+export default FilmIcon;

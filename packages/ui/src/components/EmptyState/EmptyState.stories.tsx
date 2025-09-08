@@ -10,7 +10,7 @@ import {
     CalendarIcon,
     CameraIcon,
     BookIcon,
-    ImageIcon,
+    GalleryIcon,
     VideoIcon,
     MusicIcon,
     DownloadIcon,
@@ -255,7 +255,7 @@ export const WithCustomActions: Story = {
             <EmptyState
                 title="미디어 라이브러리가 비어있습니다"
                 description="이미지, 비디오, 음악 파일을 추가하여 미디어 라이브러리를 구성해보세요."
-                icon={ImageIcon}
+                icon={GalleryIcon}
                 action={
                     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
                         <button
@@ -273,7 +273,7 @@ export const WithCustomActions: Story = {
                             }}
                             onClick={fn()}
                         >
-                            <ImageIcon size={16} />
+                            <GalleryIcon size={16} />
                             이미지 추가
                         </button>
                         <button

@@ -6,61 +6,84 @@
  * 최적화: Tree-shaking 지원, 외부 React 종속성
  */
 
-import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+import { dts } from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 
-export default {
-    input: 'src/index.ts',
-    output: [
-        {
-            file: 'dist/index.js',
-            format: 'cjs',
-            exports: 'auto',
-        },
-        {
-            file: 'dist/index.esm.js',
-            format: 'es',
-        },
-        {
-            file: 'dist/index.umd.js',
-            format: 'umd',
-            name: 'DesignbaseUI',
-            globals: {
-                react: 'React',
-                'react-dom': 'ReactDOM',
-                clsx: 'clsx',
-                'react-aria': 'ReactAria',
-                'react-stately': 'ReactStately',
+// SCSS 파일을 무시하는 플러그인
+const ignoreScssPlugin = () => ({
+    name: 'ignore-scss',
+    resolveId(id) {
+        if (id.endsWith('.scss') || id.endsWith('.css')) {
+            return { id, external: true };
+        }
+        return null;
+    }
+});
+
+export default [
+    {
+        input: 'src/index.ts',
+        output: [
+            {
+                file: 'dist/index.js',
+                format: 'cjs',
+                sourcemap: true,
+                exports: 'named', // ⚠️ named export 경고 제거
             },
+            {
+                file: 'dist/index.esm.js',
+                format: 'esm',
+                sourcemap: true,
+            },
+            {
+                file: 'dist/index.umd.js',
+                format: 'umd',
+                name: 'DesignbaseUI',
+                sourcemap: true,
+                globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM',
+                },
+            },
+        ],
+        external: ['react', 'react-dom', '@designbase/icons', '@designbase/theme', '@designbase/tokens'],
+        plugins: [
+            resolve(),
+            commonjs(),
+            typescript({
+                tsconfig: './tsconfig.json',
+                declaration: false, // ⚠️ 첫 빌드에서 d.ts 안 뽑음
+                sourceMap: false,
+            }),
+            postcss({
+                extract: true,
+                modules: false,
+                minimize: true,
+                extensions: ['.css', '.scss'],
+                use: ['sass'],
+                inject: false,
+                sourceMap: true,
+            }),
+        ],
+    },
+    {
+        input: 'src/index.ts',
+        output: {
+            file: 'dist/index.d.ts',
+            format: 'esm',
         },
-    ],
-    external: [
-        'react',
-        'react-dom',
-        'clsx',
-        'react-aria',
-        'react-stately',
-        '@react-aria/utils',
-        '@designbase/icons',
-        '@designbase/theme',
-        '@designbase/tokens',
-    ],
-    plugins: [
-        resolve({
-            browser: true,
-        }),
-        commonjs(),
-        postcss({
-            extract: false,
-            inject: true,
-        }),
-        typescript({
-            tsconfig: './tsconfig.json',
-            declaration: true,
-            declarationDir: 'dist',
-            rootDir: 'src',
-        }),
-    ],
-};
+        external: ['react', 'react-dom', '@designbase/icons', '@designbase/theme', '@designbase/tokens'],
+        plugins: [
+            ignoreScssPlugin(),
+            dts({
+                respectExternal: true,
+                compilerOptions: {
+                    skipLibCheck: true,
+                },
+            }),
+        ],
+    },
+];

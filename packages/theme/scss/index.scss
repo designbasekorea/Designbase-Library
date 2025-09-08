@@ -6,16 +6,7 @@
  * 사용법: @import '@designbase/theme/scss' 또는 CSS 파일로 로드
  */
 
-// Base styles and reset
 @import 'reset';
 
-// Core system files
 @import 'variables';
-@import 'mixins';
-@import 'themes';
-
-// Utility classes
-@import 'utilities';
-
-// Component base styles (minimal, for when components are used without JS)
-@import 'components';
+@import 'semantic';

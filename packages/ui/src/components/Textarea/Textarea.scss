@@ -1,19 +1,19 @@
 .designbase-textarea {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs, 4px);
+    gap: var(--db-gap-xs);
 
     &__label {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        font-weight: var(--typography-body-sm-font-weight, 500);
-        color: var(--color-semantic-text-primary, #111827);
-        line-height: var(--typography-body-sm-line-height, 20px);
+        font-size: var(--db-font-sm);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
+        line-height: var(--db-leading-tight);
         cursor: pointer;
     }
 
     &__required {
-        color: var(--color-semantic-danger-500, #ef4444);
-        margin-left: var(--spacing-xs, 4px);
+        color: var(--db-red-500);
+        margin-left: var(--db-margin-xs);
     }
 
     &__wrapper {
@@ -24,30 +24,30 @@
 
     &__field {
         width: 100%;
-        padding: var(--spacing-sm, 12px);
-        border: 1px solid var(--color-semantic-border-primary, #d1d5db);
-        border-radius: var(--border-radius-md, 6px);
-        background-color: var(--color-semantic-background-primary, #ffffff);
-        color: var(--color-semantic-text-primary, #111827);
-        font-size: var(--typography-body-md-font-size, 16px);
-        line-height: var(--typography-body-md-line-height, 24px);
+        padding: var(--db-padding-s);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-md);
+        background-color: var(--db-bg-primary);
+        color: var(--db-text-primary);
+        font-size: var(--db-font-md);
+        line-height: var(--db-leading-normal);
         font-family: inherit;
         resize: vertical;
         min-height: 100px;
-        transition: all 0.2s ease-in-out;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &::placeholder {
-            color: var(--color-semantic-text-muted, #9ca3af);
+            color: var(--db-text-muted);
         }
 
         &:focus {
             outline: none;
-            border-color: var(--color-semantic-primary-500, #3b82f6);
-            box-shadow: 0 0 0 3px var(--color-semantic-primary-100, #dbeafe);
+            border-color: var(--db-blue-500);
+            box-shadow: 0 0 0 3px var(--db-blue-100);
         }
 
         &:hover:not(:disabled):not(:focus) {
-            border-color: var(--color-semantic-border-hover, #9ca3af);
+            border-color: var(--db-border-secondary);
         }
     }
 
@@ -59,24 +59,24 @@
     }
 
     &__helper-text {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        line-height: var(--typography-body-sm-line-height, 20px);
-        color: var(--color-semantic-text-secondary, #6b7280);
+        font-size: var(--db-font-sm);
+        line-height: var(--db-leading-tight);
+        color: var(--db-text-secondary);
     }
 
     &__error-message {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        line-height: var(--typography-body-sm-line-height, 20px);
-        color: var(--color-semantic-danger-500, #ef4444);
+        font-size: var(--db-font-sm);
+        line-height: var(--db-leading-tight);
+        color: var(--db-red-500);
     }
 
     &__character-count {
-        font-size: var(--typography-body-sm-font-size, 14px);
-        line-height: var(--typography-body-sm-line-height, 20px);
-        color: var(--color-semantic-text-secondary, #6b7280);
+        font-size: var(--db-font-sm);
+        line-height: var(--db-leading-tight);
+        color: var(--db-text-secondary);
 
         &--top {
-            margin-bottom: var(--spacing-xs, 4px);
+            margin-bottom: var(--db-margin-xs);
         }
 
         &--bottom {
@@ -85,7 +85,7 @@
 
         &-text {
             &--error {
-                color: var(--color-semantic-danger-500, #ef4444);
+                color: var(--db-red-500);
             }
         }
     }
@@ -93,94 +93,94 @@
     // 크기 변형
     &--sm {
         .designbase-textarea__field {
-            padding: var(--spacing-xs, 8px);
-            font-size: var(--typography-body-sm-font-size, 14px);
-            line-height: var(--typography-body-sm-line-height, 20px);
+            padding: var(--db-padding-xs);
+            font-size: var(--db-font-sm);
+            line-height: var(--db-leading-tight);
         }
 
         .designbase-textarea__label {
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            font-size: var(--db-font-xs);
+            line-height: var(--db-leading-none);
         }
 
         .designbase-textarea__helper-text,
         .designbase-textarea__error-message,
         .designbase-textarea__character-count {
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            font-size: var(--db-font-xs);
+            line-height: var(--db-leading-none);
         }
     }
 
     &--md {
         .designbase-textarea__field {
-            padding: var(--spacing-sm, 12px);
-            font-size: var(--typography-body-md-font-size, 16px);
-            line-height: var(--typography-body-md-line-height, 24px);
+            padding: var(--db-padding-s);
+            font-size: var(--db-font-md);
+            line-height: var(--db-leading-normal);
         }
     }
 
     &--lg {
         .designbase-textarea__field {
-            padding: var(--spacing-md, 16px);
-            font-size: var(--typography-body-lg-font-size, 18px);
-            line-height: var(--typography-body-lg-line-height, 28px);
+            padding: var(--db-padding-m);
+            font-size: var(--db-font-lg);
+            line-height: var(--db-leading-relaxed);
         }
 
         .designbase-textarea__label {
-            font-size: var(--typography-body-md-font-size, 16px);
-            line-height: var(--typography-body-md-line-height, 24px);
+            font-size: var(--db-font-md);
+            line-height: var(--db-leading-normal);
         }
 
         .designbase-textarea__helper-text,
         .designbase-textarea__error-message,
         .designbase-textarea__character-count {
-            font-size: var(--typography-body-md-font-size, 16px);
-            line-height: var(--typography-body-md-line-height, 24px);
+            font-size: var(--db-font-md);
+            line-height: var(--db-leading-normal);
         }
     }
 
     // 상태 변형
     &--error {
         .designbase-textarea__field {
-            border-color: var(--color-semantic-danger-500, #ef4444);
+            border-color: var(--db-red-500);
 
             &:focus {
-                border-color: var(--color-semantic-danger-500, #ef4444);
-                box-shadow: 0 0 0 3px var(--color-semantic-danger-100, #fee2e2);
+                border-color: var(--db-red-500);
+                box-shadow: 0 0 0 3px var(--db-red-100);
             }
         }
 
         .designbase-textarea__label {
-            color: var(--color-semantic-danger-500, #ef4444);
+            color: var(--db-red-500);
         }
     }
 
     &--disabled {
         .designbase-textarea__field {
-            background-color: var(--color-semantic-background-disabled, #f9fafb);
-            color: var(--color-semantic-text-disabled, #9ca3af);
+            background-color: var(--db-bg-secondary);
+            color: var(--db-text-disabled);
             cursor: not-allowed;
-            border-color: var(--color-semantic-border-disabled, #e5e7eb);
+            border-color: var(--db-border-muted);
 
             &::placeholder {
-                color: var(--color-semantic-text-disabled, #9ca3af);
+                color: var(--db-text-disabled);
             }
         }
 
         .designbase-textarea__label {
-            color: var(--color-semantic-text-disabled, #9ca3af);
+            color: var(--db-text-disabled);
             cursor: not-allowed;
         }
     }
 
     &--readonly {
         .designbase-textarea__field {
-            background-color: var(--color-semantic-background-readonly, #f9fafb);
-            border-color: var(--color-semantic-border-readonly, #e5e7eb);
+            background-color: var(--db-bg-secondary);
+            border-color: var(--db-border-muted);
             cursor: default;
 
             &:focus {
-                border-color: var(--color-semantic-border-readonly, #e5e7eb);
+                border-color: var(--db-border-muted);
                 box-shadow: none;
             }
         }
@@ -197,79 +197,7 @@
     }
 }
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-textarea {
-        &__label {
-            color: var(--color-semantic-text-primary-dark, #f9fafb);
-        }
-
-        &__field {
-            background-color: var(--color-semantic-background-primary-dark, #1f2937);
-            border-color: var(--color-semantic-border-primary-dark, #374151);
-            color: var(--color-semantic-text-primary-dark, #f9fafb);
-
-            &::placeholder {
-                color: var(--color-semantic-text-muted-dark, #9ca3af);
-            }
-
-            &:focus {
-                border-color: var(--color-semantic-primary-500-dark, #60a5fa);
-                box-shadow: 0 0 0 3px var(--color-semantic-primary-100-dark, #1e3a8a);
-            }
-
-            &:hover:not(:disabled):not(:focus) {
-                border-color: var(--color-semantic-border-hover-dark, #6b7280);
-            }
-        }
-
-        &__helper-text {
-            color: var(--color-semantic-text-secondary-dark, #d1d5db);
-        }
-
-        &__character-count {
-            color: var(--color-semantic-text-secondary-dark, #d1d5db);
-        }
-
-        &--error {
-            .designbase-textarea__field {
-                border-color: var(--color-semantic-danger-500-dark, #f87171);
-
-                &:focus {
-                    border-color: var(--color-semantic-danger-500-dark, #f87171);
-                    box-shadow: 0 0 0 3px var(--color-semantic-danger-100-dark, #7f1d1d);
-                }
-            }
-
-            .designbase-textarea__label {
-                color: var(--color-semantic-danger-500-dark, #f87171);
-            }
-        }
-
-        &--disabled {
-            .designbase-textarea__field {
-                background-color: var(--color-semantic-background-disabled-dark, #374151);
-                color: var(--color-semantic-text-disabled-dark, #6b7280);
-                border-color: var(--color-semantic-border-disabled-dark, #4b5563);
-
-                &::placeholder {
-                    color: var(--color-semantic-text-disabled-dark, #6b7280);
-                }
-            }
-
-            .designbase-textarea__label {
-                color: var(--color-semantic-text-disabled-dark, #6b7280);
-            }
-        }
-
-        &--readonly {
-            .designbase-textarea__field {
-                background-color: var(--color-semantic-background-readonly-dark, #374151);
-                border-color: var(--color-semantic-border-readonly-dark, #4b5563);
-            }
-        }
-    }
-}
+// 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
 
 // 반응형
 @media (max-width: 640px) {
@@ -277,7 +205,7 @@
         &__footer {
             flex-direction: column;
             align-items: flex-start;
-            gap: var(--spacing-xs, 4px);
+            gap: var(--db-gap-xs);
         }
 
         &__character-count {

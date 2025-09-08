@@ -69,7 +69,7 @@ export const Container: React.FC<ContainerProps> = ({
     // 패딩 클래스 계산 (wrapper 변형에서만 적용)
     const getPaddingClass = () => {
         if (variant !== 'wrapper') return '';
-        
+
         const paddingClasses: Record<ContainerPadding, string> = {
             none: 'designbase-container--padding-none',
             sm: 'designbase-container--padding-sm',
@@ -83,7 +83,7 @@ export const Container: React.FC<ContainerProps> = ({
     // 마진 클래스 계산 (wrapper 변형에서만 적용)
     const getMarginClass = () => {
         if (variant !== 'wrapper') return '';
-        
+
         const marginClasses: Record<ContainerPadding, string> = {
             none: 'designbase-container--margin-none',
             sm: 'designbase-container--margin-sm',
@@ -97,7 +97,7 @@ export const Container: React.FC<ContainerProps> = ({
     // 둥근 모서리 클래스 계산 (wrapper 변형에서만 적용)
     const getRoundedClass = () => {
         if (variant !== 'wrapper') return '';
-        
+
         if (rounded === true) return 'designbase-container--rounded';
         if (typeof rounded === 'string') return `designbase-container--rounded-${rounded}`;
         return '';
@@ -106,7 +106,7 @@ export const Container: React.FC<ContainerProps> = ({
     // 그림자 클래스 계산 (wrapper 변형에서만 적용)
     const getShadowClass = () => {
         if (variant !== 'wrapper') return '';
-        
+
         if (shadow === true) return 'designbase-container--shadow';
         if (typeof shadow === 'string') return `designbase-container--shadow-${shadow}`;
         return '';

@@ -8,7 +8,7 @@
 
 import React, { useState, useMemo } from 'react';
 import clsx from 'clsx';
-import { UnfoldMoreIcon } from '@designbase/icons';
+import { ChevronsUpIcon } from '@designbase/icons';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Badge } from '../Badge/Badge';
 import { Select } from '../Select/Select';
@@ -206,7 +206,7 @@ export const Table = <T extends Record<string, any>>({
 
         return (
             <span className="designbase-table__sort-icon">
-                <UnfoldMoreIcon
+                <ChevronsUpIcon
                     size={16}
                     className={clsx({
                         'designbase-table__sort-icon--asc': isAsc,
@@ -261,7 +261,7 @@ export const Table = <T extends Record<string, any>>({
                             <Select
                                 placeholder="필터 선택"
                                 options={filterOptions}
-                                onChange={onFilterChange}
+                                onChange={(value: string | string[]) => onFilterChange?.(Array.isArray(value) ? value[0] : value)}
                                 size={size}
                                 showClearButton={false}
                                 searchable={false}
@@ -280,7 +280,7 @@ export const Table = <T extends Record<string, any>>({
                                     <Checkbox
                                         isSelected={isAllSelected}
                                         isIndeterminate={isIndeterminate}
-                                        onChange={(checked) => handleSelectAll(checked)}
+                                        onChange={(checked: boolean) => handleSelectAll(checked)}
                                         size="sm"
                                         hasLabel={false}
                                     />
@@ -343,10 +343,10 @@ export const Table = <T extends Record<string, any>>({
                                             <td className="designbase-table__td designbase-table__td--checkbox">
                                                 <Checkbox
                                                     isSelected={isSelected}
-                                                    onChange={(checked) => handleRowSelect(key, checked)}
+                                                    onChange={(checked: boolean) => handleRowSelect(key, checked)}
                                                     size="sm"
                                                     hasLabel={false}
-                                                    onClick={(e) => e.stopPropagation()}
+                                                    onClick={(e: React.MouseEvent) => e.stopPropagation()}
                                                 />
                                             </td>
                                         )}

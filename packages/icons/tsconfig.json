@@ -4,7 +4,7 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM"],
     "jsx": "react-jsx",
-    "declaration": true,
+    "declaration": false,
     "emitDeclarationOnly": false,
     "esModuleInterop": true,
     "skipLibCheck": true,

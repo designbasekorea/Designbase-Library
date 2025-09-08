@@ -145,7 +145,7 @@ export const Alert: React.FC<AlertProps> = ({
                         onClick={handleClose}
                         aria-label="알림 닫기"
                     >
-                        <CloseIcon size={16} />
+                        <CloseIcon size={24} />
                     </button>
                 )}
             </div>

@@ -1,0 +1,31 @@
+/* Storybook 레이아웃 조정 */
+.sb-show-main.sb-main-centered #storybook-root {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.sb-show-main.sb-main-centered {
+  padding: 0 !important;
+}
+
+.sb-show-main.sb-main-fullscreen {
+  padding: 0 !important;
+}
+
+.sb-main-padded {
+  padding: 0 !important;
+}
+
+/* 추가적인 컨테이너 조정 */
+.sb-show-main {
+  padding: 0 !important;
+}
+
+/* Storybook 루트 컨테이너 */
+#storybook-root {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}

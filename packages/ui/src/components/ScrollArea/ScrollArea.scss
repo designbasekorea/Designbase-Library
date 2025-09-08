@@ -45,21 +45,21 @@
         }
 
         &::-webkit-scrollbar-track {
-            background: var(--scrollbar-track-color, var(--color-semantic-border-subtle, #f1f5f9));
-            border-radius: var(--border-radius-semantic-radius-sm, 3px);
+            background: var(--scrollbar-track-color, var(--db-border-muted));
+            border-radius: var(--db-radius-sm);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-color, var(--color-semantic-border-default, #cbd5e1));
-            border-radius: var(--border-radius-semantic-radius-sm, 3px);
+            background: var(--scrollbar-color, var(--db-border-primary));
+            border-radius: var(--db-radius-sm);
 
             &:hover {
-                background: var(--color-semantic-border-strong, #94a3b8);
+                background: var(--db-border-primary);
             }
         }
 
         &::-webkit-scrollbar-corner {
-            background: var(--scrollbar-track-color, var(--color-semantic-border-subtle, #f1f5f9));
+            background: var(--scrollbar-track-color, var(--db-border-muted));
         }
     }
 
@@ -89,16 +89,16 @@
         }
 
         &::-webkit-scrollbar-track {
-            background: var(--scrollbar-track-color, var(--color-semantic-border-subtle, #f1f5f9));
-            border-radius: var(--border-radius-semantic-radius-sm, 3px);
+            background: var(--scrollbar-track-color, var(--db-border-muted));
+            border-radius: var(--db-radius-sm);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-color, var(--color-semantic-border-default, #cbd5e1));
-            border-radius: var(--border-radius-semantic-radius-sm, 3px);
+            background: var(--scrollbar-color, var(--db-border-primary));
+            border-radius: var(--db-radius-sm);
 
             &:hover {
-                background: var(--color-semantic-border-strong, #94a3b8);
+                background: var(--db-border-primary);
             }
         }
     }
@@ -120,30 +120,7 @@
     }
 }
 
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-scroll-area {
-
-        &--scrollbar-thin,
-        &--always-show {
-            &::-webkit-scrollbar-track {
-                background: var(--scrollbar-track-color, var(--color-semantic-border-subtle, #334155));
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: var(--scrollbar-color, var(--color-semantic-border-default, #64748b));
-
-                &:hover {
-                    background: var(--color-semantic-border-strong, #94a3b8);
-                }
-            }
-
-            &::-webkit-scrollbar-corner {
-                background: var(--scrollbar-track-color, var(--color-semantic-border-subtle, #334155));
-            }
-        }
-    }
-}
+// 테마는 상위에서 관리됩니다.
 
 // 반응형 스타일
 @media (max-width: 768px) {

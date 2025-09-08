@@ -1,12 +1,12 @@
 .designbase-checkbox {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-gap-s);
+    gap: var(--db-gap-s);
     cursor: pointer;
     user-select: none;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: var(--color-text-primary);
+    font-size: var(--db-text-sm);
+    line-height: var(--db-leading-tight);
+    color: var(--db-text-primary);
 
     &__input {
         position: absolute;
@@ -23,10 +23,10 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        background-color: var(--color-action-interactive-bg);
-        border: 1px solid var(--color-action-interactive-border);
-        border-radius: var(--border-radius-action-sm);
-        transition: all 0.2s ease-in-out;
+        background-color: var(--db-bg-primary);
+        border: 1px solid var(--db-border-primary);
+        border-radius: var(--db-radius-action-sm);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         .designbase-checkbox__check-icon,
         .designbase-checkbox__indeterminate-icon {
@@ -43,23 +43,23 @@
 
     // Default styles
     .designbase-checkbox__visual {
-        background-color: var(--color-action-interactive-bg);
-        border-color: var(--color-action-interactive-border);
+        background-color: var(--db-bg-primary);
+        border-color: var(--db-border-primary);
     }
 
     &:hover:not(.designbase-checkbox--disabled) .designbase-checkbox__visual {
-        background-color: var(--color-action-interactive-bg-hover);
-        border-color: var(--color-action-interactive-border-hover);
+        background-color: var(--db-bg-secondary);
+        border-color: var(--db-border-secondary);
     }
 
     &.designbase-checkbox--selected .designbase-checkbox__visual {
-        background-color: var(--color-action-interactive-bg-selected);
-        border-color: var(--color-action-interactive-border-selected);
+        background-color: var(--db-blue-500);
+        border-color: var(--db-blue-500);
     }
 
     &.designbase-checkbox--selected:hover:not(.designbase-checkbox--disabled) .designbase-checkbox__visual {
-        background-color: var(--color-action-interactive-bg-selected);
-        border-color: var(--color-action-interactive-border-selected);
+        background-color: var(--db-blue-600);
+        border-color: var(--db-blue-600);
     }
 
     // No label variant
@@ -69,67 +69,67 @@
 
     // Sizes
     &--xs {
-        font-size: 12px;
-        line-height: 16px;
+        font-size: var(--db-text-xs);
+        line-height: var(--db-leading-tight);
 
         .designbase-checkbox__visual {
-            width: var(--size-action-interactive-xs-width);
-            height: var(--size-action-interactive-xs-height);
+            width: var(--db-size-xs);
+            height: var(--db-size-xs);
         }
     }
 
     &--sm {
-        font-size: 14px;
-        line-height: 20px;
+        font-size: var(--db-text-sm);
+        line-height: var(--db-leading-normal);
 
         .designbase-checkbox__visual {
-            width: var(--size-action-interactive-sm-width);
-            height: var(--size-action-interactive-sm-height);
+            width: var(--db-size-sm);
+            height: var(--db-size-sm);
         }
     }
 
     &--md {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: var(--db-text-base);
+        line-height: var(--db-leading-normal);
 
         .designbase-checkbox__visual {
-            width: var(--size-action-interactive-md-width);
-            height: var(--size-action-interactive-md-height);
+            width: var(--db-size-md);
+            height: var(--db-size-md);
         }
     }
 
     &--lg {
-        font-size: 18px;
-        line-height: 28px;
+        font-size: var(--db-text-lg);
+        line-height: var(--db-leading-normal);
 
         .designbase-checkbox__visual {
-            width: var(--size-action-interactive-lg-width);
-            height: var(--size-action-interactive-lg-height);
+            width: var(--db-size-lg);
+            height: var(--db-size-lg);
         }
     }
 
     &--xl {
-        font-size: 20px;
-        line-height: 28px;
+        font-size: var(--db-text-xl);
+        line-height: var(--db-leading-normal);
 
         .designbase-checkbox__visual {
-            width: var(--size-action-interactive-xl-width);
-            height: var(--size-action-interactive-xl-height);
+            width: var(--db-size-xl);
+            height: var(--db-size-xl);
         }
     }
 
     // States
     &--disabled {
         cursor: not-allowed;
-        opacity: 0.6;
+        opacity: var(--db-opacity-60);
 
         .designbase-checkbox__visual {
-            background-color: var(--color-action-interactive-bg-disabled);
-            border-color: var(--color-action-interactive-border-disabled);
+            background-color: var(--db-bg-muted);
+            border-color: var(--db-border-muted);
         }
 
         .designbase-checkbox__label {
-            color: var(--color-action-interactive-text-disabled);
+            color: var(--db-text-muted);
         }
     }
 
@@ -139,7 +139,7 @@
 
     // Focus styles
     &:focus-within .designbase-checkbox__visual {
-        outline: 2px solid var(--color-border-focus);
+        outline: 2px solid var(--db-blue-500);
         outline-offset: 2px;
     }
 }

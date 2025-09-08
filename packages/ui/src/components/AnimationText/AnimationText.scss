@@ -1,0 +1,588 @@
+.designbase-animation-text {
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: default;
+
+    // 기본 스타일
+    &--xs {
+        font-size: var(--db-text-xs);
+    }
+
+    &--sm {
+        font-size: var(--db-text-sm);
+    }
+
+    &--md {
+        font-size: var(--db-text-base);
+    }
+
+    &--lg {
+        font-size: var(--db-text-lg);
+    }
+
+    &--xl {
+        font-size: var(--db-text-xl);
+    }
+
+    &--2xl {
+        font-size: var(--db-text-2xl);
+    }
+
+    &--3xl {
+        font-size: var(--db-text-3xl);
+    }
+
+    // 텍스트 굵기
+    &--light {
+        font-weight: var(--db-weight-light);
+    }
+
+    &--normal {
+        font-weight: var(--db-weight-normal);
+    }
+
+    &--medium {
+        font-weight: var(--db-weight-medium);
+    }
+
+    &--semibold {
+        font-weight: var(--db-weight-semibold);
+    }
+
+    &--bold {
+        font-weight: var(--db-weight-bold);
+    }
+
+    &--extrabold {
+        font-weight: var(--db-weight-extrabold);
+    }
+
+    // 텍스트 정렬
+    &--left {
+        text-align: left;
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--right {
+        text-align: right;
+    }
+
+    &--justify {
+        text-align: justify;
+    }
+
+    // 색상
+    &--primary {
+        color: var(--db-text-primary);
+    }
+
+    &--secondary {
+        color: var(--db-text-secondary);
+    }
+
+    &--success {
+        color: var(--db-green-600);
+    }
+
+    &--warning {
+        color: var(--db-yellow-600);
+    }
+
+    &--error {
+        color: var(--db-red-600);
+    }
+
+    &--info {
+        color: var(--db-blue-600);
+    }
+
+    &--custom {
+        color: var(--db-text-custom);
+    }
+
+    // 클릭 가능
+    &--clickable {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    // 비활성화
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // ===== 애니메이션 타입 =====
+
+    // Fade 애니메이션
+    &--fade {
+        opacity: 0;
+        transform: translateY(20px);
+
+        &.designbase-animation-text--visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity var(--db-animation-speed) ease, transform var(--db-animation-speed) ease;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: fadeInOut var(--db-animation-speed) ease-in-out;
+        }
+    }
+
+    // Slide 애니메이션
+    &--slide {
+        overflow: hidden;
+        opacity: 0;
+
+        &.designbase-animation-text--visible {
+            opacity: 1;
+            animation: slideIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: slideInOut var(--db-animation-speed) ease-in-out;
+        }
+
+        // 방향별 슬라이드
+        &--left {
+            transform: translateX(-100%);
+
+            &.designbase-animation-text--visible {
+                transform: translateX(0);
+            }
+        }
+
+        &--right {
+            transform: translateX(100%);
+
+            &.designbase-animation-text--visible {
+                transform: translateX(0);
+            }
+        }
+
+        &--up {
+            transform: translateY(100%);
+
+            &.designbase-animation-text--visible {
+                transform: translateY(0);
+            }
+        }
+
+        &--down {
+            transform: translateY(-100%);
+
+            &.designbase-animation-text--visible {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    // Bounce 애니메이션
+    &--bounce {
+        &.designbase-animation-text--visible {
+            animation: bounceIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: bounce var(--db-animation-speed) ease-in-out infinite;
+        }
+    }
+
+    // Shake 애니메이션
+    &--shake {
+        &.designbase-animation-text--visible {
+            animation: shakeIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: shake var(--db-animation-speed) ease-in-out infinite;
+        }
+    }
+
+    // Glow 애니메이션
+    &--glow {
+        &.designbase-animation-text--visible {
+            animation: glowIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: glow var(--db-animation-speed) ease-in-out infinite;
+            text-shadow: 0 0 10px var(--db-glow-color), 0 0 20px var(--db-glow-color), 0 0 30px var(--db-glow-color);
+        }
+    }
+
+    // Gradient 애니메이션
+    &--gradient {
+        &.designbase-animation-text--visible {
+            animation: gradientIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: gradient var(--db-animation-speed) ease-in-out infinite;
+        }
+    }
+
+    // Wave 애니메이션
+    &--wave {
+        &.designbase-animation-text--visible {
+            animation: waveIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: wave var(--db-animation-speed) ease-in-out infinite;
+        }
+
+        span {
+            display: inline-block;
+            animation: waveChar var(--db-animation-speed) ease-in-out infinite;
+
+            @for $i from 1 through 20 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{$i * 0.1}s;
+                }
+            }
+        }
+    }
+
+    // Flip 애니메이션
+    &--flip {
+        perspective: 1000px;
+
+        &.designbase-animation-text--visible {
+            animation: flipIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: flip var(--db-animation-speed) ease-in-out infinite;
+        }
+    }
+
+    // Scale 애니메이션
+    &--scale {
+        &.designbase-animation-text--visible {
+            animation: scaleIn var(--db-animation-speed) ease-out;
+        }
+
+        &.designbase-animation-text--animating {
+            animation: scale var(--db-animation-speed) ease-in-out infinite;
+        }
+    }
+
+    // Typing 애니메이션
+    &--typing {
+        border-right: 2px solid currentColor;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &.designbase-animation-text--visible {
+            animation: typing var(--db-animation-speed) steps(40, end);
+        }
+    }
+}
+
+// ===== 키프레임 애니메이션 =====
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    53%,
+    80%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    40%,
+    43% {
+        transform: translate3d(0, -30px, 0);
+    }
+
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+@keyframes shakeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-10px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes glowIn {
+    0% {
+        opacity: 0;
+        text-shadow: none;
+    }
+
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+    }
+
+    50% {
+        text-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
+    }
+}
+
+@keyframes gradientIn {
+    0% {
+        opacity: 0;
+        background-position: 0% 50%;
+    }
+
+    100% {
+        opacity: 1;
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes gradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes waveIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes waveChar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes flipIn {
+    0% {
+        opacity: 0;
+        transform: perspective(400px) rotateY(90deg);
+    }
+
+    40% {
+        transform: perspective(400px) rotateY(-20deg);
+    }
+
+    60% {
+        transform: perspective(400px) rotateY(10deg);
+    }
+
+    80% {
+        transform: perspective(400px) rotateY(-5deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(400px) rotateY(0deg);
+    }
+}
+
+@keyframes flip {
+
+    0%,
+    100% {
+        transform: perspective(400px) rotateY(0deg);
+    }
+
+    50% {
+        transform: perspective(400px) rotateY(180deg);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scale {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .designbase-animation-text {
+        &--3xl {
+            font-size: var(--db-text-2xl);
+        }
+
+        &--2xl {
+            font-size: var(--db-text-xl);
+        }
+
+        &--xl {
+            font-size: var(--db-text-lg);
+        }
+    }
+}

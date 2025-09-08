@@ -1,17 +1,26 @@
 {
     "name": "@designbase/theme",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Designbase 테마 시스템 - CSS 변수, 테마 프리셋, 유틸리티 클래스를 제공",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
     "style": "dist/css/theme.css",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.esm.js",
+            "require": "./dist/index.js",
+            "default": "./dist/index.esm.js"
+        },
+        "./css": "./dist/css/theme.css"
+    },
     "files": [
         "dist",
         "scss"
     ],
     "scripts": {
-        "build": "npm run build:css && rollup -c",
+        "build": "npm run build:css && node scripts/merge-tokens-into-theme.js && rollup -c",
         "build:css": "sass scss/index.scss dist/css/theme.css --style=compressed",
         "dev": "npm run build:css -- --watch",
         "clean": "rimraf dist",

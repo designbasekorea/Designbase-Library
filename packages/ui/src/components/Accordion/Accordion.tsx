@@ -5,7 +5,7 @@
  * 기능: 단일/다중 확장, 아이콘, 다양한 스타일, 접근성 지원
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import clsx from 'clsx';
 import { ChevronDownIcon } from '@designbase/icons';
 import type { BaseIconProps } from '@designbase/icons';
@@ -55,7 +55,7 @@ export const Accordion: React.FC<AccordionProps> = ({
     size = 'md',
     allowMultiple = false,
     defaultExpandedItems = [],
-    defaultItemType = 'icon',
+    defaultItemType = 'none',
     onItemChange,
     className,
 }) => {
@@ -94,6 +94,43 @@ export const Accordion: React.FC<AccordionProps> = ({
         return expandedItems.includes(itemId);
     }, [expandedItems]);
 
+    // 현재 테마 감지
+    const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
+
+    useEffect(() => {
+        const detectTheme = () => {
+            const root = document.documentElement;
+
+            // Storybook 전역 테마 감지
+            const storybookTheme = root.getAttribute('data-theme');
+            const isDarkMode = root.classList.contains('dark') ||
+                root.classList.contains('sb-dark') ||
+                root.classList.contains('dark-theme') ||
+                root.classList.contains('theme-dark') ||
+                storybookTheme === 'dark';
+
+            // CSS 변수로 테마 확인
+            const computedStyle = getComputedStyle(root);
+            const bgColor = computedStyle.getPropertyValue('--color-semantic-background-primary');
+            const isDarkBg = bgColor && bgColor.trim() !== '';
+
+            const theme = (isDarkMode || isDarkBg) ? 'dark' : 'light';
+            setCurrentTheme(theme);
+        };
+
+        // 초기 테마 감지
+        detectTheme();
+
+        // 테마 변경 감지
+        const observer = new MutationObserver(detectTheme);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme', 'class']
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     const classes = clsx(
         'designbase-accordion',
         `designbase-accordion--${style}`,
@@ -111,7 +148,10 @@ export const Accordion: React.FC<AccordionProps> = ({
             case 'icon':
                 return item.icon ? (
                     <div className="designbase-accordion__icon">
-                        <item.icon size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20} />
+                        <item.icon
+                            size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20}
+                            color="var(--color-semantic-component-icon-primary)"
+                        />
                     </div>
                 ) : null;
 
@@ -136,7 +176,12 @@ export const Accordion: React.FC<AccordionProps> = ({
     };
 
     return (
-        <div className={classes} role="region" aria-label="아코디언">
+        <div
+            className={classes}
+            role="region"
+            aria-label="아코디언"
+            data-theme={currentTheme}
+        >
             {items.map((item, index) => {
                 const expanded = isExpanded(item.id);
                 const itemClasses = clsx(
@@ -170,6 +215,7 @@ export const Accordion: React.FC<AccordionProps> = ({
                             <div className="designbase-accordion__chevron">
                                 <ChevronDownIcon
                                     size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20}
+                                    color="var(--color-semantic-component-icon-primary)"
                                 />
                             </div>
                         </button>

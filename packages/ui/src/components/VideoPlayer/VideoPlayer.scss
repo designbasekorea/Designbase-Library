@@ -1,0 +1,509 @@
+@import '../../../../tokens/dist/scss/_tokens.scss';
+
+.designbase-video-player {
+    position: relative;
+    width: 100%;
+    background: var(--db-bg-secondary);
+    border-radius: var(--db-radius-lg);
+    overflow: hidden;
+    font-family: var(--db-font-family);
+    line-height: var(--db-leading-normal);
+
+    // 크기 변형
+    &--size-sm {
+        max-width: 320px;
+        height: 180px;
+    }
+
+    &--size-md {
+        max-width: 640px;
+        height: 360px;
+    }
+
+    &--size-lg {
+        max-width: 960px;
+        height: 540px;
+    }
+
+    &--size-xl {
+        max-width: 1280px;
+        height: 720px;
+    }
+
+    // 테마 변형
+    &--theme-light {
+        --video-controls-bg: rgba(255, 255, 255, 0.9);
+        --video-controls-color: var(--db-text-primary);
+        --video-overlay-bg: rgba(0, 0, 0, 0.3);
+    }
+
+    &--theme-dark {
+        --video-controls-bg: rgba(0, 0, 0, 0.8);
+        --video-controls-color: var(--db-text-inverse);
+        --video-overlay-bg: rgba(0, 0, 0, 0.5);
+    }
+
+    &--theme-auto {
+        // 테마는 상위에서 관리됩니다.
+    }
+
+    // 상태 클래스
+    &--playing {
+        .designbase-video-player__center-controls {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    &--paused {
+        .designbase-video-player__center-controls {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    &--muted {
+        .designbase-video-player__volume-slider {
+            opacity: 0.5;
+        }
+    }
+
+    &--fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        border-radius: 0;
+
+        .designbase-video-player__video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &--loading {
+        .designbase-video-player__loading {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &--error {
+        .designbase-video-player__error {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &--show-controls {
+        .designbase-video-player__overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // 비디오 요소
+    &__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: var(--db-bg-primary);
+        cursor: pointer;
+    }
+
+    // 로딩 인디케이터
+    &__loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 10;
+
+        .designbase-video-player__spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--db-border-secondary);
+            border-top: 3px solid var(--db-blue-600);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    }
+
+    // 에러 메시지
+    &__error {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 10;
+        text-align: center;
+        color: var(--db-text-inverse);
+        background: var(--video-overlay-bg);
+        padding: var(--db-padding-lg);
+        border-radius: var(--db-radius-md);
+
+        p {
+            margin: 0 0 var(--db-margin-md) 0;
+            font-size: var(--db-text-base);
+        }
+
+        button {
+            background: var(--db-blue-600);
+            color: var(--db-white);
+            border: none;
+            padding: var(--db-padding-sm) var(--db-padding-md);
+            border-radius: var(--db-radius-sm);
+            cursor: pointer;
+            font-size: var(--db-text-sm);
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background: var(--db-blue-700);
+            }
+        }
+    }
+
+    // 오버레이 컨트롤
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom,
+                transparent 0%,
+                transparent 60%,
+                var(--video-overlay-bg) 100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: var(--db-padding-md);
+    }
+
+    // 상단 컨트롤
+    &__top-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        color: var(--video-controls-color);
+    }
+
+    &__title {
+        h3 {
+            margin: 0 0 var(--db-margin-xs) 0;
+            font-size: var(--db-text-lg);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        p {
+            margin: 0;
+            font-size: var(--db-text-sm);
+            opacity: 0.8;
+        }
+    }
+
+    &__settings {
+        position: relative;
+
+        .designbase-video-player__settings-button {
+            background: none;
+            border: none;
+            color: var(--video-controls-color);
+            cursor: pointer;
+            padding: var(--db-padding-xs);
+            border-radius: var(--db-radius-sm);
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .designbase-video-player__settings-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--video-controls-bg);
+            border-radius: var(--db-radius-md);
+            padding: var(--db-padding-md);
+            min-width: 200px;
+            box-shadow: var(--db-shadow-lg);
+            z-index: 20;
+
+            .designbase-video-player__setting-group {
+                margin-bottom: var(--db-margin-sm);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                label {
+                    display: block;
+                    font-size: var(--db-text-sm);
+                    font-weight: var(--db-weight-medium);
+                    margin-bottom: var(--db-margin-xs);
+                    color: var(--video-controls-color);
+                }
+
+                select {
+                    width: 100%;
+                    padding: var(--db-padding-xs) var(--db-padding-sm);
+                    border: 1px solid var(--db-border-secondary);
+                    border-radius: var(--db-radius-sm);
+                    background: var(--db-bg-primary);
+                    color: var(--db-text-primary);
+                    font-size: var(--db-text-sm);
+
+                    &:focus {
+                        outline: none;
+                        border-color: var(--db-blue-600);
+                    }
+                }
+            }
+        }
+    }
+
+    // 중앙 컨트롤
+    &__center-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    &__play-button {
+        background: rgba(0, 0, 0, 0.7);
+        border: none;
+        color: var(--db-white);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+    }
+
+    // 하단 컨트롤
+    &__bottom-controls {
+        color: var(--video-controls-color);
+    }
+
+    // 진행률 바
+    &__progress {
+        position: relative;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+        cursor: pointer;
+        margin-bottom: var(--db-margin-sm);
+        transition: height 0.2s ease;
+
+        &:hover {
+            height: 6px;
+        }
+
+        .designbase-video-player__progress-bar {
+            height: 100%;
+            background: var(--db-blue-600);
+            border-radius: 2px;
+            transition: width 0.1s ease;
+        }
+
+        .designbase-video-player__progress-handle {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--db-blue-600);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        &:hover .designbase-video-player__progress-handle {
+            opacity: 1;
+        }
+    }
+
+    // 컨트롤 버튼들
+    &__controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--db-gap-sm);
+    }
+
+    &__left-controls,
+    &__right-controls {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    &__control-button {
+        background: none;
+        border: none;
+        color: var(--video-controls-color);
+        cursor: pointer;
+        padding: var(--db-padding-xs);
+        border-radius: var(--db-radius-sm);
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+
+    // 볼륨 컨트롤
+    &__volume {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .designbase-video-player__volume-slider {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--video-controls-bg);
+            padding: var(--db-padding-sm);
+            border-radius: var(--db-radius-md);
+            margin-bottom: var(--db-margin-xs);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 10;
+
+            input[type="range"] {
+                width: 80px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 2px;
+                outline: none;
+                cursor: pointer;
+
+                &::-webkit-slider-thumb {
+                    appearance: none;
+                    width: 12px;
+                    height: 12px;
+                    background: var(--db-blue-600);
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+
+                &::-moz-range-thumb {
+                    width: 12px;
+                    height: 12px;
+                    background: var(--db-blue-600);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    border: none;
+                }
+            }
+        }
+
+        &:hover .designbase-video-player__volume-slider {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // 시간 표시
+    &__time {
+        font-size: var(--db-text-sm);
+        font-weight: var(--db-weight-medium);
+        opacity: 0.9;
+    }
+
+    // 플레이리스트 컨트롤
+    &__playlist-controls {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        font-size: var(--db-text-sm);
+        font-weight: var(--db-weight-medium);
+    }
+
+    // 애니메이션
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    // 반응형 디자인
+    @media (max-width: 768px) {
+        &--size-md {
+            max-width: 100%;
+            height: 200px;
+        }
+
+        &--size-lg {
+            max-width: 100%;
+            height: 300px;
+        }
+
+        &--size-xl {
+            max-width: 100%;
+            height: 400px;
+        }
+
+        &__play-button {
+            width: 60px;
+            height: 60px;
+        }
+
+        &__settings-menu {
+            min-width: 150px;
+        }
+
+        &__volume-slider input[type="range"] {
+            width: 60px;
+        }
+    }
+
+    // 접근성
+    &:focus-within {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+
+    // 테마는 상위에서 관리됩니다.
+}

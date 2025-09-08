@@ -1,0 +1,615 @@
+.designbase-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // 크기 변형
+    &--size-sm {
+        .designbase-list__item {
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-sm);
+            line-height: var(--db-leading-normal);
+
+            &-title {
+                font-size: var(--db-text-sm);
+                font-weight: var(--db-weight-medium);
+            }
+
+            &-description {
+                font-size: var(--db-text-xs);
+                line-height: var(--db-leading-tight);
+            }
+
+            &-icon {
+                width: var(--db-size-sm);
+                height: var(--db-size-sm);
+                margin-right: var(--db-margin-xs);
+            }
+
+            &-image {
+                width: var(--db-size-md);
+                height: var(--db-size-md);
+                margin-right: var(--db-margin-xs);
+            }
+        }
+    }
+
+    &--size-md {
+        .designbase-list__item {
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-base);
+            line-height: var(--db-leading-normal);
+
+            &-title {
+                font-size: var(--db-text-base);
+                font-weight: var(--db-weight-medium);
+            }
+
+            &-description {
+                font-size: var(--db-text-sm);
+                line-height: var(--db-leading-normal);
+            }
+
+            &-icon {
+                width: var(--db-size-md);
+                height: var(--db-size-md);
+                margin-right: var(--db-margin-s);
+            }
+
+            &-image {
+                width: var(--db-size-lg);
+                height: var(--db-size-lg);
+                margin-right: var(--db-margin-s);
+            }
+        }
+    }
+
+    &--size-lg {
+        .designbase-list__item {
+            padding: var(--db-padding-m) var(--db-padding-l);
+            font-size: var(--db-text-lg);
+            line-height: var(--db-leading-normal);
+
+            &-title {
+                font-size: var(--db-text-lg);
+                font-weight: var(--db-weight-medium);
+            }
+
+            &-description {
+                font-size: var(--db-text-base);
+                line-height: var(--db-leading-normal);
+            }
+
+            &-icon {
+                width: var(--db-size-md);
+                height: var(--db-size-md);
+                margin-right: var(--db-margin-m);
+            }
+
+            &-image {
+                width: var(--db-size-xl);
+                height: var(--db-size-xl);
+                margin-right: var(--db-margin-m);
+            }
+        }
+    }
+
+    // 레이아웃 변형
+    &--layout-horizontal {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--db-gap-m);
+
+        .designbase-list__item {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+    }
+
+    // 간격 변형
+    &--spacing-none {
+        .designbase-list__item {
+            margin-bottom: 0;
+        }
+    }
+
+    &--spacing-sm {
+        .designbase-list__item {
+            margin-bottom: var(--db-margin-xs);
+        }
+    }
+
+    &--spacing-md {
+        .designbase-list__item {
+            margin-bottom: var(--db-margin-s);
+        }
+    }
+
+    &--spacing-lg {
+        .designbase-list__item {
+            margin-bottom: var(--db-margin-m);
+        }
+    }
+
+    // 스타일 변형
+    &--variant-default {
+        .designbase-list__item {
+            background: var(--db-bg-primary);
+            border-radius: var(--db-radius-md);
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+            &:hover {
+                background: var(--db-bg-secondary);
+            }
+        }
+    }
+
+    &--variant-bordered {
+        .designbase-list__item {
+            background: var(--db-bg-primary);
+            border: 1px solid var(--db-border-secondary);
+            border-radius: var(--db-radius-md);
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+            &:hover {
+                border-color: var(--db-border-primary);
+                box-shadow: var(--db-shadow-sm);
+            }
+        }
+    }
+
+    &--variant-card {
+        .designbase-list__item {
+            background: var(--db-bg-primary);
+            border: 1px solid var(--db-border-secondary);
+            border-radius: var(--db-radius-lg);
+            box-shadow: var(--db-shadow-sm);
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+            &:hover {
+                box-shadow: var(--db-shadow-md);
+                transform: translateY(-1px);
+            }
+        }
+    }
+
+    &--variant-minimal {
+        .designbase-list__item {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid var(--db-border-muted);
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                background: var(--db-bg-secondary);
+            }
+        }
+    }
+
+    // 선택 가능한 리스트
+    &--selectable {
+        .designbase-list__item {
+            cursor: pointer;
+
+            &--selected {
+                background: var(--db-blue-500);
+                color: var(--db-white);
+                border-color: var(--db-blue-500);
+
+                &:hover {
+                    background: var(--db-blue-600);
+                }
+            }
+        }
+    }
+
+    // 드래그 가능한 리스트
+    &--draggable {
+        .designbase-list__item {
+            cursor: grab;
+
+            &--dragging {
+                opacity: var(--db-opacity-50);
+                cursor: grabbing;
+            }
+        }
+    }
+
+    // 로딩 상태
+    &--loading {
+        .designbase-list__item {
+            pointer-events: none;
+        }
+    }
+}
+
+.designbase-list__item {
+    display: flex;
+    align-items: center;
+    background: var(--db-bg-primary);
+    border-radius: var(--db-radius-md);
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
+    position: relative;
+
+    // 정렬 변형
+    &--alignment-start {
+        align-items: flex-start;
+    }
+
+    &--alignment-center {
+        align-items: center;
+    }
+
+    &--alignment-end {
+        align-items: flex-end;
+    }
+
+    &--alignment-stretch {
+        align-items: stretch;
+    }
+
+    // 비활성화 상태
+    &--disabled {
+        opacity: var(--db-opacity-50);
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // 클릭 가능한 상태
+    &--clickable {
+        cursor: pointer;
+
+        &:hover {
+            background: var(--db-bg-secondary);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+    // 체크박스
+    &-checkbox {
+        margin-right: var(--db-margin-s);
+        display: flex;
+        align-items: center;
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: var(--db-size-sm);
+            height: var(--db-size-sm);
+            cursor: pointer;
+        }
+    }
+
+    // 아이콘
+    &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--db-text-muted);
+    }
+
+    // 이미지
+    &-image {
+        flex-shrink: 0;
+        border-radius: var(--db-radius-sm);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    // 콘텐츠
+    &-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    // 헤더
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--db-margin-xs);
+    }
+
+    // 제목
+    &-title {
+        margin: 0;
+        color: var(--db-text-primary);
+        font-weight: var(--db-weight-medium);
+        line-height: 1.4;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    // 설명
+    &-description {
+        margin: 0;
+        color: var(--db-text-muted);
+        line-height: 1.5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    // 배지
+    &-badge {
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-sm);
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-medium);
+        line-height: 1;
+        white-space: nowrap;
+        flex-shrink: 0;
+
+        // 색상 변형
+        &--color-primary {
+            &.designbase-list__item-badge--variant-solid {
+                background: var(--db-blue-500);
+                color: var(--db-white);
+            }
+
+            &.designbase-list__item-badge--variant-outline {
+                background: transparent;
+                color: var(--db-blue-500);
+                border: 1px solid var(--db-blue-500);
+            }
+
+            &.designbase-list__item-badge--variant-soft {
+                background: var(--db-blue-50);
+                color: var(--db-blue-700);
+            }
+        }
+
+        &--color-secondary {
+            &.designbase-list__item-badge--variant-solid {
+                background: var(--db-neutral-500);
+                color: var(--db-white);
+            }
+
+            &.designbase-list__item-badge--variant-outline {
+                background: transparent;
+                color: var(--db-neutral-500);
+                border: 1px solid var(--db-neutral-500);
+            }
+
+            &.designbase-list__item-badge--variant-soft {
+                background: var(--db-neutral-50);
+                color: var(--db-neutral-700);
+            }
+        }
+
+        &--color-success {
+            &.designbase-list__item-badge--variant-solid {
+                background: var(--db-green-500);
+                color: var(--db-white);
+            }
+
+            &.designbase-list__item-badge--variant-outline {
+                background: transparent;
+                color: var(--db-green-500);
+                border: 1px solid var(--db-green-500);
+            }
+
+            &.designbase-list__item-badge--variant-soft {
+                background: var(--db-green-50);
+                color: var(--db-green-700);
+            }
+        }
+
+        &--color-warning {
+            &.designbase-list__item-badge--variant-solid {
+                background: var(--db-yellow-500);
+                color: var(--db-white);
+            }
+
+            &.designbase-list__item-badge--variant-outline {
+                background: transparent;
+                color: var(--db-yellow-500);
+                border: 1px solid var(--db-yellow-500);
+            }
+
+            &.designbase-list__item-badge--variant-soft {
+                background: var(--db-yellow-50);
+                color: var(--db-yellow-700);
+            }
+        }
+
+        &--color-error {
+            &.designbase-list__item-badge--variant-solid {
+                background: var(--db-red-500);
+                color: var(--db-white);
+            }
+
+            &.designbase-list__item-badge--variant-outline {
+                background: transparent;
+                color: var(--db-red-500);
+                border: 1px solid var(--db-red-500);
+            }
+
+            &.designbase-list__item-badge--variant-soft {
+                background: var(--db-red-50);
+                color: var(--db-red-700);
+            }
+        }
+
+        &--color-info {
+            &.designbase-list__item-badge--variant-solid {
+                background: var(--db-blue-500);
+                color: var(--db-white);
+            }
+
+            &.designbase-list__item-badge--variant-outline {
+                background: transparent;
+                color: var(--db-blue-500);
+                border: 1px solid var(--db-blue-500);
+            }
+
+            &.designbase-list__item-badge--variant-soft {
+                background: var(--db-blue-50);
+                color: var(--db-blue-700);
+            }
+        }
+    }
+
+    // 메타 정보
+    &-meta {
+        margin-top: var(--db-margin-s);
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+    }
+
+    &-meta-item {
+        display: flex;
+        align-items: center;
+        font-size: var(--db-text-xs);
+        color: var(--db-text-muted);
+    }
+
+    &-meta-label {
+        font-weight: var(--db-weight-medium);
+        margin-right: var(--db-margin-xs);
+    }
+
+    &-meta-value {
+        color: var(--db-text-secondary);
+    }
+
+    // 액션
+    &-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        margin-left: var(--db-margin-s);
+        flex-shrink: 0;
+    }
+
+    &-action {
+        display: flex;
+        align-items: center;
+    }
+
+    // 드래그 핸들
+    &-drag-handle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--db-size-md);
+        height: var(--db-size-md);
+        color: var(--db-text-muted);
+        cursor: grab;
+        margin-left: var(--db-margin-s);
+        flex-shrink: 0;
+
+        &:hover {
+            color: var(--db-text-secondary);
+        }
+    }
+
+    // 로딩 스켈레톤
+    &--loading {
+        .designbase-list__item-skeleton {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .designbase-list__item-skeleton-icon {
+            width: var(--db-size-md);
+            height: var(--db-size-md);
+            background: var(--db-bg-tertiary);
+            border-radius: var(--db-radius-sm);
+            margin-right: var(--db-margin-s);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .designbase-list__item-skeleton-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--db-gap-s);
+        }
+
+        .designbase-list__item-skeleton-title {
+            height: 16px;
+            background: var(--db-bg-tertiary);
+            border-radius: var(--db-radius-sm);
+            width: 60%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .designbase-list__item-skeleton-description {
+            height: 12px;
+            background: var(--db-bg-tertiary);
+            border-radius: var(--db-radius-sm);
+            width: 80%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+    }
+}
+
+// 빈 상태
+.designbase-list__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--db-padding-lg);
+    color: var(--db-text-muted);
+    text-align: center;
+}
+
+// 애니메이션
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .designbase-list {
+        &--layout-horizontal {
+            flex-direction: column;
+
+            .designbase-list__item {
+                min-width: auto;
+                max-width: none;
+            }
+        }
+    }
+
+    .designbase-list__item {
+        &-actions {
+            margin-left: var(--db-margin-s);
+        }
+
+        &-meta {
+            flex-direction: column;
+            gap: var(--db-gap-xs);
+        }
+    }
+}
+
+// 다크 모드 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다

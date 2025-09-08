@@ -1,43 +1,43 @@
 .designbase-toast-container {
     position: fixed;
-    z-index: var(--z-index-toast, 1000);
+    z-index: var(--db-z-toast);
     pointer-events: none;
 
     &--top-left {
-        top: var(--spacing-md, 16px);
-        left: var(--spacing-md, 16px);
+        top: var(--db-spacing-4);
+        left: var(--db-spacing-4);
     }
 
     &--top-center {
-        top: var(--spacing-md, 16px);
+        top: var(--db-spacing-4);
         left: 50%;
         transform: translateX(-50%);
     }
 
     &--top-right {
-        top: var(--spacing-md, 16px);
-        right: var(--spacing-md, 16px);
+        top: var(--db-spacing-4);
+        right: var(--db-spacing-4);
     }
 
     &--bottom-left {
-        bottom: var(--spacing-md, 16px);
-        left: var(--spacing-md, 16px);
+        bottom: var(--db-spacing-4);
+        left: var(--db-spacing-4);
     }
 
     &--bottom-center {
-        bottom: var(--spacing-md, 16px);
+        bottom: var(--db-spacing-4);
         left: 50%;
         transform: translateX(-50%);
     }
 
     &--bottom-right {
-        bottom: var(--spacing-md, 16px);
-        right: var(--spacing-md, 16px);
+        bottom: var(--db-spacing-4);
+        right: var(--db-spacing-4);
     }
 
     .designbase-toast {
         pointer-events: auto;
-        margin-bottom: var(--spacing-sm, 12px);
+        margin-bottom: var(--db-margin-s);
 
         &:last-child {
             margin-bottom: 0;

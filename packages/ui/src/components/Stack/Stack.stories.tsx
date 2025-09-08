@@ -142,27 +142,35 @@ export const DifferentAlignments: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <div>
                 <h3>시작 정렬</h3>
-                <Stack alignment="start" style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateDifferentSizedItems()}
-                </Stack>
+                <div style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack alignment="start">
+                        {generateDifferentSizedItems()}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>중앙 정렬</h3>
-                <Stack alignment="center" style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateDifferentSizedItems()}
-                </Stack>
+                <div style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack alignment="center">
+                        {generateDifferentSizedItems()}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>끝 정렬</h3>
-                <Stack alignment="end" style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateDifferentSizedItems()}
-                </Stack>
+                <div style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack alignment="end">
+                        {generateDifferentSizedItems()}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>늘리기</h3>
-                <Stack alignment="stretch" style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateDifferentSizedItems()}
-                </Stack>
+                <div style={{ minHeight: '200px', border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack alignment="stretch">
+                        {generateDifferentSizedItems()}
+                    </Stack>
+                </div>
             </div>
         </div>
     ),
@@ -173,39 +181,51 @@ export const DifferentJustifications: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <div>
                 <h3>시작 정렬</h3>
-                <Stack direction="horizontal" justify="start" style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateStackItems(3)}
-                </Stack>
+                <div style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack direction="horizontal" justify="start">
+                        {generateStackItems(3)}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>중앙 정렬</h3>
-                <Stack direction="horizontal" justify="center" style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateStackItems(3)}
-                </Stack>
+                <div style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack direction="horizontal" justify="center">
+                        {generateStackItems(3)}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>끝 정렬</h3>
-                <Stack direction="horizontal" justify="end" style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateStackItems(3)}
-                </Stack>
+                <div style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack direction="horizontal" justify="end">
+                        {generateStackItems(3)}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>Space Between</h3>
-                <Stack direction="horizontal" justify="space-between" style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateStackItems(3)}
-                </Stack>
+                <div style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack direction="horizontal" justify="space-between">
+                        {generateStackItems(3)}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>Space Around</h3>
-                <Stack direction="horizontal" justify="space-around" style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateStackItems(3)}
-                </Stack>
+                <div style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack direction="horizontal" justify="space-around">
+                        {generateStackItems(3)}
+                    </Stack>
+                </div>
             </div>
             <div>
                 <h3>Space Evenly</h3>
-                <Stack direction="horizontal" justify="space-evenly" style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
-                    {generateStackItems(3)}
-                </Stack>
+                <div style={{ border: '1px solid #e2e8f0', padding: '16px' }}>
+                    <Stack direction="horizontal" justify="space-evenly">
+                        {generateStackItems(3)}
+                    </Stack>
+                </div>
             </div>
         </div>
     ),

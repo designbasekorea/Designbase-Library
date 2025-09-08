@@ -1,0 +1,664 @@
+.designbase-audio-player {
+    position: relative;
+    width: 100%;
+    background: var(--db-bg-primary);
+    border: 1px solid var(--db-border-secondary);
+    border-radius: var(--db-radius-lg);
+    padding: var(--db-padding-m);
+    font-family: var(--db-font-primary);
+    line-height: var(--db-leading-normal);
+    box-shadow: var(--db-shadow-sm);
+    transition: all 0.3s ease;
+
+    // 크기 변형
+    &--size-sm {
+        max-width: 300px;
+        padding: var(--db-padding-s);
+    }
+
+    &--size-md {
+        max-width: 400px;
+        padding: var(--db-padding-m);
+    }
+
+    &--size-lg {
+        max-width: 500px;
+        padding: var(--db-padding-l);
+    }
+
+    &--size-xl {
+        max-width: 600px;
+        padding: var(--db-padding-xl);
+    }
+
+    // 상태 클래스
+    &--playing {
+        .designbase-audio-player__play-button {
+            background: var(--db-blue-600);
+            color: var(--db-white);
+            transform: scale(1.05);
+        }
+    }
+
+    &--paused {
+        .designbase-audio-player__play-button {
+            background: var(--db-neutral-200);
+            color: var(--db-text-primary);
+        }
+    }
+
+    &--muted {
+        .designbase-audio-player__volume-slider {
+            opacity: 0.5;
+        }
+    }
+
+    &--loading {
+        .designbase-audio-player__loading {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &--error {
+        .designbase-audio-player__error {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &--shuffle {
+        .designbase-audio-player__control-button[data-shuffle] {
+            color: var(--db-blue-600);
+        }
+    }
+
+    &--repeat-none {
+        .designbase-audio-player__control-button[data-repeat] {
+            color: var(--db-text-secondary);
+        }
+    }
+
+    &--repeat-one {
+        .designbase-audio-player__control-button[data-repeat] {
+            color: var(--db-blue-600);
+        }
+    }
+
+    &--repeat-all {
+        .designbase-audio-player__control-button[data-repeat] {
+            color: var(--db-blue-600);
+        }
+    }
+
+    // 로딩 인디케이터
+    &__loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 10;
+
+        .designbase-audio-player__spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--db-border-secondary);
+            border-top: 2px solid var(--db-blue-600);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    }
+
+    // 에러 메시지
+    &__error {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 10;
+        text-align: center;
+        color: var(--db-red-600);
+        background: var(--db-red-50);
+        padding: var(--db-padding-m);
+        border-radius: var(--db-radius-md);
+        border: 1px solid var(--db-red-200);
+
+        p {
+            margin: 0 0 var(--db-margin-s) 0;
+            font-size: var(--db-text-sm);
+        }
+
+        button {
+            background: var(--db-blue-600);
+            color: var(--db-white);
+            border: none;
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            border-radius: var(--db-radius-sm);
+            cursor: pointer;
+            font-size: var(--db-text-xs);
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background: var(--db-blue-700);
+            }
+        }
+    }
+
+    // 앨범 아트
+    &__album-art {
+        width: 80px;
+        height: 80px;
+        border-radius: var(--db-radius-lg);
+        overflow: hidden;
+        margin-right: var(--db-margin-m);
+        flex-shrink: 0;
+        box-shadow: var(--db-shadow-md);
+        border: 3px solid var(--db-white);
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        // 기본 플레이스홀더
+        .album-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--db-blue-400), var(--db-blue-200));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--db-white);
+            font-size: var(--db-text-2xl);
+            font-weight: var(--db-weight-bold);
+        }
+    }
+
+    // 메인 컨트롤
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-s);
+    }
+
+    // 트랙 정보
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        margin-bottom: var(--db-margin-s);
+    }
+
+    &__title {
+        font-size: var(--db-text-lg);
+        font-weight: var(--db-weight-semibold);
+        color: var(--audio-controls-color);
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    &__artist {
+        font-size: var(--db-text-base);
+        color: var(--db-text-secondary);
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    &__album {
+        font-size: var(--db-text-sm);
+        color: var(--db-text-muted);
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    // 진행률 바
+    &__progress {
+        position: relative;
+        height: 6px;
+        background: var(--db-bg-secondary);
+        border-radius: var(--db-radius-full);
+        cursor: pointer;
+        margin: var(--db-margin-s) 0;
+        transition: height 0.2s ease;
+
+
+        .designbase-audio-player__progress-bar {
+            height: 100%;
+            background: var(--db-color-primary);
+            border-radius: var(--db-radius-full);
+            transition: width 0.1s ease;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 16px;
+                height: 16px;
+                background: var(--db-color-primary);
+                border-radius: 50%;
+                box-shadow: var(--db-shadow-md);
+                transform: translate(50%, -50%);
+                top: 50%;
+            }
+        }
+
+        .designbase-audio-player__progress-handle {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: var(--db-bg-primary);
+            border-radius: 50%;
+            opacity: 1;
+            transition: opacity 0.2s ease;
+            box-shadow: var(--db-shadow-md);
+        }
+
+        &:hover .designbase-audio-player__progress-handle {
+            opacity: 1;
+        }
+    }
+
+    // 컨트롤 버튼들
+    &__controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--db-gap-s);
+        margin: var(--db-margin-s) 0;
+    }
+
+    &__left-controls,
+    &__right-controls {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    &__center-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__control-button {
+        background: none;
+        border: none;
+        color: var(--audio-controls-color);
+        cursor: pointer;
+        padding: var(--db-padding-xs);
+        border-radius: var(--db-radius-sm);
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+
+        &:hover {
+            background: var(--db-bg-secondary);
+            transform: scale(1.1);
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+
+            &:hover {
+                background: none;
+                transform: none;
+            }
+        }
+    }
+
+    &__play-button {
+        background: var(--db-blue-600);
+        border: none;
+        color: var(--db-white);
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: var(--db-shadow-lg);
+        font-size: var(--db-text-xl);
+
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: var(--db-shadow-xl);
+        }
+
+        &:hover {
+            background: var(--db-blue-700);
+            transform: scale(1.05);
+        }
+    }
+
+    // 하단 컨트롤
+    &__bottom-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--db-gap-sm);
+    }
+
+    &__left-bottom,
+    &__right-bottom {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+    }
+
+    // 시간 표시
+    &__time {
+        font-size: var(--db-text-base);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+        font-family: 'Courier New', monospace;
+        background: var(--db-bg-secondary);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-sm);
+        border: 1px solid var(--db-border-secondary);
+        min-width: 80px;
+        text-align: center;
+        box-shadow: var(--db-shadow-sm);
+    }
+
+    // 볼륨 컨트롤
+    &__volume {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .designbase-audio-player__volume-slider {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--db-white);
+            padding: var(--db-padding-m);
+            border-radius: var(--db-radius-lg);
+            margin-bottom: var(--db-margin-s);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: var(--db-shadow-xl);
+            border: 1px solid var(--db-border-secondary);
+            min-width: 120px;
+
+            input[type="range"] {
+                width: 100px;
+                height: 6px;
+                background: var(--db-neutral-200);
+                border-radius: var(--db-radius-full);
+                outline: none;
+                cursor: pointer;
+
+                &::-webkit-slider-thumb {
+                    appearance: none;
+                    width: 16px;
+                    height: 16px;
+                    background: var(--db-blue-600);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    box-shadow: var(--db-shadow-md);
+                }
+
+                &::-moz-range-thumb {
+                    width: 16px;
+                    height: 16px;
+                    background: var(--db-blue-600);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    border: none;
+                    box-shadow: var(--db-shadow-md);
+                }
+            }
+
+            // 볼륨 아이콘과 레이블
+            .volume-label {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: var(--db-margin-s);
+                font-size: var(--db-text-xs);
+                color: var(--db-text-secondary);
+            }
+        }
+
+        // 호버시에만 표시
+        &:hover .designbase-audio-player__volume-slider {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        // 볼륨 버튼 스타일 개선
+        .designbase-audio-player__control-button {
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-bottom: 6px solid var(--db-white);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                margin-top: 2px;
+            }
+        }
+
+        &:hover .designbase-audio-player__control-button::after {
+            opacity: 1;
+        }
+    }
+
+    // 설정 메뉴
+    &__settings {
+        position: relative;
+
+        .designbase-audio-player__settings-menu {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: var(--audio-controls-bg);
+            border: 1px solid var(--audio-border-color);
+            border-radius: var(--db-radius-md);
+            padding: var(--db-padding-md);
+            min-width: 150px;
+            box-shadow: var(--db-shadow-lg);
+            z-index: 20;
+            margin-bottom: var(--db-margin-xs);
+
+            .designbase-audio-player__setting-group {
+                margin-bottom: var(--db-margin-sm);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                label {
+                    display: block;
+                    font-size: var(--db-text-xs);
+                    font-weight: var(--db-weight-medium);
+                    margin-bottom: var(--db-margin-xs);
+                    color: var(--audio-controls-color);
+                }
+
+                select {
+                    width: 100%;
+                    padding: var(--db-padding-xs) var(--db-padding-sm);
+                    border: 1px solid var(--db-border-secondary);
+                    border-radius: var(--db-radius-sm);
+                    background: var(--db-bg-primary);
+                    color: var(--db-text-primary);
+                    font-size: var(--db-text-xs);
+
+                    &:focus {
+                        outline: none;
+                        border-color: var(--db-blue-600);
+                    }
+                }
+            }
+        }
+    }
+
+    // 플레이리스트
+    &__playlist {
+        margin-top: var(--db-margin-lg);
+        border-top: 1px solid var(--db-border-secondary);
+        padding-top: var(--db-padding-md);
+
+        h4 {
+            margin: 0 0 var(--db-margin-sm) 0;
+            font-size: var(--db-text-sm);
+            font-weight: var(--db-weight-semibold);
+            color: var(--audio-controls-color);
+        }
+
+        .designbase-audio-player__playlist-tracks {
+            max-height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--db-gap-xs);
+        }
+
+        .designbase-audio-player__playlist-track {
+            display: flex;
+            align-items: center;
+            gap: var(--db-gap-sm);
+            padding: var(--db-padding-sm);
+            border-radius: var(--db-radius-sm);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background: var(--db-bg-secondary);
+            }
+
+            &--active {
+                background: var(--db-blue-600);
+                color: var(--db-white);
+
+                .designbase-audio-player__playlist-track-title,
+                .designbase-audio-player__playlist-track-artist {
+                    color: var(--db-white);
+                }
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: var(--db-radius-sm);
+                object-fit: cover;
+            }
+
+            .designbase-audio-player__playlist-track-info {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .designbase-audio-player__playlist-track-title {
+                font-size: var(--db-text-sm);
+                font-weight: var(--db-weight-medium);
+                color: var(--audio-controls-color);
+                margin: 0;
+                line-height: 1.2;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .designbase-audio-player__playlist-track-artist {
+                font-size: var(--db-text-xs);
+                color: var(--db-text-secondary);
+                margin: 0;
+                line-height: 1.2;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    // 애니메이션
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    // 반응형 디자인
+    @media (max-width: 768px) {
+        &--size-md {
+            max-width: 100%;
+        }
+
+        &--size-lg {
+            max-width: 100%;
+        }
+
+        &--size-xl {
+            max-width: 100%;
+        }
+
+        &__play-button {
+            width: 40px;
+            height: 40px;
+        }
+
+        &__settings-menu {
+            min-width: 120px;
+        }
+
+        &__volume-slider input[type="range"] {
+            width: 60px;
+        }
+
+        &__controls {
+            gap: var(--db-gap-xs);
+        }
+
+        &__left-controls,
+        &__right-controls {
+            gap: var(--db-gap-xs);
+        }
+    }
+
+    // 접근성
+    &:focus-within {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+
+    // 테마는 상위에서 관리됩니다.
+}

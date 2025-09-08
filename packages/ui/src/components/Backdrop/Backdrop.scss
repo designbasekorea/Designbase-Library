@@ -1,0 +1,203 @@
+/**
+ * Backdrop 컴포넌트 스타일
+ * 
+ * 목적: 모달, 다이얼로그의 배경으로 사용되는 반투명 오버레이 스타일
+ * 기능: 다양한 애니메이션 효과, 블러 효과, 반응형 지원
+ */
+
+.designbase-backdrop {
+    // 기본 스타일
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, var(--backdrop-opacity, 0.5));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--backdrop-animation-duration, 300ms) ease-in-out;
+    z-index: var(--backdrop-z-index, 1000);
+
+    // 블러 효과
+    &--blur {
+        backdrop-filter: blur(var(--backdrop-blur-amount, 4px));
+        -webkit-backdrop-filter: blur(var(--backdrop-blur-amount, 4px));
+    }
+
+    // 열린 상태
+    &--open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // 애니메이션 효과
+    &--fade {
+        &.designbase-backdrop--open {
+            animation: backdrop-fade-in var(--backdrop-animation-duration, 300ms) ease-out;
+        }
+
+        &:not(.designbase-backdrop--open) {
+            animation: backdrop-fade-out var(--backdrop-animation-duration, 300ms) ease-in;
+        }
+    }
+
+    &--slide {
+        &.designbase-backdrop--open {
+            animation: backdrop-slide-in var(--backdrop-animation-duration, 300ms) ease-out;
+        }
+
+        &:not(.designbase-backdrop--open) {
+            animation: backdrop-slide-out var(--backdrop-animation-duration, 300ms) ease-in;
+        }
+    }
+
+    &--zoom {
+        &.designbase-backdrop--open {
+            animation: backdrop-zoom-in var(--backdrop-animation-duration, 300ms) ease-out;
+        }
+
+        &:not(.designbase-backdrop--open) {
+            animation: backdrop-zoom-out var(--backdrop-animation-duration, 300ms) ease-in;
+        }
+    }
+
+    &--none {
+        transition: none;
+    }
+
+    // 접근성 개선
+    &:focus {
+        outline: none;
+    }
+
+    // 포커스 트랩 (필요한 경우)
+    &:focus-visible {
+        outline: 2px solid var(--db-blue-600);
+        outline-offset: 2px;
+    }
+
+    // 테마는 상위에서 관리됩니다.
+
+    // 고대비 모드 지원
+    @media (prefers-contrast: high) {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    // 모션 감소 설정 지원
+    @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    // 터치 디바이스 최적화
+    @media (hover: none) and (pointer: coarse) {
+        // 터치 디바이스에서 더 큰 터치 영역
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+// 애니메이션 키프레임
+@keyframes backdrop-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes backdrop-fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes backdrop-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backdrop-slide-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes backdrop-zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes backdrop-zoom-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+// 반응형 스타일
+@media (max-width: 768px) {
+    .designbase-backdrop {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .designbase-backdrop {
+        padding: 8px;
+    }
+}
+
+// 고해상도 디스플레이 최적화
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .designbase-backdrop {
+
+        // 고해상도에서 더 부드러운 블러 효과
+        &--blur {
+            backdrop-filter: blur(calc(var(--backdrop-blur-amount, 4px) * 0.5));
+            -webkit-backdrop-filter: blur(calc(var(--backdrop-blur-amount, 4px) * 0.5));
+        }
+    }
+}
+
+// 인쇄 스타일
+@media print {
+    .designbase-backdrop {
+        display: none !important;
+    }
+}

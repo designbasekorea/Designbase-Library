@@ -1,469 +1,421 @@
-/**
- * Timeline 컴포넌트 스타일
- */
-
 .designbase-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-semantic-margin-md, 16px);
-    box-sizing: border-box;
+    position: relative;
+    width: 100%;
 
-    // 전체 너비
-    &--full-width {
-        width: 100%;
-    }
-
-    // 방향별 스타일
-    &--direction-vertical {
+    &__container {
+        position: relative;
+        display: flex;
         flex-direction: column;
-    }
+        align-items: center;
 
-    &--direction-horizontal {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: var(--spacing-semantic-margin-lg, 24px);
-
-        .designbase-timeline__item {
-            flex: 1;
-            min-width: 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .designbase-timeline__header {
-            flex-direction: column;
-            align-items: center;
-            gap: var(--spacing-semantic-margin-xs, 4px);
-        }
-
-        .designbase-timeline__title {
-            text-align: center;
-        }
-
-        .designbase-timeline__description {
-            text-align: center;
-        }
-
-        .designbase-timeline__line {
+        &::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 100%;
-            width: 100%;
-            height: 2px;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .designbase-timeline__marker {
-            position: relative;
-            z-index: 2;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: var(--db-border-muted);
+            transform: translateX(-50%);
+            opacity: 0.3;
         }
     }
 
-    // 크기별 스타일
-    &--size-sm {
-        gap: var(--spacing-semantic-margin-sm, 8px);
-
-        .designbase-timeline__icon,
-        .designbase-timeline__number {
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
-        }
-
-        .designbase-timeline__minimal-dot {
-            width: 6px;
-            height: 6px;
-        }
-
-        .designbase-timeline__title {
-            font-size: var(--typography-semantic-font-size-sm, 14px);
-            line-height: var(--typography-semantic-line-height-sm, 1.6);
-        }
-
-        .designbase-timeline__description {
-            font-size: var(--typography-semantic-font-size-xs, 12px);
-            line-height: var(--typography-semantic-line-height-xs, 1.5);
-        }
-
-        .designbase-timeline__date {
-            font-size: var(--typography-semantic-font-size-xs, 12px);
-        }
-
-        &.designbase-timeline--direction-horizontal {
-            gap: var(--spacing-semantic-margin-md, 16px);
-
-            .designbase-timeline__line {
-                height: 1px;
-            }
-        }
-    }
-
-    &--size-md {
-        gap: var(--spacing-semantic-margin-md, 16px);
-
-        .designbase-timeline__icon,
-        .designbase-timeline__number {
-            width: 32px;
-            height: 32px;
-            font-size: 14px;
-        }
-
-        .designbase-timeline__minimal-dot {
-            width: 8px;
-            height: 8px;
-        }
-
-        .designbase-timeline__title {
-            font-size: var(--typography-semantic-font-size-md, 16px);
-            line-height: var(--typography-semantic-line-height-md, 1.5);
-        }
-
-        .designbase-timeline__description {
-            font-size: var(--typography-semantic-font-size-sm, 14px);
-            line-height: var(--typography-semantic-line-height-sm, 1.6);
-        }
-
-        .designbase-timeline__date {
-            font-size: var(--typography-semantic-font-size-sm, 14px);
-        }
-
-        &.designbase-timeline--direction-horizontal {
-            gap: var(--spacing-semantic-margin-lg, 24px);
-
-            .designbase-timeline__line {
-                height: 2px;
-            }
-        }
-    }
-
-    &--size-lg {
-        gap: var(--spacing-semantic-margin-lg, 24px);
-
-        .designbase-timeline__icon,
-        .designbase-timeline__number {
-            width: 40px;
-            height: 40px;
-            font-size: 16px;
-        }
-
-        .designbase-timeline__minimal-dot {
-            width: 10px;
-            height: 10px;
-        }
-
-        .designbase-timeline__title {
-            font-size: var(--typography-semantic-font-size-lg, 18px);
-            line-height: var(--typography-semantic-line-height-lg, 1.4);
-        }
-
-        .designbase-timeline__description {
-            font-size: var(--typography-semantic-font-size-md, 16px);
-            line-height: var(--typography-semantic-line-height-md, 1.5);
-        }
-
-        .designbase-timeline__date {
-            font-size: var(--typography-semantic-font-size-md, 16px);
-        }
-
-        &.designbase-timeline--direction-horizontal {
-            gap: var(--spacing-semantic-margin-xl, 32px);
-
-            .designbase-timeline__line {
-                height: 3px;
-            }
-        }
-    }
-
-    // 간격별 스타일
-    &--spacing-sm {
-        gap: var(--spacing-semantic-margin-sm, 8px);
-
-        &.designbase-timeline--direction-horizontal {
-            gap: var(--spacing-semantic-margin-md, 16px);
-        }
-    }
-
-    &--spacing-md {
-        gap: var(--spacing-semantic-margin-md, 16px);
-
-        &.designbase-timeline--direction-horizontal {
-            gap: var(--spacing-semantic-margin-lg, 24px);
-        }
-    }
-
-    &--spacing-lg {
-        gap: var(--spacing-semantic-margin-lg, 24px);
-
-        &.designbase-timeline--direction-horizontal {
-            gap: var(--spacing-semantic-margin-xl, 32px);
-        }
-    }
-
-    // 아이템 스타일
     &__item {
+        position: relative;
         display: flex;
         align-items: flex-start;
-        gap: var(--spacing-semantic-margin-md, 16px);
-        position: relative;
+        width: 100%;
+        margin-bottom: 2rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &--left {
+            flex-direction: row;
+
+            .designbase-timeline__content {
+                margin-right: 2rem;
+                text-align: right;
+            }
+
+            .designbase-timeline__separator {
+                order: 2;
+            }
+        }
+
+        &--right {
+            flex-direction: row-reverse;
+
+            .designbase-timeline__content {
+                margin-left: 2rem;
+                text-align: left;
+            }
+
+            .designbase-timeline__separator {
+                order: 1;
+            }
+        }
 
         &--clickable {
             cursor: pointer;
-            transition: transform 0.2s ease;
 
-            &:hover {
-                transform: translateY(-2px);
-            }
-        }
+            .designbase-timeline__content-inner,
+            .designbase-timeline__dot {
+                transition: all 0.2s ease;
 
-        &--status-pending {
-
-            .designbase-timeline__icon,
-            .designbase-timeline__number,
-            .designbase-timeline__minimal-dot {
-                background-color: var(--color-semantic-background-subtle, #f8fafc);
-                border: 2px solid var(--color-semantic-border-subtle, #e2e8f0);
-                color: var(--color-semantic-text-tertiary, #94a3b8);
-            }
-        }
-
-        &--status-active {
-
-            .designbase-timeline__icon,
-            .designbase-timeline__number,
-            .designbase-timeline__minimal-dot {
-                background-color: var(--color-semantic-primary-default, #3b82f6);
-                border: 2px solid var(--color-semantic-primary-default, #3b82f6);
-                color: var(--color-semantic-primary-foreground, #ffffff);
-            }
-        }
-
-        &--status-completed {
-
-            .designbase-timeline__icon,
-            .designbase-timeline__number,
-            .designbase-timeline__minimal-dot {
-                background-color: var(--color-semantic-success-default, #10b981);
-                border: 2px solid var(--color-semantic-success-default, #10b981);
-                color: var(--color-semantic-success-foreground, #ffffff);
-            }
-        }
-
-        &--status-error {
-
-            .designbase-timeline__icon,
-            .designbase-timeline__number,
-            .designbase-timeline__minimal-dot {
-                background-color: var(--color-semantic-danger-default, #ef4444);
-                border: 2px solid var(--color-semantic-danger-default, #ef4444);
-                color: var(--color-semantic-danger-foreground, #ffffff);
-            }
-        }
-    }
-
-    // 마커 스타일
-    &__marker {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        position: relative;
-    }
-
-    // 아이콘 스타일
-    &__icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: var(--color-semantic-background-subtle, #f8fafc);
-        border: 2px solid var(--color-semantic-border-subtle, #e2e8f0);
-        color: var(--color-semantic-text-tertiary, #94a3b8);
-        transition: all 0.2s ease;
-
-        svg {
-            width: 1em;
-            height: 1em;
-        }
-    }
-
-    // 숫자 스타일
-    &__number {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: var(--color-semantic-background-subtle, #f8fafc);
-        border: 2px solid var(--color-semantic-border-subtle, #e2e8f0);
-        color: var(--color-semantic-text-tertiary, #94a3b8);
-        font-weight: var(--typography-semantic-font-weight-semibold, 600);
-        transition: all 0.2s ease;
-    }
-
-    // 미니멀 닷 스타일
-    &__minimal-dot {
-        border-radius: 50%;
-        background-color: var(--color-semantic-border-subtle, #e2e8f0);
-        border: none;
-        transition: all 0.2s ease;
-    }
-
-    // 연결선 스타일
-    &__line {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 2px;
-        height: 100%;
-        background-color: var(--color-semantic-border-subtle, #e2e8f0);
-        transform: translateX(-50%);
-        z-index: 1;
-    }
-
-    // 콘텐츠 스타일
-    &__content {
-        flex: 1;
-        min-width: 0;
-    }
-
-    // 헤더 스타일
-    &__header {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: var(--spacing-semantic-margin-sm, 8px);
-        margin-bottom: var(--spacing-semantic-margin-xs, 4px);
-    }
-
-    // 제목 스타일
-    &__title {
-        margin: 0;
-        font-weight: var(--typography-semantic-font-weight-semibold, 600);
-        color: var(--color-semantic-text-primary, #1e293b);
-    }
-
-    // 날짜 스타일
-    &__date {
-        font-size: var(--typography-semantic-font-size-sm, 14px);
-        color: var(--color-semantic-text-tertiary, #94a3b8);
-        white-space: nowrap;
-    }
-
-    // 설명 스타일
-    &__description {
-        margin: 0;
-        color: var(--color-semantic-text-secondary, #64748b);
-    }
-
-    // 추가 콘텐츠 스타일
-    &__extra-content {
-        margin-top: var(--spacing-semantic-margin-sm, 8px);
-    }
-}
-
-// 다크 모드 지원
-@media (prefers-color-scheme: dark) {
-    .designbase-timeline {
-        &__item {
-            &--status-pending {
-
-                .designbase-timeline__icon,
-                .designbase-timeline__number,
-                .designbase-timeline__minimal-dot {
-                    background-color: var(--color-semantic-background-subtle, #1e293b);
-                    border-color: var(--color-semantic-border-subtle, #334155);
-                    color: var(--color-semantic-text-tertiary, #64748b);
+                &:hover {
+                    transform: scale(1.05);
                 }
             }
         }
 
-        &__icon,
-        &__number {
-            background-color: var(--color-semantic-background-subtle, #1e293b);
-            border-color: var(--color-semantic-border-subtle, #334155);
-            color: var(--color-semantic-text-tertiary, #64748b);
+        &--disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        max-width: 45%;
+
+        &-inner {
+            padding: 1rem;
+            background-color: var(--db-bg-primary);
+            border-radius: var(--db-radius-md);
+            box-shadow: var(--db-shadow-sm);
+            border: 1px solid var(--db-border-primary);
+
+            &:hover {
+                box-shadow: var(--db-shadow-md);
+            }
         }
 
-        &__minimal-dot {
-            background-color: var(--color-semantic-border-subtle, #334155);
+        &--left {
+            .designbase-timeline__timestamp {
+                text-align: right;
+            }
         }
 
-        &__line {
-            background-color: var(--color-semantic-border-subtle, #334155);
+        &--right {
+            .designbase-timeline__timestamp {
+                text-align: left;
+            }
+        }
+    }
+
+    &__timestamp {
+        font-size: var(--db-text-sm);
+        color: var(--db-text-secondary);
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    &__title {
+        font-size: var(--db-text-lg);
+        font-weight: 600;
+        color: var(--db-text-primary);
+        margin: 0 0 0.5rem 0;
+        line-height: 1.4;
+    }
+
+    &__description {
+        font-size: var(--db-text-base);
+        color: var(--db-text-secondary);
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    &__separator {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+
+    &__dot {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--db-bg-primary);
+        border: 2px solid var(--db-border-primary);
+        box-shadow: var(--db-shadow-sm);
+        transition: all 0.2s ease;
+
+        &-inner {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--db-color-primary);
+        }
+
+        &--clickable {
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+                box-shadow: var(--db-shadow-md);
+            }
+        }
+
+        // 색상 변형
+        &--primary {
+            border-color: var(--db-color-primary);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-color-primary);
+            }
+        }
+
+        &--secondary {
+            border-color: var(--db-color-secondary);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-color-secondary);
+            }
+        }
+
+        &--success {
+            border-color: var(--db-border-success);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-text-success);
+            }
+        }
+
+        &--warning {
+            border-color: var(--db-border-warning);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-text-warning);
+            }
+        }
+
+        &--error {
+            border-color: var(--db-border-error);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-text-error);
+            }
+        }
+
+        &--info {
+            border-color: var(--db-blue-600);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-blue-600);
+            }
+        }
+
+        &--default {
+            border-color: var(--db-border-primary);
+
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-text-secondary);
+            }
+        }
+
+        // 스타일 변형
+        &--outlined {
+            background-color: transparent;
+
+            .designbase-timeline__dot-inner {
+                background-color: transparent;
+            }
+        }
+
+        &--filled {
+            .designbase-timeline__dot-inner {
+                background-color: var(--db-bg-primary);
+            }
+        }
+    }
+
+    &__icon {
+        width: 1rem;
+        height: 1rem;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__connector {
+        width: 2px;
+        height: 2rem;
+        background-color: var(--db-border-primary);
+        margin-top: 0.5rem;
+    }
+
+    // 크기 변형
+    &--sm {
+        .designbase-timeline__dot {
+            width: 1.5rem;
+            height: 1.5rem;
+
+            .designbase-timeline__dot-inner {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+        }
+
+        .designbase-timeline__title {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-timeline__description {
+            font-size: var(--db-text-sm);
+        }
+    }
+
+    &--lg {
+        .designbase-timeline__dot {
+            width: 2.5rem;
+            height: 2.5rem;
+
+            .designbase-timeline__dot-inner {
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+
+        .designbase-timeline__title {
+            font-size: var(--db-text-lg);
+        }
+
+        .designbase-timeline__description {
+            font-size: var(--db-text-lg);
+        }
+    }
+
+    // 위치 변형
+    &--left {
+        .designbase-timeline__container::before {
+            left: 2rem;
+            transform: none;
+        }
+
+        .designbase-timeline__item {
+            flex-direction: row;
+
+            .designbase-timeline__content {
+                margin-right: 2rem;
+                text-align: left;
+                max-width: calc(100% - 4rem);
+            }
+
+            .designbase-timeline__separator {
+                order: 2;
+            }
+        }
+    }
+
+    &--right {
+        .designbase-timeline__container::before {
+            right: 2rem;
+            left: auto;
+            transform: none;
+        }
+
+        .designbase-timeline__item {
+            flex-direction: row-reverse;
+
+            .designbase-timeline__content {
+                margin-left: 2rem;
+                text-align: right;
+                max-width: calc(100% - 4rem);
+            }
+
+            .designbase-timeline__separator {
+                order: 1;
+            }
+        }
+    }
+
+    &--alternate {
+        .designbase-timeline__item:nth-child(even) {
+            flex-direction: row-reverse;
+
+            .designbase-timeline__content {
+                margin-left: 2rem;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            .designbase-timeline__separator {
+                order: 1;
+            }
+        }
+    }
+
+    &--reverse-alternate {
+        .designbase-timeline__item:nth-child(odd) {
+            flex-direction: row-reverse;
+
+            .designbase-timeline__content {
+                margin-left: 2rem;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            .designbase-timeline__separator {
+                order: 1;
+            }
+        }
+    }
+
+    // 전체 너비
+    &--full-width {
+        .designbase-timeline__content {
+            max-width: 40%;
+        }
+
+        &.designbase-timeline--left,
+        &.designbase-timeline--right {
+            .designbase-timeline__content {
+                max-width: calc(100% - 4rem);
+            }
+        }
+    }
+
+    // 반응형 디자인
+    @media (max-width: 768px) {
+        &__container::before {
+            left: 1rem;
+            transform: none;
+        }
+
+        &__item {
+            flex-direction: row !important;
+
+            .designbase-timeline__content {
+                margin-right: 1.5rem !important;
+                margin-left: 0 !important;
+                text-align: left !important;
+                max-width: calc(100% - 3rem) !important;
+            }
+
+            .designbase-timeline__separator {
+                order: 2 !important;
+            }
+        }
+
+        &__content-inner {
+            padding: 0.75rem;
         }
 
         &__title {
-            color: var(--color-semantic-text-primary, #f1f5f9);
+            font-size: var(--db-text-base);
         }
 
         &__description {
-            color: var(--color-semantic-text-secondary, #cbd5e1);
-        }
-
-        &__date {
-            color: var(--color-semantic-text-tertiary, #94a3b8);
-        }
-    }
-}
-
-// 반응형 스타일
-@media (max-width: 768px) {
-    .designbase-timeline {
-        &--direction-horizontal {
-            flex-direction: column;
-            gap: var(--spacing-semantic-margin-md, 16px);
-
-            .designbase-timeline__item {
-                text-align: left;
-            }
-
-            .designbase-timeline__header {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-
-            .designbase-timeline__title,
-            .designbase-timeline__description {
-                text-align: left;
-            }
-
-            .designbase-timeline__line {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 2px;
-                height: 100%;
-                transform: translateX(-50%);
-            }
-        }
-
-        &__header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: var(--spacing-semantic-margin-xs, 4px);
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    .designbase-timeline {
-        &--size-lg {
-
-            .designbase-timeline__icon,
-            .designbase-timeline__number {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
-
-            .designbase-timeline__minimal-dot {
-                width: 8px;
-                height: 8px;
-            }
-
-            .designbase-timeline__title {
-                font-size: var(--typography-semantic-font-size-md, 16px);
-            }
+            font-size: var(--db-text-sm);
         }
     }
 }

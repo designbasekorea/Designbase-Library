@@ -1,9 +1,9 @@
 .designbase-segment-control {
     position: relative;
     display: flex;
-    background-color: var(--color-background-secondary, #f3f4f6);
-    border-radius: var(--border-radius-lg, 8px);
-    padding: var(--spacing-xs, 4px);
+    background-color: var(--db-bg-secondary);
+    border-radius: var(--db-radius-lg);
+    padding: var(--db-padding-xs);
     gap: 0;
     width: fit-content;
 
@@ -12,15 +12,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--spacing-xs, 4px);
-        padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
+        gap: var(--db-gap-xs);
+        padding: var(--db-padding-s) var(--db-padding-m);
         background: none;
         border: none;
-        border-radius: var(--border-radius-md, 6px);
-        color: var(--color-text-secondary, #6b7280);
-        font-size: var(--typography-body-sm-font-size, 14px);
-        font-weight: var(--typography-body-sm-font-weight, 500);
-        line-height: var(--typography-body-sm-line-height, 20px);
+        border-radius: var(--db-radius-md);
+        color: var(--db-text-secondary);
+        font-size: var(--db-text-sm);
+        font-weight: var(--db-weight-medium);
+        line-height: var(--db-leading-tight);
         cursor: pointer;
         transition: all 0.15s ease-in-out;
         outline: none;
@@ -28,29 +28,29 @@
         min-width: 80px;
 
         &:hover:not(.designbase-segment-control__segment--disabled) {
-            color: var(--color-text-primary, #111827);
+            color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--color-primary-500, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
 
         &--selected {
-            color: var(--color-text-primary, #111827);
-            background-color: var(--color-background-default, #ffffff);
-            box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+            color: var(--db-text-primary);
+            background-color: var(--db-bg-primary);
+            box-shadow: var(--db-shadow-sm);
         }
 
         &--focused {
-            outline: 2px solid var(--color-primary-500, #3b82f6);
+            outline: 2px solid var(--db-blue-500);
             outline-offset: 2px;
         }
 
         &--disabled {
-            color: var(--color-text-disabled, #9ca3af);
+            color: var(--db-text-disabled);
             cursor: not-allowed;
-            background-color: var(--color-background-disabled, #f9fafb);
+            background-color: var(--db-bg-secondary);
         }
     }
 
@@ -67,12 +67,12 @@
 
     &__indicator {
         position: absolute;
-        top: var(--spacing-xs, 4px);
-        bottom: var(--spacing-xs, 4px);
-        left: var(--spacing-xs, 4px);
-        background-color: var(--color-background-default, #ffffff);
-        border-radius: var(--border-radius-md, 6px);
-        box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+        top: var(--db-spacing-2);
+        bottom: var(--db-spacing-2);
+        left: var(--db-spacing-2);
+        background-color: var(--db-bg-primary);
+        border-radius: var(--db-radius-md);
+        box-shadow: var(--db-shadow-sm);
         transition: transform 0.2s ease-in-out;
         z-index: 0;
         pointer-events: none;
@@ -80,56 +80,56 @@
 
     // Sizes
     &--sm {
-        padding: var(--spacing-xs, 2px);
-        border-radius: var(--border-radius-md, 6px);
+        padding: var(--db-padding-xxs);
+        border-radius: var(--db-radius-md);
 
         .designbase-segment-control__segment {
-            padding: var(--spacing-xs, 6px) var(--spacing-sm, 10px);
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-tight);
             min-width: 60px;
         }
 
         .designbase-segment-control__indicator {
-            top: var(--spacing-xs, 2px);
-            bottom: var(--spacing-xs, 2px);
-            left: var(--spacing-xs, 2px);
+            top: var(--db-spacing-1);
+            bottom: var(--db-spacing-1);
+            left: var(--db-spacing-1);
         }
     }
 
     &--md {
-        padding: var(--spacing-xs, 4px);
-        border-radius: var(--border-radius-lg, 8px);
+        padding: var(--db-padding-xs);
+        border-radius: var(--db-radius-lg);
 
         .designbase-segment-control__segment {
-            padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
-            font-size: var(--typography-body-sm-font-size, 14px);
-            line-height: var(--typography-body-sm-line-height, 20px);
+            padding: var(--db-padding-s) var(--db-padding-m);
+            font-size: var(--db-text-sm);
+            line-height: var(--db-leading-tight);
             min-width: 80px;
         }
 
         .designbase-segment-control__indicator {
-            top: var(--spacing-xs, 4px);
-            bottom: var(--spacing-xs, 4px);
-            left: var(--spacing-xs, 4px);
+            top: var(--db-spacing-2);
+            bottom: var(--db-spacing-2);
+            left: var(--db-spacing-2);
         }
     }
 
     &--lg {
-        padding: var(--spacing-sm, 6px);
-        border-radius: var(--border-radius-xl, 12px);
+        padding: var(--db-padding-s);
+        border-radius: var(--db-radius-xl);
 
         .designbase-segment-control__segment {
-            padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
-            font-size: var(--typography-body-md-font-size, 16px);
-            line-height: var(--typography-body-md-line-height, 24px);
+            padding: var(--db-padding-m) var(--db-padding-l);
+            font-size: var(--db-text-base);
+            line-height: var(--db-leading-normal);
             min-width: 100px;
         }
 
         .designbase-segment-control__indicator {
-            top: var(--spacing-sm, 6px);
-            bottom: var(--spacing-sm, 6px);
-            left: var(--spacing-sm, 6px);
+            top: var(--db-spacing-3);
+            bottom: var(--db-spacing-3);
+            left: var(--db-spacing-3);
         }
     }
 
@@ -157,9 +157,9 @@
     @media (max-width: 640px) {
         .designbase-segment-control__segment {
             min-width: 60px;
-            padding: var(--spacing-xs, 6px) var(--spacing-sm, 8px);
-            font-size: var(--typography-body-xs-font-size, 12px);
-            line-height: var(--typography-body-xs-line-height, 16px);
+            padding: var(--db-padding-xs) var(--db-padding-s);
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-tight);
         }
     }
 }
