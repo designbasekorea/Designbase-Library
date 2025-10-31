@@ -1,150 +1,117 @@
+/* Designbase Card – 단순/일관/읽기성(typographic rhythm) 중심
+   - 테마 변수 ONLY 사용 (요청사항)
+   - 사이즈에 따른 로컬 CSS 변수로 리듬 통일
+*/
+
 .designbase-card {
+    /* ===== Base / Local tokens ===== */
+    --card-padding: var(--db-padding-m);
+    --card-gap: var(--db-gap-m);
+    --card-title-size: var(--db-text-l);
+    --card-subtitle-size: var(--db-text-base);
+    --card-desc-size: var(--db-text-base);
+    --card-radius: var(--db-radius-l);
+    --card-image-height: 160px;
+    --card-title-weight: var(--db-weight-semibold);
+
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--db-bg-primary);
-    border-radius: var(--db-radius-lg);
+    background: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--card-radius);
+    box-shadow: var(--db-shadow-card);
+    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
     overflow: hidden;
-    transition: all var(--db-animation-speed) var(--db-animation-ease);
 
-    // 기본 스타일
-    &--default {
-        border: 1px solid var(--db-border-primary);
-        box-shadow: var(--db-shadow-sm);
+    /* ===== Variants ===== */
+    &.designbase-card--default {
+        border: 1px solid var(--db-border-base);
+        box-shadow: var(--db-shadow-card);
+        background: var(--db-surface-base);
     }
 
-    // 변형별 스타일
-    &--elevated {
-        border: none;
-        box-shadow: var(--db-shadow-lg);
+    &.designbase-card--elevated {
+        border: 1px solid var(--db-border-layer-1);
+        box-shadow: var(--db-shadow-card-hover);
+        background: var(--db-surface-base);
     }
 
-    &--outlined {
-        border: 2px solid var(--db-border-primary);
+    &.designbase-card--outlined {
+        border: 2px solid var(--db-border-layer-1);
         box-shadow: none;
+        background: var(--db-surface-base);
     }
 
-    &--filled {
-        border: none;
-        background-color: var(--db-bg-secondary);
+    &.designbase-card--filled {
+        border: 1px solid var(--db-border-layer-2);
         box-shadow: none;
+        background: var(--db-surface-layer-1);
     }
 
-    &--flat {
-        border: none;
+    &.designbase-card--flat {
+        border: 1px solid transparent;
         box-shadow: none;
-        background-color: transparent;
+        background: transparent;
     }
 
-    // 크기별 스타일
-    &--sm {
-        .designbase-card__title {
-            font-size: var(--db-text-base);
-            font-weight: var(--db-weight-semibold);
-        }
-
-        .designbase-card__subtitle {
-            font-size: var(--db-text-sm);
-        }
-
-        .designbase-card__description {
-            font-size: var(--db-text-sm);
-        }
-
-        .designbase-card__content {
-            padding: var(--db-padding-m);
-        }
-
-        .designbase-card__icon {
-            width: 32px;
-            height: 32px;
-        }
+    /* ===== Sizes – 로컬 변수로 일괄 제어 ===== */
+    &.designbase-card--s {
+        --card-padding: var(--db-padding-s);
+        --card-gap: var(--db-gap-s);
+        --card-title-size: var(--db-text-base);
+        --card-subtitle-size: var(--db-text-s);
+        --card-desc-size: var(--db-text-s);
+        --card-radius: var(--db-radius-m);
+        --card-image-height: 120px;
+        --card-title-weight: var(--db-weight-semibold);
     }
 
-    &--md {
-        .designbase-card__title {
-            font-size: var(--db-text-lg);
-            font-weight: var(--db-weight-semibold);
-        }
-
-        .designbase-card__subtitle {
-            font-size: var(--db-text-base);
-        }
-
-        .designbase-card__description {
-            font-size: var(--db-text-base);
-        }
-
-        .designbase-card__content {
-            padding: var(--db-padding-l);
-        }
-
-        .designbase-card__icon {
-            width: 40px;
-            height: 40px;
-        }
+    &.designbase-card--m {
+        --card-padding: var(--db-padding-m);
+        --card-gap: var(--db-gap-m);
+        --card-title-size: var(--db-text-l);
+        --card-subtitle-size: var(--db-text-base);
+        --card-desc-size: var(--db-text-base);
+        --card-radius: var(--db-radius-l);
+        --card-image-height: 160px;
+        --card-title-weight: var(--db-weight-semibold);
     }
 
-    &--lg {
-        .designbase-card__title {
-            font-size: var(--db-text-xl);
-            font-weight: var(--db-weight-bold);
-        }
-
-        .designbase-card__subtitle {
-            font-size: var(--db-text-lg);
-        }
-
-        .designbase-card__description {
-            font-size: var(--db-text-lg);
-        }
-
-        .designbase-card__content {
-            padding: var(--db-padding-xl);
-        }
-
-        .designbase-card__icon {
-            width: 48px;
-            height: 48px;
-        }
+    &.designbase-card--l {
+        --card-padding: var(--db-padding-l);
+        --card-gap: var(--db-gap-m);
+        --card-title-size: var(--db-text-xl);
+        --card-subtitle-size: var(--db-text-l);
+        --card-desc-size: var(--db-text-l);
+        --card-radius: var(--db-radius-xl);
+        --card-image-height: 200px;
+        --card-title-weight: var(--db-weight-bold);
     }
 
-    &--xl {
-        .designbase-card__title {
-            font-size: var(--db-text-2xl);
-            font-weight: var(--db-weight-bold);
-        }
-
-        .designbase-card__subtitle {
-            font-size: var(--db-text-xl);
-        }
-
-        .designbase-card__description {
-            font-size: var(--db-text-xl);
-        }
-
-        .designbase-card__content {
-            padding: var(--db-padding-2xl);
-        }
-
-        .designbase-card__icon {
-            width: 56px;
-            height: 56px;
-        }
+    &.designbase-card--xl {
+        --card-padding: var(--db-padding-xl);
+        --card-gap: var(--db-gap-l);
+        --card-title-size: var(--db-text-2xl);
+        --card-subtitle-size: var(--db-text-xl);
+        --card-desc-size: var(--db-text-xl);
+        --card-radius: var(--db-radius-2xl);
+        --card-image-height: 240px;
+        --card-title-weight: var(--db-weight-bold);
     }
 
-    // 레이아웃별 스타일
-    &--horizontal {
+    /* ===== Layouts ===== */
+    &.designbase-card--horizontal {
         flex-direction: row;
 
-        .designbase-card__image--left {
+        .designbase-card__image--left,
+        .designbase-card__image--right {
             flex: 0 0 auto;
-            width: 200px;
+            width: 180px;
+            height: auto;
         }
 
         .designbase-card__image--right {
-            flex: 0 0 auto;
-            width: 200px;
             order: 2;
         }
 
@@ -156,33 +123,19 @@
         }
     }
 
-    &--compact {
-        .designbase-card__content {
-            padding: var(--db-padding-s);
-        }
-
-        .designbase-card__title {
-            margin-bottom: var(--db-margin-xs);
-        }
-
-        .designbase-card__description {
-            margin-bottom: var(--db-margin-xs);
-        }
+    &.designbase-card--compact {
+        --card-padding: var(--db-padding-s);
+        --card-gap: var(--db-gap-s);
     }
 
-    // 전체 너비
-    &--full-width {
-        width: 100%;
-    }
-
-    // 클릭 가능
-    &--clickable {
+    /* ===== Interactions ===== */
+    &.designbase-card--clickable {
         cursor: pointer;
         user-select: none;
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: var(--db-shadow-xl);
+            box-shadow: var(--db-shadow-card-hover);
         }
 
         &:active {
@@ -190,72 +143,62 @@
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
     }
 
-    // 호버 효과
-    &--hoverable {
-        &:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--db-shadow-xl);
-        }
+    &.designbase-card--hoverable:hover {
+        border-color: var(--db-border-layer-1);
+        box-shadow: var(--db-shadow-card-hover);
     }
 
-    // 선택 가능
-    &--selectable {
+    &.designbase-card--selectable {
         cursor: pointer;
 
         &:hover {
-            border-color: var(--db-blue-500);
+            border-color: var(--db-border-layer-1);
         }
     }
 
-    &--selected {
-        border-color: var(--db-blue-500);
-        background-color: var(--db-blue-50);
+    &.designbase-card--selected {
+        border-color: var(--db-brand-primary);
+        background: var(--db-surface-layer-1);
     }
 
-    // 비활성화
-    &--disabled {
-        opacity: 0.6;
+    &.designbase-card--disabled {
+        opacity: var(--db-opacity-disabled);
         pointer-events: none;
         cursor: not-allowed;
     }
 
-    // 로딩 상태
-    &--loading {
+    &.designbase-card--loading {
         pointer-events: none;
     }
 
-    // 이미지 스타일
+    &.designbase-card--full-width {
+        width: 100%;
+    }
+
+    /* ===== Image ===== */
     &__image {
         position: relative;
         overflow: hidden;
+        background: var(--db-surface-layer-1);
 
-        &--top {
-            order: -1;
-        }
-
+        &--top,
         &--bottom {
-            order: 1;
+            height: var(--card-image-height);
         }
 
-        &--left {
-            flex: 0 0 auto;
-        }
-
+        &--left,
         &--right {
-            flex: 0 0 auto;
+            height: 100%;
         }
 
         &--background {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
             z-index: 1;
         }
     }
@@ -264,142 +207,131 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
+        display: block;
 
-    // 오버레이 (배경 이미지용)
-    &__overlay {
-        position: relative;
-        z-index: 2;
-        background: linear-gradient(to bottom,
-                rgba(0, 0, 0, 0.1) 0%,
-                rgba(0, 0, 0, 0.3) 50%,
-                rgba(0, 0, 0, 0.7) 100%);
-        color: var(--db-text-inverse);
-        padding: var(--db-padding-l);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        min-height: 200px;
-
-        .designbase-card__title,
-        .designbase-card__subtitle,
-        .designbase-card__description {
-            color: var(--db-text-inverse);
+        &:focus-visible {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: 2px;
         }
     }
 
-    // 콘텐츠
+    /* ===== Content ===== */
     &__content {
         display: flex;
         flex-direction: column;
+        gap: var(--card-gap);
+        padding: var(--card-padding);
         flex: 1;
     }
 
-    // 아이콘
     &__icon {
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-bottom: var(--db-margin-m);
-        color: var(--db-blue-500);
+        color: var(--db-icon-primary);
     }
 
-    &__icon-element {
-        width: 100%;
-        height: 100%;
-    }
-
-    // 헤더
     &__header {
-        margin-bottom: var(--db-margin-m);
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+        margin: 0;
     }
 
     &__title {
-        margin: 0 0 var(--db-margin-xs) 0;
+        margin: 0;
         color: var(--db-text-primary);
-        line-height: 1.3;
+        font-size: var(--card-title-size);
+        font-weight: var(--card-title-weight);
+        line-height: var(--db-leading-snug);
     }
 
     &__subtitle {
         margin: 0;
         color: var(--db-text-secondary);
+        font-size: var(--card-subtitle-size);
         font-weight: var(--db-weight-normal);
-        line-height: 1.4;
+        line-height: var(--db-leading-normal);
     }
 
-    // 설명
     &__description {
-        margin: 0 0 var(--db-margin-m) 0;
+        margin: 0;
         color: var(--db-text-secondary);
-        line-height: 1.6;
+        font-size: var(--card-desc-size);
+        line-height: var(--db-leading-relaxed);
     }
 
-    // 본문
     &__body {
-        margin-bottom: var(--db-margin-m);
+        margin: 0;
         color: var(--db-text-primary);
-        line-height: 1.6;
+        line-height: var(--db-leading-relaxed);
     }
 
-    // 태그
+    /* ===== Tags ===== */
     &__tags {
         display: flex;
         flex-wrap: wrap;
         gap: var(--db-gap-xs);
-        margin-bottom: var(--db-margin-m);
     }
 
     &__tag {
         padding: var(--db-padding-xs) var(--db-padding-s);
-        background-color: var(--db-blue-50);
-        color: var(--db-blue-600);
-        border-radius: var(--db-radius-sm);
+        background: var(--db-surface-layer-2);
+        color: var(--db-text-primary);
+        border: 1px solid var(--db-border-muted);
+        border-radius: var(--db-radius-m);
         font-size: var(--db-text-xs);
         font-weight: var(--db-weight-medium);
     }
 
-    // 메타 정보
+    /* ===== Meta ===== */
     &__meta {
         display: flex;
         flex-wrap: wrap;
         gap: var(--db-gap-s);
-        margin-bottom: var(--db-margin-m);
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
     }
 
     &__meta-item {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: var(--db-gap-xs);
+        white-space: nowrap;
     }
 
     &__meta-label {
         font-weight: var(--db-weight-medium);
+        color: var(--db-text-secondary);
+    }
+
+    &__meta-sep {
+        color: var(--db-text-tertiary);
     }
 
     &__meta-value {
         color: var(--db-text-primary);
     }
 
-    // 액션
+    /* ===== Actions ===== */
     &__actions {
         display: flex;
         gap: var(--db-gap-s);
         margin-top: auto;
-        padding-top: var(--db-padding-m);
-        border-top: 1px solid var(--db-border-primary);
+        padding-top: var(--db-padding-s);
+        border-top: 1px solid var(--db-border-muted);
+        flex-wrap: wrap;
     }
 
-    // 선택 오버레이
+    /* ===== Select / Loading ===== */
     &__select-overlay {
         position: absolute;
-        top: var(--db-spacing-2);
-        left: var(--db-spacing-2);
-        z-index: 10;
-        background-color: var(--db-bg-overlay);
-        border-radius: var(--db-radius-sm);
+        top: var(--db-padding-s);
+        left: var(--db-padding-s);
+        z-index: 5;
+        background: var(--db-surface-alpha);
+        border-radius: var(--db-radius-s);
         padding: var(--db-padding-xs);
+        backdrop-filter: blur(2px);
     }
 
     &__select-input {
@@ -408,97 +340,56 @@
         cursor: pointer;
     }
 
-    // 로딩 오버레이
     &__loading-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--db-bg-overlay);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 20;
+        inset: 0;
+        background: var(--db-surface-transparent);
+        display: grid;
+        place-items: center;
+        z-index: 10;
     }
 
     &__loading-spinner {
         width: 32px;
         height: 32px;
-        border: 3px solid var(--db-border-primary);
-        border-top: 3px solid var(--db-blue-500);
+        border: 3px solid var(--db-border-muted);
+        border-top: 3px solid var(--db-brand-primary);
         border-radius: 50%;
         animation: cardLoadingSpin 1s linear infinite;
     }
 }
 
-// 로딩 애니메이션
+/* ===== Animations ===== */
 @keyframes cardLoadingSpin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
+    to {
         transform: rotate(360deg);
     }
 }
 
-// 반응형 디자인
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-    .designbase-card {
-        &--horizontal {
-            flex-direction: column;
+    .designbase-card.designbase-card--horizontal {
+        flex-direction: column;
 
-            .designbase-card__image--left,
-            .designbase-card__image--right {
-                width: 100%;
-                order: -1;
-            }
+        .designbase-card__image--left,
+        .designbase-card__image--right {
+            width: 100%;
+            height: var(--card-image-height);
+            order: -1;
         }
+    }
 
-        &__actions {
-            flex-direction: column;
+    .designbase-card__actions {
+        flex-direction: column;
 
-            .designbase-button {
-                width: 100%;
-            }
-        }
-
-        &__meta {
-            flex-direction: column;
-            gap: var(--db-gap-xs);
+        .designbase-button {
+            width: 100%;
         }
     }
 }
 
-// 접근성 개선
-.designbase-card {
-    &--clickable:focus-visible {
-        outline: 2px solid var(--db-blue-500);
-        outline-offset: 2px;
-    }
-
-    &__image-element {
-        &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
-            outline-offset: 2px;
-        }
-    }
-}
-
-// 애니메이션
-.designbase-card {
-    animation: cardSlideIn 0.3s ease;
-}
-
-@keyframes cardSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ===== Focus (A11y) ===== */
+.designbase-card.designbase-card--clickable:focus-visible {
+    outline: 2px solid var(--db-border-focus);
+    outline-offset: 2px;
 }

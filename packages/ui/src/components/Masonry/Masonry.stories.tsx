@@ -16,7 +16,7 @@ const meta: Meta<typeof Masonry> = {
         },
         spacing: {
             control: { type: 'select' },
-            options: ['xs', 'sm', 'md', 'lg', 'xl'],
+            options: ['xs', 's', 'm', 'l', 'xl'],
         },
         ratio: {
             control: { type: 'select' },
@@ -184,7 +184,7 @@ export const Default: Story = {
     args: {
         images: sampleImages,
         columns: 3,
-        spacing: 'md',
+        spacing: 'm',
         ratio: 'auto',
         fit: 'cover',
         rounded: false,
@@ -201,121 +201,42 @@ export const Default: Story = {
     },
 };
 
-export const TwoColumns: Story = {
-    args: {
-        ...Default.args,
-        columns: 2,
-        spacing: 'lg',
-    },
+export const AllColumns: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+                <h3>2 Columns</h3>
+                <Masonry images={sampleImages.slice(0, 6)} columns={2} spacing="l" />
+            </div>
+            <div>
+                <h3>3 Columns</h3>
+                <Masonry images={sampleImages.slice(0, 6)} columns={3} spacing="m" />
+            </div>
+            <div>
+                <h3>4 Columns</h3>
+                <Masonry images={sampleImages.slice(0, 6)} columns={4} spacing="s" />
+            </div>
+        </div>
+    ),
 };
 
-export const FourColumns: Story = {
-    args: {
-        ...Default.args,
-        columns: 4,
-        spacing: 'sm',
-    },
-};
-
-export const SixColumns: Story = {
-    args: {
-        ...Default.args,
-        columns: 6,
-        spacing: 'xs',
-    },
-};
-
-export const WithRoundedCorners: Story = {
-    args: {
-        ...Default.args,
-        rounded: true,
-        shadow: true,
-    },
-};
-
-export const WithoutLightbox: Story = {
-    args: {
-        ...Default.args,
-        lightbox: false,
-    },
-};
-
-export const WithoutHover: Story = {
-    args: {
-        ...Default.args,
-        hover: false,
-    },
-};
-
-export const FadeAnimation: Story = {
-    args: {
-        ...Default.args,
-        animation: 'fade',
-        animationDelay: 150,
-    },
-};
-
-export const SlideAnimation: Story = {
-    args: {
-        ...Default.args,
-        animation: 'slide',
-        animationDelay: 100,
-    },
-};
-
-export const ZoomAnimation: Story = {
-    args: {
-        ...Default.args,
-        animation: 'zoom',
-        animationDelay: 200,
-    },
-};
-
-export const NoAnimation: Story = {
-    args: {
-        ...Default.args,
-        animation: 'none',
-    },
-};
-
-export const CustomRatio: Story = {
-    args: {
-        ...Default.args,
-        ratio: '16:9',
-        columns: 3,
-    },
-};
-
-export const CoverFit: Story = {
-    args: {
-        ...Default.args,
-        fit: 'cover',
-        ratio: '4:3',
-    },
-};
-
-export const ContainFit: Story = {
-    args: {
-        ...Default.args,
-        fit: 'contain',
-        ratio: '4:3',
-    },
-};
-
-export const ResponsiveMasonry: Story = {
-    args: {
-        ...Default.args,
-        responsive: true,
-        columns: 3,
-        spacing: 'md',
-    },
-};
-
-export const LoadingEager: Story = {
-    args: {
-        ...Default.args,
-        loading: 'eager',
-    },
+export const AllAnimations: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+                <h3>Fade</h3>
+                <Masonry images={sampleImages.slice(0, 4)} animation="fade" animationDelay={150} />
+            </div>
+            <div>
+                <h3>Slide</h3>
+                <Masonry images={sampleImages.slice(0, 4)} animation="slide" animationDelay={100} />
+            </div>
+            <div>
+                <h3>Zoom</h3>
+                <Masonry images={sampleImages.slice(0, 4)} animation="zoom" animationDelay={200} />
+            </div>
+        </div>
+    ),
 };
 
 export const WithInfiniteScroll: Story = {
@@ -323,41 +244,5 @@ export const WithInfiniteScroll: Story = {
         ...Default.args,
         infiniteScroll: true,
         infiniteScrollThreshold: 200,
-    },
-};
-
-export const WithCustomStyling: Story = {
-    args: {
-        ...Default.args,
-        className: 'custom-masonry',
-        style: {
-            backgroundColor: '#f8f9fa',
-            padding: '20px',
-            borderRadius: '8px',
-        },
-    },
-};
-
-export const SingleColumn: Story = {
-    args: {
-        ...Default.args,
-        columns: 1,
-        spacing: 'lg',
-    },
-};
-
-export const DenseSpacing: Story = {
-    args: {
-        ...Default.args,
-        spacing: 'xs',
-        columns: 4,
-    },
-};
-
-export const LooseSpacing: Story = {
-    args: {
-        ...Default.args,
-        spacing: 'xl',
-        columns: 2,
     },
 };

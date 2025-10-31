@@ -9,142 +9,200 @@
  * 토큰을 변경하려면 packages/tokens/tokens/ 디렉토리의 JSON 파일을 수정하세요.
  */
 
-// ============================================================================
-// 토큰 CSS는 빌드 시 dist/css/theme.css 상단에 병합됩니다 (런타임 추가 import 불필요)
-// ============================================================================
-
-// ============================================================================
-// Designbase 전용 CSS 변수 정의 (:root)
-// ============================================================================
 
 :root {
     // ============================================================================
-    // 색상 변수 (짧은 이름)
+    // 색상 변수 (짧은 이름) - Alias & Semantic Token 기반
     // ============================================================================
 
-    // Text colors
-    --db-text-primary: var(--color-semantic-text-primary);
-    --db-text-secondary: var(--color-semantic-text-secondary);
-    --db-text-muted: var(--color-semantic-text-muted);
-    --db-text-disabled: var(--color-semantic-text-disabled);
-    --db-text-inverse: var(--color-semantic-text-inverse);
-    --db-text-link: var(--color-semantic-text-link);
-    --db-text-link-hover: var(--color-semantic-text-link-hover);
-    --db-text-success: var(--color-semantic-success-foreground);
-    --db-text-warning: var(--color-semantic-warning-foreground);
-    --db-text-error: var(--color-semantic-error-foreground);
+    // ========== Text colors (Alias 기반) ==========
+    --db-text-primary: var(--color-aliases-text-primary);
+    --db-text-secondary: var(--color-aliases-text-secondary);
+    --db-text-tertiary: var(--color-aliases-text-tertiary);
+    --db-text-disabled: var(--color-aliases-text-disabled);
+    --db-text-link: var(--color-aliases-text-link);
+    --db-text-link-hover: var(--color-aliases-text-link-hover);
+    --db-text-inverse-primary: var(--color-aliases-text-inverse-primary);
+    --db-text-inverse-secondary: var(--color-aliases-text-inverse-secondary);
+    --db-text-inverse-tertiary: var(--color-aliases-text-inverse-tertiary);
 
-    // Background colors
-    --db-bg-primary: var(--color-semantic-background-primary);
-    --db-bg-secondary: var(--color-semantic-background-secondary);
-    --db-bg-tertiary: var(--color-semantic-background-tertiary);
-    --db-bg-inverse: var(--color-semantic-background-inverse);
-    --db-bg-overlay: var(--color-semantic-background-overlay);
-    --db-bg-success: var(--color-semantic-success-background);
-    --db-bg-warning: var(--color-semantic-warning-background);
-    --db-bg-error: var(--color-semantic-error-background);
+    // ========== Brand colors (Alias 기반) ==========
+    --db-brand-primary: var(--color-aliases-brand-primary);
+    --db-brand-secondary: var(--color-aliases-brand-secondary);
+    --db-brand-tertiary: var(--color-aliases-brand-tertiary);
+    --db-brand-accent: var(--color-aliases-brand-accent);
 
-    // Border colors
-    --db-border-primary: var(--color-semantic-border-primary);
-    --db-border-secondary: var(--color-semantic-border-secondary);
-    --db-border-muted: var(--color-semantic-border-muted);
-    --db-border-focus: var(--color-semantic-border-focus);
-    --db-border-success: var(--color-semantic-success-foreground);
-    --db-border-warning: var(--color-semantic-warning-foreground);
-    --db-border-error: var(--color-semantic-error-foreground);
+    // ========== Surface/Background colors (Alias 기반) ==========
+    --db-surface-base: var(--color-aliases-surface-base);
+    --db-surface-layer-1: var(--color-aliases-surface-layer-1);
+    --db-surface-layer-2: var(--color-aliases-surface-layer-2);
+    --db-surface-layer-3: var(--color-aliases-surface-layer-3);
+    --db-surface-muted: var(--color-aliases-surface-muted);
+    --db-surface-inverse: var(--color-aliases-surface-inverse);
+    --db-surface-transparent: var(--color-aliases-surface-transparent);
+    --db-surface-alpha: var(--color-aliases-surface-alpha);
+    --db-surface-alpha-inverse: var(--color-aliases-surface-alpha-inverse);
 
-    // Component colors
-    --db-btn-primary-bg: var(--color-semantic-component-button-primary-bg);
-    --db-btn-primary-text: var(--color-semantic-component-button-primary-text);
-    --db-btn-secondary-bg: var(--color-semantic-component-button-secondary-bg);
-    --db-btn-secondary-text: var(--color-semantic-component-button-secondary-text);
+    // 기존 호환성을 위한 별칭
+    --db-bg-primary: var(--color-aliases-surface-base);
+    --db-bg-secondary: var(--color-aliases-surface-layer-1);
+    --db-bg-tertiary: var(--color-aliases-surface-layer-2);
+    --db-bg-inverse: var(--color-aliases-surface-inverse);
 
-    // Icon colors
-    --db-icon-primary: var(--color-semantic-component-icon-primary);
-    --db-icon-secondary: var(--color-semantic-component-icon-secondary);
-    --db-icon-success: var(--color-semantic-component-icon-success);
-    --db-icon-warning: var(--color-semantic-component-icon-warning);
-    --db-icon-danger: var(--color-semantic-component-icon-danger);
-    --db-icon-info: var(--color-semantic-component-icon-info);
-    --db-icon-muted: var(--color-semantic-component-icon-muted);
-    --db-icon-inverse: var(--color-semantic-component-icon-inverse);
+    // ========== Feedback colors (Alias 기반) ==========
+    --db-feedback-success-fg: var(--color-aliases-feedback-success-fg);
+    --db-feedback-success-bg: var(--color-aliases-feedback-success-bg);
+    --db-feedback-warning-fg: var(--color-aliases-feedback-warning-fg);
+    --db-feedback-warning-bg: var(--color-aliases-feedback-warning-bg);
+    --db-feedback-error-fg: var(--color-aliases-feedback-error-fg);
+    --db-feedback-error-bg: var(--color-aliases-feedback-error-bg);
+    --db-feedback-info-fg: var(--color-aliases-feedback-info-fg);
+    --db-feedback-info-bg: var(--color-aliases-feedback-info-bg);
 
-    // Foundation colors (기본 색상들)
-    --db-neutral-0: var(--color-foundation-neutral-0);
-    --db-neutral-50: var(--color-foundation-neutral-50);
-    --db-neutral-100: var(--color-foundation-neutral-100);
-    --db-neutral-200: var(--color-foundation-neutral-200);
-    --db-neutral-300: var(--color-foundation-neutral-300);
-    --db-neutral-400: var(--color-foundation-neutral-400);
-    --db-neutral-500: var(--color-foundation-neutral-500);
-    --db-neutral-600: var(--color-foundation-neutral-600);
-    --db-neutral-700: var(--color-foundation-neutral-700);
-    --db-neutral-800: var(--color-foundation-neutral-800);
-    --db-neutral-900: var(--color-foundation-neutral-900);
-    --db-neutral-1000: var(--color-foundation-neutral-1000);
-    --db-neutral-1100: var(--color-foundation-neutral-1100);
-    --db-neutral-white: var(--color-foundation-neutral-white);
-    --db-neutral-black: var(--color-foundation-neutral-black);
+    // 기존 호환성을 위한 별칭
+    --db-text-success: var(--color-aliases-feedback-success-fg);
+    --db-text-warning: var(--color-aliases-feedback-warning-fg);
+    --db-text-error: var(--color-aliases-feedback-error-fg);
+    --db-text-info: var(--color-aliases-feedback-info-fg);
+    --db-bg-success: var(--color-aliases-feedback-success-bg);
+    --db-bg-warning: var(--color-aliases-feedback-warning-bg);
+    --db-bg-error: var(--color-aliases-feedback-error-bg);
+    --db-bg-info: var(--color-aliases-feedback-info-bg);
 
-    --db-blue-50: var(--color-foundation-blue-50);
-    --db-blue-100: var(--color-foundation-blue-100);
-    --db-blue-200: var(--color-foundation-blue-200);
-    --db-blue-300: var(--color-foundation-blue-300);
-    --db-blue-400: var(--color-foundation-blue-400);
-    --db-blue-500: var(--color-foundation-blue-500);
-    --db-blue-600: var(--color-foundation-blue-600);
-    --db-blue-700: var(--color-foundation-blue-700);
-    --db-blue-800: var(--color-foundation-blue-800);
-    --db-blue-900: var(--color-foundation-blue-900);
+    // ========== Border colors (Alias 기반) ==========
+    --db-border-base: var(--color-aliases-border-base);
+    --db-border-layer-1: var(--color-aliases-border-layer-1);
+    --db-border-layer-2: var(--color-aliases-border-layer-2);
+    --db-border-layer-3: var(--color-aliases-border-layer-3);
+    --db-border-muted: var(--color-aliases-border-muted);
+    --db-border-inverse: var(--color-aliases-border-inverse);
+    --db-border-transparent: var(--color-aliases-border-transparent);
+    --db-border-alpha: var(--color-aliases-border-alpha);
+    --db-border-alpha-inverse: var(--color-aliases-border-alpha-inverse);
 
-    --db-red-50: var(--color-foundation-red-50);
-    --db-red-100: var(--color-foundation-red-100);
-    --db-red-200: var(--color-foundation-red-200);
-    --db-red-300: var(--color-foundation-red-300);
-    --db-red-400: var(--color-foundation-red-400);
-    --db-red-500: var(--color-foundation-red-500);
-    --db-red-600: var(--color-foundation-red-600);
-    --db-red-700: var(--color-foundation-red-700);
-    --db-red-800: var(--color-foundation-red-800);
-    --db-red-900: var(--color-foundation-red-900);
+    // 기존 호환성을 위한 별칭
+    --db-border-primary: var(--color-aliases-border-base);
+    --db-border-secondary: var(--color-aliases-border-layer-1);
+    --db-border-focus: var(--color-aliases-brand-primary);
+    --db-border-error: var(--color-aliases-feedback-error-fg);
+    --db-border-success: var(--color-aliases-feedback-success-fg);
+    --db-border-warning: var(--color-aliases-feedback-warning-fg);
+    --db-border-info: var(--color-aliases-feedback-info-fg);
 
-    --db-green-50: var(--color-foundation-green-50);
-    --db-green-100: var(--color-foundation-green-100);
-    --db-green-200: var(--color-foundation-green-200);
-    --db-green-300: var(--color-foundation-green-300);
-    --db-green-400: var(--color-foundation-green-400);
-    --db-green-500: var(--color-foundation-green-500);
-    --db-green-600: var(--color-foundation-green-600);
-    --db-green-700: var(--color-foundation-green-700);
-    --db-green-800: var(--color-foundation-green-800);
-    --db-green-900: var(--color-foundation-green-900);
+    // ========== Overlay colors (Alias 기반) ==========
+    --db-overlay-base: var(--color-aliases-overlay-base);
+    --db-overlay-soft: var(--color-aliases-overlay-soft);
+    --db-overlay-inverse: var(--color-aliases-overlay-inverse);
+    --db-bg-overlay: var(--color-aliases-overlay-base);
 
-    --db-yellow-50: var(--color-foundation-yellow-50);
-    --db-yellow-100: var(--color-foundation-yellow-100);
-    --db-yellow-200: var(--color-foundation-yellow-200);
-    --db-yellow-300: var(--color-foundation-yellow-300);
-    --db-yellow-400: var(--color-foundation-yellow-400);
-    --db-yellow-500: var(--color-foundation-yellow-500);
-    --db-yellow-600: var(--color-foundation-yellow-600);
-    --db-yellow-700: var(--color-foundation-yellow-700);
-    --db-yellow-800: var(--color-foundation-yellow-800);
-    --db-yellow-900: var(--color-foundation-yellow-900);
+    // ========== Icon colors (Semantic 기반) ==========
+    --db-icon-default: var(--color-semantic-icon-default);
+    --db-icon-hover: var(--color-semantic-icon-hover);
+    --db-icon-muted: var(--color-semantic-icon-muted);
+    --db-icon-disabled: var(--color-semantic-icon-disabled);
+    --db-icon-primary: var(--color-semantic-icon-primary);
+    --db-icon-success: var(--color-semantic-icon-success);
+    --db-icon-warning: var(--color-semantic-icon-warning);
+    --db-icon-error: var(--color-semantic-icon-error);
+    --db-icon-info: var(--color-semantic-icon-info);
+    --db-icon-inverse: var(--color-semantic-icon-inverse);
+    --db-icon-inverse-hover: var(--color-semantic-icon-inverse-hover);
 
-    --db-color-primary: var(--db-blue-600);
-    --db-color-secondary: var(--db-blue-300);
-    --db-color-tertiary: var(--db-blue-100);
+    // 기존 호환성을 위한 별칭
+    --db-icon-secondary: var(--color-semantic-icon-hover);
+    --db-icon-danger: var(--color-semantic-icon-error);
+
+    // ========== Button colors (Semantic 기반) ==========
+    // Primary button
+    --db-btn-primary-bg: var(--color-semantic-button-primary-bg-default);
+    --db-btn-primary-bg-hover: var(--color-semantic-button-primary-bg-hover);
+    --db-btn-primary-bg-active: var(--color-semantic-button-primary-bg-active);
+    --db-btn-primary-bg-disabled: var(--color-semantic-button-primary-bg-disabled);
+    --db-btn-primary-text: var(--color-semantic-button-primary-text-default);
+    --db-btn-primary-text-disabled: var(--color-semantic-button-primary-text-disabled);
+    --db-btn-primary-border: var(--color-semantic-button-primary-border-default);
+    --db-btn-primary-border-hover: var(--color-semantic-button-primary-border-hover);
+    --db-btn-primary-border-active: var(--color-semantic-button-primary-border-active);
+
+    // Secondary button
+    --db-btn-secondary-bg: var(--color-semantic-button-secondary-bg-default);
+    --db-btn-secondary-bg-hover: var(--color-semantic-button-secondary-bg-hover);
+    --db-btn-secondary-bg-active: var(--color-semantic-button-secondary-bg-active);
+    --db-btn-secondary-bg-disabled: var(--color-semantic-button-secondary-bg-disabled);
+    --db-btn-secondary-text: var(--color-semantic-button-secondary-text-default);
+    --db-btn-secondary-text-hover: var(--color-semantic-button-secondary-text-hover);
+    --db-btn-secondary-text-disabled: var(--color-semantic-button-secondary-text-disabled);
+    --db-btn-secondary-border: var(--color-semantic-button-secondary-border-default);
+    --db-btn-secondary-border-hover: var(--color-semantic-button-secondary-border-hover);
+
+    // Tertiary button
+    --db-btn-tertiary-bg: var(--color-semantic-button-tertiary-bg-default);
+    --db-btn-tertiary-bg-hover: var(--color-semantic-button-tertiary-bg-hover);
+    --db-btn-tertiary-bg-active: var(--color-semantic-button-tertiary-bg-active);
+    --db-btn-tertiary-bg-disabled: var(--color-semantic-button-tertiary-bg-disabled);
+    --db-btn-tertiary-text: var(--color-semantic-button-tertiary-text-default);
+    --db-btn-tertiary-text-hover: var(--color-semantic-button-tertiary-text-hover);
+    --db-btn-tertiary-text-disabled: var(--color-semantic-button-tertiary-text-disabled);
+    --db-btn-tertiary-border: var(--color-semantic-button-tertiary-border-default);
+    --db-btn-tertiary-border-hover: var(--color-semantic-button-tertiary-border-hover);
+
+    // Disabled button
+    --db-btn-disabled-bg: var(--color-semantic-button-disabled-bg-disabled);
+    --db-btn-disabled-text: var(--color-semantic-button-disabled-text-disabled);
+
+    // ========== Field/Input colors (Semantic 기반) ==========
+    --db-field-bg: var(--color-semantic-field-input-bg-default);
+    --db-field-bg-hover: var(--color-semantic-field-input-bg-hover);
+    --db-field-bg-disabled: var(--color-semantic-field-input-bg-disabled);
+    --db-field-border: var(--color-semantic-field-input-border-default);
+    --db-field-border-hover: var(--color-semantic-field-input-border-hover);
+    --db-field-border-focus: var(--color-semantic-field-input-border-focus);
+    --db-field-border-error: var(--color-semantic-field-input-border-error);
+    --db-field-text: var(--color-semantic-field-input-text-default);
+    --db-field-text-disabled: var(--color-semantic-field-input-text-disabled);
+    --db-field-placeholder: var(--color-semantic-field-input-placeholder);
+
+    // ========== Interactive colors (Semantic 기반) ==========
+    --db-interactive-text: var(--color-semantic-interactive-text-default);
+    --db-interactive-text-hover: var(--color-semantic-interactive-text-hover);
+    --db-interactive-text-mute: var(--color-semantic-interactive-text-mute);
+    --db-interactive-text-disabled: var(--color-semantic-interactive-text-disabled);
+    --db-interactive-text-inverse: var(--color-semantic-interactive-text-inverse);
+    --db-interactive-text-primary: var(--color-semantic-interactive-text-primary);
+
+    --db-interactive-border: var(--color-semantic-interactive-border-default);
+    --db-interactive-border-hover: var(--color-semantic-interactive-border-hover);
+    --db-interactive-border-muted: var(--color-semantic-interactive-border-muted);
+    --db-interactive-border-success: var(--color-semantic-interactive-border-success);
+    --db-interactive-border-warning: var(--color-semantic-interactive-border-warning);
+    --db-interactive-border-error: var(--color-semantic-interactive-border-error);
+    --db-interactive-border-info: var(--color-semantic-interactive-border-info);
+
+    --db-interactive-bg: var(--color-semantic-interactive-bg-default);
+    --db-interactive-bg-hover: var(--color-semantic-interactive-bg-hover);
+    --db-interactive-bg-muted: var(--color-semantic-interactive-bg-muted);
+    --db-interactive-bg-success: var(--color-semantic-interactive-bg-success);
+    --db-interactive-bg-warning: var(--color-semantic-interactive-bg-warning);
+    --db-interactive-bg-error: var(--color-semantic-interactive-bg-error);
+    --db-interactive-bg-info: var(--color-semantic-interactive-bg-info);
+
+    // ========== 기존 호환성 유지 ==========
+    --db-color-primary: var(--color-aliases-brand-primary);
+    --db-color-secondary: var(--color-aliases-brand-secondary);
+    --db-color-tertiary: var(--color-aliases-brand-tertiary);
 
     // ============================================================================
     // Spacing 변수 (짧은 이름)
     // ============================================================================
 
     // Semantic spacing
+    --db-margin-xxs: var(--spacing-semantic-margin-xxs);
     --db-margin-xs: var(--spacing-semantic-margin-xs);
     --db-margin-s: var(--spacing-semantic-margin-s);
     --db-margin-m: var(--spacing-semantic-margin-m);
     --db-margin-l: var(--spacing-semantic-margin-l);
     --db-margin-xl: var(--spacing-semantic-margin-xl);
-    --db-margin-xxl: var(--spacing-semantic-margin-xxl);
+    --db-margin-2xl: var(--spacing-semantic-margin-2xl);
 
     --db-padding-xxs: var(--spacing-semantic-padding-xxs);
     --db-padding-xs: var(--spacing-semantic-padding-xs);
@@ -152,179 +210,244 @@
     --db-padding-m: var(--spacing-semantic-padding-m);
     --db-padding-l: var(--spacing-semantic-padding-l);
     --db-padding-xl: var(--spacing-semantic-padding-xl);
+    --db-padding-2xl: var(--spacing-semantic-padding-2xl);
 
+    --db-gap-xxs: var(--spacing-semantic-gap-xxs);
     --db-gap-xs: var(--spacing-semantic-gap-xs);
     --db-gap-s: var(--spacing-semantic-gap-s);
     --db-gap-m: var(--spacing-semantic-gap-m);
     --db-gap-l: var(--spacing-semantic-gap-l);
     --db-gap-xl: var(--spacing-semantic-gap-xl);
+    --db-gap-2xl: var(--spacing-semantic-gap-2xl);
 
-    // Foundation spacing
-    --db-spacing-0: var(--spacing-foundation-0);
-    --db-spacing-1: var(--spacing-foundation-1);
-    --db-spacing-2: var(--spacing-foundation-2);
-    --db-spacing-3: var(--spacing-foundation-3);
-    --db-spacing-4: var(--spacing-foundation-4);
-    --db-spacing-5: var(--spacing-foundation-5);
-    --db-spacing-6: var(--spacing-foundation-6);
-    --db-spacing-7: var(--spacing-foundation-7);
-    --db-spacing-8: var(--spacing-foundation-8);
-    --db-spacing-9: var(--spacing-foundation-9);
-    --db-spacing-10: var(--spacing-foundation-10);
-    --db-spacing-11: var(--spacing-foundation-11);
-    --db-spacing-12: var(--spacing-foundation-12);
-    --db-spacing-14: var(--spacing-foundation-14);
-    --db-spacing-16: var(--spacing-foundation-16);
-    --db-spacing-20: var(--spacing-foundation-20);
-    --db-spacing-24: var(--spacing-foundation-24);
-    --db-spacing-28: var(--spacing-foundation-28);
-    --db-spacing-32: var(--spacing-foundation-32);
-    --db-spacing-36: var(--spacing-foundation-36);
-    --db-spacing-40: var(--spacing-foundation-40);
-    --db-spacing-44: var(--spacing-foundation-44);
-    --db-spacing-48: var(--spacing-foundation-48);
-    --db-spacing-52: var(--spacing-foundation-52);
-    --db-spacing-56: var(--spacing-foundation-56);
-    --db-spacing-60: var(--spacing-foundation-60);
-    --db-spacing-64: var(--spacing-foundation-64);
-    --db-spacing-72: var(--spacing-foundation-72);
-    --db-spacing-80: var(--spacing-foundation-80);
-    --db-spacing-96: var(--spacing-foundation-96);
+    // Container & Grid spacing
+    --db-container-padding: var(--spacing-semantic-container-padding);
+    --db-grid-gutter: var(--spacing-semantic-grid-gutter);
 
-    // Size variables (Avatar, Button 등에 사용)
-    --db-size-xs: var(--spacing-semantic-size-xs);
-    --db-size-sm: var(--spacing-semantic-size-sm);
-    --db-size-md: var(--spacing-semantic-size-md);
-    --db-size-lg: var(--spacing-semantic-size-lg);
-    --db-size-xl: var(--spacing-semantic-size-xl);
-    --db-size-2xl: var(--spacing-semantic-size-2xl);
 
     // ============================================================================
     // Border Radius 변수 (짧은 이름)
     // ============================================================================
 
-    // Foundation border-radius
-    --db-radius-none: var(--border-radius-foundation-none);
-    --db-radius-sm: var(--border-radius-foundation-sm);
-    --db-radius-base: var(--border-radius-foundation-base);
-    --db-radius-md: var(--border-radius-foundation-md);
-    --db-radius-lg: var(--border-radius-foundation-lg);
-    --db-radius-xl: var(--border-radius-foundation-xl);
-    --db-radius-2xl: var(--border-radius-foundation-2xl);
-    --db-radius-3xl: var(--border-radius-foundation-3xl);
-    --db-radius-full: var(--border-radius-foundation-full);
+    // 범용적인 border radius (어디서든 자유롭게 사용 가능)
+    --db-radius-s: var(--border-semantic-radius-s);
+    --db-radius-m: var(--border-semantic-radius-m);
+    --db-radius-l: var(--border-semantic-radius-l);
+    --db-radius-xl: var(--border-semantic-radius-xl);
+    --db-radius-2xl: var(--border-semantic-radius-2xl);
+    --db-radius-3xl: var(--border-semantic-radius-3xl);
+    --db-radius-full: var(--border-semantic-radius-full);
 
-    // Semantic border-radius
-    --db-radius-btn-sm: var(--border-radius-semantic-button-sm);
-    --db-radius-btn-md: var(--border-radius-semantic-button-md);
-    --db-radius-btn-lg: var(--border-radius-semantic-button-lg);
-    --db-radius-btn-pill: var(--border-radius-semantic-button-pill);
+    // 컴포넌트별 border radius (기존 호환성 유지)
+    --db-radius-btn-s: var(--border-semantic-radius-button-s);
+    --db-radius-btn-m: var(--border-semantic-radius-button-m);
+    --db-radius-btn-l: var(--border-semantic-radius-button-l);
+    --db-radius-btn-pill: var(--border-semantic-radius-button-pill);
 
-    --db-radius-input-sm: var(--border-radius-semantic-input-sm);
-    --db-radius-input-md: var(--border-radius-semantic-input-md);
-    --db-radius-input-lg: var(--border-radius-semantic-input-lg);
+    --db-radius-input-s: var(--border-semantic-radius-input-s);
+    --db-radius-input-m: var(--border-semantic-radius-input-m);
+    --db-radius-input-l: var(--border-semantic-radius-input-l);
 
-    --db-radius-card-sm: var(--border-radius-semantic-card-sm);
-    --db-radius-card-md: var(--border-radius-semantic-card-md);
-    --db-radius-card-lg: var(--border-radius-semantic-card-lg);
+    --db-radius-card-s: var(--border-semantic-radius-card-s);
+    --db-radius-card-m: var(--border-semantic-radius-card-m);
+    --db-radius-card-l: var(--border-semantic-radius-card-l);
 
-    --db-radius-modal-sm: var(--border-radius-semantic-modal-sm);
-    --db-radius-modal-md: var(--border-radius-semantic-modal-md);
-    --db-radius-modal-lg: var(--border-radius-semantic-modal-lg);
+    --db-radius-modal-s: var(--border-semantic-radius-modal-s);
+    --db-radius-modal-m: var(--border-semantic-radius-modal-m);
+    --db-radius-modal-l: var(--border-semantic-radius-modal-l);
 
-    --db-radius-action-sm: var(--border-radius-semantic-action-sm);
-    --db-radius-action-md: var(--border-radius-semantic-action-md);
-    --db-radius-action-lg: var(--border-radius-semantic-action-lg);
-    --db-radius-action-pill: var(--border-radius-semantic-action-pill);
+    --db-radius-action-s: var(--border-semantic-radius-action-s);
+    --db-radius-action-m: var(--border-semantic-radius-action-m);
+    --db-radius-action-l: var(--border-semantic-radius-action-l);
+    --db-radius-action-pill: var(--border-semantic-radius-action-pill);
 
     // ============================================================================
-    // Typography 변수 (짧은 이름)
+    // Typography 변수 (짧은 이름) - Semantic 토큰 기반
     // ============================================================================
 
     // Font families
-    --db-font-primary: var(--typography-foundation-font-family-primary);
-    --db-font-mono: var(--typography-foundation-font-family-mono);
+    --db-font-primary: var(--typography-semantic-font-family-primary);
+    --db-font-mono: var(--typography-semantic-font-family-mono);
 
     // Font sizes
-    --db-text-xs: var(--typography-foundation-font-size-xs);
-    --db-text-sm: var(--typography-foundation-font-size-sm);
-    --db-text-base: var(--typography-foundation-font-size-base);
-    --db-text-lg: var(--typography-foundation-font-size-lg);
-    --db-text-xl: var(--typography-foundation-font-size-xl);
-    --db-text-2xl: var(--typography-foundation-font-size-2xl);
-    --db-text-3xl: var(--typography-foundation-font-size-3xl);
-    --db-text-4xl: var(--typography-foundation-font-size-4xl);
-    --db-text-5xl: var(--typography-foundation-font-size-5xl);
-    --db-text-6xl: var(--typography-foundation-font-size-6xl);
+    --db-text-xs: var(--typography-semantic-font-size-xs);
+    --db-text-s: var(--typography-semantic-font-size-s);
+    --db-text-base: var(--typography-semantic-font-size-base);
+    --db-text-l: var(--typography-semantic-font-size-l);
+    --db-text-xl: var(--typography-semantic-font-size-xl);
+    --db-text-2xl: var(--typography-semantic-font-size-2xl);
+    --db-text-3xl: var(--typography-semantic-font-size-3xl);
+    --db-text-4xl: var(--typography-semantic-font-size-4xl);
+    --db-text-5xl: var(--typography-semantic-font-size-5xl);
+    --db-text-6xl: var(--typography-semantic-font-size-6xl);
 
     // Font weights
-    --db-weight-light: var(--typography-foundation-font-weight-light);
-    --db-weight-normal: var(--typography-foundation-font-weight-normal);
-    --db-weight-medium: var(--typography-foundation-font-weight-medium);
-    --db-weight-semibold: var(--typography-foundation-font-weight-semibold);
-    --db-weight-bold: var(--typography-foundation-font-weight-bold);
-    --db-weight-extrabold: var(--typography-foundation-font-weight-extrabold);
+    --db-weight-light: var(--typography-semantic-font-weight-light);
+    --db-weight-normal: var(--typography-semantic-font-weight-normal);
+    --db-weight-medium: var(--typography-semantic-font-weight-medium);
+    --db-weight-semibold: var(--typography-semantic-font-weight-semibold);
+    --db-weight-bold: var(--typography-semantic-font-weight-bold);
+    --db-weight-extrabold: var(--typography-semantic-font-weight-extrabold);
 
     // Line heights
-    --db-leading-none: var(--typography-foundation-line-height-none);
-    --db-leading-tight: var(--typography-foundation-line-height-tight);
-    --db-leading-snug: var(--typography-foundation-line-height-snug);
-    --db-leading-normal: var(--typography-foundation-line-height-normal);
-    --db-leading-relaxed: var(--typography-foundation-line-height-relaxed);
-    --db-leading-loose: var(--typography-foundation-line-height-loose);
+    --db-leading-none: var(--typography-semantic-line-height-none);
+    --db-leading-tight: var(--typography-semantic-line-height-tight);
+    --db-leading-snug: var(--typography-semantic-line-height-snug);
+    --db-leading-normal: var(--typography-semantic-line-height-normal);
+    --db-leading-relaxed: var(--typography-semantic-line-height-relaxed);
+    --db-leading-loose: var(--typography-semantic-line-height-loose);
 
     // ============================================================================
-    // Effects 변수 (짧은 이름)
+    // Effects 변수 (짧은 이름) - Semantic 토큰 기반
     // ============================================================================
 
-    // Shadows
+    // Shadows - Semantic
+    --db-shadow-card: var(--shadow-semantic-card-default);
+    --db-shadow-card-hover: var(--shadow-semantic-card-hover);
+    --db-shadow-card-elevated: var(--shadow-semantic-card-elevated);
+    --db-shadow-button: var(--shadow-semantic-button-default);
+    --db-shadow-button-hover: var(--shadow-semantic-button-hover);
+    --db-shadow-button-active: var(--shadow-semantic-button-active);
+    --db-shadow-tooltip: var(--shadow-semantic-tooltip-default);
+    --db-shadow-dropdown: var(--shadow-semantic-dropdown-default);
+    --db-shadow-modal: var(--shadow-semantic-modal-content);
+    --db-shadow-modal-overlay: var(--shadow-semantic-modal-overlay);
+
+    // Shadows - Foundation (추가 옵션)
     --db-shadow-none: var(--shadow-foundation-none);
-    --db-shadow-sm: var(--shadow-foundation-sm);
-    --db-shadow-base: var(--shadow-foundation-base);
-    --db-shadow-md: var(--shadow-foundation-md);
-    --db-shadow-lg: var(--shadow-foundation-lg);
+    --db-shadow-xs: var(--shadow-foundation-s);
+    --db-shadow-sm: var(--shadow-foundation-base);
+    --db-shadow-md: var(--shadow-foundation-m);
+    --db-shadow-lg: var(--shadow-foundation-l);
     --db-shadow-xl: var(--shadow-foundation-xl);
     --db-shadow-2xl: var(--shadow-foundation-2xl);
     --db-shadow-inner: var(--shadow-foundation-inner);
 
     // Opacity
-    --db-opacity-0: var(--opacity-foundation-0);
-    --db-opacity-5: var(--opacity-foundation-5);
-    --db-opacity-10: var(--opacity-foundation-10);
-    --db-opacity-20: var(--opacity-foundation-20);
-    --db-opacity-25: var(--opacity-foundation-25);
-    --db-opacity-30: var(--opacity-foundation-30);
-    --db-opacity-40: var(--opacity-foundation-40);
-    --db-opacity-50: var(--opacity-foundation-50);
-    --db-opacity-60: var(--opacity-foundation-60);
-    --db-opacity-70: var(--opacity-foundation-70);
-    --db-opacity-75: var(--opacity-foundation-75);
-    --db-opacity-80: var(--opacity-foundation-80);
-    --db-opacity-90: var(--opacity-foundation-90);
-    --db-opacity-95: var(--opacity-foundation-95);
-    --db-opacity-100: var(--opacity-foundation-100);
+    --db-opacity-focus: var(--opacity-semantic-focus);
+    --db-opacity-hover: var(--opacity-semantic-hover);
+    --db-opacity-overlay-dark: var(--opacity-semantic-overlay-dark);
+    --db-opacity-overlay-medium: var(--opacity-semantic-overlay-medium);
+    --db-opacity-overlay-light: var(--opacity-semantic-overlay-light);
+    --db-opacity-disabled: var(--opacity-semantic-disabled);
 
     // ============================================================================
-    // Z-Index 변수 (짧은 이름)
+    // Z-Index 변수 (짧은 이름) - Foundation 토큰은 빌드에서 제외되므로 직접 값 사용
     // ============================================================================
 
-    --db-z-auto: var(--z-index-foundation-auto);
-    --db-z-0: var(--z-index-foundation-0);
-    --db-z-10: var(--z-index-foundation-10);
-    --db-z-20: var(--z-index-foundation-20);
-    --db-z-30: var(--z-index-foundation-30);
-    --db-z-40: var(--z-index-foundation-40);
-    --db-z-50: var(--z-index-foundation-50);
-    --db-z-modal: var(--z-index-foundation-modal);
-    --db-z-popover: var(--z-index-foundation-popover);
-    --db-z-tooltip: var(--z-index-foundation-tooltip);
-    --db-z-toast: var(--z-index-foundation-toast);
+    --db-z-auto: auto;
+    --db-z-0: 0;
+    --db-z-10: 10;
+    --db-z-20: 20;
+    --db-z-30: 30;
+    --db-z-40: 40;
+    --db-z-50: 50;
+    --db-z-modal: 1000;
+    --db-z-popover: 1010;
+    --db-z-tooltip: 1020;
+    --db-z-toast: 1030;
 
     // ============================================================================
-    // Animation 변수 (짧은 이름)
+    // Animation 변수 (짧은 이름) - Semantic 토큰 기반
     // ============================================================================
 
-    --db-animation-speed: 300ms;
-    --db-animation-ease: ease-out;
+    --db-animation-speed: var(--motion-semantic-animation-speed);
+    --db-animation-ease: var(--motion-semantic-animation-ease);
     --db-animation-ease-in: ease-in;
+
+    // ============================================================================
+    // Layout 변수 (짧은 이름) - Semantic 토큰 기반
+    // ============================================================================
+
+    // Container
+    --db-container-max-width-fluid: var(--layout-semantic-container-max-width-fluid);
+    --db-container-max-width-s: var(--layout-semantic-container-max-width-s);
+    --db-container-max-width-m: var(--layout-semantic-container-max-width-m);
+    --db-container-max-width-l: var(--layout-semantic-container-max-width-l);
+    --db-container-max-width-xl: var(--layout-semantic-container-max-width-xl);
+    --db-container-max-width-xxl: var(--layout-semantic-container-max-width-xxl);
+
+    --db-container-padding-none: var(--layout-semantic-container-padding-none);
+    --db-container-padding-s: var(--layout-semantic-container-padding-s);
+    --db-container-padding-m: var(--layout-semantic-container-padding-m);
+    --db-container-padding-l: var(--layout-semantic-container-padding-l);
+
+    // Grid
+    --db-grid-columns-12: var(--layout-semantic-grid-columns-12);
+    --db-grid-columns-24: var(--layout-semantic-grid-columns-24);
+
+    --db-grid-gutter-s: var(--layout-semantic-grid-gutter-s);
+    --db-grid-gutter-m: var(--layout-semantic-grid-gutter-m);
+    --db-grid-gutter-l: var(--layout-semantic-grid-gutter-l);
+    --db-grid-gutter-xl: var(--layout-semantic-grid-gutter-xl);
+
+    // Breakpoints
+    --db-breakpoint-xs: var(--layout-semantic-breakpoint-xs);
+    --db-breakpoint-s: var(--layout-semantic-breakpoint-s);
+    --db-breakpoint-m: var(--layout-semantic-breakpoint-m);
+    --db-breakpoint-l: var(--layout-semantic-breakpoint-l);
+    --db-breakpoint-xl: var(--layout-semantic-breakpoint-xl);
+    --db-breakpoint-xxl: var(--layout-semantic-breakpoint-xxl);
+
+    // ============================================================================
+    // Size 변수 (짧은 이름) - Semantic 토큰 기반
+    // ============================================================================
+
+    // Basic size variables (Avatar, Button 등에 사용) - semantic spacing 기반
+    --db-size-xxs: var(--size-semantic-xxs);
+    --db-size-xs: var(--size-semantic-xs);
+    --db-size-s: var(--size-semantic-s);
+    --db-size-m: var(--size-semantic-m);
+    --db-size-l: var(--size-semantic-l);
+    --db-size-xl: var(--size-semantic-xl);
+    --db-size-2xl: var(--size-semantic-2xl);
+
+
+    // Icon sizes
+    --db-size-icon-xs: var(--size-semantic-icon-xs);
+    --db-size-icon-s: var(--size-semantic-icon-s);
+    --db-size-icon-m: var(--size-semantic-icon-m);
+    --db-size-icon-l: var(--size-semantic-icon-l);
+    --db-size-icon-xl: var(--size-semantic-icon-xl);
+
+    // Button sizes
+    --db-size-button-xs: var(--size-semantic-button-xs);
+    --db-size-button-s: var(--size-semantic-button-s);
+    --db-size-button-m: var(--size-semantic-button-m);
+    --db-size-button-l: var(--size-semantic-button-l);
+    --db-size-button-xl: var(--size-semantic-button-xl);
+
+    // Input sizes
+    --db-size-input-xs: var(--size-semantic-input-xs);
+    --db-size-input-s: var(--size-semantic-input-s);
+    --db-size-input-m: var(--size-semantic-input-m);
+    --db-size-input-l: var(--size-semantic-input-l);
+    --db-size-input-xl: var(--size-semantic-input-xl);
+
+    // Avatar sizes
+    --db-size-avatar-xs: var(--size-semantic-avatar-xs);
+    --db-size-avatar-s: var(--size-semantic-avatar-s);
+    --db-size-avatar-m: var(--size-semantic-avatar-m);
+    --db-size-avatar-l: var(--size-semantic-avatar-l);
+    --db-size-avatar-xl: var(--size-semantic-avatar-xl);
+    --db-size-avatar-2xl: var(--size-semantic-avatar-2xl);
+    --db-size-avatar-3xl: var(--size-semantic-avatar-3xl);
+
+    // Card sizes
+    --db-size-card-s: var(--size-semantic-card-s);
+    --db-size-card-m: var(--size-semantic-card-m);
+    --db-size-card-l: var(--size-semantic-card-l);
+
+    // Modal sizes
+    --db-size-modal-s: var(--size-semantic-modal-s);
+    --db-size-modal-m: var(--size-semantic-modal-m);
+    --db-size-modal-l: var(--size-semantic-modal-l);
+    --db-size-modal-xl: var(--size-semantic-modal-xl);
+
+    // Checkbox sizes
+    --db-size-checkbox-xs: var(--size-semantic-checkbox-xs);
+    --db-size-checkbox-s: var(--size-semantic-checkbox-s);
+    --db-size-checkbox-m: var(--size-semantic-checkbox-m);
+    --db-size-checkbox-l: var(--size-semantic-checkbox-l);
+    --db-size-checkbox-xl: var(--size-semantic-checkbox-xl);
 }

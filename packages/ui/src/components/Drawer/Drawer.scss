@@ -14,7 +14,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: var(--db-bg-overlay);
+        background-color: var(--db-overlay-base);
         opacity: 0;
         transition: opacity var(--db-animation-speed) var(--db-animation-ease-in);
         pointer-events: auto;
@@ -27,8 +27,8 @@
     // 컨테이너
     &__container {
         position: absolute;
-        background-color: var(--db-bg-primary);
-        box-shadow: var(--db-shadow-lg);
+        background-color: var(--db-surface-base);
+        box-shadow: var(--db-shadow-drawer);
         display: flex;
         flex-direction: column;
         pointer-events: auto;
@@ -40,7 +40,7 @@
             left: 0;
             bottom: 0;
             transform: translateX(-100%);
-            border-right: 1px solid var(--db-border-primary);
+            border-right: 1px solid var(--db-border-base);
 
             &.designbase-drawer__container--open {
                 transform: translateX(0);
@@ -52,7 +52,7 @@
             right: 0;
             bottom: 0;
             transform: translateX(100%);
-            border-left: 1px solid var(--db-border-primary);
+            border-left: 1px solid var(--db-border-base);
 
             &.designbase-drawer__container--open {
                 transform: translateX(0);
@@ -64,7 +64,7 @@
             left: 0;
             right: 0;
             transform: translateY(-100%);
-            border-bottom: 1px solid var(--db-border-primary);
+            border-bottom: 1px solid var(--db-border-base);
 
             &.designbase-drawer__container--open {
                 transform: translateY(0);
@@ -76,7 +76,7 @@
             left: 0;
             right: 0;
             transform: translateY(100%);
-            border-top: 1px solid var(--db-border-primary);
+            border-top: 1px solid var(--db-border-base);
 
             &.designbase-drawer__container--open {
                 transform: translateY(0);
@@ -85,7 +85,7 @@
     }
 
     // 크기별 스타일
-    &--sm &__container {
+    &--s &__container {
 
         &--left,
         &--right {
@@ -98,7 +98,7 @@
         }
     }
 
-    &--md &__container {
+    &--m &__container {
 
         &--left,
         &--right {
@@ -111,7 +111,7 @@
         }
     }
 
-    &--lg &__container {
+    &--l &__container {
 
         &--left,
         &--right {
@@ -156,14 +156,14 @@
         align-items: center;
         justify-content: space-between;
         padding: var(--db-padding-m);
-        border-bottom: 1px solid var(--db-border-primary);
-        background-color: var(--db-bg-primary);
+        border-bottom: 1px solid var(--db-border-base);
+        background-color: var(--db-surface-base);
         flex-shrink: 0;
     }
 
     &__title {
         margin: 0;
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-l);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
         line-height: 1.4;
@@ -187,11 +187,11 @@
         }
 
         &::-webkit-scrollbar-track {
-            background: var(--db-bg-secondary);
+            background: var(--db-surface-layer-1);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--db-border-primary);
+            background: var(--db-border-base);
             border-radius: 3px;
 
             &:hover {
@@ -212,8 +212,8 @@
     // 반응형 디자인
     @media (max-width: 768px) {
 
-        &--md &__container,
-        &--lg &__container,
+        &--m &__container,
+        &--l &__container,
         &--xl &__container {
 
             &--left,
@@ -236,12 +236,12 @@
         }
 
         &__title {
-            font-size: var(--db-text-md);
+            font-size: var(--db-text-m);
         }
     }
 
     @media (max-width: 480px) {
-        &--sm &__container {
+        &--s &__container {
 
             &--left,
             &--right {

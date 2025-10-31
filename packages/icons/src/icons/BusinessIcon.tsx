@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M9.5 3.75a.25.25 0 0 0-.25.25v1.25h5.5V4a.25.25 0 0 0-.25-.25zm6.75 1.5V4a1.75 1.75 0 0 0-1.75-1.75h-5A1.75 1.75 0 0 0 7.75 4v1.25H5A2.75 2.75 0 0 0 2.25 8v8A2.75 2.75 0 0 0 5 18.75h14A2.75 2.75 0 0 0 21.75 16V8A2.75 2.75 0 0 0 19 5.25zM5 6.75c-.69 0-1.25.56-1.25 1.25v1.563L12 11.28l8.25-1.717V8c0-.69-.56-1.25-1.25-1.25zm15.25 4.345L12 12.812l-8.25-1.717V16c0 .69.56 1.25 1.25 1.25h14c.69 0 1.25-.56 1.25-1.25z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const BusinessIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M9.5 3.75a.25.25 0 0 0-.25.25v1.25h5.5V4a.25.25 0 0 0-.25-.25zm6.75 1.5V4a1.75 1.75 0 0 0-1.75-1.75h-5A1.75 1.75 0 0 0 7.75 4v1.25H5A2.75 2.75 0 0 0 2.25 8v8A2.75 2.75 0 0 0 5 18.75h14A2.75 2.75 0 0 0 21.75 16V8A2.75 2.75 0 0 0 19 5.25zM5 6.75c-.69 0-1.25.56-1.25 1.25v1.563L12 11.28l8.25-1.717V8c0-.69-.56-1.25-1.25-1.25zm15.25 4.345L12 12.812l-8.25-1.717V16c0 .69.56 1.25 1.25 1.25h14c.69 0 1.25-.56 1.25-1.25z" clip-rule="evenodd"/></svg>
+);
 
 export default BusinessIcon;

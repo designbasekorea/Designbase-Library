@@ -1,0 +1,8 @@
+.designbase-figma-language-selector {
+    display: inline-block;
+
+    // SegmentControl 커스터마이징
+    &__segment {
+        // SegmentControl의 기본 스타일을 그대로 사용하되, 필요시 오버라이드
+    }
+}

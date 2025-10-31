@@ -5,7 +5,7 @@ import { Badge } from '../Badge/Badge';
 import Stat from '../Stat/Stat';
 import './HeroFeature.scss';
 
-export type HeroFeatureSize = 'sm' | 'md' | 'lg' | 'xl';
+export type HeroFeatureSize = 's' | 'm' | 'l' | 'xl';
 export type HeroFeatureVariant = 'default' | 'centered' | 'split' | 'overlay' | 'minimal';
 export type HeroFeatureTheme = 'light' | 'dark' | 'gradient' | 'image';
 export type HeroFeatureAlignment = 'left' | 'center' | 'right';
@@ -18,7 +18,7 @@ export interface HeroFeatureButton {
     /** 버튼 타입 */
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
     /** 버튼 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 클릭 핸들러 */
     onClick?: () => void;
     /** 아이콘 */
@@ -98,7 +98,7 @@ const HeroFeature: React.FC<HeroFeatureProps> = ({
     badge,
     stats = [],
     icon,
-    size = 'lg',
+    size = 'l',
     variant = 'default',
     theme = 'light',
     alignment = 'left',
@@ -138,7 +138,7 @@ const HeroFeature: React.FC<HeroFeatureProps> = ({
             <Badge
                 variant={getBadgeVariant(badge.color || 'primary')}
                 style={getBadgeStyle(badge.variant || 'solid')}
-                size="md"
+                size="m"
                 className="designbase-hero-feature__badge"
             >
                 {badge.text}
@@ -180,7 +180,7 @@ const HeroFeature: React.FC<HeroFeatureProps> = ({
                         value={stat.value}
                         label={stat.label}
                         description={stat.description}
-                        size="md"
+                        size="m"
                         variant="minimal"
                         layout="vertical"
                         className="designbase-hero-feature__stat"

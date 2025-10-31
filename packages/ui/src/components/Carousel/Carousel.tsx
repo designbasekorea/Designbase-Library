@@ -14,11 +14,12 @@ import {
     ShareAltIcon,
     HeartIcon,
     BookmarkIcon,
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
+import { Indicator } from '../Indicator/Indicator';
 import './Carousel.scss';
 
 // 타입 정의
-export type CarouselSize = 'sm' | 'md' | 'lg' | 'xl';
+export type CarouselSize = 's' | 'm' | 'l' | 'xl';
 export type CarouselVariant = 'default' | 'cards' | 'gallery' | 'hero' | 'testimonial';
 export type CarouselTheme = 'light' | 'dark';
 export type CarouselTransition = 'slide' | 'fade' | 'zoom' | 'flip' | 'cube';
@@ -136,7 +137,7 @@ export interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({
     items,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     theme = 'light',
     transition = 'slide',
@@ -173,6 +174,8 @@ const Carousel: React.FC<CarouselProps> = ({
     onFullscreenChange,
     className,
 }) => {
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 16 : size === 'l' ? 24 : size === 'xl' ? 28 : 20;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
     const [isDragging, setIsDragging] = useState(false);
@@ -344,7 +347,6 @@ const Carousel: React.FC<CarouselProps> = ({
     const handleTouchMove = useCallback((event: React.TouchEvent | React.MouseEvent) => {
         if (!isDragging || !enableTouch || disabled || readonly || !touchStartRef.current) return;
 
-        event.preventDefault();
         const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
         const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
 
@@ -353,25 +355,23 @@ const Carousel: React.FC<CarouselProps> = ({
 
         // 수평 스와이프만 처리 (수직 스크롤 방지)
         if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            event.preventDefault();
             setDragOffset(deltaX);
         }
     }, [isDragging, enableTouch, disabled, readonly]);
 
     // 터치/드래그 종료
     const handleTouchEnd = useCallback(() => {
-        if (!isDragging || !enableTouch || disabled || readonly || !touchStartRef.current) return;
+        if (!enableTouch || disabled || readonly || !touchStartRef.current) return;
 
         const endTime = Date.now();
         const duration = endTime - touchStartRef.current.time;
-        const velocity = Math.abs(dragOffset) / duration;
+        const velocity = Math.abs(dragOffset) / Math.max(duration, 1);
 
-        setIsDragging(false);
-        touchStartRef.current = null;
-
-        // 속도나 거리에 따라 슬라이드 변경
         const threshold = swipeSensitivity;
         const velocityThreshold = 0.5;
 
+        // 속도나 거리에 따라 슬라이드 변경
         if (Math.abs(dragOffset) > threshold || velocity > velocityThreshold) {
             if (dragOffset > 0) {
                 goToPrevious();
@@ -380,8 +380,11 @@ const Carousel: React.FC<CarouselProps> = ({
             }
         }
 
+        // 상태 초기화
+        setIsDragging(false);
         setDragOffset(0);
-    }, [isDragging, enableTouch, disabled, readonly, dragOffset, swipeSensitivity, goToPrevious, goToNext]);
+        touchStartRef.current = null;
+    }, [enableTouch, disabled, readonly, dragOffset, swipeSensitivity, goToPrevious, goToNext]);
 
     // 마우스 휠 핸들러
     const handleWheel = useCallback((event: React.WheelEvent) => {
@@ -460,12 +463,14 @@ const Carousel: React.FC<CarouselProps> = ({
 
     // 슬라이드 스타일 계산
     const getSlideStyle = () => {
-        const translateX = -(currentIndex * (100 / itemsPerView)) + (dragOffset / (containerRef.current?.offsetWidth || 1)) * (100 / itemsPerView);
+        const containerWidth = containerRef.current?.offsetWidth || 1;
+        const translateX = -(currentIndex * (100 / itemsPerView)) + (dragOffset / containerWidth) * (100 / itemsPerView);
 
         return {
             transform: `translateX(${translateX}%)`,
             gap: `${gap}px`,
-            transition: isDragging ? 'none' : `transform ${transitionDuration}ms ease`,
+            transition: isDragging ? 'none' : `transform ${transitionDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1)`,
+            willChange: isDragging ? 'transform' : 'auto',
         };
     };
 
@@ -515,6 +520,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 onTouchStart={handleTouchStartEvent}
                 onTouchMove={handleTouchMoveEvent}
                 onTouchEnd={handleTouchEndEvent}
+                onTouchCancel={handleTouchEndEvent}
             >
                 {/* 슬라이드 트랙 */}
                 <div
@@ -534,7 +540,7 @@ const Carousel: React.FC<CarouselProps> = ({
                             style={{
                                 width: `${100 / itemsPerView}%`,
                                 backgroundColor: item.backgroundColor,
-                                color: item.textColor,
+                                color: item.textColor || (item.image ? '#ffffff' : undefined),
                             }}
                             onClick={() => handleItemClick(item, index)}
                         >
@@ -554,14 +560,29 @@ const Carousel: React.FC<CarouselProps> = ({
                                         </div>
                                     )}
                                     {(showTitle && item.title) || (showDescription && item.description) ? (
-                                        <div className="designbase-carousel__slide-info">
+                                        <div
+                                            className="designbase-carousel__slide-info"
+                                            style={{
+                                                color: item.textColor || (item.image ? '#ffffff' : undefined),
+                                            }}
+                                        >
                                             {showTitle && item.title && (
-                                                <h3 className="designbase-carousel__slide-title">
+                                                <h3
+                                                    className="designbase-carousel__slide-title"
+                                                    style={{
+                                                        color: item.textColor || (item.image ? '#ffffff' : undefined),
+                                                    }}
+                                                >
                                                     {item.title}
                                                 </h3>
                                             )}
                                             {showDescription && item.description && (
-                                                <p className="designbase-carousel__slide-description">
+                                                <p
+                                                    className="designbase-carousel__slide-description"
+                                                    style={{
+                                                        color: item.textColor || (item.image ? '#ffffff' : undefined),
+                                                    }}
+                                                >
                                                     {item.description}
                                                 </p>
                                             )}
@@ -604,7 +625,7 @@ const Carousel: React.FC<CarouselProps> = ({
                                         }}
                                         title={isLiked ? "좋아요 취소" : "좋아요"}
                                     >
-                                        <HeartIcon size={16} />
+                                        <HeartIcon size={iconSize} color="currentColor" />
                                     </button>
                                 )}
                                 {enableBookmark && (
@@ -620,7 +641,7 @@ const Carousel: React.FC<CarouselProps> = ({
                                         }}
                                         title={isBookmarked ? "북마크 해제" : "북마크"}
                                     >
-                                        <BookmarkIcon size={16} />
+                                        <BookmarkIcon size={iconSize} color="currentColor" />
                                     </button>
                                 )}
                                 {enableShare && (
@@ -632,7 +653,7 @@ const Carousel: React.FC<CarouselProps> = ({
                                         }}
                                         title="공유"
                                     >
-                                        <ShareAltIcon size={16} />
+                                        <ShareAltIcon size={iconSize} color="currentColor" />
                                     </button>
                                 )}
                                 {enableDownload && item.image && (
@@ -644,7 +665,7 @@ const Carousel: React.FC<CarouselProps> = ({
                                         }}
                                         title="다운로드"
                                     >
-                                        <DownloadIcon size={16} />
+                                        <DownloadIcon size={iconSize} color="currentColor" />
                                     </button>
                                 )}
                             </div>
@@ -665,7 +686,7 @@ const Carousel: React.FC<CarouselProps> = ({
                             title="이전 슬라이드"
                             type="button"
                         >
-                            <ChevronLeftIcon size={20} />
+                            <ChevronLeftIcon size={iconSize} color="currentColor" />
                         </button>
                         <button
                             className={clsx(
@@ -677,7 +698,7 @@ const Carousel: React.FC<CarouselProps> = ({
                             title="다음 슬라이드"
                             type="button"
                         >
-                            <ChevronRightIcon size={20} />
+                            <ChevronRightIcon size={iconSize} color="currentColor" />
                         </button>
                     </>
                 )}
@@ -692,7 +713,7 @@ const Carousel: React.FC<CarouselProps> = ({
                             title="첫 번째 슬라이드"
                             type="button"
                         >
-                            <ArrowLeftIcon size={16} />
+                            <ArrowLeftIcon size={iconSize} color="currentColor" />
                         </button>
                         <button
                             className="designbase-carousel__quick-nav-button designbase-carousel__quick-nav-button--last"
@@ -701,7 +722,7 @@ const Carousel: React.FC<CarouselProps> = ({
                             title="마지막 슬라이드"
                             type="button"
                         >
-                            <ArrowRightIcon size={16} />
+                            <ArrowRightIcon size={iconSize} color="currentColor" />
                         </button>
                     </>
                 )}
@@ -715,7 +736,7 @@ const Carousel: React.FC<CarouselProps> = ({
                         title={isFullscreen ? "전체화면 해제" : "전체화면"}
                         type="button"
                     >
-                        {isFullscreen ? <ShrinkIcon size={16} /> : <ExpandIcon size={16} />}
+                        {isFullscreen ? <ShrinkIcon size={iconSize} color="currentColor" /> : <ExpandIcon size={iconSize} color="currentColor" />}
                     </button>
                 )}
             </div>
@@ -725,37 +746,14 @@ const Carousel: React.FC<CarouselProps> = ({
                 {/* 인디케이터 */}
                 {showIndicators && items.length > 1 && (
                     <div className="designbase-carousel__indicators">
-                        {items.map((item, index) => (
-                            <button
-                                key={index}
-                                className={clsx(
-                                    'designbase-carousel__indicator',
-                                    {
-                                        'designbase-carousel__indicator--active': isIndicatorActive(index),
-                                    }
-                                )}
-                                onClick={() => goToSlide(index)}
-                                disabled={disabled || readonly}
-                                title={`슬라이드 ${index + 1}로 이동`}
-                                type="button"
-                            >
-                                {indicatorStyle === 'thumbnails' && item.thumbnail ? (
-                                    <img
-                                        src={item.thumbnail}
-                                        alt={item.title || `썸네일 ${index + 1}`}
-                                        className="designbase-carousel__indicator-thumbnail"
-                                    />
-                                ) : indicatorStyle === 'numbers' ? (
-                                    <span className="designbase-carousel__indicator-number">
-                                        {index + 1}
-                                    </span>
-                                ) : indicatorStyle === 'lines' ? (
-                                    <span className="designbase-carousel__indicator-line" />
-                                ) : (
-                                    <span className="designbase-carousel__indicator-dot" />
-                                )}
-                            </button>
-                        ))}
+                        <Indicator
+                            current={currentIndex}
+                            total={items.length}
+                            type={indicatorStyle === 'lines' ? 'line' : indicatorStyle === 'numbers' ? 'numbers' : 'dots'}
+                            size="s"
+                            clickable={true}
+                            onStepClick={goToSlide}
+                        />
                     </div>
                 )}
 
@@ -768,7 +766,7 @@ const Carousel: React.FC<CarouselProps> = ({
                         title={isAutoPlaying ? "자동 재생 정지" : "자동 재생 시작"}
                         type="button"
                     >
-                        {isAutoPlaying ? <PauseIcon size={16} /> : <PlayIcon size={16} />}
+                        {isAutoPlaying ? <PauseIcon size={iconSize} color="currentColor" /> : <PlayIcon size={iconSize} color="currentColor" />}
                     </button>
                 )}
             </div>

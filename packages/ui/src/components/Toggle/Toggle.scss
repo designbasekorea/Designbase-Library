@@ -4,7 +4,7 @@
     gap: var(--db-gap-s);
     cursor: pointer;
     user-select: none;
-    font-size: var(--db-text-sm);
+    font-size: var(--db-text-s);
     line-height: var(--db-leading-tight);
     color: var(--db-text-primary);
 
@@ -22,16 +22,16 @@
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        background-color: var(--db-bg-secondary);
-        border: 1px solid var(--db-border-primary);
+        background-color: var(--db-surface-layer-1);
+        border: 1px solid var(--db-border-base);
         border-radius: var(--db-radius-action-pill);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
     }
 
     &__thumb {
         position: absolute;
-        left: 2px;
-        background-color: var(--db-bg-primary);
+        left: 1px;
+        background-color: var(--db-surface-base);
         border-radius: 50%;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
     }
@@ -44,35 +44,35 @@
 
     // Default styles
     .designbase-toggle__track {
-        background-color: var(--db-bg-secondary);
-        border-color: var(--db-border-primary);
+        background-color: var(--db-surface-layer-1);
+        border-color: var(--db-border-base);
     }
 
     .designbase-toggle__thumb {
-        background-color: var(--db-bg-primary);
+        background-color: var(--db-surface-base);
     }
 
     &:hover:not(.designbase-toggle--disabled) .designbase-toggle__track {
-        background-color: var(--db-bg-tertiary);
-        border-color: var(--db-border-secondary);
+        background-color: var(--db-surface-layer-2);
+        border-color: var(--db-border-layer-1);
     }
 
     &.designbase-toggle--selected .designbase-toggle__track {
-        background-color: var(--db-blue-500);
-        border-color: var(--db-blue-500);
+        background-color: var(--db-brand-primary);
+        border-color: var(--db-brand-primary);
     }
 
     &.designbase-toggle--selected .designbase-toggle__thumb {
-        background-color: var(--db-bg-primary);
+        background-color: var(--db-text-inverse-primary);
     }
 
     &.designbase-toggle--selected:hover:not(.designbase-toggle--disabled) .designbase-toggle__track {
-        background-color: var(--db-blue-600);
-        border-color: var(--db-blue-600);
+        background-color: var(--color-foundation-blue-800);
+        border-color: var(--color-foundation-blue-800);
     }
 
     &.designbase-toggle--selected:hover:not(.designbase-toggle--disabled) .designbase-toggle__thumb {
-        background-color: var(--db-bg-primary);
+        background-color: var(--db-text-inverse-primary);
     }
 
     // No label variant
@@ -81,113 +81,75 @@
     }
 
     // Sizes
-    &--xs {
-        font-size: var(--db-font-xs);
-        line-height: var(--db-leading-none);
-
-        .designbase-toggle__track {
-            width: calc(var(--db-size-sm) * 1.75);
-            height: var(--db-size-sm);
-        }
-
-        .designbase-toggle__thumb {
-            width: calc(var(--db-size-sm) - 4px);
-            height: calc(var(--db-size-sm) - 4px);
-        }
-
-        &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--db-size-sm) * 0.75 - 2px));
-        }
-    }
-
-    &--sm {
-        font-size: var(--db-font-sm);
+    &--s {
+        font-size: var(--db-text-s);
         line-height: var(--db-leading-tight);
 
         .designbase-toggle__track {
-            width: calc(var(--db-size-md) * 1.75);
-            height: var(--db-size-md);
+            width: 36px;
+            height: 20px;
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--db-size-md) - 4px);
-            height: calc(var(--db-size-md) - 4px);
+            width: 16px;
+            height: 16px;
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--db-size-md) * 0.75 - 2px));
+            transform: translateX(16px);
         }
     }
 
-    &--md {
-        font-size: var(--db-font-md);
+    &--m {
+        font-size: var(--db-text-base);
         line-height: var(--db-leading-normal);
 
         .designbase-toggle__track {
-            width: calc(var(--db-size-lg) * 1.75);
-            height: var(--db-size-lg);
+            width: 44px;
+            height: 24px;
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--db-size-lg) - 4px);
-            height: calc(var(--db-size-lg) - 4px);
+            width: 20px;
+            height: 20px;
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--db-size-lg) * 0.75 - 2px));
+            transform: translateX(20px);
         }
     }
 
-    &--lg {
-        font-size: var(--db-font-lg);
+    &--l {
+        font-size: var(--db-text-l);
         line-height: var(--db-leading-relaxed);
 
         .designbase-toggle__track {
-            width: calc(var(--db-size-xl) * 1.75);
-            height: var(--db-size-xl);
+            width: 52px;
+            height: 28px;
         }
 
         .designbase-toggle__thumb {
-            width: calc(var(--db-size-xl) - 4px);
-            height: calc(var(--db-size-xl) - 4px);
+            width: 24px;
+            height: 24px;
         }
 
         &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--db-size-xl) * 0.75 - 2px));
-        }
-    }
-
-    &--xl {
-        font-size: var(--db-font-xl);
-        line-height: var(--db-leading-relaxed);
-
-        .designbase-toggle__track {
-            width: calc(var(--db-size-2xl) * 1.75);
-            height: var(--db-size-2xl);
-        }
-
-        .designbase-toggle__thumb {
-            width: calc(var(--db-size-2xl) - 4px);
-            height: calc(var(--db-size-2xl) - 4px);
-        }
-
-        &.designbase-toggle--selected .designbase-toggle__thumb {
-            transform: translateX(calc(var(--db-size-2xl) * 0.75 - 2px));
+            transform: translateX(24px);
         }
     }
 
     // States
     &--disabled {
         cursor: not-allowed;
-        opacity: var(--db-opacity-60);
+        opacity: var(--db-opacity-disabled);
 
         .designbase-toggle__track {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-muted);
             border-color: var(--db-border-muted);
         }
 
         .designbase-toggle__thumb {
-            background-color: var(--db-bg-primary);
+            background-color: var(--db-surface-base);
         }
 
         .designbase-toggle__label {

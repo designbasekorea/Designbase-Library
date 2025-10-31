@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { setTheme, getTheme, type Theme } from '@designbase/theme';
-import '../packages/theme/dist/css/theme.css';
-import '../packages/tokens/dist/css/tokens.css';
+import { setTheme, getTheme, type Theme } from '@designbasekorea/theme';
+import '@designbasekorea/theme/css';
+import '@designbasekorea/tokens/css';
 import './storybook.css';
 
 // 테마 컨트롤을 위한 글로벌 타입 정의
@@ -64,6 +64,70 @@ const preview: Preview = {
                     document.body.setAttribute('data-theme', currentTheme);
                 }
             }, [currentTheme]);
+
+            // I18nText를 위한 기본 t 함수 제공
+            const defaultTFunction = (key: string) => {
+                // 기본 번역 매핑
+                const translations: Record<string, string> = {
+                    // 공통 키들
+                    'common.cancel': '취소',
+                    'common.save': '저장',
+                    'common.confirm': '확인',
+                    'common.close': '닫기',
+                    'common.loading': '로딩 중...',
+                    'common.error': '오류',
+                    'common.success': '성공',
+
+                    // 라이선스 관련
+                    'license.pro_account': '프로 계정',
+                    'license.upgrade_to_pro': '프로로 업그레이드',
+                    'license.all_features_available': '모든 기능을 사용할 수 있습니다.',
+                    'license.purchase_for_unlimited': '라이선스 구매 후 무제한 접근이 가능합니다.',
+                    'license.activated': '라이선스 활성화됨',
+                    'license.enter_key': '라이선스 키 입력',
+                    'license.purchase': '라이선스 구매',
+                    'license.key': 'License Key',
+                    'license.submit': 'Submit',
+                    'license.verifying': 'Verifying...',
+                    'license.enter_from_email': '구독 후 이메일로 받은 라이선스 키를 입력하세요.',
+                    'license.key_label': '라이선스 키',
+                    'license.activations_remaining': '활성',
+                    'license.spots_remaining': '자리 남음',
+                    'license.deactivating': '비활성화중...',
+                    'license.deactivate': '라이선스 비활성화',
+
+                    // 배너 관련
+                    'banner.upgrade_title': '프로로 업그레이드하세요',
+                    'banner.upgrade_description': '무제한 기능을 사용하고 더 많은 혜택을 누리세요.',
+                    'banner.upgrade_button': '지금 업그레이드',
+
+                    // 진행 관련
+                    'progress.working': '작업 중',
+                    'progress.completed': '완료되었습니다',
+                    'progress.processing': '처리 중...',
+                    'progress.stop': '중지',
+                    'progress.confirm': '확인',
+                    'progress.help_text': '이 작업은 시간이 걸릴 수 있습니다.',
+
+                    // 설정 관련
+                    'settings.modal_title': '목록 변경',
+                    'settings.modal_description': '드래그하여 순서를 변경하거나, 토글하여 카테고리를 숨길 수 있습니다.',
+                    'settings.reset': '초기화',
+                    'settings.cancel': '취소',
+                    'settings.save': '저장',
+
+                    // 제목 관련
+                    'title.premium_plan': '프리미엄 플랜',
+                    'title.premium_description': '모든 기능을 잠금 해제하고 팀과 함께 작업하세요.',
+                    'feature.unlimited_projects': '무제한 프로젝트',
+                    'feature.team_collaboration': '팀 협업 기능',
+                    'feature.priority_support': '우선 고객 지원',
+
+                    // 플러그인 관련
+                    'plugin.resize': '플러그인 크기 조절'
+                };
+                return translations[key] || key;
+            };
 
             return (
                 <div

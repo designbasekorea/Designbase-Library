@@ -1,0 +1,61 @@
+/**
+ * FigmaHeader 컴포넌트 스타일
+ */
+
+.designbase-figma-header {
+    background-color: var(--db-surface-base);
+    border-bottom: 1px solid var(--db-border-base);
+    box-sizing: border-box;
+    z-index: 100;
+    flex: 1;
+
+    &--sticky {
+        position: sticky;
+        top: 0;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: var(--db-padding-s);
+        gap: var(--db-gap-s);
+        box-sizing: border-box;
+    }
+
+    // 중앙 영역 - 탭, 세그먼트 컨트롤 등
+    &__center {
+        display: flex;
+        align-items: center;
+        flex: 1;
+
+        // 내부 요소가 전체 너비를 차지하도록
+        >* {
+            width: 100%;
+        }
+    }
+
+    // 우측 영역 - 액션 버튼들
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        flex-shrink: 0;
+    }
+
+    // 검색바 컨테이너 (헤더 아래)
+    &__search-container {
+        padding: var(--db-padding-s);
+        display: flex;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+
+        // 내부 요소가 전체 너비를 차지하도록
+        >* {
+            width: 100%;
+        }
+    }
+
+}

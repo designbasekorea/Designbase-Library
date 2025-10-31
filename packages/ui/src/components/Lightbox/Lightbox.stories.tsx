@@ -10,25 +10,15 @@ const meta: Meta<typeof Lightbox> = {
         layout: 'fullscreen',
         docs: {
             description: {
-                component: '이미지 클릭 시 확대되는 모달 기반의 Lightbox 컴포넌트입니다. 줌, 회전, 다운로드, 전체화면 등의 기능을 제공합니다.',
+                component: '이미지 클릭 시 확대되는 모달 기반의 Lightbox 컴포넌트입니다. 줌, 회전, 다운로드, 전체화면, 스와이프 네비게이션 등의 기능을 제공합니다.',
             },
         },
     },
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg', 'xl'],
+            options: ['s', 'm', 'l', 'xl'],
             description: 'Lightbox 크기',
-        },
-        variant: {
-            control: { type: 'select' },
-            options: ['default', 'minimal', 'fullscreen'],
-            description: 'Lightbox 스타일 변형',
-        },
-        theme: {
-            control: { type: 'select' },
-            options: ['light', 'dark'],
-            description: '테마',
         },
         isOpen: {
             control: { type: 'boolean' },
@@ -90,14 +80,6 @@ const meta: Meta<typeof Lightbox> = {
             control: { type: 'boolean' },
             description: 'ESC 키로 닫기',
         },
-        readonly: {
-            control: { type: 'boolean' },
-            description: '읽기 전용',
-        },
-        disabled: {
-            control: { type: 'boolean' },
-            description: '비활성화',
-        },
         onOpenChange: {
             action: 'onOpenChange',
             description: '열림 상태 변경 핸들러',
@@ -108,9 +90,7 @@ const meta: Meta<typeof Lightbox> = {
         },
     },
     args: {
-        size: 'lg',
-        variant: 'default',
-        theme: 'light',
+        size: 'l',
         isOpen: false,
         currentIndex: 0,
         enableZoom: true,
@@ -126,8 +106,6 @@ const meta: Meta<typeof Lightbox> = {
         showToolbar: true,
         closeOnBackdropClick: true,
         closeOnEscape: true,
-        readonly: false,
-        disabled: false,
         onOpenChange: fn(),
         onImageChange: fn(),
     },
@@ -189,17 +167,17 @@ export const Default: Story = {
 };
 
 // 다양한 크기
-export const DifferentSizes: Story = {
+export const AllSizes: Story = {
     render: () => {
         const [isOpen, setIsOpen] = useState(false);
-        const [size, setSize] = useState<'sm' | 'md' | 'lg' | 'xl'>('lg');
+        const [size, setSize] = useState<'s' | 'm' | 'l' | 'xl'>('l');
 
         return (
             <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                    <button onClick={() => setSize('sm')}>Small</button>
-                    <button onClick={() => setSize('md')}>Medium</button>
-                    <button onClick={() => setSize('lg')}>Large</button>
+                    <button onClick={() => setSize('s')}>Small</button>
+                    <button onClick={() => setSize('m')}>Medium</button>
+                    <button onClick={() => setSize('l')}>Large</button>
                     <button onClick={() => setSize('xl')}>Extra Large</button>
                     <button onClick={() => setIsOpen(true)}>Lightbox 열기</button>
                 </div>
@@ -243,193 +221,6 @@ export const DifferentSizes: Story = {
     },
 };
 
-// 다양한 변형
-export const DifferentVariants: Story = {
-    render: () => {
-        const [isOpen, setIsOpen] = useState(false);
-        const [variant, setVariant] = useState<'default' | 'minimal' | 'fullscreen'>('default');
-
-        return (
-            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                    <button onClick={() => setVariant('default')}>Default</button>
-                    <button onClick={() => setVariant('minimal')}>Minimal</button>
-                    <button onClick={() => setVariant('fullscreen')}>Fullscreen</button>
-                    <button onClick={() => setIsOpen(true)}>Lightbox 열기</button>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-                    {sampleImages.slice(0, 3).map((image) => (
-                        <div
-                            key={image.id}
-                            style={{
-                                border: '1px solid #e5e7eb',
-                                borderRadius: '8px',
-                                overflow: 'hidden',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => setIsOpen(true)}
-                        >
-                            <img
-                                src={image.thumbnail || image.src}
-                                alt={image.alt}
-                                style={{ width: '100%', height: '150px', objectFit: 'cover' }}
-                            />
-                            <div style={{ padding: '12px' }}>
-                                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>{image.title}</h4>
-                                <p style={{ margin: 0, fontSize: '12px', color: '#6b7280' }}>
-                                    {image.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <Lightbox
-                    images={sampleImages}
-                    variant={variant}
-                    isOpen={isOpen}
-                    onOpenChange={setIsOpen}
-                />
-            </div>
-        );
-    },
-};
-
-// 기능별 설정
-export const FeatureConfiguration: Story = {
-    render: () => {
-        const [isOpen, setIsOpen] = useState(false);
-        const [config, setConfig] = useState({
-            enableZoom: true,
-            enableRotate: true,
-            enableDownload: true,
-            enableFullscreen: true,
-            showThumbnails: true,
-            showToolbar: true,
-        });
-
-        return (
-            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={config.enableZoom}
-                            onChange={(e) => setConfig(prev => ({ ...prev, enableZoom: e.target.checked }))}
-                        />
-                        줌 기능
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={config.enableRotate}
-                            onChange={(e) => setConfig(prev => ({ ...prev, enableRotate: e.target.checked }))}
-                        />
-                        회전 기능
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={config.enableDownload}
-                            onChange={(e) => setConfig(prev => ({ ...prev, enableDownload: e.target.checked }))}
-                        />
-                        다운로드 기능
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={config.enableFullscreen}
-                            onChange={(e) => setConfig(prev => ({ ...prev, enableFullscreen: e.target.checked }))}
-                        />
-                        전체화면 기능
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={config.showThumbnails}
-                            onChange={(e) => setConfig(prev => ({ ...prev, showThumbnails: e.target.checked }))}
-                        />
-                        썸네일 표시
-                    </label>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={config.showToolbar}
-                            onChange={(e) => setConfig(prev => ({ ...prev, showToolbar: e.target.checked }))}
-                        />
-                        툴바 표시
-                    </label>
-                    <button onClick={() => setIsOpen(true)}>Lightbox 열기</button>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-                    {sampleImages.slice(0, 3).map((image) => (
-                        <div
-                            key={image.id}
-                            style={{
-                                border: '1px solid #e5e7eb',
-                                borderRadius: '8px',
-                                overflow: 'hidden',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => setIsOpen(true)}
-                        >
-                            <img
-                                src={image.thumbnail || image.src}
-                                alt={image.alt}
-                                style={{ width: '100%', height: '150px', objectFit: 'cover' }}
-                            />
-                            <div style={{ padding: '12px' }}>
-                                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>{image.title}</h4>
-                                <p style={{ margin: 0, fontSize: '12px', color: '#6b7280' }}>
-                                    {image.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <Lightbox
-                    images={sampleImages}
-                    isOpen={isOpen}
-                    onOpenChange={setIsOpen}
-                    {...config}
-                />
-            </div>
-        );
-    },
-};
-
-// 다크 테마
-export const DarkTheme: Story = {
-    args: {
-        images: sampleImages,
-        isOpen: true,
-        theme: 'dark',
-    },
-};
-
-// 미니멀 스타일
-export const MinimalStyle: Story = {
-    args: {
-        images: sampleImages,
-        isOpen: true,
-        variant: 'minimal',
-        showToolbar: false,
-        showThumbnails: false,
-    },
-};
-
-// 전체화면 모드
-export const FullscreenMode: Story = {
-    args: {
-        images: sampleImages,
-        isOpen: true,
-        variant: 'fullscreen',
-    },
-};
-
 // 단일 이미지
 export const SingleImage: Story = {
     args: {
@@ -440,103 +231,26 @@ export const SingleImage: Story = {
     },
 };
 
-// 읽기 전용
-export const Readonly: Story = {
-    args: {
-        images: sampleImages,
-        isOpen: true,
-        readonly: true,
-    },
-};
-
-// 비활성화
-export const Disabled: Story = {
-    args: {
-        images: sampleImages,
-        isOpen: true,
-        disabled: true,
-    },
-};
-
-// 인터랙티브 예제
-export const Interactive: Story = {
-    render: () => {
-        const [isOpen, setIsOpen] = useState(false);
-        const [currentIndex, setCurrentIndex] = useState(0);
-
-        return (
-            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                    <button onClick={() => setIsOpen(true)}>Lightbox 열기</button>
-                    <button onClick={() => setCurrentIndex(0)}>첫 번째 이미지</button>
-                    <button onClick={() => setCurrentIndex(2)}>세 번째 이미지</button>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-                    {sampleImages.map((image, index) => (
-                        <div
-                            key={image.id}
-                            style={{
-                                border: '1px solid #e5e7eb',
-                                borderRadius: '8px',
-                                overflow: 'hidden',
-                                cursor: 'pointer',
-                                transform: index === currentIndex ? 'scale(1.05)' : 'scale(1)',
-                                transition: 'transform 0.2s ease',
-                            }}
-                            onClick={() => {
-                                setCurrentIndex(index);
-                                setIsOpen(true);
-                            }}
-                        >
-                            <img
-                                src={image.thumbnail || image.src}
-                                alt={image.alt}
-                                style={{ width: '100%', height: '150px', objectFit: 'cover' }}
-                            />
-                            <div style={{ padding: '12px' }}>
-                                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>{image.title}</h4>
-                                <p style={{ margin: 0, fontSize: '12px', color: '#6b7280' }}>
-                                    {image.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <Lightbox
-                    images={sampleImages}
-                    currentIndex={currentIndex}
-                    isOpen={isOpen}
-                    onOpenChange={setIsOpen}
-                    onImageChange={setCurrentIndex}
-                />
-            </div>
-        );
-    },
-};
-
-// 키보드 단축키 안내
-export const KeyboardShortcuts: Story = {
+// 스와이프 제스처 (기본 활성화)
+export const SwipeGesture: Story = {
     render: () => {
         const [isOpen, setIsOpen] = useState(false);
 
         return (
             <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div style={{ marginBottom: '20px' }}>
-                    <h3>키보드 단축키</h3>
+                    <h3>스와이프 제스처 (기본 활성화)</h3>
+                    <p style={{ lineHeight: '1.6', marginBottom: '16px' }}>
+                        모바일에서 이미지 영역을 좌우로 스와이프하여 이미지를 변경할 수 있습니다.
+                    </p>
                     <ul style={{ lineHeight: '1.6' }}>
-                        <li><strong>ESC</strong>: Lightbox 닫기</li>
-                        <li><strong>← →</strong>: 이전/다음 이미지</li>
-                        <li><strong>+ / -</strong>: 줌 인/아웃</li>
-                        <li><strong>0</strong>: 줌 리셋</li>
-                        <li><strong>R</strong>: 이미지 회전</li>
-                        <li><strong>F</strong>: 전체화면 토글</li>
-                        <li><strong>D</strong>: 이미지 다운로드</li>
+                        <li><strong>좌측 스와이프</strong>: 다음 이미지로 이동</li>
+                        <li><strong>우측 스와이프</strong>: 이전 이미지로 이동</li>
+                        <li><strong>최소 스와이프 거리</strong>: 50px 이상</li>
                     </ul>
                 </div>
 
-                <button onClick={() => setIsOpen(true)}>Lightbox 열기 (키보드 단축키 테스트)</button>
+                <button onClick={() => setIsOpen(true)}>Lightbox 열기 (스와이프 테스트)</button>
 
                 <Lightbox
                     images={sampleImages}

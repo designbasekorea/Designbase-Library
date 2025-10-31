@@ -8,9 +8,10 @@
 import React from 'react';
 import clsx from 'clsx';
 import './Stat.scss';
+import { Progressbar } from '../Progressbar/Progressbar';
 
 // 타입 정의
-export type StatSize = 'sm' | 'md' | 'lg' | 'xl';
+export type StatSize = 's' | 'm' | 'l' | 'xl';
 export type StatVariant = 'default' | 'minimal' | 'card' | 'colored';
 export type StatLayout = 'horizontal' | 'vertical' | 'reverse';
 export type StatColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'custom';
@@ -67,7 +68,7 @@ const Stat: React.FC<StatProps> = ({
     label,
     icon,
     iconPosition = 'left',
-    size = 'md',
+    size = 'm',
     variant = 'default',
     layout = 'horizontal',
     color = 'primary',
@@ -171,13 +172,10 @@ const Stat: React.FC<StatProps> = ({
                 )}
             </div>
 
-            {/* 진행률 바 */}
-            {showProgress && progress !== undefined && (
+            {/* 진행률 바 - Progressbar 컴포넌트 활용 */}
+            {showProgress && typeof progress === 'number' && (
                 <div className="designbase-stat__progress">
-                    <div
-                        className="designbase-stat__progress-bar"
-                        style={{ width: `${Math.min(Math.max(progress, 0), 100)}%` }}
-                    />
+                    <Progressbar value={Math.min(Math.max(progress, 0), 100)} size="s" variant={color === 'primary' ? 'primary' : color === 'success' ? 'success' : color === 'warning' ? 'warning' : color === 'error' ? 'danger' : 'default'} />
                 </div>
             )}
         </div>

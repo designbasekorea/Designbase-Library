@@ -3,7 +3,7 @@
  * 
  * 목적: 모든 디자인 토큰의 TypeScript 타입과 값을 내보냄
  * 기능: Foundation 토큰, Semantic 토큰, 다크 테마 토큰 제공
- * 사용법: import { tokens } from '@designbase/tokens'
+ * 사용법: import { tokens } from '@designbasekorea/tokens'
  */
 
 // 빌드된 토큰을 동적으로 로드하기 위한 임시 구현
@@ -12,11 +12,11 @@ import foundationColors from '../tokens/foundation/colors.json';
 import foundationSpacing from '../tokens/foundation/spacing.json';
 import foundationTypography from '../tokens/foundation/typography.json';
 import foundationEffects from '../tokens/foundation/effects.json';
-import foundationBorderRadius from '../tokens/foundation/borderRadius.json';
+import foundationBorder from '../tokens/foundation/border.json';
 import foundationZIndex from '../tokens/foundation/zIndex.json';
 import semanticColors from '../tokens/semantic/colors.json';
 import semanticSpacing from '../tokens/semantic/spacing.json';
-import semanticBorderRadius from '../tokens/semantic/borderRadius.json';
+import semanticBorder from '../tokens/semantic/border.json';
 import semanticEffects from '../tokens/semantic/effects.json';
 import darkColors from '../tokens/dark/colors.json';
 
@@ -53,8 +53,8 @@ export const tokens: DesignTokens = {
         semantic: semanticEffects.shadow.semantic,
     },
     borderRadius: {
-        foundation: foundationBorderRadius.borderRadius.foundation,
-        semantic: semanticBorderRadius.borderRadius.semantic,
+        foundation: foundationBorder.border.foundation,
+        semantic: semanticBorder.border.semantic,
     },
     opacity: {
         foundation: foundationEffects.opacity.foundation,
@@ -78,8 +78,8 @@ export const darkTokens: DesignTokens = {
         semantic: semanticEffects.shadow.semantic,
     },
     borderRadius: {
-        foundation: foundationBorderRadius.borderRadius.foundation,
-        semantic: semanticBorderRadius.borderRadius.semantic,
+        foundation: foundationBorder.border.foundation,
+        semantic: semanticBorder.border.semantic,
     },
     opacity: {
         foundation: foundationEffects.opacity.foundation,

@@ -1,0 +1,118 @@
+.designbase-figma-section {
+    position: relative;
+    border-radius: var(--db-radius-l);
+    background-color: var(--db-surface-base, #fff);
+    box-shadow: var(--db-shadow-xs, 0 1px 2px rgba(0, 0, 0, .05));
+    border: 1px solid var(--db-border-base);
+    margin-bottom: var(--db-margin-s);
+    transition: opacity var(--db-animation-speed, .2s) var(--db-animation-ease, ease-in-out);
+
+    &--disabled {
+        opacity: .5;
+
+        .designbase-figma-section__header {
+            border-bottom: none;
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--db-padding-s);
+        gap: var(--db-gap-s);
+        border-bottom: 1px solid var(--db-border-base);
+    }
+
+    &__title-area {
+
+        min-width: 0;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: var(--db-text-s, 14px);
+        font-weight: var(--db-weight-bold);
+        line-height: var(--db-leading-normal);
+        color: var(--db-text-primary);
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+    }
+
+
+    &__controls {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        flex-shrink: 0;
+    }
+
+    &__collapse-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        user-select: none;
+        color: var(--db-icon-muted, #6b7280);
+        transition: transform var(--db-animation-speed, .2s) var(--db-animation-ease, ease-in-out);
+
+        &--collapsed {
+            transform: rotate(-90deg);
+        }
+    }
+
+    &--collapsible .designbase-figma-section__header {
+        transition: background-color var(--db-animation-speed, .2s) var(--db-animation-ease, ease-in-out);
+
+        &:hover {
+            background-color: var(--db-interactive-bg-hover, #f9fafb);
+        }
+
+        &:active {
+            background-color: var(--db-interactive-bg-active, #f3f4f6);
+        }
+    }
+
+    &__content {
+        overflow: hidden;
+    }
+
+    &--overflow-visible &__content {
+        overflow: visible;
+    }
+
+    &--overflow-visible .designbase-figma-section__content-clip {
+        overflow: visible;
+    }
+
+    /* height 애니메이션은 clip이 전담 (패딩 없음) */
+    &__content-clip {
+        height: auto;
+        overflow: hidden;
+        transition: height .25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 패딩/간격/페이드 전담 */
+    &__content-inner {
+        padding: var(--db-padding-s);
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-s);
+        transition: opacity .2s cubic-bezier(0.4, 0, 0.2, 1),
+            padding-top .25s cubic-bezier(0.4, 0, 0.2, 1),
+            padding-bottom .25s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 1;
+    }
+
+    &__content-inner.is-collapsed {
+        /* 높이는 clip이 0으로 만들고, 시각적으로만 살짝 페이드/패딩 축소 */
+        opacity: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

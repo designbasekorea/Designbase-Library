@@ -7,8 +7,8 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import clsx from 'clsx';
-import { ChevronDownIcon } from '@designbase/icons';
-import type { BaseIconProps } from '@designbase/icons';
+import { ChevronDownIcon } from '@designbasekorea/icons';
+import type { IconProps } from '@designbasekorea/icons';
 import './Accordion.scss';
 
 export type AccordionItemType = 'icon' | 'number' | 'question' | 'none';
@@ -21,7 +21,7 @@ export interface AccordionItem {
     /** 아이템 내용 */
     content: React.ReactNode;
     /** 왼쪽 아이콘 */
-    icon?: React.ComponentType<BaseIconProps>;
+    icon?: React.ComponentType<IconProps>;
     /** 아이템 표시 타입 */
     itemType?: AccordionItemType;
     /** 아이템 비활성화 여부 */
@@ -36,7 +36,7 @@ export interface AccordionProps {
     /** 아코디언 스타일 */
     style?: 'default' | 'bordered' | 'separated' | 'contained';
     /** 아코디언 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 다중 확장 허용 여부 */
     allowMultiple?: boolean;
     /** 기본적으로 확장된 아이템들 (allowMultiple이 true일 때만 사용) */
@@ -52,7 +52,7 @@ export interface AccordionProps {
 export const Accordion: React.FC<AccordionProps> = ({
     items,
     style = 'default',
-    size = 'md',
+    size = 'm',
     allowMultiple = false,
     defaultExpandedItems = [],
     defaultItemType = 'none',
@@ -141,6 +141,9 @@ export const Accordion: React.FC<AccordionProps> = ({
         className
     );
 
+    // 아이콘 크기 계산
+    const iconSize = size === 's' ? 16 : size === 'l' ? 24 : 20;
+
     const renderItemPrefix = (item: AccordionItem, index: number) => {
         const itemType = item.itemType || defaultItemType;
 
@@ -148,10 +151,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             case 'icon':
                 return item.icon ? (
                     <div className="designbase-accordion__icon">
-                        <item.icon
-                            size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20}
-                            color="var(--color-semantic-component-icon-primary)"
-                        />
+                        <item.icon size={iconSize} />
                     </div>
                 ) : null;
 
@@ -213,10 +213,7 @@ export const Accordion: React.FC<AccordionProps> = ({
 
                             {/* 화살표 아이콘 */}
                             <div className="designbase-accordion__chevron">
-                                <ChevronDownIcon
-                                    size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20}
-                                    color="var(--color-semantic-component-icon-primary)"
-                                />
+                                <ChevronDownIcon size={iconSize} />
                             </div>
                         </button>
 

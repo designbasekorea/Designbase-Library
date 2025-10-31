@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.782 9.101a2 2 0 0 0-1.787-1.102h-.003c-.757 0-1.449.43-1.786 1.108l-1.994 4a2 2 0 0 0 2.382 2.803l1.416-.439 1.408.43q.29.088.584.087a2 2 0 0 0 1.787-2.899zm-1.414 4.389a1.3 1.3 0 0 0-.366-.055q-.193 0-.376.06L10 13.999l1.994-4L14 13.989z"/><path fill="currentColor" d="M17 1H7C5.346 1 4 2.346 4 4v16c0 1.654 1.346 3 3 3h10c1.654 0 3-1.346 3-3V4c0-1.654-1.346-3-3-3m-7 2h4v1h-4zm8 17a1 1 0 0 1-1 1H7c-.551 0-1-.448-1-1V4c0-.551.449-1 1-1h1v1c0 1.103.897 2 2 2h4c1.103 0 2-.897 2-2V3h1c.552 0 1 .449 1 1z"/><path fill="currentColor" d="M14 18h-4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const NavigationAppFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M13.782 9.101a2 2 0 0 0-1.787-1.102h-.003c-.757 0-1.449.43-1.786 1.108l-1.994 4a2 2 0 0 0 2.382 2.803l1.416-.439 1.408.43q.29.088.584.087a2 2 0 0 0 1.787-2.899zm-1.414 4.389a1.3 1.3 0 0 0-.366-.055q-.193 0-.376.06L10 13.999l1.994-4L14 13.989z"/><path fill="currentColor" d="M17 1H7C5.346 1 4 2.346 4 4v16c0 1.654 1.346 3 3 3h10c1.654 0 3-1.346 3-3V4c0-1.654-1.346-3-3-3m-7 2h4v1h-4zm8 17a1 1 0 0 1-1 1H7c-.551 0-1-.448-1-1V4c0-.551.449-1 1-1h1v1c0 1.103.897 2 2 2h4c1.103 0 2-.897 2-2V3h1c.552 0 1 .449 1 1z"/><path fill="currentColor" d="M14 18h-4a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2"/></svg>
+);
 
 export default NavigationAppFilledIcon;

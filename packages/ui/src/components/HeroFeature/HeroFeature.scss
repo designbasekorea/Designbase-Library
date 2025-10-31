@@ -7,9 +7,9 @@
     overflow: hidden;
 
     // 크기 변형
-    &--size-sm {
+    &--size-s {
         min-height: 300px;
-        padding: var(--db-padding-lg) var(--db-padding-sm);
+        padding: var(--db-padding-lg) var(--db-padding-s);
 
         .designbase-hero-feature__title {
             font-size: var(--db-text-2xl);
@@ -27,9 +27,9 @@
         }
     }
 
-    &--size-md {
+    &--size-m {
         min-height: 400px;
-        padding: var(--db-padding-xl) var(--db-padding-md);
+        padding: var(--db-padding-xl) var(--db-padding-m);
 
         .designbase-hero-feature__title {
             font-size: var(--db-text-3xl);
@@ -42,14 +42,14 @@
         }
 
         .designbase-hero-feature__description {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             line-height: var(--db-leading-normal);
         }
     }
 
-    &--size-lg {
+    &--size-l {
         min-height: 500px;
-        padding: var(--db-padding-2xl) var(--db-padding-lg);
+        padding: var(--db-padding-2xl) var(--db-padding-l);
 
         .designbase-hero-feature__title {
             font-size: var(--db-text-4xl);
@@ -94,22 +94,22 @@
 
     // 테마 변형
     &--theme-light {
-        background: var(--db-bg-primary);
+        background: var(--db-surface-base);
         color: var(--db-text-primary);
     }
 
     &--theme-dark {
         background: var(--db-bg-inverse);
-        color: var(--db-text-inverse);
+        color: var(--db-text-inverse-primary);
     }
 
     &--theme-gradient {
         background: linear-gradient(135deg, var(--db-blue-600) 0%, var(--db-blue-400) 100%);
-        color: var(--db-text-inverse);
+        color: var(--db-text-inverse-primary);
     }
 
     &--theme-image {
-        background: var(--db-bg-primary);
+        background: var(--db-surface-base);
         color: var(--db-text-primary);
     }
 
@@ -171,7 +171,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    gap: var(--db-gap-lg);
+    gap: var(--db-gap-l);
     z-index: 2;
     position: relative;
 }
@@ -180,7 +180,7 @@
 .designbase-hero-feature__content {
     display: flex;
     flex-direction: column;
-    gap: var(--db-gap-sm);
+    gap: var(--db-gap-s);
     flex: 1;
     max-width: 600px;
 }
@@ -192,8 +192,8 @@
     justify-content: center;
     width: 64px;
     height: 64px;
-    background: var(--db-blue-600);
-    border-radius: var(--db-radius-lg);
+    background: var(--db-color-info);
+    border-radius: var(--db-radius-l);
     color: var(--db-white);
     margin-bottom: var(--db-margin-sm);
 }
@@ -202,9 +202,9 @@
 .designbase-hero-feature__badge {
     display: inline-flex;
     align-items: center;
-    padding: var(--db-padding-xs) var(--db-padding-sm);
-    border-radius: var(--db-radius-sm);
-    font-size: var(--db-text-sm);
+    padding: var(--db-padding-xs) var(--db-padding-s);
+    border-radius: var(--db-radius-s);
+    font-size: var(--db-text-s);
     font-weight: var(--db-weight-medium);
     line-height: 1;
     white-space: nowrap;
@@ -214,14 +214,14 @@
     // 색상 변형
     &--color-primary {
         &.designbase-hero-feature__badge--variant-solid {
-            background: var(--db-blue-600);
+            background: var(--db-color-info);
             color: var(--db-white);
         }
 
         &.designbase-hero-feature__badge--variant-outline {
             background: transparent;
-            color: var(--db-blue-600);
-            border: 1px solid var(--db-blue-600);
+            color: var(--db-color-info);
+            border: 1px solid var(--db-color-info);
         }
 
         &.designbase-hero-feature__badge--variant-soft {
@@ -232,18 +232,18 @@
 
     &--color-secondary {
         &.designbase-hero-feature__badge--variant-solid {
-            background: var(--db-bg-secondary);
+            background: var(--db-surface-layer-1);
             color: var(--db-text-primary);
         }
 
         &.designbase-hero-feature__badge--variant-outline {
             background: transparent;
             color: var(--db-text-secondary);
-            border: 1px solid var(--db-border-primary);
+            border: 1px solid var(--db-border-base);
         }
 
         &.designbase-hero-feature__badge--variant-soft {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
             color: var(--db-text-secondary);
         }
     }
@@ -304,14 +304,14 @@
 
     &--color-info {
         &.designbase-hero-feature__badge--variant-solid {
-            background: var(--db-blue-600);
+            background: var(--db-color-info);
             color: var(--db-white);
         }
 
         &.designbase-hero-feature__badge--variant-outline {
             background: transparent;
-            color: var(--db-blue-600);
-            border: 1px solid var(--db-blue-600);
+            color: var(--db-color-info);
+            border: 1px solid var(--db-color-info);
         }
 
         &.designbase-hero-feature__badge--variant-soft {
@@ -350,7 +350,7 @@
 // 버튼들
 .designbase-hero-feature__buttons {
     display: flex;
-    gap: var(--db-gap-sm);
+    gap: var(--db-gap-s);
     margin-top: var(--db-margin-sm);
     flex-wrap: wrap;
 }
@@ -360,8 +360,8 @@
     display: inline-flex;
     align-items: center;
     gap: var(--db-gap-xs);
-    padding: var(--db-padding-sm) var(--db-padding-lg);
-    border-radius: var(--db-radius-md);
+    padding: var(--db-padding-sm) var(--db-padding-l);
+    border-radius: var(--db-radius-m);
     text-decoration: none;
     font-weight: var(--db-weight-medium);
     transition: all 0.2s ease;
@@ -370,24 +370,24 @@
     font-size: var(--db-text-base);
 
     // 크기 변형
-    &--size-sm {
-        padding: var(--db-padding-xs) var(--db-padding-md);
-        font-size: var(--db-text-sm);
+    &--size-s {
+        padding: var(--db-padding-xs) var(--db-padding-m);
+        font-size: var(--db-text-s);
     }
 
-    &--size-md {
-        padding: var(--db-padding-sm) var(--db-padding-lg);
+    &--size-m {
+        padding: var(--db-padding-sm) var(--db-padding-l);
         font-size: var(--db-text-base);
     }
 
-    &--size-lg {
+    &--size-l {
         padding: var(--db-padding-md) var(--db-padding-xl);
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-l);
     }
 
     // 스타일 변형
     &--variant-primary {
-        background: var(--db-blue-600);
+        background: var(--db-color-info);
         color: var(--db-white);
 
         &:hover {
@@ -397,7 +397,7 @@
     }
 
     &--variant-secondary {
-        background: var(--db-bg-secondary);
+        background: var(--db-surface-layer-1);
         color: var(--db-text-primary);
 
         &:hover {
@@ -408,18 +408,18 @@
 
     &--variant-outline {
         background: transparent;
-        color: var(--db-blue-600);
-        border: 2px solid var(--db-blue-600);
+        color: var(--db-color-info);
+        border: 2px solid var(--db-color-info);
 
         &:hover {
-            background: var(--db-blue-600);
-            border-color: var(--db-blue-600);
+            background: var(--db-color-info);
+            border-color: var(--db-color-info);
         }
     }
 
     &--variant-ghost {
         background: transparent;
-        color: var(--db-blue-600);
+        color: var(--db-color-info);
 
         &:hover {
             background: var(--db-blue-100);
@@ -437,7 +437,7 @@
 // 통계
 .designbase-hero-feature__stats {
     display: flex;
-    gap: var(--db-gap-md);
+    gap: var(--db-gap-m);
     margin-top: var(--db-margin-md);
     flex-wrap: wrap;
 }
@@ -458,7 +458,7 @@
 }
 
 .designbase-hero-feature__stat-label {
-    font-size: var(--db-text-sm);
+    font-size: var(--db-text-s);
     color: inherit;
     opacity: 0.7;
     font-weight: var(--db-weight-medium);
@@ -481,7 +481,7 @@
     img {
         width: 100%;
         height: auto;
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
         box-shadow: var(--db-shadow-lg);
         transition: transform 0.3s ease;
 
@@ -589,9 +589,9 @@
 @media (max-width: 768px) {
     .designbase-hero-feature {
 
-        &--size-lg,
+        &--size-l,
         &--size-xl {
-            padding: var(--db-padding-lg) var(--db-padding-sm);
+            padding: var(--db-padding-lg) var(--db-padding-s);
 
             .designbase-hero-feature__title {
                 font-size: var(--db-text-3xl);
@@ -602,14 +602,14 @@
             }
 
             .designbase-hero-feature__description {
-                font-size: var(--db-text-lg);
+                font-size: var(--db-text-l);
             }
         }
 
         &--variant-split {
             .designbase-hero-feature__container {
                 flex-direction: column;
-                gap: var(--db-gap-md);
+                gap: var(--db-gap-m);
             }
 
             .designbase-hero-feature__image {
@@ -630,7 +630,7 @@
 
     .designbase-hero-feature__stats {
         flex-direction: column;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
     }
 }
 

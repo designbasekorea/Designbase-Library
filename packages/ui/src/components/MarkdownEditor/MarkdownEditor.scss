@@ -5,14 +5,14 @@
 .designbase-markdown-editor {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--db-border-primary);
-    border-radius: var(--db-radius-lg);
-    background: var(--db-bg-primary);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-l);
+    background: var(--db-surface-base);
     font-family: var(--db-font-primary);
     transition: all 0.2s ease;
 
     // 크기별 스타일
-    &--size-sm {
+    &--size-s {
         .designbase-markdown-editor__toolbar {
             padding: var(--db-padding-s);
             gap: var(--db-gap-xs);
@@ -29,17 +29,17 @@
         }
 
         .designbase-markdown-editor__textarea {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             padding: var(--db-padding-m);
         }
 
         .designbase-markdown-editor__preview {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             padding: var(--db-padding-m);
         }
 
         .designbase-markdown-editor__code-view {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             padding: var(--db-padding-m);
         }
 
@@ -49,7 +49,7 @@
         }
     }
 
-    &--size-md {
+    &--size-m {
         .designbase-markdown-editor__toolbar {
             padding: var(--db-padding-m);
             gap: var(--db-gap-s);
@@ -57,12 +57,12 @@
 
         .designbase-markdown-editor__toolbar-item {
             padding: var(--db-padding-s);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-markdown-editor__mode-button {
             padding: var(--db-padding-s);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-markdown-editor__textarea {
@@ -82,11 +82,11 @@
 
         .designbase-markdown-editor__status {
             padding: var(--db-padding-m) var(--db-padding-l);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--size-lg {
+    &--size-l {
         .designbase-markdown-editor__toolbar {
             padding: var(--db-padding-l);
             gap: var(--db-gap-m);
@@ -103,17 +103,17 @@
         }
 
         .designbase-markdown-editor__textarea {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             padding: var(--db-padding-xl);
         }
 
         .designbase-markdown-editor__preview {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             padding: var(--db-padding-xl);
         }
 
         .designbase-markdown-editor__code-view {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             padding: var(--db-padding-xl);
         }
 
@@ -125,18 +125,18 @@
 
     // 변형별 스타일
     &--variant-default {
-        background: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-base);
+        border-color: var(--db-border-base);
     }
 
     &--variant-outlined {
         background: transparent;
-        border-color: var(--db-border-primary);
+        border-color: var(--db-border-base);
     }
 
     &--variant-filled {
-        background: var(--db-bg-secondary);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-layer-1);
+        border-color: var(--db-border-base);
     }
 
     // 모드별 스타일
@@ -177,13 +177,13 @@
 
     &--theme-dark {
         background: var(--db-bg-inverse);
-        border-color: var(--db-border-primary);
-        color: var(--db-text-inverse);
+        border-color: var(--db-border-base);
+        color: var(--db-text-inverse-primary);
     }
 
     // 상태별 스타일
     &--focused {
-        border-color: var(--db-blue-600);
+        border-color: var(--db-color-info);
         box-shadow: 0 0 0 3px var(--db-blue-100);
     }
 
@@ -204,9 +204,9 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        background: var(--db-bg-secondary);
-        border-bottom: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-lg) var(--db-radius-lg) 0 0;
+        background: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-l) var(--db-radius-l) 0 0;
     }
 
     // 모드 버튼들
@@ -222,27 +222,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: var(--db-padding-sm);
+        padding: var(--db-padding-s);
         background: transparent;
         border: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         color: var(--db-text-secondary);
         cursor: pointer;
         transition: all 0.2s ease;
         font-weight: var(--db-weight-medium);
 
         &:hover:not(&--disabled) {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
             color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-color-info);
             outline-offset: 2px;
         }
 
         &--active {
-            background: var(--db-blue-600);
+            background: var(--db-color-info);
             color: var(--db-white);
         }
 
@@ -256,7 +256,7 @@
     &__toolbar-separator {
         width: 1px;
         height: 24px;
-        background: var(--db-border-primary);
+        background: var(--db-border-base);
         margin: 0 var(--db-margin-md);
     }
 
@@ -265,10 +265,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: var(--db-padding-sm);
+        padding: var(--db-padding-s);
         background: transparent;
         border: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         color: var(--db-text-secondary);
         cursor: pointer;
         transition: all 0.2s ease;
@@ -276,17 +276,17 @@
         font-weight: var(--db-weight-medium);
 
         &:hover:not(&--disabled) {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
             color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-color-info);
             outline-offset: 2px;
         }
 
         &--active {
-            background: var(--db-blue-600);
+            background: var(--db-color-info);
             color: var(--db-white);
         }
 
@@ -302,9 +302,9 @@
         top: -20px;
         left: 50%;
         transform: translateX(-50%);
-        background: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-sm);
+        background: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-s);
         padding: 2px 6px;
         font-size: var(--db-text-xs);
         color: var(--db-text-secondary);
@@ -324,21 +324,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: var(--db-padding-sm);
+        padding: var(--db-padding-s);
         background: transparent;
         border: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         color: var(--db-text-secondary);
         cursor: pointer;
         transition: all 0.2s ease;
 
         &:hover {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
             color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-color-info);
             outline-offset: 2px;
         }
     }
@@ -368,7 +368,7 @@
         color: inherit;
 
         &::placeholder {
-            color: var(--db-text-muted);
+            color: var(--db-text-tertiary);
         }
 
         &:disabled {
@@ -431,9 +431,9 @@
 
         // 코드
         code {
-            background: var(--db-bg-secondary);
-            border: 1px solid var(--db-border-primary);
-            border-radius: var(--db-radius-sm);
+            background: var(--db-surface-layer-1);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-s);
             padding: 2px 6px;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.9em;
@@ -441,10 +441,10 @@
         }
 
         pre {
-            background: var(--db-bg-secondary);
-            border: 1px solid var(--db-border-primary);
-            border-radius: var(--db-radius-md);
-            padding: var(--db-padding-lg);
+            background: var(--db-surface-layer-1);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-m);
+            padding: var(--db-padding-l);
             overflow-x: auto;
             margin: var(--db-margin-lg) 0;
 
@@ -458,7 +458,7 @@
 
         // 링크
         a {
-            color: var(--db-blue-600);
+            color: var(--db-color-info);
             text-decoration: none;
 
             &:hover {
@@ -470,16 +470,16 @@
         img {
             max-width: 100%;
             height: auto;
-            border-radius: var(--db-radius-md);
+            border-radius: var(--db-radius-m);
         }
 
         // 인용구
         blockquote {
-            border-left: 4px solid var(--db-blue-600);
+            border-left: 4px solid var(--db-color-info);
             margin: var(--db-margin-lg) 0;
-            padding: var(--db-padding-md) var(--db-padding-lg);
-            background: var(--db-bg-secondary);
-            border-radius: 0 var(--db-radius-md) var(--db-radius-md) 0;
+            padding: var(--db-padding-md) var(--db-padding-l);
+            background: var(--db-surface-layer-1);
+            border-radius: 0 var(--db-radius-m) var(--db-radius-m) 0;
             font-style: italic;
         }
 
@@ -503,20 +503,20 @@
 
         th,
         td {
-            border: 1px solid var(--db-border-primary);
-            padding: var(--db-padding-sm) var(--db-padding-md);
+            border: 1px solid var(--db-border-base);
+            padding: var(--db-padding-sm) var(--db-padding-m);
             text-align: left;
         }
 
         th {
-            background: var(--db-bg-secondary);
+            background: var(--db-surface-layer-1);
             font-weight: var(--db-weight-semibold);
         }
 
         // 수평선
         hr {
             border: none;
-            border-top: 1px solid var(--db-border-primary);
+            border-top: 1px solid var(--db-border-base);
             margin: var(--db-margin-xl) 0;
         }
     }
@@ -532,7 +532,7 @@
         width: 100%;
         height: 100%;
         min-height: inherit;
-        background: var(--db-bg-secondary);
+        background: var(--db-surface-layer-1);
         border: none;
         outline: none;
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -558,10 +558,10 @@
     &__status {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-lg);
-        background: var(--db-bg-secondary);
-        border-top: 1px solid var(--db-border-primary);
-        border-radius: 0 0 var(--db-radius-lg) var(--db-radius-lg);
+        gap: var(--db-gap-l);
+        background: var(--db-surface-layer-1);
+        border-top: 1px solid var(--db-border-base);
+        border-radius: 0 0 var(--db-radius-l) var(--db-radius-l);
         color: var(--db-text-secondary);
     }
 
@@ -592,7 +592,7 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-xs);
-        color: var(--db-blue-600);
+        color: var(--db-color-info);
     }
 }
 
@@ -643,7 +643,7 @@
         &__preview,
         &__code-view {
             padding: var(--db-padding-m);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         &__status {

@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import { Button } from '../Button/Button';
-import { CloseIcon } from '@designbase/icons';
+import { CloseIcon } from '@designbasekorea/icons';
 import './Drawer.scss';
 
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
-export type DrawerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type DrawerSize = 's' | 'm' | 'l' | 'xl' | 'full';
 
 export interface DrawerProps {
     /** Drawer가 열려있는지 여부 */
@@ -51,7 +51,7 @@ const Drawer: React.FC<DrawerProps> = ({
     title,
     children,
     position = 'right',
-    size = 'md',
+    size = 'm',
     showCloseButton = true,
     closeOnBackdropClick = true,
     closeOnEscape = true,
@@ -65,6 +65,8 @@ const Drawer: React.FC<DrawerProps> = ({
     id,
     ...props
 }) => {
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 16 : size === 'l' ? 20 : size === 'xl' ? 24 : 18;
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const drawerRef = useRef<HTMLDivElement>(null);
@@ -76,7 +78,7 @@ const Drawer: React.FC<DrawerProps> = ({
         if (isOpen) {
             setIsVisible(true);
             setIsAnimating(true);
-            
+
             // 포커스 트랩 설정
             if (trapFocus) {
                 previousActiveElement.current = document.activeElement as HTMLElement;
@@ -100,7 +102,7 @@ const Drawer: React.FC<DrawerProps> = ({
             const timer = setTimeout(() => {
                 setIsVisible(false);
                 setIsAnimating(false);
-                
+
                 // 포커스 복원
                 if (trapFocus && previousActiveElement.current) {
                     previousActiveElement.current.focus();
@@ -189,7 +191,7 @@ const Drawer: React.FC<DrawerProps> = ({
                 {(title || showCloseButton) && (
                     <div className="designbase-drawer__header">
                         {title && (
-                            <h2 
+                            <h2
                                 className="designbase-drawer__title"
                                 id={id ? `${id}-title` : undefined}
                             >
@@ -199,19 +201,19 @@ const Drawer: React.FC<DrawerProps> = ({
                         {showCloseButton && (
                             <Button
                                 variant="ghost"
-                                size="sm"
+                                size="s"
                                 onClick={handleClose}
                                 className="designbase-drawer__close-button"
                                 aria-label="닫기"
                             >
-                                <CloseIcon />
+                                <CloseIcon size={iconSize} color="currentColor" />
                             </Button>
                         )}
                     </div>
                 )}
 
                 {/* Drawer 내용 */}
-                <div 
+                <div
                     className="designbase-drawer__content"
                     id={id ? `${id}-content` : undefined}
                 >

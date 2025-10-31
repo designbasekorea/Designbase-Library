@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2.25 5A2.756 2.756 0 0 1 5 2.25h4v1.5H5c-.686 0-1.25.564-1.25 1.25v14c0 .686.564 1.25 1.25 1.25h4v1.5H5A2.756 2.756 0 0 1 2.25 19zM19 3.75h-4v-1.5h4A2.756 2.756 0 0 1 21.75 5v14A2.756 2.756 0 0 1 19 21.75h-4v-1.5h4c.686 0 1.25-.564 1.25-1.25V5c0-.686-.564-1.25-1.25-1.25M11.25 11V8h1.5v3zM11.25 16v-3h1.5v3zM11.25 21v-3h1.5v3zM11.25 6V3h1.5v3z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.25 21v-3h1.5v3z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const FilpHorizontalIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M2.25 5A2.756 2.756 0 0 1 5 2.25h4v1.5H5c-.686 0-1.25.564-1.25 1.25v14c0 .686.564 1.25 1.25 1.25h4v1.5H5A2.756 2.756 0 0 1 2.25 19zM19 3.75h-4v-1.5h4A2.756 2.756 0 0 1 21.75 5v14A2.756 2.756 0 0 1 19 21.75h-4v-1.5h4c.686 0 1.25-.564 1.25-1.25V5c0-.686-.564-1.25-1.25-1.25M11.25 11V8h1.5v3zM11.25 16v-3h1.5v3zM11.25 21v-3h1.5v3zM11.25 6V3h1.5v3z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.25 21v-3h1.5v3z" clip-rule="evenodd"/></svg>
+);
 
 export default FilpHorizontalIcon;

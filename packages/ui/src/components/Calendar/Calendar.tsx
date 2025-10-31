@@ -61,6 +61,8 @@ export interface CalendarProps {
     showWeekends?: boolean;
     /** 오늘 날짜 하이라이트 여부 */
     highlightToday?: boolean;
+    /** 외부 날짜(이전/다음 달) 표시 여부 */
+    showOutsideDays?: boolean;
     /** 다국어 지원 */
     locale?: string;
     /** 추가 CSS 클래스 */
@@ -85,6 +87,7 @@ const Calendar: React.FC<CalendarProps> = ({
     onYearChange,
     showWeekends = true,
     highlightToday = true,
+    showOutsideDays = true,
     locale = 'ko-KR',
     className,
     style,
@@ -94,6 +97,9 @@ const Calendar: React.FC<CalendarProps> = ({
     const [currentView, setCurrentView] = useState<CalendarView>(view);
     const [showEventModal, setShowEventModal] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
+
+    // 아이콘 크기 계산 (기본값 m)
+    const iconSize = 20;
 
     // 일정 관리 상태
     const [eventForm, setEventForm] = useState({
@@ -112,6 +118,12 @@ const Calendar: React.FC<CalendarProps> = ({
     // 드래그 관련 상태
     const [draggedEvent, setDraggedEvent] = useState<CalendarEvent | null>(null);
     const [dragOverDate, setDragOverDate] = useState<Date | null>(null);
+
+    // 날짜 범위 선택 상태
+    const [selectedDateRange, setSelectedDateRange] = useState<{ start: Date | null, end: Date | null }>({
+        start: null,
+        end: null
+    });
 
     // 현재 년도와 월
     const currentYear = selectedDate.getFullYear();
@@ -170,8 +182,24 @@ const Calendar: React.FC<CalendarProps> = ({
     const handleDateClick = useCallback((date: Date) => {
         setSelectedDate(date);
         onDateClick?.(date);
+
+        // 날짜 범위 선택 로직
+        if (!selectedDateRange.start || (selectedDateRange.start && selectedDateRange.end)) {
+            // 첫 번째 클릭이거나 이미 범위가 완성된 경우
+            setSelectedDateRange({ start: date, end: null });
+        } else if (selectedDateRange.start && !selectedDateRange.end) {
+            // 두 번째 클릭
+            if (date < selectedDateRange.start) {
+                // 뒤로 클릭한 경우
+                setSelectedDateRange({ start: date, end: selectedDateRange.start });
+            } else {
+                // 앞으로 클릭한 경우
+                setSelectedDateRange({ start: selectedDateRange.start, end: date });
+            }
+        }
+
         handleAddEvent(date);
-    }, [onDateClick, handleAddEvent]);
+    }, [onDateClick, handleAddEvent, selectedDateRange]);
 
     // 이벤트 클릭 핸들러
     const handleEventClick = useCallback((event: CalendarEvent) => {
@@ -353,6 +381,20 @@ const Calendar: React.FC<CalendarProps> = ({
             const isToday = date.toDateString() === today.toDateString();
             const isSelected = date.toDateString() === selectedDate.toDateString();
 
+            // 외부 날짜 숨기기 옵션
+            if (!showOutsideDays && !isCurrentMonth) {
+                continue;
+            }
+
+            // 날짜 범위 선택 상태 확인
+            const isInRange = selectedDateRange.start && selectedDateRange.end &&
+                date >= selectedDateRange.start && date <= selectedDateRange.end;
+            const isRangeStart = selectedDateRange.start &&
+                date.toDateString() === selectedDateRange.start.toDateString();
+            const isRangeEnd = selectedDateRange.end &&
+                date.toDateString() === selectedDateRange.end.toDateString();
+            const isRangeMiddle = isInRange && !isRangeStart && !isRangeEnd;
+
             // 해당 날짜의 이벤트들
             const dayEvents = events.filter(event => {
                 const eventDate = new Date(event.date);
@@ -369,6 +411,9 @@ const Calendar: React.FC<CalendarProps> = ({
                             'designbase-calendar__day--today': isToday && highlightToday,
                             'designbase-calendar__day--selected': isSelected,
                             'designbase-calendar__day--weekend': !showWeekends && (date.getDay() === 0 || date.getDay() === 6),
+                            'designbase-calendar__day--selected--start': isRangeStart,
+                            'designbase-calendar__day--selected--end': isRangeEnd,
+                            'designbase-calendar__day--selected--middle': isRangeMiddle,
                         }
                     )}
                     onClick={() => handleDateClick(date)}
@@ -576,7 +621,7 @@ const Calendar: React.FC<CalendarProps> = ({
                     ]}
                     value={currentView}
                     onChange={(value) => handleViewChange(value as CalendarView)}
-                    size="sm"
+                    size="s"
                 />
             </div>
 
@@ -744,7 +789,7 @@ const Calendar: React.FC<CalendarProps> = ({
                 isOpen={showEventModal}
                 onClose={handleCloseModal}
                 title={isEditing ? '일정 편집' : '새 일정 추가'}
-                size="lg"
+                size="m"
             >
                 <ModalBody>
                     <div className="designbase-calendar__event-form">

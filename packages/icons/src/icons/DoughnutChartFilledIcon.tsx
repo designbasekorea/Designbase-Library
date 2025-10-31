@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M12 5.5A6.51 6.51 0 0 0 5.5 12c0 3.584 2.916 6.5 6.5 6.5a6.5 6.5 0 0 0 4.195-1.535l1.938 2.29A9.52 9.52 0 0 1 12 21.5c-5.238 0-9.5-4.262-9.5-9.5S6.762 2.5 12 2.5zm7.32.444A9.52 9.52 0 0 1 21.5 12c0 2.14-.696 4.16-2.01 5.844l-2.364-1.848A6.43 6.43 0 0 0 18.499 12c0-1.51-.53-2.98-1.49-4.143zm-5.657-3.298a9.5 9.5 0 0 1 4.452 2.083l-1.93 2.297A6.5 6.5 0 0 0 13.143 5.6z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const DoughnutChartFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M12 5.5A6.51 6.51 0 0 0 5.5 12c0 3.584 2.916 6.5 6.5 6.5a6.5 6.5 0 0 0 4.195-1.535l1.938 2.29A9.52 9.52 0 0 1 12 21.5c-5.238 0-9.5-4.262-9.5-9.5S6.762 2.5 12 2.5zm7.32.444A9.52 9.52 0 0 1 21.5 12c0 2.14-.696 4.16-2.01 5.844l-2.364-1.848A6.43 6.43 0 0 0 18.499 12c0-1.51-.53-2.98-1.49-4.143zm-5.657-3.298a9.5 9.5 0 0 1 4.452 2.083l-1.93 2.297A6.5 6.5 0 0 0 13.143 5.6z"/></svg>
+);
 
 export default DoughnutChartFilledIcon;

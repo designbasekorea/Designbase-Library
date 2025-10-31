@@ -2,70 +2,24 @@
     position: relative;
     display: inline-block;
 
-    &__trigger {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--db-gap-s);
-        padding: var(--db-padding-s) var(--db-padding-m);
-        background-color: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        color: var(--db-text-primary);
-        font-size: var(--db-text-sm);
-        font-weight: var(--db-weight-medium);
-        line-height: var(--db-leading-normal);
-        cursor: pointer;
-        transition: all var(--db-animation-speed) var(--db-animation-ease);
-        outline: none;
-
-        &:hover:not(:disabled) {
-            border-color: var(--db-border-hover);
-            background-color: var(--db-bg-hover);
+    // Button 컴포넌트를 사용하므로 트리거 스타일은 제거
+    // 아이콘 회전만 처리
+    &__trigger--open {
+        .designbase-button__end-icon {
+            transform: rotate(180deg);
         }
-
-        &:focus {
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 3px var(--db-blue-100);
-        }
-
-        &:disabled {
-            background-color: var(--db-bg-muted);
-            color: var(--db-text-muted);
-            cursor: not-allowed;
-            border-color: var(--db-border-muted);
-        }
-
-        &--open {
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 3px var(--db-blue-100);
-        }
-    }
-
-    &__trigger-label {
-        white-space: nowrap;
-    }
-
-    &__trigger-icon {
-        color: var(--db-text-secondary);
-        transition: transform var(--db-animation-speed) var(--db-animation-ease);
-        flex-shrink: 0;
-    }
-
-    &__trigger--open &__trigger-icon {
-        transform: rotate(180deg);
     }
 
     &__menu {
         position: absolute;
         top: 100%;
         left: 0;
-        z-index: var(--db-z-dropdown);
+        z-index: var(--db-z-popover);
         min-width: 200px;
-        background-color: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        box-shadow: var(--db-shadow-lg);
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        box-shadow: var(--db-shadow-dropdown);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-4px);
@@ -129,36 +83,37 @@
         align-items: center;
         gap: var(--db-gap-s);
         width: 100%;
-        padding: var(--db-padding-s) var(--db-padding-m);
+        padding: var(--db-padding-s);
         background: none;
         border: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         color: var(--db-text-primary);
-        font-size: var(--db-text-sm);
-        line-height: var(--db-leading-normal);
+        font-size: var(--db-text-s);
+        line-height: var(--db-leading-tight);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         outline: none;
         text-align: left;
 
         &:hover:not(.designbase-dropdown__item--disabled) {
-            background-color: var(--db-bg-hover);
+            background-color: var(--db-surface-layer-1);
         }
 
         &:focus {
-            background-color: var(--db-bg-hover);
-            outline: 2px solid var(--db-blue-500);
+            background-color: var(--db-surface-layer-1);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: -2px;
         }
 
         &--focused {
-            background-color: var(--db-bg-hover);
+            background-color: var(--db-surface-layer-1);
         }
 
         &--disabled {
-            color: var(--db-text-muted);
+            color: var(--db-text-disabled);
             cursor: not-allowed;
-            background-color: var(--db-bg-muted);
+            background-color: var(--db-surface-muted);
+            opacity: var(--db-opacity-disabled);
         }
     }
 
@@ -167,7 +122,7 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        color: var(--db-text-secondary);
+        color: var(--db-icon-default);
     }
 
     &__item-label {
@@ -177,96 +132,71 @@
 
     &__divider {
         height: 1px;
-        background-color: var(--db-border-primary);
+        background-color: var(--db-border-base);
         margin: var(--db-margin-xs) 0;
     }
 
-    // Sizes
-    &--sm {
-        .designbase-dropdown__trigger {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+    // Sizes (Button 컴포넌트에서 처리하므로 아이템만)
+    &--s {
+        .designbase-dropdown__item {
+            padding: var(--db-padding-xs);
             font-size: var(--db-text-xs);
-            line-height: var(--db-leading-tight);
-        }
-
-        .designbase-dropdown__item {
-            padding: var(--db-padding-xs) var(--db-padding-s);
-            font-size: var(--db-text-xs);
-            line-height: var(--db-leading-tight);
         }
     }
 
-    &--md {
-        .designbase-dropdown__trigger {
-            padding: var(--db-padding-s) var(--db-padding-m);
-            font-size: var(--db-text-sm);
-            line-height: var(--db-leading-normal);
-        }
-
+    &--m {
         .designbase-dropdown__item {
-            padding: var(--db-padding-s) var(--db-padding-m);
-            font-size: var(--db-text-sm);
-            line-height: var(--db-leading-normal);
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--lg {
-        .designbase-dropdown__trigger {
-            padding: var(--db-padding-m) var(--db-padding-l);
+    &--l {
+        .designbase-dropdown__item {
+            padding: var(--db-padding-m);
             font-size: var(--db-text-base);
-            line-height: var(--db-leading-normal);
-        }
-
-        .designbase-dropdown__item {
-            padding: var(--db-padding-m) var(--db-padding-l);
-            font-size: var(--db-text-base);
-            line-height: var(--db-leading-normal);
         }
     }
 
-    // Full width
+    // Full width (Button 컴포넌트에서 처리)
     &--full-width {
         width: 100%;
 
-        .designbase-dropdown__trigger {
-            width: 100%;
-        }
-
         .designbase-dropdown__menu {
             width: 100%;
             min-width: 100%;
         }
     }
 
-    // Disabled state
-    &--disabled {
-        .designbase-dropdown__trigger {
-            background-color: var(--db-bg-muted);
-            color: var(--db-text-muted);
-            cursor: not-allowed;
-            border-color: var(--db-border-muted);
-        }
-    }
 
-    // Responsive
-    @media (max-width: 640px) {
-        .designbase-dropdown__menu {
-            position: fixed;
-            top: auto;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            min-width: 100%;
-            border-radius: var(--db-radius-lg) var(--db-radius-lg) 0 0;
-            max-height: 50vh;
-            overflow-y: auto;
-        }
+    // // Responsive
+    // @media (max-width: 420px) {
+    //     .designbase-dropdown__menu {
+    //         position: fixed;
+    //         top: auto;
+    //         bottom: 0;
+    //         left: 0;
+    //         right: 0;
+    //         width: 100%;
+    //         min-width: 100%;
+    //         border-radius: var(--db-radius-l) var(--db-radius-l) 0 0;
+    //         max-height: 80vh;
+    //         overflow-y: auto;
+    //         box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.1);
 
-        .designbase-dropdown__item {
-            padding: var(--db-padding-m) var(--db-padding-l);
-            font-size: var(--db-text-base);
-            line-height: var(--db-leading-normal);
-        }
-    }
+    //         // 바텀시트 드래그 핸들
+    //         &::before {
+    //             content: '';
+    //             position: sticky;
+    //             top: 0;
+    //             display: block;
+    //             width: 40px;
+    //             height: 4px;
+    //             margin: var(--db-padding-xs) auto;
+    //             background-color: var(--db-icon-muted);
+    //             border-radius: 2px;
+    //         }
+    //     }
+
+    // }
 }

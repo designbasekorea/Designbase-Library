@@ -1,8 +1,8 @@
 .designbase-segment-control {
     position: relative;
     display: flex;
-    background-color: var(--db-bg-secondary);
-    border-radius: var(--db-radius-lg);
+    background-color: var(--db-surface-layer-1);
+    border-radius: var(--db-radius-l);
     padding: var(--db-padding-xs);
     gap: 0;
     width: fit-content;
@@ -13,44 +13,45 @@
         align-items: center;
         justify-content: center;
         gap: var(--db-gap-xs);
-        padding: var(--db-padding-s) var(--db-padding-m);
+        padding: var(--db-padding-s);
         background: none;
-        border: none;
-        border-radius: var(--db-radius-md);
+        border: 1px solid transparent;
+        border-radius: var(--db-radius-m);
         color: var(--db-text-secondary);
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         line-height: var(--db-leading-tight);
         cursor: pointer;
         transition: all 0.15s ease-in-out;
         outline: none;
         z-index: 1;
-        min-width: 80px;
+        min-width: 0;
 
         &:hover:not(.designbase-segment-control__segment--disabled) {
             color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &--selected {
             color: var(--db-text-primary);
-            background-color: var(--db-bg-primary);
+            background-color: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
             box-shadow: var(--db-shadow-sm);
         }
 
         &--focused {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &--disabled {
             color: var(--db-text-disabled);
             cursor: not-allowed;
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
         }
     }
 
@@ -59,6 +60,18 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        opacity: 0;
+        transition: all 0.15s ease-in-out;
+        width: 0;
+        overflow: hidden;
+        margin-right: 0;
+    }
+
+    &__segment:hover:not(.designbase-segment-control__segment--disabled) &__segment-icon,
+    &__segment--selected &__segment-icon {
+        opacity: 1;
+        width: auto;
+        margin-right: var(--db-gap-xs);
     }
 
     &__segment-label {
@@ -70,8 +83,8 @@
         top: var(--db-spacing-2);
         bottom: var(--db-spacing-2);
         left: var(--db-spacing-2);
-        background-color: var(--db-bg-primary);
-        border-radius: var(--db-radius-md);
+        background-color: var(--db-surface-base);
+        border-radius: var(--db-radius-m);
         box-shadow: var(--db-shadow-sm);
         transition: transform 0.2s ease-in-out;
         z-index: 0;
@@ -79,15 +92,14 @@
     }
 
     // Sizes
-    &--sm {
+    &--s {
         padding: var(--db-padding-xxs);
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
 
         .designbase-segment-control__segment {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+            padding: var(--db-padding-xs);
             font-size: var(--db-text-xs);
             line-height: var(--db-leading-tight);
-            min-width: 60px;
         }
 
         .designbase-segment-control__indicator {
@@ -97,15 +109,14 @@
         }
     }
 
-    &--md {
+    &--m {
         padding: var(--db-padding-xs);
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
 
         .designbase-segment-control__segment {
-            padding: var(--db-padding-s) var(--db-padding-m);
-            font-size: var(--db-text-sm);
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-tight);
-            min-width: 80px;
         }
 
         .designbase-segment-control__indicator {
@@ -115,15 +126,13 @@
         }
     }
 
-    &--lg {
+    &--l {
         padding: var(--db-padding-s);
         border-radius: var(--db-radius-xl);
 
         .designbase-segment-control__segment {
-            padding: var(--db-padding-m) var(--db-padding-l);
+            padding: var(--db-padding-m);
             font-size: var(--db-text-base);
-            line-height: var(--db-leading-normal);
-            min-width: 100px;
         }
 
         .designbase-segment-control__indicator {
@@ -150,16 +159,6 @@
 
         .designbase-segment-control__segment {
             cursor: not-allowed;
-        }
-    }
-
-    // Responsive
-    @media (max-width: 640px) {
-        .designbase-segment-control__segment {
-            min-width: 60px;
-            padding: var(--db-padding-xs) var(--db-padding-s);
-            font-size: var(--db-text-xs);
-            line-height: var(--db-leading-tight);
         }
     }
 }

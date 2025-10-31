@@ -4,14 +4,16 @@
     width: 100%;
 
     // 크기 변형
-    &--size-sm {
+    &--size-s {
+        gap: var(--db-gap-s);
+
         .designbase-list__item {
             padding: var(--db-padding-xs);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-normal);
 
             &-title {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
                 font-weight: var(--db-weight-medium);
             }
 
@@ -34,7 +36,9 @@
         }
     }
 
-    &--size-md {
+    &--size-m {
+        gap: var(--db-gap-s);
+
         .designbase-list__item {
             padding: var(--db-padding-s);
             font-size: var(--db-text-base);
@@ -46,7 +50,7 @@
             }
 
             &-description {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
                 line-height: var(--db-leading-normal);
             }
 
@@ -64,14 +68,16 @@
         }
     }
 
-    &--size-lg {
+    &--size-l {
+        gap: var(--db-gap-m);
+
         .designbase-list__item {
             padding: var(--db-padding-m) var(--db-padding-l);
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             line-height: var(--db-leading-normal);
 
             &-title {
-                font-size: var(--db-text-lg);
+                font-size: var(--db-text-l);
                 font-weight: var(--db-weight-medium);
             }
 
@@ -135,40 +141,40 @@
     // 스타일 변형
     &--variant-default {
         .designbase-list__item {
-            background: var(--db-bg-primary);
-            border-radius: var(--db-radius-md);
+            background: var(--db-surface-base);
+            border-radius: var(--db-radius-m);
             transition: all var(--db-animation-speed) var(--db-animation-ease);
 
             &:hover {
-                background: var(--db-bg-secondary);
+                background: var(--db-surface-layer-1);
             }
         }
     }
 
     &--variant-bordered {
         .designbase-list__item {
-            background: var(--db-bg-primary);
-            border: 1px solid var(--db-border-secondary);
-            border-radius: var(--db-radius-md);
+            background: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-m);
             transition: all var(--db-animation-speed) var(--db-animation-ease);
 
             &:hover {
-                border-color: var(--db-border-primary);
-                box-shadow: var(--db-shadow-sm);
+                border-color: var(--db-border-layer-1);
+                box-shadow: var(--db-shadow-card);
             }
         }
     }
 
     &--variant-card {
         .designbase-list__item {
-            background: var(--db-bg-primary);
-            border: 1px solid var(--db-border-secondary);
-            border-radius: var(--db-radius-lg);
-            box-shadow: var(--db-shadow-sm);
+            background: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-l);
+            box-shadow: var(--db-shadow-card);
             transition: all var(--db-animation-speed) var(--db-animation-ease);
 
             &:hover {
-                box-shadow: var(--db-shadow-md);
+                box-shadow: var(--db-shadow-card-hover);
                 transform: translateY(-1px);
             }
         }
@@ -179,7 +185,7 @@
             background: transparent;
             border: none;
             border-radius: 0;
-            border-bottom: 1px solid var(--db-border-muted);
+            border-bottom: 1px solid var(--db-border-base);
             transition: all var(--db-animation-speed) var(--db-animation-ease);
 
             &:last-child {
@@ -187,7 +193,7 @@
             }
 
             &:hover {
-                background: var(--db-bg-secondary);
+                background: var(--db-surface-layer-1);
             }
         }
     }
@@ -198,12 +204,12 @@
             cursor: pointer;
 
             &--selected {
-                background: var(--db-blue-500);
-                color: var(--db-white);
-                border-color: var(--db-blue-500);
+                background: var(--db-brand-primary);
+                color: var(--db-text-inverse-primary);
+                border-color: var(--db-brand-primary);
 
                 &:hover {
-                    background: var(--db-blue-600);
+                    background: var(--db-brand-secondary);
                 }
             }
         }
@@ -215,7 +221,7 @@
             cursor: grab;
 
             &--dragging {
-                opacity: var(--db-opacity-50);
+                opacity: var(--db-opacity-disabled);
                 cursor: grabbing;
             }
         }
@@ -232,8 +238,8 @@
 .designbase-list__item {
     display: flex;
     align-items: center;
-    background: var(--db-bg-primary);
-    border-radius: var(--db-radius-md);
+    background: var(--db-surface-base);
+    border-radius: var(--db-radius-m);
     transition: all var(--db-animation-speed) var(--db-animation-ease);
     position: relative;
 
@@ -256,7 +262,7 @@
 
     // 비활성화 상태
     &--disabled {
-        opacity: var(--db-opacity-50);
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
         pointer-events: none;
     }
@@ -266,7 +272,7 @@
         cursor: pointer;
 
         &:hover {
-            background: var(--db-bg-secondary);
+            background: var(--db-surface-layer-1);
         }
 
         &:active {
@@ -294,13 +300,13 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
     }
 
     // 이미지
     &-image {
         flex-shrink: 0;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         overflow: hidden;
 
         img {
@@ -338,134 +344,16 @@
     // 설명
     &-description {
         margin: 0;
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
         line-height: 1.5;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
     }
 
-    // 배지
-    &-badge {
-        padding: var(--db-padding-xs) var(--db-padding-s);
-        border-radius: var(--db-radius-sm);
-        font-size: var(--db-text-xs);
-        font-weight: var(--db-weight-medium);
-        line-height: 1;
-        white-space: nowrap;
-        flex-shrink: 0;
-
-        // 색상 변형
-        &--color-primary {
-            &.designbase-list__item-badge--variant-solid {
-                background: var(--db-blue-500);
-                color: var(--db-white);
-            }
-
-            &.designbase-list__item-badge--variant-outline {
-                background: transparent;
-                color: var(--db-blue-500);
-                border: 1px solid var(--db-blue-500);
-            }
-
-            &.designbase-list__item-badge--variant-soft {
-                background: var(--db-blue-50);
-                color: var(--db-blue-700);
-            }
-        }
-
-        &--color-secondary {
-            &.designbase-list__item-badge--variant-solid {
-                background: var(--db-neutral-500);
-                color: var(--db-white);
-            }
-
-            &.designbase-list__item-badge--variant-outline {
-                background: transparent;
-                color: var(--db-neutral-500);
-                border: 1px solid var(--db-neutral-500);
-            }
-
-            &.designbase-list__item-badge--variant-soft {
-                background: var(--db-neutral-50);
-                color: var(--db-neutral-700);
-            }
-        }
-
-        &--color-success {
-            &.designbase-list__item-badge--variant-solid {
-                background: var(--db-green-500);
-                color: var(--db-white);
-            }
-
-            &.designbase-list__item-badge--variant-outline {
-                background: transparent;
-                color: var(--db-green-500);
-                border: 1px solid var(--db-green-500);
-            }
-
-            &.designbase-list__item-badge--variant-soft {
-                background: var(--db-green-50);
-                color: var(--db-green-700);
-            }
-        }
-
-        &--color-warning {
-            &.designbase-list__item-badge--variant-solid {
-                background: var(--db-yellow-500);
-                color: var(--db-white);
-            }
-
-            &.designbase-list__item-badge--variant-outline {
-                background: transparent;
-                color: var(--db-yellow-500);
-                border: 1px solid var(--db-yellow-500);
-            }
-
-            &.designbase-list__item-badge--variant-soft {
-                background: var(--db-yellow-50);
-                color: var(--db-yellow-700);
-            }
-        }
-
-        &--color-error {
-            &.designbase-list__item-badge--variant-solid {
-                background: var(--db-red-500);
-                color: var(--db-white);
-            }
-
-            &.designbase-list__item-badge--variant-outline {
-                background: transparent;
-                color: var(--db-red-500);
-                border: 1px solid var(--db-red-500);
-            }
-
-            &.designbase-list__item-badge--variant-soft {
-                background: var(--db-red-50);
-                color: var(--db-red-700);
-            }
-        }
-
-        &--color-info {
-            &.designbase-list__item-badge--variant-solid {
-                background: var(--db-blue-500);
-                color: var(--db-white);
-            }
-
-            &.designbase-list__item-badge--variant-outline {
-                background: transparent;
-                color: var(--db-blue-500);
-                border: 1px solid var(--db-blue-500);
-            }
-
-            &.designbase-list__item-badge--variant-soft {
-                background: var(--db-blue-50);
-                color: var(--db-blue-700);
-            }
-        }
-    }
 
     // 메타 정보
     &-meta {
@@ -479,7 +367,7 @@
         display: flex;
         align-items: center;
         font-size: var(--db-text-xs);
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
     }
 
     &-meta-label {
@@ -512,7 +400,7 @@
         justify-content: center;
         width: var(--db-size-md);
         height: var(--db-size-md);
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
         cursor: grab;
         margin-left: var(--db-margin-s);
         flex-shrink: 0;
@@ -531,10 +419,10 @@
         }
 
         .designbase-list__item-skeleton-icon {
-            width: var(--db-size-md);
-            height: var(--db-size-md);
-            background: var(--db-bg-tertiary);
-            border-radius: var(--db-radius-sm);
+            width: var(--db-size-icon-m);
+            height: var(--db-size-icon-m);
+            background: var(--db-surface-layer-2);
+            border-radius: var(--db-radius-s);
             margin-right: var(--db-margin-s);
             animation: pulse 1.5s ease-in-out infinite;
         }
@@ -548,16 +436,16 @@
 
         .designbase-list__item-skeleton-title {
             height: 16px;
-            background: var(--db-bg-tertiary);
-            border-radius: var(--db-radius-sm);
+            background: var(--db-surface-layer-2);
+            border-radius: var(--db-radius-s);
             width: 60%;
             animation: pulse 1.5s ease-in-out infinite;
         }
 
         .designbase-list__item-skeleton-description {
             height: 12px;
-            background: var(--db-bg-tertiary);
-            border-radius: var(--db-radius-sm);
+            background: var(--db-surface-layer-2);
+            border-radius: var(--db-radius-s);
             width: 80%;
             animation: pulse 1.5s ease-in-out infinite;
         }
@@ -569,8 +457,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--db-padding-lg);
-    color: var(--db-text-muted);
+    padding: var(--db-padding-l);
+    color: var(--db-text-tertiary);
     text-align: center;
 }
 

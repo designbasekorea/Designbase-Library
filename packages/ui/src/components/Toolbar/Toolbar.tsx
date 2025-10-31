@@ -7,9 +7,11 @@
 
 import React from 'react';
 import clsx from 'clsx';
+import { ChevronDownIcon } from '@designbasekorea/icons';
+import { Button } from '../Button/Button';
 import './Toolbar.scss';
 
-export type ToolbarSize = 'sm' | 'md' | 'lg';
+export type ToolbarSize = 's' | 'm' | 'l';
 export type ToolbarVariant = 'default' | 'outlined' | 'filled' | 'ghost';
 export type ToolbarPosition = 'top' | 'bottom' | 'left' | 'right' | 'floating';
 
@@ -72,7 +74,7 @@ export interface ToolbarProps {
 
 export const Toolbar: React.FC<ToolbarProps> = ({
     items,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     position = 'top',
     fullWidth = false,
@@ -83,6 +85,23 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     children,
 }) => {
     const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
+
+    const mapSizeToButtonSize = (size: ToolbarSize): 's' | 'm' | 'l' => {
+        switch (size) {
+            case 's': return 's';
+            case 'm': return 'm';
+            case 'l': return 'l';
+            default: return 'm';
+        }
+    };
+
+    const getIconComponentFromNode = (node?: React.ReactNode): React.ComponentType<any> | undefined => {
+        if (!node) return undefined;
+        if (React.isValidElement(node) && typeof node.type === 'function') {
+            return node.type as React.ComponentType<any>;
+        }
+        return undefined;
+    };
 
     const handleItemClick = (item: ToolbarItem) => {
         if (item.disabled) return;
@@ -104,33 +123,33 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     const renderItem = (item: ToolbarItem) => {
         switch (item.type) {
             case 'button':
-                return (
-                    <button
-                        key={item.id}
-                        className={clsx(
-                            'designbase-toolbar__item',
-                            'designbase-toolbar__item--button',
-                            {
-                                'designbase-toolbar__item--active': item.active,
-                                'designbase-toolbar__item--disabled': item.disabled,
-                            }
-                        )}
-                        onClick={() => handleItemClick(item)}
-                        disabled={item.disabled}
-                        title={item.tooltip}
-                    >
-                        {item.icon && (
-                            <span className="designbase-toolbar__item-icon">
-                                {item.icon}
-                            </span>
-                        )}
-                        {item.label && (
-                            <span className="designbase-toolbar__item-label">
-                                {item.label}
-                            </span>
-                        )}
-                    </button>
-                );
+                {
+                    const isIconOnly = !item.label;
+                    const StartIconComp = getIconComponentFromNode(item.icon);
+                    return (
+                        <Button
+                            key={item.id}
+                            variant="tertiary"
+                            size={mapSizeToButtonSize(size)}
+                            className={clsx(
+                                'designbase-toolbar__item',
+                                'designbase-toolbar__item--button',
+                                {
+                                    'designbase-toolbar__item--active': item.active,
+                                    'designbase-toolbar__item--disabled': item.disabled,
+                                }
+                            )}
+                            iconOnly={isIconOnly}
+                            startIcon={!isIconOnly ? StartIconComp : undefined}
+                            onPress={() => handleItemClick(item)}
+                            disabled={item.disabled}
+                            aria-label={isIconOnly ? (item.tooltip || item.label || item.id) : undefined}
+                            title={item.tooltip}
+                        >
+                            {isIconOnly && item.icon ? item.icon : item.label}
+                        </Button>
+                    );
+                }
 
             case 'dropdown':
                 return (
@@ -162,9 +181,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                                 </span>
                             )}
                             <span className="designbase-toolbar__dropdown-arrow">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                <ChevronDownIcon size={12} />
                             </span>
                         </button>
                         {openDropdown === item.id && item.options && (

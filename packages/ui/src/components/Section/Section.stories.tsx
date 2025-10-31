@@ -38,8 +38,8 @@ const SampleContent = () => (
 
 const SampleActions = () => (
     <>
-        <Button variant="outlined" size="sm">취소</Button>
-        <Button variant="primary" size="sm">저장</Button>
+        <Button variant="outlined" size="s">취소</Button>
+        <Button variant="primary" size="s">저장</Button>
     </>
 );
 
@@ -48,7 +48,7 @@ const SampleFooter = () => (
         <span style={{ fontSize: '14px', color: '#64748b' }}>마지막 수정: 2024년 1월 15일</span>
         <div style={{ display: 'flex', gap: '8px' }}>
             <Badge variant="info" style="text">초안</Badge>
-            <Button variant="ghost" size="sm">더보기</Button>
+            <Button variant="ghost" size="s">더보기</Button>
         </div>
     </>
 );
@@ -102,15 +102,15 @@ export const CompleteSection: Story = {
 export const DifferentSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <Section size="sm" title="작은 크기" description="sm 크기의 섹션입니다.">
+            <Section size="s" title="작은 크기" description="sm 크기의 섹션입니다.">
                 <SampleContent />
             </Section>
 
-            <Section size="md" title="중간 크기" description="md 크기의 섹션입니다.">
+            <Section size="m" title="중간 크기" description="md 크기의 섹션입니다.">
                 <SampleContent />
             </Section>
 
-            <Section size="lg" title="큰 크기" description="lg 크기의 섹션입니다.">
+            <Section size="l" title="큰 크기" description="lg 크기의 섹션입니다.">
                 <SampleContent />
             </Section>
 

@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M8.75 11.25a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M15.75 11.25a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 3.5a8.75 8.75 0 1 0 0 17.5 8.75 8.75 0 0 0 0-17.5M2 12.25C2 6.59 6.59 2 12.25 2S22.5 6.59 22.5 12.25 17.91 22.5 12.25 22.5 2 17.91 2 12.25" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M8.78 14.42c1.907 1.907 5.033 1.907 6.94 0l1.06 1.06c-2.493 2.493-6.567 2.493-9.06 0z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const HappyIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M8.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M15.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/><path fill="currentColor" fill-rule="evenodd" d="M12 3.25a8.75 8.75 0 1 0 0 17.5 8.75 8.75 0 0 0 0-17.5M1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M8.53 14.17c1.907 1.907 5.033 1.907 6.94 0l1.06 1.06c-2.493 2.493-6.567 2.493-9.06 0z" clip-rule="evenodd"/></svg>
+);
 
 export default HappyIcon;

@@ -46,15 +46,15 @@
 
         &::-webkit-scrollbar-track {
             background: var(--scrollbar-track-color, var(--db-border-muted));
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-color, var(--db-border-primary));
-            border-radius: var(--db-radius-sm);
+            background: var(--scrollbar-color, var(--db-border-base));
+            border-radius: var(--db-radius-s);
 
             &:hover {
-                background: var(--db-border-primary);
+                background: var(--db-border-base);
             }
         }
 
@@ -90,15 +90,15 @@
 
         &::-webkit-scrollbar-track {
             background: var(--scrollbar-track-color, var(--db-border-muted));
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-color, var(--db-border-primary));
-            border-radius: var(--db-radius-sm);
+            background: var(--scrollbar-color, var(--db-border-base));
+            border-radius: var(--db-radius-s);
 
             &:hover {
-                background: var(--db-border-primary);
+                background: var(--db-border-base);
             }
         }
     }

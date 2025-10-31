@@ -9,20 +9,19 @@
     // 기본 스타일
     display: flex;
     flex-direction: column;
-    background-color: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: var(--db-radius-lg);
+    background-color: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-l);
     overflow: hidden;
-    font-family: var(--db-font-family);
 
     // 헤더
     &__header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: var(--db-padding-m) var(--db-padding-l);
-        background-color: var(--db-bg-secondary);
-        border-bottom: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-m);
+        background-color: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
     }
 
     &__navigation {
@@ -35,19 +34,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: var(--db-size-md);
-        height: var(--db-size-md);
+        width: var(--db-size-m);
+        height: var(--db-size-m);
         border: none;
-        border-radius: var(--db-radius-s);
-        background-color: var(--db-bg-primary);
-        color: var(--db-text-primary);
+        border-radius: var(--db-radius-m);
+        background-color: var(--db-surface-base);
+        color: var(--db-icon-default);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
-        font-size: var(--db-font-md);
+        font-size: var(--db-text-base);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-blue-100);
-            color: var(--db-blue-600);
+            background-color: var(--db-surface-layer-1);
+            color: var(--db-brand-primary);
         }
 
         &:active:not(:disabled) {
@@ -62,7 +61,7 @@
 
     &__title {
         margin: 0;
-        font-size: var(--db-font-lg);
+        font-size: var(--db-text-l);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
         min-width: 120px;
@@ -85,17 +84,17 @@
     &__weekdays {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        background-color: var(--db-bg-secondary);
-        border-bottom: 1px solid var(--db-border-primary);
+        background-color: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
     }
 
     &__weekday {
-        padding: var(--db-padding-m) var(--db-padding-s);
+        padding: var(--db-padding-s);
         text-align: center;
         font-weight: var(--db-weight-semibold);
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
-        border-right: 1px solid var(--db-border-primary);
+        border-right: 1px solid var(--db-border-base);
 
         &:last-child {
             border-right: none;
@@ -107,13 +106,14 @@
         grid-template-columns: repeat(7, 1fr);
         flex: 1;
         min-height: 400px;
+        gap: 0;
     }
 
     &__day {
         position: relative;
         padding: var(--db-padding-s);
-        border-right: 1px solid var(--db-border-secondary);
-        border-bottom: 1px solid var(--db-border-secondary);
+        border-right: 1px solid var(--db-border-base);
+        border-bottom: 1px solid var(--db-border-base);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         min-height: 80px;
@@ -121,37 +121,36 @@
         flex-direction: column;
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-1);
         }
 
         &:nth-child(7n) {
             border-right: none;
         }
 
-        // 현재 월이 아닌 날짜
         &--current-month {
-            background-color: var(--db-bg-primary);
+            background-color: var(--db-surface-base);
         }
 
         &:not(&--current-month) {
-            background-color: var(--db-bg-disabled);
-            color: var(--db-text-disabled);
+            background-color: var(--db-surface-layer-1);
+            color: var(--db-text-tertiary);
 
             .designbase-calendar__day-number {
-                opacity: var(--db-opacity-50);
+                color: var(--db-text-tertiary);
             }
         }
 
         // 오늘 날짜
         &--today {
-            background-color: var(--db-blue-100);
+            background-color: var(--db-surface-layer-1);
 
             .designbase-calendar__day-number {
-                background-color: var(--db-blue-600);
-                color: var(--db-neutral-white);
-                border-radius: 50%;
-                width: 24px;
-                height: 24px;
+                background-color: var(--db-brand-primary);
+                color: var(--db-text-inverse-primary);
+                border-radius: var(--db-radius-full);
+                width: var(--db-size-m);
+                height: var(--db-size-m);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -159,20 +158,14 @@
             }
         }
 
-        // 선택된 날짜
-        &--selected {
-            background-color: var(--db-blue-100);
-            border: 2px solid var(--db-blue-600);
-        }
-
         // 주말
         &--weekend {
-            background-color: var(--db-bg-primary);
+            background-color: var(--db-surface-base);
         }
     }
 
     &__day-number {
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         color: var(--db-text-primary);
         margin-bottom: var(--db-margin-xs);
@@ -196,8 +189,8 @@
         padding: 0 var(--db-padding-xs);
         font-size: 11px;
         font-weight: var(--db-weight-medium);
-        color: white;
-        text-shadow: 0 1px 2px var(--db-neutral-900, rgba(0, 0, 0, 0.3));
+        color: var(--db-text-inverse-primary);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -211,37 +204,37 @@
         }
 
         &--dragging {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             transform: rotate(5deg);
         }
 
         &--drag-over {
-            border: 2px dashed var(--db-blue-600);
+            border: 2px dashed var(--db-brand-primary);
         }
 
         // 이벤트 타입별 색상
         &--meeting {
-            background-color: var(--db-blue-500);
+            background-color: var(--color-foundation-blue-500);
         }
 
         &--task {
-            background-color: var(--db-yellow-500);
+            background-color: var(--color-foundation-yellow-500);
         }
 
         &--reminder {
-            background-color: var(--db-green-500);
+            background-color: var(--color-foundation-green-500);
         }
 
         &--birthday {
-            background-color: var(--db-red-500);
+            background-color: var(--color-foundation-red-500);
         }
 
         &--holiday {
-            background-color: var(--db-blue-500);
+            background-color: var(--color-foundation-blue-500);
         }
 
         &--custom {
-            background-color: var(--db-neutral-500);
+            background-color: var(--color-foundation-gray-500);
         }
     }
 
@@ -264,8 +257,8 @@
         z-index: 1;
 
         &--active {
-            background-color: var(--db-blue-50);
-            border: 2px dashed var(--db-blue-600);
+            background-color: var(--color-foundation-blue-50);
+            border: 2px dashed var(--db-brand-primary);
             pointer-events: auto;
             z-index: 2;
         }
@@ -287,24 +280,24 @@
     &__week-header {
         display: grid;
         grid-template-columns: 60px repeat(7, 1fr);
-        background-color: var(--db-bg-secondary);
-        border-bottom: 1px solid var(--db-border-primary);
+        background-color: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
     }
 
     &__time-column-header {
         padding: var(--db-padding-m) var(--db-padding-s);
-        border-right: 1px solid var(--db-border-primary);
+        border-right: 1px solid var(--db-border-base);
     }
 
     &__week-day-header {
         padding: var(--db-padding-m) var(--db-padding-s);
         text-align: center;
-        border-right: 1px solid var(--db-border-primary);
+        border-right: 1px solid var(--db-border-base);
         cursor: pointer;
         transition: background-color var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
         }
 
         &:last-child {
@@ -312,15 +305,15 @@
         }
 
         &--today {
-            background-color: var(--db-blue-100);
-            color: var(--db-blue-600);
+            background-color: var(--db-surface-layer-1);
+            color: var(--db-brand-primary);
             font-weight: var(--db-weight-semibold);
         }
     }
 
     &__week-day-name {
         display: block;
-        font-size: 12px;
+        font-size: var(--db-text-xs);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-secondary);
         margin-bottom: var(--db-margin-xs);
@@ -328,7 +321,7 @@
 
     &__week-day-number {
         display: block;
-        font-size: var(--db-font-md);
+        font-size: var(--db-text-base);
         font-weight: var(--db-weight-medium);
         color: var(--db-text-primary);
     }
@@ -341,8 +334,8 @@
 
     &__time-column {
         width: 60px;
-        border-right: 1px solid var(--db-border-primary);
-        background-color: var(--db-bg-secondary);
+        border-right: 1px solid var(--db-border-base);
+        background-color: var(--db-surface-layer-1);
     }
 
     &__time-slot {
@@ -381,18 +374,19 @@
         position: relative;
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
         }
 
         &:active {
-            background-color: var(--db-blue-100);
+            background-color: var(--db-surface-layer-2);
         }
     }
 
     &__week-event {
         font-size: 10px;
         font-weight: var(--db-weight-medium);
-        text-shadow: 0 1px 2px var(--db-neutral-900, rgba(0, 0, 0, 0.3));
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        color: var(--db-text-inverse-primary);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover {
@@ -411,22 +405,22 @@
     }
 
     &__year-month {
-        background-color: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
         padding: var(--db-padding-m);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover {
-            border-color: var(--db-blue-500);
+            border-color: var(--db-brand-primary);
             box-shadow: var(--db-shadow-sm);
         }
     }
 
     &__year-month-title {
         margin: 0 0 var(--db-margin-s) 0;
-        font-size: var(--db-font-base);
+        font-size: var(--db-text-base);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
         text-align: center;
@@ -442,31 +436,31 @@
     &__year-event {
         height: 4px;
         border-radius: 2px;
-        background-color: var(--db-blue-500);
+        background-color: var(--color-foundation-blue-500);
 
         // 이벤트 타입별 색상
         &--meeting {
-            background-color: var(--db-blue-500);
+            background-color: var(--color-foundation-blue-500);
         }
 
         &--task {
-            background-color: var(--db-yellow-500);
+            background-color: var(--color-foundation-yellow-500);
         }
 
         &--reminder {
-            background-color: var(--db-green-500);
+            background-color: var(--color-foundation-green-500);
         }
 
         &--birthday {
-            background-color: var(--db-red-500);
+            background-color: var(--color-foundation-red-500);
         }
 
         &--holiday {
-            background-color: var(--db-blue-500);
+            background-color: var(--color-foundation-blue-500);
         }
 
         &--custom {
-            background-color: var(--db-neutral-500);
+            background-color: var(--color-foundation-gray-500);
         }
     }
 
@@ -492,7 +486,7 @@
         label {
             font-weight: var(--db-weight-medium);
             color: var(--db-text-primary);
-            font-size: var(--db-font-sm);
+            font-size: var(--db-text-s);
         }
 
         input[type="checkbox"] {
@@ -532,13 +526,13 @@
 
     &__form-info {
         padding: var(--db-padding-s);
-        background-color: var(--db-bg-secondary);
-        border-radius: var(--db-radius-sm);
-        border-left: 4px solid var(--db-blue-500);
+        background-color: var(--db-surface-layer-1);
+        border-radius: var(--db-radius-s);
+        border-left: 4px solid var(--db-brand-primary);
 
         p {
             margin: 0;
-            font-size: var(--db-font-sm);
+            font-size: var(--db-text-s);
             color: var(--db-text-secondary);
         }
     }
@@ -559,15 +553,15 @@
     &__input {
         width: 100%;
         padding: var(--db-padding-xs) var(--db-padding-s);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-sm);
-        font-size: var(--db-font-sm);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-s);
+        font-size: var(--db-text-s);
         transition: border-color var(--db-animation-speed) var(--db-animation-ease);
 
         &:focus {
             outline: none;
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 2px var(--db-blue-100);
+            border-color: var(--db-brand-primary);
+            box-shadow: 0 0 0 2px var(--color-foundation-blue-100);
         }
 
         &::placeholder {
@@ -578,17 +572,17 @@
     &__select {
         width: 100%;
         padding: var(--db-padding-xs) var(--db-padding-s);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-sm);
-        font-size: var(--db-font-sm);
-        background-color: var(--db-bg-primary);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-s);
+        font-size: var(--db-text-s);
+        background-color: var(--db-surface-base);
         cursor: pointer;
         transition: border-color var(--db-animation-speed) var(--db-animation-ease);
 
         &:focus {
             outline: none;
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 2px var(--db-blue-100);
+            border-color: var(--db-brand-primary);
+            box-shadow: 0 0 0 2px var(--color-foundation-blue-100);
         }
     }
 
@@ -690,12 +684,11 @@
         }
 
         &__week-day-name {
-            font-size: 10px;
+            font-size: var(--db-text-xs);
         }
 
         &__week-day-number {
-            font-size: 14px;
+            font-size: var(--db-text-s);
         }
     }
-
 }

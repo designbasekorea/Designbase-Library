@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { SegmentControl, type SegmentOption } from './SegmentControl';
+import { BarChartIcon, LineChartUpIcon, PieChartIcon, DoughnutChartIcon, ChartRadarIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof SegmentControl> = {
     title: 'Components/SegmentControl',
@@ -12,7 +13,7 @@ const meta: Meta<typeof SegmentControl> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         fullWidth: {
             control: { type: 'boolean' },
@@ -32,23 +33,12 @@ const sampleOptions: SegmentOption[] = [
     { value: 'option3', label: '옵션 3' },
 ];
 
-const viewOptions: SegmentOption[] = [
-    { value: 'list', label: '목록' },
-    { value: 'grid', label: '그리드' },
-    { value: 'table', label: '테이블' },
-];
-
-const filterOptions: SegmentOption[] = [
-    { value: 'all', label: '전체' },
-    { value: 'active', label: '활성' },
-    { value: 'inactive', label: '비활성' },
-    { value: 'archived', label: '보관' },
-];
-
-const statusOptions: SegmentOption[] = [
-    { value: 'draft', label: '초안' },
-    { value: 'published', label: '발행' },
-    { value: 'scheduled', label: '예약' },
+const chartOptions: SegmentOption[] = [
+    { value: 'bar', label: 'Bar', icon: BarChartIcon },
+    { value: 'line', label: 'Line', icon: LineChartUpIcon },
+    { value: 'pie', label: 'Pie', icon: PieChartIcon },
+    { value: 'donut', label: 'Donut', icon: DoughnutChartIcon },
+    { value: 'radar', label: 'Radar', icon: ChartRadarIcon },
 ];
 
 export const Default: Story = {
@@ -57,133 +47,26 @@ export const Default: Story = {
     },
 };
 
-export const WithDefaultValue: Story = {
-    args: {
-        options: sampleOptions,
-        defaultValue: 'option2',
-    },
-};
-
-export const Sizes: Story = {
+export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
                 <h3>Small</h3>
-                <SegmentControl options={sampleOptions} size="sm" />
+                <SegmentControl options={sampleOptions} size="s" />
             </div>
             <div>
                 <h3>Medium</h3>
-                <SegmentControl options={sampleOptions} size="md" />
+                <SegmentControl options={sampleOptions} size="m" />
             </div>
             <div>
                 <h3>Large</h3>
-                <SegmentControl options={sampleOptions} size="lg" />
+                <SegmentControl options={sampleOptions} size="l" />
             </div>
         </div>
     ),
 };
 
-export const ViewOptions: Story = {
-    render: () => {
-        const [view, setView] = useState('list');
-
-        return (
-            <div>
-                <h3>뷰 옵션</h3>
-                <SegmentControl
-                    options={viewOptions}
-                    value={view}
-                    onChange={setView}
-                />
-                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
-                    <p>선택된 뷰: <strong>{view}</strong></p>
-                </div>
-            </div>
-        );
-    },
-};
-
-export const FilterOptions: Story = {
-    render: () => {
-        const [filter, setFilter] = useState('all');
-
-        return (
-            <div>
-                <h3>필터 옵션</h3>
-                <SegmentControl
-                    options={filterOptions}
-                    value={filter}
-                    onChange={setFilter}
-                />
-                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
-                    <p>선택된 필터: <strong>{filter}</strong></p>
-                </div>
-            </div>
-        );
-    },
-};
-
-export const StatusOptions: Story = {
-    render: () => {
-        const [status, setStatus] = useState('draft');
-
-        return (
-            <div>
-                <h3>상태 옵션</h3>
-                <SegmentControl
-                    options={statusOptions}
-                    value={status}
-                    onChange={setStatus}
-                />
-                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
-                    <p>선택된 상태: <strong>{status}</strong></p>
-                </div>
-            </div>
-        );
-    },
-};
-
-export const FullWidth: Story = {
-    args: {
-        options: sampleOptions,
-        fullWidth: true,
-    },
-};
-
-export const Disabled: Story = {
-    args: {
-        options: sampleOptions,
-        disabled: true,
-    },
-};
-
-export const WithDisabledOptions: Story = {
-    render: () => {
-        const optionsWithDisabled: SegmentOption[] = [
-            { value: 'option1', label: '옵션 1' },
-            { value: 'option2', label: '옵션 2', disabled: true },
-            { value: 'option3', label: '옵션 3' },
-        ];
-
-        const [value, setValue] = useState('option1');
-
-        return (
-            <div>
-                <h3>비활성화된 옵션이 있는 세그먼트 컨트롤</h3>
-                <SegmentControl
-                    options={optionsWithDisabled}
-                    value={value}
-                    onChange={setValue}
-                />
-                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
-                    <p>선택된 값: <strong>{value}</strong></p>
-                </div>
-            </div>
-        );
-    },
-};
-
-export const Controlled: Story = {
+export const Interactive: Story = {
     render: () => {
         const [value, setValue] = useState('option1');
 
@@ -196,99 +79,66 @@ export const Controlled: Story = {
                 />
                 <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
                     <p>선택된 값: <strong>{value}</strong></p>
-                    <button
-                        onClick={() => setValue('option2')}
-                        style={{ marginRight: '8px', padding: '8px 16px', borderRadius: '4px', border: '1px solid #d1d5db' }}
-                    >
-                        옵션 2로 설정
-                    </button>
-                    <button
-                        onClick={() => setValue('option3')}
-                        style={{ padding: '8px 16px', borderRadius: '4px', border: '1px solid #d1d5db' }}
-                    >
-                        옵션 3으로 설정
-                    </button>
                 </div>
             </div>
         );
     },
 };
 
-export const MultipleExamples: Story = {
+export const WithIcons: Story = {
     render: () => {
-        const [view, setView] = useState('list');
-        const [filter, setFilter] = useState('all');
-        const [status, setStatus] = useState('draft');
+        const [value, setValue] = useState('bar');
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                <div>
-                    <h3>뷰 선택</h3>
-                    <SegmentControl
-                        options={viewOptions}
-                        value={view}
-                        onChange={setView}
-                    />
-                </div>
-
-                <div>
-                    <h3>필터 선택</h3>
-                    <SegmentControl
-                        options={filterOptions}
-                        value={filter}
-                        onChange={setFilter}
-                    />
-                </div>
-
-                <div>
-                    <h3>상태 선택</h3>
-                    <SegmentControl
-                        options={statusOptions}
-                        value={status}
-                        onChange={setStatus}
-                    />
-                </div>
-
-                <div style={{ padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
-                    <p>선택된 값들:</p>
-                    <ul>
-                        <li>뷰: <strong>{view}</strong></li>
-                        <li>필터: <strong>{filter}</strong></li>
-                        <li>상태: <strong>{status}</strong></li>
-                    </ul>
+            <div>
+                <SegmentControl
+                    options={chartOptions}
+                    value={value}
+                    onChange={setValue}
+                />
+                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
+                    <p>선택된 차트 타입: <strong>{value}</strong></p>
+                    <p style={{ fontSize: '14px', color: '#666', marginTop: '8px' }}>
+                        아이콘은 마우스 오버나 선택 시에만 표시됩니다.
+                    </p>
                 </div>
             </div>
         );
     },
 };
 
-export const Interactive: Story = {
+export const WithIconsAllSizes: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+                <h3>Small with Icons</h3>
+                <SegmentControl options={chartOptions} size="s" />
+            </div>
+            <div>
+                <h3>Medium with Icons</h3>
+                <SegmentControl options={chartOptions} size="m" />
+            </div>
+            <div>
+                <h3>Large with Icons</h3>
+                <SegmentControl options={chartOptions} size="l" />
+            </div>
+        </div>
+    ),
+};
+
+export const MixedContent: Story = {
     render: () => {
-        const [selectedValue, setSelectedValue] = useState('option1');
+        const mixedOptions: SegmentOption[] = [
+            { value: 'text-only', label: '텍스트만' },
+            { value: 'with-icon', label: '아이콘 포함', icon: BarChartIcon },
+            { value: 'another-text', label: '또 다른 텍스트' },
+        ];
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div>
-                    <h3>기본 세그먼트 컨트롤</h3>
-                    <SegmentControl
-                        options={sampleOptions}
-                        value={selectedValue}
-                        onChange={setSelectedValue}
-                    />
-                </div>
-
-                <div>
-                    <h3>전체 너비 세그먼트 컨트롤</h3>
-                    <SegmentControl
-                        options={filterOptions}
-                        value={selectedValue}
-                        onChange={setSelectedValue}
-                        fullWidth
-                    />
-                </div>
-
-                <div style={{ padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
-                    <p>현재 선택된 값: <strong>{selectedValue}</strong></p>
+            <div>
+                <SegmentControl options={mixedOptions} />
+                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
+                    <p>일부 옵션만 아이콘이 있는 경우도 지원합니다.</p>
                 </div>
             </div>
         );

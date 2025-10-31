@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M19.993 8.964a1 1 0 0 0-.062-.307q-.01-.033-.023-.066-.006-.019-.013-.037L18 4.765V2.001a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2.764L4.105 8.554q-.007.018-.013.038-.013.032-.023.066a1 1 0 0 0-.062.305c0 .014-.008.025-.008.039v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-12c0-.013-.007-.024-.007-.036zM8 3h8v1H8zm10 17H6V10h12z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const MilkFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M19.993 8.964a1 1 0 0 0-.062-.307q-.01-.033-.023-.066-.006-.019-.013-.037L18 4.765V2.001a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2.764L4.105 8.554q-.007.018-.013.038-.013.032-.023.066a1 1 0 0 0-.062.305c0 .014-.008.025-.008.039v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-12c0-.013-.007-.024-.007-.036zM8 3h8v1H8zm10 17H6V10h12z"/></svg>
+);
 
 export default MilkFilledIcon;

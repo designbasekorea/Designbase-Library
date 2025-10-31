@@ -7,51 +7,51 @@
     margin: 0 auto;
     box-sizing: border-box;
 
-    // 크기별 스타일
-    &--size-sm {
-        max-width: 640px;
+    // 크기별 스타일 (토큰 기반)
+    &--size-s {
+        max-width: var(--db-container-max-width-s);
     }
 
-    &--size-md {
-        max-width: 768px;
+    &--size-m {
+        max-width: var(--db-container-max-width-m);
     }
 
-    &--size-lg {
-        max-width: 1200px;
+    &--size-l {
+        max-width: var(--db-container-max-width-l);
     }
 
     &--size-xl {
-        max-width: 1400px;
+        max-width: var(--db-container-max-width-xl);
     }
 
     &--size-full {
         max-width: 100%;
     }
 
-    // 패딩 스타일
+    // 패딩 스타일 (토큰 기반)
     &--padding-none {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: var(--db-container-padding-none);
+        padding-right: var(--db-container-padding-none);
     }
 
-    &--padding-sm {
-        padding-left: var(--spacing-semantic-padding-sm, 12px);
-        padding-right: var(--spacing-semantic-padding-sm, 12px);
+    &--padding-s {
+        padding-left: var(--db-container-padding-s);
+        padding-right: var(--db-container-padding-s);
     }
 
-    &--padding-md {
-        padding-left: var(--spacing-semantic-padding-md, 16px);
-        padding-right: var(--spacing-semantic-padding-md, 16px);
+    &--padding-m {
+        padding-left: var(--db-container-padding-m);
+        padding-right: var(--db-container-padding-m);
     }
 
-    &--padding-lg {
-        padding-left: var(--spacing-semantic-padding-lg, 24px);
-        padding-right: var(--spacing-semantic-padding-lg, 24px);
+    &--padding-l {
+        padding-left: var(--db-container-padding-l);
+        padding-right: var(--db-container-padding-l);
     }
 
     &--padding-xl {
-        padding-left: var(--spacing-semantic-padding-xl, 32px);
-        padding-right: var(--spacing-semantic-padding-xl, 32px);
+        padding-left: var(--db-container-padding-l); // xl은 l과 동일하게
+        padding-right: var(--db-container-padding-l);
     }
 
     // 마진 스타일
@@ -82,24 +82,24 @@
 
     // 테두리 스타일
     &--border {
-        border: 1px solid var(--db-border-primary);
+        border: 1px solid var(--db-border-base);
     }
 
     // 둥근 모서리 스타일
     &--rounded {
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
     }
 
     &--rounded-sm {
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 
     &--rounded-md {
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
     }
 
     &--rounded-lg {
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
     }
 
     // 그림자 스타일

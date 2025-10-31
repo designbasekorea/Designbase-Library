@@ -7,14 +7,14 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
-import { GalleryIcon } from '@designbase/icons';
+import { GalleryIcon } from '@designbasekorea/icons';
 import './Image.scss';
 
 export type ImageRatio = '1:1' | '16:9' | '4:3' | '3:2' | '3:4' | '2:1' | 'auto';
 export type ImageFit = 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 export type ImageLoading = 'lazy' | 'eager';
 export type ImagePlaceholder = 'skeleton' | 'blur' | 'none';
-export type ImageRounded = boolean | 'sm' | 'md' | 'lg' | 'full';
+export type ImageRounded = boolean | 's' | 'm' | 'l' | 'full';
 
 export interface ImageProps {
     /** 이미지 소스 URL */
@@ -46,7 +46,7 @@ export interface ImageProps {
     /** 전체 높이 사용 */
     fullHeight?: boolean;
     /** 그림자 효과 */
-    shadow?: boolean | 'sm' | 'md' | 'lg';
+    shadow?: boolean | 's' | 'm' | 'l';
     /** 호버 효과 */
     hover?: boolean;
     /** 클릭 핸들러 */
@@ -88,6 +88,9 @@ export const Image: React.FC<ImageProps> = ({
     const [currentSrc, setCurrentSrc] = useState(src);
     const [showPlaceholder, setShowPlaceholder] = useState(placeholder !== 'none');
     const imageRef = useRef<HTMLImageElement>(null);
+
+    // 에러 아이콘 크기 (기본값 m)
+    const errorIconSize = 20;
 
     // src가 변경되면 상태 초기화
     useEffect(() => {
@@ -224,7 +227,7 @@ export const Image: React.FC<ImageProps> = ({
             {/* 에러 상태 */}
             {imageState === 'error' && (
                 <div className="designbase-image__error">
-                    <GalleryIcon size={24} />
+                    <GalleryIcon size={errorIconSize} color="currentColor" />
                     <span className="designbase-image__error-text">
                         {alt || '이미지를 불러올 수 없습니다'}
                     </span>

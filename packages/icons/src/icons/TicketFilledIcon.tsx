@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M19.5 15V4c0-1.654-1.346-3-3-3h-1.149c-.87 0-1.642.585-1.921 1.458A1.495 1.495 0 0 1 12 3.5c-.656 0-1.23-.419-1.429-1.042C10.292 1.586 9.52 1 8.649 1H7.5c-1.654 0-3 1.346-3 3v11h4v2h-4v3c0 1.654 1.346 3 3 3h1.149c.871 0 1.643-.586 1.922-1.458A1.49 1.49 0 0 1 12 20.5c.656 0 1.229.419 1.43 1.044.28.871 1.052 1.456 1.921 1.456H16.5c1.654 0 3-1.346 3-3v-3h-4v-2zm-11-8h7v2h-7zm5 10h-3v-2h3zm-5-4v-2h7v2z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const TicketFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M19.5 15V4c0-1.654-1.346-3-3-3h-1.149c-.87 0-1.642.585-1.921 1.458A1.495 1.495 0 0 1 12 3.5c-.656 0-1.23-.419-1.429-1.042C10.292 1.586 9.52 1 8.649 1H7.5c-1.654 0-3 1.346-3 3v11h4v2h-4v3c0 1.654 1.346 3 3 3h1.149c.871 0 1.643-.586 1.922-1.458A1.49 1.49 0 0 1 12 20.5c.656 0 1.229.419 1.43 1.044.28.871 1.052 1.456 1.921 1.456H16.5c1.654 0 3-1.346 3-3v-3h-4v-2zm-11-8h7v2h-7zm5 10h-3v-2h3zm-5-4v-2h7v2z"/></svg>
+);
 
 export default TicketFilledIcon;

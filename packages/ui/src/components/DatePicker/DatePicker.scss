@@ -2,161 +2,84 @@
  * DatePicker 컴포넌트 스타일
  */
 
-// 드롭다운 컨테이너
-.designbase-date-picker-container {
-    position: relative;
-    display: inline-block;
-}
-
-// 드롭다운
-.designbase-date-picker-dropdown {
-    position: absolute;
-    z-index: 1000;
-    margin-top: var(--db-margin-xs);
-
-    &--placement-top {
-        bottom: 100%;
-        margin-top: 0;
-        margin-bottom: var(--db-margin-xs);
-    }
-
-    &--placement-bottom {
-        top: 100%;
-    }
-
-    &--placement-left {
-        right: 100%;
-        top: 0;
-        margin-top: 0;
-        margin-right: var(--db-margin-xs);
-    }
-
-    &--placement-right {
-        left: 100%;
-        top: 0;
-        margin-top: 0;
-        margin-left: var(--db-margin-xs);
-    }
-}
-
 .designbase-date-picker {
-    display: flex;
-    flex-direction: column;
-    background: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: var(--db-radius-lg);
-    box-shadow: var(--db-shadow-lg);
-    font-family: var(--db-font-family);
-    overflow: hidden;
+    position: relative;
+    display: inline-flex;
+    width: 100%;
 
-    // 크기별 스타일
-    &--size-sm {
-        width: 280px;
-
-        .designbase-date-picker__header {
-            padding: var(--db-padding-sm) var(--db-padding-md);
-        }
-
-        .designbase-date-picker__current-month {
-            font-size: var(--db-text-base);
-            font-weight: var(--db-weight-medium);
-        }
-
-        .designbase-date-picker__weekdays {
-            padding: var(--db-padding-xs) 0;
-        }
-
-        .designbase-date-picker__weekday {
-            font-size: var(--db-text-sm);
-            padding: var(--db-padding-xs) 0;
-        }
-
-        .designbase-date-picker__date {
-            min-height: 32px;
-            font-size: var(--db-text-sm);
-        }
-
-        .designbase-date-picker__footer {
-            padding: var(--db-padding-sm) var(--db-padding-md);
-        }
+    /* Trigger */
+    &__trigger {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        width: 100%;
+        background: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        padding: var(--db-padding-s);
     }
 
-    &--size-md {
-        width: 320px;
-
-        .designbase-date-picker__header {
-            padding: var(--db-padding-md) var(--db-padding-lg);
-        }
-
-        .designbase-date-picker__current-month {
-            font-size: var(--db-text-lg);
-            font-weight: var(--db-weight-semibold);
-        }
-
-        .designbase-date-picker__weekdays {
-            padding: var(--db-padding-sm) 0;
-        }
-
-        .designbase-date-picker__weekday {
-            font-size: var(--db-text-base);
-            padding: var(--db-padding-sm) 0;
-        }
-
-        .designbase-date-picker__date {
-            min-height: 40px;
-            font-size: var(--db-text-base);
-        }
-
-        .designbase-date-picker__footer {
-            padding: var(--db-padding-md) var(--db-padding-lg);
-        }
-    }
-
-    &--size-lg {
-        width: 360px;
-
-        .designbase-date-picker__header {
-            padding: var(--db-padding-lg) var(--db-padding-xl);
-        }
-
-        .designbase-date-picker__current-month {
-            font-size: var(--db-text-xl);
-            font-weight: var(--db-weight-semibold);
-        }
-
-        .designbase-date-picker__weekdays {
-            padding: var(--db-padding-md) 0;
-        }
-
-        .designbase-date-picker__weekday {
-            font-size: var(--db-text-lg);
-            padding: var(--db-padding-md) 0;
-        }
-
-        .designbase-date-picker__date {
-            min-height: 48px;
-            font-size: var(--db-text-lg);
-        }
-
-        .designbase-date-picker__footer {
-            padding: var(--db-padding-lg) var(--db-padding-xl);
-        }
-    }
-
-    // 변형별 스타일
-    &--variant-default {
-        background: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
-    }
-
-    &--variant-outlined {
+    &__icon-display,
+    &__toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         background: transparent;
-        border-color: var(--db-border-primary);
+        border: none;
+        color: var(--db-icon-default);
+        cursor: pointer;
+
+        &:disabled {
+            color: var(--db-icon-disabled);
+            cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+            color: var(--db-icon-hover);
+        }
     }
 
-    &--variant-filled {
-        background: var(--db-bg-secondary);
-        border-color: var(--db-border-primary);
+    &__input {
+        flex: 1;
+        min-width: 90px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: var(--db-text-primary);
+        font-size: var(--db-text-s);
+        outline: none;
+
+        &::placeholder {
+            color: var(--db-text-tertiary);
+        }
+
+        &:disabled {
+            color: var(--db-text-disabled);
+            cursor: not-allowed;
+        }
+    }
+
+    &--open &__toggle svg {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown */
+    &__dropdown {
+        position: absolute;
+        top: calc(100% + var(--db-margin-xs));
+        left: 0;
+        z-index: 1000;
+        background: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-l);
+        box-shadow: var(--db-shadow-dropdown);
+        min-width: 320px;
+    }
+
+    /* Selector */
+    &__selector {
+        display: flex;
+        flex-direction: column;
     }
 
     // 헤더
@@ -164,7 +87,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid var(--db-border-primary);
+        border-bottom: 1px solid var(--db-border-base);
+        padding: var(--db-padding-s);
     }
 
     // 네비게이션 버튼
@@ -172,27 +96,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        width: var(--db-size-m);
+        height: var(--db-size-m);
         border: none;
         background: transparent;
         color: var(--db-text-secondary);
         cursor: pointer;
-        border-radius: var(--db-radius-md);
-        transition: all 0.2s ease;
+        border-radius: var(--db-radius-m);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover:not(:disabled) {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
             color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
         }
     }
@@ -207,7 +131,7 @@
     &__weekdays {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        border-bottom: 1px solid var(--db-border-primary);
+        border-bottom: 1px solid var(--db-border-base);
     }
 
     &__weekday {
@@ -217,6 +141,18 @@
         color: var(--db-text-secondary);
         font-weight: var(--db-weight-medium);
         text-align: center;
+
+        // 일요일 강조
+        &:first-child {
+            color: var(--db-feedback-error-fg);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        // 토요일 강조
+        &:last-child {
+            color: var(--db-brand-primary);
+            font-weight: var(--db-weight-semibold);
+        }
     }
 
     // 날짜 그리드
@@ -224,7 +160,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 1px;
-        background: var(--db-border-primary);
+        background: var(--db-border-base);
     }
 
     // 날짜 셀
@@ -234,39 +170,41 @@
         align-items: center;
         justify-content: center;
         border: none;
-        background: var(--db-bg-primary);
+        background: var(--db-surface-base);
         color: var(--db-text-primary);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
         min-height: 40px;
         font-weight: var(--db-weight-medium);
+        border-radius: 0; // 기본적으로 border-radius 제거
 
         &:hover:not(&--disabled):not(&--outside) {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-1);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: -2px;
             z-index: 1;
         }
 
         // 외부 날짜
         &--outside {
-            color: var(--db-text-muted);
-            background: var(--db-bg-secondary);
+            color: var(--db-text-tertiary);
+            background: var(--db-surface-layer-1);
             cursor: default;
 
             &:hover {
-                background: var(--db-bg-secondary);
+                background: var(--db-surface-layer-1);
             }
         }
 
         // 오늘
         &--today {
             font-weight: var(--db-weight-semibold);
-            color: var(--db-blue-600);
+            color: var(--db-brand-primary);
+            background: var(--db-surface-base);
 
             &::before {
                 content: '';
@@ -276,63 +214,68 @@
                 transform: translateX(-50%);
                 width: 4px;
                 height: 4px;
-                background: var(--db-blue-600);
+                background: var(--db-brand-primary);
                 border-radius: 50%;
             }
         }
 
         // 선택된 날짜
         &--selected {
-            background: var(--db-blue-600);
-            color: var(--db-white);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
             font-weight: var(--db-weight-semibold);
+            border-radius: var(--db-radius-s);
 
             &:hover {
-                background: var(--db-blue-700);
+                background: var(--db-brand-primary) !important;
             }
         }
 
         // 범위 내 날짜
         &--in-range {
-            background: var(--db-blue-100);
-            color: var(--db-blue-600);
+            background: var(--color-foundation-blue-100);
+            color: var(--db-brand-primary);
         }
 
         // 범위 시작
         &--range-start {
-            background: var(--db-blue-600);
-            color: var(--db-white);
-            border-top-left-radius: var(--db-radius-md);
-            border-bottom-left-radius: var(--db-radius-md);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
+            border-top-left-radius: var(--db-radius-s);
+            border-bottom-left-radius: var(--db-radius-s);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         // 범위 끝
         &--range-end {
-            background: var(--db-blue-600);
-            color: var(--db-white);
-            border-top-right-radius: var(--db-radius-md);
-            border-bottom-right-radius: var(--db-radius-md);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
+            border-top-right-radius: var(--db-radius-s);
+            border-bottom-right-radius: var(--db-radius-s);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
 
-        // 주말
+        // 주말 (일요일 강조)
         &--weekend {
-            color: var(--db-text-secondary);
+            color: var(--db-feedback-error-fg);
         }
 
         // 선택된 주말 (텍스트를 흰색으로)
         &--selected.designbase-date-picker__date--weekend {
-            color: var(--db-white);
+            color: var(--db-text-inverse-primary);
         }
 
         // 비활성화
         &--disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
-            background: var(--db-bg-secondary);
-            color: var(--db-text-muted);
+            background: var(--db-surface-layer-1);
+            color: var(--db-text-tertiary);
 
             &:hover {
-                background: var(--db-bg-secondary);
+                background: var(--db-surface-layer-1);
             }
         }
 
@@ -364,18 +307,18 @@
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        background: var(--db-blue-600);
+        background: var(--db-feedback-info-fg);
 
         &--badge {
             width: 16px;
             height: 16px;
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 10px;
             font-weight: var(--db-weight-medium);
-            color: var(--db-white);
+            color: var(--db-text-inverse-primary);
         }
     }
 
@@ -390,40 +333,223 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-top: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-s);
+        border-top: 1px solid var(--db-border-base);
     }
 
     // 오늘 버튼
     &__today-button {
-        padding: var(--db-padding-xs) var(--db-padding-sm);
-        border: 1px solid var(--db-border-primary);
-        background: var(--db-bg-primary);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border: 1px solid var(--db-border-base);
+        background: var(--db-surface-base);
         color: var(--db-text-primary);
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
         cursor: pointer;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover:not(:disabled) {
-            background: var(--db-bg-tertiary);
-            border-color: var(--db-border-secondary);
+            background: var(--db-surface-layer-2);
+            border-color: var(--db-border-layer-1);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
         }
     }
 
+    /* Modal Footer */
+    &__modal-footer {
+        display: flex;
+        gap: var(--db-gap-s);
+        justify-content: flex-end;
+    }
+
+    /* Sizes */
+    &--s {
+        .designbase-date-picker__trigger {
+            padding: var(--db-padding-xs);
+            gap: var(--db-gap-xs);
+        }
+
+        .designbase-date-picker__input {
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-date-picker__dropdown {
+            min-width: 280px;
+        }
+    }
+
+    &--m {
+        .designbase-date-picker__input {
+            font-size: var(--db-text-s);
+        }
+    }
+
+    &--l {
+        .designbase-date-picker__trigger {
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-date-picker__input {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-date-picker__dropdown {
+            min-width: 360px;
+        }
+    }
+
+    /* States */
+    &--disabled {
+        opacity: var(--db-opacity-disabled);
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    &--readonly {
+        .designbase-date-picker__trigger {
+            background: var(--db-surface-muted);
+        }
+
+        .designbase-date-picker__toggle {
+            cursor: default;
+        }
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .designbase-date-picker__dropdown {
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 260px;
+    }
+}
+
+/* 캘린더 스타일 (인라인 모드용) */
+.designbase-date-picker--inline {
+    display: flex;
+    flex-direction: column;
+    background: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-l);
+    box-shadow: var(--db-shadow-dropdown);
+    overflow: hidden;
+
+    // 크기별 스타일
+    &--size-s {
+        width: 280px;
+
+        .designbase-date-picker__header {
+            padding: var(--db-padding-xs);
+        }
+
+        .designbase-date-picker__current-month {
+            font-size: var(--db-text-base);
+            font-weight: var(--db-weight-medium);
+        }
+
+        .designbase-date-picker__weekdays {
+            padding: var(--db-padding-xs) 0;
+        }
+
+        .designbase-date-picker__weekday {
+            font-size: var(--db-text-xs);
+            padding: var(--db-padding-xs) 0;
+        }
+
+        .designbase-date-picker__date {
+            min-height: 32px;
+            font-size: var(--db-text-xs);
+        }
+
+        .designbase-date-picker__footer {
+            padding: var(--db-padding-xs);
+        }
+    }
+
+    &--size-m {
+        width: 320px;
+
+        .designbase-date-picker__header {
+            padding: var(--db-padding-s);
+        }
+
+        .designbase-date-picker__current-month {
+            font-size: var(--db-text-l);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        .designbase-date-picker__weekday {
+            font-size: var(--db-text-s);
+            padding: var(--db-padding-s) 0;
+        }
+
+        .designbase-date-picker__date {
+            min-height: 40px;
+            font-size: var(--db-text-s);
+        }
+
+        .designbase-date-picker__footer {
+            padding: var(--db-padding-s);
+        }
+    }
+
+    &--size-l {
+        width: 360px;
+
+        .designbase-date-picker__header {
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-date-picker__current-month {
+            font-size: var(--db-text-m);
+            font-weight: var(--db-weight-semibold);
+        }
+
+        .designbase-date-picker__weekday {
+            font-size: var(--db-text-m);
+            padding: var(--db-padding-s) 0;
+        }
+
+        .designbase-date-picker__date {
+            min-height: 48px;
+            font-size: var(--db-text-m);
+        }
+
+        .designbase-date-picker__footer {
+            padding: var(--db-padding-m);
+        }
+    }
+
+    // 변형별 스타일
+    &--variant-default {
+        background: var(--db-surface-base);
+        border-color: var(--db-border-base);
+    }
+
+    &--variant-outlined {
+        background: transparent;
+        border-color: var(--db-border-base);
+    }
+
+    &--variant-filled {
+        background: var(--db-surface-layer-1);
+        border-color: var(--db-border-base);
+    }
+
     // 비활성화 상태
     &--disabled {
-        opacity: 0.5;
+        opacity: var(--db-opacity-disabled);
         pointer-events: none;
 
         .designbase-date-picker__nav-button,
@@ -438,7 +564,7 @@
             cursor: default;
 
             &:hover {
-                background: var(--db-bg-primary);
+                background: var(--db-surface-base);
             }
         }
 
@@ -453,10 +579,9 @@
     }
 }
 
-// 테마는 상위에서 관리됩니다.
-// 반응형 스타일
+/* 반응형 스타일 */
 @media (max-width: 768px) {
-    .designbase-date-picker-dropdown {
+    .designbase-date-picker__dropdown {
         position: fixed;
         top: 50% !important;
         left: 50% !important;
@@ -466,25 +591,25 @@
         max-width: 400px;
     }
 
-    .designbase-date-picker {
-        &--size-lg {
+    .designbase-date-picker--inline {
+        &--size-l {
             width: 320px;
 
             .designbase-date-picker__header {
-                padding: var(--db-padding-md) var(--db-padding-lg);
+                padding: var(--db-padding-s) var(--db-padding-m);
             }
 
             .designbase-date-picker__current-month {
-                font-size: var(--db-text-lg);
+                font-size: var(--db-text-l);
             }
 
             .designbase-date-picker__weekdays {
-                padding: var(--db-padding-sm) 0;
+                padding: var(--db-padding-xs) 0;
             }
 
             .designbase-date-picker__weekday {
                 font-size: var(--db-text-base);
-                padding: var(--db-padding-sm) 0;
+                padding: var(--db-padding-xs) 0;
             }
 
             .designbase-date-picker__date {
@@ -493,25 +618,25 @@
             }
 
             .designbase-date-picker__footer {
-                padding: var(--db-padding-md) var(--db-padding-lg);
+                padding: var(--db-padding-s) var(--db-padding-m);
             }
         }
     }
 }
 
 @media (max-width: 480px) {
-    .designbase-date-picker-dropdown {
+    .designbase-date-picker__dropdown {
         width: calc(100vw - 16px);
     }
 
-    .designbase-date-picker {
+    .designbase-date-picker--inline {
         width: 100%;
         max-width: 320px;
 
-        &--size-lg,
-        &--size-md {
+        &--size-l,
+        &--size-m {
             .designbase-date-picker__header {
-                padding: var(--db-padding-sm) var(--db-padding-md);
+                padding: var(--db-padding-xs) var(--db-padding-s);
             }
 
             .designbase-date-picker__current-month {
@@ -523,17 +648,17 @@
             }
 
             .designbase-date-picker__weekday {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
                 padding: var(--db-padding-xs) 0;
             }
 
             .designbase-date-picker__date {
                 min-height: 32px;
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
             }
 
             .designbase-date-picker__footer {
-                padding: var(--db-padding-sm) var(--db-padding-md);
+                padding: var(--db-padding-xs) var(--db-padding-s);
             }
         }
     }

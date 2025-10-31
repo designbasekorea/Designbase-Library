@@ -11,7 +11,7 @@ import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 import './BottomSheet.scss';
 
-export type BottomSheetSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type BottomSheetSize = 's' | 'm' | 'l' | 'xl' | 'full';
 export type BottomSheetVariant = 'default' | 'persistent' | 'temporary' | 'fullscreen';
 
 export interface BottomSheetProps {
@@ -41,6 +41,8 @@ export interface BottomSheetProps {
     animationDuration?: number;
     /** z-index */
     zIndex?: number;
+    /** 배경 딤 레이어 표시 여부 */
+    showBackdrop?: boolean;
     /** 배경 블러 효과 */
     backdropBlur?: boolean;
     /** 배경 투명도 */
@@ -70,7 +72,7 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             onClose,
             title,
             subtitle,
-            size = 'md',
+            size = 'm',
             variant = 'default',
             disableBackdropClick = false,
             disableEscapeKeyDown = false,
@@ -79,7 +81,8 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
             animation = 'slide',
             animationDuration = 300,
             zIndex = 1000,
-            backdropBlur = true,
+            showBackdrop = true,
+            backdropBlur = false,
             backdropOpacity = 0.5,
             stickyHeader = false,
             stickyFooter = false,
@@ -256,15 +259,17 @@ const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
         // Portal을 사용하여 body에 렌더링
         return createPortal(
             <>
-                {/* Backdrop */}
-                <div
-                    ref={backdropRef}
-                    className={backdropClasses}
-                    style={backdropStyle}
-                    onClick={handleBackdropClick}
-                    role="presentation"
-                    aria-hidden={!open}
-                />
+                {/* Backdrop - showBackdrop이 true일 때만 표시 */}
+                {showBackdrop && (
+                    <div
+                        ref={backdropRef}
+                        className={backdropClasses}
+                        style={backdropStyle}
+                        onClick={handleBackdropClick}
+                        role="presentation"
+                        aria-hidden={!open}
+                    />
+                )}
 
                 {/* Bottom Sheet */}
                 <div

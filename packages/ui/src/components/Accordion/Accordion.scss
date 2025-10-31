@@ -7,11 +7,15 @@
     flex-direction: column;
     gap: 0; // 기본 간격 없음
 
+    .designbase-accordion__content-inner {
+        padding-top: 0 !important;
+    }
+
     // 크기 변형
-    &--sm {
+    &--s {
         .designbase-accordion__trigger {
             padding: var(--db-padding-s);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-accordion__content-inner {
@@ -26,7 +30,7 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-accordion__trigger {
             padding: var(--db-padding-m);
             font-size: var(--db-text-base);
@@ -37,10 +41,10 @@
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-accordion__trigger {
             padding: var(--db-padding-l);
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-accordion__content-inner {
@@ -57,8 +61,11 @@
 
     // 스타일 변형
     &--default {
+        border-radius: var(--db-radius-card-m);
+        border: 1px solid var(--db-border-base);
+        background-color: var(--db-surface-base);
+
         .designbase-accordion__item {
-            // 기본 스타일: 배경, 테두리, 패딩 없음
             border: none;
             background-color: transparent;
             box-shadow: none;
@@ -68,39 +75,63 @@
 
     &--bordered {
         .designbase-accordion__item {
-            border: 1px solid var(--db-border-primary);
-            border-radius: var(--db-radius-card-md);
-            background-color: var(--db-bg-primary);
-
             &:not(:last-child) {
-                border-bottom: none;
-                border-radius: var(--db-radius-card-md) var(--db-radius-card-md) 0 0;
+                border-bottom: 1px solid var(--db-border-base);
+            }
+        }
+    }
+
+    // bordered 스타일의 사이즈별 패딩
+    &--bordered.designbase-accordion--s {
+        .designbase-accordion__item {
+            .designbase-accordion__trigger {
+                padding: var(--db-padding-xs) 0;
             }
 
-            &:last-child {
-                border-radius: 0 0 var(--db-radius-card-md) var(--db-radius-card-md);
+            .designbase-accordion__content-inner {
+                padding: var(--db-padding-xs) 0;
+            }
+        }
+    }
+
+    &--bordered.designbase-accordion--m {
+        .designbase-accordion__item {
+            .designbase-accordion__trigger {
+                padding: var(--db-padding-m) 0;
             }
 
-            &:only-child {
-                border-radius: var(--db-radius-card-md);
+            .designbase-accordion__content-inner {
+                padding: var(--db-padding-m) 0;
+            }
+        }
+    }
+
+    &--bordered.designbase-accordion--l {
+        .designbase-accordion__item {
+            .designbase-accordion__trigger {
+                padding: var(--db-padding-l) 0;
+            }
+
+            .designbase-accordion__content-inner {
+                padding: var(--db-padding-l) 0;
             }
         }
     }
 
     &--separated {
-        gap: var(--db-gap-s); // separated에서만 간격 적용
+        gap: var(--db-gap-m);
 
         .designbase-accordion__item {
-            border: 1px solid var(--db-border-primary);
-            border-radius: var(--db-radius-card-md);
-            background-color: var(--db-bg-primary);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-card-m);
+            background-color: var(--db-surface-base);
         }
     }
 
     &--contained {
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-card-lg);
-        background-color: var(--db-bg-primary);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-card-l);
+        background-color: var(--db-surface-base);
         overflow: hidden;
 
         .designbase-accordion__item {
@@ -109,7 +140,7 @@
             background-color: transparent;
 
             &:not(:last-child) {
-                border-bottom: 1px solid var(--db-border-primary);
+                border-bottom: 1px solid var(--db-border-base);
             }
         }
     }
@@ -130,7 +161,7 @@
         }
 
         &--disabled {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
 
             .designbase-accordion__trigger {
@@ -162,7 +193,7 @@
         color: var(--db-text-primary);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-bg-secondary);
+            opacity: 0.6;
         }
 
         &:focus {
@@ -195,10 +226,10 @@
         min-width: 24px;
         height: 24px;
         font-weight: var(--db-weight-semibold);
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
-        background-color: var(--db-bg-secondary);
-        border-radius: var(--db-radius-action-sm);
+        background-color: var(--db-surface-layer-1);
+        border-radius: var(--db-radius-action-s);
         margin-right: var(--db-margin-xs);
     }
 
@@ -211,17 +242,17 @@
         min-width: 24px;
         height: 24px;
         font-weight: var(--db-weight-semibold);
-        font-size: var(--db-text-sm);
-        color: var(--db-text-inverse);
+        font-size: var(--db-text-s);
+        color: var(--db-text-inverse-primary);
         background-color: var(--db-btn-primary-bg);
-        border-radius: var(--db-radius-action-sm);
+        border-radius: var(--db-radius-action-s);
         margin-right: var(--db-margin-xs);
     }
 
     // 제목
     &__title {
         flex: 1;
-        font-weight: var(--db-weight-medium);
+        font-weight: var(--db-weight-bold);
         line-height: var(--db-leading-snug);
         color: var(--db-text-primary);
     }
@@ -232,7 +263,9 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        color: var(--db-icon-primary);
+        width: 24px;
+        height: 24px;
+        color: var(--db-icon-muted);
         transition: transform 0.2s ease;
     }
 
@@ -265,9 +298,9 @@
 @media (max-width: 640px) {
     .designbase-accordion {
 
-        &--sm,
-        &--md,
-        &--lg {
+        &--s,
+        &--m,
+        &--l {
             .designbase-accordion__trigger {
                 padding: var(--db-padding-s);
             }
@@ -275,74 +308,6 @@
             .designbase-accordion__content-inner {
                 padding: var(--db-padding-s);
             }
-        }
-    }
-}
-
-/* ============================================================================
-   다크모드 자동 적용 (CSS 변수 기반)
-   ============================================================================ */
-
-/* 다크모드 CSS 변수가 로드되었을 때 자동으로 적용 */
-.designbase-accordion {
-
-    /* 다크모드일 때 자동으로 적용되는 스타일 */
-    .designbase-accordion__item {
-        /* 다크모드 CSS 변수가 있으면 자동으로 적용 */
-        background-color: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
-    }
-
-    .designbase-accordion__trigger {
-        color: var(--db-text-primary);
-
-        &:hover:not(:disabled) {
-            background-color: var(--db-bg-secondary);
-        }
-
-        &:disabled {
-            color: var(--db-text-disabled);
-        }
-    }
-
-    .designbase-accordion__icon {
-        color: var(--db-icon-primary);
-    }
-
-    .designbase-accordion__number {
-        color: var(--db-text-secondary);
-        background-color: var(--db-bg-secondary);
-    }
-
-    .designbase-accordion__question {
-        color: var(--db-text-inverse);
-        background-color: var(--db-btn-primary-bg);
-    }
-
-    .designbase-accordion__title {
-        color: var(--db-text-primary);
-    }
-
-    .designbase-accordion__chevron {
-        color: var(--db-icon-primary);
-    }
-
-    .designbase-accordion__content-inner {
-        color: var(--db-text-secondary);
-    }
-
-    // 비활성화 상태 스타일
-    .designbase-accordion__item--disabled {
-        .designbase-accordion__trigger {
-            color: var(--db-text-disabled);
-        }
-
-        .designbase-accordion__icon {
-            color: var(--db-icon-muted);
-        }
-
-        .designbase-accordion__chevron {
-            color: var(--db-icon-muted);
         }
     }
 }

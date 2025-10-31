@@ -16,7 +16,7 @@ const meta: Meta<typeof Tooltip> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -82,13 +82,13 @@ export const AllPositions: Story = {
 export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Tooltip content="작은 크기" size="sm">
+            <Tooltip content="작은 크기" size="s">
                 <Button>Small</Button>
             </Tooltip>
-            <Tooltip content="중간 크기" size="md">
+            <Tooltip content="중간 크기" size="m">
                 <Button>Medium</Button>
             </Tooltip>
-            <Tooltip content="큰 크기" size="lg">
+            <Tooltip content="큰 크기" size="l">
                 <Button>Large</Button>
             </Tooltip>
         </div>

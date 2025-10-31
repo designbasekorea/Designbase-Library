@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { DownloadIcon, GalleryIcon, FileBlankIcon } from '@designbasekorea/icons';
 import Dropzone from './Dropzone';
 
 const meta: Meta<typeof Dropzone> = {
@@ -13,7 +14,7 @@ const meta: Meta<typeof Dropzone> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -62,165 +63,163 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        size: 'md',
+        size: 'm',
         variant: 'default',
-    },
-};
-
-export const Simple: Story = {
-    args: {
         title: '파일을 여기에 드래그하세요',
         description: '또는 클릭하여 파일을 선택하세요',
-        showIcon: false,
-        showButton: true,
-        buttonText: '파일 선택',
     },
 };
 
-export const WithCustomIcon: Story = {
-    args: {
-        title: '이미지를 업로드하세요',
-        description: 'JPG, PNG, GIF 파일을 지원합니다',
-        icon: (
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" strokeWidth="2" fill="none" />
-                <circle cx="16" cy="16" r="3" fill="currentColor" />
-                <path d="M8 32L16 24L24 32L32 24L40 32V40H8V32Z" fill="currentColor" />
-            </svg>
-        ),
-        accept: 'image/*',
-    },
-};
-
-export const WithButton: Story = {
-    args: {
-        title: '문서를 업로드하세요',
-        description: 'PDF, DOC, DOCX 파일을 지원합니다',
-        showButton: true,
-        buttonText: '문서 선택',
-        accept: '.pdf,.doc,.docx',
-    },
-};
-
-export const NoIcon: Story = {
-    args: {
-        title: '파일을 드래그하여 업로드하세요',
-        description: '모든 파일 형식을 지원합니다',
-        showIcon: false,
-    },
-};
-
-export const DifferentSizes: Story = {
+// 모든 사이즈 (s, m, l)
+export const AllSizes: Story = {
     render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
             <div>
-                <h3>작은 크기</h3>
-                <Dropzone size="sm" title="작은 드롭존" />
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Small (s)</h4>
+                <Dropzone
+                    size="s"
+                    title="작은 드롭존"
+                    description="파일을 드래그하세요"
+                    icon={<DownloadIcon size={32} />}
+                />
             </div>
             <div>
-                <h3>중간 크기</h3>
-                <Dropzone size="md" title="중간 드롭존" />
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Medium (m) - 기본값</h4>
+                <Dropzone
+                    size="m"
+                    title="중간 드롭존"
+                    description="파일을 드래그하거나 클릭하세요"
+                    icon={<DownloadIcon size={48} />}
+                />
             </div>
             <div>
-                <h3>큰 크기</h3>
-                <Dropzone size="lg" title="큰 드롭존" />
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Large (l)</h4>
+                <Dropzone
+                    size="l"
+                    title="큰 드롭존"
+                    description="파일을 드래그하거나 클릭하여 업로드하세요"
+                    icon={<DownloadIcon size={64} />}
+                />
             </div>
         </div>
     ),
 };
 
-export const DifferentVariants: Story = {
+// 모든 상태 (기본, 비활성화, 읽기전용)
+export const AllStates: Story = {
     render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
             <div>
-                <h3>기본 스타일</h3>
-                <Dropzone variant="default" title="기본 스타일" />
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>기본 상태</h4>
+                <Dropzone
+                    title="파일을 드래그하세요"
+                    description="클릭하여 파일 선택"
+                    icon={<DownloadIcon size={48} />}
+                />
             </div>
             <div>
-                <h3>아웃라인 스타일</h3>
-                <Dropzone variant="outlined" title="아웃라인 스타일" />
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>비활성화 상태</h4>
+                <Dropzone
+                    disabled
+                    title="비활성화된 드롭존"
+                    description="현재 사용할 수 없습니다"
+                    icon={<DownloadIcon size={48} />}
+                />
             </div>
             <div>
-                <h3>채워진 스타일</h3>
-                <Dropzone variant="filled" title="채워진 스타일" />
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>읽기 전용 상태</h4>
+                <Dropzone
+                    readonly
+                    title="읽기 전용 드롭존"
+                    description="현재 편집할 수 없습니다"
+                    icon={<DownloadIcon size={48} />}
+                />
+            </div>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>버튼 포함</h4>
+                <Dropzone
+                    title="파일 업로드"
+                    description="드래그 또는 버튼 클릭"
+                    showButton
+                    buttonText="파일 선택"
+                    icon={<DownloadIcon size={48} />}
+                />
             </div>
         </div>
     ),
 };
 
+// 모든 Variants (default, outlined, filled)
+export const AllVariants: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Default</h4>
+                <Dropzone
+                    variant="default"
+                    title="기본 스타일"
+                    description="기본 배경색"
+                    icon={<DownloadIcon size={48} />}
+                />
+            </div>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Outlined</h4>
+                <Dropzone
+                    variant="outlined"
+                    title="아웃라인 스타일"
+                    description="투명 배경"
+                    icon={<DownloadIcon size={48} />}
+                />
+            </div>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Filled</h4>
+                <Dropzone
+                    variant="filled"
+                    title="채워진 스타일"
+                    description="연한 배경색"
+                    icon={<DownloadIcon size={48} />}
+                />
+            </div>
+        </div>
+    ),
+};
+
+// 파일 타입별 예시
 export const FileTypeExamples: Story = {
     render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
             <div>
-                <h3>이미지 업로드</h3>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>이미지 업로드</h4>
                 <Dropzone
                     title="이미지를 업로드하세요"
-                    description="JPG, PNG, GIF 파일"
+                    description="JPG, PNG, GIF 파일 지원"
                     accept="image/*"
-                    showButton={true}
+                    showButton
                     buttonText="이미지 선택"
+                    icon={<GalleryIcon size={48} />}
                 />
             </div>
             <div>
-                <h3>문서 업로드</h3>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>문서 업로드</h4>
                 <Dropzone
                     title="문서를 업로드하세요"
-                    description="PDF, DOC, DOCX 파일"
+                    description="PDF, DOC, DOCX 파일 지원"
                     accept=".pdf,.doc,.docx"
-                    showButton={true}
+                    showButton
                     buttonText="문서 선택"
+                    icon={<FileBlankIcon size={48} />}
                 />
             </div>
-        </div>
-    ),
-};
-
-export const Disabled: Story = {
-    args: {
-        disabled: true,
-        title: '비활성화된 드롭존',
-        description: '현재 사용할 수 없습니다',
-    },
-};
-
-export const Readonly: Story = {
-    args: {
-        readonly: true,
-        title: '읽기 전용 드롭존',
-        description: '현재 편집할 수 없습니다',
-    },
-};
-
-export const CustomContent: Story = {
-    render: () => (
-        <Dropzone>
-            <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '48px', marginBottom: '8px' }}>📁</div>
-                <div style={{ fontSize: '18px', fontWeight: '600', marginBottom: '4px' }}>
-                    커스텀 콘텐츠
-                </div>
-                <div style={{ fontSize: '14px', color: '#6b7280' }}>
-                    완전히 커스터마이징된 드롭존
-                </div>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>모든 파일</h4>
+                <Dropzone
+                    title="파일 업로드"
+                    description="모든 파일 형식 지원"
+                    showButton
+                    buttonText="파일 선택"
+                    icon={<DownloadIcon size={48} />}
+                />
             </div>
-        </Dropzone>
-    ),
-};
-
-export const ResponsiveExample: Story = {
-    render: () => (
-        <div style={{ width: '100%', maxWidth: '600px' }}>
-            <h3>반응형 Dropzone</h3>
-            <p style={{ fontSize: '14px', color: '#666', marginBottom: '16px' }}>
-                화면 크기에 따라 자동으로 크기가 조정됩니다.
-            </p>
-            <Dropzone
-                size="lg"
-                title="반응형 드롭존"
-                description="모든 화면 크기에서 최적화된 경험"
-                showButton={true}
-                buttonText="파일 선택"
-            />
         </div>
     ),
 };

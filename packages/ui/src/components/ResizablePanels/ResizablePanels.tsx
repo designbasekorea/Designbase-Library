@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect, ReactNode } from 'react';
 import classNames from 'classnames';
+import { MoveIcon, ExpandIcon, ArrowUpRightIcon, ArrowDownRightIcon, ArrowUpLeftIcon, ArrowDownLeftIcon, ArrowRightIcon, ArrowDownIcon } from '@designbasekorea/icons';
 import './ResizablePanels.scss';
 
 export interface ResizablePanelsProps {
@@ -315,14 +316,27 @@ const ResizablePanels: React.FC<ResizablePanelsProps> = ({
         }
     }, [handlePosition, handleSize, handleColor, direction]);
 
-    // 기본 리사이즈 핸들 아이콘
-    const defaultHandleIcon = (
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-            <path d="M12 12H8L10 10L12 12Z" />
-            <path d="M8 8H4L6 6L8 8Z" />
-            <path d="M4 4H0L2 2L4 4Z" />
-        </svg>
-    );
+    // 방향에 따른 기본 리사이즈 핸들 아이콘
+    const getDefaultHandleIcon = () => {
+        const iconSize = Math.max(12, handleSize - 4);
+        
+        switch (handlePosition) {
+            case 'bottom-right':
+                return <ArrowDownRightIcon size={iconSize} />;
+            case 'bottom-left':
+                return <ArrowDownLeftIcon size={iconSize} />;
+            case 'top-right':
+                return <ArrowUpRightIcon size={iconSize} />;
+            case 'top-left':
+                return <ArrowUpLeftIcon size={iconSize} />;
+            case 'right':
+                return <ArrowRightIcon size={iconSize} />;
+            case 'bottom':
+                return <ArrowDownIcon size={iconSize} />;
+            default:
+                return direction === 'both' ? <MoveIcon size={iconSize} /> : <ExpandIcon size={iconSize} />;
+        }
+    };
 
     const classes = classNames(
         'designbase-resizable-panels',
@@ -408,7 +422,7 @@ const ResizablePanels: React.FC<ResizablePanelsProps> = ({
                     target.style.backgroundColor = handleColor;
                 }}
             >
-                {handleIcon || defaultHandleIcon}
+                {handleIcon || getDefaultHandleIcon()}
             </div>
         </div>
     );

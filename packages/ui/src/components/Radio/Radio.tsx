@@ -9,7 +9,7 @@ export interface RadioProps {
     isReadOnly?: boolean;
     isRequired?: boolean;
     hasLabel?: boolean;
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: 's' | 'm' | 'l';
     children?: React.ReactNode;
     className?: string;
     name?: string;
@@ -27,7 +27,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             isReadOnly = false,
             isRequired = false,
             hasLabel = true,
-            size = 'md',
+            size = 'm',
             children,
             className,
             name,
@@ -67,12 +67,12 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
         const getIconColor = () => {
             if (isDisabled) {
-                return 'var(--color-action-interactive-icon-disabled)';
+                return 'var(--db-color-disabled)';
             }
             if (selected) {
-                return 'var(--color-action-interactive-icon-selected)';
+                return 'var(--db-color-primary)';
             }
-            return 'var(--color-action-interactive-icon)';
+            return 'var(--db-color-primary)';
         };
 
         return (

@@ -1,8 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Badge } from '../Badge/Badge';
+import { Button } from '../Button/Button';
 import './List.scss';
 
-export type ListSize = 'sm' | 'md' | 'lg';
+export type ListSize = 's' | 'm' | 'l';
 export type ListVariant = 'default' | 'bordered' | 'card' | 'minimal';
 export type ListItemType = 'default' | 'interactive' | 'selectable' | 'draggable';
 export type ListLayout = 'vertical' | 'horizontal';
@@ -21,8 +23,8 @@ export interface ListItem {
     /** 아이템 배지 */
     badge?: {
         text: string;
-        color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-        variant?: 'solid' | 'outline' | 'soft';
+        variant?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
+        style?: 'text' | 'outlined';
     };
     /** 아이템 메타 정보 */
     meta?: {
@@ -59,7 +61,7 @@ export interface ListProps {
     /** 드래그 가능 여부 */
     draggable?: boolean;
     /** 아이템 간격 */
-    spacing?: 'none' | 'sm' | 'md' | 'lg';
+    spacing?: 'none' | 's' | 'm' | 'l';
     /** 아이템 정렬 */
     alignment?: 'start' | 'center' | 'end' | 'stretch';
     /** 아이템 클릭 핸들러 */
@@ -80,7 +82,7 @@ export interface ListProps {
 
 const List: React.FC<ListProps> = ({
     items,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     itemType = 'default',
     layout = 'vertical',
@@ -88,7 +90,7 @@ const List: React.FC<ListProps> = ({
     multiple = false,
     selectedItems = [],
     draggable = false,
-    spacing = 'md',
+    spacing = 'm',
     alignment = 'start',
     onItemClick,
     onItemSelect,
@@ -100,6 +102,9 @@ const List: React.FC<ListProps> = ({
 }) => {
     const [internalSelectedItems, setInternalSelectedItems] = React.useState<string[]>(selectedItems);
     const [draggedItem, setDraggedItem] = React.useState<string | null>(null);
+
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 16 : size === 'l' ? 24 : 20;
 
     // 외부에서 선택된 아이템이 변경되면 내부 상태 업데이트
     React.useEffect(() => {
@@ -159,16 +164,14 @@ const List: React.FC<ListProps> = ({
     const renderBadge = (badge: ListItem['badge']) => {
         if (!badge) return null;
 
-        const badgeClasses = clsx(
-            'designbase-list__item-badge',
-            `designbase-list__item-badge--color-${badge.color || 'primary'}`,
-            `designbase-list__item-badge--variant-${badge.variant || 'solid'}`
-        );
-
         return (
-            <span className={badgeClasses}>
+            <Badge
+                variant={badge.variant || 'primary'}
+                style={badge.style || 'text'}
+                size="s"
+            >
                 {badge.text}
-            </span>
+            </Badge>
         );
     };
 
@@ -249,7 +252,12 @@ const List: React.FC<ListProps> = ({
 
                 {item.icon && (
                     <div className="designbase-list__item-icon">
-                        {item.icon}
+                        {React.isValidElement(item.icon) ? (
+                            React.cloneElement(item.icon as React.ReactElement, {
+                                size: iconSize,
+                                color: 'currentColor'
+                            })
+                        ) : item.icon}
                     </div>
                 )}
 

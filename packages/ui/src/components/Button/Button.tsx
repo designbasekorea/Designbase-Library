@@ -10,17 +10,19 @@ import React, { forwardRef } from 'react';
 import { useButton } from 'react-aria';
 import { useObjectRef } from '@react-aria/utils';
 import clsx from 'clsx';
-import type { BaseIconProps } from '@designbase/icons';
+import type { IconProps } from '@designbasekorea/icons';
 import { Spinner } from '../Spinner/Spinner';
+import { Tooltip } from '../Tooltip/Tooltip';
+import type { TooltipProps } from '../Tooltip/Tooltip';
 import './Button.scss';
 
 export interface ButtonProps {
     /** 버튼 variant */
     variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'ghost';
     /** 버튼 크기 */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: 'xs' | 's' | 'm' | 'l' | 'xl';
     /** 둥글기 variant */
-    radius?: 'sm' | 'md' | 'lg' | 'pill';
+    radius?: 's' | 'm' | 'l' | 'pill';
     /** 전체 너비 여부 */
     fullWidth?: boolean;
     /** 비활성화 여부 */
@@ -30,9 +32,13 @@ export interface ButtonProps {
     /** 아이콘 전용 버튼 여부 */
     iconOnly?: boolean;
     /** 시작 아이콘 */
-    startIcon?: React.ComponentType<BaseIconProps>;
+    startIcon?: React.ComponentType<IconProps>;
     /** 끝 아이콘 */
-    endIcon?: React.ComponentType<BaseIconProps>;
+    endIcon?: React.ComponentType<IconProps>;
+    /** 툴팁 내용 (아이콘 전용 버튼에 권장) */
+    tooltip?: React.ReactNode;
+    /** 툴팁 설정 */
+    tooltipProps?: Omit<TooltipProps, 'content' | 'children'>;
     /** 추가 CSS 클래스 */
     className?: string;
     /** 버튼 내용 */
@@ -49,7 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
             variant = 'primary',
-            size = 'md',
+            size = 'm',
             radius,
             fullWidth = false,
             disabled = false,
@@ -57,6 +63,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             iconOnly = false,
             startIcon: StartIcon,
             endIcon: EndIcon,
+            tooltip,
+            tooltipProps,
             className,
             children,
             onPress,
@@ -82,10 +90,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             if (radius) {
                 return `designbase-button--radius-${radius}`;
             }
-            if (iconOnly) {
-                return 'designbase-button--radius-pill';
-            }
-            return `designbase-button--radius-${size === 'xs' || size === 'sm' ? 'sm' : size === 'lg' || size === 'xl' ? 'lg' : 'md'}`;
+            // 아이콘 전용 버튼도 일반 버튼과 동일한 radius 적용
+            return `designbase-button--radius-${size === 'xs' || size === 's' ? 's' : size === 'l' || size === 'xl' ? 'l' : 'm'}`;
         };
 
         const classes = clsx(
@@ -104,9 +110,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         const iconSize = (() => {
             switch (size) {
                 case 'xs': return 12;
-                case 'sm': return 14;
-                case 'md': return 16;
-                case 'lg': return 18;
+                case 's': return 14;
+                case 'm': return 16;
+                case 'l': return 18;
                 case 'xl': return 20;
                 default: return 16;
             }
@@ -136,7 +142,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     <>
                         <Spinner
                             type="circular"
-                            size={size === 'xs' ? 'xs' : size === 'sm' ? 'sm' : 'md'}
+                            size={size === 'xs' ? 'xs' : size === 's' ? 's' : 'm'}
                             color={getIconColor()}
                             speed={1}
                             showLabel={false}
@@ -144,6 +150,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         {!iconOnly && <span>로딩 중...</span>}
                     </>
                 );
+            }
+
+            // iconOnly 버튼일 때는 children을 아이콘으로 처리
+            if (iconOnly && children && React.isValidElement(children)) {
+                return React.cloneElement(children as React.ReactElement<any>, {
+                    size: iconSize,
+                    color: getIconColor(),
+                    style: {
+                        ...(children as React.ReactElement<any>).props?.style
+                    }
+                });
             }
 
             return (
@@ -155,14 +172,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                             color={getIconColor()}
                         />
                     )}
-                    {!iconOnly && children}
-                    {iconOnly && React.cloneElement(children as React.ReactElement, {
-                        size: iconSize,
-                        color: getIconColor(),
-                        style: {
-                            ...(children as React.ReactElement).props?.style
-                        }
-                    })}
+                    {children}
                     {EndIcon && (
                         <EndIcon
                             size={iconSize}
@@ -174,7 +184,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             );
         };
 
-        return (
+        const buttonElement = (
             <button
                 {...buttonProps}
                 ref={ref}
@@ -184,6 +194,23 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 {renderContent()}
             </button>
         );
+
+        // 툴팁이 있는 경우 Tooltip으로 감싸기
+        if (tooltip) {
+            return (
+                <Tooltip
+                    content={tooltip}
+                    position="top"
+                    size="s"
+                    variant="default"
+                    {...tooltipProps}
+                >
+                    {buttonElement}
+                </Tooltip>
+            );
+        }
+
+        return buttonElement;
     }
 );
 

@@ -9,7 +9,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './Grid.scss';
 
-export type GridBreakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type GridBreakpoint = 'xs' | 's' | 'm' | 'l' | 'xl';
 export type GridSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
 export type GridAlignment = 'start' | 'center' | 'end' | 'stretch';
 export type GridJustify = 'start' | 'center' | 'end' | 'around' | 'between' | 'evenly';

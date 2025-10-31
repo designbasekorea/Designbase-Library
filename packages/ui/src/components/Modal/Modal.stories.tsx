@@ -13,7 +13,8 @@ const meta: Meta<typeof Modal> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg', 'xl', 'full'],
+            options: ['s', 'm', 'l', 'xl', 'full'],
+            description: 'Modal 크기 (테마의 시맨틱 사이즈 토큰 사용: --db-size-modal-*)',
         },
         closeOnOutsideClick: {
             control: { type: 'boolean' },
@@ -58,13 +59,13 @@ export const Default: Story = {
 
 export const Sizes: Story = {
     render: () => {
-        const [selectedSize, setSelectedSize] = useState<'sm' | 'md' | 'lg' | 'xl' | 'full'>('md');
+        const [selectedSize, setSelectedSize] = useState<'s' | 'm' | 'l' | 'xl' | 'full'>('m');
         const [isOpen, setIsOpen] = useState(false);
 
         const sizes = [
-            { value: 'sm', label: 'Small' },
-            { value: 'md', label: 'Medium' },
-            { value: 'lg', label: 'Large' },
+            { value: 's', label: 'Small' },
+            { value: 'm', label: 'Medium' },
+            { value: 'l', label: 'Large' },
             { value: 'xl', label: 'Extra Large' },
             { value: 'full', label: 'Full' },
         ] as const;
@@ -192,7 +193,7 @@ export const LongContent: Story = {
                         <p>이 모달은 스크롤이 가능한 긴 내용을 포함합니다.</p>
                         {Array.from({ length: 20 }, (_, i) => (
                             <p key={i}>
-                                문단 {i + 1}: 이것은 긴 내용을 시뮬레이션하기 위한 텍스트입니다. 
+                                문단 {i + 1}: 이것은 긴 내용을 시뮬레이션하기 위한 텍스트입니다.
                                 모달의 스크롤 기능을 테스트할 수 있습니다.
                             </p>
                         ))}

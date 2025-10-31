@@ -8,10 +8,10 @@
 
 import React from 'react';
 import clsx from 'clsx';
-import { ChevronRightIcon } from '@designbase/icons';
+import { ChevronRightIcon } from '@designbasekorea/icons';
 import './Breadcrumbs.scss';
 
-export type BreadcrumbsSize = 'sm' | 'md' | 'lg';
+export type BreadcrumbsSize = 's' | 'm' | 'l';
 export type BreadcrumbsStyle = 'default' | 'contained' | 'underlined';
 
 export interface BreadcrumbItem {
@@ -52,7 +52,7 @@ export interface BreadcrumbsProps {
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     items,
-    size = 'md',
+    size = 'm',
     breadcrumbStyle = 'default',
     separator = <ChevronRightIcon size={16} />,
     onItemClick,

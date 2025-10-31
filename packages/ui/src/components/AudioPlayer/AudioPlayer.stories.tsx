@@ -34,7 +34,7 @@ const meta: Meta<typeof AudioPlayer> = {
         size: {
             description: '오디오 크기',
             control: 'select',
-            options: ['sm', 'md', 'lg', 'xl'],
+            options: ['s', 'm', 'l', 'xl'],
         },
         variant: {
             description: '오디오 스타일 변형',
@@ -105,7 +105,7 @@ const meta: Meta<typeof AudioPlayer> = {
         title: 'SoundHelix Song 1',
         artist: 'SoundHelix',
         album: 'SoundHelix Examples',
-        size: 'md',
+        size: 'm',
         variant: 'default',
         theme: 'light',
         showControls: true,
@@ -147,7 +147,7 @@ export const AllSizes: Story = {
                     src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
                     title="Small Audio Player"
                     artist="SoundHelix"
-                    size="sm"
+                    size="s"
                 />
             </div>
             <div>
@@ -156,7 +156,7 @@ export const AllSizes: Story = {
                     src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
                     title="Medium Audio Player"
                     artist="SoundHelix"
-                    size="md"
+                    size="m"
                 />
             </div>
             <div>
@@ -165,7 +165,7 @@ export const AllSizes: Story = {
                     src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
                     title="Large Audio Player"
                     artist="SoundHelix"
-                    size="lg"
+                    size="l"
                 />
             </div>
             <div>

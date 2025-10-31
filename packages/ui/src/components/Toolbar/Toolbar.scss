@@ -5,22 +5,21 @@
 .designbase-toolbar {
     display: flex;
     align-items: center;
-    background: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
+    background: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
     transition: all var(--db-animation-speed) var(--db-animation-ease);
     position: relative;
     z-index: var(--db-z-10);
 
     // 크기별 스타일
-    &--size-sm {
+    &--size-s {
         padding: var(--db-padding-xs);
         gap: var(--db-gap-xs);
-        min-height: 32px;
 
         .designbase-toolbar__item {
-            padding: var(--db-padding-xs) var(--db-padding-s);
-            font-size: var(--db-text-sm);
-            border-radius: var(--db-radius-sm);
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-s);
+            border-radius: var(--db-radius-s);
         }
 
         .designbase-toolbar__item-icon {
@@ -29,15 +28,14 @@
         }
     }
 
-    &--size-md {
+    &--size-m {
         padding: var(--db-padding-s);
         gap: var(--db-gap-s);
-        min-height: 40px;
 
         .designbase-toolbar__item {
-            padding: var(--db-padding-s) var(--db-padding-m);
+            padding: var(--db-padding-s);
             font-size: var(--db-text-base);
-            border-radius: var(--db-radius-md);
+            border-radius: var(--db-radius-m);
         }
 
         .designbase-toolbar__item-icon {
@@ -46,15 +44,14 @@
         }
     }
 
-    &--size-lg {
-        padding: var(--db-padding-m);
-        gap: var(--db-gap-m);
-        min-height: 48px;
+    &--size-l {
+        padding: var(--db-padding-s);
+        gap: var(--db-gap-s);
 
         .designbase-toolbar__item {
-            padding: var(--db-padding-m) var(--db-padding-l);
-            font-size: var(--db-text-lg);
-            border-radius: var(--db-radius-lg);
+            padding: var(--db-padding-m);
+            font-size: var(--db-text-l);
+            border-radius: var(--db-radius-l);
         }
 
         .designbase-toolbar__item-icon {
@@ -65,18 +62,18 @@
 
     // 변형별 스타일
     &--variant-default {
-        background: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-base);
+        border-color: var(--db-border-base);
     }
 
     &--variant-outlined {
         background: transparent;
-        border-color: var(--db-border-primary);
+        border-color: var(--db-border-base);
     }
 
     &--variant-filled {
-        background: var(--db-bg-secondary);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-layer-1);
+        border-color: var(--db-border-base);
     }
 
     &--variant-ghost {
@@ -86,26 +83,26 @@
 
     // 위치별 스타일
     &--position-top {
-        border-bottom: 1px solid var(--db-border-primary);
+        border-bottom: 1px solid var(--db-border-base);
     }
 
     &--position-bottom {
-        border-top: 1px solid var(--db-border-primary);
+        border-top: 1px solid var(--db-border-base);
     }
 
     &--position-left {
         flex-direction: column;
-        border-right: 1px solid var(--db-border-primary);
+        border-right: 1px solid var(--db-border-base);
     }
 
     &--position-right {
         flex-direction: column;
-        border-left: 1px solid var(--db-border-primary);
+        border-left: 1px solid var(--db-border-base);
     }
 
     &--position-floating {
         position: absolute;
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
         box-shadow: var(--db-shadow-lg);
     }
 
@@ -127,7 +124,7 @@
 
     // 둥근 모서리
     &--rounded {
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
     }
 
     // 콘텐츠 영역
@@ -149,7 +146,7 @@
     &__group-separator {
         width: 1px;
         height: 24px;
-        background: var(--db-border-primary);
+        background: var(--db-border-base);
         margin: 0 var(--db-margin-xs);
     }
 
@@ -175,20 +172,20 @@
         user-select: none;
 
         &:hover:not(&--disabled) {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &--active {
-            background: var(--db-blue-500);
-            color: var(--db-text-inverse);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
 
             &:hover {
-                background: var(--db-blue-600);
+                background: var(--color-foundation-blue-800);
             }
         }
 
@@ -209,23 +206,24 @@
         // 드롭다운 아이템
         &--dropdown {
             position: relative;
+            padding: 0 !important;
         }
 
         &--open {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
         }
 
         // 구분선 아이템
         &--separator {
             width: 1px;
             height: 24px;
-            background: var(--db-border-primary);
+            background: var(--db-border-base);
             padding: 0;
             margin: 0 var(--db-margin-xs);
             cursor: default;
 
             &:hover {
-                background: var(--db-border-primary);
+                background: var(--db-border-base);
             }
         }
 
@@ -241,6 +239,15 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        width: auto;
+        height: auto;
+
+        // 아이콘 크기 일관성 보장
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
     }
 
     // 아이템 라벨
@@ -253,10 +260,10 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-xs);
+        padding: var(--db-padding-s);
         border: none;
         background: transparent;
         cursor: pointer;
-        padding: inherit;
         font-size: inherit;
         font-weight: inherit;
         color: inherit;
@@ -271,9 +278,18 @@
         justify-content: center;
         transition: transform 0.2s ease;
         flex-shrink: 0;
+        width: 12px;
+        height: 12px;
 
         .designbase-toolbar__item--open & {
             transform: rotate(180deg);
+        }
+
+        // 아이콘 크기 일관성 보장
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
     }
 
@@ -283,9 +299,9 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
+        background: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
         box-shadow: var(--db-shadow-lg);
         z-index: var(--db-z-popover);
         min-width: 160px;
@@ -303,26 +319,26 @@
         border: none;
         background: transparent;
         cursor: pointer;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-primary);
         transition: background-color var(--db-animation-speed) var(--db-animation-ease);
         text-align: left;
 
         &:hover:not(&--disabled) {
-            background: var(--db-bg-tertiary);
+            background: var(--db-surface-layer-2);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: -2px;
         }
 
         &--selected {
-            background: var(--db-blue-500);
-            color: var(--db-text-inverse);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
 
             &:hover {
-                background: var(--db-blue-600);
+                background: var(--color-foundation-blue-800);
             }
         }
 
@@ -344,6 +360,13 @@
         width: 16px;
         height: 16px;
         flex-shrink: 0;
+
+        // 아이콘 크기 일관성 보장
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
     }
 
     // 드롭다운 옵션 라벨
@@ -356,7 +379,7 @@
 // 반응형 스타일
 @media (max-width: 768px) {
     .designbase-toolbar {
-        &--size-lg {
+        &--size-l {
             padding: var(--db-padding-s);
             gap: var(--db-gap-s);
             min-height: 40px;
@@ -381,14 +404,14 @@
 
 @media (max-width: 480px) {
     .designbase-toolbar {
-        &--size-md {
+        &--size-m {
             padding: var(--db-padding-xs);
             gap: var(--db-gap-xs);
             min-height: 32px;
 
             .designbase-toolbar__item {
                 padding: var(--db-padding-xs) var(--db-padding-s);
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
             }
         }
     }

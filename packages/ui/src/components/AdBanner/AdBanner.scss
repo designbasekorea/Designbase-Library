@@ -1,0 +1,392 @@
+/**
+ * AdBanner 컴포넌트 스타일
+ */
+
+.designbase-ad-banner {
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: var(--db-shadow-lg);
+    border-radius: var(--db-radius-xl);
+
+    &__gradient-bg {
+        border-radius: inherit;
+    }
+
+    &--with-gradient {
+        background: none !important;
+
+        .designbase-ad-banner__content {
+            background: none;
+        }
+    }
+
+    &__content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__close {
+        position: absolute;
+        top: var(--db-padding-s);
+        right: var(--db-padding-s);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-s);
+        border: none;
+        background: var(--db-surface-layer-1);
+        color: var(--db-text-primary);
+        cursor: pointer;
+        border-radius: var(--db-radius-full);
+        transition: background-color var(--db-animation-speed) var(--db-animation-ease);
+    }
+
+    &__countdown {
+        margin-top: var(--db-margin-s);
+
+        .designbase-countdown {
+            color: inherit;
+        }
+    }
+
+    &__main {
+        position: relative;
+        z-index: 1;
+        padding: var(--db-padding-l);
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        margin-bottom: var(--db-margin-m);
+        padding: var(--db-padding-m);
+        background-color: var(--db-surface-layer-1);
+        border-radius: var(--db-radius-full);
+        color: var(--db-brand-primary);
+        flex-shrink: 0;
+        width: max-content;
+        height: max-content;
+
+        svg {
+            flex-shrink: 0;
+        }
+    }
+
+    &__label {
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-semibold);
+    }
+
+    &__text {
+        margin-bottom: var(--db-margin-l);
+    }
+
+    &__title {
+        margin: 0 0 var(--db-margin-s) 0;
+        font-weight: var(--db-weight-bold);
+        line-height: var(--db-line-height-tight);
+    }
+
+    &__subtitle {
+        margin: 0;
+        line-height: var(--db-line-height-base);
+        opacity: 0.9;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        flex-shrink: 0;
+    }
+
+    &__progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.3);
+        z-index: 10;
+
+        &__bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: var(--db-brand-primary);
+            border-radius: var(--db-radius-full);
+        }
+    }
+
+    // 그라데이션 배경이 있는 경우
+    &.designbase-ad-banner--with-gradient {
+        // 기본적으로 밝은 텍스트 (vivid, dark 톤용)
+        color: var(--db-text-inverse-primary);
+
+        .designbase-ad-banner__title,
+        .designbase-ad-banner__subtitle {
+            color: var(--db-text-inverse-primary);
+        }
+
+        // Light 톤인 경우 어두운 텍스트
+        &.designbase-ad-banner--gradient-light {
+            color: var(--db-text-primary);
+
+            .designbase-ad-banner__title,
+            .designbase-ad-banner__subtitle {
+                color: var(--db-text-primary);
+            }
+
+            .designbase-ad-banner__close {
+                background: var(--db-surface-layer-1);
+                color: var(--db-text-primary);
+            }
+        }
+    }
+
+    // 일반 배경인 경우
+    &:not(.designbase-ad-banner--with-gradient) {
+        color: var(--db-text-primary);
+        background-color: var(--db-surface-base);
+
+        .designbase-ad-banner__title,
+        .designbase-ad-banner__subtitle {
+            color: var(--db-text-primary);
+        }
+
+        .designbase-ad-banner__icon {
+            background-color: var(--db-surface-layer-1);
+
+            svg {
+                color: var(--db-brand-primary);
+            }
+        }
+    }
+
+    // Hero 타입
+    &--type-hero {
+
+        .designbase-ad-banner__title {
+            font-size: var(--db-text-xl);
+        }
+
+        .designbase-ad-banner__subtitle {
+            font-size: var(--db-text-l);
+            max-width: 800px;
+        }
+
+    }
+
+    // Topbar 타입
+    &--type-topbar {
+
+        .designbase-ad-banner__main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .designbase-ad-banner__icon {
+            margin-bottom: 0;
+            margin-right: var(--db-margin-m);
+
+            svg {
+                animation: bounce 1s ease-in-out infinite;
+            }
+        }
+
+        .designbase-ad-banner__text {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .designbase-ad-banner__title {
+            font-size: var(--db-text-l);
+            margin-bottom: 0;
+        }
+
+        .designbase-ad-banner__subtitle {
+            font-size: var(--db-text-s);
+            margin-top: var(--db-margin-xs);
+        }
+
+        .designbase-ad-banner__close {
+            position: relative;
+            top: auto;
+            right: auto;
+            margin-left: var(--db-margin-m);
+        }
+    }
+
+    // Card 타입
+    &--type-card {
+        max-width: 480px;
+
+        .designbase-ad-banner__main {
+            display: flex;
+            gap: var(--db-gap-m);
+        }
+
+        .designbase-ad-banner__icon {
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+
+        .designbase-ad-banner__text {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .designbase-ad-banner__title {
+            font-size: var(--db-text-xl);
+        }
+
+        .designbase-ad-banner__subtitle {
+            font-size: var(--db-text-s);
+        }
+
+        .designbase-ad-banner__actions {
+            display: none;
+        }
+
+    }
+
+    // Floating 타입
+    &--type-floating {
+        position: fixed;
+        bottom: var(--db-padding-l);
+        right: var(--db-padding-l);
+        z-index: 1000;
+        border: 1px solid var(--db-border-base);
+        max-width: 400px;
+        animation: slideUp 0.5s ease-out;
+
+
+        .designbase-ad-banner__title {
+            font-size: var(--db-text-2xl);
+        }
+
+        .designbase-ad-banner__subtitle {
+            font-size: var(--db-text-base);
+        }
+
+    }
+
+    // Variant 스타일 - 심플한 단색 배경
+    &--variant-primary {
+        background-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
+    }
+
+    &--variant-secondary {
+        background-color: var(--db-brand-secondary);
+        color: var(--db-text-primary);
+    }
+
+    &--variant-success {
+        background-color: var(--db-feedback-success-bg);
+        color: var(--db-feedback-success-fg);
+    }
+
+    &--variant-warning {
+        background-color: var(--db-feedback-warning-bg);
+        color: var(--db-feedback-warning-fg);
+    }
+
+    &--variant-error {
+        background-color: var(--db-feedback-error-bg);
+        color: var(--db-feedback-error-fg);
+    }
+}
+
+// 애니메이션
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// 반응형
+@media (max-width: 768px) {
+    .designbase-ad-banner {
+        &--type-hero {
+            padding: var(--db-padding-xl);
+
+            .designbase-ad-banner__title {
+                font-size: var(--db-text-2xl);
+            }
+
+            .designbase-ad-banner__subtitle {
+                font-size: var(--db-text-base);
+            }
+        }
+
+        &--type-topbar {
+            .designbase-ad-banner__main {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--db-gap-m);
+            }
+
+            .designbase-ad-banner__actions {
+                width: 100%;
+            }
+
+            .designbase-ad-banner__cta {
+                width: 100%;
+            }
+        }
+
+        &--type-card {
+            max-width: 100%;
+
+            .designbase-ad-banner__main {
+                flex-direction: column;
+            }
+        }
+
+        &--type-floating {
+            bottom: var(--db-padding-m);
+            right: var(--db-padding-m);
+            left: var(--db-padding-m);
+            max-width: none;
+        }
+    }
+}

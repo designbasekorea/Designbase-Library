@@ -1,6 +1,6 @@
 /**
  * Spinner 컴포넌트
- * 
+ *
  * 목적: 로딩 상태를 표시하는 애니메이션 컴포넌트 제공
  * 기능: 다양한 타입, 크기, 색상 지원
  * 접근성: ARIA 가이드라인 준수, 스크린 리더 지원
@@ -11,7 +11,7 @@ import clsx from 'clsx';
 import './Spinner.scss';
 
 export type SpinnerType = 'circular' | 'dots' | 'bars' | 'pulse' | 'ripple';
-export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type SpinnerSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export interface SpinnerProps {
     /** 스피너 타입 */
@@ -34,7 +34,7 @@ export interface SpinnerProps {
 
 export const Spinner: React.FC<SpinnerProps> = ({
     type = 'circular',
-    size = 'md',
+    size = 'm',
     color,
     speed = 1,
     label = '로딩 중...',
@@ -63,6 +63,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
                     >
                         <circle
                             className="designbase-spinner__circular-track"
@@ -88,7 +89,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
             case 'dots':
                 return (
-                    <div className="designbase-spinner__dots">
+                    <div className="designbase-spinner__dots" aria-hidden="true">
                         <div className="designbase-spinner__dot" />
                         <div className="designbase-spinner__dot" />
                         <div className="designbase-spinner__dot" />
@@ -97,7 +98,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
             case 'bars':
                 return (
-                    <div className="designbase-spinner__bars">
+                    <div className="designbase-spinner__bars" aria-hidden="true">
                         <div className="designbase-spinner__bar" />
                         <div className="designbase-spinner__bar" />
                         <div className="designbase-spinner__bar" />
@@ -107,13 +108,11 @@ export const Spinner: React.FC<SpinnerProps> = ({
                 );
 
             case 'pulse':
-                return (
-                    <div className="designbase-spinner__pulse" />
-                );
+                return <div className="designbase-spinner__pulse" aria-hidden="true" />;
 
             case 'ripple':
                 return (
-                    <div className="designbase-spinner__ripple">
+                    <div className="designbase-spinner__ripple" aria-hidden="true">
                         <div className="designbase-spinner__ripple-circle" />
                         <div className="designbase-spinner__ripple-circle" />
                     </div>
@@ -129,6 +128,8 @@ export const Spinner: React.FC<SpinnerProps> = ({
             className={classes}
             style={style}
             role="status"
+            aria-live="polite"
+            aria-busy="true"
             aria-label={showLabel ? label : undefined}
             {...props}
         >

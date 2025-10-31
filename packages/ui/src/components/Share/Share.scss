@@ -3,17 +3,11 @@
     display: inline-block;
 
     // 트리거 버튼
-    &__trigger {
-        position: relative;
-    }
+    &__trigger {}
 
     // 공유 콘텐츠
     &__content {
-        padding: var(--db-padding-l);
-        background-color: var(--db-bg-primary);
-        border-radius: var(--db-radius-lg);
-        box-shadow: var(--db-shadow-lg);
-        border: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-m);
     }
 
     // 플랫폼 버튼들
@@ -21,7 +15,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: var(--db-gap-s);
-        margin-bottom: var(--db-margin-l);
+        margin-bottom: var(--db-margin-m);
     }
 
     // 플랫폼 버튼
@@ -31,11 +25,11 @@
         align-items: center;
         gap: var(--db-gap-xs);
         padding: var(--db-padding-m);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        background-color: var(--db-bg-primary);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        background-color: var(--db-surface-base);
         color: var(--db-text-primary);
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-font-medium);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
@@ -53,7 +47,7 @@
         }
 
         &:focus-visible {
-            outline: 2px solid var(--platform-color, #007bff);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
@@ -139,9 +133,9 @@
             }
 
             &.designbase-share__platform-button--copied {
-                background-color: var(--db-green-600);
-                color: white;
-                border-color: var(--db-green-600);
+                background-color: var(--db-feedback-success-fg);
+                color: var(--db-text-inverse-primary);
+                border-color: var(--db-feedback-success-fg);
             }
         }
 
@@ -164,7 +158,7 @@
 
     // 플랫폼 이름
     &__platform-name {
-        font-size: var(--db-font-xs);
+        font-size: var(--db-text-xs);
         text-align: center;
         line-height: 1.2;
     }
@@ -175,11 +169,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: var(--db-green-600);
-        color: white;
+        background-color: var(--db-feedback-success-fg);
+        color: var(--db-text-inverse-primary);
         padding: var(--db-padding-xs) var(--db-padding-s);
-        border-radius: var(--db-radius-sm);
-        font-size: var(--db-font-xs);
+        border-radius: var(--db-radius-s);
+        font-size: var(--db-text-xs);
         font-weight: var(--db-weight-bold);
         display: flex;
         align-items: center;
@@ -198,40 +192,40 @@
         text-align: center;
         margin-bottom: var(--db-margin-l);
         padding: var(--db-padding-m);
-        background-color: var(--db-bg-secondary);
-        border-radius: var(--db-radius-md);
+        background-color: var(--db-surface-layer-1);
+        border-radius: var(--db-radius-m);
     }
 
     &__qr-title {
         margin: 0 0 var(--db-margin-s) 0;
-        font-size: var(--db-font-md);
+        font-size: var(--db-font-base);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
     }
 
     &__qr-code {
+        display: flex;
+        text-align: center;
+        justify-content: center;
         margin-bottom: var(--db-margin-s);
 
         img {
-            border-radius: var(--db-radius-sm);
             box-shadow: var(--db-shadow-sm);
         }
     }
 
     &__qr-description {
         margin: 0;
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
     }
 
     // 링크 미리보기
-    &__link-preview {
-        margin-bottom: var(--db-margin-m);
-    }
+    &__link-preview {}
 
     &__link-title {
         margin: 0 0 var(--db-margin-s) 0;
-        font-size: var(--db-font-md);
+        font-size: var(--db-text-base);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
     }
@@ -244,18 +238,18 @@
 
     &__link-input {
         flex: 1;
-        padding: var(--db-padding-s) var(--db-padding-m);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        font-size: var(--db-font-sm);
-        background-color: var(--db-bg-secondary);
+        padding: var(--db-padding-xs);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        font-size: var(--db-text-s);
+        background-color: var(--db-surface-layer-1);
         color: var(--db-text-primary);
         cursor: text;
 
         &:focus {
             outline: none;
-            border-color: var(--db-blue-600);
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+            border-color: var(--db-field-border-focus);
+            box-shadow: 0 0 0 3px var(--color-aliases-brand-primary-alpha-10);
         }
     }
 
@@ -280,15 +274,15 @@
 
         .designbase-share__content {
             box-shadow: none;
-            border: 1px solid var(--db-border-primary);
+            border: 1px solid var(--db-border-base);
         }
     }
 
     // 크기별 스타일
-    &--sm {
+    &--s {
         .designbase-share__platform-button {
             padding: var(--db-padding-s);
-            font-size: var(--db-font-xs);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-share__platform-icon {
@@ -297,14 +291,14 @@
         }
 
         .designbase-share__platform-name {
-            font-size: var(--db-font-xs);
+            font-size: var(--db-text-xs);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-share__platform-button {
             padding: var(--db-padding-l);
-            font-size: var(--db-font-md);
+            font-size: var(--db-font-base);
         }
 
         .designbase-share__platform-icon {
@@ -313,7 +307,7 @@
         }
 
         .designbase-share__platform-name {
-            font-size: var(--db-font-sm);
+            font-size: var(--db-text-s);
         }
     }
 
@@ -326,7 +320,7 @@
 
         .designbase-share__platform-button {
             padding: var(--db-padding-s);
-            font-size: var(--db-font-xs);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-share__platform-icon {
@@ -335,7 +329,7 @@
         }
 
         .designbase-share__platform-name {
-            font-size: var(--db-font-xs);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-share__content {
@@ -356,7 +350,7 @@
 
     // 접근성 개선
     &__platform-button:focus-visible {
-        outline: 2px solid var(--platform-color, #007bff);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 

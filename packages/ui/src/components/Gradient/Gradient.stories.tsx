@@ -91,17 +91,17 @@ export const DifferentSizes: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
             <div>
                 <h3>작은 크기</h3>
-                <Gradient colors={sunsetColors} size="sm" />
+                <Gradient colors={sunsetColors} size="s" />
             </div>
 
             <div>
                 <h3>중간 크기</h3>
-                <Gradient colors={sunsetColors} size="md" />
+                <Gradient colors={sunsetColors} size="m" />
             </div>
 
             <div>
                 <h3>큰 크기</h3>
-                <Gradient colors={sunsetColors} size="lg" />
+                <Gradient colors={sunsetColors} size="l" />
             </div>
 
             <div>
@@ -244,21 +244,21 @@ export const FullWidth: Story = {
 export const WithContent: Story = {
     render: () => (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
-            <Gradient colors={sunsetColors} size="lg">
+            <Gradient colors={sunsetColors} size="l">
                 <div style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
                     <h2 style={{ margin: '0 0 10px 0' }}>일몰 그라데이션</h2>
                     <p style={{ margin: 0, opacity: 0.9 }}>아름다운 일몰 색상</p>
                 </div>
             </Gradient>
 
-            <Gradient colors={oceanColors} size="lg">
+            <Gradient colors={oceanColors} size="l">
                 <div style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
                     <h2 style={{ margin: '0 0 10px 0' }}>바다 그라데이션</h2>
                     <p style={{ margin: 0, opacity: 0.9 }}>깊은 바다 색상</p>
                 </div>
             </Gradient>
 
-            <Gradient colors={forestColors} size="lg">
+            <Gradient colors={forestColors} size="l">
                 <div style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
                     <h2 style={{ margin: '0 0 10px 0' }}>숲 그라데이션</h2>
                     <p style={{ margin: 0, opacity: 0.9 }}>자연스러운 녹색</p>

@@ -1,10 +1,10 @@
 .designbase-context-menu {
     position: fixed;
-    min-width: 200px;
-    max-width: 300px;
-    background-color: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: var(--db-radius-md);
+    min-width: 120px;
+    max-width: 200px;
+    background-color: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-m);
     box-shadow: var(--db-shadow-lg);
     padding: var(--db-padding-xs);
     z-index: var(--db-z-popover);
@@ -18,11 +18,11 @@
         position: absolute;
         top: 0;
         left: 100%;
-        min-width: 200px;
-        max-width: 300px;
-        background-color: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
+        min-width: 120px;
+        max-width: 200px;
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
         box-shadow: var(--db-shadow-lg);
         padding: var(--db-padding-xs);
         opacity: 0;
@@ -40,21 +40,16 @@
 
     // MenuItem 스타일 오버라이드
     .designbase-menu-item {
-        border-radius: var(--db-radius-sm);
-        margin: var(--db-margin-xs);
+        border-radius: var(--db-radius-s);
+        width: 100%;
 
-        &:hover {
-            background-color: var(--db-bg-hover);
-        }
-
-        &:focus {
-            background-color: var(--db-bg-hover);
-            outline: 2px solid var(--db-blue-500);
-            outline-offset: -2px;
+        .designbase-menu-item__content {
+            display: flex;
+            width: 100%;
+            text-align: left;
         }
 
         &--disabled {
-            opacity: var(--db-opacity-50);
             cursor: not-allowed;
 
             &:hover {
@@ -66,7 +61,7 @@
     // Divider 스타일 오버라이드
     .designbase-divider {
         margin: var(--db-margin-xs) 0;
-        border-color: var(--db-border-primary);
+        border-color: var(--db-border-base);
     }
 }
 

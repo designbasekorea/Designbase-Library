@@ -3,36 +3,26 @@
     z-index: var(--db-z-toast);
     pointer-events: none;
 
-    &--top-left {
-        top: var(--db-spacing-4);
-        left: var(--db-spacing-4);
+    &--top-right {
+        top: var(--db-padding-m);
+        right: var(--db-padding-m);
     }
 
     &--top-center {
-        top: var(--db-spacing-4);
+        top: var(--db-padding-m);
         left: 50%;
         transform: translateX(-50%);
     }
 
-    &--top-right {
-        top: var(--db-spacing-4);
-        right: var(--db-spacing-4);
-    }
-
-    &--bottom-left {
-        bottom: var(--db-spacing-4);
-        left: var(--db-spacing-4);
-    }
-
     &--bottom-center {
-        bottom: var(--db-spacing-4);
+        bottom: var(--db-padding-m);
         left: 50%;
         transform: translateX(-50%);
     }
 
     &--bottom-right {
-        bottom: var(--db-spacing-4);
-        right: var(--db-spacing-4);
+        bottom: var(--db-padding-m);
+        right: var(--db-padding-m);
     }
 
     .designbase-toast {
@@ -41,6 +31,24 @@
 
         &:last-child {
             margin-bottom: 0;
+        }
+    }
+
+    // 모바일에서 중앙 정렬
+    @media (max-width: 768px) {
+
+        &--top-right,
+        &--bottom-right {
+            left: var(--db-padding-s);
+            right: var(--db-padding-s);
+            transform: none;
+        }
+
+        &--top-center,
+        &--bottom-center {
+            left: var(--db-padding-s);
+            right: var(--db-padding-s);
+            transform: none;
         }
     }
 }

@@ -3,18 +3,6 @@
     flex-direction: column;
     gap: var(--db-gap-xs);
 
-    &__label {
-        font-size: var(--db-font-sm);
-        font-weight: var(--db-weight-medium);
-        color: var(--db-text-primary);
-        line-height: var(--db-leading-tight);
-        cursor: pointer;
-    }
-
-    &__required {
-        color: var(--db-red-500);
-        margin-left: var(--db-margin-xs);
-    }
 
     &__wrapper {
         position: relative;
@@ -25,11 +13,11 @@
     &__field {
         width: 100%;
         padding: var(--db-padding-s);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        background-color: var(--db-bg-primary);
-        color: var(--db-text-primary);
-        font-size: var(--db-font-md);
+        border: 1px solid var(--db-field-border);
+        border-radius: var(--db-radius-m);
+        background-color: var(--db-field-bg);
+        color: var(--db-field-text);
+        font-size: var(--db-text-base);
         line-height: var(--db-leading-normal);
         font-family: inherit;
         resize: vertical;
@@ -37,17 +25,18 @@
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &::placeholder {
-            color: var(--db-text-muted);
+            color: var(--db-field-placeholder);
         }
 
         &:focus {
             outline: none;
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 3px var(--db-blue-100);
+            border-color: var(--db-field-border-focus);
+            box-shadow: 0 0 0 3px var(--color-aliases-brand-primary-alpha-10);
         }
 
         &:hover:not(:disabled):not(:focus) {
-            border-color: var(--db-border-secondary);
+            background-color: var(--db-field-bg-hover);
+            border-color: var(--db-field-border-hover);
         }
     }
 
@@ -59,19 +48,19 @@
     }
 
     &__helper-text {
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-xs);
         line-height: var(--db-leading-tight);
         color: var(--db-text-secondary);
     }
 
     &__error-message {
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-xs);
         line-height: var(--db-leading-tight);
-        color: var(--db-red-500);
+        color: var(--db-feedback-error-fg);
     }
 
     &__character-count {
-        font-size: var(--db-font-sm);
+        font-size: var(--db-text-xs);
         line-height: var(--db-leading-tight);
         color: var(--db-text-secondary);
 
@@ -85,56 +74,46 @@
 
         &-text {
             &--error {
-                color: var(--db-red-500);
+                color: var(--db-feedback-error-fg);
             }
         }
     }
 
     // 크기 변형
-    &--sm {
+    &--s {
         .designbase-textarea__field {
             padding: var(--db-padding-xs);
-            font-size: var(--db-font-sm);
+            font-size: var(--db-text-sm);
             line-height: var(--db-leading-tight);
         }
 
-        .designbase-textarea__label {
-            font-size: var(--db-font-xs);
-            line-height: var(--db-leading-none);
-        }
-
         .designbase-textarea__helper-text,
         .designbase-textarea__error-message,
         .designbase-textarea__character-count {
-            font-size: var(--db-font-xs);
-            line-height: var(--db-leading-none);
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-tight);
         }
     }
 
-    &--md {
+    &--m {
         .designbase-textarea__field {
             padding: var(--db-padding-s);
-            font-size: var(--db-font-md);
+            font-size: var(--db-text-base);
             line-height: var(--db-leading-normal);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-textarea__field {
             padding: var(--db-padding-m);
-            font-size: var(--db-font-lg);
+            font-size: var(--db-text-l);
             line-height: var(--db-leading-relaxed);
         }
 
-        .designbase-textarea__label {
-            font-size: var(--db-font-md);
-            line-height: var(--db-leading-normal);
-        }
-
         .designbase-textarea__helper-text,
         .designbase-textarea__error-message,
         .designbase-textarea__character-count {
-            font-size: var(--db-font-md);
+            font-size: var(--db-text-sm);
             line-height: var(--db-leading-normal);
         }
     }
@@ -142,42 +121,34 @@
     // 상태 변형
     &--error {
         .designbase-textarea__field {
-            border-color: var(--db-red-500);
+            border-color: var(--db-field-border-error);
 
             &:focus {
-                border-color: var(--db-red-500);
-                box-shadow: 0 0 0 3px var(--db-red-100);
+                border-color: var(--db-field-border-error);
+                box-shadow: 0 0 0 3px var(--color-aliases-brand-primary-alpha-10);
             }
-        }
-
-        .designbase-textarea__label {
-            color: var(--db-red-500);
         }
     }
 
     &--disabled {
         .designbase-textarea__field {
-            background-color: var(--db-bg-secondary);
-            color: var(--db-text-disabled);
+            background-color: var(--db-field-bg-disabled);
+            color: var(--db-field-text-disabled);
             cursor: not-allowed;
             border-color: var(--db-border-muted);
 
             &::placeholder {
-                color: var(--db-text-disabled);
+                color: var(--db-field-text-disabled);
             }
-        }
-
-        .designbase-textarea__label {
-            color: var(--db-text-disabled);
-            cursor: not-allowed;
         }
     }
 
     &--readonly {
         .designbase-textarea__field {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
             border-color: var(--db-border-muted);
             cursor: default;
+            color: var(--db-text-primary);
 
             &:focus {
                 border-color: var(--db-border-muted);

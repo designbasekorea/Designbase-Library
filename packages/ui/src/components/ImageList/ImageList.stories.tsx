@@ -20,7 +20,7 @@ const meta: Meta<typeof ImageList> = {
         },
         spacing: {
             control: { type: 'select' },
-            options: ['xs', 'sm', 'md', 'lg', 'xl'],
+            options: ['xs', 's', 'm', 'l', 'xl'],
         },
         ratio: {
             control: { type: 'select' },
@@ -138,7 +138,7 @@ export const Default: Story = {
         images: sampleImages,
         layout: 'grid',
         columns: 3,
-        spacing: 'md',
+        spacing: 'm',
         ratio: '16:9',
         fit: 'cover',
         rounded: false,
@@ -151,40 +151,27 @@ export const Default: Story = {
     },
 };
 
-export const GridLayout: Story = {
-    args: {
-        ...Default.args,
-        layout: 'grid',
-        columns: 4,
-        spacing: 'lg',
-    },
-};
-
-export const ListLayout: Story = {
-    args: {
-        ...Default.args,
-        layout: 'list',
-        columns: 1,
-        spacing: 'md',
-    },
-};
-
-export const GalleryLayout: Story = {
-    args: {
-        ...Default.args,
-        layout: 'gallery',
-        columns: 2,
-        spacing: 'sm',
-    },
-};
-
-export const CarouselLayout: Story = {
-    args: {
-        ...Default.args,
-        layout: 'carousel',
-        columns: 3,
-        spacing: 'md',
-    },
+export const AllLayouts: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+                <h3>Grid</h3>
+                <ImageList images={sampleImages.slice(0, 6)} layout="grid" columns={3} spacing="m" />
+            </div>
+            <div>
+                <h3>List</h3>
+                <ImageList images={sampleImages.slice(0, 3)} layout="list" spacing="m" />
+            </div>
+            <div>
+                <h3>Gallery</h3>
+                <ImageList images={sampleImages.slice(0, 4)} layout="gallery" spacing="s" />
+            </div>
+            <div>
+                <h3>Carousel</h3>
+                <ImageList images={sampleImages.slice(0, 6)} layout="carousel" spacing="m" />
+            </div>
+        </div>
+    ),
 };
 
 export const WithRoundedCorners: Story = {
@@ -192,88 +179,5 @@ export const WithRoundedCorners: Story = {
         ...Default.args,
         rounded: true,
         shadow: true,
-    },
-};
-
-export const WithoutLightbox: Story = {
-    args: {
-        ...Default.args,
-        lightbox: false,
-    },
-};
-
-export const WithoutHover: Story = {
-    args: {
-        ...Default.args,
-        hover: false,
-    },
-};
-
-export const SingleColumn: Story = {
-    args: {
-        ...Default.args,
-        columns: 1,
-        layout: 'grid',
-    },
-};
-
-export const SixColumns: Story = {
-    args: {
-        ...Default.args,
-        columns: 6,
-        layout: 'grid',
-        spacing: 'xs',
-    },
-};
-
-export const CustomRatio: Story = {
-    args: {
-        ...Default.args,
-        ratio: '1:1',
-        columns: 4,
-    },
-};
-
-export const CoverFit: Story = {
-    args: {
-        ...Default.args,
-        fit: 'cover',
-        ratio: '4:3',
-    },
-};
-
-export const ContainFit: Story = {
-    args: {
-        ...Default.args,
-        fit: 'contain',
-        ratio: '4:3',
-    },
-};
-
-export const ResponsiveGrid: Story = {
-    args: {
-        ...Default.args,
-        responsive: true,
-        columns: 3,
-        spacing: 'md',
-    },
-};
-
-export const LoadingEager: Story = {
-    args: {
-        ...Default.args,
-        loading: 'eager',
-    },
-};
-
-export const WithCustomStyling: Story = {
-    args: {
-        ...Default.args,
-        className: 'custom-image-list',
-        style: {
-            backgroundColor: '#f8f9fa',
-            padding: '20px',
-            borderRadius: '8px',
-        },
     },
 };

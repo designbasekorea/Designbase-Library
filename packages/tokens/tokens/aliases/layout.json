@@ -1,0 +1,156 @@
+{
+    "layout": {
+        "aliases": {
+            "container": {
+                "maxWidth": {
+                    "fluid": {
+                        "value": "{layout.foundation.container.maxWidth.fluid}",
+                        "type": "dimension"
+                    },
+                    "xs": {
+                        "value": "{layout.foundation.container.maxWidth.xs}",
+                        "type": "dimension"
+                    },
+                    "s": {
+                        "value": "{layout.foundation.container.maxWidth.s}",
+                        "type": "dimension"
+                    },
+                    "m": {
+                        "value": "{layout.foundation.container.maxWidth.m}",
+                        "type": "dimension"
+                    },
+                    "l": {
+                        "value": "{layout.foundation.container.maxWidth.l}",
+                        "type": "dimension"
+                    },
+                    "xl": {
+                        "value": "{layout.foundation.container.maxWidth.xl}",
+                        "type": "dimension"
+                    },
+                    "xxl": {
+                        "value": "{layout.foundation.container.maxWidth.xxl}",
+                        "type": "dimension"
+                    },
+                    "3xl": {
+                        "value": "{layout.foundation.container.maxWidth.3xl}",
+                        "type": "dimension"
+                    },
+                    "4xl": {
+                        "value": "{layout.foundation.container.maxWidth.4xl}",
+                        "type": "dimension"
+                    }
+                },
+                "padding": {
+                    "none": {
+                        "value": "{layout.foundation.container.padding.none}",
+                        "type": "dimension"
+                    },
+                    "xs": {
+                        "value": "{layout.foundation.container.padding.xs}",
+                        "type": "dimension"
+                    },
+                    "s": {
+                        "value": "{layout.foundation.container.padding.s}",
+                        "type": "dimension"
+                    },
+                    "m": {
+                        "value": "{layout.foundation.container.padding.m}",
+                        "type": "dimension"
+                    },
+                    "l": {
+                        "value": "{layout.foundation.container.padding.l}",
+                        "type": "dimension"
+                    },
+                    "xl": {
+                        "value": "{layout.foundation.container.padding.xl}",
+                        "type": "dimension"
+                    },
+                    "xxl": {
+                        "value": "{layout.foundation.container.padding.xxl}",
+                        "type": "dimension"
+                    }
+                }
+            },
+            "grid": {
+                "columns": {
+                    "6": {
+                        "value": "{layout.foundation.grid.columns.6}",
+                        "type": "number"
+                    },
+                    "12": {
+                        "value": "{layout.foundation.grid.columns.12}",
+                        "type": "number"
+                    },
+                    "16": {
+                        "value": "{layout.foundation.grid.columns.16}",
+                        "type": "number"
+                    },
+                    "24": {
+                        "value": "{layout.foundation.grid.columns.24}",
+                        "type": "number"
+                    }
+                },
+                "gutter": {
+                    "none": {
+                        "value": "{layout.foundation.grid.gutter.none}",
+                        "type": "dimension"
+                    },
+                    "xs": {
+                        "value": "{layout.foundation.grid.gutter.xs}",
+                        "type": "dimension"
+                    },
+                    "s": {
+                        "value": "{layout.foundation.grid.gutter.s}",
+                        "type": "dimension"
+                    },
+                    "m": {
+                        "value": "{layout.foundation.grid.gutter.m}",
+                        "type": "dimension"
+                    },
+                    "l": {
+                        "value": "{layout.foundation.grid.gutter.l}",
+                        "type": "dimension"
+                    },
+                    "xl": {
+                        "value": "{layout.foundation.grid.gutter.xl}",
+                        "type": "dimension"
+                    },
+                    "xxl": {
+                        "value": "{layout.foundation.grid.gutter.xxl}",
+                        "type": "dimension"
+                    }
+                }
+            },
+            "breakpoint": {
+                "xs": {
+                    "value": "{layout.foundation.breakpoint.xs}",
+                    "type": "dimension"
+                },
+                "s": {
+                    "value": "{layout.foundation.breakpoint.s}",
+                    "type": "dimension"
+                },
+                "m": {
+                    "value": "{layout.foundation.breakpoint.m}",
+                    "type": "dimension"
+                },
+                "l": {
+                    "value": "{layout.foundation.breakpoint.l}",
+                    "type": "dimension"
+                },
+                "xl": {
+                    "value": "{layout.foundation.breakpoint.xl}",
+                    "type": "dimension"
+                },
+                "xxl": {
+                    "value": "{layout.foundation.breakpoint.xxl}",
+                    "type": "dimension"
+                },
+                "3xl": {
+                    "value": "{layout.foundation.breakpoint.3xl}",
+                    "type": "dimension"
+                }
+            }
+        }
+    }
+}

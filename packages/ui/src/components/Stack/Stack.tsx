@@ -12,7 +12,7 @@ import './Stack.scss';
 export type StackDirection = 'vertical' | 'horizontal';
 export type StackAlignment = 'start' | 'center' | 'end' | 'stretch';
 export type StackJustify = 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
-export type StackSpacing = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type StackSpacing = 'none' | 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export interface StackProps {
     /** 스택 방향 */

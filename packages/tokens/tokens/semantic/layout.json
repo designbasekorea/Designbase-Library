@@ -1,0 +1,130 @@
+{
+    "layout": {
+        "semantic": {
+            "container": {
+                "maxWidth": {
+                    "fluid": {
+                        "value": "{layout.aliases.container.maxWidth.fluid}",
+                        "type": "dimension",
+                        "description": "유동형 컨테이너 (100%)"
+                    },
+                    "s": {
+                        "value": "{layout.aliases.container.maxWidth.s}",
+                        "type": "dimension",
+                        "description": "소형 컨테이너 (640px)"
+                    },
+                    "m": {
+                        "value": "{layout.aliases.container.maxWidth.m}",
+                        "type": "dimension",
+                        "description": "중형 컨테이너 (768px)"
+                    },
+                    "l": {
+                        "value": "{layout.aliases.container.maxWidth.l}",
+                        "type": "dimension",
+                        "description": "대형 컨테이너 (1024px)"
+                    },
+                    "xl": {
+                        "value": "{layout.aliases.container.maxWidth.xl}",
+                        "type": "dimension",
+                        "description": "초대형 컨테이너 (1280px)"
+                    },
+                    "xxl": {
+                        "value": "{layout.aliases.container.maxWidth.xxl}",
+                        "type": "dimension",
+                        "description": "2XL 컨테이너 (1440px)"
+                    }
+                },
+                "padding": {
+                    "none": {
+                        "value": "{layout.aliases.container.padding.none}",
+                        "type": "dimension",
+                        "description": "패딩 없음"
+                    },
+                    "s": {
+                        "value": "{layout.aliases.container.padding.s}",
+                        "type": "dimension",
+                        "description": "소형 패딩 (16px)"
+                    },
+                    "m": {
+                        "value": "{layout.aliases.container.padding.m}",
+                        "type": "dimension",
+                        "description": "중형 패딩 (24px)"
+                    },
+                    "l": {
+                        "value": "{layout.aliases.container.padding.l}",
+                        "type": "dimension",
+                        "description": "대형 패딩 (32px)"
+                    }
+                }
+            },
+            "grid": {
+                "columns": {
+                    "12": {
+                        "value": "{layout.aliases.grid.columns.12}",
+                        "type": "number",
+                        "description": "12컬럼 그리드 (기본)"
+                    },
+                    "24": {
+                        "value": "{layout.aliases.grid.columns.24}",
+                        "type": "number",
+                        "description": "24컬럼 그리드 (고밀도)"
+                    }
+                },
+                "gutter": {
+                    "s": {
+                        "value": "{layout.aliases.grid.gutter.s}",
+                        "type": "dimension",
+                        "description": "소형 거터 (16px)"
+                    },
+                    "m": {
+                        "value": "{layout.aliases.grid.gutter.m}",
+                        "type": "dimension",
+                        "description": "중형 거터 (24px)"
+                    },
+                    "l": {
+                        "value": "{layout.aliases.grid.gutter.l}",
+                        "type": "dimension",
+                        "description": "대형 거터 (32px)"
+                    },
+                    "xl": {
+                        "value": "{layout.aliases.grid.gutter.xl}",
+                        "type": "dimension",
+                        "description": "초대형 거터 (40px)"
+                    }
+                }
+            },
+            "breakpoint": {
+                "xs": {
+                    "value": "{layout.aliases.breakpoint.xs}",
+                    "type": "dimension",
+                    "description": "모바일 초소형 (0px)"
+                },
+                "s": {
+                    "value": "{layout.aliases.breakpoint.s}",
+                    "type": "dimension",
+                    "description": "모바일 소형 (480px)"
+                },
+                "m": {
+                    "value": "{layout.aliases.breakpoint.m}",
+                    "type": "dimension",
+                    "description": "태블릿 (768px)"
+                },
+                "l": {
+                    "value": "{layout.aliases.breakpoint.l}",
+                    "type": "dimension",
+                    "description": "데스크톱 (1024px)"
+                },
+                "xl": {
+                    "value": "{layout.aliases.breakpoint.xl}",
+                    "type": "dimension",
+                    "description": "대형 데스크톱 (1280px)"
+                },
+                "xxl": {
+                    "value": "{layout.aliases.breakpoint.xxl}",
+                    "type": "dimension",
+                    "description": "초대형 데스크톱 (1440px)"
+                }
+            }
+        }
+    }
+}

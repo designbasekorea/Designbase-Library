@@ -17,7 +17,7 @@
     }
 
     &__total {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
         white-space: nowrap;
     }
@@ -39,6 +39,7 @@
     &__item {
         display: flex;
         align-items: center;
+        margin: 0;
     }
 
     &__button {
@@ -48,24 +49,24 @@
         min-width: 36px;
         height: 36px;
         padding: var(--db-padding-xs) var(--db-padding-s);
-        background-color: var(--db-bg-primary);
+        background-color: var(--db-surface-base);
         color: var(--db-text-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        font-size: var(--db-text-sm);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         text-decoration: none;
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
             border-color: var(--db-border-secondary);
             color: var(--db-text-primary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
@@ -76,14 +77,14 @@
         }
 
         &--active {
-            background-color: var(--db-blue-500);
-            border-color: var(--db-blue-500);
-            color: var(--db-text-inverse);
+            background-color: var(--db-color-primary);
+            border-color: var(--db-color-primary);
+            color: var(--db-text-inverse-primary);
 
             &:hover {
-                background-color: var(--db-blue-600);
-                border-color: var(--db-blue-600);
-                color: var(--db-text-inverse);
+                background-color: var(--db-color-info-hover);
+                border-color: var(--db-color-info-hover);
+                color: var(--db-text-inverse-primary);
             }
         }
 
@@ -92,7 +93,7 @@
         &--previous,
         &--next {
             i {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
             }
         }
     }
@@ -107,7 +108,7 @@
     }
 
     &__ellipsis-text {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
         font-weight: var(--db-weight-medium);
     }
@@ -122,7 +123,7 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-s);
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
         cursor: pointer;
     }
@@ -136,7 +137,7 @@
     }
 
     // Sizes
-    &--sm {
+    &--s {
         .designbase-pagination__button {
             min-width: 32px;
             height: 32px;
@@ -164,12 +165,12 @@
 
     }
 
-    &--md {
+    &--m {
         .designbase-pagination__button {
             min-width: 36px;
             height: 36px;
             padding: var(--db-padding-xs) var(--db-padding-s);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-pagination__ellipsis {
@@ -179,15 +180,15 @@
         }
 
         .designbase-pagination__ellipsis-text {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-pagination__total {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-pagination__page-size-label {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-pagination__page-size-select {
@@ -195,7 +196,7 @@
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-pagination__button {
             min-width: 44px;
             height: 44px;
@@ -230,20 +231,20 @@
     &--outlined {
         .designbase-pagination__button {
             background-color: transparent;
-            border: 2px solid var(--db-border-primary);
+            border: 2px solid var(--db-border-base);
 
             &:hover {
-                border-color: var(--db-blue-500);
-                color: var(--db-blue-600);
+                border-color: var(--db-color-info);
+                color: var(--db-color-info);
             }
 
             &--active {
                 background-color: transparent;
-                border-color: var(--db-blue-500);
-                color: var(--db-blue-600);
+                border-color: var(--db-color-info);
+                color: var(--db-color-info);
 
                 &:hover {
-                    background-color: var(--db-blue-50);
+                    background-color: var(--db-bg-selected);
                 }
             }
         }
@@ -253,18 +254,18 @@
         .designbase-pagination__button {
             background-color: transparent;
             border: none;
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
 
             &:hover {
-                background-color: var(--db-bg-tertiary);
+                background-color: var(--db-surface-layer-2);
             }
 
             &--active {
-                background-color: var(--db-blue-100);
-                color: var(--db-blue-700);
+                background-color: var(--db-bg-selected);
+                color: var(--db-text-selected);
 
                 &:hover {
-                    background-color: var(--db-blue-200);
+                    background-color: var(--db-bg-selected-hover);
                 }
             }
         }
@@ -380,8 +381,8 @@
 
     // Focus styles for accessibility
     &:focus-visible {
-        outline: 2px solid var(--db-blue-500);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 }

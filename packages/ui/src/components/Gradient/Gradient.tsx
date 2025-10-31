@@ -20,7 +20,7 @@ export type GradientDirection =
     | 'to-top-left'
     | 'radial';
 
-export type GradientSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type GradientSize = 's' | 'm' | 'l' | 'xl' | 'full';
 export type GradientVariant = 'default' | 'animated' | 'mesh';
 
 export interface GradientColor {
@@ -56,7 +56,7 @@ export interface GradientProps {
 export const Gradient: React.FC<GradientProps> = ({
     colors,
     direction = 'to-right',
-    size = 'md',
+    size = 'm',
     variant = 'default',
     animationDuration = 3,
     animationDelay = 0,

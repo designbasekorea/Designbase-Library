@@ -8,11 +8,11 @@
 
 import React from 'react';
 import clsx from 'clsx';
-import { ChevronLeftIcon, ChevronRightIcon, ArrowBarLeftIcon, ArrowBarRightIcon } from '@designbase/icons';
+import { ChevronLeftIcon, ChevronRightIcon, ArrowBarLeftIcon, ArrowBarRightIcon } from '@designbasekorea/icons';
 import { Select } from '../Select/Select';
 import './Pagination.scss';
 
-export type PaginationSize = 'sm' | 'md' | 'lg';
+export type PaginationSize = 's' | 'm' | 'l';
 export type PaginationVariant = 'default' | 'outlined' | 'minimal';
 export type PaginationAlignment = 'left' | 'center' | 'right';
 
@@ -69,7 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     pageSizeOptions = [10, 20, 50, 100],
     onPageChange,
     onPageSizeChange,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     alignment = 'center',
     siblingCount = 1,

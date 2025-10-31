@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12.5 11V5.75H11v6.75h4.75V11z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.75 3.5a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5M2 11.75C2 6.365 6.365 2 11.75 2s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2 17.135 2 11.75" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const ClockIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M12.75 11.25V6h-1.5v6.75H16v-1.5z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M12 3.75a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12" clip-rule="evenodd"/></svg>
+);
 
 export default ClockIcon;

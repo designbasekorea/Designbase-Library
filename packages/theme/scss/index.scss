@@ -1,12 +1,18 @@
 /**
- * Designbase Theme 메인 스타일시트
+ * Designbase Theme CSS
+ * 
+ * Copyright (c) 2025 Designbase Korea
+ * Licensed under MIT License
  * 
  * 목적: 모든 테마 관련 스타일을 통합하여 제공
  * 기능: 변수, 믹스인, 테마, 유틸리티 클래스 포함
- * 사용법: @import '@designbase/theme/scss' 또는 CSS 파일로 로드
+ * 사용법: @import '@designbasekorea/theme/css' 또는 CSS 파일로 로드
+ * 
+ * Generated: 2025-09-10T08:41:05.302Z
+ * Version: 0.1.3
+ * Package: @designbasekorea/theme
  */
 
-@import 'reset';
-
-@import 'variables';
-@import 'semantic';
+@use 'reset';
+@use 'variables';
+@use 'semantic';

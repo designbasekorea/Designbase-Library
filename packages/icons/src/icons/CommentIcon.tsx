@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.75 3.5c-.686 0-1.25.564-1.25 1.25v14.44l3.781-3.026A.75.75 0 0 1 6.75 16h13c.686 0 1.25-.564 1.25-1.25v-10c0-.686-.564-1.25-1.25-1.25zM1 4.75A2.756 2.756 0 0 1 3.75 2h16a2.756 2.756 0 0 1 2.75 2.75v10a2.756 2.756 0 0 1-2.75 2.75H7.013L2.22 21.336A.75.75 0 0 1 1 20.75z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M17.75 8.5h-12V7h12zM11.75 12.5h-6V11h6z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const CommentIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M4 4.75c-.686 0-1.25.564-1.25 1.25v14.44l3.781-3.026A.75.75 0 0 1 7 17.25h13c.686 0 1.25-.564 1.25-1.25V6c0-.686-.564-1.25-1.25-1.25zM1.25 6A2.756 2.756 0 0 1 4 3.25h16A2.756 2.756 0 0 1 22.75 6v10A2.756 2.756 0 0 1 20 18.75H7.263L2.47 22.586A.75.75 0 0 1 1.25 22z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M18 9.75H6v-1.5h12zM12 13.75H6v-1.5h6z" clip-rule="evenodd"/></svg>
+);
 
 export default CommentIcon;

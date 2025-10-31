@@ -10,10 +10,10 @@ import {
     RefreshIcon,
     ChevronLeftIcon,
     ChevronRightIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import './AudioPlayer.scss';
 
-export type AudioPlayerSize = 'sm' | 'md' | 'lg' | 'xl';
+export type AudioPlayerSize = 's' | 'm' | 'l' | 'xl';
 export type AudioPlayerVariant = 'default' | 'minimal' | 'compact' | 'full';
 export type AudioPlayerTheme = 'light' | 'dark' | 'auto';
 
@@ -102,7 +102,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     artist,
     album,
     albumArt,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     theme = 'auto',
     autoPlay = false,
@@ -151,6 +151,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     const [error, setError] = useState<string | null>(null);
     const [playlistIndex, setPlaylistIndex] = useState(currentIndex);
     const [shuffledPlaylist, setShuffledPlaylist] = useState<number[]>([]);
+
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 16 : size === 'm' ? 20 : size === 'l' ? 24 : 32; // xl은 32
 
     // 셔플된 플레이리스트 인덱스 생성
     useEffect(() => {
@@ -536,7 +539,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     className="designbase-audio-player__control-button"
                                     onClick={toggleShuffle}
                                 >
-                                    <RefreshIcon size={16} />
+                                    <RefreshIcon size={iconSize} />
                                 </button>
                             )}
 
@@ -546,7 +549,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                 onClick={handlePrevious}
                                 disabled={playlist.length > 0 && playlistIndex === 0}
                             >
-                                <ChevronLeftIcon size={16} />
+                                <ChevronLeftIcon size={iconSize} />
                             </button>
                         </div>
 
@@ -556,7 +559,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                 className="designbase-audio-player__play-button"
                                 onClick={togglePlay}
                             >
-                                {isPlaying ? <PauseIcon size={24} /> : <PlayIcon size={24} />}
+                                {isPlaying ? <PauseIcon size={iconSize * 1.2} /> : <PlayIcon size={iconSize * 1.2} />}
                             </button>
                         </div>
 
@@ -567,7 +570,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                 onClick={handleNext}
                                 disabled={playlist.length > 0 && playlistIndex === playlist.length - 1}
                             >
-                                <ChevronRightIcon size={16} />
+                                <ChevronRightIcon size={iconSize} />
                             </button>
 
                             {/* 반복 */}
@@ -576,7 +579,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     className="designbase-audio-player__control-button"
                                     onClick={toggleRepeatMode}
                                 >
-                                    <RepeatIcon size={16} />
+                                    <RepeatIcon size={iconSize} />
                                 </button>
                             )}
                         </div>
@@ -605,7 +608,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     onClick={toggleMute}
                                     title={isMuted || volume === 0 ? '음소거 해제' : '음소거'}
                                 >
-                                    {isMuted || volume === 0 ? <MuteFilledIcon size={16} /> : <VolumeUpIcon size={16} />}
+                                    {isMuted || volume === 0 ? <MuteFilledIcon size={iconSize} /> : <VolumeUpIcon size={iconSize} />}
                                 </button>
 
                                 <div
@@ -635,7 +638,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     className="designbase-audio-player__control-button"
                                     onClick={() => setShowSettingsMenu(!showSettingsMenu)}
                                 >
-                                    <SettingsIcon size={16} />
+                                    <SettingsIcon size={iconSize} />
                                 </button>
 
                                 {showSettingsMenu && (

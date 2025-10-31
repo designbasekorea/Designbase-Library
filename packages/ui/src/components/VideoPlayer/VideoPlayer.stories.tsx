@@ -124,7 +124,7 @@ const meta: Meta<typeof VideoPlayer> = {
         poster: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
         title: 'Big Buck Bunny',
         description: 'Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself.',
-        size: 'md',
+        size: 'm',
         variant: 'default',
         theme: 'auto',
         autoPlay: false,
@@ -170,7 +170,7 @@ export const DifferentSizes: Story = {
                 <VideoPlayer
                     src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                     poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
-                    size="sm"
+                    size="s"
                     title="Small Video"
                 />
             </div>
@@ -179,7 +179,7 @@ export const DifferentSizes: Story = {
                 <VideoPlayer
                     src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                     poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
-                    size="md"
+                    size="m"
                     title="Medium Video"
                 />
             </div>
@@ -188,7 +188,7 @@ export const DifferentSizes: Story = {
                 <VideoPlayer
                     src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                     poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
-                    size="lg"
+                    size="l"
                     title="Large Video"
                 />
             </div>
@@ -407,7 +407,7 @@ export const DifferentVideoSources: Story = {
                     poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
                     title="Big Buck Bunny"
                     description="Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself."
-                    size="md"
+                    size="m"
                 />
             </div>
 
@@ -418,7 +418,7 @@ export const DifferentVideoSources: Story = {
                     poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg"
                     title="Elephants Dream"
                     description="The first Blender Open Movie from 2006."
-                    size="md"
+                    size="m"
                 />
             </div>
 
@@ -429,7 +429,7 @@ export const DifferentVideoSources: Story = {
                     poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg"
                     title="For Bigger Blazes"
                     description="A sample video for testing video players."
-                    size="md"
+                    size="m"
                 />
             </div>
         </div>

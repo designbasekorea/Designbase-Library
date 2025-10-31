@@ -1,0 +1,110 @@
+{
+    "typography": {
+        "semantic": {
+            "fontFamily": {
+                "primary": {
+                    "value": "{typography.foundation.fontFamily.primary}",
+                    "type": "fontFamily"
+                },
+                "mono": {
+                    "value": "{typography.foundation.fontFamily.mono}",
+                    "type": "fontFamily"
+                }
+            },
+            "fontSize": {
+                "xs": {
+                    "value": "{typography.foundation.fontSize.xs}",
+                    "type": "fontSize"
+                },
+                "s": {
+                    "value": "{typography.foundation.fontSize.s}",
+                    "type": "fontSize"
+                },
+                "base": {
+                    "value": "{typography.foundation.fontSize.base}",
+                    "type": "fontSize"
+                },
+                "l": {
+                    "value": "{typography.foundation.fontSize.l}",
+                    "type": "fontSize"
+                },
+                "xl": {
+                    "value": "{typography.foundation.fontSize.xl}",
+                    "type": "fontSize"
+                },
+                "2xl": {
+                    "value": "{typography.foundation.fontSize.2xl}",
+                    "type": "fontSize"
+                },
+                "3xl": {
+                    "value": "{typography.foundation.fontSize.3xl}",
+                    "type": "fontSize"
+                },
+                "4xl": {
+                    "value": "{typography.foundation.fontSize.4xl}",
+                    "type": "fontSize"
+                },
+                "5xl": {
+                    "value": "{typography.foundation.fontSize.5xl}",
+                    "type": "fontSize"
+                },
+                "6xl": {
+                    "value": "{typography.foundation.fontSize.6xl}",
+                    "type": "fontSize"
+                }
+            },
+            "fontWeight": {
+                "light": {
+                    "value": "{typography.foundation.fontWeight.light}",
+                    "type": "fontWeight"
+                },
+                "normal": {
+                    "value": "{typography.foundation.fontWeight.normal}",
+                    "type": "fontWeight"
+                },
+                "medium": {
+                    "value": "{typography.foundation.fontWeight.medium}",
+                    "type": "fontWeight"
+                },
+                "semibold": {
+                    "value": "{typography.foundation.fontWeight.semibold}",
+                    "type": "fontWeight"
+                },
+                "bold": {
+                    "value": "{typography.foundation.fontWeight.bold}",
+                    "type": "fontWeight"
+                },
+                "extrabold": {
+                    "value": "{typography.foundation.fontWeight.extrabold}",
+                    "type": "fontWeight"
+                }
+            },
+            "lineHeight": {
+                "none": {
+                    "value": "{typography.foundation.lineHeight.none}",
+                    "type": "lineHeight"
+                },
+                "tight": {
+                    "value": "{typography.foundation.lineHeight.tight}",
+                    "type": "lineHeight"
+                },
+                "snug": {
+                    "value": "{typography.foundation.lineHeight.snug}",
+                    "type": "lineHeight"
+                },
+                "normal": {
+                    "value": "{typography.foundation.lineHeight.normal}",
+                    "type": "lineHeight"
+                },
+                "relaxed": {
+                    "value": "{typography.foundation.lineHeight.relaxed}",
+                    "type": "lineHeight"
+                },
+                "loose": {
+                    "value": "{typography.foundation.lineHeight.loose}",
+                    "type": "lineHeight"
+                }
+            }
+        }
+    }
+}

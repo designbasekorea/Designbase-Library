@@ -2,6 +2,18 @@ import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import './Checkbox.scss';
 
+// DoneIcon이 있으면 사용하고, 없으면 기본 SVG 사용
+let DoneIcon: React.FC<{ size?: number }> | null = null;
+let MinusIcon: React.FC<{ size?: number }> | null = null;
+
+try {
+    const icons = require('@designbasekorea/icons');
+    DoneIcon = icons.DoneIcon || null;
+    MinusIcon = icons.MinusIcon || null;
+} catch (e) {
+    // 아이콘 패키지가 없으면 기본 SVG 사용
+}
+
 export interface CheckboxProps {
     isSelected?: boolean;
     defaultSelected?: boolean;
@@ -10,7 +22,7 @@ export interface CheckboxProps {
     isReadOnly?: boolean;
     isRequired?: boolean;
     hasLabel?: boolean;
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: 's' | 'm' | 'l';
     children?: React.ReactNode;
     className?: string;
     name?: string;
@@ -29,7 +41,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             isReadOnly = false,
             isRequired = false,
             hasLabel = true,
-            size = 'md',
+            size = 'm',
             children,
             className,
             name,
@@ -68,16 +80,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className
         );
 
-        const getIconColor = () => {
-            if (isDisabled) {
-                return 'var(--color-action-interactive-icon-disabled)';
-            }
-            if (selected || isIndeterminate) {
-                return 'var(--color-action-interactive-icon-selected)';
-            }
-            return 'var(--color-action-interactive-icon)';
-        };
-
         return (
             <label className={classes}>
                 <input
@@ -95,36 +97,50 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 />
                 <div className="designbase-checkbox__visual">
                     {selected && !isIndeterminate && (
-                        <svg
-                            className="designbase-checkbox__check-icon"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M20 6L9 17L4 12"
-                                stroke={getIconColor()}
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
+                        <div className="designbase-checkbox__check-icon">
+                            {DoneIcon ? (
+                                <DoneIcon size={16} />
+                            ) : (
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                >
+                                    <path
+                                        d="M20 6L9 17L4 12"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            )}
+                        </div>
                     )}
                     {isIndeterminate && (
-                        <svg
-                            className="designbase-checkbox__indeterminate-icon"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M5 12H19"
-                                stroke={getIconColor()}
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
+                        <div className="designbase-checkbox__indeterminate-icon">
+                            {MinusIcon ? (
+                                <MinusIcon size={16} />
+                            ) : (
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                >
+                                    <path
+                                        d="M5 12H19"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            )}
+                        </div>
                     )}
                 </div>
                 {children && <span className="designbase-checkbox__label">{children}</span>}

@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M13 4.75H3v-1.5h10z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M10.25 6V4h1.5v2c0 1.822-1.193 3.514-2.65 4.706-1.467 1.2-3.38 2.044-5.1 2.044v-1.5c1.28 0 2.867-.656 4.15-1.705 1.293-1.059 2.1-2.367 2.1-3.545" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M6.9 10.706C5.443 9.514 4.25 7.822 4.25 6h1.5c0 1.178.807 2.486 2.1 3.545 1.283 1.05 2.87 1.705 4.15 1.705v1.5c-1.72 0-3.633-.844-5.1-2.044M17 9.188l5.683 12.502-1.366.62L17 12.813l-4.317 9.497-1.366-.62z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M13.8 17.25h6.4v1.5h-6.4zM7.25 4.2V2h1.5v2.2z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const LangaugeIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M7.25 3.25V2h1.5v1.25H13v1.5h-1.25V6c0 1.726-1.071 3.336-2.423 4.514.91.468 1.855.736 2.673.736v1.5c-1.316 0-2.744-.494-4-1.264-1.255.77-2.684 1.264-4 1.264v-1.5c.818 0 1.763-.268 2.673-.736C5.321 9.336 4.25 7.726 4.25 6h1.5c0 1.178.807 2.486 2.1 3.545l.15.12.15-.12c1.293-1.059 2.1-2.367 2.1-3.545V4.75H3v-1.5zM17 9.188l5.683 12.502-1.366.62-1.618-3.56H14.3l-1.618 3.56-1.366-.62zm-2.017 8.062h4.034L17 12.813z" clip-rule="evenodd"/></svg>
+);
 
 export default LangaugeIcon;

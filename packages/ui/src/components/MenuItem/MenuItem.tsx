@@ -8,14 +8,14 @@
 
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import type { BaseIconProps } from '@designbase/icons';
-import { ChevronDownIcon, ChevronUpIcon } from '@designbase/icons';
+import type { IconProps } from '@designbasekorea/icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@designbasekorea/icons';
 import { Badge } from '../Badge/Badge';
 import './MenuItem.scss';
 
 export type MenuItemVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
 export type MenuItemType = 'inline' | 'block';
-export type MenuItemSize = 'sm' | 'md' | 'lg';
+export type MenuItemSize = 's' | 'm' | 'l';
 export type MenuItemStyle = 'dropdown' | 'accordion';
 
 export interface MenuItemChild {
@@ -26,7 +26,7 @@ export interface MenuItemChild {
     /** 차일드 아이템 링크 */
     href?: string;
     /** 차일드 아이템 아이콘 */
-    icon?: React.ComponentType<BaseIconProps>;
+    icon?: React.ComponentType<IconProps>;
     /** 차일드 아이템 활성화 상태 */
     active?: boolean;
     /** 차일드 아이템 비활성화 상태 */
@@ -53,7 +53,7 @@ export interface MenuItemProps {
     /** 메뉴 아이템 링크 */
     href?: string;
     /** 메뉴 아이템 아이콘 */
-    icon?: React.ComponentType<BaseIconProps>;
+    icon?: React.ComponentType<IconProps>;
     /** 메뉴 아이템 활성화 상태 */
     active?: boolean;
     /** 메뉴 아이템 비활성화 상태 */
@@ -96,9 +96,9 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     badge,
     badgeColor = 'primary',
     variant = 'default',
-    type = 'inline',
-    size = 'md',
-    style = 'dropdown',
+    type = 'block',
+    size = 'm',
+    style = 'accordion',
     subItems,
     expanded = false,
     expandable = false,
@@ -190,7 +190,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                             'designbase-menu-item__icon--disabled': disabled,
                         }
                     )}>
-                        <Icon size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20} />
+                        <Icon size={size === 's' ? 16 : size === 'l' ? 24 : 20} />
                     </div>
                 )}
 
@@ -202,7 +202,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                     <Badge
                         count={typeof badge === 'string' ? parseInt(badge) : badge}
                         variant={badgeColor === 'neutral' ? 'secondary' : badgeColor as any}
-                        size="sm"
+                        size="s"
                         style="number"
                     />
                 )}
@@ -237,7 +237,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                             badge={child.badge}
                             badgeColor={child.badgeColor}
                             variant={child.variant}
-                            type={child.type}
+                            type={child.type || (style === 'accordion' ? 'block' : 'inline')}
                             size={size}
                             style={child.style || style}
                             subItems={child.subItems}

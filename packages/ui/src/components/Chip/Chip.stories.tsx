@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Chip } from './Chip';
 import { useState } from 'react';
-import { UserIcon, CloseIcon, CircleCheckFilledIcon } from '@designbase/icons';
+import { UserIcon, CloseIcon, CircleCheckFilledIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Chip> = {
     title: 'Components/Chip',
@@ -13,11 +13,11 @@ const meta: Meta<typeof Chip> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
-            options: ['default', 'primary', 'success', 'warning', 'danger', 'info', 'outlined', 'neutral'],
+            options: ['default', 'primary', 'success', 'warning', 'danger', 'info', 'neutral'],
         },
         disabled: {
             control: { type: 'boolean' },
@@ -77,9 +77,9 @@ export const Clickable: Story = {
 export const Sizes: Story = {
     render: () => (
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <Chip label="Small" size="sm" />
-            <Chip label="Medium" size="md" />
-            <Chip label="Large" size="lg" />
+            <Chip label="Small" size="s" />
+            <Chip label="Medium" size="m" />
+            <Chip label="Large" size="l" />
         </div>
     ),
 };
@@ -98,17 +98,6 @@ export const Variants: Story = {
     ),
 };
 
-export const OutlinedVariants: Story = {
-    render: () => (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-            <Chip label="Primary" variant="outlined" />
-            <Chip label="Success" variant="outlined" />
-            <Chip label="Warning" variant="outlined" />
-            <Chip label="Danger" variant="outlined" />
-            <Chip label="Info" variant="outlined" />
-        </div>
-    ),
-};
 
 export const WithIcons: Story = {
     render: () => (
@@ -267,7 +256,7 @@ export const TagCloud: Story = {
                             key={index}
                             label={`${tag.label} (${tag.count})`}
                             variant={index < 3 ? 'primary' : 'default'}
-                            size={index < 5 ? 'md' : 'sm'}
+                            size={index < 5 ? 'm' : 's'}
                         />
                     ))}
                 </div>

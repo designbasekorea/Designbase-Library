@@ -10,8 +10,9 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 import './RangeSlider.scss';
 
-export type RangeSliderSize = 'sm' | 'md' | 'lg';
+export type RangeSliderSize = 's' | 'm' | 'l';
 export type RangeSliderVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger';
+export type RangeSliderValuePosition = 'top' | 'left' | 'right' | 'bottom';
 
 export interface RangeSliderProps {
     /** 현재 값 (단일 값) */
@@ -30,6 +31,8 @@ export interface RangeSliderProps {
     variant?: RangeSliderVariant;
     /** 수치 표시 여부 */
     showValue?: boolean;
+    /** 수치 표시 위치 */
+    valuePosition?: RangeSliderValuePosition;
     /** 마커 표시 여부 */
     showMarks?: boolean;
     /** 마커 값들 */
@@ -60,9 +63,10 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
     min = 0,
     max = 100,
     step = 1,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     showValue = false,
+    valuePosition = 'top',
     showMarks = false,
     marks = [],
     markLabels = {},
@@ -87,6 +91,9 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
     const isControlled = value !== undefined || range !== undefined;
     const currentValue = isControlled ? (value ?? internalValue) : internalValue;
     const currentRange = isControlled ? (range ?? internalRange) : internalRange;
+
+    // 범위 슬라이더는 기본적으로 양끝에 값 표시, 단일 슬라이더는 우측에 표시
+    const effectiveValuePosition = range !== undefined ? 'top' : (valuePosition === 'top' ? 'right' : valuePosition);
 
     // 값 정규화
     const normalizeValue = useCallback((val: number) => {
@@ -289,6 +296,7 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
         'designbase-range-slider',
         `designbase-range-slider--${size}`,
         `designbase-range-slider--${variant}`,
+        `designbase-range-slider--value-${effectiveValuePosition}`,
         {
             'designbase-range-slider--disabled': disabled,
             'designbase-range-slider--readonly': readOnly,
@@ -318,20 +326,20 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
 
     return (
         <div className={classes} {...props}>
-            {/* 값 표시 */}
+            {/* 값 표시 - 위치에 따라 다르게 렌더링 */}
             {showValue && (
                 <div className="designbase-range-slider__values">
                     {range !== undefined ? (
                         <>
-                            <span className="designbase-range-slider__value">
+                            <span className="designbase-range-slider__value designbase-range-slider__value--min">
                                 {currentRange[0]}
                             </span>
-                            <span className="designbase-range-slider__value">
+                            <span className="designbase-range-slider__value designbase-range-slider__value--max">
                                 {currentRange[1]}
                             </span>
                         </>
                     ) : (
-                        <span className="designbase-range-slider__value">
+                        <span className="designbase-range-slider__value designbase-range-slider__value--single">
                             {currentValue}
                         </span>
                     )}

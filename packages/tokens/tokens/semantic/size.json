@@ -1,0 +1,225 @@
+{
+    "size": {
+        "semantic": {
+            "xxs": {
+                "value": "{size.aliases.xxs}",
+                "type": "dimension",
+                "description": "극소형 크기"
+            },
+            "xs": {
+                "value": "{size.aliases.xs}",
+                "type": "dimension",
+                "description": "초소형 크기"
+            },
+            "s": {
+                "value": "{size.aliases.s}",
+                "type": "dimension",
+                "description": "소형 크기"
+            },
+            "m": {
+                "value": "{size.aliases.m}",
+                "type": "dimension",
+                "description": "중형 크기"
+            },
+            "l": {
+                "value": "{size.aliases.l}",
+                "type": "dimension",
+                "description": "대형 크기"
+            },
+            "xl": {
+                "value": "{size.aliases.xl}",
+                "type": "dimension",
+                "description": "초대형 크기"
+            },
+            "2xl": {
+                "value": "{size.aliases.xxl}",
+                "type": "dimension",
+                "description": "2XL 크기"
+            },
+            "icon": {
+                "xs": {
+                    "value": "{size.aliases.xxs}",
+                    "type": "dimension",
+                    "description": "아이콘 초소형 크기"
+                },
+                "s": {
+                    "value": "{size.aliases.xs}",
+                    "type": "dimension",
+                    "description": "아이콘 소형 크기"
+                },
+                "m": {
+                    "value": "{size.aliases.s}",
+                    "type": "dimension",
+                    "description": "아이콘 중형 크기"
+                },
+                "l": {
+                    "value": "{size.aliases.m}",
+                    "type": "dimension",
+                    "description": "아이콘 대형 크기"
+                },
+                "xl": {
+                    "value": "{size.aliases.l}",
+                    "type": "dimension",
+                    "description": "아이콘 초대형 크기"
+                }
+            },
+            "button": {
+                "xs": {
+                    "value": "{size.aliases.xs}",
+                    "type": "dimension",
+                    "description": "버튼 초소형 높이"
+                },
+                "s": {
+                    "value": "{size.aliases.s}",
+                    "type": "dimension",
+                    "description": "버튼 소형 높이"
+                },
+                "m": {
+                    "value": "{size.aliases.m}",
+                    "type": "dimension",
+                    "description": "버튼 중형 높이"
+                },
+                "l": {
+                    "value": "{size.aliases.l}",
+                    "type": "dimension",
+                    "description": "버튼 대형 높이"
+                },
+                "xl": {
+                    "value": "{size.aliases.xl}",
+                    "type": "dimension",
+                    "description": "버튼 초대형 높이"
+                }
+            },
+            "input": {
+                "xs": {
+                    "value": "{size.aliases.s}",
+                    "type": "dimension",
+                    "description": "입력 필드 초소형 높이"
+                },
+                "s": {
+                    "value": "{size.aliases.m}",
+                    "type": "dimension",
+                    "description": "입력 필드 소형 높이"
+                },
+                "m": {
+                    "value": "{size.aliases.l}",
+                    "type": "dimension",
+                    "description": "입력 필드 중형 높이"
+                },
+                "l": {
+                    "value": "{size.aliases.xl}",
+                    "type": "dimension",
+                    "description": "입력 필드 대형 높이"
+                },
+                "xl": {
+                    "value": "{size.aliases.xxl}",
+                    "type": "dimension",
+                    "description": "입력 필드 초대형 높이"
+                }
+            },
+            "avatar": {
+                "xs": {
+                    "value": "{size.aliases.xs}",
+                    "type": "dimension",
+                    "description": "아바타 초소형 크기"
+                },
+                "s": {
+                    "value": "{size.aliases.s}",
+                    "type": "dimension",
+                    "description": "아바타 소형 크기"
+                },
+                "m": {
+                    "value": "{size.aliases.m}",
+                    "type": "dimension",
+                    "description": "아바타 중형 크기"
+                },
+                "l": {
+                    "value": "{size.aliases.l}",
+                    "type": "dimension",
+                    "description": "아바타 대형 크기"
+                },
+                "xl": {
+                    "value": "{size.aliases.xl}",
+                    "type": "dimension",
+                    "description": "아바타 초대형 크기"
+                },
+                "2xl": {
+                    "value": "{size.aliases.xxl}",
+                    "type": "dimension",
+                    "description": "아바타 2XL 크기"
+                },
+                "3xl": {
+                    "value": "{size.aliases.3xl}",
+                    "type": "dimension",
+                    "description": "아바타 3XL 크기"
+                }
+            },
+            "card": {
+                "s": {
+                    "value": "200px",
+                    "type": "dimension",
+                    "description": "카드 소형 높이"
+                },
+                "m": {
+                    "value": "300px",
+                    "type": "dimension",
+                    "description": "카드 중형 높이"
+                },
+                "l": {
+                    "value": "400px",
+                    "type": "dimension",
+                    "description": "카드 대형 높이"
+                }
+            },
+            "modal": {
+                "s": {
+                    "value": "400px",
+                    "type": "dimension",
+                    "description": "모달 소형 너비"
+                },
+                "m": {
+                    "value": "600px",
+                    "type": "dimension",
+                    "description": "모달 중형 너비"
+                },
+                "l": {
+                    "value": "800px",
+                    "type": "dimension",
+                    "description": "모달 대형 너비"
+                },
+                "xl": {
+                    "value": "1000px",
+                    "type": "dimension",
+                    "description": "모달 초대형 너비"
+                }
+            },
+            "checkbox": {
+                "xs": {
+                    "value": "{size.aliases.xs}",
+                    "type": "dimension",
+                    "description": "체크박스 초소형 크기"
+                },
+                "s": {
+                    "value": "{size.aliases.s}",
+                    "type": "dimension",
+                    "description": "체크박스 소형 크기"
+                },
+                "m": {
+                    "value": "{size.aliases.m}",
+                    "type": "dimension",
+                    "description": "체크박스 중형 크기"
+                },
+                "l": {
+                    "value": "{size.aliases.l}",
+                    "type": "dimension",
+                    "description": "체크박스 대형 크기"
+                },
+                "xl": {
+                    "value": "{size.aliases.xl}",
+                    "type": "dimension",
+                    "description": "체크박스 초대형 크기"
+                }
+            }
+        }
+    }
+}

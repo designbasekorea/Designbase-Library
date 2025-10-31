@@ -16,7 +16,7 @@ const meta: Meta<typeof Tabs> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -188,15 +188,15 @@ export const Sizes: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <div>
                 <h3>Small</h3>
-                <Tabs items={sampleTabs} size="sm" />
+                <Tabs items={sampleTabs} size="s" />
             </div>
             <div>
                 <h3>Medium</h3>
-                <Tabs items={sampleTabs} size="md" />
+                <Tabs items={sampleTabs} size="m" />
             </div>
             <div>
                 <h3>Large</h3>
-                <Tabs items={sampleTabs} size="lg" />
+                <Tabs items={sampleTabs} size="l" />
             </div>
         </div>
     ),
@@ -316,6 +316,33 @@ export const Interactive: Story = {
                 <div style={{ padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
                     <p>현재 선택된 탭: <strong>{selectedTab}</strong></p>
                 </div>
+            </div>
+        );
+    },
+};
+
+export const ManyTabs: Story = {
+    render: () => {
+        const manyTabs: TabItem[] = [
+            { id: 'tab1', label: '홈', content: <div>홈 콘텐츠</div> },
+            { id: 'tab2', label: '탐색', content: <div>탐색 콘텐츠</div> },
+            { id: 'tab3', label: '알림', content: <div>알림 콘텐츠</div> },
+            { id: 'tab4', label: '메시지', content: <div>메시지 콘텐츠</div> },
+            { id: 'tab5', label: '프로필', content: <div>프로필 콘텐츠</div> },
+            { id: 'tab6', label: '설정', content: <div>설정 콘텐츠</div> },
+            { id: 'tab7', label: '도움말', content: <div>도움말 콘텐츠</div> },
+            { id: 'tab8', label: '문의하기', content: <div>문의 콘텐츠</div> },
+            { id: 'tab9', label: '약관', content: <div>약관 콘텐츠</div> },
+            { id: 'tab10', label: '개인정보처리방침', content: <div>개인정보처리방침 콘텐츠</div> },
+        ];
+
+        return (
+            <div style={{ width: '600px' }}>
+                <h3>많은 탭 (좌우 스크롤 지원)</h3>
+                <p style={{ color: '#666', fontSize: '14px', marginBottom: '16px' }}>
+                    탭의 폭을 넘어가면 좌우로 스크롤됩니다. 터치 디바이스에서는 스와이프도 가능합니다.
+                </p>
+                <Tabs items={manyTabs} />
             </div>
         );
     },

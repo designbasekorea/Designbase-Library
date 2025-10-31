@@ -1,3 +1,4 @@
+// .storybook/main.ts
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
@@ -7,7 +8,6 @@ const root = resolve(__dirname, '..');
 
 const config: StorybookConfig = {
     stories: [
-        // 각 패키지 안의 stories/MDX 자동 수집
         '../packages/**/src/**/*.stories.@(tsx|mdx)',
         '../packages/**/stories/**/*.stories.@(tsx|mdx)',
         '../stories/**/*.stories.@(tsx|mdx)',
@@ -15,27 +15,42 @@ const config: StorybookConfig = {
     addons: [
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
+        '@storybook/addon-themes', // ← themes 파라미터 쓰면 같이 넣어두세요
     ],
     framework: {
         name: '@storybook/react-vite',
         options: {},
     },
-    typescript: {
-        check: false,
-    },
-    async viteFinal(config) {
-        // 워크스페이스 패키지를 dist가 아니라 "src"로 바로 바라보게 alias
-        config.resolve = config.resolve || {};
-        config.resolve.alias = [
-            { find: '@designbase/ui', replacement: resolve(root, 'packages/ui/src') },
-            { find: '@designbase/icons', replacement: resolve(root, 'packages/icons/src') },
-            { find: '@designbase/theme', replacement: resolve(root, 'packages/theme/src') },
-            { find: '@designbase/tokens', replacement: resolve(root, 'packages/tokens/src') },
-            { find: '@designbase/utils', replacement: resolve(root, 'packages/utils/src') },
-            { find: '@designbase/figma-bridge', replacement: resolve(root, 'packages/figma-bridge/src') },
-        ];
+    typescript: { check: false },
 
-        return config;
+    async viteFinal(cfg) {
+        cfg.resolve ??= {};
+        const alias = Array.isArray(cfg.resolve.alias) ? cfg.resolve.alias : [];
+
+        // 1) css 서브패스는 dist 쪽으로 고정(예외 처리) — alias 앞쪽에 둡니다.
+        alias.unshift(
+            {
+                find: '@designbasekorea/theme/css',
+                replacement: resolve(root, 'packages/theme/dist/css/theme.css'),
+            },
+            {
+                find: '@designbasekorea/tokens/css',
+                replacement: resolve(root, 'packages/tokens/dist/css/tokens.css'),
+            },
+        );
+
+        // 2) 나머지 패키지는 src를 보게 함
+        alias.push(
+            { find: '@designbasekorea/ui', replacement: resolve(root, 'packages/ui/src') },
+            { find: '@designbasekorea/icons', replacement: resolve(root, 'packages/icons/src') },
+            { find: '@designbasekorea/theme', replacement: resolve(root, 'packages/theme/src') },
+            { find: '@designbasekorea/tokens', replacement: resolve(root, 'packages/tokens/src') },
+            { find: '@designbasekorea/utils', replacement: resolve(root, 'packages/utils/src') },
+            { find: '@designbasekorea/figma-bridge', replacement: resolve(root, 'packages/figma-bridge/src') },
+        );
+
+        cfg.resolve.alias = alias;
+        return cfg;
     },
 };
 

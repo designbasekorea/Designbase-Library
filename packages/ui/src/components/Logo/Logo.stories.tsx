@@ -32,25 +32,113 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        text: 'Logo',
-        size: 'md',
+        type: 'designbase',
+        size: 'm',
     },
 };
 
-export const TextLogos: Story = {
+export const DesignBaseLogos: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-                <h3>기본 텍스트 로고</h3>
-                <Logo text="DesignBase" />
+                <h3>DesignBase 풀 로고</h3>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <Logo type="designbase" size="xs" />
+                    <Logo type="designbase" size="s" />
+                    <Logo type="designbase" size="m" />
+                    <Logo type="designbase" size="l" />
+                    <Logo type="designbase" size="xl" />
+                </div>
+            </div>
+            <div>
+                <h3>DesignBase 심볼 마크</h3>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <Logo type="designbase-mark" size="xs" />
+                    <Logo type="designbase-mark" size="s" />
+                    <Logo type="designbase-mark" size="m" />
+                    <Logo type="designbase-mark" size="l" />
+                    <Logo type="designbase-mark" size="xl" />
+                </div>
+            </div>
+        </div>
+    ),
+};
+
+export const DesignBaseVariants: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            <div>
+                <h3>라이트 배경</h3>
+                <div style={{
+                    padding: '24px',
+                    backgroundColor: '#ffffff',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    gap: '24px',
+                    flexWrap: 'wrap'
+                }}>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Default</p>
+                        <Logo type="designbase" variant="default" size="l" />
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Primary</p>
+                        <Logo type="designbase" variant="primary" size="l" />
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Secondary</p>
+                        <Logo type="designbase" variant="secondary" size="l" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>다크 배경</h3>
+                <div style={{
+                    padding: '24px',
+                    backgroundColor: '#1f2937',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    gap: '24px',
+                    flexWrap: 'wrap'
+                }}>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#fff', marginBottom: '8px' }}>White</p>
+                        <Logo type="designbase" variant="white" size="l" />
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#fff', marginBottom: '8px' }}>Primary</p>
+                        <Logo type="designbase" variant="primary" size="l" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>심볼 마크 - 다양한 색상</h3>
+                <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+                    <Logo type="designbase-mark" variant="default" size="l" />
+                    <Logo type="designbase-mark" variant="primary" size="l" />
+                    <Logo type="designbase-mark" variant="secondary" size="l" />
+                </div>
+            </div>
+        </div>
+    ),
+};
+
+export const CustomTextLogos: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+                <h3>커스텀 텍스트 로고</h3>
+                <p style={{ color: '#666', fontSize: '14px', marginBottom: '16px' }}>
+                    type="custom"을 사용하면 커스텀 텍스트나 이미지를 로고로 사용할 수 있습니다.
+                </p>
+                <Logo type="custom" text="DesignBase" />
             </div>
             <div>
                 <h3>다양한 브랜드명</h3>
                 <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                    <Logo text="DesignBase" />
-                    <Logo text="Acme Corp" />
-                    <Logo text="TechFlow" />
-                    <Logo text="InnovateLab" />
+                    <Logo type="custom" text="Acme Corp" />
+                    <Logo type="custom" text="TechFlow" />
+                    <Logo type="custom" text="InnovateLab" />
                 </div>
             </div>
         </div>
@@ -69,15 +157,15 @@ export const Sizes: Story = {
                     </div>
                     <div style={{ textAlign: 'center' }}>
                         <h4>SM</h4>
-                        <Logo text="DesignBase" size="sm" />
+                        <Logo text="DesignBase" size="s" />
                     </div>
                     <div style={{ textAlign: 'center' }}>
                         <h4>MD</h4>
-                        <Logo text="DesignBase" size="md" />
+                        <Logo text="DesignBase" size="m" />
                     </div>
                     <div style={{ textAlign: 'center' }}>
                         <h4>LG</h4>
-                        <Logo text="DesignBase" size="lg" />
+                        <Logo text="DesignBase" size="l" />
                     </div>
                     <div style={{ textAlign: 'center' }}>
                         <h4>XL</h4>
@@ -119,24 +207,26 @@ export const Variants: Story = {
     ),
 };
 
-export const ImageLogos: Story = {
+export const CustomImageLogos: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-                <h3>이미지 로고 예제</h3>
+                <h3>커스텀 이미지 로고 예제</h3>
                 <p style={{ color: '#666', marginBottom: '16px' }}>
-                    실제 이미지 URL을 사용하여 테스트해보세요.
+                    type="custom"과 src를 함께 사용하여 커스텀 이미지 로고를 표시할 수 있습니다.
                 </p>
                 <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                     <Logo
+                        type="custom"
                         src="https://via.placeholder.com/120x40/3b82f6/ffffff?text=Logo"
-                        alt="DesignBase Logo"
-                        size="md"
+                        alt="Custom Logo"
+                        size="m"
                     />
                     <Logo
+                        type="custom"
                         src="https://via.placeholder.com/100x30/10b981/ffffff?text=Acme"
                         alt="Acme Logo"
-                        size="sm"
+                        size="s"
                     />
                 </div>
             </div>
@@ -151,17 +241,17 @@ export const ImageLogos: Story = {
                     <Logo
                         src="https://via.placeholder.com/80x25/3b82f6/ffffff?text=SM"
                         alt="SM Logo"
-                        size="sm"
+                        size="s"
                     />
                     <Logo
                         src="https://via.placeholder.com/100x30/3b82f6/ffffff?text=MD"
                         alt="MD Logo"
-                        size="md"
+                        size="m"
                     />
                     <Logo
                         src="https://via.placeholder.com/120x35/3b82f6/ffffff?text=LG"
                         alt="LG Logo"
-                        size="lg"
+                        size="l"
                     />
                     <Logo
                         src="https://via.placeholder.com/140x40/3b82f6/ffffff?text=XL"
@@ -216,7 +306,7 @@ export const FullWidth: Story = {
                     <Logo
                         text="DesignBase"
                         fullWidth
-                        size="lg"
+                        size="l"
                     />
                 </div>
             </div>
@@ -232,7 +322,7 @@ export const FullWidth: Story = {
                         src="https://via.placeholder.com/200x50/3b82f6/ffffff?text=Full+Width+Logo"
                         alt="Full Width Logo"
                         fullWidth
-                        size="lg"
+                        size="l"
                     />
                 </div>
             </div>
@@ -254,7 +344,7 @@ export const InContext: Story = {
                     border: '1px solid #e5e7eb',
                     borderRadius: '8px'
                 }}>
-                    <Logo text="DesignBase" size="lg" />
+                    <Logo text="DesignBase" size="l" />
                     <nav style={{ display: 'flex', gap: '24px' }}>
                         <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>홈</a>
                         <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>서비스</a>
@@ -273,7 +363,7 @@ export const InContext: Story = {
                     backgroundColor: '#1f2937',
                     borderRadius: '8px'
                 }}>
-                    <Logo text="DesignBase" size="lg" variant="white" />
+                    <Logo text="DesignBase" size="l" variant="white" />
                     <nav style={{ display: 'flex', gap: '24px' }}>
                         <a href="#" style={{ color: '#ffffff', textDecoration: 'none' }}>홈</a>
                         <a href="#" style={{ color: '#ffffff', textDecoration: 'none' }}>서비스</a>

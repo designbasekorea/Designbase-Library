@@ -9,6 +9,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Backdrop } from './Backdrop';
 import { Button } from '../Button/Button';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from '../Modal/Modal';
+import { Spinner } from '../Spinner/Spinner';
 
 const meta: Meta<typeof Backdrop> = {
     title: 'Components/Backdrop',
@@ -46,32 +48,43 @@ const meta: Meta<typeof Backdrop> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 Backdrop
+// 기본 Backdrop + Modal
 export const Default: Story = {
-    args: {
-        open: true,
-        opacity: 0.5,
-        animation: 'fade',
-    },
-    render: (args) => (
-        <Backdrop {...args}>
-            <div style={{
-                background: 'white',
-                padding: '24px',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                maxWidth: '400px',
-                textAlign: 'center'
-            }}>
-                <h3>모달 내용</h3>
-                <p>이것은 Backdrop 위에 표시되는 모달 내용입니다.</p>
-                <Button variant="primary">확인</Button>
+    render: () => {
+        const [isOpen, setIsOpen] = useState(false);
+
+        return (
+            <div>
+                <Button onClick={() => setIsOpen(true)}>모달 열기</Button>
+
+                <Backdrop
+                    open={isOpen}
+                    opacity={0.5}
+                    animation="fade"
+                    onClick={() => setIsOpen(false)}
+                >
+                    <Modal
+                        isOpen={isOpen}
+                        onClose={() => setIsOpen(false)}
+                        title="기본 모달"
+                        size="m"
+                        closeOnOutsideClick={false}
+                    >
+                        <ModalBody>
+                            <p>Backdrop과 Modal을 함께 사용하는 기본 예시입니다.</p>
+                            <p>Backdrop이 배경을 어둡게 하고, Modal이 내용을 표시합니다.</p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="primary" onClick={() => setIsOpen(false)}>확인</Button>
+                        </ModalFooter>
+                    </Modal>
+                </Backdrop>
             </div>
-        </Backdrop>
-    ),
+        );
+    },
 };
 
-// 애니메이션 효과별 Backdrop
+// 애니메이션 효과별 Backdrop + Modal
 export const Animations: Story = {
     render: () => {
         const [openAnimation, setOpenAnimation] = useState<string | null>(null);
@@ -100,25 +113,28 @@ export const Animations: Story = {
                     animation={currentAnimation}
                     onClick={closeBackdrop}
                 >
-                    <div style={{
-                        background: 'white',
-                        padding: '24px',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                        maxWidth: '400px',
-                        textAlign: 'center'
-                    }}>
-                        <h3>{currentAnimation} 애니메이션</h3>
-                        <p>현재 {currentAnimation} 애니메이션이 적용된 Backdrop입니다.</p>
-                        <Button variant="primary" onClick={closeBackdrop}>닫기</Button>
-                    </div>
+                    <Modal
+                        isOpen={!!openAnimation}
+                        onClose={closeBackdrop}
+                        title={`${currentAnimation} 애니메이션`}
+                        size="m"
+                        closeOnOutsideClick={false}
+                    >
+                        <ModalBody>
+                            <p>현재 {currentAnimation} 애니메이션이 적용된 Backdrop입니다.</p>
+                            <p>각 애니메이션 효과를 비교해보세요.</p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="primary" onClick={closeBackdrop}>닫기</Button>
+                        </ModalFooter>
+                    </Modal>
                 </Backdrop>
             </div>
         );
     },
 };
 
-// 블러 효과 Backdrop
+// 블러 효과 Backdrop + Modal
 export const BlurEffects: Story = {
     render: () => {
         const [open, setOpen] = useState(false);
@@ -126,9 +142,9 @@ export const BlurEffects: Story = {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
                     <Button onClick={() => setOpen(true)}>블러 효과 Backdrop 열기</Button>
-                    <label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         블러 강도: {blurAmount}px
                         <input
                             type="range"
@@ -136,7 +152,6 @@ export const BlurEffects: Story = {
                             max="20"
                             value={blurAmount}
                             onChange={(e) => setBlurAmount(Number(e.target.value))}
-                            style={{ marginLeft: '8px' }}
                         />
                     </label>
                 </div>
@@ -147,25 +162,28 @@ export const BlurEffects: Story = {
                     blurAmount={blurAmount}
                     onClick={() => setOpen(false)}
                 >
-                    <div style={{
-                        background: 'white',
-                        padding: '24px',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                        maxWidth: '400px',
-                        textAlign: 'center'
-                    }}>
-                        <h3>블러 효과</h3>
-                        <p>블러 강도: {blurAmount}px</p>
-                        <Button variant="primary" onClick={() => setOpen(false)}>닫기</Button>
-                    </div>
+                    <Modal
+                        isOpen={open}
+                        onClose={() => setOpen(false)}
+                        title="블러 효과"
+                        size="m"
+                        closeOnOutsideClick={false}
+                    >
+                        <ModalBody>
+                            <p>현재 블러 강도: {blurAmount}px</p>
+                            <p>슬라이더로 블러 강도를 조절하면서 효과를 확인해보세요.</p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="primary" onClick={() => setOpen(false)}>닫기</Button>
+                        </ModalFooter>
+                    </Modal>
                 </Backdrop>
             </div>
         );
     },
 };
 
-// 투명도 조절 Backdrop
+// 투명도 조절 Backdrop + Modal
 export const OpacityControl: Story = {
     render: () => {
         const [open, setOpen] = useState(false);
@@ -173,9 +191,9 @@ export const OpacityControl: Story = {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
                     <Button onClick={() => setOpen(true)}>투명도 조절 Backdrop 열기</Button>
-                    <label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         투명도: {opacity}
                         <input
                             type="range"
@@ -184,7 +202,6 @@ export const OpacityControl: Story = {
                             step="0.1"
                             value={opacity}
                             onChange={(e) => setOpacity(Number(e.target.value))}
-                            style={{ marginLeft: '8px' }}
                         />
                     </label>
                 </div>
@@ -194,25 +211,28 @@ export const OpacityControl: Story = {
                     opacity={opacity}
                     onClick={() => setOpen(false)}
                 >
-                    <div style={{
-                        background: 'white',
-                        padding: '24px',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                        maxWidth: '400px',
-                        textAlign: 'center'
-                    }}>
-                        <h3>투명도 조절</h3>
-                        <p>현재 투명도: {opacity}</p>
-                        <Button variant="primary" onClick={() => setOpen(false)}>닫기</Button>
-                    </div>
+                    <Modal
+                        isOpen={open}
+                        onClose={() => setOpen(false)}
+                        title="투명도 조절"
+                        size="m"
+                        closeOnOutsideClick={false}
+                    >
+                        <ModalBody>
+                            <p>현재 투명도: {opacity}</p>
+                            <p>슬라이더로 투명도를 조절하면서 배경의 밝기 변화를 확인해보세요.</p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="primary" onClick={() => setOpen(false)}>닫기</Button>
+                        </ModalFooter>
+                    </Modal>
                 </Backdrop>
             </div>
         );
     },
 };
 
-// 커스텀 색상 Backdrop
+// 커스텀 색상 Backdrop + Modal
 export const CustomColors: Story = {
     render: () => {
         const [open, setOpen] = useState(false);
@@ -254,25 +274,28 @@ export const CustomColors: Story = {
                     backgroundColor={backgroundColor}
                     onClick={() => setOpen(false)}
                 >
-                    <div style={{
-                        background: 'white',
-                        padding: '24px',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                        maxWidth: '400px',
-                        textAlign: 'center'
-                    }}>
-                        <h3>커스텀 색상</h3>
-                        <p>현재 배경색: {backgroundColor}</p>
-                        <Button variant="primary" onClick={() => setOpen(false)}>닫기</Button>
-                    </div>
+                    <Modal
+                        isOpen={open}
+                        onClose={() => setOpen(false)}
+                        title="커스텀 색상"
+                        size="m"
+                        closeOnOutsideClick={false}
+                    >
+                        <ModalBody>
+                            <p>현재 배경색: {backgroundColor}</p>
+                            <p>색상 버튼을 클릭하여 배경색을 변경해보세요.</p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="primary" onClick={() => setOpen(false)}>닫기</Button>
+                        </ModalFooter>
+                    </Modal>
                 </Backdrop>
             </div>
         );
     },
 };
 
-// 접근성 예제
+// 접근성 예제 + Modal
 export const Accessibility: Story = {
     render: () => {
         const [open, setOpen] = useState(false);
@@ -286,29 +309,27 @@ export const Accessibility: Story = {
                     onClick={() => setOpen(false)}
                     disableEscapeKeyDown={false}
                 >
-                    <div
-                        style={{
-                            background: 'white',
-                            padding: '24px',
-                            borderRadius: '8px',
-                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                            maxWidth: '400px',
-                            textAlign: 'center'
-                        }}
-                        role="dialog"
-                        aria-labelledby="dialog-title"
-                        aria-describedby="dialog-description"
+                    <Modal
+                        isOpen={open}
+                        onClose={() => setOpen(false)}
+                        title="접근성 고려 다이얼로그"
+                        size="m"
+                        closeOnOutsideClick={false}
+                        closeOnEscape={true}
                     >
-                        <h3 id="dialog-title">접근성 고려 다이얼로그</h3>
-                        <p id="dialog-description">
-                            이 다이얼로그는 스크린 리더와 키보드 네비게이션을 지원합니다.
-                            ESC 키를 눌러 닫을 수 있습니다.
-                        </p>
-                        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                            <Button variant="primary" onClick={() => setOpen(false)}>확인</Button>
-                            <Button variant="secondary" onClick={() => setOpen(false)}>취소</Button>
-                        </div>
-                    </div>
+                        <ModalBody>
+                            <p>
+                                이 다이얼로그는 스크린 리더와 키보드 네비게이션을 지원합니다.
+                                ESC 키를 눌러 닫을 수 있습니다.
+                            </p>
+                        </ModalBody>
+                        <ModalFooter>
+                            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+                                <Button variant="tertiary" onClick={() => setOpen(false)}>취소</Button>
+                                <Button variant="primary" onClick={() => setOpen(false)}>확인</Button>
+                            </div>
+                        </ModalFooter>
+                    </Modal>
                 </Backdrop>
             </div>
         );
@@ -334,27 +355,30 @@ export const UsageExamples: Story = {
                         onClick={() => setModalOpen(false)}
                         animation="fade"
                     >
-                        <div style={{
-                            background: 'white',
-                            padding: '32px',
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-                            maxWidth: '500px',
-                            width: '100%'
-                        }}>
-                            <h2>모달 제목</h2>
-                            <p>이것은 모달 다이얼로그의 예제입니다. 배경을 클릭하거나 ESC 키를 눌러 닫을 수 있습니다.</p>
-                            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '24px' }}>
-                                <Button variant="secondary" onClick={() => setModalOpen(false)}>취소</Button>
-                                <Button variant="primary" onClick={() => setModalOpen(false)}>확인</Button>
-                            </div>
-                        </div>
+                        <Modal
+                            isOpen={modalOpen}
+                            onClose={() => setModalOpen(false)}
+                            title="모달 제목"
+                            size="m"
+                            closeOnOutsideClick={false}
+                        >
+                            <ModalBody>
+                                <p>이것은 모달 다이얼로그의 예제입니다.</p>
+                                <p>배경을 클릭하거나 ESC 키를 눌러 닫을 수 있습니다.</p>
+                            </ModalBody>
+                            <ModalFooter>
+                                <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+                                    <Button variant="tertiary" onClick={() => setModalOpen(false)}>취소</Button>
+                                    <Button variant="primary" onClick={() => setModalOpen(false)}>확인</Button>
+                                </div>
+                            </ModalFooter>
+                        </Modal>
                     </Backdrop>
                 </div>
 
                 {/* 로딩 오버레이 예제 */}
                 <div>
-                    <h3>로딩 오버레이</h3>
+                    <h3>로딩 오버레이 (Backdrop + Spinner)</h3>
                     <Button onClick={() => setLoadingOpen(true)}>로딩 시작</Button>
 
                     <Backdrop
@@ -365,31 +389,24 @@ export const UsageExamples: Story = {
                         blur={true}
                         blurAmount={8}
                     >
-                        <div style={{
-                            background: 'white',
-                            padding: '32px',
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-                            textAlign: 'center'
-                        }}>
-                            <div style={{
-                                width: '40px',
-                                height: '40px',
-                                border: '4px solid #f3f3f3',
-                                borderTop: '4px solid #007bff',
-                                borderRadius: '50%',
-                                animation: 'spin 1s linear infinite',
-                                margin: '0 auto 16px'
-                            }} />
-                            <p>로딩 중...</p>
-                            <Button
-                                variant="secondary"
-                                onClick={() => setLoadingOpen(false)}
-                                style={{ marginTop: '16px' }}
-                            >
-                                로딩 취소
-                            </Button>
-                        </div>
+                        <Modal
+                            isOpen={loadingOpen}
+                            onClose={() => setLoadingOpen(false)}
+                            title="로딩 중"
+                            size="s"
+                            closeOnOutsideClick={false}
+                            closeOnEscape={false}
+                        >
+                            <ModalBody>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                                    <Spinner type="circular" size="l" />
+                                    <p>데이터를 불러오는 중입니다...</p>
+                                </div>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button variant="tertiary" onClick={() => setLoadingOpen(false)}>취소</Button>
+                            </ModalFooter>
+                        </Modal>
                     </Backdrop>
                 </div>
 

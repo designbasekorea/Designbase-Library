@@ -5,22 +5,10 @@
 .designbase-file-uploader {
     display: flex;
     flex-direction: column;
-    gap: var(--db-gap-l);
+    gap: var(--db-gap-m);
 
     // 크기별 스타일
-    &--size-sm {
-        .designbase-file-uploader__file-list-title {
-            font-size: var(--db-text-sm);
-            font-weight: var(--db-weight-medium);
-        }
-
-        .designbase-file-uploader__file-name {
-            font-size: var(--db-text-sm);
-        }
-
-        .designbase-file-uploader__file-size {
-            font-size: var(--db-text-xs);
-        }
+    &--size-s {
 
         .designbase-file-uploader__file-error {
             font-size: var(--db-text-xs);
@@ -28,49 +16,25 @@
 
         .designbase-file-uploader__retry-button,
         .designbase-file-uploader__remove-button {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+            padding: var(--db-padding-xs);
             font-size: var(--db-text-xs);
         }
     }
 
-    &--size-md {
-        .designbase-file-uploader__file-list-title {
-            font-size: var(--db-text-base);
-            font-weight: var(--db-weight-semibold);
-        }
-
-        .designbase-file-uploader__file-name {
-            font-size: var(--db-text-base);
-        }
-
-        .designbase-file-uploader__file-size {
-            font-size: var(--db-text-sm);
-        }
+    &--size-m {
 
         .designbase-file-uploader__file-error {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-file-uploader__retry-button,
         .designbase-file-uploader__remove-button {
-            padding: var(--db-padding-s) var(--db-padding-m);
-            font-size: var(--db-text-sm);
+            padding: var(--db-padding-s);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--size-lg {
-        .designbase-file-uploader__file-list-title {
-            font-size: var(--db-text-lg);
-            font-weight: var(--db-weight-semibold);
-        }
-
-        .designbase-file-uploader__file-name {
-            font-size: var(--db-text-lg);
-        }
-
-        .designbase-file-uploader__file-size {
-            font-size: var(--db-text-base);
-        }
+    &--size-l {
 
         .designbase-file-uploader__file-error {
             font-size: var(--db-text-base);
@@ -78,7 +42,7 @@
 
         .designbase-file-uploader__retry-button,
         .designbase-file-uploader__remove-button {
-            padding: var(--db-padding-m) var(--db-padding-l);
+            padding: var(--db-padding-m);
             font-size: var(--db-text-base);
         }
     }
@@ -86,28 +50,28 @@
     // 변형별 스타일
     &--variant-default {
         .designbase-file-uploader__file-list {
-            background: var(--db-bg-primary);
-            border: 1px solid var(--db-border-primary);
+            background: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
         }
     }
 
     &--variant-outlined {
         .designbase-file-uploader__file-list {
             background: transparent;
-            border: 1px solid var(--db-border-primary);
+            border: 1px solid var(--db-border-base);
         }
     }
 
     &--variant-filled {
         .designbase-file-uploader__file-list {
-            background: var(--db-bg-secondary);
-            border: 1px solid var(--db-border-primary);
+            background: var(--db-surface-layer-1);
+            border: 1px solid var(--db-border-base);
         }
     }
 
     // 비활성화 상태
     &--disabled {
-        opacity: var(--db-opacity-50);
+        opacity: var(--db-opacity-disabled);
         pointer-events: none;
     }
 
@@ -117,21 +81,22 @@
         .designbase-file-uploader__retry-button,
         .designbase-file-uploader__remove-button {
             cursor: default;
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
         }
     }
 
     // 파일 목록
     &__file-list {
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
         overflow: hidden;
     }
 
     // 파일 목록 제목
     &__file-list-title {
-        padding: var(--db-padding-m) var(--db-padding-l);
-        background: var(--db-bg-secondary);
-        border-bottom: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-s);
+        font-size: var(--db-text-xs);
+        background: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
         color: var(--db-text-primary);
     }
 
@@ -147,8 +112,8 @@
         align-items: center;
         justify-content: space-between;
         gap: var(--db-gap-m);
-        padding: var(--db-padding-m);
-        border-bottom: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-s);
+        border-bottom: 1px solid var(--db-border-base);
         transition: background-color var(--db-animation-speed) var(--db-animation-ease);
 
         &:last-child {
@@ -156,31 +121,31 @@
         }
 
         &:hover {
-            background: var(--db-bg-hover);
+            background: var(--db-surface-layer-1);
         }
 
         // 상태별 스타일
         &--pending {
             .designbase-file-uploader__file-icon {
-                color: var(--db-text-secondary);
+                color: var(--db-icon-muted);
             }
         }
 
         &--uploading {
             .designbase-file-uploader__file-icon {
-                color: var(--db-blue-500);
+                color: var(--db-brand-primary);
             }
         }
 
         &--success {
             .designbase-file-uploader__file-icon {
-                color: var(--db-green-500);
+                color: var(--db-icon-success);
             }
         }
 
         &--error {
             .designbase-file-uploader__file-icon {
-                color: var(--db-red-500);
+                color: var(--db-icon-error);
             }
         }
     }
@@ -189,7 +154,7 @@
     &__file-info {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-m);
+        gap: var(--db-gap-s);
         flex: 1;
         min-width: 0;
     }
@@ -200,14 +165,14 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        width: var(--db-size-md);
-        height: var(--db-size-md);
-        color: var(--db-text-secondary);
+        width: var(--db-size-m);
+        height: var(--db-size-m);
+        color: var(--db-icon-default);
 
         // Spinner 컴포넌트 스타일 조정
         .designbase-spinner {
-            width: var(--db-size-sm);
-            height: var(--db-size-sm);
+            width: var(--db-size-s);
+            height: var(--db-size-s);
         }
     }
 
@@ -215,13 +180,13 @@
     &__file-details {
         display: flex;
         flex-direction: column;
-        gap: var(--db-gap-xs);
         min-width: 0;
         flex: 1;
     }
 
     // 파일 이름
     &__file-name {
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         color: var(--db-text-primary);
         white-space: nowrap;
@@ -229,14 +194,17 @@
         text-overflow: ellipsis;
     }
 
+
     // 파일 크기
     &__file-size {
+        font-size: var(--db-text-xs);
         color: var(--db-text-secondary);
     }
 
     // 파일 에러
     &__file-error {
-        color: var(--db-red-500);
+        font-size: var(--db-text-xs);
+        color: var(--db-icon-error);
         font-weight: var(--db-weight-medium);
     }
 
@@ -262,26 +230,26 @@
     // 재시도 버튼
     &__retry-button {
         padding: var(--db-padding-s) var(--db-padding-m);
-        border: 1px solid var(--db-blue-500);
-        background: var(--db-bg-primary);
-        color: var(--db-blue-500);
-        border-radius: var(--db-radius-md);
+        border: 1px solid var(--db-brand-primary);
+        background: var(--db-surface-base);
+        color: var(--db-brand-primary);
+        border-radius: var(--db-radius-m);
         cursor: pointer;
         font-weight: var(--db-weight-medium);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover:not(:disabled) {
-            background: var(--db-blue-500);
-            color: var(--db-white);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-brand-primary);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
         }
     }
@@ -289,76 +257,28 @@
     // 삭제 버튼
     &__remove-button {
         padding: var(--db-padding-s) var(--db-padding-m);
-        border: 1px solid var(--db-border-primary);
-        background: var(--db-bg-primary);
+        border: 1px solid var(--db-border-base);
+        background: var(--db-surface-base);
         color: var(--db-text-secondary);
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
         cursor: pointer;
         font-weight: var(--db-weight-medium);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover:not(:disabled) {
-            border-color: var(--db-red-500);
-            color: var(--db-red-500);
-            background: var(--db-red-50);
+            border-color: var(--db-icon-error);
+            color: var(--db-icon-error);
+            background: var(--db-feedback-error-bg);
         }
 
         &:focus {
-            outline: 2px solid var(--db-red-500);
+            outline: 2px solid var(--db-icon-error);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
-        }
-    }
-}
-
-
-
-// 다크 모드는 상위에서 관리됩니다
-
-// 반응형 스타일
-@media (max-width: 768px) {
-    .designbase-file-uploader {
-        &__file-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: var(--db-gap-m);
-        }
-
-        &__file-info {
-            width: 100%;
-        }
-
-        &__progress {
-            width: 100%;
-            margin: 0;
-            min-width: auto;
-        }
-
-        &__file-actions {
-            width: 100%;
-            justify-content: flex-end;
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    .designbase-file-uploader {
-        &__file-item {
-            padding: var(--db-padding-s) var(--db-padding-m);
-        }
-
-        &__file-list-title {
-            padding: var(--db-padding-s) var(--db-padding-m);
-        }
-
-        &__retry-button,
-        &__remove-button {
-            padding: var(--db-padding-xs) var(--db-padding-s);
-            font-size: var(--db-text-xs);
         }
     }
 }

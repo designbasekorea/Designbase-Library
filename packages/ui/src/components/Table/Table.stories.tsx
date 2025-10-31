@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Table } from './Table';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 const meta: Meta<typeof Table> = {
     title: 'Components/Table',
@@ -12,7 +12,7 @@ const meta: Meta<typeof Table> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -55,197 +55,115 @@ interface User {
     role: string;
     status: 'active' | 'inactive' | 'pending';
     lastLogin: string;
+    description: string;
+    department: string;
+    phone: string;
 }
 
-const sampleData: User[] = [
-    {
-        id: '1',
-        name: '김철수',
-        email: 'kim@example.com',
-        role: '관리자',
-        status: 'active',
-        lastLogin: '2024-01-15',
-    },
-    {
-        id: '2',
-        name: '이영희',
-        email: 'lee@example.com',
-        role: '사용자',
-        status: 'active',
-        lastLogin: '2024-01-14',
-    },
-    {
-        id: '3',
-        name: '박민수',
-        email: 'park@example.com',
-        role: '편집자',
-        status: 'inactive',
-        lastLogin: '2024-01-10',
-    },
-    {
-        id: '4',
-        name: '정수진',
-        email: 'jung@example.com',
-        role: '사용자',
-        status: 'pending',
-        lastLogin: '2024-01-12',
-    },
-    {
-        id: '5',
-        name: '최동현',
-        email: 'choi@example.com',
-        role: '관리자',
-        status: 'active',
-        lastLogin: '2024-01-13',
-    },
-];
+const makeUsers = (count: number): User[] => {
+    const roles = ['관리자', '사용자', '편집자'];
+    const statuses: User['status'][] = ['active', 'inactive', 'pending'];
+    const departments = ['개발팀', '디자인팀', '마케팅팀', '영업팀', '인사팀'];
+    const users: User[] = [];
+    for (let i = 1; i <= count; i++) {
+        users.push({
+            id: String(i),
+            name: `사용자 ${i}`,
+            email: `user${i}@example.com`,
+            role: roles[i % roles.length],
+            status: statuses[i % statuses.length],
+            lastLogin: `2024-01-${String((i % 28) + 1).padStart(2, '0')}`,
+            description: `이것은 사용자 ${i}에 대한 상세한 설명입니다. 매우 긴 텍스트가 들어가서 테이블의 가로 스크롤을 테스트할 수 있습니다.`,
+            department: departments[i % departments.length],
+            phone: `010-${String(Math.floor(Math.random() * 10000)).padStart(4, '0')}-${String(Math.floor(Math.random() * 10000)).padStart(4, '0')}`,
+        });
+    }
+    return users;
+};
+
+const sampleData: User[] = makeUsers(50);
 
 const columns = [
-    { key: 'name', header: '이름', sortable: true },
-    { key: 'email', header: '이메일', sortable: true },
-    { key: 'role', header: '역할', sortable: true },
-    { key: 'status', header: '상태', sortable: true },
-    { key: 'lastLogin', header: '마지막 로그인', sortable: true },
+    { key: 'name', header: '이름', sortable: true, width: '150px' },
+    { key: 'email', header: '이메일', sortable: true, width: '200px' },
+    { key: 'role', header: '역할', sortable: true, width: '120px' },
+    { key: 'status', header: '상태', sortable: true, width: '100px' },
+    { key: 'lastLogin', header: '마지막 로그인', sortable: true, width: '150px' },
+    { key: 'description', header: '설명', sortable: true, width: '300px' },
+    { key: 'department', header: '부서', sortable: true, width: '150px' },
+    { key: 'phone', header: '전화번호', sortable: true, width: '150px' },
 ];
 
 export const Default: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
+    render: () => {
+        const [page, setPage] = useState(1);
+        const [pageSize, setPageSize] = useState(10);
+        const totalItems = sampleData.length;
+        const paged = useMemo(() => {
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+            return sampleData.slice(start, end);
+        }, [page, pageSize]);
+
+        return (
+            <Table
+                data={paged}
+                columns={columns}
+                rowKey="id"
+                pagination
+                page={page}
+                pageSize={pageSize}
+                totalItems={totalItems}
+                onPageChange={setPage}
+                onPageSizeChange={(size) => { setPage(1); setPageSize(size); }}
+                pageSizeOptions={[5, 10, 20]}
+            />
+        );
     },
 };
 
 export const WithHeader: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        title: '사용자 목록',
-        showCountBadge: true,
-        showFilter: true,
-        filterOptions: [
-            { value: 'all', label: '전체' },
-            { value: 'active', label: '활성' },
-            { value: 'inactive', label: '비활성' },
-            { value: 'pending', label: '대기' },
-        ],
-        onFilterChange: (value: string | string[]) => console.log('Filter changed:', value),
+    render: () => {
+        const [page, setPage] = useState(1);
+        const [pageSize, setPageSize] = useState(10);
+        const totalItems = sampleData.length;
+        const paged = useMemo(() => sampleData.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize), [page, pageSize]);
+        return (
+            <Table
+                data={paged}
+                columns={columns}
+                rowKey="id"
+                title="사용자 목록"
+                showCountBadge
+                showFilter
+                filterOptions={[
+                    { value: 'all', label: '전체' },
+                    { value: 'active', label: '활성' },
+                    { value: 'inactive', label: '비활성' },
+                    { value: 'pending', label: '대기' },
+                ]}
+                pagination
+                page={page}
+                pageSize={pageSize}
+                totalItems={totalItems}
+                onPageChange={setPage}
+                onPageSizeChange={(size) => { setPage(1); setPageSize(size); }}
+                pageSizeOptions={[5, 10, 20]}
+            />
+        );
     },
 };
 
-export const WithSelection: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        selectable: true,
-    },
-};
-
-export const MultiSelect: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        selectable: true,
-        multiSelect: true,
-    },
-};
-
-export const Sortable: Story = {
-    args: {
-        data: sampleData,
-        columns: [
-            { key: 'name', header: '이름', sortable: true },
-            { key: 'email', header: '이메일', sortable: true },
-            { key: 'role', header: '역할', sortable: true },
-            { key: 'status', header: '상태', sortable: true },
-            { key: 'lastLogin', header: '마지막 로그인', sortable: true },
-        ],
-        rowKey: 'id',
-        sortable: true,
-    },
-};
-
-export const Striped: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        variant: 'striped',
-    },
-};
-
-export const Bordered: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        variant: 'bordered',
-    },
-};
-
-export const Hoverable: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        variant: 'hoverable',
-    },
-};
-
-export const Sizes: Story = {
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div>
-                <h3>Small</h3>
-                <Table data={sampleData} columns={columns} rowKey="id" size="sm" />
-            </div>
-            <div>
-                <h3>Medium</h3>
-                <Table data={sampleData} columns={columns} rowKey="id" size="md" />
-            </div>
-            <div>
-                <h3>Large</h3>
-                <Table data={sampleData} columns={columns} rowKey="id" size="lg" />
-            </div>
-        </div>
-    ),
-};
-
-export const Loading: Story = {
-    args: {
-        data: [],
-        columns,
-        rowKey: 'id',
-        loading: true,
-    },
-};
-
-export const Empty: Story = {
-    args: {
-        data: [],
-        columns,
-        rowKey: 'id',
-        emptyMessage: '데이터가 없습니다.',
-    },
-};
-
-export const Scrollable: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        scrollable: true,
-        height: '300px',
-    },
-};
+// 불필요한 다양한 예제 제거(간소화)
 
 export const Interactive: Story = {
     render: () => {
         const [selectedRows, setSelectedRows] = useState<string[]>([]);
         const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
+        const [page, setPage] = useState(1);
+        const [pageSize, setPageSize] = useState(10);
+        const totalItems = sampleData.length;
+        const paged = useMemo(() => sampleData.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize), [page, pageSize]);
 
         return (
             <div>
@@ -254,13 +172,20 @@ export const Interactive: Story = {
                     <p>정렬: {sortConfig ? `${sortConfig.key} (${sortConfig.direction})` : '없음'}</p>
                 </div>
                 <Table
-                    data={sampleData}
+                    data={paged}
                     columns={columns}
                     rowKey="id"
                     selectable
                     multiSelect
                     sortable
                     variant="hoverable"
+                    pagination
+                    page={page}
+                    pageSize={pageSize}
+                    totalItems={totalItems}
+                    onPageChange={setPage}
+                    onPageSizeChange={(size) => { setPage(1); setPageSize(size); }}
+                    pageSizeOptions={[5, 10, 20]}
                     selectedRows={selectedRows}
                     onSelectionChange={setSelectedRows}
                     onSortChange={(column, direction) => setSortConfig({ key: column, direction: direction || 'asc' })}
@@ -271,100 +196,4 @@ export const Interactive: Story = {
     },
 };
 
-export const CustomRowKey: Story = {
-    args: {
-        data: sampleData.map(item => ({ ...item, customKey: `user-${item.id}` })),
-        columns,
-        rowKey: 'customKey',
-    },
-};
-
-export const FixedColumns: Story = {
-    args: {
-        data: sampleData,
-        columns: [
-            { key: 'name', label: '이름', sortable: true, fixed: 'left' },
-            { key: 'email', label: '이메일', sortable: true },
-            { key: 'role', label: '역할', sortable: true },
-            { key: 'status', label: '상태', sortable: true },
-            { key: 'lastLogin', label: '마지막 로그인', sortable: true, fixed: 'right' },
-        ],
-        rowKey: 'id',
-        scrollable: true,
-        height: '300px',
-    },
-};
-
-export const DataTableExample: Story = {
-    render: () => {
-        const [currentPage, setCurrentPage] = useState(1);
-        const [pageSize, setPageSize] = useState(10);
-        const [selectedRows, setSelectedRows] = useState<string[]>([]);
-
-        // Simulate pagination
-        const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = startIndex + pageSize;
-        const paginatedData = sampleData.slice(startIndex, endIndex);
-
-        return (
-            <div>
-                <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h3>사용자 관리</h3>
-                    <div>
-                        <button style={{ marginRight: '8px' }}>새 사용자 추가</button>
-                        <button disabled={selectedRows.length === 0}>선택 삭제</button>
-                    </div>
-                </div>
-                <Table
-                    data={paginatedData}
-                    columns={columns}
-                    rowKey="id"
-                    selectable
-                    multiSelect
-                    sortable
-                    variant="striped"
-                    selectedRows={selectedRows}
-                    onSelectionChange={setSelectedRows}
-                />
-                <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>총 {sampleData.length}개 항목</span>
-                    <div>
-                        <select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
-                            <option value={5}>5개씩</option>
-                            <option value={10}>10개씩</option>
-                            <option value={20}>20개씩</option>
-                        </select>
-                        <button
-                            disabled={currentPage === 1}
-                            onClick={() => setCurrentPage(currentPage - 1)}
-                            style={{ marginLeft: '8px' }}
-                        >
-                            이전
-                        </button>
-                        <span style={{ margin: '0 8px' }}>{currentPage}</span>
-                        <button
-                            disabled={endIndex >= sampleData.length}
-                            onClick={() => setCurrentPage(currentPage + 1)}
-                        >
-                            다음
-                        </button>
-                    </div>
-                </div>
-            </div>
-        );
-    },
-};
-
-export const ResponsiveExample: Story = {
-    args: {
-        data: sampleData,
-        columns,
-        rowKey: 'id',
-        variant: 'bordered',
-    },
-    parameters: {
-        viewport: {
-            defaultViewport: 'mobile1',
-        },
-    },
-};
+// 기타 예제 제거(간소화)

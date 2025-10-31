@@ -1,0 +1,107 @@
+.designbase-figma-progress-modal {
+    &__content {
+        padding: var(--db-padding-m);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--db-gap-s);
+        text-align: center;
+        min-width: 280px;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* 로딩/완료 아이콘 공통 48px 고정 */
+        width: 48px;
+        height: 48px;
+        margin-bottom: var(--db-margin-s);
+    }
+
+    /* 로딩 아이콘(스피너) — 1em = 48px */
+    &__icon-loading {
+        inline-size: 100%;
+        block-size: 100%;
+
+        .designbase-spinner {
+            font-size: 48px;
+            /* 스피너 내부 1em = 48px */
+            line-height: 1;
+
+            svg {
+                transform-origin: 50% 50%;
+                transform-box: fill-box;
+            }
+        }
+    }
+
+    /* 완료 아이콘 — 48px로 고정 */
+    &__icon-success {
+        color: var(--db-feedback-success-fg);
+        animation: successPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+        svg {
+            width: 48px;
+            height: 48px;
+            display: block;
+        }
+    }
+
+    &__message {
+        margin: 0;
+        font-size: var(--db-text-m);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+        line-height: var(--db-leading-normal);
+    }
+
+    &__status {
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-secondary);
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__help-text {
+        margin: 0;
+        font-size: var(--db-text-xs);
+        color: var(--db-text-tertiary);
+        line-height: var(--db-leading-relaxed);
+    }
+
+    &__actions {
+        width: 100%;
+        margin-top: var(--db-margin-s);
+    }
+
+    /* 모달 자체 페이드/스케일 애니메이션 이름이 'spin'과 겹치지 않도록 유지 */
+    @keyframes successPop {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__content {
+            padding: var(--db-padding-m);
+            min-width: auto;
+        }
+
+        &__message {
+            font-size: var(--db-text-s);
+        }
+    }
+}

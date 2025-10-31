@@ -13,7 +13,7 @@ const meta: Meta<typeof Stepper> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -46,47 +46,28 @@ export const Default: Story = {
     },
 };
 
-export const DifferentSizes: Story = {
+export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
             <div>
                 <h3>작은 크기</h3>
-                <Stepper size="sm" value={1} />
+                <Stepper size="s" value={1} />
             </div>
 
             <div>
                 <h3>중간 크기</h3>
-                <Stepper size="md" value={1} />
+                <Stepper size="m" value={1} />
             </div>
 
             <div>
                 <h3>큰 크기</h3>
-                <Stepper size="lg" value={1} />
+                <Stepper size="l" value={1} />
             </div>
         </div>
     ),
 };
 
-export const DifferentVariants: Story = {
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
-            <div>
-                <h3>기본 스타일</h3>
-                <Stepper variant="default" value={1} />
-            </div>
-
-            <div>
-                <h3>아웃라인 스타일</h3>
-                <Stepper variant="outlined" value={1} />
-            </div>
-
-            <div>
-                <h3>채워진 스타일</h3>
-                <Stepper variant="filled" value={1} />
-            </div>
-        </div>
-    ),
-};
+// 변형 비교 스토리 제거 (간소화)
 
 export const WithLimits: Story = {
     args: {
@@ -177,42 +158,6 @@ export const Interactive: Story = {
     },
 };
 
-export const MultipleSteppers: Story = {
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div>
-                <h3>수량 선택</h3>
-                <Stepper value={1} min={1} max={99} />
-            </div>
+// 다중 예제 제거 (간소화)
 
-            <div>
-                <h3>온도 조절</h3>
-                <Stepper value={20} min={-10} max={40} step={0.5} />
-            </div>
-
-            <div>
-                <h3>페이지 번호</h3>
-                <Stepper value={1} min={1} max={100} />
-            </div>
-
-            <div>
-                <h3>투표 수</h3>
-                <Stepper value={0} min={0} max={1000} step={10} />
-            </div>
-        </div>
-    ),
-};
-
-export const ResponsiveExample: Story = {
-    args: {
-        value: 1,
-        min: 0,
-        max: 10,
-        step: 1,
-    },
-    parameters: {
-        viewport: {
-            defaultViewport: 'mobile1',
-        },
-    },
-};
+// 반응형 예제 제거 (간소화)

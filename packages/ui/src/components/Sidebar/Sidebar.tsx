@@ -10,9 +10,11 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { MenuItem, type MenuItemProps } from '../MenuItem/MenuItem';
 import { Logo } from '../Logo/Logo';
+import { Button } from '../Button/Button';
+import { ChevronDownIcon, ChevronLeftIcon } from '@designbasekorea/icons';
 import './Sidebar.scss';
 
-export type SidebarSize = 'sm' | 'md' | 'lg';
+export type SidebarSize = 's' | 'm' | 'l';
 export type SidebarVariant = 'default' | 'dark' | 'light';
 export type SidebarPosition = 'left' | 'right';
 
@@ -66,7 +68,7 @@ export interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
-    size = 'md',
+    size = 'm',
     variant = 'default',
     position = 'left',
     logo,
@@ -168,24 +170,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         onClick={onLogoClick}
                         role={onLogoClick ? 'button' : undefined}
                         tabIndex={onLogoClick ? 0 : undefined}
+                        onKeyDown={(e) => {
+                            if (onLogoClick && (e.key === 'Enter' || e.key === ' ')) {
+                                e.preventDefault();
+                                onLogoClick();
+                            }
+                        }}
                     >
-                        {logo || <Logo size={size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md'} />}
+                        {logo || <Logo size="s" />}
                     </div>
 
                     {collapsible && (
-                        <button
+                        <Button
+                            variant="ghost"
+                            size="s"
+                            iconOnly
                             className="designbase-sidebar__toggle"
-                            onClick={handleToggle}
+                            onPress={handleToggle}
                             aria-label={collapsed ? '사이드바 펼치기' : '사이드바 접기'}
                         >
-                            <i className={clsx(
-                                'designbase-sidebar__toggle-icon',
-                                'designbase-icon-chevron-left',
-                                {
+                            <ChevronLeftIcon
+                                className={clsx('designbase-sidebar__toggle-icon', {
                                     'designbase-sidebar__toggle-icon--collapsed': collapsed,
-                                }
-                            )} />
-                        </button>
+                                })}
+                            />
+                        </Button>
                     )}
                 </div>
 
@@ -199,7 +208,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 {/* 사용자 프로필 영역 */}
                 {userProfile && !collapsed && (
                     <div className="designbase-sidebar__user">
-                        <div className="designbase-sidebar__user-info">
+                        <div
+                            className="designbase-sidebar__user-info"
+                            onClick={() => onUserMenuItemClick?.({ id: 'profile', label: '프로필', href: '#' })}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    onUserMenuItemClick?.({ id: 'profile', label: '프로필', href: '#' });
+                                }
+                            }}
+                            style={{ cursor: 'pointer' }}
+                        >
                             {userProfile.avatar ? (
                                 <img
                                     src={userProfile.avatar}
@@ -232,25 +253,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                             <ul className="designbase-sidebar__user-menu">
                                 {userMenuItems.map((item) => (
                                     <li key={item.id}>
-                                        <a
+                                        <MenuItem
+                                            id={item.id}
+                                            label={item.label}
                                             href={item.href}
-                                            className={clsx(
-                                                'designbase-sidebar__user-menu-link',
-                                                {
-                                                    'designbase-sidebar__user-menu-link--disabled': item.disabled,
-                                                }
-                                            )}
-                                            onClick={(e) => {
-                                                if (item.disabled) {
-                                                    e.preventDefault();
-                                                    return;
-                                                }
-                                                handleUserMenuItemClick(item);
-                                            }}
-                                        >
-                                            {item.icon && React.createElement(item.icon, { size: 16 })}
-                                            {item.label}
-                                        </a>
+                                            icon={item.icon}
+                                            disabled={item.disabled}
+                                            type="block"
+                                            style="accordion"
+                                            onClick={() => handleUserMenuItemClick(item)}
+                                        />
                                     </li>
                                 ))}
                             </ul>
@@ -260,7 +272,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* 접힌 상태에서 사용자 아바타만 표시 */}
                 {userProfile && collapsed && (
-                    <div className="designbase-sidebar__user-collapsed">
+                    <div
+                        className="designbase-sidebar__user-collapsed"
+                        onClick={() => onUserMenuItemClick?.({ id: 'profile', label: '프로필', href: '#' })}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                onUserMenuItemClick?.({ id: 'profile', label: '프로필', href: '#' });
+                            }
+                        }}
+                        style={{ cursor: 'pointer' }}
+                    >
                         {userProfile.avatar ? (
                             <img
                                 src={userProfile.avatar}

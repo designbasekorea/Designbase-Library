@@ -5,67 +5,67 @@
     font-weight: var(--db-weight-medium);
     line-height: 1;
     white-space: nowrap;
-    border-radius: var(--db-radius-action-md);
+    border-radius: var(--db-radius-m);
     transition: all var(--db-animation-speed) var(--db-animation-ease);
     border: 1px solid transparent;
 
     // Sizes
-    &--sm {
+    &--s {
         font-size: var(--db-text-xs);
         padding: var(--db-padding-xxs);
     }
 
-    &--md {
-        font-size: var(--db-text-sm);
+    &--m {
+        font-size: var(--db-text-s);
         padding: var(--db-padding-xs);
     }
 
-    &--lg {
+    &--l {
         font-size: var(--db-text-base);
         padding: var(--db-padding-s);
     }
 
     // Variants
     &--primary {
-        background-color: var(--db-btn-primary-bg);
-        border-color: var(--db-btn-primary-bg);
-        color: var(--db-btn-primary-text);
+        background-color: var(--db-brand-primary);
+        border-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
     }
 
     &--secondary {
-        background-color: var(--db-btn-secondary-bg);
-        border-color: var(--db-btn-secondary-border);
-        color: var(--db-btn-secondary-text);
+        background-color: var(--db-surface-layer-2);
+        border-color: var(--db-border-base);
+        color: var(--db-text-primary);
     }
 
     &--tertiary {
-        background-color: var(--db-btn-secondary-bg);
-        border-color: var(--db-btn-secondary-border);
-        color: var(--db-btn-secondary-text);
+        background-color: var(--db-surface-layer-1);
+        border-color: var(--db-border-muted);
+        color: var(--db-text-secondary);
     }
 
     &--info {
-        background-color: var(--db-blue-600);
-        color: var(--db-text-inverse);
-        border-color: var(--db-blue-600);
+        background-color: var(--db-feedback-info-fg);
+        color: var(--db-text-inverse-primary);
+        border-color: var(--db-feedback-info-fg);
     }
 
     &--success {
-        background-color: var(--db-green-600);
-        color: var(--db-text-inverse);
-        border-color: var(--db-green-600);
+        background-color: var(--db-feedback-success-fg);
+        color: var(--db-text-inverse-primary);
+        border-color: var(--db-feedback-success-fg);
     }
 
     &--warning {
-        background-color: var(--db-yellow-600);
-        color: var(--db-text-inverse);
-        border-color: var(--db-yellow-600);
+        background-color: var(--db-feedback-warning-fg);
+        color: var(--db-text-inverse-primary);
+        border-color: var(--db-feedback-warning-fg);
     }
 
     &--danger {
-        background-color: var(--db-red-600);
-        border-color: var(--db-red-600);
-        color: var(--db-text-inverse);
+        background-color: var(--db-feedback-error-fg);
+        border-color: var(--db-feedback-error-fg);
+        color: var(--db-text-inverse-primary);
     }
 
     // Styles
@@ -78,14 +78,14 @@
         border-radius: 50%;
         border: none;
 
-        &.designbase-badge--sm {
+        &.designbase-badge--s {
             width: 6px;
             height: 6px;
             min-width: 6px;
             min-height: 6px;
         }
 
-        &.designbase-badge--lg {
+        &.designbase-badge--l {
             width: 10px;
             height: 10px;
             min-width: 10px;
@@ -94,72 +94,71 @@
     }
 
     &--number {
-        border-radius: var(--db-radius-btn-pill);
+        border-radius: var(--db-radius-action-pill);
         min-width: 20px;
         justify-content: center;
 
-        &.designbase-badge--sm {
+        &.designbase-badge--s {
             min-width: 16px;
         }
 
-        &.designbase-badge--lg {
+        &.designbase-badge--l {
             min-width: 24px;
         }
     }
 
     &--text {
-        border-radius: var(--db-radius-action-md);
+        border-radius: var(--db-radius-action-m);
     }
 
     &--outlined {
         background-color: transparent;
 
         &.designbase-badge--primary {
-            color: var(--db-blue-600);
-            border-color: var(--db-blue-600);
+            color: var(--db-brand-primary);
+            border-color: var(--db-brand-primary);
         }
 
         &.designbase-badge--secondary {
             color: var(--db-text-secondary);
-            border-color: var(--db-border-primary);
+            border-color: var(--db-border-base);
         }
 
         &.designbase-badge--info {
-            color: var(--db-blue-600);
-            border-color: var(--db-blue-600);
+            color: var(--db-feedback-info-fg);
+            border-color: var(--db-feedback-info-fg);
         }
 
         &.designbase-badge--success {
-            color: var(--db-green-600);
-            border-color: var(--db-green-600);
+            color: var(--db-feedback-success-fg);
+            border-color: var(--db-feedback-success-fg);
         }
 
         &.designbase-badge--warning {
-            color: var(--db-yellow-600);
-            border-color: var(--db-yellow-600);
+            color: var(--db-feedback-warning-fg);
+            border-color: var(--db-feedback-warning-fg);
         }
 
         &.designbase-badge--danger {
-            color: var(--db-red-600);
-            border-color: var(--db-red-600);
+            color: var(--db-feedback-error-fg);
+            border-color: var(--db-feedback-error-fg);
         }
     }
 
     // Disabled state
     &--disabled {
-        opacity: 0.5;
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
     }
 
     // Hover effects
     &:not(.designbase-badge--disabled):hover {
-        transform: translateY(-1px);
-        box-shadow: var(--db-shadow-sm);
+        // transform: translateY(-1px);
     }
 
     // Focus styles
     &:focus-visible {
-        outline: 2px solid var(--db-blue-500);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 }

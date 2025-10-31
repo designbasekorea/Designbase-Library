@@ -10,13 +10,11 @@ import {
     DownloadIcon,
     ExpandIcon,
     ShrinkIcon,
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import './Lightbox.scss';
 
 // 타입 정의
-export type LightboxSize = 'sm' | 'md' | 'lg' | 'xl';
-export type LightboxVariant = 'default' | 'minimal' | 'fullscreen';
-export type LightboxTheme = 'light' | 'dark';
+export type LightboxSize = 's' | 'm' | 'l' | 'xl';
 
 export interface LightboxImage {
     /** 이미지 ID */
@@ -44,10 +42,6 @@ export interface LightboxProps {
     currentIndex?: number;
     /** Lightbox 크기 */
     size?: LightboxSize;
-    /** Lightbox 스타일 변형 */
-    variant?: LightboxVariant;
-    /** 테마 */
-    theme?: LightboxTheme;
     /** 열림 상태 */
     isOpen: boolean;
     /** 열림 상태 변경 핸들러 */
@@ -80,10 +74,6 @@ export interface LightboxProps {
     closeOnBackdropClick?: boolean;
     /** ESC 키로 닫기 */
     closeOnEscape?: boolean;
-    /** 읽기 전용 */
-    readonly?: boolean;
-    /** 비활성화 */
-    disabled?: boolean;
     /** 추가 CSS 클래스 */
     className?: string;
 }
@@ -91,9 +81,7 @@ export interface LightboxProps {
 const Lightbox: React.FC<LightboxProps> = ({
     images,
     currentIndex = 0,
-    size = 'lg',
-    variant = 'default',
-    theme = 'light',
+    size = 'l',
     isOpen,
     onOpenChange,
     onImageChange,
@@ -110,8 +98,6 @@ const Lightbox: React.FC<LightboxProps> = ({
     showToolbar = true,
     closeOnBackdropClick = true,
     closeOnEscape = true,
-    readonly = false,
-    disabled = false,
     className,
 }) => {
     const [internalCurrentIndex, setInternalCurrentIndex] = useState(currentIndex);
@@ -123,6 +109,8 @@ const Lightbox: React.FC<LightboxProps> = ({
     const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [isImageError, setIsImageError] = useState(false);
+    const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
+    const [touchEnd, setTouchEnd] = useState({ x: 0, y: 0 });
 
     const modalRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
@@ -182,32 +170,32 @@ const Lightbox: React.FC<LightboxProps> = ({
 
     // 줌 인
     const handleZoomIn = useCallback(() => {
-        if (!enableZoom || disabled || readonly) return;
+        if (!enableZoom) return;
         setZoomLevel(prev => Math.min(prev * 1.5, 5));
-    }, [enableZoom, disabled, readonly]);
+    }, [enableZoom]);
 
     // 줌 아웃
     const handleZoomOut = useCallback(() => {
-        if (!enableZoom || disabled || readonly) return;
+        if (!enableZoom) return;
         setZoomLevel(prev => Math.max(prev / 1.5, 0.1));
-    }, [enableZoom, disabled, readonly]);
+    }, [enableZoom]);
 
     // 줌 리셋
     const handleZoomReset = useCallback(() => {
-        if (!enableZoom || disabled || readonly) return;
+        if (!enableZoom) return;
         setZoomLevel(1);
         setImagePosition({ x: 0, y: 0 });
-    }, [enableZoom, disabled, readonly]);
+    }, [enableZoom]);
 
     // 회전
     const handleRotate = useCallback(() => {
-        if (!enableRotate || disabled || readonly) return;
+        if (!enableRotate) return;
         setRotation(prev => (prev + 90) % 360);
-    }, [enableRotate, disabled, readonly]);
+    }, [enableRotate]);
 
     // 다운로드
     const handleDownload = useCallback(() => {
-        if (!enableDownload || disabled || readonly) return;
+        if (!enableDownload) return;
         const currentImage = images[internalCurrentIndex];
         if (currentImage) {
             // 이미지 URL에서 파일 확장자 추출
@@ -245,13 +233,13 @@ const Lightbox: React.FC<LightboxProps> = ({
                     document.body.removeChild(link);
                 });
         }
-    }, [enableDownload, disabled, readonly, images, internalCurrentIndex]);
+    }, [enableDownload, images, internalCurrentIndex]);
 
     // 전체화면 토글
     const handleFullscreenToggle = useCallback(() => {
-        if (!enableFullscreen || disabled || readonly) return;
+        if (!enableFullscreen) return;
         setIsFullscreen(prev => !prev);
-    }, [enableFullscreen, disabled, readonly]);
+    }, [enableFullscreen]);
 
     // 이미지 로드 핸들러
     const handleImageLoad = useCallback(() => {
@@ -279,7 +267,7 @@ const Lightbox: React.FC<LightboxProps> = ({
 
     // 마우스 휠 줌 핸들러
     const handleWheel = useCallback((event: React.WheelEvent) => {
-        if (!enableWheelZoom || disabled || readonly) return;
+        if (!enableWheelZoom) return;
         event.preventDefault();
 
         if (event.deltaY < 0) {
@@ -287,34 +275,65 @@ const Lightbox: React.FC<LightboxProps> = ({
         } else {
             handleZoomOut();
         }
-    }, [enableWheelZoom, disabled, readonly, handleZoomIn, handleZoomOut]);
+    }, [enableWheelZoom, handleZoomIn, handleZoomOut]);
 
     // 드래그 시작 핸들러
     const handleMouseDown = useCallback((event: React.MouseEvent) => {
-        if (zoomLevel <= 1 || disabled || readonly) return;
+        if (zoomLevel <= 1) return;
         event.preventDefault();
         setIsDragging(true);
         setDragStart({ x: event.clientX - imagePosition.x, y: event.clientY - imagePosition.y });
-    }, [zoomLevel, disabled, readonly, imagePosition]);
+    }, [zoomLevel, imagePosition]);
 
     // 드래그 중 핸들러
     const handleMouseMove = useCallback((event: React.MouseEvent) => {
-        if (!isDragging || zoomLevel <= 1 || disabled || readonly) return;
+        if (!isDragging || zoomLevel <= 1) return;
         event.preventDefault();
         setImagePosition({
             x: event.clientX - dragStart.x,
             y: event.clientY - dragStart.y,
         });
-    }, [isDragging, zoomLevel, disabled, readonly, dragStart]);
+    }, [isDragging, zoomLevel, dragStart]);
 
     // 드래그 종료 핸들러
     const handleMouseUp = useCallback(() => {
         setIsDragging(false);
     }, []);
 
+    // 터치 시작 핸들러
+    const handleTouchStart = useCallback((event: React.TouchEvent) => {
+        const touch = event.touches[0];
+        setTouchStart({ x: touch.clientX, y: touch.clientY });
+    }, []);
+
+    // 터치 종료 핸들러
+    const handleTouchEnd = useCallback((event: React.TouchEvent) => {
+        const touch = event.changedTouches[0];
+        setTouchEnd({ x: touch.clientX, y: touch.clientY });
+        handleSwipe();
+    }, []);
+
+    // 스와이프 처리
+    const handleSwipe = useCallback(() => {
+        const deltaX = touchStart.x - touchEnd.x;
+        const deltaY = touchStart.y - touchEnd.y;
+        const minSwipeDistance = 50;
+
+        // 수평 스와이프가 수직 스와이프보다 크고, 최소 거리 이상일 때
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+            if (deltaX > 0) {
+                // 왼쪽으로 스와이프 - 다음 이미지
+                goToNext();
+            } else {
+                // 오른쪽으로 스와이프 - 이전 이미지
+                goToPrevious();
+            }
+        }
+    }, [touchStart, touchEnd, goToNext, goToPrevious]);
+
     // 키보드 이벤트 핸들러
     useEffect(() => {
-        if (!enableKeyboard || !isOpen || disabled || readonly) return;
+        if (!enableKeyboard || !isOpen) return;
 
         const handleKeyDown = (event: KeyboardEvent) => {
             switch (event.key) {
@@ -356,8 +375,6 @@ const Lightbox: React.FC<LightboxProps> = ({
     }, [
         enableKeyboard,
         isOpen,
-        disabled,
-        readonly,
         closeOnEscape,
         handleClose,
         goToPrevious,
@@ -401,12 +418,8 @@ const Lightbox: React.FC<LightboxProps> = ({
             className={clsx(
                 'designbase-lightbox',
                 `designbase-lightbox--size-${size}`,
-                `designbase-lightbox--variant-${variant}`,
-                `designbase-lightbox--theme-${theme}`,
                 {
                     'designbase-lightbox--fullscreen': isFullscreen,
-                    'designbase-lightbox--disabled': disabled,
-                    'designbase-lightbox--readonly': readonly,
                 },
                 className
             )}
@@ -440,7 +453,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                             <button
                                                 className="designbase-lightbox__toolbar-button"
                                                 onClick={handleZoomOut}
-                                                disabled={disabled || readonly}
                                                 title="줌 아웃"
                                                 type="button"
                                             >
@@ -449,7 +461,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                             <button
                                                 className="designbase-lightbox__toolbar-button"
                                                 onClick={handleZoomReset}
-                                                disabled={disabled || readonly}
                                                 title="줌 리셋"
                                                 type="button"
                                             >
@@ -458,7 +469,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                             <button
                                                 className="designbase-lightbox__toolbar-button"
                                                 onClick={handleZoomIn}
-                                                disabled={disabled || readonly}
                                                 title="줌 인"
                                                 type="button"
                                             >
@@ -470,7 +480,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                         <button
                                             className="designbase-lightbox__toolbar-button"
                                             onClick={handleRotate}
-                                            disabled={disabled || readonly}
                                             title="회전"
                                             type="button"
                                         >
@@ -481,7 +490,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                         <button
                                             className="designbase-lightbox__toolbar-button"
                                             onClick={handleDownload}
-                                            disabled={disabled || readonly}
                                             title="다운로드"
                                             type="button"
                                         >
@@ -492,7 +500,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                         <button
                                             className="designbase-lightbox__toolbar-button"
                                             onClick={handleFullscreenToggle}
-                                            disabled={disabled || readonly}
                                             title={isFullscreen ? "전체화면 해제" : "전체화면"}
                                             type="button"
                                         >
@@ -505,7 +512,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                 <button
                                     className="designbase-lightbox__close-button"
                                     onClick={handleClose}
-                                    disabled={disabled}
                                     title="닫기"
                                     type="button"
                                 >
@@ -523,7 +529,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                 <button
                                     className="designbase-lightbox__nav-button designbase-lightbox__nav-button--prev"
                                     onClick={goToPrevious}
-                                    disabled={disabled || readonly}
                                     title="이전 이미지"
                                     type="button"
                                 >
@@ -532,7 +537,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                 <button
                                     className="designbase-lightbox__nav-button designbase-lightbox__nav-button--next"
                                     onClick={goToNext}
-                                    disabled={disabled || readonly}
                                     title="다음 이미지"
                                     type="button"
                                 >
@@ -550,6 +554,8 @@ const Lightbox: React.FC<LightboxProps> = ({
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseUp}
+                            onTouchStart={handleTouchStart}
+                            onTouchEnd={handleTouchEnd}
                         >
                             {isImageError ? (
                                 <div className="designbase-lightbox__error">
@@ -612,7 +618,6 @@ const Lightbox: React.FC<LightboxProps> = ({
                                             }
                                         )}
                                         onClick={() => handleImageChange(index)}
-                                        disabled={disabled || readonly}
                                         title={image.title || `이미지 ${index + 1}`}
                                         type="button"
                                     >

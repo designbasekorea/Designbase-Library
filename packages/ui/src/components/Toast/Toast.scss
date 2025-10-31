@@ -1,22 +1,22 @@
 .designbase-toast {
     position: fixed;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--db-gap-s);
-    padding: var(--db-padding-m);
-    background-color: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: var(--db-radius-md);
-    box-shadow: var(--db-shadow-lg);
-    min-width: 300px;
-    max-width: 400px;
-    transform: translateX(100%);
+    padding: var(--db-padding-s);
+    background-color: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-m);
+    box-shadow: var(--db-shadow-toast);
+    min-width: 200px;
+    max-width: 360px;
+    transform: translateY(-20px) scale(0.95);
     opacity: 0;
-    transition: all var(--db-animation-speed) var(--db-animation-ease);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--db-z-toast);
 
     &--visible {
-        transform: translateX(0);
+        transform: translateY(0) scale(1);
         opacity: 1;
     }
 
@@ -26,14 +26,14 @@
         left: 0;
         right: 0;
         height: 3px;
-        background-color: var(--db-border-primary);
-        border-radius: var(--db-radius-md) var(--db-radius-md) 0 0;
+        background-color: var(--db-border-base);
+        border-radius: var(--db-radius-m) var(--db-radius-m) 0 0;
         overflow: hidden;
     }
 
     &__progress-bar {
         height: 100%;
-        background-color: var(--db-blue-500);
+        background-color: var(--db-brand-primary);
         transition: width 0.1s linear;
     }
 
@@ -45,6 +45,12 @@
         width: 20px;
         height: 20px;
         margin-top: 2px;
+
+        // 아이콘 색상 상속
+        svg {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     &__status-icon {
@@ -58,7 +64,7 @@
     }
 
     &__title {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         color: var(--db-text-primary);
         line-height: var(--db-leading-normal);
@@ -80,174 +86,115 @@
         height: 20px;
         border: none;
         background: none;
-        border-radius: var(--db-radius-sm);
-        color: var(--db-text-secondary);
+        border-radius: var(--db-radius-s);
+        color: var(--db-icon-muted);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         flex-shrink: 0;
         margin-top: 2px;
 
         &:hover {
-            background-color: var(--db-bg-secondary);
-            color: var(--db-text-primary);
+            background-color: var(--db-interactive-bg-hover);
+            color: var(--db-icon-hover);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
     }
 
     // Status variants
     &--success {
-        border-left: 4px solid var(--db-green-500);
+        background-color: var(--db-feedback-success-bg);
+        border: 1px solid var(--db-feedback-success-fg);
 
         .designbase-toast__progress-bar {
-            background-color: var(--db-green-500);
+            background-color: var(--db-feedback-success-fg);
         }
 
+        .designbase-toast__icon,
         .designbase-toast__status-icon {
-            color: var(--db-green-500);
+            color: var(--db-feedback-success-fg);
+        }
+
+        .designbase-toast__title {
+            color: var(--db-feedback-success-fg);
         }
     }
 
     &--error {
-        border-left: 4px solid var(--db-red-500);
+        background-color: var(--db-feedback-error-bg);
+        border: 1px solid var(--db-feedback-error-fg);
 
         .designbase-toast__progress-bar {
-            background-color: var(--db-red-500);
+            background-color: var(--db-feedback-error-fg);
         }
 
+        .designbase-toast__icon,
         .designbase-toast__status-icon {
-            color: var(--db-red-500);
+            color: var(--db-feedback-error-fg);
+        }
+
+        .designbase-toast__title {
+            color: var(--db-feedback-error-fg);
         }
     }
 
     &--warning {
-        border-left: 4px solid var(--db-yellow-500);
+        background-color: var(--db-feedback-warning-bg);
+        border: 1px solid var(--db-feedback-warning-fg);
 
         .designbase-toast__progress-bar {
-            background-color: var(--db-yellow-500);
+            background-color: var(--db-feedback-warning-fg);
         }
 
+        .designbase-toast__icon,
         .designbase-toast__status-icon {
-            color: var(--db-yellow-500);
+            color: var(--db-feedback-warning-fg);
+        }
+
+        .designbase-toast__title {
+            color: var(--db-feedback-warning-fg);
         }
     }
 
     &--info {
-        border-left: 4px solid var(--db-blue-500);
+        background-color: var(--db-feedback-info-bg);
+        border: 1px solid var(--db-feedback-info-fg);
 
         .designbase-toast__progress-bar {
-            background-color: var(--db-blue-500);
+            background-color: var(--db-feedback-info-fg);
         }
 
+        .designbase-toast__icon,
         .designbase-toast__status-icon {
-            color: var(--db-blue-500);
+            color: var(--db-feedback-info-fg);
+        }
+
+        .designbase-toast__title {
+            color: var(--db-feedback-info-fg);
         }
     }
 
-    // Position variants
-    &--top-left {
-        transform: translateX(-100%);
-
-        &.designbase-toast--visible {
-            transform: translateX(0);
-        }
-    }
-
-    &--top-center {
-        transform: translateY(-100%);
-
-        &.designbase-toast--visible {
-            transform: translateY(0);
-        }
-    }
-
-    &--top-right {
-        transform: translateX(100%);
-
-        &.designbase-toast--visible {
-            transform: translateX(0);
-        }
-    }
-
-    &--bottom-left {
-        transform: translateX(-100%);
-
-        &.designbase-toast--visible {
-            transform: translateX(0);
-        }
-    }
-
-    &--bottom-center {
-        transform: translateY(100%);
-
-        &.designbase-toast--visible {
-            transform: translateY(0);
-        }
-    }
-
+    // Position variants - 모든 위치에서 동일한 애니메이션 사용
+    &--top-right,
+    &--top-center,
+    &--bottom-center,
     &--bottom-right {
-        transform: translateX(100%);
+        transform: translateY(-20px) scale(0.95);
+        opacity: 0;
 
         &.designbase-toast--visible {
-            transform: translateX(0);
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
     }
 
     // Responsive
-    @media (max-width: 640px) {
-        min-width: 280px;
-        max-width: calc(100vw - 32px);
-        margin: 0 var(--db-spacing-4);
-    }
-}
-
-// Toast Container
-.designbase-toast-container {
-    position: fixed;
-    z-index: var(--db-z-toast);
-    pointer-events: none;
-
-    &--top-left {
-        top: var(--db-spacing-4);
-        left: var(--db-spacing-4);
-    }
-
-    &--top-center {
-        top: var(--db-spacing-4);
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    &--top-right {
-        top: var(--db-spacing-4);
-        right: var(--db-spacing-4);
-    }
-
-    &--bottom-left {
-        bottom: var(--db-spacing-4);
-        left: var(--db-spacing-4);
-    }
-
-    &--bottom-center {
-        bottom: var(--db-spacing-4);
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    &--bottom-right {
-        bottom: var(--db-spacing-4);
-        right: var(--db-spacing-4);
-    }
-
-    .designbase-toast {
-        pointer-events: auto;
-        margin-bottom: var(--db-spacing-3);
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+    @media (max-width: 768px) {
+        min-width: calc(100vw - 24px);
+        max-width: calc(100vw - 24px);
+        width: calc(100vw - 24px);
     }
 }

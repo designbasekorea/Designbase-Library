@@ -11,7 +11,7 @@ import './ScrollArea.scss';
 
 export type ScrollDirection = 'vertical' | 'horizontal' | 'both';
 export type ScrollbarStyle = 'auto' | 'thin' | 'none';
-export type ScrollAreaSize = 'sm' | 'md' | 'lg' | 'xl';
+export type ScrollAreaSize = 's' | 'm' | 'l' | 'xl';
 
 export interface ScrollAreaProps {
     /** 스크롤 방향 */

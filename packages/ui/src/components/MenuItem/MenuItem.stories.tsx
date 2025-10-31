@@ -16,7 +16,7 @@ import {
     StarIcon,
     HeartIcon,
     BookmarkIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 
 const meta: Meta<typeof MenuItem> = {
     title: 'Components/MenuItem',
@@ -37,7 +37,7 @@ const meta: Meta<typeof MenuItem> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -99,144 +99,6 @@ export const Default: Story = {
     },
 };
 
-export const WithIconColors: Story = {
-    args: {
-        id: 'menu-item-1',
-        label: '아이콘 컬러 예시',
-        icon: RocketIcon,
-        variant: 'primary',
-    },
-};
-
-export const DropdownStyle: Story = {
-    render: () => {
-        const [isExpanded, setIsExpanded] = useState(false);
-
-        const handleClick = (item: any) => {
-            console.log('Dropdown clicked:', item);
-            if (item.subItems && item.subItems.length > 0) {
-                setIsExpanded(!isExpanded);
-            }
-        };
-
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '300px', position: 'relative' }}>
-                <h3>드롭다운 스타일 (absolute로 떠있음)</h3>
-                <MenuItem
-                    id="dropdown-menu"
-                    label="드롭다운 메뉴"
-                    icon={RocketIcon}
-                    style="dropdown"
-                    subItems={sampleChildren}
-                    expandable={true}
-                    expanded={isExpanded}
-                    onClick={handleClick}
-                />
-                <p>현재 상태: {isExpanded ? '확장됨' : '축소됨'}</p>
-            </div>
-        );
-    },
-};
-
-export const AccordionStyle: Story = {
-    render: () => {
-        const [isExpanded, setIsExpanded] = useState(false);
-
-        const handleClick = (item: any) => {
-            console.log('Accordion clicked:', item);
-            if (item.subItems && item.subItems.length > 0) {
-                setIsExpanded(!isExpanded);
-            }
-        };
-
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '300px' }}>
-                <h3>아코디언 스타일 (아래로 밀어내는 형태)</h3>
-                <MenuItem
-                    id="accordion-menu"
-                    label="아코디언 메뉴"
-                    icon={FolderIcon}
-                    style="accordion"
-                    subItems={sampleChildren}
-                    expandable={true}
-                    expanded={isExpanded}
-                    onClick={handleClick}
-                />
-                <p>현재 상태: {isExpanded ? '확장됨' : '축소됨'}</p>
-            </div>
-        );
-    },
-};
-
-export const MultiDepth: Story = {
-    args: {
-        id: 'menu-item-1',
-        label: '다중 깊이 메뉴',
-        icon: RocketIcon,
-        style: 'accordion',
-        subItems: [
-            {
-                id: 'child-1',
-                label: '1뎁스 메뉴',
-                icon: DocumentationIcon,
-                subItems: [
-                    {
-                        id: 'child-1-1',
-                        label: '2뎁스 메뉴',
-                        icon: FolderIcon,
-                        subItems: [
-                            {
-                                id: 'child-1-1-1',
-                                label: '3뎁스 메뉴',
-                                icon: StarIcon,
-                            }
-                        ]
-                    }
-                ]
-            }
-        ],
-        expandable: true,
-    },
-};
-
-export const WithBadge: Story = {
-    args: {
-        id: 'menu-item-2',
-        label: '알림',
-        icon: BellIcon,
-        badge: 3,
-        badgeColor: 'danger',
-    },
-};
-
-export const Active: Story = {
-    args: {
-        id: 'menu-item-3',
-        label: '활성 메뉴',
-        icon: UserIcon,
-        active: true,
-    },
-};
-
-export const Disabled: Story = {
-    args: {
-        id: 'menu-item-4',
-        label: '비활성 메뉴',
-        icon: SettingsIcon,
-        disabled: true,
-    },
-};
-
-export const WithChildren: Story = {
-    args: {
-        id: 'menu-item-5',
-        label: '차일드 메뉴',
-        icon: FolderIcon,
-        subItems: sampleChildren,
-        expandable: true,
-    },
-};
-
 export const StyleComparison: Story = {
     render: () => {
         const [dropdownExpanded, setDropdownExpanded] = useState(false);
@@ -264,6 +126,7 @@ export const StyleComparison: Story = {
                         id="dropdown-menu"
                         label="드롭다운 메뉴"
                         icon={RocketIcon}
+                        type="inline"
                         style="dropdown"
                         subItems={sampleChildren}
                         expandable={true}
@@ -281,6 +144,7 @@ export const StyleComparison: Story = {
                         id="accordion-menu"
                         label="아코디언 메뉴"
                         icon={FolderIcon}
+                        type="block"
                         style="accordion"
                         subItems={sampleChildren}
                         expandable={true}
@@ -296,372 +160,97 @@ export const StyleComparison: Story = {
 
 
 
-export const Types: Story = {
+export const AllTypes: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div>
-                <h3>Inline Type</h3>
+                <h3>Inline</h3>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                    <MenuItem
-                        id="inline-1"
-                        label="홈"
-                        icon={RocketIcon}
-                        type="inline"
-                        onClick={() => console.log('Home clicked')}
-                    />
-                    <MenuItem
-                        id="inline-2"
-                        label="사용자"
-                        icon={UserIcon}
-                        type="inline"
-                        onClick={() => console.log('User clicked')}
-                    />
-                    <MenuItem
-                        id="inline-3"
-                        label="설정"
-                        icon={SettingsIcon}
-                        type="inline"
-                        onClick={() => console.log('Settings clicked')}
-                    />
+                    <MenuItem id="inline-1" label="홈" icon={RocketIcon} type="inline" />
+                    <MenuItem id="inline-2" label="사용자" icon={UserIcon} type="inline" />
+                    <MenuItem id="inline-3" label="설정" icon={SettingsIcon} type="inline" />
                 </div>
             </div>
             <div>
-                <h3>Block Type</h3>
+                <h3>Block</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                    <MenuItem
-                        id="block-1"
-                        label="홈"
-                        icon={RocketIcon}
-                        type="block"
-                        onClick={() => console.log('Home clicked')}
-                    />
-                    <MenuItem
-                        id="block-2"
-                        label="사용자"
-                        icon={UserIcon}
-                        type="block"
-                        onClick={() => console.log('User clicked')}
-                    />
-                    <MenuItem
-                        id="block-3"
-                        label="설정"
-                        icon={SettingsIcon}
-                        type="block"
-                        onClick={() => console.log('Settings clicked')}
-                    />
+                    <MenuItem id="block-1" label="홈" icon={RocketIcon} type="block" />
+                    <MenuItem id="block-2" label="사용자" icon={UserIcon} type="block" />
+                    <MenuItem id="block-3" label="설정" icon={SettingsIcon} type="block" />
                 </div>
             </div>
         </div>
     ),
 };
 
-export const Sizes: Story = {
+export const AllSizes: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div>
                 <h3>Small</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                    <MenuItem
-                        id="small-1"
-                        label="홈"
-                        icon={RocketIcon}
-                        size="sm"
-                        onClick={() => console.log('Home clicked')}
-                    />
-                    <MenuItem
-                        id="small-2"
-                        label="사용자"
-                        icon={UserIcon}
-                        size="sm"
-                        onClick={() => console.log('User clicked')}
-                    />
-                </div>
+                <MenuItem id="small-1" label="홈" icon={RocketIcon} size="s" />
             </div>
             <div>
                 <h3>Medium</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                    <MenuItem
-                        id="medium-1"
-                        label="홈"
-                        icon={RocketIcon}
-                        size="md"
-                        onClick={() => console.log('Home clicked')}
-                    />
-                    <MenuItem
-                        id="medium-2"
-                        label="사용자"
-                        icon={UserIcon}
-                        size="md"
-                        onClick={() => console.log('User clicked')}
-                    />
-                </div>
+                <MenuItem id="medium-1" label="홈" icon={RocketIcon} size="m" />
             </div>
             <div>
                 <h3>Large</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                    <MenuItem
-                        id="large-1"
-                        label="홈"
-                        icon={RocketIcon}
-                        size="lg"
-                        onClick={() => console.log('Home clicked')}
-                    />
-                    <MenuItem
-                        id="large-2"
-                        label="사용자"
-                        icon={UserIcon}
-                        size="lg"
-                        onClick={() => console.log('User clicked')}
-                    />
-                </div>
+                <MenuItem id="large-1" label="홈" icon={RocketIcon} size="l" />
             </div>
         </div>
     ),
 };
 
-export const Variants: Story = {
+export const AllVariants: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div>
-                <h3>Variants</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                    <MenuItem
-                        id="default"
-                        label="기본"
-                        icon={RocketIcon}
-                        variant="default"
-                        onClick={() => console.log('Default clicked')}
-                    />
-                    <MenuItem
-                        id="primary"
-                        label="주요"
-                        icon={UserIcon}
-                        variant="primary"
-                        onClick={() => console.log('Primary clicked')}
-                    />
-                    <MenuItem
-                        id="success"
-                        label="성공"
-                        icon={StarIcon}
-                        variant="success"
-                        onClick={() => console.log('Success clicked')}
-                    />
-                    <MenuItem
-                        id="warning"
-                        label="경고"
-                        icon={BellIcon}
-                        variant="warning"
-                        onClick={() => console.log('Warning clicked')}
-                    />
-                    <MenuItem
-                        id="danger"
-                        label="위험"
-                        icon={HeartIcon}
-                        variant="danger"
-                        onClick={() => console.log('Danger clicked')}
-                    />
-                    <MenuItem
-                        id="info"
-                        label="정보"
-                        icon={MailIcon}
-                        variant="info"
-                        onClick={() => console.log('Info clicked')}
-                    />
-                </div>
-            </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
+            <MenuItem id="default" label="기본" icon={RocketIcon} variant="default" />
+            <MenuItem id="primary" label="주요" icon={UserIcon} variant="primary" />
+            <MenuItem id="success" label="성공" icon={StarIcon} variant="success" />
+            <MenuItem id="warning" label="경고" icon={BellIcon} variant="warning" />
+            <MenuItem id="danger" label="위험" icon={HeartIcon} variant="danger" />
+            <MenuItem id="info" label="정보" icon={MailIcon} variant="info" />
         </div>
     ),
 };
 
-export const Interactive: Story = {
+export const WithSubItems: Story = {
     render: () => {
-        const [activeItem, setActiveItem] = useState<string>('home');
-        const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-
-        const handleItemClick = (item: any) => {
-            if (item.children && item.children.length > 0) {
-                const newExpanded = new Set(expandedItems);
-                if (newExpanded.has(item.id)) {
-                    newExpanded.delete(item.id);
-                } else {
-                    newExpanded.add(item.id);
-                }
-                setExpandedItems(newExpanded);
-            } else {
-                setActiveItem(item.id);
-            }
-            console.log('Item clicked:', item);
-        };
-
-        const handleChildClick = (child: any) => {
-            console.log('Child clicked:', child);
-        };
-
-        const menuItems = [
-            {
-                id: 'home',
-                label: '홈',
-                icon: RocketIcon,
-                active: activeItem === 'home',
-            },
-            {
-                id: 'user',
-                label: '사용자',
-                icon: UserIcon,
-                active: activeItem === 'user',
-            },
-            {
-                id: 'settings',
-                label: '설정',
-                icon: SettingsIcon,
-                active: activeItem === 'settings',
-                subItems: sampleChildren,
-                expandable: true,
-                expanded: expandedItems.has('settings'),
-            },
-            {
-                id: 'notifications',
-                label: '알림',
-                icon: BellIcon,
-                active: activeItem === 'notifications',
-                badge: 5,
-                badgeColor: 'danger' as const,
-            },
-        ];
+        const [accordionExpanded, setAccordionExpanded] = useState(false);
 
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                {menuItems.map((item) => (
-                    <MenuItem
-                        key={item.id}
-                        {...item}
-                        onClick={handleItemClick}
-                        onChildClick={handleChildClick}
-                    />
-                ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div>
+                    <h3>Accordion (아래로 밀어내는 형태)</h3>
+                    <div style={{ maxWidth: '300px' }}>
+                        <MenuItem
+                            id="accordion-menu"
+                            label="아코디언 메뉴"
+                            icon={FolderIcon}
+                            type="block"
+                            style="accordion"
+                            subItems={sampleChildren}
+                            expandable={true}
+                            expanded={accordionExpanded}
+                            onClick={() => setAccordionExpanded(!accordionExpanded)}
+                        />
+                    </div>
+                </div>
             </div>
         );
     },
 };
 
-export const ComplexMenu: Story = {
-    render: () => {
-        const [activeItem, setActiveItem] = useState<string>('dashboard');
-        const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(['projects']));
-
-        const handleItemClick = (item: any) => {
-            if (item.subItems && item.subItems.length > 0) {
-                const newExpanded = new Set(expandedItems);
-                if (newExpanded.has(item.id)) {
-                    newExpanded.delete(item.id);
-                } else {
-                    newExpanded.add(item.id);
-                }
-                setExpandedItems(newExpanded);
-            } else {
-                setActiveItem(item.id);
-            }
-        };
-
-        const complexMenuItems = [
-            {
-                id: 'dashboard',
-                label: '대시보드',
-                icon: RocketIcon,
-                active: activeItem === 'dashboard',
-            },
-            {
-                id: 'projects',
-                label: '프로젝트',
-                icon: FolderIcon,
-                active: activeItem === 'projects',
-                subItems: [
-                    {
-                        id: 'project-1',
-                        label: '웹사이트 리뉴얼',
-                        icon: DocumentationIcon,
-                        active: false,
-                        badge: '진행중',
-                        badgeColor: 'warning' as const,
-                    },
-                    {
-                        id: 'project-2',
-                        label: '모바일 앱 개발',
-                        icon: DocumentationIcon,
-                        active: false,
-                        badge: '완료',
-                        badgeColor: 'success' as const,
-                    },
-                    {
-                        id: 'project-3',
-                        label: '데이터 분석',
-                        icon: DocumentationIcon,
-                        active: false,
-                        badge: 'New',
-                        badgeColor: 'info' as const,
-                    },
-                ],
-                expandable: true,
-                expanded: expandedItems.has('projects'),
-            },
-            {
-                id: 'team',
-                label: '팀',
-                icon: UserIcon,
-                active: activeItem === 'team',
-                subItems: [
-                    {
-                        id: 'team-1',
-                        label: '개발팀',
-                        icon: UserIcon,
-                        active: false,
-                    },
-                    {
-                        id: 'team-2',
-                        label: '디자인팀',
-                        icon: UserIcon,
-                        active: false,
-                    },
-                    {
-                        id: 'team-3',
-                        label: '마케팅팀',
-                        icon: UserIcon,
-                        active: false,
-                        disabled: true,
-                    },
-                ],
-                expandable: true,
-                expanded: expandedItems.has('team'),
-            },
-            {
-                id: 'notifications',
-                label: '알림',
-                icon: BellIcon,
-                active: activeItem === 'notifications',
-                badge: 12,
-                badgeColor: 'danger' as const,
-            },
-            {
-                id: 'favorites',
-                label: '즐겨찾기',
-                icon: BookmarkIcon,
-                active: activeItem === 'favorites',
-                variant: 'warning' as const,
-            },
-        ];
-
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
-                {complexMenuItems.map((item) => (
-                    <MenuItem
-                        key={item.id}
-                        {...item}
-                        onClick={handleItemClick}
-                    />
-                ))}
-            </div>
-        );
-    },
+export const WithBadgeAndStates: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '300px' }}>
+            <MenuItem id="normal" label="일반 메뉴" icon={RocketIcon} type="block" />
+            <MenuItem id="with-badge" label="알림" icon={BellIcon} badge={5} badgeColor="danger" type="block" />
+            <MenuItem id="active" label="활성 메뉴" icon={UserIcon} active={true} type="block" />
+            <MenuItem id="disabled" label="비활성 메뉴" icon={SettingsIcon} disabled={true} type="block" />
+        </div>
+    ),
 };
 
 

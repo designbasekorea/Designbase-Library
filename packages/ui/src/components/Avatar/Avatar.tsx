@@ -6,12 +6,13 @@
  * 접근성: ARIA 가이드라인 준수
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Badge } from '../Badge/Badge';
+import { UserIcon } from '@designbasekorea/icons';
 import './Avatar.scss';
 
-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type AvatarSize = 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl';
 export type AvatarVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
 export type AvatarStatus = 'online' | 'offline' | 'away' | 'busy';
 
@@ -72,7 +73,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     alt,
     initials,
     icon,
-    size = 'md',
+    size = 'm',
     variant = 'circle',
     status,
     badge,
@@ -85,13 +86,23 @@ export const Avatar: React.FC<AvatarProps> = ({
     className,
     ...props
 }) => {
-    const [imageError, setImageError] = React.useState(false);
+    const [imageError, setImageError] = useState(false);
+    const [imageLoading, setImageLoading] = useState(true);
+
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 'xs' ? 12 : size === 's' ? 16 : size === 'm' ? 20 : size === 'l' ? 24 : size === 'xl' ? 32 : 40; // 2xl
+
     const shouldShowImage = src && !imageError;
     const shouldShowInitials = !shouldShowImage && initials;
-    const shouldShowIcon = !shouldShowImage && !shouldShowInitials && icon;
+    const shouldShowIcon = !shouldShowImage && !shouldShowInitials;
 
     const handleImageError = () => {
         setImageError(true);
+        setImageLoading(false);
+    };
+
+    const handleImageLoad = () => {
+        setImageLoading(false);
     };
 
     const handleClick = () => {
@@ -111,9 +122,53 @@ export const Avatar: React.FC<AvatarProps> = ({
         className
     );
 
+    // 랜덤 컬러 생성 함수
+    const generateRandomColor = (text: string) => {
+        // 텍스트를 기반으로 일관된 색상 생성
+        let hash = 0;
+        for (let i = 0; i < text.length; i++) {
+            hash = text.charCodeAt(i) + ((hash << 5) - hash);
+        }
+
+        // 연한 배경색 팔레트
+        const lightColors = [
+            '#E3F2FD', // 연한 파랑
+            '#F3E5F5', // 연한 보라
+            '#E8F5E8', // 연한 초록
+            '#FFF3E0', // 연한 주황
+            '#FCE4EC', // 연한 핑크
+            '#E0F2F1', // 연한 청록
+            '#FFF8E1', // 연한 노랑
+            '#F1F8E9', // 연한 라임
+            '#E8EAF6', // 연한 인디고
+            '#FFEBEE', // 연한 빨강
+        ];
+
+        // 진한 텍스트 색상 팔레트
+        const darkColors = [
+            '#1976D2', // 진한 파랑
+            '#7B1FA2', // 진한 보라
+            '#388E3C', // 진한 초록
+            '#F57C00', // 진한 주황
+            '#C2185B', // 진한 핑크
+            '#00796B', // 진한 청록
+            '#F9A825', // 진한 노랑
+            '#689F38', // 진한 라임
+            '#3F51B5', // 진한 인디고
+            '#D32F2F', // 진한 빨강
+        ];
+
+        const colorIndex = Math.abs(hash) % lightColors.length;
+        return {
+            backgroundColor: lightColors[colorIndex],
+            color: darkColors[colorIndex]
+        };
+    };
+
     const getInitials = () => {
         if (!initials) return '';
-        return initials.slice(0, 2).toUpperCase();
+        // 한 글자만 표시 (첫 번째 글자)
+        return initials.charAt(0).toUpperCase();
     };
 
     return (
@@ -130,24 +185,45 @@ export const Avatar: React.FC<AvatarProps> = ({
             }}
             {...props}
         >
+            {/* 로딩 상태 */}
+            {imageLoading && shouldShowImage && (
+                <div className="designbase-avatar__loading">
+                    <div className="designbase-avatar__skeleton" />
+                </div>
+            )}
+
             {shouldShowImage && (
                 <img
                     src={src}
                     alt={alt || '아바타 이미지'}
                     className="designbase-avatar__image"
+                    onLoad={handleImageLoad}
                     onError={handleImageError}
+                    loading="lazy"
                 />
             )}
 
             {shouldShowInitials && (
-                <div className="designbase-avatar__initials">
+                <div
+                    className="designbase-avatar__initials"
+                    style={generateRandomColor(initials || '')}
+                >
                     {getInitials()}
                 </div>
             )}
 
             {shouldShowIcon && (
                 <div className="designbase-avatar__icon">
-                    {icon}
+                    {icon ? (
+                        React.isValidElement(icon) ? (
+                            React.cloneElement(icon as React.ReactElement, {
+                                size: iconSize,
+                                color: 'currentColor'
+                            })
+                        ) : icon
+                    ) : (
+                        <UserIcon size={iconSize} color="currentColor" />
+                    )}
                 </div>
             )}
 
@@ -166,7 +242,7 @@ export const Avatar: React.FC<AvatarProps> = ({
                         maxCount={badgeMaxCount}
                         variant={badgeVariant}
                         style={badgeStyle}
-                        size={size === 'xs' || size === 'sm' ? 'sm' : size === 'lg' || size === 'xl' || size === '2xl' ? 'lg' : 'md'}
+                        size={size === 'xs' || size === 's' ? 's' : size === 'l' || size === 'xl' || size === '2xl' ? 'l' : 'm'}
                     >
                         {badgeStyle === 'text' ? badgeText : undefined}
                     </Badge>
@@ -181,7 +257,7 @@ Avatar.displayName = 'Avatar';
 export const AvatarGroup: React.FC<AvatarGroupProps> = ({
     children,
     max,
-    size = 'md',
+    size = 'm',
     variant = 'circle',
     spacing = 'normal',
     className,

@@ -1,0 +1,225 @@
+/**
+ * Tutorial 컴포넌트 스타일
+ * 
+ * 목적: 인터랙티브 튜토리얼의 스타일 정의
+ * 기능: 오버레이, 팝오버, 타겟 강조, 반응형 디자인
+ */
+
+.designbase-tutorial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--db-z-modal);
+    pointer-events: none;
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--db-overlay-backdrop);
+        backdrop-filter: blur(2px);
+        pointer-events: auto;
+        animation: fadeIn 0.3s ease;
+    }
+
+    &__popover {
+        position: absolute;
+        max-width: 320px;
+        min-width: 280px;
+        background-color: var(--db-surface-base);
+        border-radius: var(--db-radius-l);
+        box-shadow: var(--db-shadow-xl);
+        pointer-events: auto;
+        animation: slideIn 0.3s ease;
+        z-index: 10000;
+
+        // 화살표 스타일
+        &::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+        }
+
+        // 위치별 화살표
+        &--top {
+            &::before {
+                bottom: -16px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-top-color: var(--db-surface-base);
+            }
+        }
+
+        &--bottom {
+            &::before {
+                top: -16px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-bottom-color: var(--db-surface-base);
+            }
+        }
+
+        &--left {
+            &::before {
+                right: -16px;
+                top: 50%;
+                transform: translateY(-50%);
+                border-left-color: var(--db-surface-base);
+            }
+        }
+
+        &--right {
+            &::before {
+                left: -16px;
+                top: 50%;
+                transform: translateY(-50%);
+                border-right-color: var(--db-surface-base);
+            }
+        }
+    }
+
+    &__close-button {
+        position: absolute;
+        top: var(--db-padding-s);
+        right: var(--db-padding-s);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background-color: var(--db-surface-layer-1);
+        color: var(--db-text-secondary);
+        border-radius: var(--db-radius-full);
+        cursor: pointer;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover {
+            background-color: var(--db-surface-layer-2);
+            color: var(--db-text-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    &__content {
+        padding: var(--db-padding-l);
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-m);
+    }
+
+    &__text {
+        flex: 1;
+    }
+
+    &__title {
+        font-size: var(--db-text-l);
+        font-weight: var(--db-weight-bold);
+        color: var(--db-text-primary);
+        margin: 0 0 var(--db-margin-s) 0;
+        line-height: var(--db-leading-tight);
+    }
+
+    &__description {
+        font-size: var(--db-text-base);
+        color: var(--db-text-secondary);
+        margin: 0;
+        line-height: var(--db-leading-relaxed);
+    }
+
+    &__children {
+        margin-top: var(--db-margin-s);
+    }
+
+    &__navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--db-gap-m);
+        padding-top: var(--db-padding-s);
+        border-top: 1px solid var(--db-border-base);
+    }
+
+    // 타겟 요소 강조 스타일
+    &__target {
+        position: relative !important;
+        z-index: 1001 !important;
+        outline: 3px solid var(--db-brand-primary) !important;
+        outline-offset: 2px !important;
+        border-radius: var(--db-radius-m) !important;
+        box-shadow: 0 0 0 3px var(--db-brand-primary-alpha-20) !important;
+        animation: pulse 2s infinite !important;
+    }
+
+    // 반응형 디자인
+    @media (max-width: 480px) {
+        &__popover {
+            max-width: calc(100vw - 32px);
+            min-width: 280px;
+            margin: 0 var(--db-padding-m);
+        }
+
+        &__content {
+            padding: var(--db-padding-m);
+        }
+
+        &__title {
+            font-size: var(--db-text-base);
+        }
+
+        &__description {
+            font-size: var(--db-text-sm);
+        }
+
+        &__navigation {
+            flex-direction: column;
+            gap: var(--db-gap-s);
+        }
+    }
+
+    // 애니메이션
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            box-shadow: 0 0 0 3px var(--db-brand-primary-alpha-20);
+        }
+
+        50% {
+            box-shadow: 0 0 0 6px var(--db-brand-primary-alpha-10);
+        }
+    }
+}

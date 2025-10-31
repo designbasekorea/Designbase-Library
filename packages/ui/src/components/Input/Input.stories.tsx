@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Input } from './Input';
-import { SearchIcon, KeyIcon, LockIcon } from '@designbase/icons';
+import { SearchIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Input> = {
     title: 'Components/Input',
@@ -17,7 +17,7 @@ const meta: Meta<typeof Input> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         disabled: {
             control: { type: 'boolean' },
@@ -48,31 +48,28 @@ export const Default: Story = {
     },
 };
 
-export const Sizes: Story = {
+export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Input size="sm" label="Small" placeholder="Small input" />
-            <Input size="md" label="Medium" placeholder="Medium input" />
-            <Input size="lg" label="Large" placeholder="Large input" />
+            <Input size="s" label="Small" placeholder="Small input" />
+            <Input size="m" label="Medium" placeholder="Medium input" />
+            <Input size="l" label="Large" placeholder="Large input" />
         </div>
     ),
 };
 
-export const Types: Story = {
+export const AllTypes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Input type="text" label="텍스트" placeholder="텍스트를 입력하세요" />
             <Input type="email" label="이메일" placeholder="이메일을 입력하세요" />
             <Input type="password" label="비밀번호" placeholder="비밀번호를 입력하세요" />
-            <Input type="url" label="URL" placeholder="URL을 입력하세요" />
             <Input type="search" label="검색" placeholder="검색어를 입력하세요" />
-            <Input type="tel" label="전화번호" placeholder="전화번호를 입력하세요" />
-            <Input type="number" label="숫자" placeholder="숫자를 입력하세요" />
         </div>
     ),
 };
 
-export const States: Story = {
+export const AllStates: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Input label="기본 상태" placeholder="기본 입력 필드" />
@@ -88,23 +85,14 @@ export const WithIcons: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Input
-                label="검색"
+                label="검색 (자동 아이콘)"
                 placeholder="검색어를 입력하세요"
                 type="search"
-                startIcon={SearchIcon}
             />
             <Input
-                label="비밀번호"
+                label="비밀번호 (토글 기능)"
                 placeholder="비밀번호를 입력하세요"
                 type="password"
-                endIcon={KeyIcon}
-            />
-            <Input
-                label="이메일"
-                placeholder="이메일을 입력하세요"
-                type="email"
-                startIcon={SearchIcon}
-                endIcon={LockIcon}
             />
         </div>
     ),
@@ -128,22 +116,9 @@ export const WithHelperText: Story = {
     ),
 };
 
-export const FullWidth: Story = {
-    render: () => (
-        <div style={{ width: '100%', maxWidth: '400px' }}>
-            <Input
-                label="전체 너비"
-                placeholder="전체 너비 입력 필드"
-                fullWidth
-            />
-        </div>
-    ),
-};
-
 export const Interactive: Story = {
     render: () => {
         const [value, setValue] = useState('');
-        const [showPassword, setShowPassword] = useState(false);
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -154,11 +129,9 @@ export const Interactive: Story = {
                     onChange={setValue}
                 />
                 <Input
-                    label="비밀번호 토글"
+                    label="비밀번호 토글 테스트"
                     placeholder="비밀번호를 입력하세요"
-                    type={showPassword ? 'text' : 'password'}
-                    endIcon={showPassword ? LockIcon : KeyIcon}
-                    onChange={() => { }} // 실제로는 endIcon을 클릭할 수 있도록 구현해야 함
+                    type="password"
                 />
                 <div style={{ marginTop: '16px' }}>
                     <p>입력된 값: {value || '없음'}</p>

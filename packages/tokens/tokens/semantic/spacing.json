@@ -1,105 +1,80 @@
 {
     "spacing": {
         "semantic": {
-            "margin": {
-                "xs": {
-                    "value": "{spacing.foundation.1}",
-                    "type": "spacing"
-                },
-                "s": {
-                    "value": "{spacing.foundation.2}",
-                    "type": "spacing"
-                },
-                "m": {
-                    "value": "{spacing.foundation.3}",
-                    "type": "spacing"
-                },
-                "l": {
-                    "value": "{spacing.foundation.4}",
-                    "type": "spacing"
+            "gap": {
+                "2xl": {
+                    "value": "{spacing.aliases.gap.2xl}"
                 },
                 "xl": {
-                    "value": "{spacing.foundation.6}",
-                    "type": "spacing"
+                    "value": "{spacing.aliases.gap.xl}"
                 },
-                "xxl": {
-                    "value": "{spacing.foundation.8}",
-                    "type": "spacing"
+                "l": {
+                    "value": "{spacing.aliases.gap.l}"
+                },
+                "m": {
+                    "value": "{spacing.aliases.gap.m}"
+                },
+                "s": {
+                    "value": "{spacing.aliases.gap.s}"
+                },
+                "xs": {
+                    "value": "{spacing.aliases.gap.xs}"
+                },
+                "xxs": {
+                    "value": "{spacing.aliases.gap.xxs}"
                 }
             },
             "padding": {
-                "xxs": {
-                    "value": "{spacing.foundation.1}",
-                    "type": "spacing"
-                },
-                "xs": {
-                    "value": "{spacing.foundation.2}",
-                    "type": "spacing"
-                },
-                "s": {
-                    "value": "{spacing.foundation.3}",
-                    "type": "spacing"
-                },
-                "m": {
-                    "value": "{spacing.foundation.4}",
-                    "type": "spacing"
-                },
-                "l": {
-                    "value": "{spacing.foundation.6}",
-                    "type": "spacing"
-                },
-                "xl": {
-                    "value": "{spacing.foundation.8}",
-                    "type": "spacing"
-                }
-            },
-            "gap": {
-                "xs": {
-                    "value": "{spacing.foundation.1}",
-                    "type": "spacing"
-                },
-                "s": {
-                    "value": "{spacing.foundation.2}",
-                    "type": "spacing"
-                },
-                "m": {
-                    "value": "{spacing.foundation.3}",
-                    "type": "spacing"
-                },
-                "l": {
-                    "value": "{spacing.foundation.4}",
-                    "type": "spacing"
-                },
-                "xl": {
-                    "value": "{spacing.foundation.6}",
-                    "type": "spacing"
-                }
-            },
-            "size": {
-                "xs": {
-                    "value": "{spacing.foundation.4}",
-                    "type": "spacing"
-                },
-                "sm": {
-                    "value": "{spacing.foundation.5}",
-                    "type": "spacing"
-                },
-                "md": {
-                    "value": "{spacing.foundation.6}",
-                    "type": "spacing"
-                },
-                "lg": {
-                    "value": "{spacing.foundation.8}",
-                    "type": "spacing"
-                },
-                "xl": {
-                    "value": "{spacing.foundation.10}",
-                    "type": "spacing"
-                },
                 "2xl": {
-                    "value": "80px",
-                    "type": "spacing"
+                    "value": "{spacing.aliases.padding.2xl}"
+                },
+                "xl": {
+                    "value": "{spacing.aliases.padding.xl}"
+                },
+                "l": {
+                    "value": "{spacing.aliases.padding.l}"
+                },
+                "m": {
+                    "value": "{spacing.aliases.padding.m}"
+                },
+                "s": {
+                    "value": "{spacing.aliases.padding.s}"
+                },
+                "xs": {
+                    "value": "{spacing.aliases.padding.xs}"
+                },
+                "xxs": {
+                    "value": "{spacing.aliases.padding.xxs}"
                 }
+            },
+            "margin": {
+                "2xl": {
+                    "value": "{spacing.aliases.margin.2xl}"
+                },
+                "xl": {
+                    "value": "{spacing.aliases.margin.xl}"
+                },
+                "l": {
+                    "value": "{spacing.aliases.margin.l}"
+                },
+                "m": {
+                    "value": "{spacing.aliases.margin.m}"
+                },
+                "s": {
+                    "value": "{spacing.aliases.margin.s}"
+                },
+                "xs": {
+                    "value": "{spacing.aliases.margin.xs}"
+                },
+                "xxs": {
+                    "value": "{spacing.aliases.margin.xxs}"
+                }
+            },
+            "containerPadding": {
+                "value": "{spacing.aliases.containerPadding}"
+            },
+            "gridGutter": {
+                "value": "{spacing.aliases.gridGutter}"
             }
         }
     }

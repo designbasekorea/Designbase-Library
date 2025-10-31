@@ -14,7 +14,7 @@
     justify-content: center;
 
     // 크기별 스타일
-    &--size-sm {
+    &--size-s {
         .designbase-lightbox__modal {
             max-width: 600px;
             max-height: 80vh;
@@ -31,7 +31,7 @@
         }
     }
 
-    &--size-md {
+    &--size-m {
         .designbase-lightbox__modal {
             max-width: 800px;
             max-height: 85vh;
@@ -48,7 +48,7 @@
         }
     }
 
-    &--size-lg {
+    &--size-l {
         .designbase-lightbox__modal {
             max-width: 1000px;
             max-height: 90vh;
@@ -82,53 +82,11 @@
         }
     }
 
-    // 변형별 스타일
-    &--variant-default {
-        .designbase-lightbox__modal {
-            background: var(--db-bg-primary);
-            border-radius: var(--db-radius-lg);
-            box-shadow: var(--db-shadow-xl);
-        }
-    }
-
-    &--variant-minimal {
-        .designbase-lightbox__modal {
-            background: transparent;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        .designbase-lightbox__header {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .designbase-lightbox__thumbnails {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-    }
-
-    &--variant-fullscreen {
-        .designbase-lightbox__modal {
-            width: 100vw;
-            height: 100vh;
-            max-width: none;
-            max-height: none;
-            border-radius: 0;
-        }
-    }
-
-    // 테마별 스타일
-    &--theme-light {
-        color: var(--db-text-primary);
-    }
-
-    &--theme-dark {
-        .designbase-lightbox__modal {
-            background: var(--db-bg-primary-dark);
-            color: var(--db-text-primary-dark);
-        }
+    // 모달 기본 스타일
+    &__modal {
+        background: var(--db-surface-base);
+        border-radius: var(--db-radius-l);
+        box-shadow: var(--db-shadow-xl);
     }
 
     // 전체화면 모드
@@ -151,21 +109,6 @@
         }
     }
 
-    // 상태별 스타일
-    &--disabled {
-        pointer-events: none;
-        opacity: 0.5;
-    }
-
-    &--readonly {
-
-        .designbase-lightbox__toolbar-button,
-        .designbase-lightbox__nav-button,
-        .designbase-lightbox__thumbnail {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-    }
 
     // 오버레이
     &__overlay {
@@ -174,12 +117,12 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
+        background: var(--db-overlay-base);
         backdrop-filter: blur(4px);
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: var(--db-padding-lg);
+        padding: var(--db-padding-l);
     }
 
     // 모달
@@ -190,8 +133,6 @@
         height: 100%;
         max-width: 1000px;
         max-height: 90vh;
-        background: var(--db-bg-primary);
-        border-radius: var(--db-radius-lg);
         overflow: hidden;
         position: relative;
     }
@@ -201,9 +142,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: var(--db-padding-lg);
-        background: var(--db-bg-secondary);
-        border-bottom: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-s);
+        background: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
         flex-shrink: 0;
     }
 
@@ -211,7 +152,7 @@
     &__title {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-s);
         flex: 1;
         min-width: 0;
     }
@@ -219,7 +160,7 @@
     // 제목 텍스트
     &__title-text {
         margin: 0;
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-l);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
         overflow: hidden;
@@ -229,9 +170,11 @@
 
     // 카운터
     &__counter {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-xs);
+        background-color: var(--db-surface-layer-1);
+        border-radius: var(--db-radius-s);
+        padding: var(--db-padding-xs);
         color: var(--db-text-secondary);
-        font-weight: var(--db-weight-medium);
         flex-shrink: 0;
     }
 
@@ -239,7 +182,7 @@
     &__header-actions {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
         flex-shrink: 0;
     }
 
@@ -248,31 +191,26 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
+        width: var(--db-size-button-l);
+        height: var(--db-size-button-l);
         background: transparent;
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-sm);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-s);
         color: var(--db-text-secondary);
         cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: var(--db-text-sm);
-        font-weight: var(--db-weight-medium);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-normal);
 
-        &:hover:not(:disabled) {
-            background: var(--db-bg-hover);
+        &:hover {
+            background: var(--db-surface-hover);
             color: var(--db-text-primary);
-            border-color: var(--db-border-secondary);
+            border-color: var(--db-border-hover);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
-        }
-
-        &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
     }
 
@@ -281,28 +219,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: var(--db-size-button-l);
+        height: var(--db-size-button-l);
         background: transparent;
         border: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         color: var(--db-text-secondary);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
 
-        &:hover:not(:disabled) {
-            background: var(--db-bg-hover);
+        &:hover {
+            background: var(--db-surface-hover);
             color: var(--db-text-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-brand-primary);
             outline-offset: 2px;
-        }
-
-        &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
     }
 
@@ -323,37 +256,32 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 48px;
-        height: 48px;
-        background: rgba(0, 0, 0, 0.5);
+        width: var(--db-size-button-xl);
+        height: var(--db-size-button-xl);
+        background: var(--db-overlay-base);
         border: none;
         border-radius: 50%;
-        color: var(--db-text-primary-foreground);
+        color: var(--db-text-inverse-primary);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         z-index: 10;
 
-        &:hover:not(:disabled) {
-            background: rgba(0, 0, 0, 0.7);
+        &:hover {
+            background: var(--db-surface-inverse);
             transform: translateY(-50%) scale(1.1);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-brand-primary);
             outline-offset: 2px;
         }
 
-        &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
         &--prev {
-            left: var(--db-padding-lg);
+            left: var(--db-padding-m);
         }
 
         &--next {
-            right: var(--db-padding-lg);
+            right: var(--db-padding-m);
         }
     }
 
@@ -365,8 +293,10 @@
         flex: 1;
         position: relative;
         overflow: hidden;
-        background: var(--db-bg-tertiary);
+        background: var(--db-surface-layer-2);
         min-height: 200px;
+        touch-action: pan-y pinch-zoom; // 스와이프와 줌을 위한 터치 액션 설정
+        user-select: none; // 이미지 선택 방지
     }
 
     // 이미지
@@ -374,7 +304,7 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
-        transition: all 0.3s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         opacity: 0;
 
         &--loaded {
@@ -392,7 +322,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-m);
         color: var(--db-text-secondary);
     }
 
@@ -400,8 +330,8 @@
     &__spinner {
         width: 32px;
         height: 32px;
-        border: 3px solid var(--db-border-primary);
-        border-top: 3px solid var(--db-blue-600);
+        border: 3px solid var(--db-border-base);
+        border-top: 3px solid var(--db-brand-primary);
         border-radius: 50%;
         animation: spin 1s linear infinite;
     }
@@ -409,7 +339,7 @@
     // 로딩 텍스트
     &__loading-text {
         margin: 0;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
     }
 
@@ -419,7 +349,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-m);
         color: var(--db-text-secondary);
     }
 
@@ -431,41 +361,41 @@
     // 에러 텍스트
     &__error-text {
         margin: 0;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
     }
 
     // 설명
     &__description {
-        padding: var(--db-padding-lg);
-        background: var(--db-bg-secondary);
-        border-top: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-s);
+        background: var(--db-surface-layer-1);
+        border-top: 1px solid var(--db-border-base);
         flex-shrink: 0;
     }
 
     // 설명 텍스트
     &__description-text {
         margin: 0;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
         line-height: 1.6;
     }
 
     // 썸네일
     &__thumbnails {
-        padding: var(--db-padding-lg);
-        background: var(--db-bg-secondary);
-        border-top: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-s);
+        background: var(--db-surface-layer-1);
+        border-top: 1px solid var(--db-border-base);
         flex-shrink: 0;
     }
 
     // 썸네일 컨테이너
     &__thumbnails-container {
         display: flex;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
         overflow-x: auto;
         scrollbar-width: thin;
-        scrollbar-color: var(--db-border-primary) transparent;
+        scrollbar-color: var(--db-border-base) transparent;
 
         &::-webkit-scrollbar {
             height: 6px;
@@ -476,12 +406,12 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--db-border-primary);
+            background: var(--db-border-base);
             border-radius: 3px;
         }
 
         &::-webkit-scrollbar-thumb:hover {
-            background: var(--db-border-secondary);
+            background: var(--db-border-hover);
         }
     }
 
@@ -490,34 +420,28 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         background: transparent;
-        border: 2px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
         flex-shrink: 0;
         overflow: hidden;
 
-        &:hover:not(:disabled) {
-            border-color: var(--db-blue-600);
-            transform: scale(1.05);
+        &:hover {
+            border-color: var(--db-brand-primary);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
-            outline-offset: 2px;
-        }
-
-        &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+            outline: 1px solid var(--db-brand-primary);
+            outline-offset: 1px;
         }
 
         &--active {
-            border-color: var(--db-blue-600);
-            box-shadow: 0 0 0 2px var(--db-blue-100);
+            border-color: var(--db-brand-primary);
+            box-shadow: 0 0 0 2px var(--db-brand-primary);
         }
     }
 
@@ -526,7 +450,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 }
 
@@ -547,7 +471,7 @@
 @media (max-width: 768px) {
     .designbase-lightbox {
         &__overlay {
-            padding: var(--db-padding-md);
+            padding: var(--db-padding-m);
         }
 
         &__modal {
@@ -555,9 +479,9 @@
         }
 
         &__header {
-            padding: var(--db-padding-md);
+            padding: var(--db-padding-m);
             flex-direction: column;
-            gap: var(--db-gap-sm);
+            gap: var(--db-gap-s);
             align-items: stretch;
         }
 
@@ -574,16 +498,16 @@
             height: 40px;
 
             &--prev {
-                left: var(--db-padding-md);
+                left: var(--db-padding-m);
             }
 
             &--next {
-                right: var(--db-padding-md);
+                right: var(--db-padding-m);
             }
         }
 
         &__thumbnails {
-            padding: var(--db-padding-md);
+            padding: var(--db-padding-m);
         }
 
         &__thumbnail {
@@ -596,15 +520,15 @@
 @media (max-width: 480px) {
     .designbase-lightbox {
         &__overlay {
-            padding: var(--db-padding-sm);
+            padding: var(--db-padding-s);
         }
 
         &__header {
-            padding: var(--db-padding-sm);
+            padding: var(--db-padding-s);
         }
 
         &__title-text {
-            font-size: var(--db-text-md);
+            font-size: var(--db-text-m);
         }
 
         &__toolbar-button {
@@ -622,16 +546,16 @@
             height: 36px;
 
             &--prev {
-                left: var(--db-padding-sm);
+                left: var(--db-padding-s);
             }
 
             &--next {
-                right: var(--db-padding-sm);
+                right: var(--db-padding-s);
             }
         }
 
         &__thumbnails {
-            padding: var(--db-padding-sm);
+            padding: var(--db-padding-s);
         }
 
         &__thumbnail {

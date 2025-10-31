@@ -1,0 +1,122 @@
+.designbase-figma-interaction {
+    background-color: var(--db-surface-base);
+    border-top: 1px solid var(--db-border-base);
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+    &--visible {
+        opacity: 1;
+    }
+
+    // Status variants
+    &--default {
+        background-color: var(--db-surface-base);
+    }
+
+    &--warning {
+        background-color: var(--db-feedback-warning-bg);
+    }
+
+    &--error {
+        background-color: var(--db-feedback-error-bg);
+    }
+
+    &--success {
+        background-color: var(--db-feedback-success-bg);
+    }
+
+    &--info {
+        background-color: var(--db-feedback-info-bg);
+    }
+
+    // Loading
+    &--loading {
+        background-color: var(--db-feedback-info-bg);
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--db-gap-s);
+        width: 100%;
+        height: 100%;
+        padding: var(--db-padding-s);
+        box-sizing: border-box;
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0; // 텍스트 오버플로우 방지
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        flex-shrink: 0;
+    }
+
+    &__message {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        flex-wrap: wrap;
+    }
+
+    // Spinner
+    &__spinner {
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--db-border-base);
+        border-top-color: var(--db-text-primary);
+        border-radius: 50%;
+        animation: designbase-rotate 0.8s linear infinite;
+    }
+
+    &__text {
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-bold);
+        line-height: 1;
+        color: var(--db-text-primary);
+        white-space: nowrap;
+    }
+
+    &__status-text {
+        font-size: var(--db-text-xs);
+        line-height: 1;
+        font-weight: var(--db-weight-medium);
+    }
+
+    // Status별 텍스트 색상
+    &--warning &__status-text {
+        color: var(--db-feedback-warning-fg);
+    }
+
+    &--error &__status-text {
+        color: var(--db-feedback-error-fg);
+    }
+
+    &--success &__status-text {
+        color: var(--db-feedback-success-fg);
+    }
+
+    &--info &__status-text {
+        color: var(--db-feedback-info-fg);
+    }
+
+}
+
+@keyframes designbase-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

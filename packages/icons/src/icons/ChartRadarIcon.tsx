@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m12 1.084 10.853 7.597-3.268 13.069H4.416L1.146 8.681zM2.853 9.32 5.586 20.25h12.828l2.733-10.931L12 2.915z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="m11.99 6.11 6.338 3.977-2.094 7.376H7.76l-1.873-7.375zm.016 1.78L7.605 10.76l1.321 5.204H15.1l1.478-5.204z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="m1.784 9.718.431-1.436L12 11.217l9.784-2.935.431 1.436L12 12.783z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.25 2h1.5v9.743l6.842 8.797-1.184.92-7.158-9.203z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="m12.592 12.46-7 9-1.184-.92 7-9z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const ChartRadarIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M22.853 8.682 19.586 21.75H4.414L1.147 8.682 12 1.084zM6.532 20.25h10.934l-2.168-2.787H8.7zm-1.18-.927 2.17-2.789-1.4-5.514-3.076-.922zM18.08 10.96l-1.589 5.594 2.154 2.77 2.307-9.225zm-8.212 5.004h4.264l-2.133-2.741zm3.396-3.56 2.086 2.681 1.026-3.614zm-4.574 2.63 2.045-2.63-2.937-.88zm-.182-4.864 2.742.822V8.383zm4.242.822 2.84-.851-2.84-1.783zM3.697 8.727l2.93.877 4.623-3.012V3.439zm9.053-2.14 4.749 2.98 2.803-.84-7.552-5.288z"/></svg>
+);
 
 export default ChartRadarIcon;

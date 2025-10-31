@@ -6,9 +6,11 @@
  * 접근성: WAI-ARIA 가이드라인 준수, 라벨과 입력 필드 연결
  */
 
-import React, { forwardRef, useId } from 'react';
+import React, { forwardRef, useId, useState } from 'react';
 import clsx from 'clsx';
-import type { BaseIconProps } from '@designbase/icons';
+import type { IconProps } from '@designbasekorea/icons';
+import { ShowIcon, HideIcon, SearchIcon } from '@designbasekorea/icons';
+import { Label } from '../Label/Label';
 import './Input.scss';
 
 export interface InputProps {
@@ -23,7 +25,7 @@ export interface InputProps {
     /** 제어 값 */
     value?: string;
     /** 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 비활성화 여부 */
     disabled?: boolean;
     /** 읽기 전용 여부 */
@@ -37,9 +39,9 @@ export interface InputProps {
     /** 헬퍼 텍스트 */
     helperText?: string;
     /** 시작 아이콘 */
-    startIcon?: React.ComponentType<BaseIconProps>;
+    startIcon?: React.ComponentType<IconProps>;
     /** 끝 아이콘 */
-    endIcon?: React.ComponentType<BaseIconProps>;
+    endIcon?: React.ComponentType<IconProps>;
     /** 전체 너비 여부 */
     fullWidth?: boolean;
     /** 추가 CSS 클래스 */
@@ -64,7 +66,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             placeholder,
             defaultValue,
             value,
-            size = 'md',
+            size = 'm',
             disabled = false,
             readOnly = false,
             required = false,
@@ -86,10 +88,24 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         const inputId = useId();
         const helperTextId = useId();
         const errorMessageId = useId();
+        const [showPassword, setShowPassword] = useState(false);
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             onChange?.(e.target.value);
         };
+
+        const handlePasswordToggle = () => {
+            setShowPassword(!showPassword);
+        };
+
+        // 비밀번호 타입인 경우 토글 아이콘 사용
+        const isPassword = type === 'password';
+        const actualType = isPassword ? (showPassword ? 'text' : 'password') : type;
+        const PasswordIcon = showPassword ? HideIcon : ShowIcon;
+
+        // 검색 타입인 경우 자동으로 검색 아이콘 사용
+        const isSearch = type === 'search';
+        const actualStartIcon = isSearch ? SearchIcon : StartIcon;
 
         const classes = clsx(
             'designbase-input',
@@ -99,8 +115,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 'designbase-input--disabled': disabled,
                 'designbase-input--readonly': readOnly,
                 'designbase-input--full-width': fullWidth,
-                'designbase-input--with-start-icon': StartIcon,
-                'designbase-input--with-end-icon': EndIcon,
+                'designbase-input--with-start-icon': actualStartIcon,
+                'designbase-input--with-end-icon': EndIcon || isPassword,
             },
             className
         );
@@ -121,19 +137,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         return (
             <div className={classes}>
                 {label && (
-                    <label
+                    <Label
                         htmlFor={inputId}
-                        className="designbase-input__label"
+                        required={required}
+                        error={error}
+                        disabled={disabled}
+                        size={size === 's' ? 's' : size === 'm' ? 'm' : 'l'}
                     >
                         {label}
-                        {required && <span className="designbase-input__required">*</span>}
-                    </label>
+                    </Label>
                 )}
 
                 <div className="designbase-input__wrapper">
-                    {StartIcon && (
+                    {actualStartIcon && (
                         <div className="designbase-input__start-icon">
-                            <StartIcon size={iconSize} />
+                            {React.createElement(actualStartIcon, { size: iconSize })}
                         </div>
                     )}
 
@@ -141,7 +159,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                         {...props}
                         ref={forwardedRef}
                         id={inputId}
-                        type={type}
+                        type={actualType}
                         value={value}
                         defaultValue={defaultValue}
                         placeholder={placeholder}
@@ -159,9 +177,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                         aria-invalid={error}
                     />
 
-                    {EndIcon && (
+                    {isPassword && (
+                        <button
+                            type="button"
+                            className="designbase-input__password-toggle"
+                            onClick={handlePasswordToggle}
+                            disabled={disabled}
+                            aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 보기'}
+                        >
+                            {React.createElement(PasswordIcon, { size: iconSize })}
+                        </button>
+                    )}
+
+                    {EndIcon && !isPassword && (
                         <div className="designbase-input__end-icon">
-                            <EndIcon size={iconSize} />
+                            {React.createElement(EndIcon, { size: iconSize })}
                         </div>
                     )}
                 </div>

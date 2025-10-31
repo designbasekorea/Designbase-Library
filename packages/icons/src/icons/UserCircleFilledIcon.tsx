@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.8 7.7c-.8-.8-1.7-1.2-2.8-1.2S9.8 7 9.2 7.7C8.4 8.5 8 9.4 8 10.5s.5 2.2 1.2 2.8c.8.8 1.7 1.2 2.8 1.2s2.2-.5 2.8-1.2c.8-.8 1.2-1.7 1.2-2.8s-.5-2.2-1.2-2.8"/><path fill="currentColor" d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1m6.4 17.3c-.2-.5-.5-.9-.9-1.4-.9-1-2.1-1.5-3.5-1.5h-4c-1.3 0-2.8.6-3.6 1.5-.4.4-.6.8-.8 1.3-1.5-1.6-2.5-3.8-2.5-6.2C3 7 7 3 12 3s9 4 9 9c0 4.5-2 5.5-2.6 6.3"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const UserCircleFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M14.8 7.7c-.8-.8-1.7-1.2-2.8-1.2S9.8 7 9.2 7.7C8.4 8.5 8 9.4 8 10.5s.5 2.2 1.2 2.8c.8.8 1.7 1.2 2.8 1.2s2.2-.5 2.8-1.2c.8-.8 1.2-1.7 1.2-2.8s-.5-2.2-1.2-2.8"/><path fill="currentColor" d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1m6.4 17.3c-.2-.5-.5-.9-.9-1.4-.9-1-2.1-1.5-3.5-1.5h-4c-1.3 0-2.8.6-3.6 1.5-.4.4-.6.8-.8 1.3-1.5-1.6-2.5-3.8-2.5-6.2C3 7 7 3 12 3s9 4 9 9-1 4.7-2.6 6.3"/></svg>
+);
 
 export default UserCircleFilledIcon;

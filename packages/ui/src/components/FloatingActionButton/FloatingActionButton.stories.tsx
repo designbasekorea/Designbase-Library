@@ -1,12 +1,11 @@
 /**
  * FloatingActionButton 컴포넌트 스토리
  * 
- * 목적: FloatingActionButton 컴포넌트의 다양한 상태와 사용법을 보여줌
- * 기능: 크기, 위치, 변형, 애니메이션 효과 등 다양한 설정 예제
+ * 목적: FloatingActionButton 컴포넌트의 다양한 크기와 색상 변형을 보여줌
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { PlusIcon, SettingsIcon, SearchIcon } from '@designbasekorea/icons';
 import { FloatingActionButton } from './FloatingActionButton';
 
 const meta: Meta<typeof FloatingActionButton> = {
@@ -19,31 +18,16 @@ const meta: Meta<typeof FloatingActionButton> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg', 'xl'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
-            options: ['primary', 'secondary', 'success', 'warning', 'danger', 'info'],
+            options: ['primary', 'secondary', 'tertiary'],
         },
-        position: {
-            control: { type: 'select' },
-            options: ['bottom-right', 'bottom-left', 'top-right', 'top-left', 'center'],
-        },
-        animation: {
-            control: { type: 'select' },
-            options: ['scale', 'rotate', 'bounce', 'pulse', 'none'],
-        },
-        elevation: {
-            control: { type: 'select' },
-            options: ['none', 'sm', 'md', 'lg', 'xl'],
-        },
-        extended: {
+        loading: {
             control: { type: 'boolean' },
         },
         disabled: {
-            control: { type: 'boolean' },
-        },
-        loading: {
             control: { type: 'boolean' },
         },
     },
@@ -52,369 +36,104 @@ const meta: Meta<typeof FloatingActionButton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 FAB
 export const Default: Story = {
     args: {
-        icon: '+',
+        icon: <PlusIcon size={24} />,
         onClick: () => console.log('FAB clicked!'),
     },
 };
 
-// 크기별 FAB
-export const Sizes: Story = {
+// 모든 사이즈 (s, m, l)
+export const AllSizes: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    size="sm"
-                    icon="+"
-                    onClick={() => console.log('Small FAB clicked!')}
+                    size="s"
+                    icon={<PlusIcon size={16} />}
+                    onClick={() => console.log('Small FAB')}
                 />
-                <span>Small (40px)</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Small (s)</span>
             </div>
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    size="md"
-                    icon="+"
-                    onClick={() => console.log('Medium FAB clicked!')}
+                    size="m"
+                    icon={<PlusIcon size={24} />}
+                    onClick={() => console.log('Medium FAB')}
                 />
-                <span>Medium (56px)</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Medium (m)</span>
             </div>
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    size="lg"
-                    icon="+"
-                    onClick={() => console.log('Large FAB clicked!')}
+                    size="l"
+                    icon={<PlusIcon size={32} />}
+                    onClick={() => console.log('Large FAB')}
                 />
-                <span>Large (72px)</span>
-            </div>
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <FloatingActionButton
-                    size="xl"
-                    icon="+"
-                    onClick={() => console.log('Extra Large FAB clicked!')}
-                />
-                <span>Extra Large (88px)</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Large (l)</span>
             </div>
         </div>
     ),
 };
 
-// 변형별 FAB
-export const Variants: Story = {
+// 모든 Variants (primary, secondary, tertiary)
+export const AllVariants: Story = {
     render: () => (
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <FloatingActionButton
-                variant="primary"
-                icon="+"
-                onClick={() => console.log('Primary FAB clicked!')}
-            />
-            <FloatingActionButton
-                variant="secondary"
-                icon="⚙️"
-                onClick={() => console.log('Secondary FAB clicked!')}
-            />
-            <FloatingActionButton
-                variant="success"
-                icon="✓"
-                onClick={() => console.log('Success FAB clicked!')}
-            />
-            <FloatingActionButton
-                variant="warning"
-                icon="⚠️"
-                onClick={() => console.log('Warning FAB clicked!')}
-            />
-            <FloatingActionButton
-                variant="danger"
-                icon="🗑️"
-                onClick={() => console.log('Danger FAB clicked!')}
-            />
-            <FloatingActionButton
-                variant="info"
-                icon="ℹ️"
-                onClick={() => console.log('Info FAB clicked!')}
-            />
-        </div>
-    ),
-};
-
-// 위치별 FAB
-export const Positions: Story = {
-    render: () => (
-        <div style={{ position: 'relative', width: '100vw', height: '100vh', border: '1px solid #ccc' }}>
-            <div style={{ padding: '20px' }}>
-                <h3>다양한 위치의 FAB</h3>
-                <p>화면의 각 모서리와 중앙에 FAB이 배치되어 있습니다.</p>
-            </div>
-
-            <FloatingActionButton
-                position="top-left"
-                icon="⬅️"
-                onClick={() => console.log('Top-left FAB clicked!')}
-            />
-            <FloatingActionButton
-                position="top-right"
-                icon="➡️"
-                onClick={() => console.log('Top-right FAB clicked!')}
-            />
-            <FloatingActionButton
-                position="bottom-left"
-                icon="⬅️"
-                onClick={() => console.log('Bottom-left FAB clicked!')}
-            />
-            <FloatingActionButton
-                position="bottom-right"
-                icon="➡️"
-                onClick={() => console.log('Bottom-right FAB clicked!')}
-            />
-            <FloatingActionButton
-                position="center"
-                icon="🎯"
-                onClick={() => console.log('Center FAB clicked!')}
-            />
-        </div>
-    ),
-};
-
-// 확장된 FAB
-export const Extended: Story = {
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
-            <FloatingActionButton
-                extended={true}
-                icon="+"
-                label="새로 만들기"
-                onClick={() => console.log('Extended FAB clicked!')}
-            />
-            <FloatingActionButton
-                extended={true}
-                icon="📧"
-                label="메일 보내기"
-                variant="success"
-                onClick={() => console.log('Mail FAB clicked!')}
-            />
-            <FloatingActionButton
-                extended={true}
-                icon="📷"
-                label="사진 촬영"
-                variant="info"
-                onClick={() => console.log('Camera FAB clicked!')}
-            />
-        </div>
-    ),
-};
-
-// 애니메이션 효과
-export const Animations: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    animation="scale"
-                    icon="📏"
-                    onClick={() => console.log('Scale FAB clicked!')}
+                    variant="primary"
+                    icon={<PlusIcon size={24} />}
+                    onClick={() => console.log('Primary FAB')}
                 />
-                <span>Scale</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Primary</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    animation="rotate"
-                    icon="🔄"
-                    onClick={() => console.log('Rotate FAB clicked!')}
+                    variant="secondary"
+                    icon={<SettingsIcon size={24} />}
+                    onClick={() => console.log('Secondary FAB')}
                 />
-                <span>Rotate</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Secondary</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    animation="bounce"
-                    icon="⚡"
-                    onClick={() => console.log('Bounce FAB clicked!')}
+                    variant="tertiary"
+                    icon={<SearchIcon size={24} />}
+                    onClick={() => console.log('Tertiary FAB')}
                 />
-                <span>Bounce</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    animation="pulse"
-                    icon="💓"
-                    onClick={() => console.log('Pulse FAB clicked!')}
-                />
-                <span>Pulse</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    animation="none"
-                    icon="🚫"
-                    onClick={() => console.log('None FAB clicked!')}
-                />
-                <span>None</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Tertiary</span>
             </div>
         </div>
     ),
 };
 
-// 그림자 효과
-export const Elevations: Story = {
+// 모든 상태 (기본, hover, disabled, loading)
+export const AllStates: Story = {
     render: () => (
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
-                    elevation="none"
-                    icon="👻"
-                    onClick={() => console.log('None elevation FAB clicked!')}
+                    icon={<PlusIcon size={24} />}
+                    onClick={() => console.log('Normal FAB')}
                 />
-                <span>None</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    elevation="sm"
-                    icon="🌫️"
-                    onClick={() => console.log('Small elevation FAB clicked!')}
-                />
-                <span>Small</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    elevation="md"
-                    icon="☁️"
-                    onClick={() => console.log('Medium elevation FAB clicked!')}
-                />
-                <span>Medium</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    elevation="lg"
-                    icon="⛅"
-                    onClick={() => console.log('Large elevation FAB clicked!')}
-                />
-                <span>Large</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    elevation="xl"
-                    icon="🌩️"
-                    onClick={() => console.log('Extra Large elevation FAB clicked!')}
-                />
-                <span>Extra Large</span>
-            </div>
-        </div>
-    ),
-};
-
-// 상태별 FAB
-export const States: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <FloatingActionButton
-                    icon="✅"
-                    onClick={() => console.log('Normal FAB clicked!')}
-                />
-                <span>Normal</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>기본 (Hover 가능)</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
                     disabled={true}
-                    icon="❌"
-                    onClick={() => console.log('Disabled FAB clicked!')}
+                    icon={<PlusIcon size={24} />}
+                    onClick={() => console.log('Disabled FAB')}
                 />
-                <span>Disabled</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Disabled</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                 <FloatingActionButton
                     loading={true}
-                    onClick={() => console.log('Loading FAB clicked!')}
+                    icon={<PlusIcon size={24} />}
+                    onClick={() => console.log('Loading FAB')}
                 />
-                <span>Loading</span>
+                <span style={{ fontSize: '12px', color: 'var(--db-text-secondary)' }}>Loading</span>
             </div>
-        </div>
-    ),
-};
-
-// 실제 사용 예제
-export const UsageExamples: Story = {
-    render: () => {
-        const [isOpen, setIsOpen] = useState(false);
-
-        return (
-            <div style={{ position: 'relative', width: '100vw', height: '100vh', border: '1px solid #ccc' }}>
-                <div style={{ padding: '20px' }}>
-                    <h3>실제 사용 예제</h3>
-                    <p>다양한 용도로 사용되는 FAB 예제들입니다.</p>
-                </div>
-
-                {/* 메인 FAB */}
-                <FloatingActionButton
-                    position="bottom-right"
-                    icon={isOpen ? '✕' : '+'}
-                    animation="rotate"
-                    onClick={() => setIsOpen(!isOpen)}
-                />
-
-                {/* 서브 FAB들 (메인 FAB이 열렸을 때만 표시) */}
-                {isOpen && (
-                    <>
-                        <FloatingActionButton
-                            position="bottom-right"
-                            icon="📧"
-                            size="sm"
-                            style={{ bottom: '88px', right: '24px' }}
-                            onClick={() => console.log('Email FAB clicked!')}
-                        />
-                        <FloatingActionButton
-                            position="bottom-right"
-                            icon="📷"
-                            size="sm"
-                            style={{ bottom: '136px', right: '24px' }}
-                            onClick={() => console.log('Camera FAB clicked!')}
-                        />
-                        <FloatingActionButton
-                            position="bottom-right"
-                            icon="📝"
-                            size="sm"
-                            style={{ bottom: '184px', right: '24px' }}
-                            onClick={() => console.log('Note FAB clicked!')}
-                        />
-                    </>
-                )}
-
-                {/* 다른 위치의 FAB들 */}
-                <FloatingActionButton
-                    position="top-right"
-                    icon="🔍"
-                    variant="info"
-                    onClick={() => console.log('Search FAB clicked!')}
-                />
-
-                <FloatingActionButton
-                    position="bottom-left"
-                    extended={true}
-                    icon="📞"
-                    label="고객 지원"
-                    variant="success"
-                    onClick={() => console.log('Support FAB clicked!')}
-                />
-            </div>
-        );
-    },
-};
-
-// 접근성 예제
-export const Accessibility: Story = {
-    render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
-            <FloatingActionButton
-                icon="♿"
-                label="접근성 고려 FAB"
-                extended={true}
-                onClick={() => console.log('Accessibility FAB clicked!')}
-            />
-            <p>이 FAB은 스크린 리더와 키보드 네비게이션을 지원합니다.</p>
-            <ul style={{ textAlign: 'left' }}>
-                <li>Tab 키로 포커스 가능</li>
-                <li>Enter/Space 키로 클릭 가능</li>
-                <li>aria-label 속성으로 스크린 리더 지원</li>
-                <li>포커스 표시로 시각적 피드백 제공</li>
-            </ul>
         </div>
     ),
 };

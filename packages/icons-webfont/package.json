@@ -1,6 +1,6 @@
 {
     "name": "@designbasekorea/icons-webfont",
-    "version": "0.1.0",
+    "version": "0.1.4",
     "description": "Designbase 아이콘 웹폰트 배포용 패키지",
     "type": "commonjs",
     "sideEffects": false,

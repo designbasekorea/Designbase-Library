@@ -9,7 +9,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './Section.scss';
 
-export type SectionSize = 'sm' | 'md' | 'lg' | 'xl';
+export type SectionSize = 's' | 'm' | 'l' | 'xl';
 export type SectionVariant = 'default' | 'elevated' | 'outlined' | 'filled';
 
 export interface SectionProps {
@@ -45,7 +45,7 @@ export const Section: React.FC<SectionProps> = ({
     title,
     subtitle,
     description,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     header,
     footer,

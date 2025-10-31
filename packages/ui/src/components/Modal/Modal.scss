@@ -1,8 +1,8 @@
 .designbase-modal {
     position: relative;
-    background-color: var(--db-bg-primary);
-    border-radius: var(--db-radius-lg);
-    box-shadow: var(--db-shadow-xl);
+    background-color: var(--db-surface-base);
+    border-radius: var(--db-radius-modal-m);
+    box-shadow: var(--db-shadow-modal);
     max-height: 90vh;
     overflow: hidden;
     transform: translateY(0);
@@ -17,15 +17,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--db-bg-overlay);
+        background-color: var(--db-overlay-base);
         backdrop-filter: blur(4px);
-        padding: var(--db-padding-m);
+        padding: var(--db-padding-l);
     }
 
     &__content {
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        overflow: auto;
         height: 100%;
     }
 
@@ -33,9 +33,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: var(--db-padding-s);
-        border-bottom: 1px solid var(--db-border-primary);
-        background-color: var(--db-bg-primary);
+        padding: var(--db-padding-m);
+        border-bottom: 1px solid var(--db-border-muted);
+        background-color: var(--db-surface-base);
         flex-shrink: 0;
 
         &-content {
@@ -44,7 +44,7 @@
     }
 
     &__title {
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-l);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
         line-height: var(--db-leading-normal);
@@ -55,23 +55,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        width: var(--db-size-button-m);
+        height: var(--db-size-button-m);
         border: none;
         background: none;
-        border-radius: var(--db-radius-sm);
-        color: var(--db-text-secondary);
+        border-radius: var(--db-radius-s);
+        color: var(--db-icon-muted);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         margin-left: var(--db-margin-m);
 
         &:hover {
-            background-color: var(--db-bg-secondary);
-            color: var(--db-text-primary);
+            background-color: var(--db-interactive-bg-hover);
+            color: var(--db-icon-hover);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
     }
@@ -79,7 +79,7 @@
     &__body {
         flex: 1;
         overflow-y: auto;
-        padding: var(--db-padding-xl);
+        padding: var(--db-padding-m);
     }
 
     &__footer {
@@ -87,31 +87,31 @@
         align-items: center;
         justify-content: flex-end;
         gap: var(--db-gap-s);
-        padding: var(--db-padding-l) var(--db-padding-xl);
-        border-top: 1px solid var(--db-border-primary);
-        background-color: var(--db-bg-secondary);
+        padding: var(--db-padding-m);
+        border-top: 1px solid var(--db-border-muted);
+        background-color: var(--db-surface-base);
         flex-shrink: 0;
     }
 
     // Sizes
-    &--sm {
+    &--s {
         width: 100%;
-        max-width: 400px;
+        max-width: var(--db-size-modal-s);
     }
 
-    &--md {
+    &--m {
         width: 100%;
-        max-width: 500px;
+        max-width: var(--db-size-modal-m);
     }
 
-    &--lg {
+    &--l {
         width: 100%;
-        max-width: 600px;
+        max-width: var(--db-size-modal-l);
     }
 
     &--xl {
         width: 100%;
-        max-width: 800px;
+        max-width: var(--db-size-modal-xl);
     }
 
     &--full {

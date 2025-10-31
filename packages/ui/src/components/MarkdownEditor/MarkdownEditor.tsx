@@ -20,11 +20,11 @@ import {
     UserIcon,
     UsersIcon,
     WorldIcon,
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import './MarkdownEditor.scss';
 
 // 타입 정의
-export type MarkdownEditorSize = 'sm' | 'md' | 'lg';
+export type MarkdownEditorSize = 's' | 'm' | 'l';
 export type MarkdownEditorVariant = 'default' | 'outlined' | 'filled';
 export type MarkdownEditorMode = 'edit' | 'preview' | 'split' | 'code';
 export type MarkdownEditorTheme = 'light' | 'dark';
@@ -98,7 +98,7 @@ export interface MarkdownEditorProps {
 }
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
-    size = 'md',
+    size = 'm',
     variant = 'default',
     mode = 'preview', // 기본값을 preview로 변경
     theme = 'light',

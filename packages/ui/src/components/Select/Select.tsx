@@ -8,9 +8,9 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
-import { ChevronDownIcon, ChevronUpIcon, CloseIcon } from '@designbase/icons';
+import { ChevronDownIcon, ChevronUpIcon, CloseIcon } from '@designbasekorea/icons';
 import { Checkbox } from '../Checkbox/Checkbox';
-import type { BaseIconProps } from '@designbase/icons';
+import type { IconProps } from '@designbasekorea/icons';
 import './Select.scss';
 
 export interface SelectOption {
@@ -49,11 +49,13 @@ export interface SelectProps {
     /** 헬퍼 텍스트 */
     helperText?: string;
     /** 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 전체 너비 여부 */
     fullWidth?: boolean;
     /** 드롭다운 너비 */
     dropdownWidth?: 'auto' | 'full';
+    /** 드롭다운 위치 */
+    position?: 'bottom' | 'top';
     /** 최대 높이 */
     maxHeight?: number;
     /** 클리어 버튼 표시 여부 */
@@ -84,9 +86,10 @@ export const Select: React.FC<SelectProps> = ({
     error = false,
     errorMessage,
     helperText,
-    size = 'md',
+    size = 'm',
     fullWidth = false,
     dropdownWidth = 'auto',
+    position = 'bottom',
     maxHeight = 200,
     showClearButton = true,
     className,
@@ -286,6 +289,7 @@ export const Select: React.FC<SelectProps> = ({
     const dropdownClasses = clsx(
         'designbase-select__dropdown',
         `designbase-select__dropdown--${dropdownWidth}`,
+        `designbase-select__dropdown--${position}`,
         {
             'designbase-select__dropdown--open': isOpen,
         }
@@ -413,7 +417,7 @@ export const Select: React.FC<SelectProps> = ({
                                             <Checkbox
                                                 isSelected={isSelected}
                                                 isDisabled={option.disabled}
-                                                size="sm"
+                                                size="s"
                                                 hasLabel={false}
                                                 onChange={() => handleOptionSelect(option)}
                                             />

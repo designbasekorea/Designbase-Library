@@ -3,21 +3,33 @@
     align-items: center;
     justify-content: center;
     gap: var(--db-gap-s);
-    color: var(--spinner-color, var(--db-blue-500));
+    color: var(--spinner-color, var(--db-icon-primary));
+    position: relative;
+
+    line-height: 1;
+    vertical-align: middle;
+
+    /* 회전/스케일 기준을 명시적으로 중앙 */
+    svg,
+    .designbase-spinner__pulse,
+    .designbase-spinner__ripple-circle {
+        transform-origin: 50% 50%;
+        transform-box: fill-box;
+    }
 
     &__label {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
         white-space: nowrap;
     }
 
-    // Circular Spinner
+    /* Circular */
     &--circular {
         .designbase-spinner__circular {
             width: 1em;
             height: 1em;
-
-            animation: spin var(--spinner-speed, 1s) linear infinite;
+            animation: db-spinner-rotate var(--spinner-speed, 1s) linear infinite;
+            will-change: transform;
         }
 
         .designbase-spinner__circular-track {
@@ -27,11 +39,12 @@
         .designbase-spinner__circular-indicator {
             stroke-dasharray: 80;
             stroke-dashoffset: 80;
-            animation: circular-progress var(--spinner-speed, 1s) ease-in-out infinite;
+            animation: db-spinner-circular-progress var(--spinner-speed, 1s) ease-in-out infinite;
+            will-change: stroke-dashoffset;
         }
     }
 
-    // Dots Spinner
+    /* Dots */
     &--dots {
         .designbase-spinner__dots {
             display: flex;
@@ -43,7 +56,8 @@
             height: 0.5em;
             border-radius: 50%;
             background-color: currentColor;
-            animation: dots-bounce var(--spinner-speed, 1s) ease-in-out infinite;
+            animation: db-spinner-dots-bounce var(--spinner-speed, 1s) ease-in-out infinite;
+            will-change: transform, opacity;
 
             &:nth-child(1) {
                 animation-delay: -0.32s;
@@ -55,7 +69,7 @@
         }
     }
 
-    // Bars Spinner
+    /* Bars */
     &--bars {
         .designbase-spinner__bars {
             display: flex;
@@ -67,7 +81,8 @@
             width: 3px;
             background-color: currentColor;
             border-radius: 2px;
-            animation: bars-wave var(--spinner-speed, 1s) ease-in-out infinite;
+            animation: db-spinner-bars-wave var(--spinner-speed, 1s) ease-in-out infinite;
+            will-change: transform;
 
             &:nth-child(1) {
                 animation-delay: -0.4s;
@@ -87,18 +102,19 @@
         }
     }
 
-    // Pulse Spinner
+    /* Pulse */
     &--pulse {
         .designbase-spinner__pulse {
             width: 1em;
             height: 1em;
             border-radius: 50%;
             background-color: currentColor;
-            animation: pulse-scale var(--spinner-speed, 1s) ease-in-out infinite;
+            animation: db-spinner-pulse-scale var(--spinner-speed, 1s) ease-in-out infinite;
+            will-change: transform, opacity;
         }
     }
 
-    // Ripple Spinner
+    /* Ripple */
     &--ripple {
         position: relative;
         width: 1em;
@@ -106,13 +122,13 @@
 
         .designbase-spinner__ripple-circle {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             border: 2px solid currentColor;
             border-radius: 50%;
-            animation: ripple-expand var(--spinner-speed, 1s) ease-out infinite;
+            animation: db-spinner-ripple-expand var(--spinner-speed, 1s) ease-out infinite;
+            will-change: transform, opacity;
 
             &:nth-child(2) {
                 animation-delay: calc(var(--spinner-speed, 1s) * 0.5);
@@ -120,20 +136,20 @@
         }
     }
 
-    // Sizes
+    /* Sizes */
     &--xs {
         font-size: 12px;
     }
 
-    &--sm {
+    &--s {
         font-size: 14px;
     }
 
-    &--md {
+    &--m {
         font-size: 16px;
     }
 
-    &--lg {
+    &--l {
         font-size: 20px;
     }
 
@@ -142,8 +158,8 @@
     }
 }
 
-// Animations
-@keyframes spin {
+/* === 고유 네임스페이스 키프레임 (전역 충돌 방지) === */
+@keyframes db-spinner-rotate {
     from {
         transform: rotate(0deg);
     }
@@ -153,7 +169,7 @@
     }
 }
 
-@keyframes circular-progress {
+@keyframes db-spinner-circular-progress {
     0% {
         stroke-dashoffset: 70;
     }
@@ -167,7 +183,7 @@
     }
 }
 
-@keyframes dots-bounce {
+@keyframes db-spinner-dots-bounce {
 
     0%,
     80%,
@@ -182,7 +198,7 @@
     }
 }
 
-@keyframes bars-wave {
+@keyframes db-spinner-bars-wave {
 
     0%,
     40%,
@@ -195,7 +211,7 @@
     }
 }
 
-@keyframes pulse-scale {
+@keyframes db-spinner-pulse-scale {
     0% {
         transform: scale(0.8);
         opacity: 0.5;
@@ -212,7 +228,7 @@
     }
 }
 
-@keyframes ripple-expand {
+@keyframes db-spinner-ripple-expand {
     0% {
         transform: scale(0);
         opacity: 1;

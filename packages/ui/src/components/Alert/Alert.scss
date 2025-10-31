@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--db-gap-s);
-    padding: var(--db-padding-s);
-    border-radius: var(--db-radius-lg);
+    padding: var(--db-padding-m);
+    border-radius: var(--db-radius-m);
     border: 1px solid;
-    background-color: var(--db-bg-primary);
-    box-shadow: var(--db-shadow-sm);
+    background-color: var(--db-surface-base);
+    box-shadow: none;
 
     &__content {
         display: flex;
@@ -24,17 +24,20 @@
     &__body {
         flex: 1;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     &__title {
-        font-weight: var(--db-weight-semibold);
+        font-weight: var(--db-weight-bold);
         font-size: var(--db-text-base);
-        line-height: var(--db-leading-normal);
-        margin-bottom: var(--db-margin-xs);
+        line-height: 1.2;
+        margin-bottom: 0;
+        color: var(--db-text-primary);
     }
 
     &__message {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         line-height: var(--db-leading-snug);
         color: var(--db-text-secondary);
     }
@@ -47,19 +50,19 @@
         height: 20px;
         border: none;
         background: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         cursor: pointer;
-        color: var(--db-text-muted);
+        color: var(--db-icon-muted);
         transition: all 0.2s ease;
         flex-shrink: 0;
 
         &:hover {
-            background-color: var(--db-bg-secondary);
-            color: var(--db-text-secondary);
+            background-color: var(--db-interactive-bg-hover);
+            color: var(--db-icon-hover);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
     }
@@ -68,8 +71,6 @@
         display: flex;
         gap: var(--db-gap-s);
         margin-top: var(--db-margin-xs);
-        padding-top: var(--db-padding-s);
-        border-top: 1px solid var(--db-border-primary);
     }
 
     &__action-buttons {
@@ -80,84 +81,122 @@
     }
 
     // Variants
-    &--info {
-        background-color: var(--db-blue-50);
-        border-color: var(--db-blue-200);
-        color: var(--db-blue-900);
+    &--default {
+        background-color: var(--db-surface-base);
+        border-color: var(--db-border-base);
+        color: var(--db-text-primary);
 
         .designbase-alert__icon {
-            color: var(--db-blue-500);
+            color: var(--db-icon-primary);
         }
 
         .designbase-alert__title {
-            color: var(--db-blue-900);
+            color: var(--db-text-primary);
         }
 
         .designbase-alert__message {
-            color: var(--db-blue-700);
+            color: var(--db-text-secondary);
+        }
+
+        .designbase-alert__actions {
+            border-top-color: var(--db-border-base);
+        }
+    }
+
+    &--info {
+        background-color: var(--db-feedback-info-bg);
+        border-color: var(--db-feedback-info-fg);
+        color: var(--db-feedback-info-fg);
+
+        .designbase-alert__icon {
+            color: var(--db-icon-info);
+        }
+
+        .designbase-alert__title {
+            color: var(--db-feedback-info-fg);
+        }
+
+        .designbase-alert__message {
+            color: var(--db-feedback-info-fg);
+        }
+
+        .designbase-alert__actions {
+            border-top-color: var(--db-feedback-info-fg);
         }
     }
 
     &--success {
-        background-color: var(--db-green-50);
-        border-color: var(--db-green-200);
-        color: var(--db-green-900);
+        background-color: var(--db-feedback-success-bg);
+        border-color: var(--db-feedback-success-fg);
+        color: var(--db-feedback-success-fg);
 
         .designbase-alert__icon {
-            color: var(--db-green-500);
+            color: var(--db-icon-success);
         }
 
         .designbase-alert__title {
-            color: var(--db-green-900);
+            color: var(--db-feedback-success-fg);
         }
 
         .designbase-alert__message {
-            color: var(--db-green-700);
+            color: var(--db-feedback-success-fg);
+        }
+
+        .designbase-alert__actions {
+            border-top-color: var(--db-feedback-success-fg);
         }
     }
 
     &--warning {
-        background-color: var(--db-yellow-50);
-        border-color: var(--db-yellow-200);
-        color: var(--db-yellow-900);
+        background-color: var(--db-feedback-warning-bg);
+        border-color: var(--db-feedback-warning-fg);
+        color: var(--db-feedback-warning-fg);
 
         .designbase-alert__icon {
-            color: var(--db-yellow-500);
+            color: var(--db-icon-warning);
         }
 
         .designbase-alert__title {
-            color: var(--db-yellow-900);
+            color: var(--db-feedback-warning-fg);
         }
 
         .designbase-alert__message {
-            color: var(--db-yellow-700);
+            color: var(--db-feedback-warning-fg);
+        }
+
+        .designbase-alert__actions {
+            border-top-color: var(--db-feedback-warning-fg);
         }
     }
 
     &--danger {
-        background-color: var(--db-red-50);
-        border-color: var(--db-red-200);
-        color: var(--db-red-900);
+        background-color: var(--db-feedback-error-bg);
+        border-color: var(--db-feedback-error-fg);
+        color: var(--db-feedback-error-fg);
 
         .designbase-alert__icon {
-            color: var(--db-red-500);
+            color: var(--db-icon-error);
         }
 
         .designbase-alert__title {
-            color: var(--db-red-900);
+            color: var(--db-feedback-error-fg);
         }
 
         .designbase-alert__message {
-            color: var(--db-red-700);
+            color: var(--db-feedback-error-fg);
+        }
+
+        .designbase-alert__actions {
+            border-top-color: var(--db-feedback-error-fg);
         }
     }
 
     // Sizes
-    &--sm {
+    &--s {
         padding: var(--db-padding-xs);
 
         .designbase-alert__title {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             margin-bottom: var(--db-margin-xs);
         }
 
@@ -171,7 +210,7 @@
         }
     }
 
-    &--md {
+    &--m {
         padding: var(--db-padding-s);
 
         .designbase-alert__title {
@@ -180,7 +219,7 @@
         }
 
         .designbase-alert__message {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-alert__close {
@@ -189,11 +228,11 @@
         }
     }
 
-    &--lg {
+    &--l {
         padding: var(--db-padding-m);
 
         .designbase-alert__title {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             margin-bottom: var(--db-margin-s);
         }
 

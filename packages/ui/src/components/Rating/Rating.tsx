@@ -7,11 +7,11 @@
 
 import React, { useState, useCallback } from 'react';
 import clsx from 'clsx';
-import { StarIcon, StarFilledIcon, StarHalfIcon } from '@designbase/icons';
+import { StarIcon, StarFilledIcon, StarHalfIcon } from '@designbasekorea/icons';
 import './Rating.scss';
 
 // 타입 정의
-export type RatingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type RatingSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 export type RatingVariant = 'default' | 'minimal' | 'card' | 'inline' | 'large';
 export type RatingType = 'star' | 'number' | 'percentage' | 'text';
 export type RatingDisplay = 'stars' | 'number' | 'both' | 'reviews' | 'detailed';
@@ -64,7 +64,7 @@ export interface RatingProps {
 const Rating: React.FC<RatingProps> = ({
     value,
     maxValue = 5,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     type = 'star',
     display = 'stars',
@@ -162,7 +162,7 @@ const Rating: React.FC<RatingProps> = ({
         const isClickable = clickable && !disabled && !readonly;
 
         const starProps = {
-            size: size === 'xs' ? 12 : size === 'sm' ? 16 : size === 'md' ? 20 : size === 'lg' ? 24 : 32,
+            size: size === 'xs' ? 12 : size === 's' ? 16 : size === 'm' ? 20 : size === 'l' ? 24 : 32,
             className: clsx(
                 'designbase-rating__star',
                 {

@@ -5,72 +5,72 @@
                 "value": "none",
                 "type": "boxShadow"
             },
-            "sm": {
+            "s": {
                 "value": {
-                    "x": 0,
-                    "y": 1,
-                    "blur": 2,
-                    "spread": 0,
+                    "x": "0px",
+                    "y": "1px",
+                    "blur": "2px",
+                    "spread": "0px",
                     "color": "rgba(0, 0, 0, 0.05)"
                 },
                 "type": "boxShadow"
             },
             "base": {
                 "value": {
-                    "x": 0,
-                    "y": 1,
-                    "blur": 3,
-                    "spread": 0,
+                    "x": "0px",
+                    "y": "1px",
+                    "blur": "3px",
+                    "spread": "0px",
                     "color": "rgba(0, 0, 0, 0.1)"
                 },
                 "type": "boxShadow"
             },
-            "md": {
+            "m": {
                 "value": {
-                    "x": 0,
-                    "y": 4,
-                    "blur": 6,
-                    "spread": -1,
+                    "x": "0px",
+                    "y": "4px",
+                    "blur": "6px",
+                    "spread": "-1px",
                     "color": "rgba(0, 0, 0, 0.1)"
                 },
                 "type": "boxShadow"
             },
-            "lg": {
+            "l": {
                 "value": {
-                    "x": 0,
-                    "y": 10,
-                    "blur": 15,
-                    "spread": -3,
+                    "x": "0px",
+                    "y": "10px",
+                    "blur": "15px",
+                    "spread": "-3px",
                     "color": "rgba(0, 0, 0, 0.1)"
                 },
                 "type": "boxShadow"
             },
             "xl": {
                 "value": {
-                    "x": 0,
-                    "y": 20,
-                    "blur": 25,
-                    "spread": -5,
+                    "x": "0px",
+                    "y": "20px",
+                    "blur": "25px",
+                    "spread": "-5px",
                     "color": "rgba(0, 0, 0, 0.1)"
                 },
                 "type": "boxShadow"
             },
             "2xl": {
                 "value": {
-                    "x": 0,
-                    "y": 25,
-                    "blur": 50,
-                    "spread": -12,
+                    "x": "0px",
+                    "y": "25px",
+                    "blur": "50px",
+                    "spread": "-12px",
                     "color": "rgba(0, 0, 0, 0.25)"
                 },
                 "type": "boxShadow"
             },
             "inner": {
                 "value": {
-                    "x": 0,
-                    "y": 2,
-                    "blur": 4,
-                    "spread": 0,
+                    "x": "0px",
+                    "y": "2px",
+                    "blur": "4px",
+                    "spread": "0px",
                     "color": "rgba(0, 0, 0, 0.06)",
                     "inset": true
                 },

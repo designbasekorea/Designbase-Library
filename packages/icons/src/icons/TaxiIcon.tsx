@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M15 17.25v1.5H8v-1.5z"/><path fill="currentColor" d="M21.25 13a.25.25 0 0 0-.25-.25h-3.541l-1.999-6H4.541L2.75 12.123v5.127H4v1.5H1.25v-6.872l.038-.115L3.46 5.25h13.083l1.999 6H21c.966 0 1.75.784 1.75 1.75v5.75H19v-1.5h2.25z"/><path fill="currentColor" d="M21 14.25v1.5h-3v-1.5zM18 11.25v1.5H2v-1.5z"/><path fill="currentColor" d="M10.75 6v6h-1.5V6zM7.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0M18.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0"/><path fill="currentColor" d="M12.25 4a.25.25 0 0 0-.25-.25H8a.25.25 0 0 0-.25.25v1.25h4.5zm1.5 2.75h-7.5V4c0-.966.784-1.75 1.75-1.75h4c.966 0 1.75.784 1.75 1.75z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const TaxiIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M15 17.25v1.5H8v-1.5z"/><path fill="currentColor" d="M21.25 13a.25.25 0 0 0-.25-.25h-3.541l-1.999-6H4.541L2.75 12.123v5.127H4v1.5H1.25v-6.872l.038-.115L3.46 5.25h13.083l1.999 6H21c.966 0 1.75.784 1.75 1.75v5.75H19v-1.5h2.25z"/><path fill="currentColor" d="M21 14.25v1.5h-3v-1.5zM18 11.25v1.5H2v-1.5z"/><path fill="currentColor" d="M10.75 6v6h-1.5V6zM7.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0M18.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0"/><path fill="currentColor" d="M12.25 4a.25.25 0 0 0-.25-.25H8a.25.25 0 0 0-.25.25v1.25h4.5zm1.5 2.75h-7.5V4c0-.966.784-1.75 1.75-1.75h4c.966 0 1.75.784 1.75 1.75z"/></svg>
+);
 
 export default TaxiIcon;

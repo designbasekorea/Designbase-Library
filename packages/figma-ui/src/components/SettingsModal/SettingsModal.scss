@@ -1,0 +1,175 @@
+.designbase-figma-settings-modal {
+    &__content {
+        padding: var(--db-padding-m);
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    &__description {
+        margin-bottom: var(--db-margin-m);
+        color: var(--db-text-secondary);
+        font-size: var(--db-text-xs);
+        line-height: var(--db-leading-normal);
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-s);
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--db-padding-s);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        background: var(--db-surface-base);
+        cursor: move;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        user-select: none;
+
+        &:hover {
+            border-color: var(--db-border-layer-1);
+            background: var(--db-surface-layer-1);
+        }
+
+        &--disabled {
+            opacity: 0.6;
+
+            .designbase-figma-settings-modal__category-title {
+                text-decoration: line-through;
+                color: var(--db-text-disabled);
+            }
+        }
+
+        &--dragging {
+            opacity: 0.5;
+            transform: scale(0.98);
+            box-shadow: var(--db-shadow-m);
+        }
+    }
+
+    &__item-info {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__drag-handle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--db-icon-muted);
+        cursor: move;
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
+        flex-shrink: 0;
+
+        &:hover {
+            color: var(--db-icon-hover);
+        }
+    }
+
+    &__category-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--db-text-m);
+        flex-shrink: 0;
+    }
+
+    &__category-title {
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
+    }
+
+    &__footer {
+        padding: var(--db-padding-m);
+        border-top: 1px solid var(--db-border-base);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--db-gap-s);
+    }
+
+    &__footer-right {
+        display: flex;
+        gap: var(--db-gap-s);
+    }
+
+    // 그룹 스타일
+    &__groups {
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-l);
+    }
+
+    &__group {
+        background: var(--db-surface-base);
+        border-radius: var(--db-radius-m);
+        border: 1px solid var(--db-border-base);
+        overflow: hidden;
+
+        &:hover {
+            border-color: var(--db-border-layer-1);
+        }
+    }
+
+    &__group-header {
+        padding: var(--db-padding-s) var(--db-padding-m);
+        background: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__group-title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+    }
+
+    &__group-title {
+        margin: 0;
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-primary);
+    }
+
+    &__group-list {
+        padding: var(--db-padding-s);
+    }
+
+    // 반응형
+    @media (max-width: 640px) {
+        &__content {
+            max-height: 50vh;
+        }
+
+        &__footer {
+            flex-direction: column;
+            align-items: stretch;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        &__footer-right {
+            width: 100%;
+
+            button {
+                flex: 1;
+            }
+        }
+    }
+}

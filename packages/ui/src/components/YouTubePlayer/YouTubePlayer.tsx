@@ -10,7 +10,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 import './YouTubePlayer.scss';
 
-export type YouTubePlayerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type YouTubePlayerSize = 's' | 'm' | 'l' | 'xl' | 'full';
 export type YouTubePlayerVariant = 'default' | 'minimal' | 'theater' | 'picture-in-picture';
 export type YouTubePlayerTheme = 'light' | 'dark' | 'auto';
 
@@ -95,7 +95,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     videoId,
     title,
     description,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     theme = 'auto',
     autoPlay = false,

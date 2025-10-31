@@ -1,0 +1,57 @@
+.designbase-figma-resizable-plugin {
+    width: 100%;
+    position: relative;
+
+    &__handle {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        cursor: nwse-resize;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: var(--db-z-tooltip);
+        transition: opacity var(--db-animation-speed) var(--db-animation-ease);
+        opacity: 0.3;
+        color: var(--db-icon-muted);
+        background-color: transparent;
+        border: none;
+        padding: 0;
+
+        &:hover {
+            opacity: 1;
+            color: var(--db-icon-default);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: 2px;
+        }
+
+        &.resizing {
+            opacity: 1;
+            color: var(--db-brand-primary);
+        }
+
+        svg,
+        img {
+            width: 12px;
+            height: 12px;
+            pointer-events: none;
+        }
+    }
+
+    // 리사이즈 중일 때 전체 화면에 커서 적용
+    &__handle.resizing::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: nwse-resize;
+        z-index: calc(var(--db-z-tooltip) - 1);
+    }
+}

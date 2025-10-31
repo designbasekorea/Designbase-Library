@@ -13,19 +13,19 @@
     overflow: hidden;
 
     // 크기별 스타일
-    &--size-sm {
+    &--size-s {
         width: 120px;
         height: 80px;
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
     }
 
-    &--size-md {
+    &--size-m {
         width: 200px;
         height: 120px;
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
     }
 
-    &--size-lg {
+    &--size-l {
         width: 300px;
         height: 180px;
         border-radius: var(--db-radius-xl);
@@ -112,7 +112,7 @@
 
     // 포커스 효과
     &:focus {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-color-info);
         outline-offset: 2px;
     }
 
@@ -191,7 +191,7 @@
             height: 180px;
         }
 
-        &--size-lg {
+        &--size-l {
             width: 250px;
             height: 150px;
         }
@@ -205,12 +205,12 @@
             height: 150px;
         }
 
-        &--size-lg {
+        &--size-l {
             width: 200px;
             height: 120px;
         }
 
-        &--size-md {
+        &--size-m {
             width: 150px;
             height: 90px;
         }

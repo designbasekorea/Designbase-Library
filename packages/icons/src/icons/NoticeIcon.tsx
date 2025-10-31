@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5 14h5.5v5.75c0 .47-.16.92-.495 1.255s-.785.495-1.255.495h-2c-.47 0-.92-.16-1.255-.495S5 20.22 5 19.75zm1.5 1.5v4.25c0 .13.04.18.055.195.016.015.065.055.195.055h2c.13 0 .18-.04.195-.055.015-.016.055-.065.055-.195V15.5z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M18.126 2.101a.75.75 0 0 1 .374.649v16a.75.75 0 0 1-1.122.651L10.55 15.5H2.75a.75.75 0 0 1-.75-.75v-8A.75.75 0 0 1 2.75 6h7.8l6.828-3.901a.75.75 0 0 1 .748.002M17 4.042l-5.878 3.36a.75.75 0 0 1-.372.098H3.5V14h7.25a.75.75 0 0 1 .372.099L17 17.458z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M20 10.75c0-1.286-.964-2.25-2.25-2.25V7c2.114 0 3.75 1.636 3.75 3.75s-1.636 3.75-3.75 3.75V13c1.286 0 2.25-.964 2.25-2.25" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const NoticeIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M5.25 14.25h5.5V20c0 .47-.16.92-.495 1.255S9.47 21.75 9 21.75H7c-.47 0-.92-.16-1.255-.495S5.25 20.47 5.25 20zm1.5 1.5V20c0 .13.04.18.055.195.016.015.065.055.195.055h2c.13 0 .18-.04.195-.055.015-.016.055-.065.055-.195v-4.25z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M18.376 2.351A.75.75 0 0 1 18.75 3v16a.75.75 0 0 1-1.122.651L10.8 15.75H3a.75.75 0 0 1-.75-.75V7A.75.75 0 0 1 3 6.25h7.8l6.828-3.901a.75.75 0 0 1 .748.002M17.25 4.292l-5.878 3.36A.75.75 0 0 1 11 7.75H3.75v6.5H11a.75.75 0 0 1 .372.099l5.878 3.359z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M20.25 11c0-1.286-.964-2.25-2.25-2.25v-1.5c2.114 0 3.75 1.636 3.75 3.75s-1.636 3.75-3.75 3.75v-1.5c1.286 0 2.25-.964 2.25-2.25" clip-rule="evenodd"/></svg>
+);
 
 export default NoticeIcon;

@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M15 17.25v1.5H8v-1.5z"/><path fill="currentColor" d="M1.25 7c0-.966.784-1.75 1.75-1.75h16.306a2.75 2.75 0 0 1 2.66 2.054l.053.244.721 4.329.01.06v6.813H19v-1.5h2.25v-5.187l-.71-4.268-.024-.111a1.25 1.25 0 0 0-1.21-.934H3a.25.25 0 0 0-.25.25v10.25H4v1.5H1.25z"/><path fill="currentColor" d="M21 14.25v1.5h-3v-1.5zM22 11.25v1.5H2v-1.5z"/><path fill="currentColor" d="M8.75 6v6h-1.5V6zM14.75 6v6h-1.5V6zM7.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0M18.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const BusIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M15 17.25v1.5H8v-1.5z"/><path fill="currentColor" d="M1.25 7c0-.966.784-1.75 1.75-1.75h16.306a2.75 2.75 0 0 1 2.66 2.054l.053.244.721 4.329.01.06v6.813H19v-1.5h2.25v-5.187l-.71-4.268-.024-.111a1.25 1.25 0 0 0-1.21-.934H3a.25.25 0 0 0-.25.25v10.25H4v1.5H1.25z"/><path fill="currentColor" d="M21 14.25v1.5h-3v-1.5zM22 11.25v1.5H2v-1.5z"/><path fill="currentColor" d="M8.75 6v6h-1.5V6zM14.75 6v6h-1.5V6zM7.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0M18.25 18a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0m1.5 0a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0"/></svg>
+);
 
 export default BusIcon;

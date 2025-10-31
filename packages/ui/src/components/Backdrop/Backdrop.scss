@@ -75,7 +75,7 @@
 
     // 포커스 트랩 (필요한 경우)
     &:focus-visible {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-color-info);
         outline-offset: 2px;
     }
 

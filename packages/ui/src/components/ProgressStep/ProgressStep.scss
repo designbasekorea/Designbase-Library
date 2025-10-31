@@ -1,107 +1,75 @@
+/**
+ * ProgressStep 컴포넌트 스타일
+ * 
+ * 목적: 진행 단계를 시각적으로 표시하는 컴포넌트
+ * 기능: 다양한 레이아웃, 크기, 상태 지원
+ */
+
 .designbase-progress-step {
     display: flex;
-    flex-direction: column;
     gap: var(--db-gap-m);
 
-    // 변형별 스타일
-    &--default {
-        .designbase-progress-step__indicator {
-            background-color: var(--db-bg-primary);
-            border: 2px solid var(--db-border-primary);
-            color: var(--db-text-primary);
-        }
-    }
-
-    &--outlined {
-        .designbase-progress-step__indicator {
-            background-color: transparent;
-            border: 2px solid var(--db-border-primary);
-            color: var(--db-text-primary);
-        }
-    }
-
-    &--filled {
-        .designbase-progress-step__indicator {
-            background-color: var(--db-bg-secondary);
-            border: 2px solid var(--db-border-primary);
-            color: var(--db-text-primary);
-        }
-    }
-
-    &--minimal {
-        .designbase-progress-step__indicator {
-            background-color: transparent;
-            border: none;
-            color: var(--db-text-primary);
-        }
+    // 기본 인디케이터 스타일
+    .designbase-progress-step__indicator {
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        color: var(--db-text-primary);
     }
 
     // 크기별 스타일
-    &--sm {
+    &--s {
         .designbase-progress-step__indicator {
-            width: var(--db-size-md);
-            height: var(--db-size-md);
-            font-size: var(--db-font-xs);
-        }
-
-        .designbase-progress-step__connector {
-            width: 2px;
-            margin-left: 11px; // (24px - 2px) / 2
+            width: var(--db-size-s);
+            height: var(--db-size-s);
+            font-size: var(--db-text-xs);
         }
 
         .designbase-progress-step__title {
-            font-size: var(--db-font-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-progress-step__description {
-            font-size: var(--db-font-xs);
+            font-size: var(--db-text-xs);
         }
     }
 
-    &--md {
+    &--m {
         .designbase-progress-step__indicator {
-            width: var(--db-size-lg);
-            height: var(--db-size-lg);
-            font-size: var(--db-font-sm);
-        }
-
-        .designbase-progress-step__connector {
-            width: 2px;
-            margin-left: 15px; // (32px - 2px) / 2
+            width: var(--db-size-m);
+            height: var(--db-size-m);
+            font-size: var(--db-text-s);
         }
 
         .designbase-progress-step__title {
-            font-size: var(--db-font-md);
+            font-size: var(--db-text-base);
         }
 
         .designbase-progress-step__description {
-            font-size: var(--db-font-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-progress-step__indicator {
-            width: var(--db-size-xl);
-            height: var(--db-size-xl);
-            font-size: var(--db-font-md);
-        }
-
-        .designbase-progress-step__connector {
-            width: 3px;
-            margin-left: 18.5px; // (40px - 3px) / 2
+            width: var(--db-size-l);
+            height: var(--db-size-l);
+            font-size: var(--db-text-base);
         }
 
         .designbase-progress-step__title {
-            font-size: var(--db-font-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-progress-step__description {
-            font-size: var(--db-font-md);
+            font-size: var(--db-text-base);
         }
     }
 
     // 레이아웃별 스타일
     &--vertical {
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+
         .designbase-progress-step__item {
             display: flex;
             align-items: flex-start;
@@ -116,15 +84,20 @@
         }
 
         .designbase-progress-step__connector {
-            height: var(--db-spacing-24);
-            margin-top: var(--db-margin-xs);
+            width: 2px;
+            height: var(--db-size-l);
         }
     }
 
     &--horizontal {
         flex-direction: row;
-        align-items: center;
-        gap: var(--db-gap-s);
+        align-items: flex-start;
+        gap: 0;
+
+        .designbase-progress-step__header {
+            align-items: center;
+            flex-direction: column;
+        }
 
         .designbase-progress-step__item {
             display: flex;
@@ -132,55 +105,33 @@
             align-items: center;
             text-align: center;
             flex: 1;
+            position: relative;
         }
 
         .designbase-progress-step__indicator-container {
             display: flex;
-            flex-direction: row;
             align-items: center;
+            justify-content: center;
             width: 100%;
+            position: relative;
         }
 
         .designbase-progress-step__connector {
-            flex: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc(100% - 16px);
             height: 2px;
-            margin: 0 var(--db-margin-s);
+            transform: translateY(-50%);
+            z-index: 1;
         }
 
         .designbase-progress-step__content {
-            margin-top: var(--db-margin-s);
+            margin-top: var(--db-margin-m);
             width: 100%;
         }
     }
 
-    &--alternating {
-        .designbase-progress-step__item {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--db-gap-m);
-
-            &:nth-child(even) {
-                flex-direction: row-reverse;
-                text-align: right;
-
-                .designbase-progress-step__content {
-                    text-align: right;
-                }
-            }
-        }
-
-        .designbase-progress-step__indicator-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .designbase-progress-step__connector {
-            height: var(--db-spacing-24);
-            margin-top: var(--db-margin-xs);
-        }
-    }
 
     // 전체 너비
     &--full-width {
@@ -206,7 +157,7 @@
 
     // 비활성화
     &--disabled {
-        opacity: var(--db-opacity-60);
+        opacity: var(--db-opacity-disabled);
         pointer-events: none;
     }
 
@@ -218,68 +169,68 @@
         // 상태별 스타일
         &--pending {
             .designbase-progress-step__indicator {
-                background-color: var(--db-bg-primary);
-                border-color: var(--db-border-primary);
-                color: var(--db-text-muted);
+                background-color: var(--db-surface-base);
+                border-color: var(--db-border-base);
+                color: var(--db-text-tertiary);
             }
 
             .designbase-progress-step__connector {
-                background-color: var(--db-border-primary);
+                background-color: var(--db-border-base);
             }
         }
 
         &--active {
             .designbase-progress-step__indicator {
-                background-color: var(--db-blue-600);
-                border-color: var(--db-blue-600);
-                color: var(--db-neutral-white);
-                box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+                background-color: var(--db-brand-primary);
+                border-color: var(--db-brand-primary);
+                color: var(--db-text-inverse-primary);
+                box-shadow: 0 0 0 4px var(--db-brand-primary-alpha-20);
             }
 
             .designbase-progress-step__connector {
-                background-color: var(--db-blue-600);
+                background-color: var(--db-brand-primary);
             }
 
             .designbase-progress-step__title {
-                color: var(--db-blue-600);
-                font-weight: var(--db-weight-bold);
+                color: var(--db-brand-primary);
+                font-weight: var(--db-weight-semibold);
             }
         }
 
         &--completed {
             .designbase-progress-step__indicator {
-                background-color: var(--db-green-600);
-                border-color: var(--db-green-600);
-                color: var(--db-neutral-white);
+                background-color: var(--db-feedback-success-bg);
+                border-color: var(--db-feedback-success-bg);
+                color: var(--db-feedback-success-fg);
             }
 
             .designbase-progress-step__connector {
-                background-color: var(--db-green-600);
+                background-color: var(--db-feedback-success-bg);
             }
 
             .designbase-progress-step__title {
-                color: var(--db-green-600);
+                color: var(--db-feedback-success-fg);
             }
         }
 
         &--error {
             .designbase-progress-step__indicator {
-                background-color: var(--db-red-600);
-                border-color: var(--db-red-600);
-                color: var(--db-neutral-white);
+                background-color: var(--db-feedback-error-bg);
+                border-color: var(--db-feedback-error-bg);
+                color: var(--db-feedback-error-fg);
             }
 
             .designbase-progress-step__connector {
-                background-color: var(--db-red-600);
+                background-color: var(--db-feedback-error-bg);
             }
 
             .designbase-progress-step__title {
-                color: var(--db-red-600);
+                color: var(--db-feedback-error-fg);
             }
         }
 
         &--disabled {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             pointer-events: none;
         }
     }
@@ -297,21 +248,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        font-weight: var(--db-weight-bold);
+        border-radius: var(--db-radius-full);
+        font-weight: var(--db-weight-semibold);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
         z-index: 2;
+        flex-shrink: 0;
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
     }
 
     // 연결선
     &__connector {
-        background-color: var(--db-border-primary);
+        background-color: var(--db-border-base);
         transition: background-color var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
         z-index: 1;
@@ -335,15 +287,15 @@
     // 제목
     &__title {
         margin: 0;
-        font-weight: var(--db-weight-semibold);
-        line-height: 1.4;
+        font-weight: var(--db-weight-medium);
+        line-height: var(--db-leading-snug);
         color: var(--db-text-primary);
     }
 
     // 타임스탬프
     &__timestamp {
-        font-size: var(--db-font-xs);
-        color: var(--db-text-muted);
+        font-size: var(--db-text-xs);
+        color: var(--db-text-tertiary);
         white-space: nowrap;
         flex-shrink: 0;
     }
@@ -351,8 +303,8 @@
     // 설명
     &__description {
         margin: 0;
-        color: var(--db-text-muted);
-        line-height: 1.5;
+        color: var(--db-text-secondary);
+        line-height: var(--db-leading-normal);
     }
 
     // 아이콘
@@ -372,7 +324,7 @@
 
     // 번호
     &__number {
-        font-weight: var(--db-weight-bold);
+        font-weight: var(--db-weight-semibold);
     }
 }
 
@@ -381,7 +333,7 @@
     .designbase-progress-step {
         &--horizontal {
             flex-direction: column;
-            gap: var(--db-gap-m);
+            gap: var(--db-gap-l);
 
             .designbase-progress-step__item {
                 flex-direction: row;
@@ -395,8 +347,10 @@
             }
 
             .designbase-progress-step__connector {
-                flex: none;
-                height: var(--db-spacing-24);
+                position: static;
+                width: 2px;
+                height: var(--db-gap-l);
+                transform: none;
                 margin: var(--db-margin-xs) 0 0 0;
             }
 
@@ -406,43 +360,23 @@
             }
         }
 
-        &--alternating {
-            .designbase-progress-step__item {
-                flex-direction: row !important;
-                text-align: left !important;
+    }
+}
 
-                .designbase-progress-step__content {
-                    text-align: left !important;
-                }
-            }
+// 모션 감소 설정 지원
+@media (prefers-reduced-motion: reduce) {
+    .designbase-progress-step {
+        &__item {
+            transition: none;
         }
-    }
-}
 
-// 다크 테마 지원은 @theme 패키지의 CSS 변수를 통해 자동으로 처리됩니다
+        &__indicator {
+            transition: none;
+        }
 
-// 접근성 개선
-.designbase-progress-step {
-    &__indicator:focus-visible {
-        outline: 2px solid var(--db-blue-600);
-        outline-offset: 2px;
-    }
-}
-
-// 애니메이션
-.designbase-progress-step__item {
-    animation: progressStepSlideIn 0.3s ease;
-}
-
-@keyframes progressStepSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+        &__connector {
+            transition: none;
+        }
     }
 }
 

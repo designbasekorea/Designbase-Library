@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M23.038 8.925c-.1-.4-.4-.6-.8-.7l-6.4-.9-2.9-5.8c-.3-.7-1.5-.7-1.8 0l-2.9 5.8-6.4.9c-.4 0-.7.3-.8.7s0 .8.3 1l4.6 4.5-1.1 6.4c0 .4 0 .8.4 1 .3.2.7.3 1.1 0l5.7-3 5.7 3c.1 0 .3.1.5.1s.4 0 .6-.2c.3-.2.5-.6.4-1l-1.1-6.4 4.6-4.5c.3-.3.4-.7.3-1z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const StarFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M23 9c-.1-.4-.4-.6-.8-.7l-6.4-.9-2.9-5.8c-.3-.7-1.5-.7-1.8 0L8.2 7.4l-6.4.9c-.4 0-.7.3-.8.7s0 .8.3 1l4.6 4.5-1.1 6.4c0 .4 0 .8.4 1 .3.2.7.3 1.1 0l5.7-3 5.7 3c.1 0 .3.1.5.1s.4 0 .6-.2c.3-.2.5-.6.4-1l-1.1-6.4 4.6-4.5c.3-.3.4-.7.3-1z"/></svg>
+);
 
 export default StarFilledIcon;

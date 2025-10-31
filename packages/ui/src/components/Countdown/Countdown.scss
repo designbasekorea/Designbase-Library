@@ -1,0 +1,178 @@
+/**
+ * Countdown 컴포넌트 스타일
+ */
+
+.designbase-countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--db-gap-s);
+
+    // 크기별 스타일
+    &--s {
+        .designbase-countdown__value {
+            font-size: var(--db-text-lg);
+            padding: var(--db-padding-xs);
+            min-width: 32px;
+        }
+
+        .designbase-countdown__label {
+            font-size: var(--db-text-xs);
+            margin-top: var(--db-margin-2xs);
+        }
+
+        .designbase-countdown__separator {
+            font-size: var(--db-text-base);
+        }
+    }
+
+    &--m {
+        .designbase-countdown__value {
+            font-size: var(--db-text-2xl);
+            padding: var(--db-padding-s);
+            min-width: 48px;
+        }
+
+        .designbase-countdown__label {
+            font-size: var(--db-text-sm);
+            margin-top: var(--db-margin-xs);
+        }
+
+        .designbase-countdown__separator {
+            font-size: var(--db-text-xl);
+        }
+    }
+
+    &--l {
+        .designbase-countdown__value {
+            font-size: var(--db-text-3xl);
+            padding: var(--db-padding-m);
+            min-width: 64px;
+        }
+
+        .designbase-countdown__label {
+            font-size: var(--db-text-base);
+            margin-top: var(--db-margin-s);
+        }
+
+        .designbase-countdown__separator {
+            font-size: var(--db-text-2xl);
+        }
+    }
+
+    // 변형별 스타일
+    &--default {
+        .designbase-countdown__value {
+            background-color: var(--db-surface-layer-1);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-m);
+            color: var(--db-text-primary);
+            font-weight: var(--db-weight-bold);
+        }
+    }
+
+    &--compact {
+        gap: var(--db-gap-xs);
+
+        .designbase-countdown__value {
+            background-color: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
+            border-radius: var(--db-radius-s);
+            font-weight: var(--db-weight-bold);
+        }
+
+        .designbase-countdown__label {
+            color: var(--db-text-secondary);
+        }
+    }
+
+    &--minimal {
+        gap: var(--db-gap-xs);
+
+        .designbase-countdown__value {
+            background-color: transparent;
+            color: var(--db-text-primary);
+            font-weight: var(--db-weight-semibold);
+            padding: 0;
+            min-width: auto;
+        }
+
+        .designbase-countdown__label {
+            color: var(--db-text-secondary);
+            font-weight: var(--db-weight-normal);
+        }
+
+        .designbase-countdown__unit {
+            display: flex;
+            align-items: baseline;
+            gap: var(--db-gap-2xs);
+            flex-direction: row;
+        }
+    }
+
+    // 유닛 컨테이너
+    &__unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    // 숫자 값
+    &__value {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        line-height: 1;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+    }
+
+    // 라벨
+    &__label {
+        text-align: center;
+        color: var(--db-text-secondary);
+        font-weight: var(--db-weight-medium);
+    }
+
+    // 구분자
+    &__separator {
+        color: var(--db-text-secondary);
+        font-weight: var(--db-weight-bold);
+        line-height: 1;
+        align-self: flex-start;
+        margin-top: 0;
+    }
+
+    // 라벨이 있을 때 구분자 위치 조정
+    &--with-labels {
+        .designbase-countdown__separator {
+            align-self: center;
+            margin-bottom: 20px;
+        }
+
+        &.designbase-countdown--s .designbase-countdown__separator {
+            margin-bottom: 12px;
+        }
+
+        &.designbase-countdown--l .designbase-countdown__separator {
+            margin-bottom: 24px;
+        }
+    }
+
+    // 만료된 상태
+    &--expired {
+        .designbase-countdown__value {
+            background-color: var(--db-surface-subtle);
+            color: var(--db-text-tertiary);
+        }
+    }
+
+    // minimal 변형일 때 라벨 스타일 조정
+    &--minimal {
+        &.designbase-countdown--with-labels {
+            .designbase-countdown__separator {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

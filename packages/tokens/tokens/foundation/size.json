@@ -1,0 +1,56 @@
+{
+    "size": {
+        "foundation": {
+            "xxs": {
+                "value": "12px",
+                "type": "dimension",
+                "description": "초소형 크기"
+            },
+            "xs": {
+                "value": "16px",
+                "type": "dimension",
+                "description": "소형 크기"
+            },
+            "s": {
+                "value": "20px",
+                "type": "dimension",
+                "description": "소형 크기"
+            },
+            "m": {
+                "value": "24px",
+                "type": "dimension",
+                "description": "중형 크기"
+            },
+            "l": {
+                "value": "32px",
+                "type": "dimension",
+                "description": "대형 크기"
+            },
+            "xl": {
+                "value": "40px",
+                "type": "dimension",
+                "description": "초대형 크기"
+            },
+            "xxl": {
+                "value": "48px",
+                "type": "dimension",
+                "description": "2XL 크기"
+            },
+            "3xl": {
+                "value": "64px",
+                "type": "dimension",
+                "description": "3XL 크기"
+            },
+            "4xl": {
+                "value": "80px",
+                "type": "dimension",
+                "description": "4XL 크기"
+            },
+            "5xl": {
+                "value": "96px",
+                "type": "dimension",
+                "description": "5XL 크기"
+            }
+        }
+    }
+}

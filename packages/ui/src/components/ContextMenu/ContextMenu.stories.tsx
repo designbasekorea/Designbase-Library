@@ -14,7 +14,7 @@ import {
     StarIcon,
     HeartIcon,
     BookmarkIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 
 const meta: Meta<typeof ContextMenu> = {
     title: 'Components/ContextMenu',

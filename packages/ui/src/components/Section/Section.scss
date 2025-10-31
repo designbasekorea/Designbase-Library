@@ -24,7 +24,7 @@
     }
 
     // 크기별 스타일
-    &--size-sm {
+    &--size-s {
         .designbase-section__header {
             padding: var(--db-padding-s);
         }
@@ -38,7 +38,7 @@
         }
 
         .designbase-section__title {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             line-height: var(--db-leading-snug);
         }
 
@@ -48,7 +48,7 @@
         }
     }
 
-    &--size-md {
+    &--size-m {
         .designbase-section__header {
             padding: var(--db-padding-m);
         }
@@ -67,12 +67,12 @@
         }
 
         .designbase-section__subtitle {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             line-height: var(--db-leading-snug);
         }
     }
 
-    &--size-lg {
+    &--size-l {
         .designbase-section__header {
             padding: var(--db-padding-l);
         }
@@ -129,23 +129,23 @@
     }
 
     &--variant-elevated {
-        background-color: var(--db-bg-primary);
+        background-color: var(--db-surface-base);
         border: 1px solid var(--db-border-secondary);
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
         box-shadow: var(--db-shadow-sm);
     }
 
     &--variant-outlined {
         background-color: transparent;
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
         box-shadow: none;
     }
 
     &--variant-filled {
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
         border: 1px solid var(--db-border-secondary);
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
         box-shadow: none;
     }
 
@@ -154,7 +154,7 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-m);
         border-bottom: 1px solid var(--db-border-secondary);
         margin-bottom: 0;
 
@@ -186,16 +186,16 @@
     // 설명
     &__description {
         margin: 0;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         line-height: var(--db-leading-relaxed);
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
     }
 
     // 액션 버튼들
     &__actions {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
         flex-shrink: 0;
     }
 
@@ -210,7 +210,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-m);
         border-top: 1px solid var(--db-border-secondary);
         margin-top: auto;
 
@@ -246,7 +246,7 @@
 
 @media (max-width: 480px) {
     .designbase-section {
-        &--size-lg {
+        &--size-l {
 
             .designbase-section__header,
             .designbase-section__content,

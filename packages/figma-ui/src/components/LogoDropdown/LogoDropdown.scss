@@ -1,0 +1,136 @@
+.designbase-figma-logo-dropdown {
+    position: relative;
+    display: inline-block;
+
+    &__logo {
+        cursor: pointer;
+        transition: opacity var(--db-animation-speed) var(--db-animation-ease);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        // 이미지 로고
+        img {
+            display: block;
+            max-height: 24px;
+            width: auto;
+        }
+
+        // SVG 로고 컴포넌트
+        .designbase-logo {
+            display: flex;
+        }
+    }
+
+    &__menu {
+        position: absolute;
+        width: 200px;
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        padding: var(--db-padding-xs);
+        list-style: none;
+        margin: 0;
+        z-index: 9999; // 매우 높은 z-index로 다른 모든 요소 위에 표시
+        box-shadow: var(--db-shadow-dropdown);
+    }
+
+    &__item {
+        margin: 0;
+    }
+
+    &__link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: var(--db-padding-s);
+        border: none;
+        background: none;
+        border-radius: var(--db-radius-s);
+        color: var(--db-text-primary);
+        text-decoration: none;
+        cursor: pointer;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        font-size: var(--db-text-s);
+        font-family: inherit;
+
+        &:hover {
+            background-color: var(--db-interactive-bg-hover);
+            color: var(--db-text-primary);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    &__icon {
+        margin-right: var(--db-margin-s);
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+    }
+
+    &__text {
+        flex: 1;
+        text-align: left;
+    }
+
+    &__arrow {
+        margin-left: auto;
+        opacity: 0;
+        transition: opacity var(--db-animation-speed) var(--db-animation-ease);
+        color: var(--db-icon-muted);
+    }
+
+    &__link:hover &__arrow {
+        opacity: 1;
+    }
+
+    // Position variants
+    &--bottom-left &__menu {
+        top: 100%;
+        left: 0;
+        margin-top: var(--db-margin-s);
+    }
+
+    &--bottom-right &__menu {
+        top: 100%;
+        right: 0;
+        margin-top: var(--db-margin-s);
+    }
+
+    &--top-left &__menu {
+        bottom: 100%;
+        left: 0;
+        margin-bottom: var(--db-margin-s);
+    }
+
+    &--top-right &__menu {
+        bottom: 100%;
+        right: 0;
+        margin-bottom: var(--db-margin-s);
+    }
+
+    // Animation
+    &__menu {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        pointer-events: none;
+    }
+
+    &--open &__menu {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}

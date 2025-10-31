@@ -14,7 +14,8 @@
         "clean": "rimraf dist",
         "lint": "eslint src --ext .ts,.tsx",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watch",
+        "storybook": "echo 'Figma-bridge package does not have storybook'"
     },
     "dependencies": {
         "@designbase/utils": "^1.0.0"

@@ -1,10 +1,10 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import clsx from 'clsx';
-import { MoveIcon, MoreVerticalIcon } from '@designbase/icons';
+import { MoveIcon, MoreVerticalIcon } from '@designbasekorea/icons';
 import './Reorder.scss';
 
 export type ReorderVariant = 'default' | 'bordered' | 'filled' | 'minimal';
-export type ReorderSize = 'sm' | 'md' | 'lg';
+export type ReorderSize = 's' | 'm' | 'l';
 export type ReorderOrientation = 'vertical' | 'horizontal';
 
 export interface ReorderItem {
@@ -60,7 +60,7 @@ export interface ReorderProps {
 const Reorder: React.FC<ReorderProps> = ({
     items,
     variant = 'default',
-    size = 'md',
+    size = 'm',
     orientation = 'vertical',
     showDragHandle = true,
     showDragIcon = true,
@@ -109,42 +109,43 @@ const Reorder: React.FC<ReorderProps> = ({
         setIsDragging(true);
         setDragOverIndex(-1);
 
-        // 드래그 이미지 설정 - 원본과 동일하게
-        const dragElement = itemRefs.current.get(item.id);
-        if (dragElement) {
-            const rect = dragElement.getBoundingClientRect();
-            const dragImage = dragElement.cloneNode(true) as HTMLElement;
-            dragImage.style.position = 'absolute';
-            dragImage.style.top = '-1000px';
-            dragImage.style.opacity = '0.9';
-            dragImage.style.transform = 'none'; // 회전 제거
-            dragImage.style.pointerEvents = 'none';
-            dragImage.style.zIndex = '9999';
-            document.body.appendChild(dragImage);
-            e.dataTransfer.setDragImage(dragImage, rect.width / 2, rect.height / 2);
-
-            // 드래그 이미지 정리
-            setTimeout(() => {
-                if (document.body.contains(dragImage)) {
-                    document.body.removeChild(dragImage);
-                }
-            }, 0);
-        }
+        // 드래그 이미지 설정 - 커스텀 드래그 이미지 사용하지 않음
+        // 브라우저 기본 드래그 이미지를 사용하여 자연스러운 드래그 경험 제공
 
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/plain', item.id);
 
+        // 드래그 시작 애니메이션
+        const dragElement = itemRefs.current.get(item.id);
+        if (dragElement) {
+            dragElement.style.animation = 'dragStart 0.2s ease-out forwards';
+        }
+
         onDragStart?.(item, index);
     }, [disabled, onDragStart]);
 
-    // 드래그 오버 핸들러
+    // 드래그 오버 핸들러 - 드래그 방향에 따른 정확한 디바이더 위치 계산
     const handleDragOver = useCallback((e: React.DragEvent, index: number) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
 
-        if (draggedIndex !== index) {
-            setDragOverIndex(index);
+        if (draggedIndex === -1 || draggedIndex === index) {
+            setDragOverIndex(-1);
+            return;
         }
+
+        // 드래그 방향에 따라 디바이더 위치 결정
+        let dropIndex = index;
+
+        if (draggedIndex < index) {
+            // 아래로 드래그: 현재 아이템 위에 디바이더 표시
+            dropIndex = index;
+        } else if (draggedIndex > index) {
+            // 위로 드래그: 현재 아이템 위에 디바이더 표시 (index 그대로 사용)
+            dropIndex = index;
+        }
+
+        setDragOverIndex(dropIndex);
     }, [draggedIndex]);
 
     // 드래그 리브 핸들러
@@ -160,7 +161,7 @@ const Reorder: React.FC<ReorderProps> = ({
         }
     }, []);
 
-    // 드롭 핸들러
+    // 드롭 핸들러 - 드래그 방향에 따른 정확한 드롭 위치 사용
     const handleDrop = useCallback((e: React.DragEvent, dropIndex: number) => {
         e.preventDefault();
 
@@ -169,21 +170,55 @@ const Reorder: React.FC<ReorderProps> = ({
             return;
         }
 
+        // 드래그 방향에 따라 실제 드롭 위치 계산
+        let actualDropIndex = dropIndex;
+
+        if (draggedIndex < dropIndex) {
+            // 아래로 드래그: 현재 위치에 삽입
+            actualDropIndex = dropIndex;
+        } else if (draggedIndex > dropIndex) {
+            // 위로 드래그: 현재 위치에 삽입 (dropIndex 그대로 사용)
+            actualDropIndex = dropIndex;
+        }
+
         const newItems = [...reorderedItems];
         const [draggedItemData] = newItems.splice(draggedIndex, 1);
-        newItems.splice(dropIndex, 0, draggedItemData);
+        newItems.splice(actualDropIndex, 0, draggedItemData);
 
         setReorderedItems(newItems);
         setDragOverIndex(-1);
         setIsDragging(false);
 
+        // 드롭 완료 애니메이션
+        const dropElement = itemRefs.current.get(draggedItemData.id);
+        if (dropElement) {
+            dropElement.style.animation = 'dropComplete 0.3s ease-out forwards';
+            setTimeout(() => {
+                dropElement.style.animation = '';
+            }, 300);
+        }
+
         onReorder?.(newItems);
-        onDragEnd?.(draggedItemData, draggedIndex, dropIndex);
+        onDragEnd?.(draggedItemData, draggedIndex, actualDropIndex);
     }, [reorderedItems, draggedIndex, onReorder, onDragEnd]);
 
     // 드래그 종료 핸들러
     const handleDragEnd = useCallback((e: React.DragEvent) => {
         e.preventDefault();
+
+        // 모든 아이템의 스타일 초기화
+        itemRefs.current.forEach((element) => {
+            if (element) {
+                element.style.animation = '';
+                element.style.transform = '';
+                element.style.opacity = '';
+                element.style.zIndex = '';
+                element.style.boxShadow = '';
+                element.style.border = '';
+                element.style.background = '';
+            }
+        });
+
         setDraggedItem(null);
         setDraggedIndex(-1);
         setDragOverIndex(-1);
@@ -293,6 +328,15 @@ const Reorder: React.FC<ReorderProps> = ({
                 const isDragOver = dragOverIndex === index;
                 const isDisabled = disabled || item.disabled;
 
+                // 디바이더 표시 조건: 드래그 중이고, 드래그 중인 아이템이 아니고, 드롭 위치에 해당하는 아이템
+                const showDivider = isDragging && !isDragged && isDragOver;
+
+                // 드래그 방향에 따른 디바이더 클래스 (드롭 위치에만 적용)
+                const isDraggingDown = isDragOver && draggedIndex !== -1 && draggedIndex < index;
+                const isDraggingUp = isDragOver && draggedIndex !== -1 && draggedIndex > index;
+                const isDraggingRight = isDragOver && draggedIndex !== -1 && draggedIndex < index;
+                const isDraggingLeft = isDragOver && draggedIndex !== -1 && draggedIndex > index;
+
                 const itemClasses = clsx(
                     'designbase-reorder__item',
                     {
@@ -300,6 +344,11 @@ const Reorder: React.FC<ReorderProps> = ({
                         'designbase-reorder__item--dragged': isDragged,
                         'designbase-reorder__item--drag-over': isDragOver,
                         'designbase-reorder__item--disabled': isDisabled,
+                        // 드래그 방향에 따른 클래스
+                        'designbase-reorder__item--drag-down': isDraggingDown,
+                        'designbase-reorder__item--drag-up': isDraggingUp,
+                        'designbase-reorder__item--drag-right': isDraggingRight,
+                        'designbase-reorder__item--drag-left': isDraggingLeft,
                     }
                 );
 

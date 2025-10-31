@@ -62,7 +62,7 @@ export const Variants: Story = {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
                 <span style={{ fontSize: '12px', color: '#666' }}>Circular</span>
-                <Skeleton variant="circular" size="lg" />
+                <Skeleton variant="circular" size="l" />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
                 <span style={{ fontSize: '12px', color: '#666' }}>Rectangular</span>
@@ -84,9 +84,9 @@ export const Sizes: Story = {
                 <h3>Text Variant</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Skeleton variant="text" size="xs" width="100px" />
-                    <Skeleton variant="text" size="sm" width="120px" />
-                    <Skeleton variant="text" size="md" width="140px" />
-                    <Skeleton variant="text" size="lg" width="160px" />
+                    <Skeleton variant="text" size="s" width="120px" />
+                    <Skeleton variant="text" size="m" width="140px" />
+                    <Skeleton variant="text" size="l" width="160px" />
                     <Skeleton variant="text" size="xl" width="180px" />
                 </div>
             </div>
@@ -94,9 +94,9 @@ export const Sizes: Story = {
                 <h3>Circular Variant</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Skeleton variant="circular" size="xs" />
-                    <Skeleton variant="circular" size="sm" />
-                    <Skeleton variant="circular" size="md" />
-                    <Skeleton variant="circular" size="lg" />
+                    <Skeleton variant="circular" size="s" />
+                    <Skeleton variant="circular" size="m" />
+                    <Skeleton variant="circular" size="l" />
                     <Skeleton variant="circular" size="xl" />
                 </div>
             </div>
@@ -112,7 +112,7 @@ export const Animations: Story = {
                 <h3>Pulse Animation</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Skeleton variant="text" animation="pulse" width="200px" />
-                    <Skeleton variant="circular" animation="pulse" size="lg" />
+                    <Skeleton variant="circular" animation="pulse" size="l" />
                     <Skeleton variant="rounded" animation="pulse" width="120px" height="80px" />
                 </div>
             </div>
@@ -120,7 +120,7 @@ export const Animations: Story = {
                 <h3>Wave Animation</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Skeleton variant="text" animation="wave" width="200px" />
-                    <Skeleton variant="circular" animation="wave" size="lg" />
+                    <Skeleton variant="circular" animation="wave" size="l" />
                     <Skeleton variant="rounded" animation="wave" width="120px" height="80px" />
                 </div>
             </div>
@@ -128,7 +128,7 @@ export const Animations: Story = {
                 <h3>No Animation</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Skeleton variant="text" animation="none" width="200px" />
-                    <Skeleton variant="circular" animation="none" size="lg" />
+                    <Skeleton variant="circular" animation="none" size="l" />
                     <Skeleton variant="rounded" animation="none" width="120px" height="80px" />
                 </div>
             </div>
@@ -178,7 +178,7 @@ export const UsageExamples: Story = {
                     width: '300px'
                 }}>
                     <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
-                        <Skeleton variant="circular" size="lg" />
+                        <Skeleton variant="circular" size="l" />
                         <div style={{ flex: 1 }}>
                             <Skeleton variant="text" width="60%" style={{ marginBottom: '8px' }} />
                             <Skeleton variant="text" width="40%" />
@@ -201,7 +201,7 @@ export const UsageExamples: Story = {
                             alignItems: 'center',
                             padding: '8px 0'
                         }}>
-                            <Skeleton variant="circular" size="md" />
+                            <Skeleton variant="circular" size="m" />
                             <div style={{ flex: 1 }}>
                                 <Skeleton variant="text" width="80%" style={{ marginBottom: '4px' }} />
                                 <Skeleton variant="text" width="60%" />
@@ -216,9 +216,9 @@ export const UsageExamples: Story = {
                 <h3>아바타 스켈레톤</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Skeleton variant="circular" size="xs" />
-                    <Skeleton variant="circular" size="sm" />
-                    <Skeleton variant="circular" size="md" />
-                    <Skeleton variant="circular" size="lg" />
+                    <Skeleton variant="circular" size="s" />
+                    <Skeleton variant="circular" size="m" />
+                    <Skeleton variant="circular" size="l" />
                     <Skeleton variant="circular" size="xl" />
                 </div>
             </div>
@@ -276,7 +276,7 @@ export const Accessibility: Story = {
                     />
                     <Skeleton
                         variant="circular"
-                        size="lg"
+                        size="l"
                         aria-label="프로필 이미지 로딩 중"
                     />
                 </div>

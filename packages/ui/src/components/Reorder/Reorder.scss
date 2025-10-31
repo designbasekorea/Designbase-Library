@@ -7,25 +7,25 @@
     // 변형별 스타일
     &--default {
         .designbase-reorder__item {
-            background-color: var(--db-bg-primary);
-            border: 1px solid var(--db-border-primary);
-            border-radius: var(--db-radius-md);
+            background-color: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-m);
         }
     }
 
     &--bordered {
         .designbase-reorder__item {
-            background-color: var(--db-bg-primary);
-            border: 2px solid var(--db-border-primary);
-            border-radius: var(--db-radius-lg);
+            background-color: var(--db-surface-base);
+            border: 2px solid var(--db-border-base);
+            border-radius: var(--db-radius-l);
         }
     }
 
     &--filled {
         .designbase-reorder__item {
-            background-color: var(--db-bg-secondary);
-            border: 1px solid var(--db-border-primary);
-            border-radius: var(--db-radius-md);
+            background-color: var(--db-surface-layer-1);
+            border: 1px solid var(--db-border-base);
+            border-radius: var(--db-radius-m);
         }
     }
 
@@ -34,7 +34,7 @@
             background-color: transparent;
             border: none;
             border-radius: 0;
-            border-bottom: 1px solid var(--db-border-primary);
+            border-bottom: 1px solid var(--db-border-base);
 
             &:last-child {
                 border-bottom: none;
@@ -43,7 +43,7 @@
     }
 
     // 크기별 스타일
-    &--sm {
+    &--s {
         .designbase-reorder__item {
             padding: var(--db-padding-s);
             min-height: 40px;
@@ -60,7 +60,7 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-reorder__item {
             padding: var(--db-padding-m);
             min-height: 56px;
@@ -77,7 +77,7 @@
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-reorder__item {
             padding: var(--db-padding-l);
             min-height: 72px;
@@ -123,12 +123,24 @@
     // 드래그 중
     &--dragging {
         .designbase-reorder__item {
-            transition: all var(--db-animation-speed) var(--db-animation-ease);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         // 드래그 중일 때 아이템들이 자연스럽게 이동
         .designbase-reorder__item:not(.designbase-reorder__item--dragged) {
-            transition: transform 0.15s ease, opacity 0.15s ease;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+        }
+
+        // 드롭 가이드 라인
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
         }
     }
 
@@ -149,7 +161,7 @@
         position: relative;
 
         &:hover {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
             transform: translateY(-1px);
             box-shadow: var(--db-shadow-sm);
         }
@@ -160,31 +172,37 @@
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-color-info);
             outline-offset: 2px;
         }
 
         // 선택된 상태
         &--selected {
             background-color: var(--db-blue-100);
-            border-color: var(--db-blue-600);
+            border-color: var(--db-color-info);
 
             &:hover {
                 background-color: var(--db-blue-200);
             }
         }
 
-        // 드래그 중인 상태
+        // 드래그 중인 상태 - 떠있는 스타일 (로테이션 제거)
         &--dragged {
-            opacity: var(--db-opacity-30);
-            transform: none; // 회전과 스케일 제거
+            opacity: 0.8;
+            transform: scale(1.02);
             z-index: 1000;
             cursor: grabbing;
-            box-shadow: var(--db-shadow-lg);
+            box-shadow:
+                0 12px 24px rgba(0, 0, 0, 0.15),
+                0 6px 12px rgba(0, 0, 0, 0.1),
+                0 0 0 2px var(--db-brand-primary);
             position: relative;
+            background-color: var(--db-surface-base);
+            border: 2px solid var(--db-brand-primary);
+            transition: none; // 드래그 중에는 애니메이션 비활성화
 
             &:hover {
-                transform: none;
+                transform: scale(1.02);
             }
 
             // 드래그 중일 때 원래 위치에 플레이스홀더 표시
@@ -195,34 +213,94 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: var(--db-bg-secondary);
-                border: 2px dashed var(--db-blue-600);
+                background-color: var(--db-surface-layer-1);
+                border: 2px dashed var(--db-brand-primary);
                 border-radius: inherit;
-                opacity: 0.5;
+                opacity: 0.6;
                 pointer-events: none;
+                animation: placeholderPulse 1.5s ease-in-out infinite;
             }
         }
 
-        // 드래그 오버 상태
-        &--drag-over {
-            border-color: var(--db-blue-600);
-            background-color: var(--db-blue-100);
-            transform: translateY(4px); // 아래로 살짝 밀리는 효과
-            transition: transform var(--db-animation-speed) var(--db-animation-ease);
-            position: relative;
+        // 드래그 종료 후 기본 상태로 복원
+        &:not(&--dragged):not(&--drag-over) {
+            opacity: 1;
+            transform: scale(1);
+            z-index: auto;
+            cursor: grab;
+            box-shadow: var(--db-shadow-sm);
+            border: 1px solid var(--db-border-base);
+            background-color: var(--db-surface-base);
+            transition: all 0.2s ease;
+        }
 
-            // 드래그 오버 시 시각적 피드백
-            &::after {
-                content: '';
-                position: absolute;
-                top: -2px;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background-color: var(--db-blue-600);
-                border-radius: 2px;
-                opacity: var(--db-opacity-80);
-            }
+        // 드래그 오버 상태 - 드래그 방향에 따른 정확한 디바이더 위치
+        &--drag-over {
+            position: relative;
+        }
+
+        // 수직 방향 디바이더 - 아래로 드래그할 때 (가로선)
+        &--drag-down::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--db-brand-primary);
+            border-radius: 4px;
+            opacity: 1;
+            animation: dropGuidePulse 1s ease-in-out infinite;
+            z-index: 1000;
+            box-shadow: 0 0 12px rgba(6, 131, 255, 0.6);
+        }
+
+        // 수직 방향 디바이더 - 위로 드래그할 때 (가로선)
+        &--drag-up::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--db-brand-primary);
+            border-radius: 4px;
+            opacity: 1;
+            animation: dropGuidePulse 1s ease-in-out infinite;
+            z-index: 1000;
+            box-shadow: 0 0 12px rgba(6, 131, 255, 0.6);
+        }
+
+        // 수평 방향 디바이더 - 오른쪽으로 드래그할 때 (세로선)
+        &--drag-right::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background: var(--db-brand-primary);
+            border-radius: 4px;
+            opacity: 1;
+            animation: dropGuidePulse 1s ease-in-out infinite;
+            z-index: 1000;
+            box-shadow: 0 0 12px rgba(6, 131, 255, 0.6);
+        }
+
+        // 수평 방향 디바이더 - 왼쪽으로 드래그할 때 (세로선)
+        &--drag-left::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background: var(--db-brand-primary);
+            border-radius: 4px;
+            opacity: 1;
+            animation: dropGuidePulse 1s ease-in-out infinite;
+            z-index: 1000;
+            box-shadow: 0 0 12px rgba(6, 131, 255, 0.6);
         }
 
         // 비활성화 상태
@@ -249,7 +327,7 @@
         transition: color var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover {
-            color: var(--db-blue-600);
+            color: var(--db-color-info);
         }
 
         &:active {
@@ -274,7 +352,7 @@
         width: 16px;
         height: 16px;
         cursor: pointer;
-        accent-color: var(--db-blue-600);
+        accent-color: var(--db-color-info);
     }
 
     // 콘텐츠
@@ -324,18 +402,18 @@
 // 접근성 개선
 .designbase-reorder {
     &__item:focus-visible {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-color-info);
         outline-offset: 2px;
     }
 
     &__drag-handle:focus-visible {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-color-info);
         outline-offset: 2px;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 
     &__checkbox-input:focus-visible {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-color-info);
         outline-offset: 2px;
     }
 }
@@ -357,6 +435,66 @@
     }
 }
 
+// 플레이스홀더 펄스 애니메이션
+@keyframes placeholderPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+// 드롭 가이드 펄스 애니메이션
+@keyframes dropGuidePulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+// 드래그 시작 애니메이션 (로테이션 제거)
+@keyframes dragStart {
+    from {
+        transform: scale(1);
+        box-shadow: var(--db-shadow-sm);
+    }
+
+    to {
+        transform: scale(1.02);
+        box-shadow:
+            0 12px 24px rgba(0, 0, 0, 0.15),
+            0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+// 드롭 완료 애니메이션 (로테이션 제거)
+@keyframes dropComplete {
+    0% {
+        transform: scale(1.02);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 // 드래그 중 스크롤 방지
 .designbase-reorder--dragging {
     body {
@@ -369,16 +507,33 @@
     .designbase-reorder {
         &__item {
             min-height: 60px; // 터치하기 쉽게 높이 증가
+            touch-action: none; // 터치 스크롤 방지
+
+            // 터치 시 더 큰 피드백
+            &:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
         }
 
         &__drag-handle {
             min-width: 44px; // 터치 타겟 최소 크기
             min-height: 44px;
+            touch-action: none;
         }
 
         &__checkbox {
             min-width: 44px;
             min-height: 44px;
+        }
+
+        // 터치에서 드래그 중인 아이템 스타일 조정 (로테이션 제거)
+        &__item--dragged {
+            transform: scale(1.05); // 터치에서는 더 큰 스케일만
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.2),
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                0 0 0 2px var(--db-brand-primary);
         }
     }
 }

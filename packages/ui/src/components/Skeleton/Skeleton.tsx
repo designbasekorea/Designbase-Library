@@ -14,7 +14,7 @@ export interface SkeletonProps {
     /** 스켈레톤 variant */
     variant?: 'text' | 'circular' | 'rectangular' | 'rounded';
     /** 스켈레톤 크기 */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: 'xs' | 's' | 'm' | 'l' | 'xl';
     /** 너비 (CSS 값) */
     width?: string | number;
     /** 높이 (CSS 값) */
@@ -41,7 +41,7 @@ const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
     (
         {
             variant = 'text',
-            size = 'md',
+            size = 'm',
             width,
             height,
             animation = 'pulse',

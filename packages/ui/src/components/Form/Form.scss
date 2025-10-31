@@ -1,86 +1,53 @@
 .designbase-form {
     width: 100%;
-    padding: 0; // 기본 variant는 패딩 없음
 
-    // 레이아웃별 스타일
-    &--vertical {
-        .designbase-form__field-wrapper {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: var(--db-margin-m);
+    // 필드 컨테이너
+    &__fields {
+        display: grid;
+        gap: var(--db-gap-l);
+    }
 
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        .designbase-form__label {
-            margin-bottom: var(--db-margin-xs);
-            font-weight: var(--db-weight-medium);
-            color: var(--db-text-primary);
+    // 컬럼별 스타일
+    &--columns-1 {
+        .designbase-form__fields {
+            grid-template-columns: 1fr;
         }
     }
 
-    &--horizontal {
-        .designbase-form__field-wrapper {
-            display: flex;
-            align-items: center;
-            margin-bottom: var(--db-margin-m);
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        .designbase-form__label {
-            flex: 0 0 120px;
-            margin-right: var(--db-margin-m);
-            font-weight: var(--db-weight-medium);
-            color: var(--db-text-primary);
-            text-align: right;
-        }
-
-        .designbase-form__field {
-            flex: 1;
-        }
-
-        .designbase-form__error,
-        .designbase-form__help {
-            margin-left: calc(120px + var(--db-margin-m));
+    &--columns-2 {
+        .designbase-form__fields {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 
-    &--inline {
+    // 필드 래퍼
+    &__field-wrapper {
         display: flex;
-        flex-wrap: wrap;
-        align-items: flex-end;
-        gap: var(--db-gap-m);
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+    }
 
-        .designbase-form__field-wrapper {
-            flex: 0 0 auto;
-            margin-bottom: 0;
-        }
+    // 라벨
+    &__label {
+        display: block;
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
+        line-height: var(--db-leading-normal);
+    }
 
-        .designbase-form__label {
-            margin-bottom: var(--db-margin-xs);
-            font-weight: var(--db-weight-medium);
-            color: var(--db-text-primary);
-            font-size: var(--db-text-sm);
-        }
-
-        .designbase-form__actions {
-            flex: 0 0 auto;
-        }
+    &__required {
+        color: var(--db-icon-error);
+        margin-left: var(--db-margin-xxs);
     }
 
     // 크기별 스타일
-    &--sm {
+    &--s {
         .designbase-form__label {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-form__field {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-form__error,
@@ -89,7 +56,7 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-form__label {
             font-size: var(--db-text-base);
         }
@@ -100,17 +67,17 @@
 
         .designbase-form__error,
         .designbase-form__help {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-form__label {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-form__field {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-form__error,
@@ -120,55 +87,46 @@
     }
 
     // 변형별 스타일
+    &--default {
+        // 패딩, 배경, 보더 모두 없음
+        padding: 0;
+        background: none;
+        border: none;
+    }
+
     &--bordered {
         padding: var(--db-padding-xl);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-lg);
-        background-color: var(--db-bg-primary);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-l);
+        background-color: var(--db-surface-base);
         box-shadow: var(--db-shadow-sm);
     }
 
     &--filled {
         padding: var(--db-padding-xl);
-        background-color: var(--db-bg-secondary);
-        border-radius: var(--db-radius-lg);
-        border: 1px solid var(--db-border-primary);
+        background-color: var(--db-surface-layer-1);
+        border-radius: var(--db-radius-l);
+        border: none;
     }
 
     // 헤더
     &__header {
-        margin-bottom: var(--db-margin-xl);
-        text-align: center;
+        margin-bottom: var(--db-margin-l);
     }
 
     &__title {
-        margin: 0 0 var(--db-margin-s) 0;
-        font-size: var(--db-text-2xl);
+        margin: 0 0 var(--db-margin-xs) 0;
+        font-size: var(--db-text-xl);
         font-weight: var(--db-weight-bold);
         color: var(--db-text-primary);
+        line-height: var(--db-leading-tight);
     }
 
     &__description {
         margin: 0;
-        font-size: var(--db-text-base);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
-        line-height: 1.5;
-    }
-
-    // 필드 래퍼
-    &__field-wrapper {
-        position: relative;
-    }
-
-    // 라벨
-    &__label {
-        display: block;
-        line-height: 1.4;
-    }
-
-    &__required {
-        color: var(--db-red-500);
-        margin-left: var(--db-margin-xs);
+        line-height: var(--db-leading-normal);
     }
 
     // 필드
@@ -177,29 +135,8 @@
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &--error {
-            border-color: var(--db-red-500) !important;
-            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1);
-        }
-    }
-
-    // 파일 입력
-    &__file-input {
-        padding: var(--db-padding-s);
-        border: 2px dashed var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        background-color: var(--db-bg-secondary);
-        cursor: pointer;
-        transition: all var(--db-animation-speed) var(--db-animation-ease);
-
-        &:hover {
-            border-color: var(--db-blue-500);
-            background-color: var(--db-blue-50);
-        }
-
-        &:focus {
-            outline: none;
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+            border-color: var(--db-icon-error) !important;
+            box-shadow: 0 0 0 2px var(--db-feedback-error-bg);
         }
     }
 
@@ -227,72 +164,31 @@
 
     // 에러 메시지
     &__error {
-        margin-top: var(--db-margin-xs);
-        color: var(--db-red-500);
-        font-size: var(--db-text-sm);
-        line-height: 1.4;
+        color: var(--db-icon-error);
+        font-size: var(--db-text-xs);
+        line-height: var(--db-leading-normal);
         animation: formErrorSlideIn var(--db-animation-speed) var(--db-animation-ease);
     }
 
     // 도움말 텍스트
     &__help {
-        margin-top: var(--db-margin-xs);
-        color: var(--db-text-secondary);
-        font-size: var(--db-text-sm);
-        line-height: 1.4;
+        color: var(--db-text-tertiary);
+        font-size: var(--db-text-xs);
+        line-height: var(--db-leading-normal);
     }
 
     // 액션 버튼들
     &__actions {
         display: flex;
         gap: var(--db-gap-s);
-        margin-top: var(--db-margin-xl);
-        padding-top: var(--db-padding-m);
-        border-top: 1px solid var(--db-border-primary);
-
-        .designbase-form--inline & {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-        }
+        margin-top: var(--db-margin-l);
     }
 
     // 반응형 디자인
     @media (max-width: 768px) {
-        &--horizontal {
-            .designbase-form__field-wrapper {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .designbase-form__label {
-                flex: none;
-                margin-right: 0;
-                margin-bottom: var(--db-margin-xs);
-                text-align: left;
-            }
-
-            .designbase-form__error,
-            .designbase-form__help {
-                margin-left: 0;
-            }
-        }
-
-        &--inline {
-            flex-direction: column;
-            align-items: stretch;
-
-            .designbase-form__field-wrapper {
-                flex: 1;
-            }
-
-            .designbase-form__actions {
-                flex: 1;
-                justify-content: stretch;
-
-                .designbase-button {
-                    flex: 1;
-                }
+        &--columns-2 {
+            .designbase-form__fields {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -304,26 +200,13 @@
             }
         }
     }
-
-    // 다크 모드는 상위에서 관리됩니다
-
-    // 접근성 개선
-    &__field:focus-visible {
-        outline: 2px solid var(--db-blue-500);
-        outline-offset: 2px;
-    }
-
-    // 애니메이션
-    &__field-wrapper {
-        animation: formFieldSlideIn var(--db-animation-speed) var(--db-animation-ease);
-    }
 }
 
 // 애니메이션 키프레임
 @keyframes formErrorSlideIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-4px);
     }
 
     to {
@@ -373,7 +256,7 @@
     opacity: 0.7;
 
     .designbase-form__field {
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
     }
 }
 
@@ -383,7 +266,7 @@
     opacity: 0.6;
 
     .designbase-form__field {
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
         cursor: not-allowed;
     }
 }

@@ -1,0 +1,16 @@
+{
+    "motion": {
+        "semantic": {
+            "animation": {
+                "speed": {
+                    "value": "{motion.aliases.duration.base}",
+                    "type": "duration"
+                },
+                "ease": {
+                    "value": "{motion.aliases.easing.standard}",
+                    "type": "cubicBezier"
+                }
+            }
+        }
+    }
+}

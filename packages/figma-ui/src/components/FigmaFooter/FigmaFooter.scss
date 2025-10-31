@@ -1,0 +1,143 @@
+.designbase-figma-footer {
+    background-color: var(--db-surface-base);
+    border-top: 1px solid var(--db-border-muted);
+    padding: var(--db-padding-s);
+    width: 100%;
+    height: 40px;
+    z-index: 9999;
+
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+    }
+
+    &__payment-states {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+    }
+
+    &__usage-info {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        font-size: var(--db-text-xs);
+        color: var(--db-text-secondary);
+        cursor: help;
+        position: relative;
+
+        &--tooltip {
+            &:hover::after {
+                content: attr(title);
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: var(--db-surface-inverse);
+                color: var(--db-text-inverse-primary);
+                padding: var(--db-padding-xs) var(--db-padding-s);
+                border-radius: var(--db-radius-s);
+                font-size: var(--db-text-xs);
+                white-space: nowrap;
+                z-index: 1000;
+                box-shadow: var(--db-shadow-dropdown);
+                margin-bottom: var(--db-margin-xs);
+            }
+
+            &:hover::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 4px solid transparent;
+                border-top-color: var(--db-surface-inverse);
+                z-index: 1000;
+                margin-bottom: calc(var(--db-margin-xs) - 4px);
+            }
+        }
+    }
+
+    &__unlimited-usage {
+        color: var(--db-brand-primary);
+        font-weight: var(--db-weight-medium);
+        cursor: help;
+        position: relative;
+
+        &--tooltip {
+            &:hover::after {
+                content: attr(title);
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: var(--db-surface-inverse);
+                color: var(--db-text-inverse-primary);
+                padding: var(--db-padding-xs) var(--db-padding-s);
+                border-radius: var(--db-radius-s);
+                font-size: var(--db-text-xs);
+                white-space: nowrap;
+                z-index: 1000;
+                box-shadow: var(--db-shadow-dropdown);
+                margin-bottom: var(--db-margin-xs);
+            }
+
+            &:hover::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 4px solid transparent;
+                border-top-color: var(--db-surface-inverse);
+                z-index: 1000;
+                margin-bottom: calc(var(--db-margin-xs) - 4px);
+            }
+        }
+    }
+
+    &__usage-count {
+        color: var(--db-text-primary);
+        font-weight: var(--db-weight-semibold);
+    }
+
+    &__max-daily-usage {
+        color: var(--db-text-tertiary);
+    }
+
+    &__reset-info {
+        color: var(--db-text-tertiary);
+        font-size: var(--db-text-xs);
+    }
+
+    &__donation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--db-gap-s);
+    }
+
+    &__donation-text {
+        font-size: var(--db-text-xs);
+        color: var(--db-text-secondary);
+        white-space: nowrap;
+    }
+
+    // Children가 있을 때의 스타일
+    &--has-children {
+        .designbase-figma-footer__wrap {
+            border-bottom: 1px solid var(--db-border-muted);
+            margin-bottom: var(--db-margin-s);
+        }
+    }
+
+}

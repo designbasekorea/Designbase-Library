@@ -8,6 +8,7 @@
 
 import React, { forwardRef, useId, useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { Label } from '../Label/Label';
 import './Textarea.scss';
 
 export interface TextareaProps {
@@ -20,7 +21,7 @@ export interface TextareaProps {
     /** 제어 값 */
     value?: string;
     /** 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 행 수 */
     rows?: number;
     /** 최대 글자 수 */
@@ -66,7 +67,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             placeholder,
             defaultValue,
             value,
-            size = 'md',
+            size = 'm',
             rows = 4,
             maxLength,
             showCharacterCount = false,
@@ -130,17 +131,15 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             <div className={classes}>
                 {/* 라벨 */}
                 {label && (
-                    <label
+                    <Label
                         htmlFor={textareaId}
-                        className="designbase-textarea__label"
+                        required={required}
+                        error={error}
+                        disabled={disabled}
+                        size={size === 's' ? 's' : size === 'm' ? 'm' : 'l'}
                     >
                         {label}
-                        {required && (
-                            <span className="designbase-textarea__required" aria-label="필수">
-                                *
-                            </span>
-                        )}
-                    </label>
+                    </Label>
                 )}
 
                 {/* 글자 수 표시 (상단) */}

@@ -5,10 +5,10 @@
 .designbase-progress {
     display: flex;
     align-items: center;
-    gap: var(--db-gap-sm);
+    gap: var(--db-gap-s);
 
     // 크기별 스타일
-    &--size-sm {
+    &--size-s {
         gap: var(--db-gap-xs);
 
         .designbase-progress__value {
@@ -16,15 +16,15 @@
         }
 
         .designbase-progress__circular-value {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--size-md {
-        gap: var(--db-gap-sm);
+    &--size-m {
+        gap: var(--db-gap-s);
 
         .designbase-progress__value {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-progress__circular-value {
@@ -32,56 +32,56 @@
         }
     }
 
-    &--size-lg {
-        gap: var(--db-gap-md);
+    &--size-l {
+        gap: var(--db-gap-m);
 
         .designbase-progress__value {
             font-size: var(--db-text-base);
         }
 
         .designbase-progress__circular-value {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
     }
 
     // 변형별 스타일
     &--variant-default {
         .designbase-progress__bar {
-            background-color: var(--db-blue-600);
+            background-color: var(--db-color-info);
         }
 
         .designbase-progress__circular-bar {
-            stroke: var(--db-blue-600);
+            stroke: var(--db-color-info);
         }
     }
 
     &--variant-success {
         .designbase-progress__bar {
-            background-color: var(--db-green-600);
+            background-color: var(--db-color-success);
         }
 
         .designbase-progress__circular-bar {
-            stroke: var(--db-green-600);
+            stroke: var(--db-color-success);
         }
     }
 
     &--variant-warning {
         .designbase-progress__bar {
-            background-color: var(--db-yellow-600);
+            background-color: var(--db-color-warning);
         }
 
         .designbase-progress__circular-bar {
-            stroke: var(--db-yellow-600);
+            stroke: var(--db-color-warning);
         }
     }
 
     &--variant-danger {
         .designbase-progress__bar {
-            background-color: var(--db-red-600);
+            background-color: var(--db-color-danger);
         }
 
         .designbase-progress__circular-bar {
-            stroke: var(--db-red-600);
+            stroke: var(--db-color-danger);
         }
     }
 
@@ -116,21 +116,21 @@
     &__linear {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
         width: 100%;
     }
 
     &__track {
         flex: 1;
         height: 8px;
-        background-color: var(--db-bg-tertiary);
+        background-color: var(--db-surface-layer-2);
         border-radius: var(--db-radius-full);
         overflow: hidden;
     }
 
     &__bar {
         height: 100%;
-        background-color: var(--db-blue-600);
+        background-color: var(--db-color-info);
         border-radius: var(--db-radius-full);
         transition: width 0.3s ease;
     }
@@ -157,13 +157,13 @@
 
     &__circular-track {
         fill: none;
-        stroke: var(--db-bg-tertiary);
+        stroke: var(--db-surface-layer-2);
         stroke-linecap: round;
     }
 
     &__circular-bar {
         fill: none;
-        stroke: var(--db-blue-600);
+        stroke: var(--db-color-info);
         stroke-linecap: round;
         transition: stroke-dashoffset 0.3s ease;
     }
@@ -191,9 +191,9 @@
 // 반응형 스타일
 @media (max-width: 480px) {
     .designbase-progress {
-        &--size-lg {
+        &--size-l {
             .designbase-progress__value {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
             }
 
             .designbase-progress__circular-value {

@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M15.51 2.386a5.75 5.75 0 1 1-3.5 10.311l-3.217 3.218 2.121 2.121-3.889 3.889-2.12-2.121-.884.884-1.061-1.061 7.99-7.99a5.751 5.751 0 0 1 4.56-9.251M5.965 18.743l1.06 1.06 1.768-1.767-1.06-1.06zM15.51 3.887a4.25 4.25 0 1 0 0 8.5 4.25 4.25 0 0 0 0-8.5"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const KeyAltIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M15.51 2.386a5.75 5.75 0 1 1-3.5 10.311l-3.217 3.218 2.121 2.121-3.889 3.889-2.12-2.121-.884.884-1.061-1.061 7.99-7.99a5.751 5.751 0 0 1 4.56-9.251M5.965 18.743l1.06 1.06 1.768-1.767-1.06-1.06zM15.51 3.887a4.25 4.25 0 1 0 0 8.5 4.25 4.25 0 0 0 0-8.5"/></svg>
+);
 
 export default KeyAltIcon;

@@ -104,7 +104,7 @@ const meta: Meta<typeof Rating> = {
     args: {
         value: 4.5,
         maxValue: 5,
-        size: 'md',
+        size: 'm',
         variant: 'default',
         type: 'star',
         display: 'stars',
@@ -143,15 +143,15 @@ export const DifferentSizes: Story = {
                 </div>
                 <div>
                     <h3>Small</h3>
-                    <Rating value={4.5} size="sm" />
+                    <Rating value={4.5} size="s" />
                 </div>
                 <div>
                     <h3>Medium</h3>
-                    <Rating value={4.5} size="md" />
+                    <Rating value={4.5} size="m" />
                 </div>
                 <div>
                     <h3>Large</h3>
-                    <Rating value={4.5} size="lg" />
+                    <Rating value={4.5} size="l" />
                 </div>
                 <div>
                     <h3>Extra Large</h3>
@@ -471,7 +471,7 @@ export const CardStyle: Story = {
                         variant="card"
                         display="detailed"
                         reviewCount={128}
-                        size="lg"
+                        size="l"
                     />
                 </div>
                 <div>
@@ -482,7 +482,7 @@ export const CardStyle: Story = {
                         display="detailed"
                         reviewCount={256}
                         color="success"
-                        size="lg"
+                        size="l"
                     />
                 </div>
             </div>
@@ -530,15 +530,15 @@ export const InlineStyle: Story = {
                 <div>
                     <h3>Inline in Text</h3>
                     <p>
-                        이 제품은 <Rating value={4.5} variant="inline" size="sm" />
+                        이 제품은 <Rating value={4.5} variant="inline" size="s" />
                         평점을 받았습니다.
                     </p>
                 </div>
                 <div>
                     <h3>Inline with Reviews</h3>
                     <p>
-                        사용자 평점: <Rating value={4.2} variant="inline" size="sm" display="both" />
-                        (<Rating value={4.2} variant="inline" size="sm" display="reviews" reviewCount={128} />)
+                        사용자 평점: <Rating value={4.2} variant="inline" size="s" display="both" />
+                        (<Rating value={4.2} variant="inline" size="s" display="reviews" reviewCount={128} />)
                     </p>
                 </div>
             </div>
@@ -561,7 +561,7 @@ export const MinimalStyle: Story = {
                 </div>
                 <div>
                     <h3>Minimal Small</h3>
-                    <Rating value={3.8} variant="minimal" size="sm" />
+                    <Rating value={3.8} variant="minimal" size="s" />
                 </div>
             </div>
         );

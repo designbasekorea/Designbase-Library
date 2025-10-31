@@ -5,7 +5,7 @@ import Lightbox from '../Lightbox/Lightbox';
 import './Masonry.scss';
 
 export type MasonryColumns = 1 | 2 | 3 | 4 | 5 | 6;
-export type MasonrySpacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type MasonrySpacing = 'xs' | 's' | 'm' | 'l' | 'xl';
 export type MasonryAnimation = 'fade' | 'slide' | 'zoom' | 'none';
 
 export interface MasonryItem {
@@ -85,7 +85,7 @@ export interface MasonryProps {
 const Masonry: React.FC<MasonryProps> = ({
     images,
     columns = 3,
-    spacing = 'md',
+    spacing = 'm',
     ratio = 'auto',
     fit = 'cover',
     rounded = false,
@@ -125,7 +125,7 @@ const Masonry: React.FC<MasonryProps> = ({
 
                 // 가장 짧은 컬럼에 이미지 추가
                 const shortestColumn = heights.indexOf(Math.min(...heights));
-                heights[shortestColumn] += imageHeight + (spacing === 'xs' ? 4 : spacing === 'sm' ? 8 : spacing === 'md' ? 16 : spacing === 'lg' ? 24 : 32);
+                heights[shortestColumn] += imageHeight + (spacing === 'xs' ? 4 : spacing === 's' ? 8 : spacing === 'm' ? 16 : spacing === 'l' ? 24 : 32);
             }
         });
 

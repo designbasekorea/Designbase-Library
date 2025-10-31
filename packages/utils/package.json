@@ -14,7 +14,8 @@
         "clean": "rimraf dist",
         "lint": "eslint src --ext .ts,.tsx",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watch",
+        "storybook": "echo 'Utils package does not have storybook'"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^25.0.4",

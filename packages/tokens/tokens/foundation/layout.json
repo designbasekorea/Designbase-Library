@@ -1,0 +1,190 @@
+{
+    "layout": {
+        "foundation": {
+            "container": {
+                "maxWidth": {
+                    "fluid": {
+                        "value": "100%",
+                        "type": "dimension",
+                        "description": "유동형 컨테이너"
+                    },
+                    "xs": {
+                        "value": "480px",
+                        "type": "dimension",
+                        "description": "초소형 컨테이너"
+                    },
+                    "s": {
+                        "value": "640px",
+                        "type": "dimension",
+                        "description": "소형 컨테이너"
+                    },
+                    "m": {
+                        "value": "768px",
+                        "type": "dimension",
+                        "description": "중형 컨테이너"
+                    },
+                    "l": {
+                        "value": "1024px",
+                        "type": "dimension",
+                        "description": "대형 컨테이너"
+                    },
+                    "xl": {
+                        "value": "1280px",
+                        "type": "dimension",
+                        "description": "초대형 컨테이너"
+                    },
+                    "xxl": {
+                        "value": "1440px",
+                        "type": "dimension",
+                        "description": "2XL 컨테이너"
+                    },
+                    "3xl": {
+                        "value": "1600px",
+                        "type": "dimension",
+                        "description": "3XL 컨테이너"
+                    },
+                    "4xl": {
+                        "value": "1920px",
+                        "type": "dimension",
+                        "description": "4XL 컨테이너"
+                    }
+                },
+                "padding": {
+                    "none": {
+                        "value": "0px",
+                        "type": "dimension",
+                        "description": "패딩 없음"
+                    },
+                    "xs": {
+                        "value": "8px",
+                        "type": "dimension",
+                        "description": "초소형 패딩"
+                    },
+                    "s": {
+                        "value": "16px",
+                        "type": "dimension",
+                        "description": "소형 패딩"
+                    },
+                    "m": {
+                        "value": "24px",
+                        "type": "dimension",
+                        "description": "중형 패딩"
+                    },
+                    "l": {
+                        "value": "32px",
+                        "type": "dimension",
+                        "description": "대형 패딩"
+                    },
+                    "xl": {
+                        "value": "48px",
+                        "type": "dimension",
+                        "description": "초대형 패딩"
+                    },
+                    "xxl": {
+                        "value": "64px",
+                        "type": "dimension",
+                        "description": "2XL 패딩"
+                    }
+                }
+            },
+            "grid": {
+                "columns": {
+                    "6": {
+                        "value": "6",
+                        "type": "number",
+                        "description": "6컬럼 그리드"
+                    },
+                    "12": {
+                        "value": "12",
+                        "type": "number",
+                        "description": "12컬럼 그리드"
+                    },
+                    "16": {
+                        "value": "16",
+                        "type": "number",
+                        "description": "16컬럼 그리드"
+                    },
+                    "24": {
+                        "value": "24",
+                        "type": "number",
+                        "description": "24컬럼 그리드"
+                    }
+                },
+                "gutter": {
+                    "none": {
+                        "value": "0px",
+                        "type": "dimension",
+                        "description": "거터 없음"
+                    },
+                    "xs": {
+                        "value": "8px",
+                        "type": "dimension",
+                        "description": "초소형 거터"
+                    },
+                    "s": {
+                        "value": "16px",
+                        "type": "dimension",
+                        "description": "소형 거터"
+                    },
+                    "m": {
+                        "value": "24px",
+                        "type": "dimension",
+                        "description": "중형 거터"
+                    },
+                    "l": {
+                        "value": "32px",
+                        "type": "dimension",
+                        "description": "대형 거터"
+                    },
+                    "xl": {
+                        "value": "40px",
+                        "type": "dimension",
+                        "description": "초대형 거터"
+                    },
+                    "xxl": {
+                        "value": "48px",
+                        "type": "dimension",
+                        "description": "2XL 거터"
+                    }
+                }
+            },
+            "breakpoint": {
+                "xs": {
+                    "value": "0px",
+                    "type": "dimension",
+                    "description": "모바일 초소형"
+                },
+                "s": {
+                    "value": "480px",
+                    "type": "dimension",
+                    "description": "모바일 소형"
+                },
+                "m": {
+                    "value": "768px",
+                    "type": "dimension",
+                    "description": "태블릿"
+                },
+                "l": {
+                    "value": "1024px",
+                    "type": "dimension",
+                    "description": "데스크톱"
+                },
+                "xl": {
+                    "value": "1280px",
+                    "type": "dimension",
+                    "description": "대형 데스크톱"
+                },
+                "xxl": {
+                    "value": "1440px",
+                    "type": "dimension",
+                    "description": "초대형 데스크톱"
+                },
+                "3xl": {
+                    "value": "1920px",
+                    "type": "dimension",
+                    "description": "울트라 와이드"
+                }
+            }
+        }
+    }
+}

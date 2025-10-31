@@ -2,19 +2,28 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import { Button } from '../Button/Button';
 import { Modal } from '../Modal/Modal';
+import { Input } from '../Input/Input';
 import { Dropdown } from '../Dropdown/Dropdown';
 import {
     MailIcon,
     LinkIcon,
     CopyIcon,
     ShareAltIcon,
-    CloseIcon
-} from '@designbase/icons';
+    CloseIcon,
+    FacebookIcon,
+    XIcon,
+    InstagramIcon,
+    LinkedinIcon,
+    WhatsappIcon,
+    PinterestIcon,
+    TelegramIcon,
+    ScanQrcodeIcon,
+} from '@designbasekorea/icons';
 import './Share.scss';
 
 export type SharePlatform =
     | 'facebook'
-    | 'twitter'
+    | 'x'
     | 'instagram'
     | 'linkedin'
     | 'pinterest'
@@ -25,7 +34,7 @@ export type SharePlatform =
     | 'qr';
 
 export type ShareVariant = 'button' | 'dropdown' | 'modal' | 'inline';
-export type ShareSize = 'sm' | 'md' | 'lg';
+export type ShareSize = 's' | 'm' | 'l';
 export type SharePosition = 'top' | 'bottom' | 'left' | 'right';
 
 export interface SharePlatformConfig {
@@ -97,9 +106,9 @@ const Share: React.FC<ShareProps> = ({
     imageUrl,
     hashtags = [],
     variant = 'button',
-    size = 'md',
+    size = 'm',
     position = 'bottom',
-    platforms = ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'link'],
+    platforms = ['facebook', 'x', 'linkedin', 'whatsapp', 'email', 'link'],
     customPlatforms = {},
     buttonText = '공유',
     buttonIcon = ShareAltIcon,
@@ -122,19 +131,19 @@ const Share: React.FC<ShareProps> = ({
     const defaultPlatforms: Record<SharePlatform, SharePlatformConfig> = {
         facebook: {
             name: 'Facebook',
-            icon: ShareAltIcon,
+            icon: FacebookIcon,
             color: '#1877f2',
             shareUrl: 'https://www.facebook.com/sharer/sharer.php?u={url}',
         },
-        twitter: {
-            name: 'Twitter',
-            icon: ShareAltIcon,
-            color: '#1da1f2',
+        x: {
+            name: 'X',
+            icon: XIcon,
+            color: '#000000',
             shareUrl: 'https://twitter.com/intent/tweet?url={url}&text={title}&hashtags={hashtags}',
         },
         instagram: {
             name: 'Instagram',
-            icon: ShareAltIcon,
+            icon: InstagramIcon,
             color: '#e4405f',
             shareUrl: 'https://www.instagram.com/',
             customShare: () => {
@@ -144,25 +153,25 @@ const Share: React.FC<ShareProps> = ({
         },
         linkedin: {
             name: 'LinkedIn',
-            icon: ShareAltIcon,
+            icon: LinkedinIcon,
             color: '#0077b5',
             shareUrl: 'https://www.linkedin.com/sharing/share-offsite/?url={url}',
         },
         pinterest: {
             name: 'Pinterest',
-            icon: ShareAltIcon,
+            icon: PinterestIcon,
             color: '#bd081c',
             shareUrl: 'https://pinterest.com/pin/create/button/?url={url}&description={title}&media={imageUrl}',
         },
         whatsapp: {
             name: 'WhatsApp',
-            icon: ShareAltIcon,
+            icon: WhatsappIcon,
             color: '#25d366',
             shareUrl: 'https://wa.me/?text={title}%20{url}',
         },
         telegram: {
             name: 'Telegram',
-            icon: ShareAltIcon,
+            icon: TelegramIcon,
             color: '#0088cc',
             shareUrl: 'https://t.me/share/url?url={url}&text={title}',
         },
@@ -181,7 +190,7 @@ const Share: React.FC<ShareProps> = ({
         },
         qr: {
             name: 'QR 코드',
-            icon: ShareAltIcon,
+            icon: ScanQrcodeIcon,
             color: '#6c757d',
             shareUrl: '',
             customShare: () => handleShowQrCode(),
@@ -275,9 +284,9 @@ const Share: React.FC<ShareProps> = ({
             <Button
                 variant="secondary"
                 size={size}
-                onClick={() => setIsOpen(!isOpen)}
+                onPress={() => setIsOpen(!isOpen)}
                 className="designbase-share__trigger"
-                icon={ButtonIcon}
+                startIcon={ButtonIcon}
             >
                 {buttonText}
             </Button>
@@ -351,18 +360,20 @@ const Share: React.FC<ShareProps> = ({
             <div className="designbase-share__link-preview">
                 <h4 className="designbase-share__link-title">공유 링크</h4>
                 <div className="designbase-share__link-container">
-                    <input
+                    <Input
                         type="text"
                         value={url}
                         readOnly
+                        size="s"
+                        fullWidth
                         className="designbase-share__link-input"
                     />
                     <Button
-                        size="sm"
+                        size="s"
                         variant="primary"
-                        onClick={handleCopyLink}
+                        onPress={handleCopyLink}
                         className="designbase-share__copy-button"
-                        icon={isCopied ? CopyIcon : LinkIcon}
+                        startIcon={isCopied ? CopyIcon : LinkIcon}
                     >
                         {isCopied ? '복사됨!' : '복사'}
                     </Button>
@@ -406,7 +417,7 @@ const Share: React.FC<ShareProps> = ({
                         isOpen={isOpen}
                         onClose={() => setIsOpen(false)}
                         title={modalTitle}
-                        size="md"
+                        size="m"
                         className="designbase-share__modal"
                     >
                         {renderShareContent()}

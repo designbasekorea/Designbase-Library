@@ -10,7 +10,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './Progressbar.scss';
 
-export type ProgressbarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ProgressbarSize = 's' | 'm' | 'l';
 export type ProgressbarVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger';
 export type ProgressbarStyle = 'solid' | 'striped' | 'animated';
 
@@ -47,7 +47,7 @@ export const Progressbar: React.FC<ProgressbarProps> = ({
     value,
     max = 100,
     min = 0,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     style = 'solid',
     showLabel = false,
@@ -70,6 +70,7 @@ export const Progressbar: React.FC<ProgressbarProps> = ({
         {
             'designbase-progressbar--full-width': fullWidth,
             'designbase-progressbar--disabled': disabled,
+            'designbase-progressbar--completed': percentage === 100,
         },
         className
     );

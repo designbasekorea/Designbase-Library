@@ -1,0 +1,89 @@
+.designbase-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--db-gap-s);
+
+    &--horizontal {
+        flex-direction: row;
+    }
+
+    &--vertical {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &--dots {
+        gap: var(--db-gap-m);
+    }
+
+    &--line {
+        gap: var(--db-gap-s);
+        align-items: center;
+    }
+
+    &__dot {
+        position: relative;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--db-border-base);
+        transition: transform 0.2s ease;
+
+        &--active {
+            background-color: var(--db-brand-primary);
+        }
+    }
+
+    &__circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    &__circle-bg {
+        opacity: 0.2;
+    }
+
+    &__circle-progress {
+        transition: stroke-dashoffset 0.1s linear;
+    }
+
+    &__line-segment {
+        width: 40px;
+        height: 6px;
+        background-color: var(--db-border-base);
+        border-radius: 999px;
+        overflow: hidden;
+        position: relative;
+
+        &--active {
+            background-color: var(--db-brand-primary);
+        }
+
+        &--current {
+            background-color: var(--db-border-base);
+        }
+    }
+
+    // 세로 방향일 때 라인 세그먼트
+    &--vertical &__line-segment {
+        width: 6px;
+        height: 40px;
+    }
+
+    &__line-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: var(--db-brand-primary);
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: transform 0.05s linear;
+    }
+}

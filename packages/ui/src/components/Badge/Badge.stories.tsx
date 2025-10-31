@@ -1,7 +1,3 @@
-/**
- * Badge 컴포넌트 스토리
- */
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { Badge } from './Badge';
 
@@ -10,39 +6,20 @@ const meta: Meta<typeof Badge> = {
     component: Badge,
     parameters: {
         layout: 'centered',
-        docs: {
-            description: {
-                component: '작은 텍스트를 감싸는 다양한 스타일의 배지 컴포넌트입니다. 점, 숫자, 텍스트 라벨, 아웃라인 스타일을 지원합니다.',
-            },
-        },
     },
+    tags: ['autodocs'],
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
-            description: '배지의 크기',
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
             options: ['primary', 'secondary', 'info', 'success', 'warning', 'danger'],
-            description: '배지의 색상',
         },
         style: {
             control: { type: 'select' },
             options: ['dot', 'number', 'text', 'outlined'],
-            description: '배지의 스타일',
-        },
-        count: {
-            control: { type: 'number' },
-            description: '숫자 값 (style이 number일 때 사용)',
-        },
-        maxCount: {
-            control: { type: 'number' },
-            description: '최대 표시 숫자',
-        },
-        disabled: {
-            control: { type: 'boolean' },
-            description: '비활성화 상태',
         },
     },
 };
@@ -58,177 +35,155 @@ export const Default: Story = {
     },
 };
 
-export const Dot: Story = {
-    args: {
-        style: 'dot',
-        variant: 'primary',
-    },
-};
-
-export const Number: Story = {
-    args: {
-        style: 'number',
-        count: 10,
-        variant: 'primary',
-    },
-};
-
-export const Text: Story = {
-    args: {
-        children: 'Badge',
-        style: 'text',
-        variant: 'primary',
-    },
-};
-
-export const Outlined: Story = {
-    args: {
-        children: 'Outlined',
-        style: 'outlined',
-        variant: 'primary',
-    },
-};
-
-export const AllVariants: Story = {
+// 타입 (dot, number, text, outlined)
+export const AllTypes: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="dot" variant="primary" />
-                <Badge style="dot" variant="secondary" />
-                <Badge style="dot" variant="info" />
-                <Badge style="dot" variant="success" />
-                <Badge style="dot" variant="warning" />
-                <Badge style="dot" variant="danger" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', padding: '20px' }}>
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Dot</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="primary" />
+                    <Badge style="dot" variant="secondary" />
+                    <Badge style="dot" variant="info" />
+                    <Badge style="dot" variant="success" />
+                    <Badge style="dot" variant="warning" />
+                    <Badge style="dot" variant="danger" />
+                </div>
             </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="number" count={10} variant="primary" />
-                <Badge style="number" count={10} variant="secondary" />
-                <Badge style="number" count={10} variant="info" />
-                <Badge style="number" count={10} variant="success" />
-                <Badge style="number" count={10} variant="warning" />
-                <Badge style="number" count={10} variant="danger" />
+
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Number</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="number" count={5} variant="primary" />
+                    <Badge style="number" count={10} variant="secondary" />
+                    <Badge style="number" count={99} variant="info" />
+                    <Badge style="number" count={100} variant="success" />
+                </div>
             </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="number" count={99} variant="primary" />
-                <Badge style="number" count={99} variant="secondary" />
-                <Badge style="number" count={99} variant="info" />
-                <Badge style="number" count={99} variant="success" />
-                <Badge style="number" count={99} variant="warning" />
-                <Badge style="number" count={99} variant="danger" />
+
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Text</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="text" variant="primary">New</Badge>
+                    <Badge style="text" variant="success">Active</Badge>
+                    <Badge style="text" variant="warning">Pending</Badge>
+                    <Badge style="text" variant="danger">Error</Badge>
+                </div>
             </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="text" variant="primary">Badge</Badge>
-                <Badge style="text" variant="secondary">Badge</Badge>
-                <Badge style="text" variant="info">Badge</Badge>
-                <Badge style="text" variant="success">Badge</Badge>
-                <Badge style="text" variant="warning">Badge</Badge>
-                <Badge style="text" variant="danger">Badge</Badge>
-            </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="outlined" variant="primary">Outlined</Badge>
-                <Badge style="outlined" variant="secondary">Outlined</Badge>
-                <Badge style="outlined" variant="info">Outlined</Badge>
-                <Badge style="outlined" variant="success">Outlined</Badge>
-                <Badge style="outlined" variant="warning">Outlined</Badge>
-                <Badge style="outlined" variant="danger">Outlined</Badge>
+
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Outlined</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="outlined" variant="primary">New</Badge>
+                    <Badge style="outlined" variant="success">Active</Badge>
+                    <Badge style="outlined" variant="warning">Pending</Badge>
+                    <Badge style="outlined" variant="danger">Error</Badge>
+                </div>
             </div>
         </div>
     ),
 };
 
+// 사이즈 (s, m, l)
 export const AllSizes: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="dot" size="sm" variant="primary" />
-                <Badge style="dot" size="md" variant="primary" />
-                <Badge style="dot" size="lg" variant="primary" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', padding: '20px' }}>
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Small</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" size="s" variant="primary" />
+                    <Badge style="number" count={10} size="s" variant="primary" />
+                    <Badge style="text" size="s" variant="primary">Small</Badge>
+                    <Badge style="outlined" size="s" variant="primary">Small</Badge>
+                </div>
             </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="number" count={10} size="sm" variant="primary" />
-                <Badge style="number" count={10} size="md" variant="primary" />
-                <Badge style="number" count={10} size="lg" variant="primary" />
+
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Medium</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" size="m" variant="primary" />
+                    <Badge style="number" count={10} size="m" variant="primary" />
+                    <Badge style="text" size="m" variant="primary">Medium</Badge>
+                    <Badge style="outlined" size="m" variant="primary">Medium</Badge>
+                </div>
             </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="text" size="sm" variant="primary">Badge</Badge>
-                <Badge style="text" size="md" variant="primary">Badge</Badge>
-                <Badge style="text" size="lg" variant="primary">Badge</Badge>
+
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Large</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" size="l" variant="primary" />
+                    <Badge style="number" count={10} size="l" variant="primary" />
+                    <Badge style="text" size="l" variant="primary">Large</Badge>
+                    <Badge style="outlined" size="l" variant="primary">Large</Badge>
+                </div>
             </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Badge style="outlined" size="sm" variant="primary">Outlined</Badge>
-                <Badge style="outlined" size="md" variant="primary">Outlined</Badge>
-                <Badge style="outlined" size="lg" variant="primary">Outlined</Badge>
+        </div>
+    ),
+};
+
+// 상태 (variants)
+export const AllVariants: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '20px' }}>
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Primary</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="primary" />
+                    <Badge style="number" count={10} variant="primary" />
+                    <Badge style="text" variant="primary">Primary</Badge>
+                    <Badge style="outlined" variant="primary">Primary</Badge>
+                </div>
             </div>
-        </div>
-    ),
-};
 
-export const NumberExamples: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <Badge style="number" count={1} variant="primary" />
-            <Badge style="number" count={10} variant="primary" />
-            <Badge style="number" count={99} variant="primary" />
-            <Badge style="number" count={100} variant="primary" />
-            <Badge style="number" count={999} variant="primary" />
-        </div>
-    ),
-};
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Secondary</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="secondary" />
+                    <Badge style="number" count={10} variant="secondary" />
+                    <Badge style="text" variant="secondary">Secondary</Badge>
+                    <Badge style="outlined" variant="secondary">Secondary</Badge>
+                </div>
+            </div>
 
-export const TextExamples: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-            <Badge style="text" variant="primary">New</Badge>
-            <Badge style="text" variant="success">Active</Badge>
-            <Badge style="text" variant="warning">Pending</Badge>
-            <Badge style="text" variant="danger">Error</Badge>
-            <Badge style="text" variant="info">Info</Badge>
-            <Badge style="text" variant="secondary">Draft</Badge>
-        </div>
-    ),
-};
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Info</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="info" />
+                    <Badge style="number" count={10} variant="info" />
+                    <Badge style="text" variant="info">Info</Badge>
+                    <Badge style="outlined" variant="info">Info</Badge>
+                </div>
+            </div>
 
-export const OutlinedExamples: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-            <Badge style="outlined" variant="primary">New</Badge>
-            <Badge style="outlined" variant="success">Active</Badge>
-            <Badge style="outlined" variant="warning">Pending</Badge>
-            <Badge style="outlined" variant="danger">Error</Badge>
-            <Badge style="outlined" variant="info">Info</Badge>
-            <Badge style="outlined" variant="secondary">Draft</Badge>
-        </div>
-    ),
-};
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Success</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="success" />
+                    <Badge style="number" count={10} variant="success" />
+                    <Badge style="text" variant="success">Success</Badge>
+                    <Badge style="outlined" variant="success">Success</Badge>
+                </div>
+            </div>
 
-export const Disabled: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <Badge style="text" variant="primary" disabled>Disabled</Badge>
-            <Badge style="number" count={10} variant="primary" disabled />
-            <Badge style="outlined" variant="primary" disabled>Disabled</Badge>
-        </div>
-    ),
-};
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Warning</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="warning" />
+                    <Badge style="number" count={10} variant="warning" />
+                    <Badge style="text" variant="warning">Warning</Badge>
+                    <Badge style="outlined" variant="warning">Warning</Badge>
+                </div>
+            </div>
 
-export const Interactive: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <Badge
-                style="text"
-                variant="primary"
-                onClick={() => alert('Badge clicked!')}
-                className="cursor-pointer"
-            >
-                Clickable
-            </Badge>
-            <Badge
-                style="number"
-                count={5}
-                variant="danger"
-                onClick={() => alert('Number badge clicked!')}
-                className="cursor-pointer"
-            />
+            <div>
+                <h3 style={{ margin: '0 0 12px 0' }}>Danger</h3>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <Badge style="dot" variant="danger" />
+                    <Badge style="number" count={10} variant="danger" />
+                    <Badge style="text" variant="danger">Danger</Badge>
+                    <Badge style="outlined" variant="danger">Danger</Badge>
+                </div>
+            </div>
         </div>
     ),
 };

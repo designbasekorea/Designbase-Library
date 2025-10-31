@@ -7,11 +7,15 @@
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import clsx from 'clsx';
+import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, CalendarIcon } from '@designbasekorea/icons';
+import Modal, { ModalFooter } from '../Modal/Modal';
+import Button from '../Button/Button';
 import './DatePicker.scss';
 
 // 타입 정의
 export type DatePickerMode = 'single' | 'range' | 'multiple';
-export type DatePickerSize = 'sm' | 'md' | 'lg';
+export type DatePickerSize = 's' | 'm' | 'l';
+export type DatePickerType = 'dropdown' | 'modal';
 export type DatePickerVariant = 'default' | 'outlined' | 'filled';
 export type StartOfWeek = 'sunday' | 'monday';
 
@@ -24,7 +28,9 @@ export interface DatePickerEvent {
 
 export interface DatePickerProps {
     mode?: DatePickerMode;
+    type?: DatePickerType;
     value?: Date | Date[] | { start: Date; end: Date };
+    defaultValue?: Date | Date[] | { start: Date; end: Date };
     onChange?: (value: Date | Date[] | { start: Date; end: Date }) => void;
     minDate?: Date;
     maxDate?: Date;
@@ -41,25 +47,22 @@ export interface DatePickerProps {
     className?: string;
     disabled?: boolean;
     readonly?: boolean;
-    // 드롭다운 관련 props
-    isOpen?: boolean;
-    onOpenChange?: (isOpen: boolean) => void;
-    trigger?: React.ReactNode;
-    placement?: 'top' | 'bottom' | 'left' | 'right';
     // 인라인 모드 (드롭다운이 아닌 직접 표시)
     inline?: boolean;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
     mode = 'single',
+    type = 'dropdown',
     value,
+    defaultValue,
     onChange,
     minDate,
     maxDate,
     events = [],
     showOutsideDays = true,
     startOfWeek = 'sunday',
-    size = 'md',
+    size = 'm',
     variant = 'default',
     highlightWeekends = true,
     highlightHolidays = false,
@@ -69,56 +72,78 @@ const DatePicker: React.FC<DatePickerProps> = ({
     className,
     disabled = false,
     readonly = false,
-    // 드롭다운 관련 props
-    isOpen: controlledIsOpen,
-    onOpenChange,
-    trigger,
-    placement = 'bottom',
     // 인라인 모드
     inline = false,
 }) => {
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 14 : size === 'l' ? 18 : 16;
     const [currentDate, setCurrentDate] = useState(new Date());
     const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
-    const [internalIsOpen, setInternalIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [rangeStart, setRangeStart] = useState<Date | null>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const [inputValue, setInputValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState<Date | Date[] | { start: Date; end: Date } | undefined>(value || defaultValue);
+    const pickerRef = useRef<HTMLDivElement>(null);
 
-    // 드롭다운 상태 관리
-    const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
-    const setIsOpen = (open: boolean) => {
-        if (controlledIsOpen === undefined) {
-            setInternalIsOpen(open);
-        }
-        onOpenChange?.(open);
-    };
+    // 모달용 임시 상태 (적용 전까지는 변경되지 않음)
+    const [tempValue, setTempValue] = useState<Date | Date[] | { start: Date; end: Date } | undefined>(value || defaultValue);
 
-    // 외부 클릭 감지
+    // value prop이 변경되면 업데이트
     useEffect(() => {
-        if (!isOpen || inline) return;
+        if (value !== undefined) {
+            setSelectedValue(value);
+            // formatDateValue 함수가 정의되기 전이므로 직접 포맷팅
+            if (value instanceof Date) {
+                setInputValue(value.toLocaleDateString(locale));
+            } else if (Array.isArray(value)) {
+                setInputValue(value.map(date => date.toLocaleDateString(locale)).join(', '));
+            } else if (value && 'start' in value && 'end' in value) {
+                setInputValue(`${value.start.toLocaleDateString(locale)} ~ ${value.end.toLocaleDateString(locale)}`);
+            } else {
+                setInputValue('');
+            }
+        }
+    }, [value, locale]);
+
+    // 모달이 열릴 때 현재 값을 임시 상태로 복사
+    useEffect(() => {
+        if (isOpen && type === 'modal') {
+            setTempValue(selectedValue);
+        }
+    }, [isOpen, type, selectedValue]);
+
+    // 외부 클릭 감지 (드롭다운만)
+    useEffect(() => {
+        if (!isOpen || inline || type !== 'dropdown') return;
 
         const handleClickOutside = (event: MouseEvent) => {
-            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+            if (pickerRef.current && !pickerRef.current.contains(event.target as Node)) {
                 setIsOpen(false);
             }
         };
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [isOpen, inline]);
+    }, [isOpen, inline, type]);
 
-    // ESC 키 감지
-    useEffect(() => {
-        if (!isOpen || inline) return;
+    // 날짜 포맷팅 함수
+    const formatDateValue = useCallback((dateValue: Date | Date[] | { start: Date; end: Date } | undefined) => {
+        if (!dateValue) return '';
 
-        const handleEscape = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                setIsOpen(false);
-            }
-        };
+        if (dateValue instanceof Date) {
+            return dateValue.toLocaleDateString(locale);
+        }
 
-        document.addEventListener('keydown', handleEscape);
-        return () => document.removeEventListener('keydown', handleEscape);
-    }, [isOpen, inline]);
+        if (Array.isArray(dateValue)) {
+            return dateValue.map(date => date.toLocaleDateString(locale)).join(', ');
+        }
+
+        if ('start' in dateValue && 'end' in dateValue) {
+            return `${dateValue.start.toLocaleDateString(locale)} ~ ${dateValue.end.toLocaleDateString(locale)}`;
+        }
+
+        return '';
+    }, [locale]);
 
     // 날짜 유효성 검사
     const isDateValid = useCallback((date: Date) => {
@@ -127,20 +152,78 @@ const DatePicker: React.FC<DatePickerProps> = ({
         return true;
     }, [minDate, maxDate]);
 
+    // 토글 핸들러
+    const togglePicker = () => {
+        if (disabled || readonly) return;
+        setIsOpen((o) => !o);
+    };
+
+    // 모달용 핸들러들
+    const handleModalDateChange = (newValue: Date | Date[] | { start: Date; end: Date }) => {
+        setTempValue(newValue);
+    };
+
+    const handleModalApply = () => {
+        // 임시 값을 실제 값으로 적용
+        setSelectedValue(tempValue);
+        setInputValue(formatDateValue(tempValue));
+        onChange?.(tempValue as any);
+
+        // 모달 닫기
+        setIsOpen(false);
+    };
+
+    const handleModalCancel = () => {
+        // 임시 값을 원래 값으로 복원
+        setTempValue(selectedValue);
+
+        // 모달 닫기
+        setIsOpen(false);
+    };
+
+    // 입력 필드 변경
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+    };
+
+    // 입력 필드 블러 시 검증
+    const handleInputBlur = () => {
+        // 간단한 날짜 파싱 (YYYY-MM-DD 형식)
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (dateRegex.test(inputValue)) {
+            const parsedDate = new Date(inputValue);
+            if (!isNaN(parsedDate.getTime()) && isDateValid(parsedDate)) {
+                setSelectedValue(parsedDate);
+                onChange?.(parsedDate);
+                return;
+            }
+        }
+
+        // 유효하지 않으면 이전 값으로 복원
+        setInputValue(formatDateValue(selectedValue));
+    };
+
     // 날짜 선택 처리
     const handleDateClick = useCallback((date: Date) => {
         if (disabled || readonly || !isDateValid(date)) return;
 
+        const currentValue = type === 'modal' ? tempValue : selectedValue;
+        const handleChange = type === 'modal' ? handleModalDateChange : (newValue: any) => {
+            setSelectedValue(newValue);
+            setInputValue(formatDateValue(newValue));
+            onChange?.(newValue);
+        };
+
         switch (mode) {
             case 'single':
-                onChange?.(date);
-                if (!inline) setIsOpen(false);
+                handleChange(date);
+                if (!inline && type === 'dropdown') setIsOpen(false);
                 break;
             case 'range':
                 // 기존 범위가 있고, 새로운 날짜를 클릭한 경우
-                if (value && 'start' in value && !rangeStart) {
+                if (currentValue && 'start' in currentValue && !rangeStart) {
                     // 기존 범위를 해제하고 새로운 범위 시작
-                    onChange?.(undefined as any);
+                    handleChange(undefined as any);
                     setRangeStart(date);
                     return;
                 }
@@ -155,28 +238,28 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
                     if (start > end) {
                         // 시작일이 끝일보다 늦으면 순서 바꿈
-                        onChange?.({ start: end, end: start });
+                        handleChange({ start: end, end: start });
                     } else {
-                        onChange?.({ start, end });
+                        handleChange({ start, end });
                     }
 
                     setRangeStart(null);
-                    if (!inline) setIsOpen(false);
+                    if (!inline && type === 'dropdown') setIsOpen(false);
                 }
                 break;
             case 'multiple':
-                const currentDates = Array.isArray(value) ? value : [];
+                const currentDates = Array.isArray(currentValue) ? currentValue : [];
                 const dateStr = date.toISOString().split('T')[0];
                 const isSelected = currentDates.some(d => d.toISOString().split('T')[0] === dateStr);
 
                 if (isSelected) {
-                    onChange?.(currentDates.filter(d => d.toISOString().split('T')[0] !== dateStr));
+                    handleChange(currentDates.filter(d => d.toISOString().split('T')[0] !== dateStr));
                 } else {
-                    onChange?.([...currentDates, date]);
+                    handleChange([...currentDates, date]);
                 }
                 break;
         }
-    }, [mode, value, onChange, disabled, readonly, isDateValid, rangeStart, inline]);
+    }, [mode, onChange, disabled, readonly, isDateValid, rangeStart, inline, type, tempValue, selectedValue, formatDateValue, handleModalDateChange]);
 
     // 날짜 호버 처리
     const handleDateHover = useCallback((date: Date | null) => {
@@ -197,6 +280,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
     const isInRange = useCallback((date: Date) => {
         if (mode !== 'range') return false;
 
+        const currentValue = type === 'modal' ? tempValue : selectedValue;
+
         // 현재 선택된 범위 확인
         let start: Date | null = null;
         let end: Date | null = null;
@@ -205,10 +290,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
             // 첫 번째 날짜만 선택된 상태
             start = rangeStart;
             end = hoveredDate;
-        } else if (value && 'start' in value) {
+        } else if (currentValue && 'start' in currentValue) {
             // 완성된 범위
-            start = (value as { start: Date; end: Date }).start;
-            end = (value as { start: Date; end: Date }).end;
+            start = (currentValue as { start: Date; end: Date }).start;
+            end = (currentValue as { start: Date; end: Date }).end;
         }
 
         if (!start) return false;
@@ -218,29 +303,30 @@ const DatePicker: React.FC<DatePickerProps> = ({
         const endStr = end ? end.toISOString().split('T')[0] : startStr;
 
         return dateStr >= startStr && dateStr <= endStr;
-    }, [mode, value, rangeStart, hoveredDate]);
+    }, [mode, rangeStart, hoveredDate, type, tempValue, selectedValue]);
 
     // 날짜가 선택되었는지 확인
     const isDateSelected = useCallback((date: Date) => {
         const dateStr = date.toISOString().split('T')[0];
+        const currentValue = type === 'modal' ? tempValue : selectedValue;
 
         switch (mode) {
             case 'single':
-                return value && value instanceof Date && value.toISOString().split('T')[0] === dateStr;
+                return currentValue && currentValue instanceof Date && currentValue.toISOString().split('T')[0] === dateStr;
             case 'range':
                 if (rangeStart && rangeStart.toISOString().split('T')[0] === dateStr) {
                     return true;
                 }
-                if (!value || !('start' in value)) return false;
-                const range = value as { start: Date; end: Date };
+                if (!currentValue || !('start' in currentValue)) return false;
+                const range = currentValue as { start: Date; end: Date };
                 return range.start.toISOString().split('T')[0] === dateStr ||
                     range.end.toISOString().split('T')[0] === dateStr;
             case 'multiple':
-                return Array.isArray(value) && value.some(d => d.toISOString().split('T')[0] === dateStr);
+                return Array.isArray(currentValue) && currentValue.some(d => d.toISOString().split('T')[0] === dateStr);
             default:
                 return false;
         }
-    }, [mode, value, rangeStart]);
+    }, [mode, rangeStart, type, tempValue, selectedValue]);
 
     // 월 이동
     const goToPreviousMonth = useCallback(() => {
@@ -301,13 +387,14 @@ const DatePicker: React.FC<DatePickerProps> = ({
     }, [startOfWeek]);
 
     // 날짜 셀 렌더링
-    const renderDateCell = useCallback((date: Date) => {
+    const renderDateCell = useCallback((date: Date, isModal = false) => {
         const isCurrentMonth = date.getMonth() === currentDate.getMonth();
         const isToday = date.toDateString() === today.toDateString();
         const isSelected = isDateSelected(date);
         const isInRangeDate = isInRange(date);
         const isWeekend = date.getDay() === 0 || date.getDay() === 6;
         const dateEvents = getEventsForDate(date);
+        const currentValue = isModal ? tempValue : selectedValue;
 
         const cellClass = clsx(
             'designbase-date-picker__date',
@@ -318,10 +405,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 'designbase-date-picker__date--in-range': isInRangeDate && !isSelected,
                 'designbase-date-picker__date--range-start': mode === 'range' && (
                     (rangeStart && rangeStart.toDateString() === date.toDateString()) ||
-                    (value && 'start' in value && (value as { start: Date }).start.toDateString() === date.toDateString())
+                    (currentValue && 'start' in currentValue && (currentValue as { start: Date }).start.toDateString() === date.toDateString())
                 ),
-                'designbase-date-picker__date--range-end': mode === 'range' && value && 'end' in value &&
-                    (value as { end: Date }).end.toDateString() === date.toDateString(),
+                'designbase-date-picker__date--range-end': mode === 'range' && currentValue && 'end' in currentValue &&
+                    (currentValue as { end: Date }).end.toDateString() === date.toDateString(),
                 'designbase-date-picker__date--weekend': isWeekend && highlightWeekends,
                 'designbase-date-picker__date--disabled': !isDateValid(date),
                 'designbase-date-picker__date--has-events': dateEvents.length > 0,
@@ -369,7 +456,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
         isDateSelected,
         isInRange,
         mode,
-        value,
         rangeStart,
         highlightWeekends,
         getEventsForDate,
@@ -379,168 +465,182 @@ const DatePicker: React.FC<DatePickerProps> = ({
         readonly,
         handleDateClick,
         handleDateHover,
+        tempValue,
+        selectedValue,
     ]);
 
     const calendarGrid = generateCalendarGrid();
     const weekdays = generateWeekdays();
 
-    // 드롭다운 형태일 때
-    if (!inline && trigger) {
+    // 캘린더 렌더링 함수
+    const renderCalendar = (isModal = false) => {
+        const currentValue = isModal ? tempValue : selectedValue;
+
         return (
-            <div ref={containerRef} className="designbase-date-picker-container">
-                <div onClick={() => !disabled && !readonly && setIsOpen(!isOpen)}>
-                    {trigger}
-                </div>
-                {isOpen && (
-                    <div className={clsx(
-                        'designbase-date-picker-dropdown',
-                        `designbase-date-picker-dropdown--placement-${placement}`
-                    )}>
-                        <div
-                            className={clsx(
-                                'designbase-date-picker',
-                                `designbase-date-picker--size-${size}`,
-                                `designbase-date-picker--variant-${variant}`,
-                                {
-                                    'designbase-date-picker--disabled': disabled,
-                                    'designbase-date-picker--readonly': readonly,
-                                },
-                                className
-                            )}
-                        >
-                            {/* 헤더 */}
-                            <div className="designbase-date-picker__header">
-                                <button
-                                    className="designbase-date-picker__nav-button"
-                                    onClick={goToPreviousMonth}
-                                    disabled={disabled || readonly}
-                                    type="button"
-                                    aria-label="이전 달"
-                                >
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </button>
+            <div className="designbase-date-picker__selector">
+                {/* 헤더 */}
+                <div className="designbase-date-picker__header">
+                    <button
+                        className="designbase-date-picker__nav-button"
+                        onClick={goToPreviousMonth}
+                        disabled={disabled || readonly}
+                        type="button"
+                        aria-label="이전 달"
+                    >
+                        <ChevronLeftIcon size={iconSize} color="currentColor" />
+                    </button>
 
-                                <div className="designbase-date-picker__current-month">
-                                    {currentDate.toLocaleDateString(locale, { year: 'numeric', month: 'long' })}
-                                </div>
-
-                                <button
-                                    className="designbase-date-picker__nav-button"
-                                    onClick={goToNextMonth}
-                                    disabled={disabled || readonly}
-                                    type="button"
-                                    aria-label="다음 달"
-                                >
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            {/* 요일 헤더 */}
-                            <div className="designbase-date-picker__weekdays">
-                                {weekdays.map(day => (
-                                    <div key={day} className="designbase-date-picker__weekday">
-                                        {day}
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* 날짜 그리드 */}
-                            <div className="designbase-date-picker__grid">
-                                {calendarGrid.map(date => renderDateCell(date))}
-                            </div>
-
-                            {/* 푸터 */}
-                            <div className="designbase-date-picker__footer">
-                                <button
-                                    className="designbase-date-picker__today-button"
-                                    onClick={goToToday}
-                                    disabled={disabled || readonly}
-                                    type="button"
-                                >
-                                    오늘
-                                </button>
-                            </div>
-                        </div>
+                    <div className="designbase-date-picker__current-month">
+                        {currentDate.toLocaleDateString(locale, { year: 'numeric', month: 'long' })}
                     </div>
+
+                    <button
+                        className="designbase-date-picker__nav-button"
+                        onClick={goToNextMonth}
+                        disabled={disabled || readonly}
+                        type="button"
+                        aria-label="다음 달"
+                    >
+                        <ChevronRightIcon size={iconSize} color="currentColor" />
+                    </button>
+                </div>
+
+                {/* 요일 헤더 */}
+                <div className="designbase-date-picker__weekdays">
+                    {weekdays.map(day => (
+                        <div key={day} className="designbase-date-picker__weekday">
+                            {day}
+                        </div>
+                    ))}
+                </div>
+
+                {/* 날짜 그리드 */}
+                <div className="designbase-date-picker__grid">
+                    {calendarGrid.map(date => renderDateCell(date, isModal))}
+                </div>
+
+                {/* 푸터 */}
+                <div className="designbase-date-picker__footer">
+                    <button
+                        className="designbase-date-picker__today-button"
+                        onClick={goToToday}
+                        disabled={disabled || readonly}
+                        type="button"
+                    >
+                        오늘
+                    </button>
+                </div>
+
+                {/* 모달인 경우에만 버튼들 표시 */}
+                {isModal && (
+                    <ModalFooter>
+                        <div className="designbase-date-picker__modal-footer">
+                            <Button
+                                variant="secondary"
+                                size="m"
+                                onPress={handleModalCancel}
+                            >
+                                취소
+                            </Button>
+                            <Button
+                                variant="primary"
+                                size="m"
+                                onPress={handleModalApply}
+                            >
+                                적용
+                            </Button>
+                        </div>
+                    </ModalFooter>
                 )}
+            </div>
+        );
+    };
+
+    // 인라인 모드일 때
+    if (inline) {
+        return (
+            <div
+                className={clsx(
+                    'designbase-date-picker',
+                    `designbase-date-picker--size-${size}`,
+                    `designbase-date-picker--variant-${variant}`,
+                    {
+                        'designbase-date-picker--disabled': disabled,
+                        'designbase-date-picker--readonly': readonly,
+                    },
+                    className
+                )}
+            >
+                {renderCalendar(false)}
             </div>
         );
     }
 
-    // 인라인 형태 (기존 방식)
+    // 드롭다운/모달 모드일 때
+    const classes = clsx(
+        'designbase-date-picker',
+        `designbase-date-picker--${size}`,
+        {
+            'designbase-date-picker--disabled': disabled,
+            'designbase-date-picker--readonly': readonly,
+            'designbase-date-picker--open': isOpen,
+        },
+        className
+    );
+
     return (
-        <div
-            className={clsx(
-                'designbase-date-picker',
-                `designbase-date-picker--size-${size}`,
-                `designbase-date-picker--variant-${variant}`,
-                {
-                    'designbase-date-picker--disabled': disabled,
-                    'designbase-date-picker--readonly': readonly,
-                },
-                className
-            )}
-        >
-            {/* 헤더 */}
-            <div className="designbase-date-picker__header">
+        <div ref={pickerRef} className={classes}>
+            <div className="designbase-date-picker__trigger">
                 <button
-                    className="designbase-date-picker__nav-button"
-                    onClick={goToPreviousMonth}
-                    disabled={disabled || readonly}
                     type="button"
-                    aria-label="이전 달"
+                    className="designbase-date-picker__icon-display"
+                    onClick={togglePicker}
+                    disabled={disabled}
+                    aria-label="날짜 선택 열기"
                 >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <CalendarIcon size={16} />
                 </button>
 
-                <div className="designbase-date-picker__current-month">
-                    {currentDate.toLocaleDateString(locale, { year: 'numeric', month: 'long' })}
+                <input
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onBlur={handleInputBlur}
+                    onClick={(e) => e.stopPropagation()}
+                    disabled={disabled}
+                    readOnly={readonly}
+                    className="designbase-date-picker__input"
+                    placeholder="날짜를 선택하세요"
+                    aria-label="날짜 입력"
+                />
+
+                <button
+                    type="button"
+                    className="designbase-date-picker__toggle"
+                    onClick={togglePicker}
+                    disabled={disabled}
+                    aria-label="날짜 선택 열기"
+                >
+                    <ChevronDownIcon size={16} />
+                </button>
+            </div>
+
+            {type === 'dropdown' && isOpen && (
+                <div className="designbase-date-picker__dropdown" role="dialog" aria-modal="false">
+                    {renderCalendar(false)}
                 </div>
+            )}
 
-                <button
-                    className="designbase-date-picker__nav-button"
-                    onClick={goToNextMonth}
-                    disabled={disabled || readonly}
-                    type="button"
-                    aria-label="다음 달"
+            {type === 'modal' && (
+                <Modal
+                    isOpen={isOpen}
+                    onClose={handleModalCancel}
+                    title="날짜 선택"
+                    size="s"
                 >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
-            </div>
-
-            {/* 요일 헤더 */}
-            <div className="designbase-date-picker__weekdays">
-                {weekdays.map(day => (
-                    <div key={day} className="designbase-date-picker__weekday">
-                        {day}
-                    </div>
-                ))}
-            </div>
-
-            {/* 날짜 그리드 */}
-            <div className="designbase-date-picker__grid">
-                {calendarGrid.map(date => renderDateCell(date))}
-            </div>
-
-            {/* 푸터 */}
-            <div className="designbase-date-picker__footer">
-                <button
-                    className="designbase-date-picker__today-button"
-                    onClick={goToToday}
-                    disabled={disabled || readonly}
-                    type="button"
-                >
-                    오늘
-                </button>
-            </div>
+                    {renderCalendar(true)}
+                </Modal>
+            )}
         </div>
     );
 };

@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M22.135 11.009c-7.675-1.042-8.103-1.47-9.144-9.144a1 1 0 0 0-1.982-.001c-1.042 7.674-1.47 8.102-9.144 9.144a.999.999 0 0 0 .001 1.982c7.674 1.042 8.101 1.469 9.144 9.144a1 1 0 0 0 1.982 0c1.042-7.675 1.469-8.102 9.144-9.144a1 1 0 0 0 0-1.982z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const Deco2FilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M22.135 11.009c-7.675-1.042-8.103-1.47-9.144-9.144a1 1 0 0 0-1.982-.001c-1.042 7.674-1.47 8.102-9.144 9.144a.999.999 0 0 0 .001 1.982c7.674 1.042 8.101 1.469 9.144 9.144a1 1 0 0 0 1.982 0c1.042-7.675 1.469-8.102 9.144-9.144a1 1 0 0 0 0-1.982z"/></svg>
+);
 
 export default Deco2FilledIcon;

@@ -25,24 +25,24 @@
         }
     }
 
-    &--size-sm {
-        gap: var(--db-gap-sm);
+    &--size-s {
+        gap: var(--db-gap-s);
 
         .designbase-rating__star {
             font-size: 16px;
         }
 
         .designbase-rating__number {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-rating__review-count {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--size-md {
-        gap: var(--db-gap-sm);
+    &--size-m {
+        gap: var(--db-gap-s);
 
         .designbase-rating__star {
             font-size: 20px;
@@ -57,24 +57,24 @@
         }
     }
 
-    &--size-lg {
-        gap: var(--db-gap-md);
+    &--size-l {
+        gap: var(--db-gap-m);
 
         .designbase-rating__star {
             font-size: 24px;
         }
 
         .designbase-rating__number {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-rating__review-count {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
     }
 
     &--size-xl {
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-m);
 
         .designbase-rating__star {
             font-size: 32px;
@@ -106,11 +106,11 @@
     }
 
     &--variant-card {
-        padding: var(--db-padding-md);
-        background: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
-        box-shadow: var(--db-shadow-sm);
+        padding: var(--db-padding-m);
+        background: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        box-shadow: var(--db-shadow-card);
     }
 
     &--variant-inline {
@@ -122,7 +122,7 @@
     &--variant-large {
         flex-direction: column;
         align-items: center;
-        gap: var(--db-gap-md);
+        gap: var(--db-gap-m);
         text-align: center;
 
         .designbase-rating__stars {
@@ -153,7 +153,7 @@
     &--type-percentage {
         .designbase-rating__number {
             font-weight: var(--db-weight-semibold);
-            color: var(--db-blue-600);
+            color: var(--db-color-info);
         }
     }
 
@@ -200,7 +200,7 @@
 
     // 색상별 스타일 - @colors.json 토큰 사용
     &--color-primary {
-        --rating-color: var(--db-blue-600);
+        --rating-color: var(--db-color-info);
     }
 
     &--color-secondary {
@@ -312,7 +312,7 @@
     // 리뷰 수
     &__review-count {
         color: var(--db-text-secondary);
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
     }
 
     // 상세 정보
@@ -356,7 +356,7 @@
             }
 
             .designbase-rating__review-count {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
             }
         }
 
@@ -368,7 +368,7 @@
 
 @media (max-width: 480px) {
     .designbase-rating {
-        &--size-lg {
+        &--size-l {
             gap: var(--db-gap-s);
 
             .designbase-rating__star {
@@ -386,7 +386,7 @@
 
         &--variant-large {
             .designbase-rating__number {
-                font-size: var(--db-text-lg);
+                font-size: var(--db-text-l);
             }
         }
     }

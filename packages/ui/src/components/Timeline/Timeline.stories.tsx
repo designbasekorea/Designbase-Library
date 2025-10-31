@@ -14,7 +14,7 @@ import {
     BookIcon,
     CameraIcon,
     StarFilledIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import Timeline from './Timeline';
 
 const meta: Meta<typeof Timeline> = {
@@ -45,7 +45,7 @@ const meta: Meta<typeof Timeline> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
             description: '타임라인 크기',
         },
         color: {
@@ -73,7 +73,7 @@ const meta: Meta<typeof Timeline> = {
     args: {
         position: 'alternate',
         variant: 'default',
-        size: 'md',
+        size: 'm',
         color: 'primary',
         clickable: false,
         fullWidth: false,
@@ -183,15 +183,15 @@ export const DifferentSizes: Story = {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
                 <div>
                     <h3>Small Size</h3>
-                    <Timeline items={defaultItems} size="sm" />
+                    <Timeline items={defaultItems} size="s" />
                 </div>
                 <div>
                     <h3>Medium Size (Default)</h3>
-                    <Timeline items={defaultItems} size="md" />
+                    <Timeline items={defaultItems} size="m" />
                 </div>
                 <div>
                     <h3>Large Size</h3>
-                    <Timeline items={defaultItems} size="lg" />
+                    <Timeline items={defaultItems} size="l" />
                 </div>
             </div>
         );
@@ -483,7 +483,7 @@ export const ProjectProgressTimeline: Story = {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <h2>프로젝트 진행 타임라인</h2>
-                <Timeline items={projectItems} position="alternate" size="lg" />
+                <Timeline items={projectItems} position="alternate" size="l" />
             </div>
         );
     },
@@ -517,11 +517,11 @@ export const MinimalTimeline: Story = {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
                 <div>
                     <h3>Minimal Timeline</h3>
-                    <Timeline items={minimalItems} variant="outlined" size="sm" />
+                    <Timeline items={minimalItems} variant="outlined" size="s" />
                 </div>
                 <div>
                     <h3>Minimal Timeline - Left Positioned</h3>
-                    <Timeline items={minimalItems} position="left" variant="outlined" size="sm" />
+                    <Timeline items={minimalItems} position="left" variant="outlined" size="s" />
                 </div>
             </div>
         );
@@ -608,7 +608,7 @@ export const Customization: Story = {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <h2>Customization Example</h2>
                 <p>커스텀 아이콘과 색상이 적용된 타임라인입니다.</p>
-                <Timeline items={customItems} position="alternate" variant="filled" size="lg" />
+                <Timeline items={customItems} position="alternate" variant="filled" size="l" />
             </div>
         );
     },

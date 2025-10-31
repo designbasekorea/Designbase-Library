@@ -12,9 +12,9 @@ import typescript from '@rollup/plugin-typescript';
 import { dts } from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 
-// SCSS 파일을 무시하는 플러그인
-const ignoreScssPlugin = () => ({
-    name: 'ignore-scss',
+// SCSS와 CSS 파일을 처리하는 플러그인
+const handleScssPlugin = () => ({
+    name: 'handle-scss',
     resolveId(id) {
         if (id.endsWith('.scss') || id.endsWith('.css')) {
             return { id, external: true };
@@ -49,7 +49,7 @@ export default [
                 },
             },
         ],
-        external: ['react', 'react-dom', '@designbase/icons', '@designbase/theme', '@designbase/tokens'],
+        external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', '@designbasekorea/icons', '@designbasekorea/theme', '@designbasekorea/tokens'],
         plugins: [
             resolve(),
             commonjs(),
@@ -75,9 +75,9 @@ export default [
             file: 'dist/index.d.ts',
             format: 'esm',
         },
-        external: ['react', 'react-dom', '@designbase/icons', '@designbase/theme', '@designbase/tokens'],
+        external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', '@designbasekorea/icons', '@designbasekorea/theme', '@designbasekorea/tokens'],
         plugins: [
-            ignoreScssPlugin(),
+            handleScssPlugin(),
             dts({
                 respectExternal: true,
                 compilerOptions: {

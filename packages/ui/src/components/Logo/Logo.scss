@@ -22,6 +22,24 @@
         display: block;
     }
 
+    &__svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+
+        // SVG의 currentColor를 상속받도록 설정
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &--svg {
+        // SVG 로고는 색상을 CSS 변수로 제어
+        color: var(--db-text-primary);
+    }
+
     &__link {
         text-decoration: none;
         color: inherit;
@@ -46,9 +64,9 @@
         }
     }
 
-    &--sm {
+    &--s {
         .designbase-logo__text {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-normal);
         }
 
@@ -57,7 +75,7 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-logo__text {
             font-size: var(--db-text-base);
             line-height: var(--db-leading-normal);
@@ -68,7 +86,7 @@
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-logo__text {
             font-size: var(--db-text-xl);
             line-height: var(--db-leading-snug);
@@ -111,7 +129,7 @@
 
     &--white {
         .designbase-logo__text {
-            color: var(--db-text-inverse);
+            color: var(--db-text-inverse-primary);
         }
     }
 
@@ -151,7 +169,7 @@
 
     // Responsive
     @media (max-width: 640px) {
-        &--lg {
+        &--l {
             .designbase-logo__text {
                 font-size: var(--db-text-base);
                 line-height: var(--db-leading-normal);
@@ -178,6 +196,6 @@
     &:focus-visible {
         outline: 2px solid var(--db-blue-500);
         outline-offset: 2px;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 }

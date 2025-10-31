@@ -10,10 +10,10 @@ import {
     SettingsIcon,
     ChevronLeftIcon,
     ChevronRightIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import './VideoPlayer.scss';
 
-export type VideoPlayerSize = 'sm' | 'md' | 'lg' | 'xl';
+export type VideoPlayerSize = 's' | 'm' | 'l' | 'xl';
 export type VideoPlayerVariant = 'default' | 'minimal' | 'theater' | 'picture-in-picture';
 export type VideoPlayerTheme = 'light' | 'dark' | 'auto';
 
@@ -103,7 +103,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     poster,
     title,
     description,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     theme = 'auto',
     autoPlay = false,
@@ -458,6 +458,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                     <p>{error}</p>
                     <button onClick={() => window.location.reload()}>다시 시도</button>
                 </div>
+            )}
+
+            {/* Dim overlay */}
+            {showControls && (
+                <div className="designbase-video-player__dim-overlay"></div>
             )}
 
             {/* 오버레이 컨트롤 */}

@@ -15,7 +15,7 @@ const meta: Meta<typeof Radio> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['xs', 'sm', 'md', 'lg', 'xl'],
+            options: ['s', 'm', 'l'],
         },
         isSelected: {
             control: { type: 'boolean' },
@@ -54,11 +54,9 @@ export const WithAndWithoutLabel: Story = {
 export const Sizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Radio size="xs">Extra Small 라디오</Radio>
-            <Radio size="sm">Small 라디오</Radio>
-            <Radio size="md">Medium 라디오</Radio>
-            <Radio size="lg">Large 라디오</Radio>
-            <Radio size="xl">Extra Large 라디오</Radio>
+            <Radio size="s">Small 라디오</Radio>
+            <Radio size="m">Medium 라디오</Radio>
+            <Radio size="l">Large 라디오</Radio>
         </div>
     ),
 };
@@ -81,22 +79,22 @@ export const Interactive: Story = {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <Radio 
-                    isSelected={selected === 'option1'} 
+                <Radio
+                    isSelected={selected === 'option1'}
                     onChange={() => setSelected('option1')}
                     value="option1"
                 >
                     옵션 1
                 </Radio>
-                <Radio 
-                    isSelected={selected === 'option2'} 
+                <Radio
+                    isSelected={selected === 'option2'}
                     onChange={() => setSelected('option2')}
                     value="option2"
                 >
                     옵션 2
                 </Radio>
-                <Radio 
-                    isSelected={selected === 'option3'} 
+                <Radio
+                    isSelected={selected === 'option3'}
                     onChange={() => setSelected('option3')}
                     value="option3"
                 >
@@ -116,22 +114,22 @@ export const RadioGroup: Story = {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <Radio 
-                    isSelected={selected === 'option1'} 
+                <Radio
+                    isSelected={selected === 'option1'}
                     onChange={() => setSelected('option1')}
                     value="option1"
                 >
                     옵션 1
                 </Radio>
-                <Radio 
-                    isSelected={selected === 'option2'} 
+                <Radio
+                    isSelected={selected === 'option2'}
                     onChange={() => setSelected('option2')}
                     value="option2"
                 >
                     옵션 2
                 </Radio>
-                <Radio 
-                    isSelected={selected === 'option3'} 
+                <Radio
+                    isSelected={selected === 'option3'}
                     onChange={() => setSelected('option3')}
                     value="option3"
                 >
@@ -148,11 +146,9 @@ export const RadioGroup: Story = {
 export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Radio size="xs">Extra Small 라디오</Radio>
-            <Radio size="sm">Small 라디오</Radio>
-            <Radio size="md">Medium 라디오</Radio>
-            <Radio size="lg">Large 라디오</Radio>
-            <Radio size="xl">Extra Large 라디오</Radio>
+            <Radio size="s">Small 라디오</Radio>
+            <Radio size="m">Medium 라디오</Radio>
+            <Radio size="l">Large 라디오</Radio>
         </div>
     ),
 };

@@ -29,11 +29,11 @@ import {
     MusicIcon,
     DownloadIcon,
     UploadIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import './EmptyState.scss';
 
 export type EmptyStateVariant = 'no-data' | 'no-results' | 'no-access' | 'error' | 'onboarding';
-export type EmptyStateSize = 'sm' | 'md' | 'lg';
+export type EmptyStateSize = 's' | 'm' | 'l';
 
 export interface EmptyStateProps {
     /** 빈 상태 유형 */
@@ -68,7 +68,7 @@ export interface EmptyStateProps {
 
 export const EmptyState: React.FC<EmptyStateProps> = ({
     variant = 'no-data',
-    size = 'md',
+    size = 'm',
     title,
     description,
     icon: CustomIcon,
@@ -83,7 +83,14 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
     className,
 }) => {
     const getDefaultIcon = () => {
-        const defaultIconSize = iconSize || (size === 'sm' ? 48 : size === 'lg' ? 96 : 64);
+        const defaultIconSize = iconSize || (() => {
+            switch (size) {
+                case 's': return 24;
+                case 'm': return 32;
+                case 'l': return 48;
+                default: return 32;
+            }
+        })();
 
         if (CustomIcon) {
             return <CustomIcon size={defaultIconSize} />;
@@ -171,17 +178,17 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                                 {actionText && onAction && (
                                     <Button
                                         variant={variant === 'onboarding' ? 'primary' : 'secondary'}
-                                        size={size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md'}
-                                        onClick={onAction}
+                                        size={size}
+                                        onPress={onAction}
                                     >
                                         {actionText}
                                     </Button>
                                 )}
                                 {secondaryActionText && onSecondaryAction && (
                                     <Button
-                                        variant="outline"
-                                        size={size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'md'}
-                                        onClick={onSecondaryAction}
+                                        variant="tertiary"
+                                        size={size}
+                                        onPress={onSecondaryAction}
                                     >
                                         {secondaryActionText}
                                     </Button>

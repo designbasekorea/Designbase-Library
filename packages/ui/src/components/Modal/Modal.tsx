@@ -8,7 +8,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { CloseIcon } from '@designbase/icons';
+import { CloseIcon } from '@designbasekorea/icons';
 import Button from '../Button/Button';
 import './Modal.scss';
 
@@ -20,7 +20,7 @@ export interface ModalProps {
     /** 모달 제목 */
     title?: string;
     /** 모달 크기 */
-    size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+    size?: 's' | 'm' | 'l' | 'xl' | 'full';
     /** 바깥쪽 클릭으로 닫기 여부 */
     closeOnOutsideClick?: boolean;
     /** ESC 키로 닫기 여부 */
@@ -40,6 +40,8 @@ export interface ModalHeaderProps {
     showCloseButton?: boolean;
     /** 닫기 핸들러 */
     onClose?: () => void;
+    /** 아이콘 크기 */
+    iconSize?: number;
     /** 추가 CSS 클래스 */
     className?: string;
     /** 헤더 내용 */
@@ -64,7 +66,7 @@ const Modal: React.FC<ModalProps> = ({
     isOpen,
     onClose,
     title,
-    size = 'md',
+    size = 'm',
     closeOnOutsideClick = true,
     closeOnEscape = true,
     children,
@@ -72,6 +74,9 @@ const Modal: React.FC<ModalProps> = ({
     overlayClassName,
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
+
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 16 : size === 'l' ? 20 : size === 'xl' ? 24 : 18;
 
     // Prevent scrolling while modal is open
     useEffect(() => {
@@ -128,7 +133,7 @@ const Modal: React.FC<ModalProps> = ({
                 aria-labelledby={title ? 'modal-title' : undefined}
             >
                 {title && (
-                    <ModalHeader title={title} showCloseButton onClose={onClose} />
+                    <ModalHeader title={title} showCloseButton onClose={onClose} iconSize={iconSize} />
                 )}
                 <div className="designbase-modal__content">
                     {children}
@@ -142,6 +147,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
     title,
     showCloseButton = true,
     onClose,
+    iconSize = 20,
     className,
     children,
 }) => {
@@ -165,7 +171,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({
                     aria-label="모달 닫기"
                     className="designbase-modal__close-button"
                 >
-                    <CloseIcon size={20} />
+                    <CloseIcon size={iconSize} color="currentColor" />
                 </button>
             )}
         </div>

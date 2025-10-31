@@ -13,7 +13,7 @@ const meta: Meta<typeof Textarea> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         characterCountPosition: {
             control: { type: 'select' },
@@ -39,7 +39,7 @@ export const AllSizes: Story = {
             <div>
                 <h3 style={{ margin: '0 0 12px 0' }}>Small</h3>
                 <Textarea
-                    size="sm"
+                    size="s"
                     label="작은 크기"
                     placeholder="작은 텍스트 영역입니다..."
                     rows={3}
@@ -49,7 +49,7 @@ export const AllSizes: Story = {
             <div>
                 <h3 style={{ margin: '0 0 12px 0' }}>Medium (기본)</h3>
                 <Textarea
-                    size="md"
+                    size="m"
                     label="중간 크기"
                     placeholder="중간 크기의 텍스트 영역입니다..."
                     rows={4}
@@ -59,7 +59,7 @@ export const AllSizes: Story = {
             <div>
                 <h3 style={{ margin: '0 0 12px 0' }}>Large</h3>
                 <Textarea
-                    size="lg"
+                    size="l"
                     label="큰 크기"
                     placeholder="큰 텍스트 영역입니다..."
                     rows={5}

@@ -8,13 +8,16 @@
 
 import React, { useState, useMemo } from 'react';
 import clsx from 'clsx';
-import { ChevronsUpIcon } from '@designbase/icons';
+import { CaretUpdownFilledIcon } from '@designbasekorea/icons';
+import { Button } from '../Button/Button';
+import EmptyState from '../EmptyState/EmptyState';
+import { Pagination } from '../Pagination/Pagination';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Badge } from '../Badge/Badge';
 import { Select } from '../Select/Select';
 import './Table.scss';
 
-export type TableSize = 'sm' | 'md' | 'lg';
+export type TableSize = 's' | 'm' | 'l';
 export type TableVariant = 'default' | 'striped' | 'bordered' | 'hoverable';
 export type SortDirection = 'asc' | 'desc' | null;
 
@@ -84,6 +87,20 @@ export interface TableProps<T = any> {
     height?: string | number;
     /** 스크롤 가능 여부 */
     scrollable?: boolean;
+    /** 페이지네이션 사용 여부 */
+    pagination?: boolean;
+    /** 현재 페이지 (1-base) */
+    page?: number;
+    /** 페이지 크기 */
+    pageSize?: number;
+    /** 총 아이템 수 (서버 페이지네이션용). 미지정 시 data.length 사용 */
+    totalItems?: number;
+    /** 페이지 변경 핸들러 */
+    onPageChange?: (page: number) => void;
+    /** 페이지 크기 변경 핸들러 */
+    onPageSizeChange?: (size: number) => void;
+    /** 페이지 크기 옵션 */
+    pageSizeOptions?: number[];
     /** 추가 CSS 클래스 */
     className?: string;
     /** 추가 props */
@@ -98,7 +115,7 @@ export const Table = <T extends Record<string, any>>({
     showFilter = false,
     filterOptions = [],
     onFilterChange,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     selectable = false,
     multiSelect = false,
@@ -114,10 +131,21 @@ export const Table = <T extends Record<string, any>>({
     rowKey = 'id',
     height,
     scrollable = false,
+    pagination = false,
+    page,
+    pageSize,
+    totalItems,
+    onPageChange,
+    onPageSizeChange,
+    pageSizeOptions,
     className,
     ...props
 }: TableProps<T>) => {
     const [internalSelectedRows, setInternalSelectedRows] = useState<string[]>(selectedRows);
+    const [internalPage, setInternalPage] = useState<number>(page || 1);
+    const [internalPageSize, setInternalPageSize] = useState<number>(pageSize || 10);
+    const [internalSortColumn, setInternalSortColumn] = useState<string | undefined>(sortColumn);
+    const [internalSortDirection, setInternalSortDirection] = useState<SortDirection>(sortDirection ?? null);
 
     const getRowKey = (item: T, index: number) => {
         if (typeof rowKey === 'string') {
@@ -129,8 +157,23 @@ export const Table = <T extends Record<string, any>>({
     const handleSort = (column: TableColumn<T>) => {
         if (!sortable || !column.sortable) return;
 
-        const newDirection = sortColumn === column.key && sortDirection === 'asc' ? 'desc' : 'asc';
-        onSortChange?.(column.key, newDirection);
+        const currentCol = effectiveSortColumn;
+        const currentDir = effectiveSortDirection;
+        let nextDir: SortDirection = 'asc';
+        if (currentCol === column.key) {
+            if (currentDir === 'asc') nextDir = 'desc';
+            else if (currentDir === 'desc') nextDir = null;
+            else nextDir = 'asc';
+        } else {
+            nextDir = 'asc';
+        }
+
+        if (onSortChange) {
+            onSortChange(column.key, nextDir);
+        } else {
+            setInternalSortColumn(nextDir ? column.key : undefined);
+            setInternalSortDirection(nextDir);
+        }
     };
 
     const handleRowSelect = (itemRowKey: string, checked: boolean) => {
@@ -158,24 +201,36 @@ export const Table = <T extends Record<string, any>>({
         onSelectionChange?.(newSelectedRows);
     };
 
-    const sortedData = useMemo(() => {
-        if (!sortColumn || !sortDirection) return data;
+    const effectiveSortColumn = sortColumn !== undefined ? sortColumn : internalSortColumn;
+    const effectiveSortDirection = sortDirection !== undefined ? sortDirection : internalSortDirection;
 
-        const column = columns.find(col => col.key === sortColumn);
+    const sortedData = useMemo(() => {
+        if (!effectiveSortColumn || !effectiveSortDirection) return data;
+
+        const column = columns.find(col => col.key === effectiveSortColumn);
         if (!column || !column.sortable) return data;
 
         return [...data].sort((a, b) => {
             const aValue = column.accessor ? column.accessor(a) : a[column.key];
             const bValue = column.accessor ? column.accessor(b) : b[column.key];
 
-            if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-            if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+            if (aValue < bValue) return effectiveSortDirection === 'asc' ? -1 : 1;
+            if (aValue > bValue) return effectiveSortDirection === 'asc' ? 1 : -1;
             return 0;
         });
-    }, [data, sortColumn, sortDirection, columns]);
+    }, [data, effectiveSortColumn, effectiveSortDirection, columns, internalSortColumn, internalSortDirection]);
 
     const isAllSelected = data.length > 0 && internalSelectedRows.length === data.length;
     const isIndeterminate = internalSelectedRows.length > 0 && internalSelectedRows.length < data.length;
+
+    // 페이지네이션 계산
+    const effectivePageSize = pageSize || internalPageSize;
+    const total = totalItems ?? sortedData.length;
+    const totalPages = Math.max(1, Math.ceil(total / effectivePageSize));
+    const currentPage = Math.min(page || internalPage, totalPages);
+    const startIndex = (currentPage - 1) * effectivePageSize;
+    const endIndex = startIndex + effectivePageSize;
+    const paginatedData = pagination ? sortedData.slice(startIndex, endIndex) : sortedData;
 
     const classes = clsx(
         'designbase-table',
@@ -200,19 +255,9 @@ export const Table = <T extends Record<string, any>>({
     const renderSortIcon = (column: TableColumn<T>) => {
         if (!sortable || !column.sortable) return null;
 
-        const isSorted = sortColumn === column.key;
-        const isAsc = isSorted && sortDirection === 'asc';
-        const isDesc = isSorted && sortDirection === 'desc';
-
         return (
             <span className="designbase-table__sort-icon">
-                <ChevronsUpIcon
-                    size={16}
-                    className={clsx({
-                        'designbase-table__sort-icon--asc': isAsc,
-                        'designbase-table__sort-icon--desc': isDesc,
-                    })}
-                />
+                <CaretUpdownFilledIcon size={14} className="designbase-table__sort-icon--idle" />
             </span>
         );
     };
@@ -252,7 +297,7 @@ export const Table = <T extends Record<string, any>>({
                                 count={data.length}
                                 style="number"
                                 variant="primary"
-                                size="sm"
+                                size="s"
                             />
                         )}
                     </div>
@@ -281,7 +326,7 @@ export const Table = <T extends Record<string, any>>({
                                         isSelected={isAllSelected}
                                         isIndeterminate={isIndeterminate}
                                         onChange={(checked: boolean) => handleSelectAll(checked)}
-                                        size="sm"
+                                        size="s"
                                         hasLabel={false}
                                     />
                                 </th>
@@ -311,19 +356,22 @@ export const Table = <T extends Record<string, any>>({
                         </tr>
                     </thead>
                     <tbody className="designbase-table__tbody">
-                        {sortedData.length === 0 ? (
+                        {paginatedData.length === 0 ? (
                             <tr className="designbase-table__tr">
                                 <td
                                     colSpan={columns.length + (selectable ? 1 : 0)}
                                     className="designbase-table__td designbase-table__td--empty"
                                 >
-                                    <div className="designbase-table__empty">
-                                        <span>{emptyMessage}</span>
-                                    </div>
+                                    <EmptyState
+                                        title="데이터가 없습니다"
+                                        description={emptyMessage}
+                                        variant="no-data"
+                                        size="m"
+                                    />
                                 </td>
                             </tr>
                         ) : (
-                            sortedData.map((item, index) => {
+                            paginatedData.map((item, index) => {
                                 const key = getRowKey(item, index);
                                 const isSelected = internalSelectedRows.includes(key);
 
@@ -344,7 +392,7 @@ export const Table = <T extends Record<string, any>>({
                                                 <Checkbox
                                                     isSelected={isSelected}
                                                     onChange={(checked: boolean) => handleRowSelect(key, checked)}
-                                                    size="sm"
+                                                    size="s"
                                                     hasLabel={false}
                                                     onClick={(e: React.MouseEvent) => e.stopPropagation()}
                                                 />
@@ -372,6 +420,25 @@ export const Table = <T extends Record<string, any>>({
                     </tbody>
                 </table>
             </div>
+
+            {/* 푸터: 페이지네이션 */}
+            {pagination && (
+                <div className="designbase-table__footer">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        totalItems={total}
+                        pageSize={effectivePageSize}
+                        pageSizeOptions={pageSizeOptions || [10, 20, 50]}
+                        onPageChange={(p) => { setInternalPage(p); onPageChange?.(p); }}
+                        onPageSizeChange={(s) => { setInternalPage(1); setInternalPageSize(s); onPageSizeChange?.(s); onPageChange?.(1); }}
+                        showPageSizeSelector
+                        showTotal
+                        alignment="right"
+                        size={size}
+                    />
+                </div>
+            )}
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Breadcrumbs } from './Breadcrumbs';
-import { HomeOutlineIcon, ChevronRightIcon } from '@designbase/icons';
+import { ChevronRightIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Breadcrumbs> = {
     title: 'Components/Breadcrumbs',
@@ -12,7 +12,7 @@ const meta: Meta<typeof Breadcrumbs> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         breadcrumbStyle: {
             control: { type: 'select' },
@@ -34,7 +34,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const sampleItems = [
-    { id: 'home', label: '홈', href: '/', icon: <HomeOutlineIcon /> },
+    { id: 'home', label: '홈', href: '/' },
     { id: 'products', label: '제품', href: '/products' },
     { id: 'category', label: '카테고리', href: '/products/category' },
     { id: 'subcategory', label: '서브카테고리', href: '/products/category/subcategory' },
@@ -42,11 +42,11 @@ const sampleItems = [
 ];
 
 const sampleItemsWithIcons = [
-    { id: 'home', label: '홈', href: '/', icon: <HomeOutlineIcon /> },
-    { id: 'products', label: '제품', href: '/products', icon: <HomeOutlineIcon /> },
-    { id: 'category', label: '카테고리', href: '/products/category', icon: <HomeOutlineIcon /> },
-    { id: 'subcategory', label: '서브카테고리', href: '/products/category/subcategory', icon: <HomeOutlineIcon /> },
-    { id: 'product', label: '제품 상세', href: '/products/category/subcategory/product', icon: <HomeOutlineIcon /> },
+    { id: 'home', label: '홈', href: '/' },
+    { id: 'products', label: '제품', href: '/products' },
+    { id: 'category', label: '카테고리', href: '/products/category' },
+    { id: 'subcategory', label: '서브카테고리', href: '/products/category/subcategory' },
+    { id: 'product', label: '제품 상세', href: '/products/category/subcategory/product' },
 ];
 
 // 모든 스타일을 보여주는 스토리
@@ -75,15 +75,15 @@ export const AllSizes: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
                 <h3>Small Size</h3>
-                <Breadcrumbs items={sampleItems} size="sm" />
+                <Breadcrumbs items={sampleItems} size="s" />
             </div>
             <div>
                 <h3>Medium Size</h3>
-                <Breadcrumbs items={sampleItems} size="md" />
+                <Breadcrumbs items={sampleItems} size="m" />
             </div>
             <div>
                 <h3>Large Size</h3>
-                <Breadcrumbs items={sampleItems} size="lg" />
+                <Breadcrumbs items={sampleItems} size="l" />
             </div>
         </div>
     ),

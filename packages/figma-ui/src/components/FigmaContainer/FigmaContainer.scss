@@ -1,0 +1,175 @@
+/**
+ * FigmaContainer 컴포넌트 스타일
+ */
+
+.designbase-figma-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: var(--db-surface-base);
+    box-sizing: border-box;
+
+    &--full-height {
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: visible; // 드롭다운이 잘리지 않도록 변경
+        flex-shrink: 0; // 높이 고정
+        flex-grow: 0; // 높이 고정
+        background-color: var(--db-surface-base);
+        position: relative; // z-index 컨텍스트 생성
+        z-index: 2; // 드롭다운이 다른 요소 위에 표시되도록
+    }
+
+    &__banner {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: hidden;
+        flex-shrink: 0; // 높이 고정
+        flex-grow: 0; // 높이 고정
+        padding: 0;
+        z-index: 1;
+        background-color: var(--db-surface-base);
+    }
+
+    // 배너 위치별 스타일
+    &--banner-top {
+        .designbase-figma-container__banner {
+            border-bottom: 1px solid var(--db-border-base);
+        }
+    }
+
+    &--banner-bottom {
+        .designbase-figma-container__banner {
+            border-top: 1px solid var(--db-border-base);
+        }
+    }
+
+    &__main {
+        flex: 1 1 auto; // 나머지 공간을 모두 차지
+        overflow: hidden; // 스크롤은 내부 콘텐츠에서 처리
+        box-sizing: border-box;
+        min-height: 0; // flex 아이템이 축소될 수 있도록
+
+        // 사이드바가 없을 때만 패딩 적용
+        &:not(.designbase-figma-container__main--with-sidebar) {
+            padding: var(--db-padding-m);
+            overflow-y: auto; // 사이드바가 없을 때는 여기서 스크롤
+        }
+    }
+
+    &__main-content {
+        display: flex;
+        height: 100%;
+        gap: 0;
+        box-sizing: border-box;
+    }
+
+    &__sidebar {
+        flex-shrink: 0; // 축소 방지 (폭은 인라인 스타일 또는 자동 계산)
+        flex-grow: 0; // 확대 방지
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: var(--db-surface-base);
+        border-right: 1px solid var(--db-border-base);
+        box-sizing: border-box;
+        // 폭이 지정되지 않으면 자동으로 콘텐츠에 맞게 계산됨
+    }
+
+    &__content {
+        flex: 1 1 auto; // 나머지 공간을 모두 차지
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: var(--db-surface-base);
+        box-sizing: border-box;
+        padding: var(--db-padding-m);
+    }
+
+    &__interaction {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: hidden;
+        flex-shrink: 0; // 높이 고정
+        flex-grow: 0; // 높이 고정
+        background-color: var(--db-surface-base);
+    }
+
+    &__action {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: visible;
+        flex-shrink: 0; // 높이 고정
+        flex-grow: 0; // 높이 고정
+        background-color: var(--db-surface-base);
+        border-top: 1px solid var(--db-border-base);
+        padding: var(--db-padding-s);
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: visible; // 드롭다운이 잘리지 않도록 변경
+        flex-shrink: 0; // 높이 고정
+        flex-grow: 0; // 높이 고정
+        position: relative; // z-index 컨텍스트 생성
+        z-index: 2; // 드롭다운이 다른 요소 위에 표시되도록
+    }
+
+    // 크기별 스타일
+    &--s {
+        .designbase-figma-container__main:not(.designbase-figma-container__main--with-sidebar) {
+            padding: var(--db-padding-s);
+        }
+
+        .designbase-figma-container__content {
+            padding: var(--db-padding-s);
+        }
+    }
+
+    &--m {
+        .designbase-figma-container__main:not(.designbase-figma-container__main--with-sidebar) {
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-figma-container__content {
+            padding: var(--db-padding-m);
+        }
+    }
+
+    &--l {
+        .designbase-figma-container__main:not(.designbase-figma-container__main--with-sidebar) {
+            padding: var(--db-padding-l);
+        }
+
+        .designbase-figma-container__content {
+            padding: var(--db-padding-l);
+        }
+    }
+
+    // 헤더 패널 전용 스타일
+    &__header-panel {
+        overflow: visible !important; // 드롭다운이 잘리지 않도록 강제 설정
+        position: relative;
+        z-index: 10; // 높은 z-index로 드롭다운이 다른 요소 위에 표시
+    }
+
+    // 푸터 패널 전용 스타일
+    &__footer-panel {
+        overflow: visible !important; // 드롭다운이 잘리지 않도록 강제 설정
+        position: relative;
+        z-index: 10; // 높은 z-index로 드롭다운이 다른 요소 위에 표시
+    }
+}

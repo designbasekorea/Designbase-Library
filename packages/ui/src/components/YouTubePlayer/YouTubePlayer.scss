@@ -9,23 +9,23 @@
     // 기본 스타일
     position: relative;
     width: 100%;
-    background-color: var(--db-bg-secondary);
-    border-radius: var(--db-radius-md);
+    background-color: var(--db-surface-layer-1);
+    border-radius: var(--db-radius-m);
     overflow: hidden;
     box-shadow: var(--db-shadow-md);
 
     // Size 스타일
-    &--sm {
+    &--s {
         max-width: 320px;
         aspect-ratio: 16 / 9;
     }
 
-    &--md {
+    &--m {
         max-width: 640px;
         aspect-ratio: 16 / 9;
     }
 
-    &--lg {
+    &--l {
         max-width: 960px;
         aspect-ratio: 16 / 9;
     }
@@ -42,7 +42,7 @@
 
     // Variant 스타일
     &--default {
-        border: 1px solid var(--db-border-primary);
+        border: 1px solid var(--db-border-base);
     }
 
     &--minimal {
@@ -54,7 +54,7 @@
     &--theater {
         border-radius: 0;
         box-shadow: none;
-        background-color: var(--db-bg-inverse);
+        background-color: var(--db-surface-inverse);
     }
 
     &--picture-in-picture {
@@ -64,19 +64,19 @@
         width: 320px;
         height: 180px;
         z-index: 1000;
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
         box-shadow: var(--db-shadow-xl);
     }
 
     // Theme 스타일
     &--light {
-        background-color: var(--db-bg-primary);
+        background-color: var(--db-surface-base);
         color: var(--db-text-primary);
     }
 
     &--dark {
-        background-color: var(--db-bg-inverse);
-        color: var(--db-text-inverse);
+        background-color: var(--db-surface-inverse);
+        color: var(--db-text-inverse-primary);
     }
 
     &--auto {
@@ -112,7 +112,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        background-color: var(--db-bg-inverse);
+        background-color: var(--db-surface-inverse);
     }
 
     // iframe
@@ -130,13 +130,13 @@
 
     // 설명
     &__description {
-        padding: var(--db-padding-md);
-        background-color: var(--db-bg-primary);
-        border-top: 1px solid var(--db-border-primary);
+        padding: var(--db-padding-m);
+        background-color: var(--db-surface-base);
+        border-top: 1px solid var(--db-border-base);
 
         p {
             margin: 0;
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: 1.5;
             color: var(--db-text-secondary);
         }
@@ -150,7 +150,7 @@
         height: 100%;
         padding: var(--db-padding-xl);
         text-align: center;
-        color: var(--db-red-600);
+        color: var(--db-feedback-error-fg);
 
         p {
             margin: 0;
@@ -174,7 +174,7 @@
 
     // 접근성 개선
     &:focus-within {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 
@@ -187,8 +187,8 @@
         transform: translate(-50%, -50%);
         width: 40px;
         height: 40px;
-        border: 3px solid var(--db-border-primary);
-        border-top-color: var(--db-white);
+        border: 3px solid var(--db-border-base);
+        border-top-color: var(--db-brand-primary);
         border-radius: 50%;
         animation: spin 1s linear infinite;
         z-index: 1;

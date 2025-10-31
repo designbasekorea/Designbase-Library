@@ -14,12 +14,12 @@ import {
     BellActiveIcon,
     CloudCloseIcon,
     CloseIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import { Button } from '../Button/Button';
 import './Confirm.scss';
 
 export type ConfirmVariant = 'info' | 'success' | 'warning' | 'danger';
-export type ConfirmSize = 'sm' | 'md' | 'lg';
+export type ConfirmSize = 's' | 'm' | 'l';
 
 export interface ConfirmProps {
     /** 확인 다이얼로그 열림 상태 */
@@ -68,7 +68,7 @@ export const Confirm: React.FC<ConfirmProps> = ({
     cancelText = '취소',
     confirmVariant = 'primary',
     variant = 'info',
-    size = 'md',
+    size = 's',
     showIcon = true,
     confirmDisabled = false,
     cancelDisabled = false,
@@ -168,7 +168,7 @@ export const Confirm: React.FC<ConfirmProps> = ({
         if (!showIcon) return null;
 
         const iconProps = {
-            size: size === 'sm' ? 20 : size === 'lg' ? 32 : 24,
+            size: size === 's' ? 20 : size === 'l' ? 32 : 24,
         };
 
         switch (variant) {

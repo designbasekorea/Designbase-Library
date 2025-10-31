@@ -13,7 +13,7 @@ const meta: Meta<typeof FileUploader> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -51,156 +51,108 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        size: 'md',
+        size: 'm',
         variant: 'default',
-    },
-};
-
-export const DifferentSizes: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-            <div>
-                <h3>작은 크기</h3>
-                <FileUploader size="sm" />
-            </div>
-            <div>
-                <h3>중간 크기</h3>
-                <FileUploader size="md" />
-            </div>
-            <div>
-                <h3>큰 크기</h3>
-                <FileUploader size="lg" />
-            </div>
-        </div>
-    ),
-};
-
-export const DifferentVariants: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-            <div>
-                <h3>기본 스타일</h3>
-                <FileUploader variant="default" />
-            </div>
-            <div>
-                <h3>아웃라인 스타일</h3>
-                <FileUploader variant="outlined" />
-            </div>
-            <div>
-                <h3>채워진 스타일</h3>
-                <FileUploader variant="filled" />
-            </div>
-        </div>
-    ),
-};
-
-export const WithFileTypeRestrictions: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-            <div>
-                <h3>이미지 파일만</h3>
-                <FileUploader accept="image/*" />
-            </div>
-            <div>
-                <h3>PDF 파일만</h3>
-                <FileUploader accept=".pdf" />
-            </div>
-            <div>
-                <h3>여러 파일 타입</h3>
-                <FileUploader accept=".jpg,.png,.pdf,.doc,.docx" />
-            </div>
-        </div>
-    ),
-};
-
-export const WithSizeLimits: Story = {
-    render: () => (
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-            <div>
-                <h3>1MB 제한</h3>
-                <FileUploader maxSize={1024 * 1024} />
-            </div>
-            <div>
-                <h3>5MB 제한</h3>
-                <FileUploader maxSize={5 * 1024 * 1024} />
-            </div>
-            <div>
-                <h3>10MB 제한</h3>
-                <FileUploader maxSize={10 * 1024 * 1024} />
-            </div>
-        </div>
-    ),
-};
-
-export const MultipleFileSelection: Story = {
-    args: {
-        multiple: true,
-        accept: "image/*",
-        maxSize: 5 * 1024 * 1024,
-    },
-};
-
-export const WithoutFileList: Story = {
-    args: {
-        showFileList: false,
-    },
-};
-
-export const WithoutProgress: Story = {
-    args: {
-        showProgress: false,
-    },
-};
-
-export const Disabled: Story = {
-    args: {
-        disabled: true,
-    },
-};
-
-export const Readonly: Story = {
-    args: {
-        readonly: true,
-    },
-};
-
-export const ImageUploader: Story = {
-    args: {
-        accept: "image/*",
-        maxSize: 5 * 1024 * 1024,
         multiple: true,
     },
 };
 
-export const DocumentUploader: Story = {
-    args: {
-        accept: ".pdf,.doc,.docx,.txt",
-        maxSize: 10 * 1024 * 1024,
-        multiple: true,
-    },
-};
-
-export const VideoUploader: Story = {
-    args: {
-        accept: "video/*",
-        maxSize: 100 * 1024 * 1024, // 100MB
-        multiple: false,
-    },
-};
-
-export const ResponsiveExample: Story = {
+// 모든 사이즈 (s, m, l)
+export const AllSizes: Story = {
     render: () => (
-        <div style={{ width: '100%', maxWidth: '800px' }}>
-            <h3>반응형 FileUploader</h3>
-            <p style={{ fontSize: '14px', color: '#666', marginBottom: '16px' }}>
-                화면 크기에 따라 자동으로 크기가 조정됩니다.
-            </p>
-            <FileUploader 
-                size="lg" 
-                accept="image/*,.pdf,.doc,.docx" 
-                maxSize={10 * 1024 * 1024}
-                multiple={true}
-            />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Small (s)</h4>
+                <FileUploader size="s" multiple={true} />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Medium (m) - 기본값</h4>
+                <FileUploader size="m" multiple={true} />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Large (l)</h4>
+                <FileUploader size="l" multiple={true} />
+            </div>
+        </div>
+    ),
+};
+
+// 모든 Variants (default, outlined, filled)
+export const AllVariants: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Default</h4>
+                <FileUploader variant="default" multiple={true} />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Outlined</h4>
+                <FileUploader variant="outlined" multiple={true} />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>Filled</h4>
+                <FileUploader variant="filled" multiple={true} />
+            </div>
+        </div>
+    ),
+};
+
+// 모든 상태 (기본, 비활성화, 읽기전용)
+export const AllStates: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>기본 상태</h4>
+                <FileUploader multiple={true} />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>비활성화</h4>
+                <FileUploader disabled={true} multiple={true} />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>읽기 전용</h4>
+                <FileUploader readonly={true} multiple={true} />
+            </div>
+        </div>
+    ),
+};
+
+// 사용 예시 - 파일 타입별
+export const UsageExamples: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', maxWidth: '600px' }}>
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>이미지 업로더</h4>
+                <FileUploader
+                    accept="image/*"
+                    maxSize={5 * 1024 * 1024}
+                    multiple={true}
+                />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>문서 업로더</h4>
+                <FileUploader
+                    accept=".pdf,.doc,.docx,.txt"
+                    maxSize={10 * 1024 * 1024}
+                    multiple={true}
+                />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>비디오 업로더 (단일)</h4>
+                <FileUploader
+                    accept="video/*"
+                    maxSize={100 * 1024 * 1024}
+                    multiple={false}
+                />
+            </div>
         </div>
     ),
 };

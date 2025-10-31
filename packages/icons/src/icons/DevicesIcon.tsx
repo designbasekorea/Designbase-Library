@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6.75 4.5a.25.25 0 0 0-.25.25v3H5v-3C5 3.784 5.784 3 6.75 3h13c.966 0 1.75.784 1.75 1.75v11a1.75 1.75 0 0 1-1.75 1.75h-9V16h9a.25.25 0 0 0 .25-.25v-11a.25.25 0 0 0-.25-.25z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M3.75 8.5a.25.25 0 0 0-.25.25v10c0 .138.112.25.25.25h6a.25.25 0 0 0 .25-.25v-10a.25.25 0 0 0-.25-.25zM2 8.75C2 7.784 2.784 7 3.75 7h6c.966 0 1.75.784 1.75 1.75v10a1.75 1.75 0 0 1-1.75 1.75h-6A1.75 1.75 0 0 1 2 18.75z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const DevicesIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M7 4.75a.25.25 0 0 0-.25.25v3h-1.5V5c0-.966.784-1.75 1.75-1.75h13c.966 0 1.75.784 1.75 1.75v11A1.75 1.75 0 0 1 20 17.75h-9v-1.5h9a.25.25 0 0 0 .25-.25V5a.25.25 0 0 0-.25-.25z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M4 8.75a.25.25 0 0 0-.25.25v10c0 .138.112.25.25.25h6a.25.25 0 0 0 .25-.25V9a.25.25 0 0 0-.25-.25zM2.25 9c0-.966.784-1.75 1.75-1.75h6c.966 0 1.75.784 1.75 1.75v10A1.75 1.75 0 0 1 10 20.75H4A1.75 1.75 0 0 1 2.25 19z" clip-rule="evenodd"/></svg>
+);
 
 export default DevicesIcon;

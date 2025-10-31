@@ -13,7 +13,7 @@ const meta: Meta<typeof MarkdownEditor> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -201,15 +201,15 @@ export const DifferentSizes: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
                 <h3>작은 크기</h3>
-                <MarkdownEditor size="sm" value="# 작은 크기" />
+                <MarkdownEditor size="s" value="# 작은 크기" />
             </div>
             <div>
                 <h3>중간 크기</h3>
-                <MarkdownEditor size="md" value="# 중간 크기" />
+                <MarkdownEditor size="m" value="# 중간 크기" />
             </div>
             <div>
                 <h3>큰 크기</h3>
-                <MarkdownEditor size="lg" value="# 큰 크기" />
+                <MarkdownEditor size="l" value="# 큰 크기" />
             </div>
         </div>
     ),

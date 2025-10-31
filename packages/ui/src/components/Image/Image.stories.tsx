@@ -260,7 +260,7 @@ export const RoundedCorners: Story = {
                     src={sampleImages.square}
                     alt="작은 둥근 모서리"
                     ratio="1:1"
-                    rounded="sm"
+                    rounded="s"
                     width={150}
                     loading="lazy"
                 />
@@ -272,7 +272,7 @@ export const RoundedCorners: Story = {
                     src={sampleImages.square}
                     alt="중간 둥근 모서리"
                     ratio="1:1"
-                    rounded="md"
+                    rounded="m"
                     width={150}
                     loading="lazy"
                 />
@@ -284,7 +284,7 @@ export const RoundedCorners: Story = {
                     src={sampleImages.square}
                     alt="큰 둥근 모서리"
                     ratio="1:1"
-                    rounded="lg"
+                    rounded="l"
                     width={150}
                     loading="lazy"
                 />
@@ -314,7 +314,7 @@ export const Shadows: Story = {
                     src={sampleImages.square}
                     alt="작은 그림자"
                     ratio="1:1"
-                    shadow="sm"
+                    shadow="s"
                     width={200}
                     loading="lazy"
                 />
@@ -326,7 +326,7 @@ export const Shadows: Story = {
                     src={sampleImages.square}
                     alt="중간 그림자"
                     ratio="1:1"
-                    shadow="md"
+                    shadow="m"
                     width={200}
                     loading="lazy"
                 />
@@ -338,7 +338,7 @@ export const Shadows: Story = {
                     src={sampleImages.square}
                     alt="큰 그림자"
                     ratio="1:1"
-                    shadow="lg"
+                    shadow="l"
                     width={200}
                     loading="lazy"
                 />
@@ -357,7 +357,7 @@ export const HoverEffects: Story = {
                     alt="호버 효과 이미지"
                     ratio="1:1"
                     hover={true}
-                    shadow="md"
+                    shadow="m"
                     width={200}
                     loading="lazy"
                 />
@@ -370,7 +370,7 @@ export const HoverEffects: Story = {
                     alt="클릭 가능한 이미지"
                     ratio="1:1"
                     hover={true}
-                    shadow="md"
+                    shadow="m"
                     onClick={fn()}
                     width={200}
                     loading="lazy"
@@ -417,7 +417,7 @@ export const FullWidth: Story = {
                 alt="전체 너비 이미지"
                 ratio="2:1"
                 fullWidth={true}
-                shadow="md"
+                shadow="m"
                 loading="lazy"
             />
         </div>
@@ -431,24 +431,24 @@ export const Responsive: Story = {
                 src={sampleImages.square}
                 alt="반응형 이미지 1"
                 ratio="1:1"
-                rounded="md"
-                shadow="sm"
+                rounded="m"
+                shadow="s"
                 loading="lazy"
             />
             <Image
                 src={sampleImages.landscape}
                 alt="반응형 이미지 2"
                 ratio="16:9"
-                rounded="md"
-                shadow="sm"
+                rounded="m"
+                shadow="s"
                 loading="lazy"
             />
             <Image
                 src={sampleImages.portrait}
                 alt="반응형 이미지 3"
                 ratio="3:4"
-                rounded="md"
-                shadow="sm"
+                rounded="m"
+                shadow="s"
                 loading="lazy"
             />
         </div>

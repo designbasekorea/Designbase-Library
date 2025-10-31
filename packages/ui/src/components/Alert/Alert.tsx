@@ -9,25 +9,25 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import {
-    BulbIcon,
-    AwardIcon,
-    BellActiveIcon,
-    CloudCloseIcon,
+    InfoFilledIcon,
+    CircleCheckFilledIcon,
+    WarningFilledIcon,
+    ErrorFilledIcon,
     CloseIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import { Button } from '../Button/Button';
 import './Alert.scss';
 
-export type AlertVariant = 'info' | 'success' | 'warning' | 'danger';
-export type AlertSize = 'sm' | 'md' | 'lg';
+export type AlertVariant = 'default' | 'info' | 'success' | 'warning' | 'danger';
+export type AlertSize = 's' | 'm' | 'l';
 
 export interface AlertAction {
     /** 액션 라벨 */
     label: string;
     /** 액션 타입 */
-    variant?: 'primary' | 'secondary' | 'danger' | 'success';
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'success';
     /** 액션 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 액션 핸들러 */
     onClick: () => void;
     /** 액션 비활성화 여부 */
@@ -63,9 +63,9 @@ export const Alert: React.FC<AlertProps> = ({
     title,
     children,
     variant = 'info',
-    size = 'md',
+    size = 'm',
     showIcon = true,
-    closable = false,
+    closable = true,
     actions,
     actionButtons,
     onClose,
@@ -83,24 +83,28 @@ export const Alert: React.FC<AlertProps> = ({
         return null;
     }
 
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 16 : size === 'l' ? 24 : 20;
+
     const getIcon = () => {
         if (!showIcon) return null;
 
         const iconProps = {
-            size: size === 'sm' ? 16 : size === 'lg' ? 24 : 20,
+            size: iconSize,
+            color: 'currentColor',
         };
 
         switch (variant) {
             case 'info':
-                return <BulbIcon {...iconProps} />;
+                return <InfoFilledIcon {...iconProps} />;
             case 'success':
-                return <AwardIcon {...iconProps} />;
+                return <CircleCheckFilledIcon {...iconProps} />;
             case 'warning':
-                return <BellActiveIcon {...iconProps} />;
+                return <WarningFilledIcon {...iconProps} />;
             case 'danger':
-                return <CloudCloseIcon {...iconProps} />;
+                return <ErrorFilledIcon {...iconProps} />;
             default:
-                return <BulbIcon {...iconProps} />;
+                return <InfoFilledIcon {...iconProps} />;
         }
     };
 
@@ -145,7 +149,7 @@ export const Alert: React.FC<AlertProps> = ({
                         onClick={handleClose}
                         aria-label="알림 닫기"
                     >
-                        <CloseIcon size={24} />
+                        <CloseIcon size={iconSize} />
                     </button>
                 )}
             </div>
@@ -157,7 +161,7 @@ export const Alert: React.FC<AlertProps> = ({
                                 <Button
                                     key={index}
                                     size={action.size || size}
-                                    variant={action.variant || 'secondary'}
+                                    variant={action.variant || 'tertiary'}
                                     onClick={action.onClick}
                                     disabled={action.disabled}
                                 >

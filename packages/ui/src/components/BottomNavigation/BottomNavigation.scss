@@ -1,0 +1,174 @@
+.designbase-bottom-navigation {
+    position: relative;
+    width: 100%;
+    background-color: var(--db-surface-base);
+    border-top: 1px solid var(--db-border-base);
+    z-index: var(--db-z-navigation);
+
+    &--fixed {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &__container {
+        display: flex;
+        align-items: stretch;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    &__item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        position: relative;
+        min-height: 60px;
+
+        &:hover:not(&--disabled) {
+            background-color: var(--db-interactive-bg-hover);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: -2px;
+        }
+
+        &--active {
+            color: var(--db-brand-primary);
+            background-color: var(--db-brand-primary-alpha-10);
+
+            .designbase-bottom-navigation__icon {
+                color: var(--db-brand-primary);
+            }
+
+            .designbase-bottom-navigation__label {
+                color: var(--db-brand-primary);
+                font-weight: var(--db-weight-medium);
+            }
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    &__item-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        width: 100%;
+    }
+
+    &__icon-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__icon {
+        color: var(--db-icon-muted);
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
+    }
+
+    &__label {
+        font-size: var(--db-text-xs);
+        color: var(--db-text-secondary);
+        text-align: center;
+        line-height: var(--db-leading-tight);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    &__badge {
+        position: absolute;
+        top: -4px;
+        right: -8px;
+        min-width: 18px;
+        height: 18px;
+        font-size: 10px;
+        line-height: 1;
+        padding: 2px 4px;
+        border-radius: 9px;
+    }
+
+    // Size variants
+    &--s {
+        .designbase-bottom-navigation__item {
+            min-height: 48px;
+            padding: var(--db-padding-xs);
+        }
+
+        .designbase-bottom-navigation__label {
+            font-size: 10px;
+        }
+    }
+
+    &--m {
+        .designbase-bottom-navigation__item {
+            min-height: 60px;
+        }
+    }
+
+    &--l {
+        .designbase-bottom-navigation__item {
+            min-height: 72px;
+            padding: var(--db-padding-s) var(--db-padding-m);
+        }
+
+        .designbase-bottom-navigation__label {
+            font-size: var(--db-text-s);
+        }
+    }
+
+    // Background variants
+    &--glass {
+        background-color: rgba(var(--db-surface-base-rgb), 0.8);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(var(--db-border-base-rgb), 0.2);
+    }
+
+    &--transparent {
+        background-color: transparent;
+        border-top: none;
+    }
+
+    // Safe area support for mobile devices
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        &--fixed {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    }
+
+    // Responsive behavior
+    @media (max-width: 480px) {
+        &__item {
+            padding: var(--db-padding-xs);
+        }
+
+        &__label {
+            font-size: 10px;
+        }
+    }
+
+    // Dark mode support
+    @media (prefers-color-scheme: dark) {
+        &--glass {
+            background-color: rgba(var(--db-surface-base-rgb), 0.9);
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "size": {
+        "aliases": {
+            "xxs": {
+                "value": "{size.foundation.xxs}",
+                "type": "dimension"
+            },
+            "xs": {
+                "value": "{size.foundation.xs}",
+                "type": "dimension"
+            },
+            "s": {
+                "value": "{size.foundation.s}",
+                "type": "dimension"
+            },
+            "m": {
+                "value": "{size.foundation.m}",
+                "type": "dimension"
+            },
+            "l": {
+                "value": "{size.foundation.l}",
+                "type": "dimension"
+            },
+            "xl": {
+                "value": "{size.foundation.xl}",
+                "type": "dimension"
+            },
+            "xxl": {
+                "value": "{size.foundation.xxl}",
+                "type": "dimension"
+            },
+            "3xl": {
+                "value": "{size.foundation.3xl}",
+                "type": "dimension"
+            },
+            "4xl": {
+                "value": "{size.foundation.4xl}",
+                "type": "dimension"
+            },
+            "5xl": {
+                "value": "{size.foundation.5xl}",
+                "type": "dimension"
+            }
+        }
+    }
+}

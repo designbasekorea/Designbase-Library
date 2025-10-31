@@ -8,8 +8,8 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-xs);
-        padding: var(--db-padding-xs) var(--db-padding-s);
-        border-radius: var(--db-radius-action-md);
+        padding: var(--db-padding-xs);
+        border-radius: var(--db-radius-m);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         cursor: default;
 
@@ -17,11 +17,11 @@
             cursor: pointer;
 
             &:hover {
-                background-color: var(--db-bg-tertiary);
+                background-color: var(--db-surface-layer-1);
             }
 
             &:focus-visible {
-                outline: 2px solid var(--db-blue-500);
+                outline: 2px solid var(--db-brand-primary);
                 outline-offset: 2px;
             }
         }
@@ -37,39 +37,39 @@
 
         // Variant별 아이콘 컬러
         &--primary {
-            color: var(--db-blue-600);
+            color: var(--db-icon-primary);
         }
 
         &--success {
-            color: var(--db-green-600);
+            color: var(--db-icon-success);
         }
 
         &--warning {
-            color: var(--db-yellow-600);
+            color: var(--db-icon-warning);
         }
 
         &--danger {
-            color: var(--db-red-600);
+            color: var(--db-icon-error);
         }
 
         &--info {
-            color: var(--db-blue-600);
+            color: var(--db-icon-info);
         }
 
         // Active 상태
         &--active {
-            color: var(--db-blue-600);
+            color: var(--db-icon-primary);
         }
 
         // Disabled 상태
         &--disabled {
-            color: var(--db-text-disabled);
+            color: var(--db-icon-disabled);
         }
     }
 
     &__label {
         flex: 1;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         color: var(--db-text-primary);
         white-space: nowrap;
@@ -100,8 +100,8 @@
             top: 100%;
             left: 0;
             min-width: 200px;
-            background-color: var(--db-bg-primary);
-            border: 1px solid var(--db-border-primary);
+            background-color: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
             border-radius: var(--db-radius-card-md);
             box-shadow: var(--db-shadow-lg);
             z-index: var(--db-z-popover);
@@ -114,7 +114,7 @@
 
         // Accordion 스타일 (Sidebar용) - 아래로 밀어내는 형태
         &--accordion {
-            margin-left: var(--db-margin-m);
+            padding-left: var(--db-padding-m);
             margin-top: var(--db-margin-xs);
             overflow: hidden;
             max-height: 0;
@@ -151,30 +151,30 @@
         cursor: pointer;
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-1);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-brand-primary);
             outline-offset: 2px;
         }
 
         &--active {
-            background-color: var(--db-blue-50);
-            color: var(--db-blue-700);
+            background-color: var(--db-feedback-info-bg);
+            color: var(--db-feedback-info-fg);
 
             .designbase-menu-item__child-icon {
-                color: var(--db-blue-600);
+                color: var(--db-icon-info);
             }
 
             .designbase-menu-item__child-label {
-                color: var(--db-blue-700);
+                color: var(--db-feedback-info-fg);
                 font-weight: var(--db-weight-semibold);
             }
         }
 
         &--disabled {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
 
             &:hover {
@@ -193,7 +193,7 @@
 
     &__child-label {
         flex: 1;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-primary);
         white-space: nowrap;
         overflow: hidden;
@@ -210,7 +210,7 @@
         align-items: center;
 
         .designbase-menu-item__content {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+            padding: var(--db-padding-xs);
         }
     }
 
@@ -218,12 +218,17 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
+
+        .designbase-menu-item__content {
+            width: 100%;
+        }
     }
 
     // Sizes
-    &--sm {
+    &--s {
         .designbase-menu-item__content {
-            padding: var(--db-padding-xs) var(--db-padding-xs);
+            padding: var(--db-padding-xs);
         }
 
         .designbase-menu-item__label {
@@ -231,11 +236,11 @@
         }
 
         .designbase-menu-item__children {
-            margin-left: var(--db-margin-s);
+            padding-left: var(--db-padding-s);
         }
 
         .designbase-menu-item__child {
-            padding: var(--db-padding-xs) var(--db-padding-xs);
+            padding: var(--db-padding-xs);
         }
 
         .designbase-menu-item__child-label {
@@ -243,31 +248,31 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-menu-item__content {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+            padding: var(--db-padding-s);
         }
 
         .designbase-menu-item__label {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-menu-item__children {
-            margin-left: var(--db-margin-m);
+            padding-left: var(--db-padding-s);
         }
 
         .designbase-menu-item__child {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+            padding: var(--db-padding-s);
         }
 
         .designbase-menu-item__child-label {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-menu-item__content {
-            padding: var(--db-padding-s) var(--db-padding-m);
+            padding: var(--db-padding-m);
         }
 
         .designbase-menu-item__label {
@@ -275,11 +280,11 @@
         }
 
         .designbase-menu-item__children {
-            margin-left: var(--db-margin-l);
+            padding-left: var(--db-padding-m);
         }
 
         .designbase-menu-item__child {
-            padding: var(--db-padding-s) var(--db-padding-m);
+            padding: var(--db-padding-m);
         }
 
         .designbase-menu-item__child-label {
@@ -296,59 +301,75 @@
 
     &--primary {
         .designbase-menu-item__content {
-            color: var(--db-blue-700);
+            color: var(--db-text-link);
+        }
+
+        .designbase-menu-item__label {
+            color: var(--db-text-link);
         }
 
         .designbase-menu-item__icon {
-            color: var(--db-blue-600);
+            color: var(--db-icon-primary);
         }
     }
 
     &--success {
         .designbase-menu-item__content {
-            color: var(--db-green-700);
+            color: var(--db-feedback-success-fg);
+        }
+
+        .designbase-menu-item__label {
+            color: var(--db-feedback-success-fg);
         }
 
         .designbase-menu-item__icon {
-            color: var(--db-green-600);
+            color: var(--db-icon-success);
         }
     }
 
     &--warning {
         .designbase-menu-item__content {
-            color: var(--db-yellow-700);
+            color: var(--db-feedback-warning-fg);
+        }
+
+        .designbase-menu-item__label {
+            color: var(--db-feedback-warning-fg);
         }
 
         .designbase-menu-item__icon {
-            color: var(--db-yellow-600);
+            color: var(--db-icon-warning);
         }
     }
 
     &--danger {
         .designbase-menu-item__content {
-            color: var(--db-red-700);
+            color: var(--db-feedback-error-fg);
+        }
+
+        .designbase-menu-item__label {
+            color: var(--db-feedback-error-fg);
         }
 
         .designbase-menu-item__icon {
-            color: var(--db-red-600);
+            color: var(--db-icon-error);
         }
     }
 
     &--info {
         .designbase-menu-item__content {
-            color: var(--db-blue-700);
+            color: var(--db-text-link);
+        }
+
+        .designbase-menu-item__label {
+            color: var(--db-text-link);
         }
 
         .designbase-menu-item__icon {
-            color: var(--db-blue-600);
+            color: var(--db-icon-info);
         }
     }
 
     // Depth별 스타일 (최대 3뎁스)
-    &--depth-0 {
-        // 최상위 레벨
-    }
-
     &--depth-1 {
 
         // 1뎁스 하위
@@ -376,22 +397,22 @@
     // States
     &--active {
         .designbase-menu-item__content {
-            background-color: var(--db-blue-50);
-            color: var(--db-blue-700);
+            background-color: var(--db-feedback-info-bg);
+            color: var(--db-feedback-info-fg);
         }
 
         .designbase-menu-item__icon {
-            color: var(--db-blue-600);
+            color: var(--db-icon-info);
         }
 
         .designbase-menu-item__label {
-            color: var(--db-blue-700);
+            color: var(--db-feedback-info-fg);
             font-weight: var(--db-weight-semibold);
         }
     }
 
     &--disabled {
-        opacity: var(--db-opacity-50);
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
 
         .designbase-menu-item__content {
@@ -403,11 +424,6 @@
         }
     }
 
-    &--expanded {
-        .designbase-menu-item__expand-icon {
-            // 아이콘 컴포넌트를 사용하므로 회전 애니메이션 제거
-        }
-    }
 
     // Responsive
     @media (max-width: 640px) {

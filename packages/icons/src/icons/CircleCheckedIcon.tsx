@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m10.07 14.02 6.15-6.134 1.06 1.062-7.22 7.2-3.844-3.898 1.068-1.054z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M1 11.75C1 5.836 5.836 1 11.75 1S22.5 5.836 22.5 11.75 17.664 22.5 11.75 22.5 1 17.664 1 11.75M11.75 2.5c-5.086 0-9.25 4.164-9.25 9.25S6.664 21 11.75 21 21 16.836 21 11.75 16.836 2.5 11.75 2.5" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const CircleCheckedIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="m10.32 14.27 6.15-6.134 1.06 1.062-7.22 7.2L6.467 12.5l1.068-1.054z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M1.25 12C1.25 6.086 6.086 1.25 12 1.25S22.75 6.086 22.75 12 17.914 22.75 12 22.75 1.25 17.914 1.25 12M12 2.75c-5.086 0-9.25 4.164-9.25 9.25s4.164 9.25 9.25 9.25 9.25-4.164 9.25-9.25S17.086 2.75 12 2.75" clip-rule="evenodd"/></svg>
+);
 
 export default CircleCheckedIcon;

@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M15 13H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1m-1 4h-4v-2h4z"/><path fill="currentColor" d="M20 12h-1V8c1.103 0 2-.897 2-2V3c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v3c0 1.103.897 2 2 2v4H4c-1.654 0-3 1.346-3 3v4c0 1.654 1.346 3 3 3h1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1h1c1.654 0 3-1.346 3-3v-4c0-1.654-1.346-3-3-3m-1-6h-3V3h3zm-5 3h-4V8h4zm-4-3V3h4v3zM4.999 3H8v3H5zM4 20c-.551 0-1-.448-1-1v-4c0-.552.449-1 1-1h1v6zm3 1V8h1v4h2v-1h4v1h2V8h1v13zm14-2a1 1 0 0 1-1 1h-1v-6h1a1 1 0 0 1 1 1z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const BackpackHikingFilledIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M15 13H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1m-1 4h-4v-2h4z"/><path fill="currentColor" d="M20 12h-1V8c1.103 0 2-.897 2-2V3c0-1.103-.897-2-2-2H5c-1.103 0-2 .897-2 2v3c0 1.103.897 2 2 2v4H4c-1.654 0-3 1.346-3 3v4c0 1.654 1.346 3 3 3h1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1h1c1.654 0 3-1.346 3-3v-4c0-1.654-1.346-3-3-3m-1-6h-3V3h3zm-5 3h-4V8h4zm-4-3V3h4v3zM4.999 3H8v3H5zM4 20c-.551 0-1-.448-1-1v-4c0-.552.449-1 1-1h1v6zm3 1V8h1v4h2v-1h4v1h2V8h1v13zm14-2a1 1 0 0 1-1 1h-1v-6h1a1 1 0 0 1 1 1z"/></svg>
+);
 
 export default BackpackHikingFilledIcon;

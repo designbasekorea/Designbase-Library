@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12.28 11.78V8.53h-1.5v4.75h4.75v-1.5z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.53 5.28a7.25 7.25 0 1 0 0 14.5 7.25 7.25 0 0 0 0-14.5m-8.75 7.25a8.75 8.75 0 1 1 17.5 0 8.75 8.75 0 0 1-17.5 0M21 6.06l-3-3L19.06 2l3 3zM5.06 3.06l-3 3L1 5l3-3z" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const AlarmIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M12.75 11.25V8h-1.5v4.75H16v-1.5z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M12 4.75a7.25 7.25 0 1 0 0 14.5 7.25 7.25 0 0 0 0-14.5M3.25 12a8.75 8.75 0 1 1 17.5 0 8.75 8.75 0 0 1-17.5 0M21.47 5.53l-3-3 1.06-1.06 3 3zM5.53 2.53l-3 3-1.06-1.06 3-3z" clip-rule="evenodd"/></svg>
+);
 
 export default AlarmIcon;

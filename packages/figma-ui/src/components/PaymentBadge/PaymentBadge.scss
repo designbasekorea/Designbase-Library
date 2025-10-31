@@ -1,0 +1,49 @@
+.designbase-figma-payment-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+    &__badge {
+        font-size: var(--db-text-xs);
+        line-height: 1.2;
+        height: 24px;
+        font-weight: var(--db-weight-bold);
+        padding: var(--db-padding-xs) var(--db-padding-s);
+        border-radius: var(--db-radius-s);
+    }
+
+    // 활성화 상태 (프로 계정)
+    &.active {
+        .designbase-figma-payment-badge__badge {
+            color: var(--db-text-inverse-primary);
+            background-color: var(--db-brand-primary);
+            border: none;
+        }
+    }
+
+    // 무료 상태
+    &.free {
+        .designbase-figma-payment-badge__badge {
+            color: var(--db-brand-primary);
+            background-color: var(--color-aliases-brand-primary-alpha-10);
+        }
+    }
+
+    // 클릭 가능한 경우 호버 효과
+    &[style*="pointer"] {
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    // 로딩 중일 때
+    &:has(.designbase-spinner) {
+        min-width: 60px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,61 @@
+.designbase-figma-donation-badge-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--db-gap-xs);
+}
+
+.designbase-figma-donation-badge {
+
+    &__prompt {
+        font-size: var(--db-text-xs);
+        color: var(--db-text-secondary);
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        transition: transform var(--db-animation-speed) var(--db-animation-ease);
+    }
+
+    &__text {
+        white-space: nowrap;
+    }
+
+    // 아이콘 컬러 - brand primary 적용
+    &__icon {
+        color: var(--designbase-figma-donation-badge-icon-color, var(--db-brand-primary)) !important;
+    }
+
+    // 아이콘 타입별 호버 효과
+    &--heart {
+        &:hover .designbase-figma-donation-badge__icon {
+            transform: scale(1.15);
+            filter: brightness(1.1);
+        }
+    }
+
+    &--coffee {
+        &:hover .designbase-figma-donation-badge__icon {
+            transform: rotate(-10deg) scale(1.1);
+        }
+    }
+
+    // 애니메이션 키프레임
+    @keyframes heartbeat {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover.designbase-figma-donation-badge--heart &__icon {
+        animation: heartbeat 0.6s ease-in-out;
+    }
+}

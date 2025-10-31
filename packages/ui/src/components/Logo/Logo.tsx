@@ -8,15 +8,19 @@
 
 import React from 'react';
 import clsx from 'clsx';
+import { DesignBaseLogo, DesignBaseLogoMark } from './logos';
 import './Logo.scss';
 
-export type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type LogoSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 export type LogoVariant = 'default' | 'primary' | 'secondary' | 'white' | 'dark';
+export type LogoType = 'designbase' | 'designbase-mark' | 'custom';
 
 export interface LogoProps {
-    /** 로고 텍스트 */
+    /** 로고 타입 (designbase: 풀 로고, designbase-mark: 심볼만, custom: 커스텀) */
+    type?: LogoType;
+    /** 로고 텍스트 (type이 'custom'일 때만 사용) */
     text?: string;
-    /** 로고 이미지 URL */
+    /** 로고 이미지 URL (type이 'custom'일 때만 사용) */
     src?: string;
     /** 이미지 대체 텍스트 */
     alt?: string;
@@ -41,10 +45,11 @@ export interface LogoProps {
 }
 
 export const Logo: React.FC<LogoProps> = ({
+    type = 'designbase',
     text = 'Logo',
     src,
     alt,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     clickable = false,
     href,
@@ -61,6 +66,7 @@ export const Logo: React.FC<LogoProps> = ({
         {
             'designbase-logo--clickable': clickable || href,
             'designbase-logo--full-width': fullWidth,
+            'designbase-logo--svg': type !== 'custom',
         },
         className
     );
@@ -72,7 +78,60 @@ export const Logo: React.FC<LogoProps> = ({
         }
     };
 
+    // 크기별 SVG 로고 크기 매핑
+    // 로고타입 비율: 386:40 (9.65:1)
+    // 심볼 비율: 95:100 (0.95:1)
+    const getSvgDimensions = () => {
+        const dimensions = {
+            xs: { width: 96, height: 20, markSize: 19 },   // 20 * 9.65 / 2
+            s: { width: 125, height: 26, markSize: 25 },   // 26 * 9.65 / 2
+            m: { width: 193, height: 40, markSize: 38 },   // 40 * 9.65 / 2 (기본)
+            l: { width: 256, height: 53, markSize: 50 },   // 53 * 9.65 / 2
+            xl: { width: 320, height: 66, markSize: 63 },  // 66 * 9.65 / 2
+        };
+        return dimensions[size];
+    };
+
+    // variant별 색상 매핑
+    const getLogoColor = () => {
+        const colors = {
+            default: 'var(--db-text-primary)',
+            primary: 'var(--db-brand-primary)',
+            secondary: 'var(--db-text-secondary)',
+            white: 'var(--db-text-inverse-primary)',
+            dark: 'var(--db-text-primary)',
+        };
+        return colors[variant];
+    };
+
     const renderLogo = () => {
+        const { width, height, markSize } = getSvgDimensions();
+        const color = getLogoColor();
+
+        // DesignBase 풀 로고
+        if (type === 'designbase') {
+            return (
+                <DesignBaseLogo
+                    width={width}
+                    height={height}
+                    color={color}
+                    className="designbase-logo__svg"
+                />
+            );
+        }
+
+        // DesignBase 심볼 마크
+        if (type === 'designbase-mark') {
+            return (
+                <DesignBaseLogoMark
+                    size={markSize}
+                    color={color}
+                    className="designbase-logo__svg"
+                />
+            );
+        }
+
+        // 커스텀 로고
         if (src) {
             return (
                 <img

@@ -9,8 +9,8 @@ import React from 'react';
 import clsx from 'clsx';
 import './Container.scss';
 
-export type ContainerSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
-export type ContainerPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+export type ContainerSize = 's' | 'm' | 'l' | 'xl' | 'full';
+export type ContainerPadding = 'none' | 's' | 'm' | 'l' | 'xl';
 export type ContainerVariant = 'plain' | 'wrapper';
 
 export interface ContainerProps {
@@ -29,9 +29,9 @@ export interface ContainerProps {
     /** 테두리 (wrapper 변형에서만 적용) */
     border?: boolean;
     /** 둥근 모서리 (wrapper 변형에서만 적용) */
-    rounded?: boolean | 'sm' | 'md' | 'lg';
+    rounded?: boolean | 's' | 'm' | 'l';
     /** 그림자 (wrapper 변형에서만 적용) */
-    shadow?: boolean | 'sm' | 'md' | 'lg';
+    shadow?: boolean | 's' | 'm' | 'l';
     /** 추가 CSS 클래스 */
     className?: string;
     /** 자식 요소 */
@@ -39,10 +39,10 @@ export interface ContainerProps {
 }
 
 export const Container: React.FC<ContainerProps> = ({
-    size = 'lg',
+    size = 'l',
     maxWidth,
     variant = 'plain',
-    padding = 'md',
+    padding = 'm',
     margin = 'none',
     backgroundColor,
     border = false,
@@ -51,16 +51,16 @@ export const Container: React.FC<ContainerProps> = ({
     className,
     children,
 }) => {
-    // 크기별 최대 폭 설정
+    // 크기별 최대 폭 설정 (토큰 기반)
     const getMaxWidth = () => {
         if (maxWidth) return maxWidth;
 
-        const sizes: Record<ContainerSize, number> = {
-            sm: 640,
-            md: 768,
-            lg: 1200,
-            xl: 1400,
-            full: 100,
+        const sizes: Record<ContainerSize, string> = {
+            s: 'var(--db-container-max-width-s)',
+            m: 'var(--db-container-max-width-m)',
+            l: 'var(--db-container-max-width-l)',
+            xl: 'var(--db-container-max-width-xl)',
+            full: '100%',
         };
 
         return sizes[size];
@@ -72,9 +72,9 @@ export const Container: React.FC<ContainerProps> = ({
 
         const paddingClasses: Record<ContainerPadding, string> = {
             none: 'designbase-container--padding-none',
-            sm: 'designbase-container--padding-sm',
-            md: 'designbase-container--padding-md',
-            lg: 'designbase-container--padding-lg',
+            s: 'designbase-container--padding-s',
+            m: 'designbase-container--padding-m',
+            l: 'designbase-container--padding-l',
             xl: 'designbase-container--padding-xl',
         };
         return paddingClasses[padding];
@@ -86,9 +86,9 @@ export const Container: React.FC<ContainerProps> = ({
 
         const marginClasses: Record<ContainerPadding, string> = {
             none: 'designbase-container--margin-none',
-            sm: 'designbase-container--margin-sm',
-            md: 'designbase-container--margin-md',
-            lg: 'designbase-container--margin-lg',
+            s: 'designbase-container--margin-s',
+            m: 'designbase-container--margin-m',
+            l: 'designbase-container--margin-l',
             xl: 'designbase-container--margin-xl',
         };
         return marginClasses[margin];
@@ -127,7 +127,7 @@ export const Container: React.FC<ContainerProps> = ({
     );
 
     const style: React.CSSProperties = {
-        maxWidth: size === 'full' ? '100%' : `${getMaxWidth()}px`,
+        maxWidth: getMaxWidth(),
         backgroundColor: variant === 'wrapper' ? backgroundColor : undefined,
     };
 

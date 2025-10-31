@@ -1,6 +1,6 @@
 .designbase-sidebar {
-    background-color: var(--db-bg-primary);
-    border-right: 1px solid var(--db-border-primary);
+    background-color: var(--db-surface-base);
+    border-right: 1px solid var(--db-border-base);
     width: 280px;
     height: 100vh;
     overflow-y: auto;
@@ -19,8 +19,7 @@
         align-items: center;
         justify-content: space-between;
         padding: var(--db-padding-m);
-        border-bottom: 1px solid var(--db-border-primary);
-        min-height: 64px;
+        border-bottom: 1px solid var(--db-border-base);
     }
 
     &__logo {
@@ -34,9 +33,9 @@
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
         }
     }
 
@@ -50,31 +49,18 @@
     }
 
     &__toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: var(--db-size-xl);
-        height: var(--db-size-xl);
-        background: none;
-        border: none;
-        cursor: pointer;
-        border-radius: var(--db-radius-sm);
-        transition: all var(--db-animation-speed) var(--db-animation-ease);
         flex-shrink: 0;
 
-        &:hover {
-            background-color: var(--db-bg-tertiary);
-        }
-
-        &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
-            outline-offset: 2px;
+        // Button 컴포넌트의 기본 스타일을 오버라이드
+        .designbase-button {
+            width: var(--db-size-xl);
+            height: var(--db-size-xl);
+            min-width: var(--db-size-xl);
+            padding: 0;
         }
     }
 
     &__toggle-icon {
-        font-size: var(--db-text-sm);
-        color: var(--db-text-secondary);
         transition: transform var(--db-animation-speed) var(--db-animation-ease);
 
         &--collapsed {
@@ -84,7 +70,7 @@
 
     &__nav {
         flex: 1;
-        padding: var(--db-padding-m) 0;
+        padding: var(--db-padding-m);
         overflow-y: auto;
     }
 
@@ -102,29 +88,29 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-s);
-        padding: var(--db-padding-s) var(--db-padding-m);
+        padding: var(--db-padding-s);
         color: var(--db-text-primary);
         text-decoration: none;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
         margin: 0 var(--db-margin-s);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
             color: var(--db-text-primary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &--active {
-            background-color: var(--db-blue-100);
-            color: var(--db-blue-700);
+            background-color: var(--db-feedback-info-bg);
+            color: var(--db-feedback-info-fg);
 
             &::before {
                 content: '';
@@ -134,8 +120,8 @@
                 transform: translateY(-50%);
                 width: 3px;
                 height: 20px;
-                background-color: var(--db-blue-500);
-                border-radius: 0 var(--db-radius-sm) var(--db-radius-sm) 0;
+                background-color: var(--db-brand-primary);
+                border-radius: 0 var(--db-radius-s) var(--db-radius-s) 0;
             }
         }
 
@@ -146,7 +132,7 @@
         }
 
         &--expanded {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
         }
 
         &--has-children {
@@ -177,28 +163,28 @@
         flex-shrink: 0;
 
         &--primary {
-            background-color: var(--db-blue-100);
-            color: var(--db-blue-700);
+            background-color: var(--db-feedback-info-bg);
+            color: var(--db-feedback-info-fg);
         }
 
         &--success {
-            background-color: var(--db-green-100);
-            color: var(--db-green-700);
+            background-color: var(--db-feedback-success-bg);
+            color: var(--db-feedback-success-fg);
         }
 
         &--warning {
-            background-color: var(--db-yellow-100);
-            color: var(--db-yellow-700);
+            background-color: var(--db-feedback-warning-bg);
+            color: var(--db-feedback-warning-fg);
         }
 
         &--danger {
-            background-color: var(--db-red-100);
-            color: var(--db-red-700);
+            background-color: var(--db-feedback-error-bg);
+            color: var(--db-feedback-error-fg);
         }
 
         &--info {
-            background-color: var(--db-blue-100);
-            color: var(--db-blue-700);
+            background-color: var(--db-feedback-info-bg);
+            color: var(--db-feedback-info-fg);
         }
     }
 
@@ -220,6 +206,9 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        background-color: var(--db-surface-base);
+        border-radius: var(--db-radius-s);
+        margin: var(--db-margin-xs) var(--db-margin-s) 0;
 
         &--expanded {
             max-height: 500px;
@@ -228,8 +217,8 @@
 
     &__user {
         padding: var(--db-padding-m);
-        border-top: 1px solid var(--db-border-primary);
-        background-color: var(--db-bg-secondary);
+        border-top: 1px solid var(--db-border-base);
+        background-color: var(--db-surface-base);
     }
 
     &__user-info {
@@ -251,8 +240,8 @@
         width: 40px;
         height: 40px;
         border-radius: var(--db-radius-full);
-        background-color: var(--db-blue-500);
-        color: var(--db-text-inverse);
+        background-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -267,7 +256,7 @@
     }
 
     &__user-name {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-semibold);
         color: var(--db-text-primary);
         white-space: nowrap;
@@ -310,7 +299,7 @@
         transition: all 0.2s ease;
 
         &:hover {
-            color: var(--db-blue-600);
+            color: var(--db-icon-primary);
         }
 
         &--disabled {
@@ -337,8 +326,8 @@
         width: 40px;
         height: 40px;
         border-radius: var(--db-radius-full);
-        background-color: var(--db-blue-500);
-        color: var(--db-text-inverse);
+        background-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -347,11 +336,10 @@
     }
 
     // Sizes
-    &--sm {
+    &--s {
         width: 240px;
 
         .designbase-sidebar__header {
-            min-height: 56px;
             padding: var(--db-padding-s) var(--db-padding-m);
         }
 
@@ -366,7 +354,7 @@
         }
 
         .designbase-sidebar__icon {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             width: 16px;
         }
 
@@ -376,7 +364,7 @@
         .designbase-sidebar__user-avatar-placeholder-collapsed {
             width: 32px;
             height: 32px;
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-sidebar__user-name {
@@ -389,15 +377,14 @@
         }
     }
 
-    &--md {
+    &--m {
         width: 280px;
     }
 
-    &--lg {
+    &--l {
         width: 320px;
 
         .designbase-sidebar__header {
-            min-height: 72px;
             padding: var(--db-padding-l) var(--db-padding-l);
         }
 
@@ -412,7 +399,7 @@
         }
 
         .designbase-sidebar__icon {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             width: 24px;
         }
 
@@ -422,7 +409,7 @@
         .designbase-sidebar__user-avatar-placeholder-collapsed {
             width: 48px;
             height: 48px;
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-sidebar__user-name {
@@ -431,7 +418,7 @@
 
         .designbase-sidebar__user-email,
         .designbase-sidebar__user-role {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
@@ -440,7 +427,7 @@
     // Positions
     &--right {
         border-right: none;
-        border-left: 1px solid var(--db-border-primary);
+        border-left: 1px solid var(--db-border-base);
     }
 
     // States
@@ -468,6 +455,13 @@
 
         .designbase-sidebar__toggle-icon {
             transform: rotate(180deg);
+        }
+
+        .designbase-sidebar__toggle {
+            .designbase-button {
+                width: var(--db-size-xl);
+                height: var(--db-size-xl);
+            }
         }
     }
 
@@ -514,7 +508,7 @@
 
     // Focus styles for accessibility
     &:focus-visible {
-        outline: 2px solid var(--db-blue-500);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 }

@@ -1,9 +1,9 @@
 .designbase-audio-player {
     position: relative;
     width: 100%;
-    background: var(--db-bg-primary);
+    background: var(--db-surface-base);
     border: 1px solid var(--db-border-secondary);
-    border-radius: var(--db-radius-lg);
+    border-radius: var(--db-radius-l);
     padding: var(--db-padding-m);
     font-family: var(--db-font-primary);
     line-height: var(--db-leading-normal);
@@ -11,39 +11,39 @@
     transition: all 0.3s ease;
 
     // 크기 변형
-    &--size-sm {
-        max-width: 300px;
+    &--size-s {
+        max-width: 240px;
         padding: var(--db-padding-s);
     }
 
-    &--size-md {
-        max-width: 400px;
+    &--size-m {
+        max-width: 320px;
         padding: var(--db-padding-m);
     }
 
-    &--size-lg {
-        max-width: 500px;
+    &--size-l {
+        max-width: 400px;
         padding: var(--db-padding-l);
     }
 
     &--size-xl {
-        max-width: 600px;
+        max-width: 480px;
         padding: var(--db-padding-xl);
     }
 
     // 상태 클래스
     &--playing {
         .designbase-audio-player__play-button {
-            background: var(--db-blue-600);
-            color: var(--db-white);
-            transform: scale(1.05);
+            background: var(--db-surface-layer-1);
+            color: var(--db-text-primary);
         }
     }
 
     &--paused {
         .designbase-audio-player__play-button {
-            background: var(--db-neutral-200);
-            color: var(--db-text-primary);
+
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
         }
     }
 
@@ -69,7 +69,7 @@
 
     &--shuffle {
         .designbase-audio-player__control-button[data-shuffle] {
-            color: var(--db-blue-600);
+            color: var(--db-icon-default);
         }
     }
 
@@ -81,13 +81,13 @@
 
     &--repeat-one {
         .designbase-audio-player__control-button[data-repeat] {
-            color: var(--db-blue-600);
+            color: var(--db-icon-default);
         }
     }
 
     &--repeat-all {
         .designbase-audio-player__control-button[data-repeat] {
-            color: var(--db-blue-600);
+            color: var(--db-icon-default);
         }
     }
 
@@ -105,8 +105,8 @@
         .designbase-audio-player__spinner {
             width: 24px;
             height: 24px;
-            border: 2px solid var(--db-border-secondary);
-            border-top: 2px solid var(--db-blue-600);
+            border: 2px solid var(--db-border-base);
+            border-top: 2px solid var(--db-icon-primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -123,29 +123,29 @@
         transition: all 0.3s ease;
         z-index: 10;
         text-align: center;
-        color: var(--db-red-600);
-        background: var(--db-red-50);
-        padding: var(--db-padding-m);
-        border-radius: var(--db-radius-md);
-        border: 1px solid var(--db-red-200);
+        color: var(--db-feedback-error-fg);
+        background: var(--db-feedback-error-bg);
+        padding: var(--db-padding-s);
+        border-radius: var(--db-radius-m);
+        border: 1px solid var(--db-feedback-error-bg);
 
         p {
             margin: 0 0 var(--db-margin-s) 0;
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         button {
-            background: var(--db-blue-600);
-            color: var(--db-white);
+            background: var(--db-button-error-bg);
+            color: var(--db-button-error-text);
             border: none;
             padding: var(--db-padding-xs) var(--db-padding-s);
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
             cursor: pointer;
             font-size: var(--db-text-xs);
             transition: background-color 0.2s ease;
 
             &:hover {
-                background: var(--db-blue-700);
+                background: var(--db-button-error-bg-hover);
             }
         }
     }
@@ -154,17 +154,13 @@
     &__album-art {
         width: 80px;
         height: 80px;
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
         overflow: hidden;
-        margin-right: var(--db-margin-m);
+        margin: 0 auto var(--db-margin-s) auto;
         flex-shrink: 0;
         box-shadow: var(--db-shadow-md);
-        border: 3px solid var(--db-white);
+        border: 1px solid var(--db-border-base);
         transition: transform 0.3s ease;
-
-        &:hover {
-            transform: scale(1.05);
-        }
 
         img {
             width: 100%;
@@ -176,12 +172,12 @@
         .album-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--db-blue-400), var(--db-blue-200));
+            background: var(--db-surface-layer-1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--db-white);
-            font-size: var(--db-text-2xl);
+            font-size: var(--db-text-xl);
             font-weight: var(--db-weight-bold);
         }
     }
@@ -197,28 +193,29 @@
     &__info {
         display: flex;
         align-items: center;
-        gap: var(--db-gap-s);
+        gap: var(--db-gap-xs);
         margin-bottom: var(--db-margin-s);
+        flex-direction: column;
     }
 
     &__title {
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-base);
         font-weight: var(--db-weight-semibold);
-        color: var(--audio-controls-color);
+        color: var(--db-text-primary);
         margin: 0;
         line-height: 1.2;
     }
 
     &__artist {
         font-size: var(--db-text-base);
-        color: var(--db-text-secondary);
+        color: var(--db-text-tertiary);
         margin: 0;
         line-height: 1.2;
     }
 
     &__album {
-        font-size: var(--db-text-sm);
-        color: var(--db-text-muted);
+        font-size: var(--db-text-s);
+        color: var(--db-text-secondary);
         margin: 0;
         line-height: 1.2;
     }
@@ -227,7 +224,7 @@
     &__progress {
         position: relative;
         height: 6px;
-        background: var(--db-bg-secondary);
+        background: var(--db-surface-layer-1);
         border-radius: var(--db-radius-full);
         cursor: pointer;
         margin: var(--db-margin-s) 0;
@@ -236,7 +233,7 @@
 
         .designbase-audio-player__progress-bar {
             height: 100%;
-            background: var(--db-color-primary);
+            background: var(--db-brand-primary);
             border-radius: var(--db-radius-full);
             transition: width 0.1s ease;
             position: relative;
@@ -248,7 +245,7 @@
                 top: 0;
                 width: 16px;
                 height: 16px;
-                background: var(--db-color-primary);
+                background: var(--db-brand-primary);
                 border-radius: 50%;
                 box-shadow: var(--db-shadow-md);
                 transform: translate(50%, -50%);
@@ -262,7 +259,8 @@
             transform: translate(-50%, -50%);
             width: 16px;
             height: 16px;
-            background: var(--db-bg-primary);
+            background: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
             border-radius: 50%;
             opacity: 1;
             transition: opacity 0.2s ease;
@@ -280,7 +278,6 @@
         justify-content: space-between;
         align-items: center;
         gap: var(--db-gap-s);
-        margin: var(--db-margin-s) 0;
     }
 
     &__left-controls,
@@ -299,20 +296,19 @@
     &__control-button {
         background: none;
         border: none;
-        color: var(--audio-controls-color);
+        color: var(--db-icon-default);
         cursor: pointer;
         padding: var(--db-padding-xs);
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         transition: all 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
 
         &:hover {
-            background: var(--db-bg-secondary);
-            transform: scale(1.1);
+            background: var(--db-surface-layer-1);
         }
 
         &:disabled {
@@ -327,9 +323,9 @@
     }
 
     &__play-button {
-        background: var(--db-blue-600);
+        background: var(--db-brand-primary);
         border: none;
-        color: var(--db-white);
+        color: var(--db-text-inverse-primary);
         border-radius: 50%;
         width: 56px;
         height: 56px;
@@ -338,18 +334,8 @@
         justify-content: center;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: var(--db-shadow-lg);
+        box-shadow: var(--db-shadow-l);
         font-size: var(--db-text-xl);
-
-        &:hover {
-            transform: scale(1.1);
-            box-shadow: var(--db-shadow-xl);
-        }
-
-        &:hover {
-            background: var(--db-blue-700);
-            transform: scale(1.05);
-        }
     }
 
     // 하단 컨트롤
@@ -357,7 +343,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
     }
 
     &__left-bottom,
@@ -369,17 +355,10 @@
 
     // 시간 표시
     &__time {
-        font-size: var(--db-text-base);
-        font-weight: var(--db-weight-semibold);
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-medium);
         color: var(--db-text-primary);
-        font-family: 'Courier New', monospace;
-        background: var(--db-bg-secondary);
-        padding: var(--db-padding-xs) var(--db-padding-s);
-        border-radius: var(--db-radius-sm);
-        border: 1px solid var(--db-border-secondary);
         min-width: 80px;
-        text-align: center;
-        box-shadow: var(--db-shadow-sm);
     }
 
     // 볼륨 컨트롤
@@ -393,22 +372,21 @@
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--db-white);
-            padding: var(--db-padding-m);
-            border-radius: var(--db-radius-lg);
-            margin-bottom: var(--db-margin-s);
+            background: var(--db-surface-base);
+            padding: var(--db-padding-s);
+            border-radius: var(--db-radius-l);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 10;
             box-shadow: var(--db-shadow-xl);
-            border: 1px solid var(--db-border-secondary);
+            border: 1px solid var(--db-border-base);
             min-width: 120px;
 
             input[type="range"] {
                 width: 100px;
-                height: 6px;
-                background: var(--db-neutral-200);
+                height: 4px;
+                background: var(--db-surface-layer-1);
                 border-radius: var(--db-radius-full);
                 outline: none;
                 cursor: pointer;
@@ -417,7 +395,7 @@
                     appearance: none;
                     width: 16px;
                     height: 16px;
-                    background: var(--db-blue-600);
+                    background: var(--db-brand-primary);
                     border-radius: 50%;
                     cursor: pointer;
                     box-shadow: var(--db-shadow-md);
@@ -426,7 +404,7 @@
                 &::-moz-range-thumb {
                     width: 16px;
                     height: 16px;
-                    background: var(--db-blue-600);
+                    background: var(--db-color-info);
                     border-radius: 50%;
                     cursor: pointer;
                     border: none;
@@ -439,7 +417,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: var(--db-margin-s);
                 font-size: var(--db-text-xs);
                 color: var(--db-text-secondary);
             }
@@ -487,8 +464,8 @@
             right: 0;
             background: var(--audio-controls-bg);
             border: 1px solid var(--audio-border-color);
-            border-radius: var(--db-radius-md);
-            padding: var(--db-padding-md);
+            border-radius: var(--db-radius-m);
+            padding: var(--db-padding-m);
             min-width: 150px;
             box-shadow: var(--db-shadow-lg);
             z-index: 20;
@@ -511,16 +488,16 @@
 
                 select {
                     width: 100%;
-                    padding: var(--db-padding-xs) var(--db-padding-sm);
+                    padding: var(--db-padding-xs) var(--db-padding-s);
                     border: 1px solid var(--db-border-secondary);
-                    border-radius: var(--db-radius-sm);
-                    background: var(--db-bg-primary);
+                    border-radius: var(--db-radius-s);
+                    background: var(--db-surface-base);
                     color: var(--db-text-primary);
                     font-size: var(--db-text-xs);
 
                     &:focus {
                         outline: none;
-                        border-color: var(--db-blue-600);
+                        border-color: var(--db-color-info);
                     }
                 }
             }
@@ -529,15 +506,13 @@
 
     // 플레이리스트
     &__playlist {
-        margin-top: var(--db-margin-lg);
-        border-top: 1px solid var(--db-border-secondary);
-        padding-top: var(--db-padding-md);
+        margin-top: var(--db-margin-l);
 
         h4 {
-            margin: 0 0 var(--db-margin-sm) 0;
-            font-size: var(--db-text-sm);
-            font-weight: var(--db-weight-semibold);
-            color: var(--audio-controls-color);
+            margin-bottom: var(--db-margin-xs);
+            font-size: var(--db-text-s);
+            font-weight: var(--db-weight-medium);
+            color: var(--db-text-secondary);
         }
 
         .designbase-audio-player__playlist-tracks {
@@ -551,30 +526,31 @@
         .designbase-audio-player__playlist-track {
             display: flex;
             align-items: center;
-            gap: var(--db-gap-sm);
-            padding: var(--db-padding-sm);
-            border-radius: var(--db-radius-sm);
+            gap: var(--db-gap-s);
+            padding: var(--db-padding-s);
+            border-radius: var(--db-radius-s);
             cursor: pointer;
+            background: var(--db-surface-layer-1);
             transition: background-color 0.2s ease;
 
             &:hover {
-                background: var(--db-bg-secondary);
+                background: var(--db-surface-layer-2);
             }
 
             &--active {
-                background: var(--db-blue-600);
-                color: var(--db-white);
+                background: var(--db-surface-layer-1);
+                border-left: 2px solid var(--db-brand-primary);
 
                 .designbase-audio-player__playlist-track-title,
                 .designbase-audio-player__playlist-track-artist {
-                    color: var(--db-white);
+                    color: var(--db-text-primary);
                 }
             }
 
             img {
                 width: 40px;
                 height: 40px;
-                border-radius: var(--db-radius-sm);
+                border-radius: var(--db-radius-s);
                 object-fit: cover;
             }
 
@@ -584,9 +560,9 @@
             }
 
             .designbase-audio-player__playlist-track-title {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
                 font-weight: var(--db-weight-medium);
-                color: var(--audio-controls-color);
+                color: var(--db-text-primary);
                 margin: 0;
                 line-height: 1.2;
                 white-space: nowrap;
@@ -596,7 +572,7 @@
 
             .designbase-audio-player__playlist-track-artist {
                 font-size: var(--db-text-xs);
-                color: var(--db-text-secondary);
+                color: var(--db-text-tertiary);
                 margin: 0;
                 line-height: 1.2;
                 white-space: nowrap;
@@ -619,11 +595,11 @@
 
     // 반응형 디자인
     @media (max-width: 768px) {
-        &--size-md {
+        &--size-m {
             max-width: 100%;
         }
 
-        &--size-lg {
+        &--size-l {
             max-width: 100%;
         }
 
@@ -656,9 +632,8 @@
 
     // 접근성
     &:focus-within {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-color-info);
         outline-offset: 2px;
     }
 
-    // 테마는 상위에서 관리됩니다.
 }

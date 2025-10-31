@@ -1,0 +1,109 @@
+.designbase-figma-pricing-comparison {
+    width: 100%;
+    border-radius: var(--db-radius-l);
+    overflow: hidden;
+    text-align: left;
+    border: 1px solid var(--db-border-muted);
+    background-color: var(--db-surface-base);
+    margin: 0;
+
+    &__billing-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-s);
+    }
+
+    &__lifetime-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-s);
+    }
+
+    &__lifetime-text {
+        margin: 0;
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-bold);
+        color: var(--db-brand-primary);
+        text-align: center;
+    }
+
+    &__discount-badge {
+        background-color: var(--db-feedback-info-bg);
+        color: var(--db-brand-primary);
+        padding: var(--db-padding-xs);
+        border-radius: var(--db-radius-full);
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-medium);
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--db-text-s);
+
+        thead {
+            th {
+                padding: var(--db-padding-s) 0;
+                font-weight: var(--db-weight-bold);
+
+                &:first-child {
+                    padding: var(--db-padding-s);
+                }
+            }
+        }
+
+        tbody {
+            td {
+                &:first-child {
+                    padding: var(--db-padding-s);
+                }
+            }
+        }
+
+        th,
+        td {
+            padding: var(--db-padding-s) 0;
+            text-align: left;
+            border-bottom: 1px solid var(--db-border-muted);
+            font-size: var(--db-text-xs);
+
+            &:nth-child(2),
+            &:nth-child(3) {
+                text-align: center;
+                width: 120px;
+            }
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+    }
+
+    &__recommended {
+        background-color: var(--color-aliases-brand-primary-alpha-10);
+        position: relative;
+        overflow: visible;
+    }
+
+    &__plan-name {
+        font-size: var(--db-text-base);
+        font-weight: var(--db-weight-bold);
+    }
+
+    &__recommended-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: var(--db-text-xs);
+        background-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
+        padding: 2px var(--db-padding-s);
+        border-radius: var(--db-radius-full);
+        white-space: nowrap;
+    }
+}

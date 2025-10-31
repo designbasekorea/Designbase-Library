@@ -9,7 +9,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './Progress.scss';
 
-export type ProgressSize = 'sm' | 'md' | 'lg';
+export type ProgressSize = 's' | 'm' | 'l';
 export type ProgressVariant = 'default' | 'success' | 'warning' | 'danger';
 export type ProgressType = 'linear' | 'circular';
 
@@ -39,7 +39,7 @@ export interface ProgressProps {
 export const Progress: React.FC<ProgressProps> = ({
     value,
     max = 100,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     type = 'linear',
     showValue = false,

@@ -9,7 +9,7 @@ import React, { useState, useCallback } from 'react';
 import clsx from 'clsx';
 import './Stepper.scss';
 
-export type StepperSize = 'sm' | 'md' | 'lg';
+export type StepperSize = 's' | 'm' | 'l';
 export type StepperVariant = 'default' | 'outlined' | 'filled';
 
 export interface StepperProps {
@@ -44,7 +44,7 @@ export const Stepper: React.FC<StepperProps> = ({
     min = 0,
     max = 100,
     step = 1,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     disabled = false,
     readonly = false,

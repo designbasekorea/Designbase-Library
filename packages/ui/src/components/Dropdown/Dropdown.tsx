@@ -8,16 +8,19 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
-import { ChevronDownIcon } from '@designbase/icons';
+import { ChevronDownIcon } from '@designbasekorea/icons';
+import { Button } from '../Button/Button';
 import './Dropdown.scss';
 
 export interface DropdownItem {
     id: string;
-    label: string;
+    label?: string;
     icon?: React.ComponentType<{ size?: number }>;
     disabled?: boolean;
     divider?: boolean;
     onClick?: () => void;
+    /** 커스텀 컨텐츠 (아이템 대신 렌더링) */
+    custom?: React.ReactNode;
 }
 
 export interface DropdownProps {
@@ -27,8 +30,14 @@ export interface DropdownProps {
     trigger?: React.ReactNode;
     /** 트리거 라벨 */
     label?: string;
+    /** 트리거 버튼 variant */
+    triggerVariant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'ghost';
+    /** 트리거 버튼 아이콘 */
+    triggerIcon?: React.ComponentType<{ size?: number }>;
+    /** 아이콘 전용 버튼 여부 */
+    iconOnly?: boolean;
     /** 드롭다운 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 드롭다운 위치 */
     placement?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
     /** 전체 너비 여부 */
@@ -49,7 +58,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
     items,
     trigger,
     label = '메뉴',
-    size = 'md',
+    triggerVariant = 'tertiary',
+    triggerIcon,
+    iconOnly = false,
+    size = 'm',
     placement = 'bottom-left',
     fullWidth = false,
     disabled = false,
@@ -58,11 +70,13 @@ export const Dropdown: React.FC<DropdownProps> = ({
     onToggle,
     ...props
 }) => {
+    // 아이콘 크기 계산 (m이 기본값)
+    const iconSize = size === 's' ? 14 : size === 'l' ? 18 : 16;
     const [isOpen, setIsOpen] = useState(false);
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
     const containerRef = useRef<HTMLDivElement>(null);
-    const triggerRef = useRef<HTMLButtonElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const itemRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
@@ -205,12 +219,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         className
     );
 
-    const triggerClasses = clsx(
-        'designbase-dropdown__trigger',
-        {
-            'designbase-dropdown__trigger--open': isDropdownOpen,
-        }
-    );
+    const buttonSize = size;
 
     const menuClasses = clsx(
         'designbase-dropdown__menu',
@@ -222,26 +231,30 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
     return (
         <div ref={containerRef} className={classes} {...props}>
-            <button
-                ref={triggerRef}
-                className={triggerClasses}
-                onClick={handleToggle}
-                onKeyDown={handleKeyDown}
-                disabled={disabled}
-                aria-haspopup="true"
-                aria-expanded={isDropdownOpen}
-                aria-label={label}
-            >
-                {trigger || (
-                    <>
-                        <span className="designbase-dropdown__trigger-label">{label}</span>
-                        <ChevronDownIcon
-                            size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16}
-                            className="designbase-dropdown__trigger-icon"
-                        />
-                    </>
-                )}
-            </button>
+            {trigger ? (
+                <div ref={triggerRef} onClick={handleToggle} onKeyDown={handleKeyDown}>
+                    {trigger}
+                </div>
+            ) : (
+                <div ref={triggerRef}>
+                    <Button
+                        variant={triggerVariant}
+                        size={buttonSize}
+                        iconOnly={iconOnly}
+                        startIcon={triggerIcon}
+                        endIcon={ChevronDownIcon}
+                        disabled={disabled}
+                        fullWidth={fullWidth}
+                        onPress={handleToggle}
+                        aria-haspopup="true"
+                        aria-expanded={isDropdownOpen}
+                        aria-label={label}
+                        className={isDropdownOpen ? 'designbase-dropdown__trigger--open' : ''}
+                    >
+                        {label}
+                    </Button>
+                </div>
+            )}
 
             <div
                 ref={menuRef}
@@ -257,6 +270,15 @@ export const Dropdown: React.FC<DropdownProps> = ({
                                 className="designbase-dropdown__divider"
                                 role="separator"
                             />
+                        );
+                    }
+
+                    // 커스텀 컨텐츠가 있는 경우
+                    if (item.custom) {
+                        return (
+                            <div key={item.id} className="designbase-dropdown__custom">
+                                {item.custom}
+                            </div>
                         );
                     }
 
@@ -289,10 +311,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
                         >
                             {item.icon && (
                                 <span className="designbase-dropdown__item-icon">
-                                    <item.icon size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16} />
+                                    <item.icon size={iconSize} />
                                 </span>
                             )}
-                            <span className="designbase-dropdown__item-label">{item.label}</span>
+                            {item.label && (
+                                <span className="designbase-dropdown__item-label">{item.label}</span>
+                            )}
                         </button>
                     );
                 })}

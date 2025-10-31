@@ -20,7 +20,7 @@ const meta: Meta<typeof SearchBar> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
             description: '검색바의 크기',
         },
         variant: {
@@ -77,14 +77,14 @@ export const WithValue: Story = {
 
 export const Small: Story = {
     args: {
-        size: 'sm',
+        size: 's',
         placeholder: '작은 검색바',
     },
 };
 
 export const Large: Story = {
     args: {
-        size: 'lg',
+        size: 'l',
         placeholder: '큰 검색바',
     },
 };
@@ -199,16 +199,64 @@ export const AllSizes: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '400px' }}>
             <div>
                 <h4>Small</h4>
-                <SearchBar size="sm" placeholder="작은 크기" />
+                <SearchBar size="s" placeholder="작은 크기" />
             </div>
             <div>
                 <h4>Medium</h4>
-                <SearchBar size="md" placeholder="중간 크기" />
+                <SearchBar size="m" placeholder="중간 크기" />
             </div>
             <div>
                 <h4>Large</h4>
-                <SearchBar size="lg" placeholder="큰 크기" />
+                <SearchBar size="l" placeholder="큰 크기" />
             </div>
         </div>
     ),
+};
+
+export const WithRecentSearches: Story = {
+    args: {
+        enableRecentSearches: true,
+        placeholder: '최근 검색어 기능',
+    },
+};
+
+export const WithSuggestedSearches: Story = {
+    args: {
+        suggestedSearches: ['React 컴포넌트', 'TypeScript 가이드', 'CSS 스타일링'],
+        placeholder: '추천 검색어 롤링',
+    },
+};
+
+export const WithBothFeatures: Story = {
+    args: {
+        enableRecentSearches: true,
+        suggestedSearches: ['최신 트렌드', '인기 키워드', '추천 콘텐츠'],
+        placeholder: '모든 기능 활성화',
+    },
+};
+
+export const SuggestionClickDemo: Story = {
+    render: () => {
+        const [value, setValue] = useState('');
+
+        const handleSearch = (searchValue: string) => {
+            console.log('검색 실행:', searchValue);
+            alert(`검색: ${searchValue}`);
+        };
+
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '400px' }}>
+                <SearchBar
+                    value={value}
+                    onChange={setValue}
+                    onSearch={handleSearch}
+                    suggestedSearches={['React 컴포넌트', 'TypeScript 가이드', 'CSS 스타일링']}
+                    placeholder="추천 검색어를 클릭해보세요"
+                />
+                <div style={{ fontSize: '14px', color: '#666' }}>
+                    현재 값: {value || '(없음)'} - 추천 검색어 클릭 시 value로 들어갑니다
+                </div>
+            </div>
+        );
+    },
 };

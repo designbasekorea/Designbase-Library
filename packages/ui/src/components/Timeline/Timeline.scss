@@ -83,10 +83,10 @@
 
         &-inner {
             padding: 1rem;
-            background-color: var(--db-bg-primary);
-            border-radius: var(--db-radius-md);
+            background-color: var(--db-surface-base);
+            border-radius: var(--db-radius-m);
             box-shadow: var(--db-shadow-sm);
-            border: 1px solid var(--db-border-primary);
+            border: 1px solid var(--db-border-base);
 
             &:hover {
                 box-shadow: var(--db-shadow-md);
@@ -107,14 +107,14 @@
     }
 
     &__timestamp {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         color: var(--db-text-secondary);
         margin-bottom: 0.5rem;
         font-weight: 500;
     }
 
     &__title {
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-l);
         font-weight: 600;
         color: var(--db-text-primary);
         margin: 0 0 0.5rem 0;
@@ -143,8 +143,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--db-bg-primary);
-        border: 2px solid var(--db-border-primary);
+        background-color: var(--db-surface-base);
+        border: 2px solid var(--db-border-base);
         box-shadow: var(--db-shadow-sm);
         transition: all 0.2s ease;
 
@@ -206,15 +206,15 @@
         }
 
         &--info {
-            border-color: var(--db-blue-600);
+            border-color: var(--db-color-info);
 
             .designbase-timeline__dot-inner {
-                background-color: var(--db-blue-600);
+                background-color: var(--db-color-info);
             }
         }
 
         &--default {
-            border-color: var(--db-border-primary);
+            border-color: var(--db-border-base);
 
             .designbase-timeline__dot-inner {
                 background-color: var(--db-text-secondary);
@@ -232,7 +232,7 @@
 
         &--filled {
             .designbase-timeline__dot-inner {
-                background-color: var(--db-bg-primary);
+                background-color: var(--db-surface-base);
             }
         }
     }
@@ -249,12 +249,12 @@
     &__connector {
         width: 2px;
         height: 2rem;
-        background-color: var(--db-border-primary);
+        background-color: var(--db-border-base);
         margin-top: 0.5rem;
     }
 
     // 크기 변형
-    &--sm {
+    &--s {
         .designbase-timeline__dot {
             width: 1.5rem;
             height: 1.5rem;
@@ -270,11 +270,11 @@
         }
 
         .designbase-timeline__description {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-timeline__dot {
             width: 2.5rem;
             height: 2.5rem;
@@ -286,11 +286,11 @@
         }
 
         .designbase-timeline__title {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-timeline__description {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
     }
 
@@ -415,7 +415,7 @@
         }
 
         &__description {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 }

@@ -7,10 +7,11 @@
 
 import React, { useState, useRef, useCallback } from 'react';
 import clsx from 'clsx';
+import { DownloadIcon } from '@designbasekorea/icons';
 import './Dropzone.scss';
 
 // 타입 정의
-export type DropzoneSize = 'sm' | 'md' | 'lg';
+export type DropzoneSize = 's' | 'm' | 'l';
 export type DropzoneVariant = 'default' | 'outlined' | 'filled';
 
 export interface DropzoneProps {
@@ -61,7 +62,7 @@ export interface DropzoneProps {
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({
-    size = 'md',
+    size = 'm',
     variant = 'default',
     showIcon = true,
     icon,
@@ -179,12 +180,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
     }, [handleFileSelect]);
 
     // 기본 아이콘
-    const defaultIcon = (
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <path d="M24 8L32 16H28V28H20V16H16L24 8Z" fill="currentColor" />
-            <path d="M8 32V40H40V32H36V36H12V32H8Z" fill="currentColor" />
-        </svg>
-    );
+    const defaultIcon = <DownloadIcon size={48} />;
 
     // 서브 텍스트 생성
     const getDescription = useCallback((): string => {

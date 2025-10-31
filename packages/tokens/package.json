@@ -1,6 +1,6 @@
 {
-  "name": "@designbase/tokens",
-  "version": "2.0.0",
+  "name": "@designbasekorea/tokens",
+  "version": "0.1.16",
   "description": "Designbase 디자인 토큰 시스템 - 색상, 타이포그래피, 간격, 그림자 등의 디자인 토큰을 정의",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -19,18 +19,17 @@
   },
   "sideEffects": false,
   "files": [
-    "dist",
-    "tokens",
-    "style-dictionary.config.js"
+    "dist"
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build:tokens": "style-dictionary build --config style-dictionary.config.js",
+    "build:tokens": "node scripts/build-tokens.js",
     "build": "npm run clean && npm run build:tokens && rollup -c",
     "dev": "style-dictionary build --config style-dictionary.config.js --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "test": "jest",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "storybook": "echo 'Tokens package does not have storybook'"
   },
   "dependencies": {
     "color2k": "^2.0.2"
@@ -50,7 +49,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/designbase/designbase-library.git",
+    "url": "https://github.com/designbasekorea/Designbase-Library.git",
     "directory": "packages/tokens"
   }
 }

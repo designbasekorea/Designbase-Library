@@ -13,13 +13,12 @@
     }
 
     &--full-height {
-        height: 100%;
+        height: 100vh;
+        min-height: 100vh;
     }
 
     // 드래그 중일 때
     &--dragging {
-        cursor: col-resize;
-
         * {
             pointer-events: none;
         }
@@ -33,36 +32,29 @@
     &--direction-horizontal {
         flex-direction: row;
 
-        .designbase-split-view__first {
-            width: var(--split-value);
-            min-width: 0;
-            flex-shrink: 0;
-        }
-
-        .designbase-split-view__second {
-            flex: 1;
-            min-width: 0;
+        &.designbase-split-view--dragging {
+            cursor: col-resize;
         }
 
         .designbase-split-view__splitter {
-            width: var(--splitter-size, 4px);
+            width: 8px;
+            height: 100%;
             cursor: col-resize;
             flex-shrink: 0;
 
-            &:hover {
-                background-color: var(--splitter-hover-color, var(--db-border-primary));
+            &::before {
+                width: 3px;
+                height: 24px;
+                background-color: var(--db-border-base);
             }
 
-            &::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 2px;
-                height: 20px;
-                background-color: var(--splitter-color, var(--db-border-primary));
-                border-radius: 1px;
+            &:hover,
+            &:active {
+
+                &::before {
+                    height: 48px;
+                    background-color: var(--db-brand-primary);
+                }
             }
         }
     }
@@ -70,115 +62,71 @@
     &--direction-vertical {
         flex-direction: column;
 
-        .designbase-split-view__first {
-            height: var(--split-value);
-            min-height: 0;
-            flex-shrink: 0;
-        }
-
-        .designbase-split-view__second {
-            flex: 1;
-            min-height: 0;
+        &.designbase-split-view--dragging {
+            cursor: row-resize;
         }
 
         .designbase-split-view__splitter {
-            height: var(--splitter-size, 4px);
+            width: 100%;
+            height: 8px;
             cursor: row-resize;
             flex-shrink: 0;
 
-            &:hover {
-                background-color: var(--splitter-hover-color, var(--db-border-primary));
+            &::before {
+                width: 24px;
+                height: 3px;
+
+                background-color: var(--db-border-base);
             }
 
-            &::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 20px;
-                height: 2px;
-                background-color: var(--splitter-color, var(--db-border-primary));
-                border-radius: 1px;
+            &:hover,
+            &:active {
+
+                &::before {
+                    width: 48px;
+                    background-color: var(--db-brand-primary);
+                }
             }
         }
     }
 
     // 패널 스타일
-    &__first,
-    &__second {
-        overflow: hidden;
+    &__panel {
         box-sizing: border-box;
+        min-width: 0;
+        min-height: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        // 기본 스크롤 설정 (flexible 패널만)
+        &.designbase-split-view__panel--flexible {
+            overflow-y: auto;
+            overflow-x: hidden;
+            flex: 1;
+        }
+
+        // 고정 크기 패널 (헤더, 푸터 등)
+        &.designbase-split-view__panel--fixed {
+            overflow: visible;
+            flex-shrink: 0;
+        }
     }
 
-    // 분할선 스타일
+    // 분할선 기본 스타일
     &__splitter {
         position: relative;
-        background-color: var(--splitter-color, var(--db-border-muted));
-        transition: background-color 0.2s ease;
+        transition: all 0.2s ease;
         z-index: 10;
 
-        &:hover {
-            background-color: var(--splitter-hover-color, var(--db-border-primary));
-        }
-
-        &:active {
-            background-color: var(--splitter-hover-color, var(--db-border-primary));
-        }
-    }
-}
-
-// 테마는 상위에서 관리됩니다.
-
-// 반응형 스타일
-@media (max-width: 768px) {
-    .designbase-split-view {
-        &--direction-horizontal {
-            .designbase-split-view__splitter {
-                width: 6px;
-
-                &::before {
-                    width: 3px;
-                    height: 16px;
-                }
-            }
-        }
-
-        &--direction-vertical {
-            .designbase-split-view__splitter {
-                height: 6px;
-
-                &::before {
-                    width: 16px;
-                    height: 3px;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    .designbase-split-view {
-        &--direction-horizontal {
-            .designbase-split-view__splitter {
-                width: 8px;
-
-                &::before {
-                    width: 4px;
-                    height: 12px;
-                }
-            }
-        }
-
-        &--direction-vertical {
-            .designbase-split-view__splitter {
-                height: 8px;
-
-                &::before {
-                    width: 12px;
-                    height: 4px;
-                }
-            }
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: var(--db-radius-s);
+            transition: all 0.2s ease;
         }
     }
 }

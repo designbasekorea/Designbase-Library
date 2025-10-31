@@ -1,0 +1,52 @@
+.designbase-label {
+    display: inline-block;
+    font-weight: var(--db-weight-medium, 500);
+    color: var(--db-text-primary, #111827);
+    line-height: var(--db-leading-normal, 1.5);
+    cursor: pointer;
+    transition: color var(--db-animation-speed, 0.2s) ease;
+
+    // 크기 변형
+    &--s {
+        font-size: var(--db-text-xs);
+    }
+
+    &--m {
+        font-size: var(--db-text-s);
+    }
+
+    &--l {
+        font-size: var(--db-text-base);
+    }
+
+    // 필수 표시
+    &__required {
+        color: var(--db-feedback-error-fg, #dc2626);
+        margin-left: var(--db-margin-xs);
+        font-weight: var(--db-weight-semibold, 600);
+    }
+
+    // 비활성화 상태
+    &--disabled {
+        color: var(--db-text-disabled, #9ca3af);
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    // 에러 상태
+    &--error {
+        color: var(--db-feedback-error-fg, #dc2626);
+    }
+
+    // Hover 상태 (비활성화가 아닐 때만)
+    &:not(&--disabled):hover {
+        color: var(--db-text-secondary, #6b7280);
+    }
+
+    // Focus-within (연결된 input이 focus될 때)
+    &:has(+ *:focus),
+    &:has(+ * input:focus),
+    &:has(+ * textarea:focus) {
+        color: var(--db-brand-primary, #3b82f6);
+    }
+}

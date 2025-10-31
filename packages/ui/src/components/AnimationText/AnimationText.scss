@@ -9,16 +9,16 @@
         font-size: var(--db-text-xs);
     }
 
-    &--sm {
-        font-size: var(--db-text-sm);
+    &--s {
+        font-size: var(--db-text-s);
     }
 
-    &--md {
+    &--m {
         font-size: var(--db-text-base);
     }
 
-    &--lg {
-        font-size: var(--db-text-lg);
+    &--l {
+        font-size: var(--db-text-l);
     }
 
     &--xl {
@@ -97,7 +97,7 @@
     }
 
     &--info {
-        color: var(--db-blue-600);
+        color: var(--db-color-info);
     }
 
     &--custom {
@@ -582,7 +582,7 @@
         }
 
         &--xl {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
     }
 }

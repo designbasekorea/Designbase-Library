@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M7.997 4.472A1.75 1.75 0 0 1 9.203 4l5.022.033a1.75 1.75 0 0 1 1.444.779l1.482 2.224h2.599a2.75 2.75 0 0 1 2.75 2.75v7a2.75 2.75 0 0 1-2.75 2.75h-16A2.75 2.75 0 0 1 1 16.786v-7a2.75 2.75 0 0 1 2.75-2.75h2.583l1.592-2.564zM9.194 5.5a.25.25 0 0 0-.215.119l-.22.353-1.592 2.564H3.75c-.69 0-1.25.56-1.25 1.25v7c0 .69.56 1.25 1.25 1.25h16c.69 0 1.25-.56 1.25-1.25v-7c0-.69-.56-1.25-1.25-1.25h-3.401L14.42 5.644a.25.25 0 0 0-.205-.111z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.75 10.036a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5M8 12.286a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const CameraIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M7.785 5.475A2.73 2.73 0 0 1 10.07 4.25h3.86c.907 0 1.773.452 2.285 1.225v.002l1.186 1.773H20A2.756 2.756 0 0 1 22.75 10v7A2.756 2.756 0 0 1 20 19.75H4A2.756 2.756 0 0 1 1.25 17v-7A2.756 2.756 0 0 1 4 7.25h2.6zm2.285.275c-.42 0-.804.206-1.034.553l-.002.004L7.4 8.75H4c-.686 0-1.25.564-1.25 1.25v7c0 .686.564 1.25 1.25 1.25h16c.686 0 1.25-.564 1.25-1.25v-7c0-.686-.564-1.25-1.25-1.25h-3.4l-1.636-2.447a1.24 1.24 0 0 0-1.034-.553z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M12 10.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5M8.25 13a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0" clip-rule="evenodd"/></svg>
+);
 
 export default CameraIcon;

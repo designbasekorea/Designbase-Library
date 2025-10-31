@@ -5,7 +5,7 @@
     outline: none;
 
     // 기본 색상 (테마 변수 사용)
-    border-color: var(--db-border-primary);
+    border-color: var(--db-border-base);
 
     // Horizontal 기본 스타일
     &--horizontal {
@@ -58,35 +58,35 @@
 
     // 색상 변형
     &--primary {
-        border-color: var(--db-blue-500);
+        border-color: var(--db-color-info);
     }
 
     &--secondary {
-        border-color: var(--db-neutral-500);
+        border-color: var(--db-border-secondary);
     }
 
     &--success {
-        border-color: var(--db-green-500);
+        border-color: var(--db-color-success);
     }
 
     &--warning {
-        border-color: var(--db-yellow-500);
+        border-color: var(--db-color-warning);
     }
 
     &--danger {
-        border-color: var(--db-red-500);
+        border-color: var(--db-color-danger);
     }
 
     &--info {
-        border-color: var(--db-blue-500);
+        border-color: var(--db-color-info);
     }
 
     &--light {
-        border-color: var(--db-neutral-200);
+        border-color: var(--db-border-muted);
     }
 
     &--dark {
-        border-color: var(--db-neutral-800);
+        border-color: var(--db-border-base);
     }
 
     // 마진 유틸리티
@@ -146,7 +146,7 @@
 
     // 접근성 개선
     &:focus {
-        outline: 2px solid var(--db-blue-500);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 }

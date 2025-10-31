@@ -11,7 +11,7 @@ import './Timeline.scss';
 
 export type TimelinePosition = 'left' | 'right' | 'alternate' | 'reverse-alternate';
 export type TimelineVariant = 'default' | 'outlined' | 'filled';
-export type TimelineSize = 'sm' | 'md' | 'lg';
+export type TimelineSize = 's' | 'm' | 'l';
 export type TimelineColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'default';
 
 export interface TimelineItem {
@@ -66,7 +66,7 @@ const Timeline: React.FC<TimelineProps> = ({
     items,
     position = 'alternate',
     variant = 'default',
-    size = 'md',
+    size = 'm',
     color = 'primary',
     clickable = false,
     fullWidth = false,

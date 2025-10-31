@@ -82,7 +82,7 @@ export const Sizes: Story = {
                 <h3>Small (320px)</h3>
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
-                    size="sm"
+                    size="s"
                     title="Small Player"
                 />
             </div>
@@ -90,7 +90,7 @@ export const Sizes: Story = {
                 <h3>Medium (640px)</h3>
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
-                    size="md"
+                    size="m"
                     title="Medium Player"
                 />
             </div>
@@ -98,7 +98,7 @@ export const Sizes: Story = {
                 <h3>Large (960px)</h3>
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
-                    size="lg"
+                    size="l"
                     title="Large Player"
                 />
             </div>
@@ -123,7 +123,7 @@ export const Variants: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     variant="default"
-                    size="md"
+                    size="m"
                     title="Default Player"
                     description="기본 스타일의 YouTube 플레이어입니다."
                 />
@@ -133,7 +133,7 @@ export const Variants: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     variant="minimal"
-                    size="md"
+                    size="m"
                     title="Minimal Player"
                 />
             </div>
@@ -142,7 +142,7 @@ export const Variants: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     variant="theater"
-                    size="md"
+                    size="m"
                     title="Theater Player"
                 />
             </div>
@@ -160,7 +160,7 @@ export const AutoPlayAndLoop: Story = {
                     videoId="dQw4w9WgXcQ"
                     autoPlay={true}
                     muted={true}
-                    size="md"
+                    size="m"
                     title="Auto Play Player"
                     description="자동재생이 활성화된 플레이어 (브라우저 정책상 음소거 필요)"
                 />
@@ -170,7 +170,7 @@ export const AutoPlayAndLoop: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     loop={true}
-                    size="md"
+                    size="m"
                     title="Loop Player"
                     description="반복재생이 활성화된 플레이어"
                 />
@@ -182,7 +182,7 @@ export const AutoPlayAndLoop: Story = {
                     autoPlay={true}
                     loop={true}
                     muted={true}
-                    size="md"
+                    size="m"
                     title="Auto Play + Loop Player"
                     description="자동재생과 반복재생이 모두 활성화된 플레이어"
                 />
@@ -200,7 +200,7 @@ export const ControlSettings: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     showControls={false}
-                    size="md"
+                    size="m"
                     title="No Controls Player"
                     description="컨트롤이 숨겨진 플레이어"
                 />
@@ -210,7 +210,7 @@ export const ControlSettings: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     enableFullscreen={false}
-                    size="md"
+                    size="m"
                     title="No Fullscreen Player"
                     description="전체화면 기능이 비활성화된 플레이어"
                 />
@@ -220,7 +220,7 @@ export const ControlSettings: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     showRelatedVideos={false}
-                    size="md"
+                    size="m"
                     title="No Related Videos Player"
                     description="관련 동영상이 표시되지 않는 플레이어"
                 />
@@ -239,7 +239,7 @@ export const SubtitleSettings: Story = {
                     videoId="dQw4w9WgXcQ"
                     showSubtitles={true}
                     defaultSubtitleLang="ko"
-                    size="md"
+                    size="m"
                     title="Korean Subtitles Player"
                     description="한국어 자막이 활성화된 플레이어"
                 />
@@ -250,7 +250,7 @@ export const SubtitleSettings: Story = {
                     videoId="dQw4w9WgXcQ"
                     showSubtitles={true}
                     defaultSubtitleLang="en"
-                    size="md"
+                    size="m"
                     title="English Subtitles Player"
                     description="영어 자막이 활성화된 플레이어"
                 />
@@ -272,7 +272,7 @@ export const Playlist: Story = {
                         'y6120QOlsfU',
                         'ZZ5LpwO-An4'
                     ]}
-                    size="md"
+                    size="m"
                     title="Playlist Player"
                     description="여러 동영상이 포함된 플레이리스트"
                 />
@@ -290,7 +290,7 @@ export const TimeSettings: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     startTime={30}
-                    size="md"
+                    size="m"
                     title="Start Time Player"
                     description="30초부터 재생되는 플레이어"
                 />
@@ -300,7 +300,7 @@ export const TimeSettings: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     endTime={60}
-                    size="md"
+                    size="m"
                     title="End Time Player"
                     description="60초까지만 재생되는 플레이어"
                 />
@@ -311,7 +311,7 @@ export const TimeSettings: Story = {
                     videoId="dQw4w9WgXcQ"
                     startTime={30}
                     endTime={60}
-                    size="md"
+                    size="m"
                     title="Time Range Player"
                     description="30초부터 60초까지만 재생되는 플레이어"
                 />
@@ -328,7 +328,7 @@ export const URLFormats: Story = {
                 <h3>비디오 ID만</h3>
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
-                    size="md"
+                    size="m"
                     title="Video ID Only"
                 />
             </div>
@@ -336,7 +336,7 @@ export const URLFormats: Story = {
                 <h3>YouTube URL</h3>
                 <YouTubePlayer
                     videoId="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    size="md"
+                    size="m"
                     title="YouTube URL"
                 />
             </div>
@@ -344,7 +344,7 @@ export const URLFormats: Story = {
                 <h3>Short URL</h3>
                 <YouTubePlayer
                     videoId="https://youtu.be/dQw4w9WgXcQ"
-                    size="md"
+                    size="m"
                     title="Short URL"
                 />
             </div>
@@ -352,7 +352,7 @@ export const URLFormats: Story = {
                 <h3>Embed URL</h3>
                 <YouTubePlayer
                     videoId="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    size="md"
+                    size="m"
                     title="Embed URL"
                 />
             </div>
@@ -369,7 +369,7 @@ export const Themes: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     theme="light"
-                    size="md"
+                    size="m"
                     title="Light Theme Player"
                     description="라이트 테마가 적용된 플레이어"
                 />
@@ -379,7 +379,7 @@ export const Themes: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     theme="dark"
-                    size="md"
+                    size="m"
                     title="Dark Theme Player"
                     description="다크 테마가 적용된 플레이어"
                 />
@@ -389,7 +389,7 @@ export const Themes: Story = {
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
                     theme="auto"
-                    size="md"
+                    size="m"
                     title="Auto Theme Player"
                     description="시스템 테마에 따라 자동 적용되는 플레이어"
                 />
@@ -442,7 +442,7 @@ export const UsageExamples: Story = {
                     <YouTubePlayer
                         videoId="dQw4w9WgXcQ"
                         variant="theater"
-                        size="lg"
+                        size="l"
                         title="제품 소개 영상"
                         autoPlay={true}
                         muted={true}
@@ -479,7 +479,7 @@ export const UsageExamples: Story = {
                     
                     <YouTubePlayer
                         videoId="dQw4w9WgXcQ"
-                        size="md"
+                        size="m"
                         title="프로그래밍 기초 강의 1편"
                         description="프로그래밍의 기본 개념과 개발 환경 설정에 대해 알아봅니다."
                         showSubtitles={true}
@@ -510,7 +510,7 @@ export const Accessibility: Story = {
                 <h3>접근성 고려 플레이어</h3>
                 <YouTubePlayer
                     videoId="dQw4w9WgXcQ"
-                    size="md"
+                    size="m"
                     title="접근성을 고려한 YouTube 플레이어"
                     description="스크린 리더와 키보드 네비게이션을 지원하는 플레이어입니다."
                     showSubtitles={true}

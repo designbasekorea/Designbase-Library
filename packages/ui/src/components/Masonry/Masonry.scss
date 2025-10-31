@@ -45,7 +45,7 @@
         }
     }
 
-    &--spacing-sm {
+    &--spacing-s {
         gap: var(--db-gap-s);
 
         .designbase-masonry__column {
@@ -53,7 +53,7 @@
         }
     }
 
-    &--spacing-md {
+    &--spacing-m {
         gap: var(--db-gap-m);
 
         .designbase-masonry__column {
@@ -61,7 +61,7 @@
         }
     }
 
-    &--spacing-lg {
+    &--spacing-l {
         gap: var(--db-gap-l);
 
         .designbase-masonry__column {
@@ -81,7 +81,7 @@
     &__item {
         position: relative;
         overflow: hidden;
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         cursor: pointer;
         opacity: 0;
@@ -117,7 +117,7 @@
         left: 0;
         right: 0;
         background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-        color: white;
+        color: var(--db-text-inverse-primary);
         padding: var(--db-padding-m);
         opacity: 0;
         transition: opacity var(--db-animation-speed) var(--db-animation-ease);
@@ -126,16 +126,17 @@
 
     &__title {
         margin: 0 0 var(--db-margin-xs) 0;
-        font-size: var(--db-text-lg);
+        font-size: var(--db-text-m);
         font-weight: var(--db-weight-semibold);
+        color: var(--db-text-inverse-primary);
         line-height: 1.3;
     }
 
     &__description {
         margin: 0;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         line-height: 1.4;
-        opacity: var(--db-opacity-90);
+        color: var(--db-text-inverse-secondary);
     }
 
     // 메타데이터
@@ -144,20 +145,18 @@
         top: var(--db-margin-s);
         right: var(--db-margin-s);
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         gap: var(--db-gap-xs);
         font-size: var(--db-text-xs);
-        color: white;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        color: var(--db-text-inverse-primary);
         pointer-events: none;
     }
 
     &__date,
     &__size {
         background: rgba(0, 0, 0, 0.6);
-        padding: var(--db-padding-xs) var(--db-padding-s);
-        border-radius: var(--db-radius-sm);
-        font-weight: var(--db-weight-medium);
+        padding: var(--db-padding-xs);
+        border-radius: var(--db-radius-s);
     }
 
     // 애니메이션
@@ -258,16 +257,16 @@
         }
 
         &::-webkit-scrollbar-track {
-            background: var(--db-bg-secondary);
-            border-radius: var(--db-radius-sm);
+            background: var(--db-surface-layer-1);
+            border-radius: var(--db-radius-s);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--db-border-primary);
-            border-radius: var(--db-radius-sm);
+            background: var(--db-border-base);
+            border-radius: var(--db-radius-s);
 
             &:hover {
-                background: var(--db-border-secondary);
+                background: var(--db-border-hover);
             }
         }
     }
@@ -276,7 +275,7 @@
 
     // 접근성 개선
     &__item:focus-visible {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-brand-primary);
         outline-offset: 2px;
     }
 

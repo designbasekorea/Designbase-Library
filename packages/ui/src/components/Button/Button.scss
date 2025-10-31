@@ -10,21 +10,31 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--db-gap-s);
+    gap: var(--db-gap-xs);
     border: 1px solid transparent;
     font-weight: var(--db-weight-medium);
+    line-height: 1;
     transition: all 150ms ease;
     cursor: pointer;
     outline: none;
 
     &:focus {
         outline: none;
-        box-shadow: 0 0 0 2px var(--db-border-focus);
+        box-shadow: 0 0 0 1px var(--db-border-focus);
     }
 
     &:disabled {
         cursor: not-allowed;
-        opacity: var(--db-opacity-60);
+        opacity: var(--db-opacity-disabled);
+
+        // 비활성화 상태에서 테두리 색상 보장
+        &--secondary {
+            border-color: var(--db-border-secondary-disabled);
+        }
+
+        &--tertiary {
+            border-color: var(--db-border-secondary-disabled);
+        }
     }
 
     // Variant 스타일
@@ -34,62 +44,81 @@
         color: var(--db-btn-primary-text);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-blue-700);
-            border-color: var(--db-blue-700);
+            background-color: var(--db-btn-primary-bg-hover);
+            border-color: var(--db-btn-primary-border-hover);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--db-blue-800);
-            border-color: var(--db-blue-800);
+            background-color: var(--db-btn-primary-bg-active);
+            border-color: var(--db-btn-primary-border-active);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: 2px;
         }
     }
 
     &--secondary {
         background-color: var(--db-btn-secondary-bg);
-        border-color: var(--db-btn-secondary-bg);
+        border-color: var(--db-btn-secondary-border);
         color: var(--db-btn-secondary-text);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-neutral-100);
-            border-color: var(--db-neutral-300);
-            color: var(--db-text-primary);
+            background-color: var(--db-btn-secondary-bg-hover);
+            border-color: var(--db-btn-secondary-border-hover);
+            color: var(--db-btn-secondary-text-hover);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--db-neutral-200);
+            background-color: var(--db-btn-secondary-bg-active);
+        }
+
+        &:focus {
+            outline: 1px solid var(--db-border-focus);
+            outline-offset: 2px;
         }
     }
 
     &--tertiary {
-        background-color: var(--db-bg-secondary);
-        border-color: var(--db-border-secondary);
-        color: var(--db-text-primary);
+        background-color: var(--db-btn-tertiary-bg);
+        border-color: var(--db-btn-tertiary-border);
+        color: var(--db-btn-tertiary-text);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-bg-tertiary);
-            border-color: var(--db-border-primary);
-            color: var(--db-text-primary);
+            background-color: var(--db-btn-tertiary-bg-hover);
+            border-color: var(--db-btn-tertiary-border-hover);
+            color: var(--db-btn-tertiary-text-hover);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--db-neutral-200);
-            border-color: var(--db-border-primary);
+            background-color: var(--db-btn-tertiary-bg-active);
+        }
+
+        &:focus {
+            outline: 1px solid var(--db-border-focus);
+            outline-offset: 2px;
         }
     }
 
     &--danger {
-        background-color: var(--db-red-600);
-        border-color: var(--db-red-600);
-        color: var(--db-white);
+        background-color: var(--db-feedback-error-fg);
+        border-color: var(--db-feedback-error-fg);
+        color: var(--db-text-inverse-primary);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-red-700);
-            border-color: var(--db-red-700);
+            background-color: var(--color-foundation-red-600);
+            border-color: var(--color-foundation-red-600);
         }
 
         &:active:not(:disabled) {
-            background-color: var(--db-red-800);
-            border-color: var(--db-red-800);
+            background-color: var(--color-foundation-red-700);
+            border-color: var(--color-foundation-red-700);
+        }
+
+        &:focus {
+            outline: 1px solid var(--db-feedback-error-fg);
+            outline-offset: 2px;
         }
     }
 
@@ -99,51 +128,55 @@
         color: var(--db-text-primary);
 
         &:hover:not(:disabled) {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
         }
 
         &:focus {
-            box-shadow: 0 0 0 2px var(--db-border-focus);
+            outline: 1px solid var(--db-border-focus);
+            outline-offset: 2px;
         }
     }
 
     // Size 스타일
     &--xs {
         font-size: var(--db-text-xs);
-        padding: var(--db-padding-xxs) var(--db-padding-xs);
+        padding: var(--db-padding-xxs);
     }
 
-    &--sm {
-        font-size: var(--db-text-sm);
-        padding: var(--db-padding-xs) var(--db-padding-s);
+    &--s {
+        font-size: var(--db-text-s);
+        padding: var(--db-padding-xs);
     }
 
-    &--md {
-        font-size: var(--db-text-sm);
-        padding: var(--db-padding-s) var(--db-padding-m);
-    }
-
-    &--lg {
+    &--m {
         font-size: var(--db-text-base);
-        padding: var(--db-padding-s) var(--db-padding-l);
+        padding: var(--db-padding-s);
+        gap: var(--db-gap-s);
+    }
+
+    &--l {
+        font-size: var(--db-text-l);
+        padding: var(--db-padding-m);
+        gap: var(--db-gap-s);
     }
 
     &--xl {
-        font-size: var(--db-text-lg);
-        padding: var(--db-padding-m) var(--db-padding-xl);
+        font-size: var(--db-text-xl);
+        padding: var(--db-padding-l);
+        gap: var(--db-gap-m);
     }
 
     // Border radius variants
-    &--radius-sm {
-        border-radius: var(--db-radius-btn-sm);
+    &--radius-s {
+        border-radius: var(--db-radius-btn-s);
     }
 
-    &--radius-md {
-        border-radius: var(--db-radius-btn-md);
+    &--radius-m {
+        border-radius: var(--db-radius-btn-m);
     }
 
-    &--radius-lg {
-        border-radius: var(--db-radius-btn-lg);
+    &--radius-l {
+        border-radius: var(--db-radius-btn-l);
     }
 
     &--radius-pill {
@@ -153,22 +186,34 @@
     // Icon only 버튼
     &--icon-only {
         gap: 0;
+        min-width: auto;
+
+        // 아이콘이 제대로 표시되도록 보장
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: 24px;
+        }
 
         &.designbase-button--xs {
             padding: var(--db-padding-xxs);
         }
 
-        &.designbase-button--sm,
-        &.designbase-button--md {
+        &.designbase-button--s {
             padding: var(--db-padding-xs);
         }
 
-        &.designbase-button--lg {
+        &.designbase-button--m {
             padding: var(--db-padding-s);
         }
 
-        &.designbase-button--xl {
+        &.designbase-button--l {
             padding: var(--db-padding-m);
+        }
+
+        &.designbase-button--xl {
+            padding: var(--db-padding-l);
         }
     }
 
@@ -180,11 +225,11 @@
     // Loading 상태
     &--loading {
         pointer-events: none;
-    }
 
-    // 로딩 스피너
-    .designbase-button__spinner {
-        animation: spin 1s linear infinite;
+        // 로딩 상태에서 스피너 색상 보장
+        .designbase-spinner {
+            color: inherit;
+        }
     }
 
     @keyframes spin {

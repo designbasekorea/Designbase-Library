@@ -1,85 +1,95 @@
 {
     "shadow": {
         "semantic": {
-            "button": {
-                "default": {
-                    "value": "{shadow.foundation.none}",
-                    "type": "boxShadow"
-                },
-                "hover": {
-                    "value": "{shadow.foundation.sm}",
-                    "type": "boxShadow"
-                },
-                "active": {
-                    "value": "{shadow.foundation.inner}",
-                    "type": "boxShadow"
-                }
-            },
             "card": {
                 "default": {
-                    "value": "{shadow.foundation.base}",
+                    "value": "{shadow.aliases.card.default}",
                     "type": "boxShadow"
                 },
                 "hover": {
-                    "value": "{shadow.foundation.md}",
+                    "value": "{shadow.aliases.card.hover}",
                     "type": "boxShadow"
                 },
                 "elevated": {
-                    "value": "{shadow.foundation.lg}",
+                    "value": "{shadow.aliases.card.elevated}",
                     "type": "boxShadow"
                 }
             },
-            "modal": {
-                "overlay": {
-                    "value": "{shadow.foundation.xl}",
+            "button": {
+                "default": {
+                    "value": "{shadow.aliases.button.default}",
                     "type": "boxShadow"
                 },
-                "content": {
-                    "value": "{shadow.foundation.2xl}",
+                "hover": {
+                    "value": "{shadow.aliases.button.hover}",
                     "type": "boxShadow"
-                }
-            },
-            "dropdown": {
-                "default": {
-                    "value": "{shadow.foundation.md}",
+                },
+                "active": {
+                    "value": "{shadow.aliases.button.active}",
                     "type": "boxShadow"
                 }
             },
             "tooltip": {
                 "default": {
-                    "value": "{shadow.foundation.sm}",
-                    "type": "boxShadow"
+                    "value": "{shadow.foundation.s}"
+                }
+            },
+            "dropdown": {
+                "default": {
+                    "value": "{shadow.foundation.m}"
+                }
+            },
+            "modal": {
+                "content": {
+                    "value": "{shadow.foundation.2xl}"
+                },
+                "overlay": {
+                    "value": "{shadow.foundation.xl}"
                 }
             }
         }
     },
     "opacity": {
         "semantic": {
-            "disabled": {
-                "value": "{opacity.foundation.50}",
+            "focus": {
+                "value": "{opacity.foundation.90}",
+                "type": "opacity"
+            },
+            "hover": {
+                "value": "{opacity.foundation.80}",
                 "type": "opacity"
             },
             "overlay": {
-                "light": {
-                    "value": "{opacity.foundation.25}",
+                "dark": {
+                    "value": "{opacity.foundation.75}",
                     "type": "opacity"
                 },
                 "medium": {
                     "value": "{opacity.foundation.50}",
                     "type": "opacity"
                 },
-                "dark": {
-                    "value": "{opacity.foundation.75}",
+                "light": {
+                    "value": "{opacity.foundation.25}",
                     "type": "opacity"
                 }
             },
-            "hover": {
-                "value": "{opacity.foundation.80}",
+            "disabled": {
+                "value": "{opacity.foundation.50}",
                 "type": "opacity"
-            },
-            "focus": {
-                "value": "{opacity.foundation.90}",
-                "type": "opacity"
+            }
+        }
+    },
+    "motion": {
+        "semantic": {
+            "animation": {
+                "speed": {
+                    "value": "{motion.aliases.duration.base}",
+                    "type": "duration"
+                },
+                "ease": {
+                    "value": "{motion.aliases.easing.standard}",
+                    "type": "cubicBezier"
+                }
             }
         }
     }

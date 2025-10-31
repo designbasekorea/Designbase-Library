@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { MoveIcon, ExpandIcon, ArrowUpRightIcon, ArrowDownRightIcon, ArrowUpLeftIcon, ArrowDownLeftIcon, ArrowRightIcon, ArrowDownIcon } from '@designbasekorea/icons';
 import ResizablePanels from './ResizablePanels';
 
 const meta: Meta<typeof ResizablePanels> = {
@@ -421,11 +422,7 @@ export const ConstraintTesting: Story = {
 export const CustomHandleIcon: Story = {
     args: {
         ...Default.args,
-        handleIcon: (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 18h8v-2H8v2zm0-4h8v-2H8v2zm0-4h8V8H8v2zM4 20h16V4H4v16z" />
-            </svg>
-        ),
+        handleIcon: <MoveIcon size={16} />,
         handleColor: '#ff6b6b',
         handleHoverColor: '#ee5a52',
         handleSize: 24,

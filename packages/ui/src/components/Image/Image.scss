@@ -6,8 +6,7 @@
     position: relative;
     display: block;
     overflow: hidden;
-    background-color: var(--db-bg-secondary);
-    border: 1px solid var(--db-border-secondary);
+    background-color: var(--db-surface-layer-1);
 
     // 기본 이미지 스타일
     &__img {
@@ -90,19 +89,19 @@
 
     // 둥근 모서리 스타일
     &--rounded {
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
     }
 
     &--rounded-sm {
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 
     &--rounded-md {
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
     }
 
     &--rounded-lg {
-        border-radius: var(--db-radius-lg);
+        border-radius: var(--db-radius-l);
     }
 
     &--rounded-full {
@@ -179,7 +178,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
         opacity: 0;
         transition: opacity var(--db-animation-speed) var(--db-animation-ease);
 
@@ -194,7 +193,7 @@
                 height: 100%;
                 background: linear-gradient(90deg,
                         var(--db-bg-muted) 25%,
-                        var(--db-bg-secondary) 50%,
+                        var(--db-surface-layer-1) 50%,
                         var(--db-bg-muted) 75%);
                 background-size: 200% 100%;
                 animation: skeleton-loading 1.5s infinite;
@@ -206,7 +205,7 @@
             .designbase-image__blur {
                 width: 100%;
                 height: 100%;
-                background-color: var(--db-bg-secondary);
+                background-color: var(--db-surface-layer-1);
                 filter: blur(10px);
                 transform: scale(1.1);
             }
@@ -224,14 +223,14 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
         color: var(--db-text-secondary);
         padding: var(--db-padding-m);
         text-align: center;
 
         &-text {
             margin-top: var(--db-margin-s);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-tight);
         }
     }

@@ -65,7 +65,7 @@ export const Default: Story = {
                     onClose={() => setIsOpen(false)}
                     title="기본 Drawer"
                     position="right"
-                    size="md"
+                    size="m"
                 >
                     <div style={{ padding: '20px' }}>
                         <h3>Drawer 내용</h3>
@@ -95,7 +95,7 @@ export const Positions: Story = {
         };
 
         return (
-            <div style={{ padding: '20px' }}>
+            <div>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                     <Button onClick={() => openDrawerHandler('left')}>
                         왼쪽 Drawer
@@ -117,13 +117,11 @@ export const Positions: Story = {
                     onClose={closeDrawer}
                     title="왼쪽 Drawer"
                     position="left"
-                    size="md"
+                    size="m"
                 >
-                    <div style={{ padding: '20px' }}>
-                        <h3>왼쪽에서 열리는 Drawer</h3>
-                        <p>왼쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
-                        <Button onClick={closeDrawer}>닫기</Button>
-                    </div>
+                    <h3>왼쪽에서 열리는 Drawer</h3>
+                    <p>왼쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
+                    <Button onClick={closeDrawer}>닫기</Button>
                 </Drawer>
 
                 {/* 오른쪽 Drawer */}
@@ -132,13 +130,11 @@ export const Positions: Story = {
                     onClose={closeDrawer}
                     title="오른쪽 Drawer"
                     position="right"
-                    size="md"
+                    size="m"
                 >
-                    <div style={{ padding: '20px' }}>
-                        <h3>오른쪽에서 열리는 Drawer</h3>
-                        <p>오른쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
-                        <Button onClick={closeDrawer}>닫기</Button>
-                    </div>
+                    <h3>오른쪽에서 열리는 Drawer</h3>
+                    <p>오른쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
+                    <Button onClick={closeDrawer}>닫기</Button>
                 </Drawer>
 
                 {/* 위쪽 Drawer */}
@@ -147,13 +143,11 @@ export const Positions: Story = {
                     onClose={closeDrawer}
                     title="위쪽 Drawer"
                     position="top"
-                    size="md"
+                    size="m"
                 >
-                    <div style={{ padding: '20px' }}>
-                        <h3>위쪽에서 열리는 Drawer</h3>
-                        <p>위쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
-                        <Button onClick={closeDrawer}>닫기</Button>
-                    </div>
+                    <h3>위쪽에서 열리는 Drawer</h3>
+                    <p>위쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
+                    <Button onClick={closeDrawer}>닫기</Button>
                 </Drawer>
 
                 {/* 아래쪽 Drawer */}
@@ -162,13 +156,11 @@ export const Positions: Story = {
                     onClose={closeDrawer}
                     title="아래쪽 Drawer"
                     position="bottom"
-                    size="md"
+                    size="m"
                 >
-                    <div style={{ padding: '20px' }}>
-                        <h3>아래쪽에서 열리는 Drawer</h3>
-                        <p>아래쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
-                        <Button onClick={closeDrawer}>닫기</Button>
-                    </div>
+                    <h3>아래쪽에서 열리는 Drawer</h3>
+                    <p>아래쪽에서 슬라이드되어 나오는 Drawer입니다.</p>
+                    <Button onClick={closeDrawer}>닫기</Button>
                 </Drawer>
             </div>
         );
@@ -191,13 +183,13 @@ export const Sizes: Story = {
         return (
             <div style={{ padding: '20px' }}>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                    <Button onClick={() => openDrawerHandler('sm')}>
+                    <Button onClick={() => openDrawerHandler('s')}>
                         Small
                     </Button>
-                    <Button onClick={() => openDrawerHandler('md')}>
+                    <Button onClick={() => openDrawerHandler('m')}>
                         Medium
                     </Button>
-                    <Button onClick={() => openDrawerHandler('lg')}>
+                    <Button onClick={() => openDrawerHandler('l')}>
                         Large
                     </Button>
                     <Button onClick={() => openDrawerHandler('xl')}>
@@ -213,14 +205,12 @@ export const Sizes: Story = {
                     onClose={closeDrawer}
                     title={`${openSize?.toUpperCase()} 크기 Drawer`}
                     position="right"
-                    size={openSize || 'md'}
+                    size={openSize || 'm'}
                 >
-                    <div style={{ padding: '20px' }}>
-                        <h3>{openSize?.toUpperCase()} 크기 Drawer</h3>
-                        <p>이 Drawer는 {openSize} 크기로 설정되어 있습니다.</p>
-                        <p>다양한 크기 옵션을 통해 사용자 경험을 최적화할 수 있습니다.</p>
-                        <Button onClick={closeDrawer}>닫기</Button>
-                    </div>
+                    <h3>{openSize?.toUpperCase()} 크기 Drawer</h3>
+                    <p>이 Drawer는 {openSize} 크기로 설정되어 있습니다.</p>
+                    <p>다양한 크기 옵션을 통해 사용자 경험을 최적화할 수 있습니다.</p>
+                    <Button onClick={closeDrawer}>닫기</Button>
                 </Drawer>
             </div>
         );
@@ -242,7 +232,7 @@ export const ComplexContent: Story = {
                     onClose={() => setIsOpen(false)}
                     title="복잡한 내용 Drawer"
                     position="right"
-                    size="lg"
+                    size="l"
                 >
                     <div style={{ padding: '20px' }}>
                         <h3>복잡한 내용 예제</h3>
@@ -315,7 +305,7 @@ export const Accessibility: Story = {
                     onClose={() => setIsOpen(false)}
                     title="접근성 테스트 Drawer"
                     position="right"
-                    size="md"
+                    size="m"
                     id="accessibility-drawer"
                     trapFocus={true}
                     closeOnEscape={true}
@@ -366,7 +356,7 @@ export const Interactive: Story = {
     render: () => {
         const [isOpen, setIsOpen] = useState(false);
         const [position, setPosition] = useState<DrawerPosition>('right');
-        const [size, setSize] = useState<DrawerSize>('md');
+        const [size, setSize] = useState<DrawerSize>('m');
         const [showCloseButton, setShowCloseButton] = useState(true);
         const [closeOnBackdropClick, setCloseOnBackdropClick] = useState(true);
 

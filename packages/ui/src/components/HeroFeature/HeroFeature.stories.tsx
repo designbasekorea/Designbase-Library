@@ -10,7 +10,7 @@ import {
     UserIcon,
     SettingsIcon,
     BellIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 import HeroFeature from './HeroFeature';
 
 const meta: Meta<typeof HeroFeature> = {
@@ -70,7 +70,7 @@ const sampleButtons = [
         text: '시작하기',
         href: '#',
         variant: 'primary' as const,
-        size: 'lg' as const,
+        size: 'l' as const,
         icon: <ArrowRightIcon size={20} />,
         onClick: fn(),
     },
@@ -78,7 +78,7 @@ const sampleButtons = [
         text: '자세히 보기',
         href: '#',
         variant: 'outline' as const,
-        size: 'lg' as const,
+        size: 'l' as const,
         onClick: fn(),
     }
 ];
@@ -179,7 +179,7 @@ export const Minimal: Story = {
                 text: '시작하기',
                 href: '#',
                 variant: 'primary' as const,
-                size: 'md' as const,
+                size: 'm' as const,
                 onClick: fn(),
             }
         ],
@@ -221,7 +221,7 @@ export const WithVideo: Story = {
                 text: '재생',
                 href: '#',
                 variant: 'primary' as const,
-                size: 'lg' as const,
+                size: 'l' as const,
                 icon: <PlayIcon size={24} />,
                 onClick: fn(),
             },
@@ -229,7 +229,7 @@ export const WithVideo: Story = {
                 text: '자세히 보기',
                 href: '#',
                 variant: 'outline' as const,
-                size: 'lg' as const,
+                size: 'l' as const,
                 onClick: fn(),
             }
         ],
@@ -254,7 +254,7 @@ export const Promotional: Story = {
                 text: '지금 구매',
                 href: '#',
                 variant: 'primary' as const,
-                size: 'lg' as const,
+                size: 'l' as const,
                 icon: <ArrowRightIcon size={20} />,
                 onClick: fn(),
             },
@@ -262,7 +262,7 @@ export const Promotional: Story = {
                 text: '자세히 보기',
                 href: '#',
                 variant: 'ghost' as const,
-                size: 'lg' as const,
+                size: 'l' as const,
                 onClick: fn(),
             }
         ],
@@ -300,7 +300,7 @@ export const ProductShowcase: Story = {
                 text: '다운로드',
                 href: '#',
                 variant: 'primary' as const,
-                size: 'lg' as const,
+                size: 'l' as const,
                 icon: <DownloadIcon size={20} />,
                 onClick: fn(),
             },
@@ -308,7 +308,7 @@ export const ProductShowcase: Story = {
                 text: '데모 보기',
                 href: '#',
                 variant: 'outline' as const,
-                size: 'lg' as const,
+                size: 'l' as const,
                 icon: <PlayIcon size={20} />,
                 onClick: fn(),
             }
@@ -346,7 +346,7 @@ export const DifferentSizes: Story = {
                 <HeroFeature
                     title="작은 히어로"
                     description="작은 크기의 히어로 섹션입니다."
-                    size="sm"
+                    size="s"
                     variant="centered"
                 />
             </div>
@@ -355,7 +355,7 @@ export const DifferentSizes: Story = {
                 <HeroFeature
                     title="중간 히어로"
                     description="중간 크기의 히어로 섹션입니다."
-                    size="md"
+                    size="m"
                     variant="centered"
                 />
             </div>
@@ -364,7 +364,7 @@ export const DifferentSizes: Story = {
                 <HeroFeature
                     title="큰 히어로"
                     description="큰 크기의 히어로 섹션입니다."
-                    size="lg"
+                    size="l"
                     variant="centered"
                 />
             </div>
@@ -420,7 +420,7 @@ export const Interactive: Story = {
                     icon={currentTheme === 'dark' ? <StarIcon size={32} /> : <RocketIcon size={32} />}
                     badge={{ text: 'Interactive', color: 'primary', variant: 'solid' }}
                     buttons={sampleButtons}
-                    size="lg"
+                    size="l"
                     variant={currentVariant}
                     theme={currentTheme}
                     alignment="center"

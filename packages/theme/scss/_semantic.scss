@@ -78,7 +78,6 @@ a {
 
     &:hover {
         color: var(--db-text-link-hover);
-        text-decoration: underline;
     }
 
     &:active {
@@ -100,7 +99,6 @@ b {
 
 em,
 i {
-    font-style: italic;
     color: var(--db-text-primary);
 }
 
@@ -108,31 +106,29 @@ i {
 blockquote {
     margin: var(--db-margin-m) 0;
     padding: var(--db-padding-m) var(--db-padding-l);
-    border-left: 4px solid var(--db-border-primary);
-    background-color: var(--db-bg-secondary);
-    color: var(--db-text-secondary);
-    font-style: italic;
-    border-radius: 0 8px 8px 0;
+    border-left: 2px solid var(--db-border-base);
+    background-color: var(--db-surface-layer-1);
+    color: var(--db-text-primary);
 }
 
 // 코드 태그
 code {
-    background-color: var(--db-bg-tertiary);
+    background-color: var(--db-surface-layer-2);
     color: var(--db-text-primary);
     padding: 0.125rem 0.25rem;
     border-radius: 4px;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     font-size: 0.875em;
-    border: 1px solid var(--db-border-muted);
+    border: 1px solid var(--db-border-base);
 }
 
 pre {
-    background-color: var(--db-bg-tertiary);
+    background-color: var(--db-surface-layer-2);
     color: var(--db-text-primary);
     padding: var(--db-padding-m);
     border-radius: 8px;
     overflow-x: auto;
-    border: 1px solid var(--db-border-muted);
+    border: 1px solid var(--db-border-base);
     margin: var(--db-margin-m) 0;
 
     code {
@@ -146,14 +142,14 @@ pre {
 // 목록 태그
 ul,
 ol {
-    margin: 0 0 var(--db-margin-m) 0;
-    padding-left: var(--db-padding-l);
+    margin: 0;
+    padding-left: 0;
     color: var(--db-text-primary);
 }
 
 li {
     margin-bottom: var(--db-margin-s);
-    line-height: 1.6;
+    line-height: var(--db-leading-normal);
     color: var(--db-text-primary);
 }
 
@@ -169,7 +165,7 @@ dt {
 }
 
 dd {
-    margin: 0 0 var(--db-margin-s) var(--db-padding-l);
+    margin: 0 0 var(--db-margin-s);
     color: var(--db-text-secondary);
 }
 
@@ -177,238 +173,37 @@ dd {
 hr {
     border: none;
     height: 1px;
-    background-color: var(--db-border-muted);
-    margin: var(--db-margin-xl) 0;
-}
-
-// 테이블 태그
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: var(--db-margin-m) 0;
-    color: var(--db-text-primary);
-}
-
-th,
-td {
-    padding: var(--db-padding-s);
-    text-align: left;
-    border-bottom: 1px solid var(--db-border-muted);
-}
-
-th {
-    background-color: var(--db-bg-secondary);
-    font-weight: 600;
-    color: var(--db-text-primary);
-}
-
-tr:hover {
-    background-color: var(--db-bg-secondary);
-}
-
-// 폼 요소들
-input,
-textarea,
-select {
-    font-family: inherit;
-    font-size: inherit;
-    color: var(--db-text-primary);
-    background-color: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: 6px;
-    padding: var(--db-padding-s) var(--db-padding-s);
-    transition: all 0.3s ease;
-
-    &:focus {
-        outline: none;
-        border-color: var(--db-border-focus);
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-    }
-
-    &:disabled {
-        background-color: var(--db-bg-tertiary);
-        color: var(--db-text-disabled);
-        cursor: not-allowed;
-    }
-
-    &::placeholder {
-        color: var(--db-text-muted);
-    }
-}
-
-// 버튼 태그
-button {
-    font-family: inherit;
-    font-size: inherit;
-    color: var(--db-text-primary);
-    background-color: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: 6px;
-    padding: var(--db-padding-s) var(--db-padding-m);
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-        background-color: var(--db-bg-secondary);
-        border-color: var(--db-border-focus);
-    }
-
-    &:active {
-        transform: translateY(1px);
-    }
-
-    &:focus {
-        outline: none;
-        border-color: var(--db-border-focus);
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-    }
-
-    &:disabled {
-        background-color: var(--db-bg-tertiary);
-        color: var(--db-text-disabled);
-        cursor: not-allowed;
-    }
-}
-
-// 라벨 태그
-label {
-    display: inline-block;
-    margin-bottom: var(--db-margin-s);
-    font-weight: 500;
-    color: var(--db-text-primary);
-}
-
-// 필드셋과 레전드
-fieldset {
-    border: 1px solid var(--db-border-muted);
-    border-radius: 8px;
-    padding: var(--db-padding-m);
-    margin: var(--db-margin-m) 0;
-}
-
-legend {
-    padding: 0 var(--db-padding-s);
-    font-weight: 600;
-    color: var(--color-text-primary);
-}
-
-// 체크박스와 라디오 버튼
-input[type="checkbox"],
-input[type="radio"] {
-    margin-right: var(--db-margin-s);
-    width: auto;
-    height: auto;
-}
-
-// 범위 슬라이더
-input[type="range"] {
-    background: transparent;
-    border: none;
-    padding: 0;
-    height: 6px;
-    border-radius: 3px;
-    background: var(--color-border-muted);
-
-    &::-webkit-slider-thumb {
-        appearance: none;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--color-action-primary-bg);
-        cursor: pointer;
-        border: 2px solid var(--color-bg-primary);
-    }
-
-    &::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--color-action-primary-bg);
-        cursor: pointer;
-        border: 2px solid var(--color-bg-primary);
-    }
-}
-
-// 진행바
-progress {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    background-color: var(--color-bg-tertiary);
-    border: none;
-
-    &::-webkit-progress-bar {
-        background-color: var(--color-bg-tertiary);
-        border-radius: 4px;
-    }
-
-    &::-webkit-progress-value {
-        background-color: var(--color-action-primary-bg);
-        border-radius: 4px;
-    }
-
-    &::-moz-progress-bar {
-        background-color: var(--color-action-primary-bg);
-        border-radius: 4px;
-    }
-}
-
-// 미터
-meter {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    background-color: var(--color-bg-tertiary);
-    border: none;
-
-    &::-webkit-meter-bar {
-        background-color: var(--color-bg-tertiary);
-        border-radius: 4px;
-    }
-
-    &::-webkit-meter-optimum-value {
-        background-color: var(--color-green-500);
-        border-radius: 4px;
-    }
-
-    &::-webkit-meter-suboptimum-value {
-        background-color: var(--color-yellow-500);
-        border-radius: 4px;
-    }
-
-    &::-webkit-meter-even-less-good-value {
-        background-color: var(--color-red-500);
-        border-radius: 4px;
-    }
+    background-color: var(--db-border-base);
+    margin: var(--db-margin-l) 0;
 }
 
 // 상세 정보
 details {
     margin: var(--db-margin-m) 0;
-    border: 1px solid var(--color-border-muted);
+    border: 1px solid var(--db-border-base);
     border-radius: 8px;
     overflow: hidden;
 }
 
 summary {
     padding: var(--db-padding-m);
-    background-color: var(--db-bg-secondary);
+    background-color: var(--db-surface-layer-1);
     color: var(--db-text-primary);
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: var(--db-bg-tertiary);
+        background-color: var(--db-surface-layer-2);
     }
 
     &::-webkit-details-marker {
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
     }
 }
 
 details[open] summary {
-    border-bottom: 1px solid var(--db-border-muted);
+    border-bottom: 1px solid var(--db-border-base);
 }
 
 details>div {
@@ -418,8 +213,8 @@ details>div {
 
 // 마크 태그
 mark {
-    background-color: var(--db-yellow-200);
-    color: var(--db-yellow-900);
+    background-color: var(--color-foundation-yellow-200);
+    color: var(--color-foundation-yellow-900);
     padding: var(--db-padding-xxs) var(--db-padding-xs);
     border-radius: 3px;
 }
@@ -427,7 +222,7 @@ mark {
 // 삭제된 텍스트
 del,
 s {
-    color: var(--db-text-muted);
+    color: var(--db-text-tertiary);
     text-decoration: line-through;
 }
 
@@ -441,7 +236,7 @@ u {
 // 작은 텍스트
 small {
     font-size: 0.875em;
-    color: var(--db-text-muted);
+    color: var(--db-text-tertiary);
 }
 
 // 큰 텍스트
@@ -458,76 +253,26 @@ cite {
 
 // 시간
 time {
-    color: var(--color-text-muted);
+    color: var(--db-text-tertiary);
     font-size: 0.875em;
 }
 
 // 주소
 address {
     font-style: normal;
-    color: var(--color-text-secondary);
+    color: var(--db-text-secondary);
     margin: var(--db-margin-m) 0;
 }
 
 // 아티클과 섹션
 article,
 section {
-    margin: var(--db-margin-xl) 0;
-}
-
-// 헤더와 푸터
-header,
-footer {
-    padding: var(--db-padding-m) 0;
-    color: var(--db-text-primary);
-}
-
-// 네비게이션
-nav {
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        gap: var(--db-gap-m);
-    }
-
-    a {
-        color: var(--db-text-primary);
-        text-decoration: none;
-        padding: var(--db-padding-s);
-        border-radius: 4px;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background-color: var(--db-bg-secondary);
-            color: var(--db-text-primary);
-        }
-
-        &.active {
-            background-color: var(--db-color-primary);
-            color: var(--db-text-inverse);
-        }
-    }
-}
-
-// 메인 콘텐츠
-main {
-    min-height: 100vh;
-    color: var(--db-text-primary);
-}
-
-// 사이드바
-aside {
-    background-color: var(--db-bg-secondary);
-    padding: var(--db-padding-m);
-    border-radius: 8px;
-    color: var(--db-text-primary);
+    margin-bottom: var(--db-margin-l);
 }
 
 // 그림
 figure {
-    margin: var(--db-margin-xl) 0;
+    margin: var(--db-margin-l) 0;
     text-align: center;
 }
 
@@ -546,26 +291,21 @@ audio {
 
 // 캔버스
 canvas {
-    border: 1px solid var(--db-border-muted);
+    border: 1px solid var(--db-border-base);
     border-radius: 8px;
 }
 
 // 선택된 텍스트
 ::selection {
-    background-color: var(--db-color-primary);
-    color: var(--db-text-inverse);
+    background-color: var(--db-brand-primary);
+    color: var(--db-text-inverse-primary);
 }
 
 ::-moz-selection {
-    background-color: var(--db-color-primary);
-    color: var(--db-text-inverse);
+    background-color: var(--db-brand-primary);
+    color: var(--db-text-inverse-primary);
 }
 
-// 포커스 표시
-:focus-visible {
-    outline: 2px solid var(--db-border-focus);
-    outline-offset: 2px;
-}
 
 // 스크롤바 스타일링
 ::-webkit-scrollbar {
@@ -574,16 +314,16 @@ canvas {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--db-bg-tertiary);
+    background: var(--db-surface-layer-2);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--db-border-muted);
+    background: var(--db-border-base);
     border-radius: 4px;
 
     &:hover {
-        background: var(--db-border-primary);
+        background: var(--db-border-base);
     }
 }
 
@@ -593,20 +333,20 @@ canvas {
     // 다크 모드에서 추가적인 스타일 조정
     code,
     pre {
-        background-color: var(--db-bg-tertiary);
-        border-color: var(--db-border-primary);
+        background-color: var(--db-surface-layer-2);
+        border-color: var(--db-border-base);
     }
 
     blockquote {
-        background-color: var(--db-bg-tertiary);
-        border-left-color: var(--db-border-primary);
+        background-color: var(--db-surface-layer-2);
+        border-left-color: var(--db-border-base);
     }
 
     input,
     textarea,
     select {
-        background-color: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
+        background-color: var(--db-field-bg);
+        border-color: var(--db-field-border);
     }
 }
 

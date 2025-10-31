@@ -12,7 +12,7 @@ const meta: Meta<typeof Pagination> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         variant: {
             control: { type: 'select' },
@@ -94,7 +94,7 @@ export const Sizes: Story = {
                 <Pagination
                     currentPage={1}
                     totalPages={10}
-                    size="sm"
+                    size="s"
                     onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
@@ -103,7 +103,7 @@ export const Sizes: Story = {
                 <Pagination
                     currentPage={1}
                     totalPages={10}
-                    size="md"
+                    size="m"
                     onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>
@@ -112,7 +112,7 @@ export const Sizes: Story = {
                 <Pagination
                     currentPage={1}
                     totalPages={10}
-                    size="lg"
+                    size="l"
                     onPageChange={(page: number) => console.log('Page changed to:', page)}
                 />
             </div>

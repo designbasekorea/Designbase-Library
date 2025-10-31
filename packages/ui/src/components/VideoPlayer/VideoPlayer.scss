@@ -3,24 +3,24 @@
 .designbase-video-player {
     position: relative;
     width: 100%;
-    background: var(--db-bg-secondary);
-    border-radius: var(--db-radius-lg);
+    background: var(--db-surface-layer-1);
+    border-radius: var(--db-radius-l);
     overflow: hidden;
     font-family: var(--db-font-family);
     line-height: var(--db-leading-normal);
 
     // 크기 변형
-    &--size-sm {
+    &--size-s {
         max-width: 320px;
         height: 180px;
     }
 
-    &--size-md {
+    &--size-m {
         max-width: 640px;
         height: 360px;
     }
 
-    &--size-lg {
+    &--size-l {
         max-width: 960px;
         height: 540px;
     }
@@ -35,16 +35,20 @@
         --video-controls-bg: rgba(255, 255, 255, 0.9);
         --video-controls-color: var(--db-text-primary);
         --video-overlay-bg: rgba(0, 0, 0, 0.3);
+        --video-dim-overlay: rgba(0, 0, 0, 0.4);
     }
 
     &--theme-dark {
         --video-controls-bg: rgba(0, 0, 0, 0.8);
-        --video-controls-color: var(--db-text-inverse);
+        --video-controls-color: var(--db-text-inverse-primary);
         --video-overlay-bg: rgba(0, 0, 0, 0.5);
+        --video-dim-overlay: rgba(0, 0, 0, 0.6);
     }
 
     &--theme-auto {
         // 테마는 상위에서 관리됩니다.
+        --video-controls-color: var(--db-text-inverse-primary);
+        --video-dim-overlay: rgba(0, 0, 0, 0.5);
     }
 
     // 상태 클래스
@@ -103,6 +107,11 @@
             opacity: 1;
             visibility: visible;
         }
+
+        .designbase-video-player__dim-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
     }
 
     // 비디오 요소
@@ -110,8 +119,23 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        background: var(--db-bg-primary);
+        background: var(--db-surface-base);
         cursor: pointer;
+    }
+
+    // Dim overlay (마우스 오버 시 배경 어둡게)
+    &__dim-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--video-dim-overlay);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
     }
 
     // 로딩 인디케이터
@@ -128,8 +152,8 @@
         .designbase-video-player__spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid var(--db-border-secondary);
-            border-top: 3px solid var(--db-blue-600);
+            border: 3px solid var(--db-border-layer-1);
+            border-top: 3px solid var(--db-brand-primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -146,10 +170,10 @@
         transition: all 0.3s ease;
         z-index: 10;
         text-align: center;
-        color: var(--db-text-inverse);
+        color: var(--db-text-inverse-primary);
         background: var(--video-overlay-bg);
-        padding: var(--db-padding-lg);
-        border-radius: var(--db-radius-md);
+        padding: var(--db-padding-l);
+        border-radius: var(--db-radius-m);
 
         p {
             margin: 0 0 var(--db-margin-md) 0;
@@ -157,17 +181,17 @@
         }
 
         button {
-            background: var(--db-blue-600);
-            color: var(--db-white);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
             border: none;
-            padding: var(--db-padding-sm) var(--db-padding-md);
-            border-radius: var(--db-radius-sm);
+            padding: var(--db-padding-s) var(--db-padding-m);
+            border-radius: var(--db-radius-s);
             cursor: pointer;
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             transition: background-color 0.2s ease;
 
             &:hover {
-                background: var(--db-blue-700);
+                background: var(--color-foundation-blue-800);
             }
         }
     }
@@ -186,11 +210,11 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 5;
+        z-index: 10;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: var(--db-padding-md);
+        padding: var(--db-padding-m);
     }
 
     // 상단 컨트롤
@@ -198,20 +222,22 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        color: var(--video-controls-color);
+        color: var(--db-text-inverse-primary);
     }
 
     &__title {
         h3 {
             margin: 0 0 var(--db-margin-xs) 0;
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             font-weight: var(--db-weight-semibold);
+            color: var(--db-text-inverse-primary);
         }
 
         p {
             margin: 0;
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             opacity: 0.8;
+            color: var(--db-text-inverse-primary);
         }
     }
 
@@ -221,10 +247,10 @@
         .designbase-video-player__settings-button {
             background: none;
             border: none;
-            color: var(--video-controls-color);
+            color: var(--db-text-inverse-primary);
             cursor: pointer;
             padding: var(--db-padding-xs);
-            border-radius: var(--db-radius-sm);
+            border-radius: var(--db-radius-s);
             transition: background-color 0.2s ease;
 
             &:hover {
@@ -237,8 +263,8 @@
             top: 100%;
             right: 0;
             background: var(--video-controls-bg);
-            border-radius: var(--db-radius-md);
-            padding: var(--db-padding-md);
+            border-radius: var(--db-radius-m);
+            padding: var(--db-padding-m);
             min-width: 200px;
             box-shadow: var(--db-shadow-lg);
             z-index: 20;
@@ -252,24 +278,24 @@
 
                 label {
                     display: block;
-                    font-size: var(--db-text-sm);
+                    font-size: var(--db-text-s);
                     font-weight: var(--db-weight-medium);
                     margin-bottom: var(--db-margin-xs);
-                    color: var(--video-controls-color);
+                    color: var(--db-text-inverse-primary);
                 }
 
                 select {
                     width: 100%;
-                    padding: var(--db-padding-xs) var(--db-padding-sm);
-                    border: 1px solid var(--db-border-secondary);
-                    border-radius: var(--db-radius-sm);
-                    background: var(--db-bg-primary);
+                    padding: var(--db-padding-xs) var(--db-padding-s);
+                    border: 1px solid var(--db-border-layer-1);
+                    border-radius: var(--db-radius-s);
+                    background: var(--db-surface-base);
                     color: var(--db-text-primary);
-                    font-size: var(--db-text-sm);
+                    font-size: var(--db-text-s);
 
                     &:focus {
                         outline: none;
-                        border-color: var(--db-blue-600);
+                        border-color: var(--db-field-border-focus);
                     }
                 }
             }
@@ -287,7 +313,7 @@
     &__play-button {
         background: rgba(0, 0, 0, 0.7);
         border: none;
-        color: var(--db-white);
+        color: var(--db-text-inverse-primary);
         border-radius: 50%;
         width: 80px;
         height: 80px;
@@ -305,7 +331,7 @@
 
     // 하단 컨트롤
     &__bottom-controls {
-        color: var(--video-controls-color);
+        color: var(--db-text-inverse-primary);
     }
 
     // 진행률 바
@@ -324,7 +350,7 @@
 
         .designbase-video-player__progress-bar {
             height: 100%;
-            background: var(--db-blue-600);
+            background: var(--db-brand-primary);
             border-radius: 2px;
             transition: width 0.1s ease;
         }
@@ -335,7 +361,7 @@
             transform: translate(-50%, -50%);
             width: 12px;
             height: 12px;
-            background: var(--db-blue-600);
+            background: var(--db-brand-primary);
             border-radius: 50%;
             opacity: 0;
             transition: opacity 0.2s ease;
@@ -351,7 +377,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
     }
 
     &__left-controls,
@@ -364,10 +390,10 @@
     &__control-button {
         background: none;
         border: none;
-        color: var(--video-controls-color);
+        color: var(--db-text-inverse-primary);
         cursor: pointer;
         padding: var(--db-padding-xs);
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         transition: all 0.2s ease;
         display: flex;
         align-items: center;
@@ -399,8 +425,8 @@
             left: 50%;
             transform: translateX(-50%);
             background: var(--video-controls-bg);
-            padding: var(--db-padding-sm);
-            border-radius: var(--db-radius-md);
+            padding: var(--db-padding-s);
+            border-radius: var(--db-radius-m);
             margin-bottom: var(--db-margin-xs);
             opacity: 0;
             visibility: hidden;
@@ -419,7 +445,7 @@
                     appearance: none;
                     width: 12px;
                     height: 12px;
-                    background: var(--db-blue-600);
+                    background: var(--db-brand-primary);
                     border-radius: 50%;
                     cursor: pointer;
                 }
@@ -427,7 +453,7 @@
                 &::-moz-range-thumb {
                     width: 12px;
                     height: 12px;
-                    background: var(--db-blue-600);
+                    background: var(--db-brand-primary);
                     border-radius: 50%;
                     cursor: pointer;
                     border: none;
@@ -443,9 +469,10 @@
 
     // 시간 표시
     &__time {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         opacity: 0.9;
+        color: var(--db-text-inverse-primary);
     }
 
     // 플레이리스트 컨트롤
@@ -453,8 +480,9 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-xs);
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
+        color: var(--db-text-inverse-primary);
     }
 
     // 애니메이션
@@ -470,12 +498,12 @@
 
     // 반응형 디자인
     @media (max-width: 768px) {
-        &--size-md {
+        &--size-m {
             max-width: 100%;
             height: 200px;
         }
 
-        &--size-lg {
+        &--size-l {
             max-width: 100%;
             height: 300px;
         }
@@ -501,7 +529,7 @@
 
     // 접근성
     &:focus-within {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 

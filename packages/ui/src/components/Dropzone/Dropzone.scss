@@ -7,26 +7,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px dashed var(--db-border-primary);
-    border-radius: var(--db-radius-lg);
-    background: var(--db-bg-primary);
+    border: 1px dashed var(--db-border-base);
+    border-radius: var(--db-radius-l);
+    background: var(--db-surface-base);
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: var(--db-font-family);
+    transition: all var(--db-animation-speed) var(--db-animation-ease);
 
     // 크기별 스타일
-    &--size-sm {
-        min-height: 120px;
-        padding: var(--db-padding-md);
+    &--size-s {
+        min-height: 80px;
+        padding: var(--db-padding-s);
 
         .designbase-dropzone__icon {
-            width: 32px;
-            height: 32px;
-            margin-bottom: var(--db-margin-sm);
+            width: var(--db-size-icon-m);
+            height: var(--db-size-icon-m);
+            margin-bottom: var(--db-margin-xs);
         }
 
         .designbase-dropzone__title {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             font-weight: var(--db-weight-medium);
         }
 
@@ -35,14 +34,14 @@
         }
     }
 
-    &--size-md {
-        min-height: 160px;
-        padding: var(--db-padding-lg);
+    &--size-m {
+        min-height: 120px;
+        padding: var(--db-padding-m);
 
         .designbase-dropzone__icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: var(--db-margin-md);
+            width: var(--db-size-icon-l);
+            height: var(--db-size-icon-l);
+            margin-bottom: var(--db-margin-s);
         }
 
         .designbase-dropzone__title {
@@ -51,22 +50,22 @@
         }
 
         .designbase-dropzone__description {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--size-lg {
-        min-height: 200px;
-        padding: var(--db-padding-xl);
+    &--size-l {
+        min-height: 160px;
+        padding: var(--db-padding-l);
 
         .designbase-dropzone__icon {
-            width: 64px;
-            height: 64px;
-            margin-bottom: var(--db-margin-lg);
+            width: var(--db-size-icon-xl);
+            height: var(--db-size-icon-xl);
+            margin-bottom: var(--db-margin-m);
         }
 
         .designbase-dropzone__title {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             font-weight: var(--db-weight-semibold);
         }
 
@@ -77,67 +76,67 @@
 
     // 변형별 스타일
     &--variant-default {
-        background: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-base);
+        border-color: var(--db-border-base);
         color: var(--db-text-primary);
     }
 
     &--variant-outlined {
         background: transparent;
-        border-color: var(--db-border-primary);
+        border-color: var(--db-border-base);
         color: var(--db-text-primary);
     }
 
     &--variant-filled {
-        background: var(--db-bg-secondary);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-layer-1);
+        border-color: var(--db-border-base);
         color: var(--db-text-primary);
     }
 
     // 호버 상태
     &:hover:not(&--disabled):not(&--readonly) {
-        border-color: var(--db-border-secondary);
-        background: var(--db-bg-hover);
+        border-color: var(--db-border-layer-1);
+        background: var(--db-surface-layer-1);
     }
 
     // 포커스 상태
     &:focus-within {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 
     // 드래그 오버 상태
     &--drag-over {
-        border-color: var(--db-blue-600);
-        background: var(--db-blue-100);
-        color: var(--db-blue-600);
+        border-color: var(--db-brand-primary);
+        background: var(--color-foundation-blue-50);
+        color: var(--db-brand-primary);
 
         .designbase-dropzone__icon {
-            color: var(--db-blue-600);
+            color: var(--db-brand-primary);
         }
     }
 
     // 비활성화 상태
     &--disabled {
-        opacity: 0.5;
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
-        background: var(--db-bg-disabled);
-        border-color: var(--db-border-primary);
+        background: var(--db-surface-muted);
+        border-color: var(--db-border-muted);
 
         &:hover {
-            border-color: var(--db-border-primary);
-            background: var(--db-bg-disabled);
+            border-color: var(--db-border-muted);
+            background: var(--db-surface-muted);
         }
     }
 
     // 읽기 전용 상태
     &--readonly {
         cursor: default;
-        background: var(--db-bg-disabled);
+        background: var(--db-surface-muted);
 
         &:hover {
-            border-color: var(--db-border-primary);
-            background: var(--db-bg-disabled);
+            border-color: var(--db-border-base);
+            background: var(--db-surface-muted);
         }
     }
 
@@ -156,8 +155,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--db-text-secondary);
-        transition: color 0.2s ease;
+        color: var(--db-icon-default);
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
     }
 
     // 이미지
@@ -165,12 +164,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: var(--db-margin-md);
+        margin-bottom: var(--db-margin-s);
 
         img {
             max-width: 100%;
             height: auto;
-            border-radius: var(--db-radius-md);
+            border-radius: var(--db-radius-m);
         }
     }
 
@@ -178,96 +177,47 @@
     &__title {
         margin-bottom: var(--db-margin-xs);
         color: inherit;
-        line-height: 1.4;
+        line-height: var(--db-leading-snug);
     }
 
     // 설명
     &__description {
         color: var(--db-text-secondary);
-        line-height: 1.4;
-        margin-bottom: var(--db-margin-md);
+        line-height: var(--db-leading-snug);
+        margin-bottom: var(--db-margin-s);
     }
 
     // 버튼
     &__button {
-        padding: var(--db-padding-sm) var(--db-padding-lg);
-        background: var(--db-blue-600);
-        color: var(--db-white);
+        padding: var(--db-padding-s);
+        background: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
         border: none;
-        border-radius: var(--db-radius-md);
-        font-size: var(--db-text-sm);
+        border-radius: var(--db-radius-m);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover:not(:disabled) {
-            background: var(--db-blue-700);
+            background: var(--color-foundation-blue-800);
         }
 
         &:focus {
-            outline: 2px solid var(--db-blue-600);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: 0.5;
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
         }
     }
 
     // 크기 제한
     &__size-limit {
-        color: var(--db-text-muted);
+        color: var(--db-text-tertiary);
+        font-size: var(--db-text-xs);
         font-weight: var(--db-weight-medium);
-    }
-}
-
-// 테마는 상위에서 관리됩니다.
-// 반응형 스타일
-@media (max-width: 768px) {
-    .designbase-dropzone {
-        &--size-lg {
-            min-height: 160px;
-            padding: var(--db-padding-lg);
-
-            .designbase-dropzone__icon {
-                width: 48px;
-                height: 48px;
-                margin-bottom: var(--db-margin-md);
-            }
-
-            .designbase-dropzone__title {
-                font-size: var(--db-text-base);
-            }
-
-            .designbase-dropzone__description {
-                font-size: var(--db-text-sm);
-            }
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    .designbase-dropzone {
-
-        &--size-lg,
-        &--size-md {
-            min-height: 120px;
-            padding: var(--db-padding-md);
-
-            .designbase-dropzone__icon {
-                width: 32px;
-                height: 32px;
-                margin-bottom: var(--db-margin-sm);
-            }
-
-            .designbase-dropzone__title {
-                font-size: var(--db-text-sm);
-            }
-
-            .designbase-dropzone__description {
-                font-size: var(--db-text-xs);
-            }
-        }
     }
 }

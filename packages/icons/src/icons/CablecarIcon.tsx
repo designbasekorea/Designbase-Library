@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M8 2.75v1.5H2v-1.5zM22 10.25v1.5H2v-1.5z"/><path fill="currentColor" d="M21.25 10c0-.69-.56-1.25-1.25-1.25H4c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h16c.69 0 1.25-.56 1.25-1.25zm1.5 9A2.75 2.75 0 0 1 20 21.75H4A2.75 2.75 0 0 1 1.25 19v-9A2.75 2.75 0 0 1 4 7.25h16A2.75 2.75 0 0 1 22.75 10z"/><path fill="currentColor" d="M22 17.25v1.5H2v-1.5z"/><path fill="currentColor" d="M7.75 11v7h-1.5v-7zM17.75 11v7h-1.5v-7zM12.75 5v3h-1.5V5z"/><path fill="currentColor" d="M15.25 3a.25.25 0 0 0-.25-.25H9a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25h6a.25.25 0 0 0 .25-.25zm1.5 1A1.75 1.75 0 0 1 15 5.75H9A1.75 1.75 0 0 1 7.25 4V3c0-.966.784-1.75 1.75-1.75h6c.966 0 1.75.784 1.75 1.75z"/><path fill="currentColor" d="M22 2.75v1.5h-6v-1.5z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const CablecarIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" d="M8 2.75v1.5H2v-1.5zM22 10.25v1.5H2v-1.5z"/><path fill="currentColor" d="M21.25 10c0-.69-.56-1.25-1.25-1.25H4c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h16c.69 0 1.25-.56 1.25-1.25zm1.5 9A2.75 2.75 0 0 1 20 21.75H4A2.75 2.75 0 0 1 1.25 19v-9A2.75 2.75 0 0 1 4 7.25h16A2.75 2.75 0 0 1 22.75 10z"/><path fill="currentColor" d="M22 17.25v1.5H2v-1.5z"/><path fill="currentColor" d="M7.75 11v7h-1.5v-7zM17.75 11v7h-1.5v-7zM12.75 5v3h-1.5V5z"/><path fill="currentColor" d="M15.25 3a.25.25 0 0 0-.25-.25H9a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25h6a.25.25 0 0 0 .25-.25zm1.5 1A1.75 1.75 0 0 1 15 5.75H9A1.75 1.75 0 0 1 7.25 4V3c0-.966.784-1.75 1.75-1.75h6c.966 0 1.75.784 1.75 1.75z"/><path fill="currentColor" d="M22 2.75v1.5h-6v-1.5z"/></svg>
+);
 
 export default CablecarIcon;

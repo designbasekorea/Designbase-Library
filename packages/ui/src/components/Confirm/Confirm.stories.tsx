@@ -17,7 +17,7 @@ const meta: Meta<typeof Confirm> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
     },
 };
@@ -149,7 +149,7 @@ export const AllSizes: Story = {
                 <Confirm
                     open={openSm}
                     title="작은 확인"
-                    size="sm"
+                    size="s"
                     onClose={() => setOpenSm(false)}
                     onConfirm={() => setOpenSm(false)}
                     onCancel={() => setOpenSm(false)}
@@ -160,7 +160,7 @@ export const AllSizes: Story = {
                 <Confirm
                     open={openMd}
                     title="중간 확인"
-                    size="md"
+                    size="m"
                     onClose={() => setOpenMd(false)}
                     onConfirm={() => setOpenMd(false)}
                     onCancel={() => setOpenMd(false)}
@@ -171,7 +171,7 @@ export const AllSizes: Story = {
                 <Confirm
                     open={openLg}
                     title="큰 확인"
-                    size="lg"
+                    size="l"
                     onClose={() => setOpenLg(false)}
                     onConfirm={() => setOpenLg(false)}
                     onCancel={() => setOpenLg(false)}

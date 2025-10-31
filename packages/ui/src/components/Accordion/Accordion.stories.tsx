@@ -6,7 +6,7 @@ import {
     UserIcon,
     SettingsIcon,
     HelpIcon
-} from '@designbase/icons';
+} from '@designbasekorea/icons';
 
 const meta: Meta<typeof Accordion> = {
     title: 'Components/Accordion',
@@ -22,7 +22,7 @@ const meta: Meta<typeof Accordion> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['sm', 'md', 'lg'],
+            options: ['s', 'm', 'l'],
         },
         allowMultiple: {
             control: { type: 'boolean' },
@@ -190,17 +190,17 @@ export const AllSizes: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
             <div>
                 <h3 style={{ margin: '0 0 16px 0' }}>Small Size</h3>
-                <Accordion items={sampleItems} size="sm" onItemChange={fn()} />
+                <Accordion items={sampleItems} size="s" onItemChange={fn()} />
             </div>
 
             <div>
                 <h3 style={{ margin: '0 0 16px 0' }}>Medium Size (Default)</h3>
-                <Accordion items={sampleItems} size="md" onItemChange={fn()} />
+                <Accordion items={sampleItems} size="m" onItemChange={fn()} />
             </div>
 
             <div>
                 <h3 style={{ margin: '0 0 16px 0' }}>Large Size</h3>
-                <Accordion items={sampleItems} size="lg" onItemChange={fn()} />
+                <Accordion items={sampleItems} size="l" onItemChange={fn()} />
             </div>
         </div>
     ),

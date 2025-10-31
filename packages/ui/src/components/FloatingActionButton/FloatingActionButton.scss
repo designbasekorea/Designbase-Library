@@ -1,199 +1,134 @@
 /**
  * FloatingActionButton 컴포넌트 스타일
  * 
- * 목적: 머티리얼 디자인의 FAB 스타일을 따르는 떠있는 액션 버튼 스타일
- * 기능: 다양한 크기, 위치, 변형, 애니메이션 효과, 리플 효과
+ * 목적: 우측 하단에 고정된 깔끔한 떠있는 액션 버튼
+ * 기능: 크기와 색상 변형 지원, 부드러운 애니메이션
  */
 
 .designbase-fab {
     // 기본 스타일
     position: fixed;
+    bottom: var(--db-margin-xl);
+    right: var(--db-margin-xl);
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
-    border-radius: 50%;
+    border-radius: var(--db-radius-full);
     cursor: pointer;
-    transition: all var(--db-animation-speed) var(--db-animation-ease);
-    z-index: var(--db-z-fab);
+    transition: all 0.2s ease;
+    z-index: var(--db-z-50);
     overflow: hidden;
     user-select: none;
     outline: none;
+    font-family: var(--db-font-primary);
 
-    // 기본 색상
-    background-color: var(--db-blue-600);
-    color: var(--db-neutral-white);
+    // 기본 색상 (primary)
+    background-color: var(--db-brand-primary);
+    color: var(--db-text-inverse-primary);
+    box-shadow: var(--db-shadow-button);
 
-    // 기본 크기 (md)
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    min-height: 56px;
-
-    // 기본 그림자
-    box-shadow: var(--db-shadow-xl);
-
-    // 기본 위치 (bottom-right)
-    bottom: var(--db-spacing-xl);
-    right: var(--db-spacing-xl);
+    // 기본 크기 (m)
+    width: var(--db-size-button-m);
+    height: var(--db-size-button-m);
+    min-width: var(--db-size-button-m);
+    min-height: var(--db-size-button-m);
 
     // 호버 효과
     &:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: var(--db-shadow-2xl);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: var(--db-shadow-button-hover);
     }
 
     // 활성 상태
     &:active:not(:disabled) {
-        transform: translateY(0);
-        box-shadow: var(--db-shadow-lg);
+        transform: translateY(0) scale(0.95);
+        box-shadow: var(--db-shadow-button-active);
     }
 
     // 포커스 상태
     &:focus-visible {
-        outline: 2px solid var(--db-blue-600);
+        outline: 2px solid var(--db-border-focus);
         outline-offset: 2px;
     }
 
     // Size 스타일
-    &--sm {
-        width: var(--db-size-sm);
-        height: var(--db-size-sm);
-        min-width: var(--db-size-sm);
-        min-height: var(--db-size-sm);
+    &--s {
+        width: var(--db-size-button-s);
+        height: var(--db-size-button-s);
+        min-width: var(--db-size-button-s);
+        min-height: var(--db-size-button-s);
     }
 
-    &--md {
-        width: var(--db-size-md);
-        height: var(--db-size-md);
-        min-width: var(--db-size-md);
-        min-height: var(--db-size-md);
+    &--m {
+        width: var(--db-size-button-m);
+        height: var(--db-size-button-m);
+        min-width: var(--db-size-button-m);
+        min-height: var(--db-size-button-m);
     }
 
-    &--lg {
-        width: var(--db-size-lg);
-        height: var(--db-size-lg);
-        min-width: var(--db-size-lg);
-        min-height: var(--db-size-lg);
-    }
-
-    &--xl {
-        width: var(--db-size-xl);
-        height: var(--db-size-xl);
-        min-width: var(--db-size-xl);
-        min-height: var(--db-size-xl);
+    &--l {
+        width: var(--db-size-button-l);
+        height: var(--db-size-button-l);
+        min-width: var(--db-size-button-l);
+        min-height: var(--db-size-button-l);
     }
 
     // Variant 스타일
     &--primary {
-        background-color: var(--db-blue-600);
-        color: var(--db-neutral-white);
-    }
-
-    &--secondary {
-        background-color: var(--db-neutral-500);
-        color: var(--db-neutral-white);
-    }
-
-    &--success {
-        background-color: var(--db-green-600);
-        color: var(--db-neutral-white);
-    }
-
-    &--warning {
-        background-color: var(--db-yellow-500);
-        color: var(--db-neutral-900);
-    }
-
-    &--danger {
-        background-color: var(--db-red-600);
-        color: var(--db-neutral-white);
-    }
-
-    &--info {
-        background-color: var(--db-blue-500);
-        color: var(--db-neutral-white);
-    }
-
-    // Position 스타일
-    &--bottom-right {
-        bottom: var(--db-spacing-xl);
-        right: var(--db-spacing-xl);
-    }
-
-    &--bottom-left {
-        bottom: var(--db-spacing-xl);
-        left: var(--db-spacing-xl);
-    }
-
-    &--top-right {
-        top: var(--db-spacing-xl);
-        right: var(--db-spacing-xl);
-    }
-
-    &--top-left {
-        top: var(--db-spacing-xl);
-        left: var(--db-spacing-xl);
-    }
-
-    &--center {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        background-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
 
         &:hover:not(:disabled) {
-            transform: translate(-50%, -50%) scale(1.05);
+            background-color: var(--db-btn-primary-bg-hover);
         }
 
         &:active:not(:disabled) {
-            transform: translate(-50%, -50%) scale(0.95);
+            background-color: var(--db-btn-primary-bg-active);
         }
     }
 
-    // Elevation 스타일
-    &--elevation-none {
-        box-shadow: none;
+    &--secondary {
+        background-color: var(--db-btn-secondary-bg);
+        color: var(--db-btn-secondary-text);
+        border: 1px solid var(--db-btn-secondary-border);
+
+        &:hover:not(:disabled) {
+            background-color: var(--db-btn-secondary-bg-hover);
+            border-color: var(--db-btn-secondary-border-hover);
+            color: var(--db-btn-secondary-text-hover);
+        }
+
+        &:active:not(:disabled) {
+            background-color: var(--db-btn-secondary-bg-active);
+        }
     }
 
-    &--elevation-sm {
-        box-shadow: var(--db-shadow-sm);
-    }
+    &--tertiary {
+        background-color: var(--db-btn-tertiary-bg);
+        color: var(--db-btn-tertiary-text);
+        border: 1px solid var(--db-btn-tertiary-border);
 
-    &--elevation-md {
-        box-shadow: var(--db-shadow-xl);
-    }
+        &:hover:not(:disabled) {
+            background-color: var(--db-btn-tertiary-bg-hover);
+            border-color: var(--db-btn-tertiary-border-hover);
+            color: var(--db-btn-tertiary-text-hover);
+        }
 
-    &--elevation-lg {
-        box-shadow: var(--db-shadow-2xl);
-    }
-
-    &--elevation-xl {
-        box-shadow: var(--db-shadow-2xl);
-    }
-
-    // Extended FAB
-    &--extended {
-        border-radius: 28px;
-        padding: 0 var(--db-padding-xl);
-        width: auto;
-        min-width: 80px;
-
-        .designbase-fab__label {
-            margin-left: var(--db-margin-m);
-            font-weight: var(--db-weight-medium);
-            white-space: nowrap;
+        &:active:not(:disabled) {
+            background-color: var(--db-btn-tertiary-bg-active);
         }
     }
 
     // Disabled 상태
     &--disabled {
-        opacity: var(--db-opacity-60);
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
         pointer-events: none;
 
         &:hover {
             transform: none;
-            box-shadow: var(--db-shadow-xl);
+            box-shadow: var(--db-shadow-button);
         }
     }
 
@@ -203,147 +138,42 @@
         pointer-events: none;
     }
 
-    // Pressed 상태
-    &--pressed {
-        transform: scale(0.95);
-    }
-
-    // Hovered 상태
-    &--hovered {
-        // 호버 효과는 기본 스타일에 포함
-    }
-
-    // Animation 스타일
-    &--scale {
-        &:hover:not(:disabled) {
-            transform: scale(1.05);
-        }
-
-        &:active:not(:disabled) {
-            transform: scale(0.95);
-        }
-    }
-
-    &--rotate {
-        &:hover:not(:disabled) {
-            transform: rotate(180deg);
-        }
-    }
-
-    &--bounce {
-        &:hover:not(:disabled) {
-            animation: fab-bounce 0.6s ease-in-out;
-        }
-    }
-
-    &--pulse {
-        &:hover:not(:disabled) {
-            animation: fab-pulse 1s ease-in-out infinite;
-        }
-    }
-
-    &--none {
-        // 애니메이션 없음
-    }
-
-    // 내부 요소들
+    // 아이콘 스타일
     &__icon {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: var(--db-text-2xl);
+        font-size: var(--db-text-xl);
         line-height: var(--db-leading-none);
 
-        .designbase-fab--sm & {
+        .designbase-fab--s & {
+            font-size: var(--db-text-base);
+        }
+
+        .designbase-fab--m & {
             font-size: var(--db-text-xl);
         }
 
-        .designbase-fab--lg & {
-            font-size: var(--db-text-3xl);
+        .designbase-fab--l & {
+            font-size: var(--db-text-2xl);
         }
 
-        .designbase-fab--xl & {
-            font-size: var(--db-text-4xl);
+        // Spinner 스타일 조정
+        .designbase-spinner {
+            width: 100%;
+            height: 100%;
         }
-    }
-
-    &__label {
-        font-size: var(--db-text-sm);
-        font-weight: var(--db-weight-medium);
-        line-height: var(--db-leading-tight);
-        white-space: nowrap;
-    }
-
-    &__content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    // 로딩 스피너
-    &__loading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    &__spinner {
-        width: var(--db-size-sm);
-        height: var(--db-size-sm);
-        border: 2px solid transparent;
-        border-top: 2px solid currentColor;
-        border-radius: 50%;
-        animation: fab-spin 1s linear infinite;
-
-        .designbase-fab--sm & {
-            width: var(--db-size-xs);
-            height: var(--db-size-xs);
-            border-width: 1.5px;
-        }
-
-        .designbase-fab--lg & {
-            width: var(--db-size-sm);
-            height: var(--db-size-sm);
-            border-width: 2.5px;
-        }
-
-        .designbase-fab--xl & {
-            width: var(--db-size-sm);
-            height: var(--db-size-sm);
-            border-width: 3px;
-        }
-    }
-
-    // 리플 효과
-    &__ripple {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: inherit;
-        background-color: rgba(255, 255, 255, 0.3);
-        opacity: 0;
-        transform: scale(0);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        pointer-events: none;
-    }
-
-    &:active:not(:disabled) .designbase-fab__ripple {
-        opacity: 1;
-        transform: scale(1);
     }
 
     // 모션 감소 설정 지원
     @media (prefers-reduced-motion: reduce) {
         transition: none;
-        animation: none !important;
 
         &:hover:not(:disabled) {
+            transform: none;
+        }
+
+        &:active:not(:disabled) {
             transform: none;
         }
     }
@@ -360,116 +190,18 @@
     }
 }
 
-// 애니메이션 키프레임
-@keyframes fab-bounce {
-
-    0%,
-    20%,
-    53%,
-    80%,
-    100% {
-        transform: translate3d(0, 0, 0);
-    }
-
-    40%,
-    43% {
-        transform: translate3d(0, -8px, 0);
-    }
-
-    70% {
-        transform: translate3d(0, -4px, 0);
-    }
-
-    90% {
-        transform: translate3d(0, -2px, 0);
-    }
-}
-
-@keyframes fab-pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes fab-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 // 반응형 스타일
 @media (max-width: 768px) {
     .designbase-fab {
-        bottom: var(--db-spacing-4);
-        right: var(--db-spacing-4);
-
-        &--bottom-left {
-            bottom: var(--db-spacing-4);
-            left: var(--db-spacing-4);
-        }
-
-        &--top-right {
-            top: var(--db-spacing-4);
-            right: var(--db-spacing-4);
-        }
-
-        &--top-left {
-            top: var(--db-spacing-4);
-            left: var(--db-spacing-4);
-        }
+        bottom: var(--db-margin-l);
+        right: var(--db-margin-l);
     }
 }
 
 @media (max-width: 480px) {
     .designbase-fab {
-        bottom: var(--db-spacing-3);
-        right: var(--db-spacing-3);
-
-        &--bottom-left {
-            bottom: var(--db-spacing-3);
-            left: var(--db-spacing-3);
-        }
-
-        &--top-right {
-            top: var(--db-spacing-3);
-            right: var(--db-spacing-3);
-        }
-
-        &--top-left {
-            top: var(--db-spacing-3);
-            left: var(--db-spacing-3);
-        }
-
-        &--extended {
-            padding: 0 var(--db-padding-m);
-            min-width: var(--db-spacing-16);
-
-            .designbase-fab__label {
-                margin-left: var(--db-margin-s);
-                font-size: var(--db-text-sm);
-            }
-        }
-    }
-}
-
-// 고해상도 디스플레이 최적화
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-    .designbase-fab {
-        // 고해상도에서 더 부드러운 그림자
-        box-shadow: var(--db-shadow-lg);
+        bottom: var(--db-margin-m);
+        right: var(--db-margin-m);
     }
 }
 

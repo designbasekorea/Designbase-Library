@@ -117,19 +117,19 @@ export const DifferentSpacings: Story = {
             </div>
             <div>
                 <h3>작은 간격</h3>
-                <Stack spacing="sm">
+                <Stack spacing="s">
                     {generateStackItems(3)}
                 </Stack>
             </div>
             <div>
                 <h3>중간 간격</h3>
-                <Stack spacing="md">
+                <Stack spacing="m">
                     {generateStackItems(3)}
                 </Stack>
             </div>
             <div>
                 <h3>큰 간격</h3>
-                <Stack spacing="lg">
+                <Stack spacing="l">
                     {generateStackItems(3)}
                 </Stack>
             </div>

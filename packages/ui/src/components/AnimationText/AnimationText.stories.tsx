@@ -97,7 +97,7 @@ const meta: Meta<typeof AnimationText> = {
         repeat: 0,
         delay: 0,
         direction: 'left',
-        size: 'md',
+        size: 'm',
         color: 'primary',
         weight: 'normal',
         align: 'left',

@@ -4,95 +4,135 @@
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--db-animation-speed) var(--db-animation-ease), visibility var(--db-animation-speed) var(--db-animation-ease), transform var(--db-animation-speed) var(--db-animation-ease);
-    transform: scale(0.95);
+    overflow: visible;
+    /* ✅ 화살표가 박스 밖으로 나와도 보이게 */
+    transform: translate3d(0, 0, 0) scale(0.98);
+    will-change: transform, opacity;
+    transition:
+        opacity var(--db-animation-speed) var(--db-animation-ease),
+        visibility var(--db-animation-speed) var(--db-animation-ease),
+        transform var(--db-animation-speed) var(--db-animation-ease);
+
+    &[data-placement-group="top"] {
+        --tt-offset-x: 0px;
+        --tt-offset-y: -6px;
+    }
+
+    &[data-placement-group="bottom"] {
+        --tt-offset-x: 0px;
+        --tt-offset-y: 6px;
+    }
+
+    &[data-placement-group="left"] {
+        --tt-offset-x: -6px;
+        --tt-offset-y: 0px;
+    }
+
+    &[data-placement-group="right"] {
+        --tt-offset-x: 6px;
+        --tt-offset-y: 0px;
+    }
+
+    transform: translate3d(var(--tt-offset-x, 0), var(--tt-offset-y, 0), 0) scale(0.98);
 
     &--visible {
         opacity: 1;
         visibility: visible;
-        transform: scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
     &__content {
-        background-color: var(--db-bg-inverse);
-        color: var(--db-text-inverse);
+        position: relative;
+        /* ✅ 화살표 보더 보정용 ::after 기준 */
+        overflow: visible;
+        /* ✅ 내용이 화살표를 가리지 않도록 */
+        background-color: var(--db-surface-inverse);
+        color: var(--db-text-inverse-primary);
         padding: var(--db-padding-s) var(--db-padding-m);
-        border-radius: var(--db-radius-md);
-        font-size: var(--db-text-sm);
+        border-radius: var(--db-radius-m);
+        font-size: var(--db-text-s);
         line-height: var(--db-leading-tight);
-        white-space: nowrap;
-        box-shadow: var(--db-shadow-lg);
+        box-shadow: var(--db-shadow-tooltip);
+        border: none;
         max-width: 100%;
         word-wrap: break-word;
         white-space: normal;
     }
 
+    /* 화살표(삼각형) */
     &__arrow {
         position: absolute;
         width: 0;
         height: 0;
-        border: 4px solid transparent;
+        border: 6px solid transparent;
+        pointer-events: none;
+        z-index: 1;
 
-        // Top positions
+        /* 외곽선 제거 - 스트로크 없음 */
+        &::after {
+            display: none;
+        }
+
+        /* TOP */
         &--top,
         &--top-start,
         &--top-end {
-            border-top-color: var(--db-bg-inverse);
             top: 100%;
+            border-top-color: var(--db-surface-inverse);
         }
 
-        // Bottom positions
+        /* BOTTOM */
         &--bottom,
         &--bottom-start,
         &--bottom-end {
-            border-bottom-color: var(--db-bg-inverse);
             bottom: 100%;
+            border-bottom-color: var(--db-surface-inverse);
         }
 
-        // Left positions
+        /* LEFT */
         &--left,
         &--left-start,
         &--left-end {
-            border-left-color: var(--db-bg-inverse);
             left: 100%;
+            border-left-color: var(--db-surface-inverse);
         }
 
-        // Right positions
+        /* RIGHT */
         &--right,
         &--right-start,
         &--right-end {
-            border-right-color: var(--db-bg-inverse);
             right: 100%;
+            border-right-color: var(--db-surface-inverse);
         }
     }
 
-    // Sizes
-    &--sm {
+    /* Sizes */
+    &--s {
         .designbase-tooltip__content {
             padding: var(--db-padding-xs) var(--db-padding-s);
             font-size: var(--db-text-xs);
         }
     }
 
-    &--md {
+    &--m {
         .designbase-tooltip__content {
             padding: var(--db-padding-s) var(--db-padding-m);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-tooltip__content {
             padding: var(--db-padding-m) var(--db-padding-l);
             font-size: var(--db-text-base);
         }
     }
 
-    // Variants
+    /* Variants (토큰만 사용) */
     &--default {
         .designbase-tooltip__content {
-            background-color: var(--db-bg-inverse);
-            color: var(--db-text-inverse);
+            background: var(--db-surface-inverse);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-tooltip__arrow {
@@ -100,33 +140,33 @@
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--db-bg-inverse);
+                border-top-color: var(--db-surface-inverse);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--db-bg-inverse);
+                border-bottom-color: var(--db-surface-inverse);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--db-bg-inverse);
+                border-left-color: var(--db-surface-inverse);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--db-bg-inverse);
+                border-right-color: var(--db-surface-inverse);
             }
         }
     }
 
     &--primary {
         .designbase-tooltip__content {
-            background-color: var(--db-blue-500);
-            color: var(--db-text-inverse);
+            background: var(--db-brand-primary);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-tooltip__arrow {
@@ -134,33 +174,33 @@
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--db-blue-500);
+                border-top-color: var(--db-brand-primary);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--db-blue-500);
+                border-bottom-color: var(--db-brand-primary);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--db-blue-500);
+                border-left-color: var(--db-brand-primary);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--db-blue-500);
+                border-right-color: var(--db-brand-primary);
             }
         }
     }
 
     &--success {
         .designbase-tooltip__content {
-            background-color: var(--db-green-500);
-            color: var(--db-text-inverse);
+            background: var(--db-feedback-success-fg);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-tooltip__arrow {
@@ -168,33 +208,33 @@
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--db-green-500);
+                border-top-color: var(--db-feedback-success-fg);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--db-green-500);
+                border-bottom-color: var(--db-feedback-success-fg);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--db-green-500);
+                border-left-color: var(--db-feedback-success-fg);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--db-green-500);
+                border-right-color: var(--db-feedback-success-fg);
             }
         }
     }
 
     &--warning {
         .designbase-tooltip__content {
-            background-color: var(--db-yellow-500);
-            color: var(--db-neutral-900);
+            background: var(--db-feedback-warning-fg);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-tooltip__arrow {
@@ -202,33 +242,33 @@
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--db-yellow-500);
+                border-top-color: var(--db-feedback-warning-fg);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--db-yellow-500);
+                border-bottom-color: var(--db-feedback-warning-fg);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--db-yellow-500);
+                border-left-color: var(--db-feedback-warning-fg);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--db-yellow-500);
+                border-right-color: var(--db-feedback-warning-fg);
             }
         }
     }
 
     &--danger {
         .designbase-tooltip__content {
-            background-color: var(--db-red-500);
-            color: var(--db-text-inverse);
+            background: var(--db-feedback-error-fg);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-tooltip__arrow {
@@ -236,33 +276,33 @@
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--db-red-500);
+                border-top-color: var(--db-feedback-error-fg);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--db-red-500);
+                border-bottom-color: var(--db-feedback-error-fg);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--db-red-500);
+                border-left-color: var(--db-feedback-error-fg);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--db-red-500);
+                border-right-color: var(--db-feedback-error-fg);
             }
         }
     }
 
     &--info {
         .designbase-tooltip__content {
-            background-color: var(--db-blue-500);
-            color: var(--db-text-inverse);
+            background: var(--db-feedback-info-fg);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-tooltip__arrow {
@@ -270,33 +310,36 @@
             &--top,
             &--top-start,
             &--top-end {
-                border-top-color: var(--db-blue-500);
+                border-top-color: var(--db-feedback-info-fg);
             }
 
             &--bottom,
             &--bottom-start,
             &--bottom-end {
-                border-bottom-color: var(--db-blue-500);
+                border-bottom-color: var(--db-feedback-info-fg);
             }
 
             &--left,
             &--left-start,
             &--left-end {
-                border-left-color: var(--db-blue-500);
+                border-left-color: var(--db-feedback-info-fg);
             }
 
             &--right,
             &--right-start,
             &--right-end {
-                border-right-color: var(--db-blue-500);
+                border-right-color: var(--db-feedback-info-fg);
             }
         }
     }
 
-    // States
     &--disabled {
         pointer-events: none;
         opacity: 0;
         visibility: hidden;
     }
+}
+
+.designbase-tooltip__trigger {
+    display: inline-block;
 }

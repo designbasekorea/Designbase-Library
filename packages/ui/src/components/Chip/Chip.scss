@@ -2,14 +2,14 @@
     display: inline-flex;
     align-items: center;
     gap: var(--db-gap-xs);
-    padding: var(--db-padding-xs) var(--db-padding-s);
-    background-color: var(--db-bg-secondary);
+    padding: var(--db-padding-xs);
+    background-color: var(--db-surface-base);
     color: var(--db-text-primary);
-    border: 1px solid var(--db-border-primary);
+    border: 1px solid var(--db-border-base);
     border-radius: var(--db-radius-full);
-    font-size: var(--db-text-sm);
+    font-size: var(--db-text-xs);
     font-weight: var(--db-weight-medium);
-    line-height: 1;
+    line-height: var(--db-leading-tight);
     white-space: nowrap;
     transition: all var(--db-animation-speed) var(--db-animation-ease);
     user-select: none;
@@ -19,9 +19,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: var(--db-text-sm);
-        width: var(--db-size-sm);
-        height: var(--db-size-sm);
+        flex-shrink: 0;
+
+        svg {
+            display: block;
+        }
     }
 
     &__label {
@@ -35,8 +37,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: var(--db-size-sm);
-        height: var(--db-size-sm);
+        width: var(--db-size-s);
+        height: var(--db-size-s);
         background: none;
         border: none;
         border-radius: var(--db-radius-full);
@@ -46,58 +48,81 @@
         font-size: var(--db-text-xs);
 
         &:hover {
-            background-color: var(--db-bg-hover);
+            background-color: var(--db-surface-layer-1);
             color: var(--db-text-primary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &:disabled {
-            opacity: var(--db-opacity-50);
+            opacity: var(--db-opacity-disabled);
             cursor: not-allowed;
         }
     }
 
     // Sizes
-    &--sm {
-        padding: var(--db-padding-xs) var(--db-padding-xs);
+    &--s {
+        padding: var(--db-padding-xs) var(--db-padding-s);
         font-size: var(--db-text-xs);
+        gap: var(--db-gap-xs);
 
-        .designbase-chip__start-icon,
-        .designbase-chip__end-icon,
+        .designbase-chip__start-icon svg,
+        .designbase-chip__end-icon svg {
+            width: 12px;
+            height: 12px;
+        }
+
         .designbase-chip__delete-button {
-            width: var(--db-size-xs);
-            height: var(--db-size-xs);
-            font-size: var(--db-text-xs);
+            width: 12px;
+            height: 12px;
+            font-size: 12px;
         }
     }
 
-    &--md {
-        padding: var(--db-padding-xs) var(--db-padding-s);
-        font-size: var(--db-text-sm);
+    &--m {
+        padding: var(--db-padding-s) var(--db-padding-m);
+        font-size: var(--db-text-s);
+        gap: var(--db-gap-s);
+
+        .designbase-chip__start-icon svg,
+        .designbase-chip__end-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .designbase-chip__delete-button {
+            width: 16px;
+            height: 16px;
+            font-size: 12px;
+        }
     }
 
-    &--lg {
-        padding: var(--db-padding-s) var(--db-padding-m);
+    &--l {
+        padding: var(--db-padding-m) var(--db-padding-l);
         font-size: var(--db-text-base);
+        gap: var(--db-gap-s);
 
-        .designbase-chip__start-icon,
-        .designbase-chip__end-icon,
+        .designbase-chip__start-icon svg,
+        .designbase-chip__end-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
         .designbase-chip__delete-button {
-            width: var(--db-size-md);
-            height: var(--db-size-md);
-            font-size: var(--db-text-base);
+            width: 20px;
+            height: 20px;
+            font-size: 14px;
         }
     }
 
     // Variants
     &--default {
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-base);
         color: var(--db-text-primary);
-        border-color: var(--db-border-primary);
+        border-color: var(--db-border-base);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
@@ -108,217 +133,116 @@
             color: var(--db-text-secondary);
 
             &:hover {
-                background-color: var(--db-bg-hover);
+                background-color: var(--db-surface-layer-1);
                 color: var(--db-text-primary);
             }
         }
     }
 
     &--primary {
-        background-color: var(--db-blue-600);
-        color: var(--db-white);
-        border-color: var(--db-blue-600);
+        background-color: var(--color-foundation-blue-50);
+        color: var(--color-foundation-blue-700);
+        border-color: var(--color-foundation-blue-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--db-white);
+            color: var(--color-foundation-blue-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--db-white);
+            color: var(--color-foundation-blue-600);
 
             &:hover {
-                background-color: rgba(255, 255, 255, 0.2);
-                color: var(--db-white);
+                background-color: var(--color-foundation-blue-100);
+                color: var(--color-foundation-blue-800);
             }
         }
     }
 
     &--success {
-        background-color: var(--db-green-100);
-        color: var(--db-green-700);
-        border-color: var(--db-green-200);
+        background-color: var(--color-foundation-green-50);
+        color: var(--color-foundation-green-700);
+        border-color: var(--color-foundation-green-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--db-green-700);
+            color: var(--color-foundation-green-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--db-green-600);
+            color: var(--color-foundation-green-600);
 
             &:hover {
-                background-color: var(--db-green-200);
-                color: var(--db-green-800);
+                background-color: var(--color-foundation-green-100);
+                color: var(--color-foundation-green-800);
             }
         }
     }
 
     &--warning {
-        background-color: var(--db-yellow-100);
-        color: var(--db-yellow-700);
-        border-color: var(--db-yellow-200);
+        background-color: var(--color-foundation-yellow-50);
+        color: var(--color-foundation-yellow-700);
+        border-color: var(--color-foundation-yellow-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--db-yellow-700);
+            color: var(--color-foundation-yellow-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--db-yellow-600);
+            color: var(--color-foundation-yellow-600);
 
             &:hover {
-                background-color: var(--db-yellow-200);
-                color: var(--db-yellow-800);
+                background-color: var(--color-foundation-yellow-100);
+                color: var(--color-foundation-yellow-800);
             }
         }
     }
 
     &--danger {
-        background-color: var(--db-red-100);
-        color: var(--db-red-700);
-        border-color: var(--db-red-200);
+        background-color: var(--color-foundation-red-50);
+        color: var(--color-foundation-red-700);
+        border-color: var(--color-foundation-red-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--db-red-700);
+            color: var(--color-foundation-red-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--db-red-600);
+            color: var(--color-foundation-red-600);
 
             &:hover {
-                background-color: var(--db-red-200);
-                color: var(--db-red-800);
+                background-color: var(--color-foundation-red-100);
+                color: var(--color-foundation-red-800);
             }
         }
     }
 
     &--info {
-        background-color: var(--db-blue-100);
-        color: var(--db-blue-700);
-        border-color: var(--db-blue-200);
+        background-color: var(--color-foundation-blue-50);
+        color: var(--color-foundation-blue-700);
+        border-color: var(--color-foundation-blue-200);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
-            color: var(--db-blue-700);
+            color: var(--color-foundation-blue-700);
         }
 
         .designbase-chip__delete-button {
-            color: var(--db-blue-600);
+            color: var(--color-foundation-blue-600);
 
             &:hover {
-                background-color: var(--db-blue-200);
-                color: var(--db-blue-800);
+                background-color: var(--color-foundation-blue-100);
+                color: var(--color-foundation-blue-800);
             }
         }
     }
 
-    &--outlined {
-        background-color: transparent;
-        border-width: 2px;
-
-        &.designbase-chip--primary {
-            color: var(--db-blue-600);
-            border-color: var(--db-blue-500);
-
-            .designbase-chip__start-icon,
-            .designbase-chip__end-icon {
-                color: var(--db-blue-600);
-            }
-
-            .designbase-chip__delete-button {
-                color: var(--db-blue-500);
-
-                &:hover {
-                    background-color: var(--db-blue-50);
-                    color: var(--db-blue-700);
-                }
-            }
-        }
-
-        &.designbase-chip--success {
-            color: var(--db-green-600);
-            border-color: var(--db-green-500);
-
-            .designbase-chip__start-icon,
-            .designbase-chip__end-icon {
-                color: var(--db-green-600);
-            }
-
-            .designbase-chip__delete-button {
-                color: var(--db-green-500);
-
-                &:hover {
-                    background-color: var(--db-green-50);
-                    color: var(--db-green-700);
-                }
-            }
-        }
-
-        &.designbase-chip--warning {
-            color: var(--db-yellow-600);
-            border-color: var(--db-yellow-500);
-
-            .designbase-chip__start-icon,
-            .designbase-chip__end-icon {
-                color: var(--db-yellow-600);
-            }
-
-            .designbase-chip__delete-button {
-                color: var(--db-yellow-500);
-
-                &:hover {
-                    background-color: var(--db-yellow-50);
-                    color: var(--db-yellow-700);
-                }
-            }
-        }
-
-        &.designbase-chip--danger {
-            color: var(--db-red-600);
-            border-color: var(--db-red-500);
-
-            .designbase-chip__start-icon,
-            .designbase-chip__end-icon {
-                color: var(--db-red-600);
-            }
-
-            .designbase-chip__delete-button {
-                color: var(--db-red-500);
-
-                &:hover {
-                    background-color: var(--db-red-50);
-                    color: var(--db-red-700);
-                }
-            }
-        }
-
-        &.designbase-chip--info {
-            color: var(--db-blue-600);
-            border-color: var(--db-blue-500);
-
-            .designbase-chip__start-icon,
-            .designbase-chip__end-icon {
-                color: var(--db-blue-600);
-            }
-
-            .designbase-chip__delete-button {
-                color: var(--db-blue-500);
-
-                &:hover {
-                    background-color: var(--db-blue-50);
-                    color: var(--db-blue-700);
-                }
-            }
-        }
-    }
-
-    // Colors
     &--neutral {
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
         color: var(--db-text-secondary);
-        border-color: var(--db-border-primary);
+        border-color: var(--db-border-muted);
 
         .designbase-chip__start-icon,
         .designbase-chip__end-icon {
@@ -326,10 +250,10 @@
         }
 
         .designbase-chip__delete-button {
-            color: var(--db-text-muted);
+            color: var(--db-text-tertiary);
 
             &:hover {
-                background-color: var(--db-bg-hover);
+                background-color: var(--db-surface-layer-2);
                 color: var(--db-text-secondary);
             }
         }
@@ -337,19 +261,19 @@
 
     // States
     &--deletable {
-        padding-right: var(--db-padding-xs);
+        padding-right: var(--db-padding-s);
     }
 
     &--disabled {
-        opacity: var(--db-opacity-50);
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
         pointer-events: none;
     }
 
     &--selected {
-        background-color: var(--db-blue-500);
-        color: var(--db-white);
-        border-color: var(--db-blue-500);
+        background-color: var(--db-brand-primary);
+        color: var(--db-text-inverse-primary);
+        border-color: var(--db-brand-primary);
     }
 
     &--clickable {
@@ -361,7 +285,7 @@
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
     }

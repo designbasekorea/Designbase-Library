@@ -2,9 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import './ProgressStep.scss';
 
-export type ProgressStepVariant = 'default' | 'outlined' | 'filled' | 'minimal';
-export type ProgressStepSize = 'sm' | 'md' | 'lg';
-export type ProgressStepLayout = 'vertical' | 'horizontal' | 'alternating';
+export type ProgressStepSize = 's' | 'm' | 'l';
+export type ProgressStepLayout = 'vertical' | 'horizontal';
 
 export interface ProgressStepItem {
     /** 단계 ID */
@@ -30,8 +29,6 @@ export interface ProgressStepItem {
 export interface ProgressStepProps {
     /** 진행 단계 아이템들 */
     items: ProgressStepItem[];
-    /** 진행 단계 변형 */
-    variant?: ProgressStepVariant;
     /** 진행 단계 크기 */
     size?: ProgressStepSize;
     /** 진행 단계 레이아웃 */
@@ -54,8 +51,7 @@ export interface ProgressStepProps {
 
 const ProgressStep: React.FC<ProgressStepProps> = ({
     items,
-    variant = 'default',
-    size = 'md',
+    size = 'm',
     layout = 'vertical',
     currentStep = 0,
     clickable = false,
@@ -82,7 +78,6 @@ const ProgressStep: React.FC<ProgressStepProps> = ({
 
     const classes = clsx(
         'designbase-progress-step',
-        `designbase-progress-step--${variant}`,
         `designbase-progress-step--${size}`,
         `designbase-progress-step--${layout}`,
         {

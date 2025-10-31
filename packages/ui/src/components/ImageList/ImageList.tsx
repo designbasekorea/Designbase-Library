@@ -6,7 +6,7 @@ import './ImageList.scss';
 
 export type ImageListLayout = 'grid' | 'list' | 'gallery' | 'carousel';
 export type ImageListColumns = 1 | 2 | 3 | 4 | 5 | 6;
-export type ImageListSpacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ImageListSpacing = 'xs' | 's' | 'm' | 'l' | 'xl';
 
 export interface ImageItem {
     /** 이미지 ID */
@@ -74,7 +74,7 @@ const ImageList: React.FC<ImageListProps> = ({
     images,
     layout = 'grid',
     columns = 3,
-    spacing = 'md',
+    spacing = 'm',
     ratio = '16:9',
     fit = 'cover',
     rounded = false,

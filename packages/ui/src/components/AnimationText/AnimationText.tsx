@@ -16,7 +16,7 @@ export interface AnimationTextProps {
     /** 애니메이션 방향 */
     direction?: 'left' | 'right' | 'up' | 'down' | 'alternate';
     /** 텍스트 크기 */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+    size?: 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | '3xl';
     /** 텍스트 색상 */
     color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'custom';
     /** 커스텀 색상 */
@@ -48,7 +48,7 @@ const AnimationText: React.FC<AnimationTextProps> = ({
     repeat = 0,
     delay = 0,
     direction = 'left',
-    size = 'md',
+    size = 'm',
     color = 'primary',
     customColor,
     weight = 'normal',

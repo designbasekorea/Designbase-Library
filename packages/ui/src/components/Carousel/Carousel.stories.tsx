@@ -162,7 +162,7 @@ const meta: Meta<typeof Carousel> = {
         },
     },
     args: {
-        size: 'md',
+        size: 'm',
         variant: 'default',
         theme: 'light',
         transition: 'slide',
@@ -371,14 +371,14 @@ export const Default: Story = {
 // 다양한 크기
 export const DifferentSizes: Story = {
     render: () => {
-        const [size, setSize] = useState<'sm' | 'md' | 'lg' | 'xl'>('md');
+        const [size, setSize] = useState<'s' | 'm' | 'l' | 'xl'>('m');
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                    <button onClick={() => setSize('sm')}>Small</button>
-                    <button onClick={() => setSize('md')}>Medium</button>
-                    <button onClick={() => setSize('lg')}>Large</button>
+                    <button onClick={() => setSize('s')}>Small</button>
+                    <button onClick={() => setSize('m')}>Medium</button>
+                    <button onClick={() => setSize('l')}>Large</button>
                     <button onClick={() => setSize('xl')}>Extra Large</button>
                 </div>
 

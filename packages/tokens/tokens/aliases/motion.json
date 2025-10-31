@@ -1,0 +1,26 @@
+{
+    "motion": {
+        "aliases": {
+            "duration": {
+                "fast": {
+                    "value": "{motion.foundation.duration.fast}",
+                    "type": "duration"
+                },
+                "base": {
+                    "value": "{motion.foundation.duration.base}",
+                    "type": "duration"
+                },
+                "slow": {
+                    "value": "{motion.foundation.duration.slow}",
+                    "type": "duration"
+                }
+            },
+            "easing": {
+                "standard": {
+                    "value": "{motion.foundation.easing.easeOut}",
+                    "type": "cubicBezier"
+                }
+            }
+        }
+    }
+}

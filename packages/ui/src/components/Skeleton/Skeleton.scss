@@ -8,14 +8,14 @@
 .designbase-skeleton {
     // 기본 스타일
     display: inline-block;
-    background-color: var(--db-bg-muted);
-    border-radius: var(--db-radius-sm);
+    background-color: var(--db-surface-muted);
+    border-radius: var(--db-radius-s);
     position: relative;
     overflow: hidden;
 
     // Variant 스타일
     &--text {
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         width: 100%;
     }
 
@@ -29,7 +29,7 @@
     }
 
     &--rounded {
-        border-radius: var(--db-radius-md);
+        border-radius: var(--db-radius-m);
     }
 
     // Size 스타일
@@ -39,19 +39,19 @@
         }
     }
 
-    &--sm {
+    &--s {
         &.designbase-skeleton--text {
             height: 16px;
         }
     }
 
-    &--md {
+    &--m {
         &.designbase-skeleton--text {
             height: 20px;
         }
     }
 
-    &--lg {
+    &--l {
         &.designbase-skeleton--text {
             height: 24px;
         }
@@ -91,8 +91,8 @@
     // 텍스트 라인 스타일
     &__line {
         height: 100%;
-        background-color: var(--db-bg-muted);
-        border-radius: var(--db-radius-sm);
+        background-color: var(--db-surface-muted);
+        border-radius: var(--db-radius-s);
         display: block;
     }
 

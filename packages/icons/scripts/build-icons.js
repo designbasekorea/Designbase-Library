@@ -104,85 +104,25 @@ function validateSvgFile(svgPath, content) {
   return issues;
 }
 
-// SVGR 설정 (템플릿에서 직접 <svg ...> 주입 처리)
+// SVGR 설정 (간단한 템플릿)
 const svgrConfig = {
   typescript: true,
   jsxRuntime: 'automatic',
-  expandProps: 'end', // {...props}를 루트에 넣을 건데, 템플릿에서 최종 치환
+  expandProps: 'end',
   replaceAttrValues: {
     '#000': 'currentColor',
     '#000000': 'currentColor',
     black: 'currentColor',
   },
-  // svgProps는 쓰지 않고 템플릿에서 루트 <svg>를 문자열 치환으로 제어
   template: ({ componentName, jsx }, { tpl }) => {
-    // 루트 <svg ...>에 동적 속성 삽입
-    // - width/height: sizeValue
-    // - className: className
-    // - style: { color: getColorValue(), ...styleSafe }
-    // - {...props} 포함
-    const injectedJsx = jsx.replace(
-      /<svg([^>]*)>/,
-      `<svg$1
-  width={sizeValue}
-  height={sizeValue}
-  className={className}
-  style={{ color: getColorValue(), ...styleSafe }}
-  {...props}
->`
-    );
-
     return tpl`
-/**
- * ${componentName} 아이콘 컴포넌트
- * 자동 생성됨 - 수정하지 마세요
- */
+import React from 'react';
+import type { IconProps } from '../types';
 
-import React, { type CSSProperties } from 'react';
+const ${componentName} = ({ size = 24, ...props }: IconProps) => (
+  ${jsx}
+);
 
-export interface ${componentName}Props {
-  size?: string | number;
-  className?: string;
-  color?: string;
-  style?: CSSProperties;
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'muted' | 'inverse';
-}
-
-const ${componentName}: React.FC<${componentName}Props> = ({
-  size = 16,
-  className,
-  color,
-  style,
-  variant = 'primary',
-  ...props
-}) => {
-  const styleSafe = (style && typeof style === 'object') ? style : undefined;
-  const sizeValue = typeof size === 'number' ? \`\${size}px\` : size;
-
-  // 디자인 토큰 기반 색상 결정
-  const getColorValue = () => {
-    if (color) return color;
-
-    const colorMap = {
-      primary: 'var(--db-icon-primary)',
-      secondary: 'var(--db-icon-secondary)',
-      success: 'var(--db-icon-success)',
-      warning: 'var(--db-icon-warning)',
-      danger: 'var(--db-icon-danger)',
-      info: 'var(--db-icon-info)',
-      muted: 'var(--db-icon-muted)',
-      inverse: 'var(--db-icon-inverse)'
-    };
-
-    return colorMap[variant] || colorMap.primary;
-  };
-
-  return (
-    ${injectedJsx}
-  );
-};
-
-${componentName}.displayName = '${componentName}';
 export default ${componentName};
 `;
   },
@@ -209,22 +149,24 @@ async function processIcon(relPath) {
       throw new Error(`SVGO 최적화 실패: ${optimized.error}`);
     }
 
-    const transform = await getTransform();
-    let tsx = await transform(
-      optimized.data,
-      { ...svgrConfig, componentName },
-      { componentName }
+    // SVGR 대신 직접 템플릿 생성
+    let svgContent = optimized.data;
+
+    // SVG 태그에 width, height, props 추가
+    svgContent = svgContent.replace(
+      /<svg([^>]*)>/,
+      '<svg$1 width={size} height={size} {...props}>'
     );
 
-    // 혹시라도 기본 내보내기가 누락된 경우(버전/환경에 따른 예외) 방어 로직
-    if (!/export\s+default\s+${componentName}\s*;?/.test(tsx)) {
-      // 제안: 공백/개행/세미콜론 허용 폭 넓힘
-      const defaultRe = new RegExp(`export\\s+default\\s+${componentName}\\s*;?\\s*$`, 'm');
-      if (!defaultRe.test(tsx)) {
-        tsx += `\n\nexport default ${componentName};\n`;
-        buildStats.warnings.push(`${componentName}: export default를 수동으로 추가했습니다`);
-      }
-    }
+    const tsx = `import React from 'react';
+import type { IconProps } from '../types';
+
+const ${componentName} = ({ size = 24, ...props }: IconProps) => (
+  ${svgContent}
+);
+
+export default ${componentName};
+`;
 
     ensureDir(OUTPUT_DIR);
 

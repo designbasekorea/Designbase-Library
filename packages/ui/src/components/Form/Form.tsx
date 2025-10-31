@@ -6,17 +6,21 @@ import { Radio } from '../Radio/Radio';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Button } from '../Button/Button';
 import Textarea from '../Textarea/Textarea';
+import ColorPicker from '../ColorPicker/ColorPicker';
+import DatePicker from '../DatePicker/DatePicker';
+import TimePicker from '../TimePicker/TimePicker';
+import FileUploader from '../FileUploader/FileUploader';
 import './Form.scss';
 
-export type FormLayout = 'vertical' | 'horizontal' | 'inline';
-export type FormSize = 'sm' | 'md' | 'lg';
+export type FormColumns = 1 | 2;
+export type FormSize = 's' | 'm' | 'l';
 export type FormVariant = 'default' | 'bordered' | 'filled';
 
 export interface FormField {
     /** 필드 이름 */
     name: string;
     /** 필드 타입 */
-    type: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'textarea' | 'select' | 'radio' | 'checkbox' | 'date' | 'time' | 'datetime-local' | 'file';
+    type: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search' | 'textarea' | 'select' | 'radio' | 'checkbox' | 'date' | 'file' | 'color' | 'timepicker';
     /** 필드 라벨 */
     label?: string;
     /** 필드 값 */
@@ -84,8 +88,8 @@ export interface FormField {
 export interface FormProps {
     /** 폼 필드들 */
     fields: FormField[];
-    /** 폼 레이아웃 */
-    layout?: FormLayout;
+    /** 폼 컬럼 수 (1단 또는 2단) */
+    columns?: FormColumns;
     /** 폼 크기 */
     size?: FormSize;
     /** 폼 스타일 변형 */
@@ -118,8 +122,8 @@ export interface FormProps {
 
 const Form: React.FC<FormProps> = ({
     fields,
-    layout = 'vertical',
-    size = 'md',
+    columns = 1,
+    size = 'm',
     variant = 'default',
     onSubmit,
     onChange,
@@ -376,25 +380,57 @@ const Form: React.FC<FormProps> = ({
 
             case 'file':
                 return (
-                    <input
-                        type="file"
-                        id={field.name}
-                        name={field.name}
+                    <FileUploader
+                        size={size}
                         accept={field.fileUpload?.accept}
+                        maxSize={field.fileUpload?.maxSize}
                         multiple={field.fileUpload?.multiple}
                         disabled={field.disabled}
-                        required={field.required}
-                        onChange={(e) => {
-                            const files = e.target.files;
-                            if (files) {
-                                const fileArray = Array.from(files);
-                                handleFieldChange(field.name, field.fileUpload?.multiple ? fileArray : fileArray[0]);
-                            }
+                        readonly={field.readOnly}
+                        onUpload={(files) => {
+                            handleFieldChange(field.name, files);
                         }}
-                        onBlur={() => handleFieldBlur(field.name)}
-                        className={clsx('designbase-form__file-input', {
-                            'designbase-form__input--error': touched[field.name] && errors[field.name],
-                        })}
+                    />
+                );
+
+            case 'date':
+                return (
+                    <DatePicker
+                        size={size}
+                        value={fieldValue}
+                        disabled={field.disabled}
+                        readonly={field.readOnly}
+                        mode="single"
+                        type="dropdown"
+                        onChange={(date) => handleFieldChange(field.name, date)}
+                    />
+                );
+
+            case 'color':
+                return (
+                    <ColorPicker
+                        size={size}
+                        value={fieldValue}
+                        disabled={field.disabled}
+                        readonly={field.readOnly}
+                        showAlpha={true}
+                        showFormatSelector={true}
+                        showCopyButton={true}
+                        onChange={(color) => handleFieldChange(field.name, color)}
+                    />
+                );
+
+            case 'timepicker':
+                return (
+                    <TimePicker
+                        size={size}
+                        value={fieldValue}
+                        disabled={field.disabled}
+                        readonly={field.readOnly}
+                        format="24h"
+                        type="dropdown"
+                        minuteStep={1}
+                        onChange={(time) => handleFieldChange(field.name, time)}
                     />
                 );
 
@@ -415,7 +451,7 @@ const Form: React.FC<FormProps> = ({
 
     const classes = clsx(
         'designbase-form',
-        `designbase-form--${layout}`,
+        `designbase-form--columns-${columns}`,
         `designbase-form--${size}`,
         `designbase-form--${variant}`,
         className

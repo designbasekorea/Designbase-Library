@@ -1,5 +1,5 @@
 {
-    "name": "@designbase/library",
+    "name": "@designbasekorea/library",
     "version": "0.1.0",
     "description": "Designbase 피그마 플러그인 공통 디자인시스템 및 컴포넌트 라이브러리",
     "private": false,
@@ -36,10 +36,10 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.29.6",
-        "@storybook/addon-essentials": "^8.6.14",
-        "@storybook/addon-interactions": "^8.6.14",
-        "@storybook/react": "^8.6.14",
-        "@storybook/react-vite": "^8.6.14",
+        "@storybook/addon-essentials": "^9.1.4",
+        "@storybook/addon-interactions": "^9.1.4",
+        "@storybook/react": "^9.1.4",
+        "@storybook/react-vite": "^9.1.4",
         "@storybook/testing-library": "^0.2.2",
         "@types/classnames": "^2.3.0",
         "@typescript-eslint/eslint-plugin": "^6.7.3",
@@ -54,7 +54,7 @@
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-react-hooks": "^4.6.0",
         "prettier": "^3.0.3",
-        "storybook": "^8.6.14",
+        "storybook": "^9.1.4",
         "turbo": "^1.10.14",
         "typescript": "^5.2.2",
         "vite": "^5.0.0"

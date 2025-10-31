@@ -10,7 +10,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './Chip.scss';
 
-export type ChipSize = 'sm' | 'md' | 'lg';
+export type ChipSize = 's' | 'm' | 'l';
 export type ChipVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'outlined' | 'neutral';
 export type ChipColor = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
 
@@ -47,7 +47,7 @@ export interface ChipProps {
 
 export const Chip: React.FC<ChipProps> = ({
     label,
-    size = 'md',
+    size = 'm',
     variant = 'default',
     color = 'primary',
     deletable = false,
@@ -61,6 +61,22 @@ export const Chip: React.FC<ChipProps> = ({
     className,
     ...props
 }) => {
+    // 사이즈별 아이콘 크기
+    const getIconSize = () => {
+        switch (size) {
+            case 's':
+                return 12;
+            case 'm':
+                return 16;
+            case 'l':
+                return 20;
+            default:
+                return 16;
+        }
+    };
+
+    const iconSize = getIconSize();
+
     const handleDelete = (e: React.MouseEvent) => {
         e.stopPropagation();
         if (!disabled && onDelete) {
@@ -78,7 +94,6 @@ export const Chip: React.FC<ChipProps> = ({
         'designbase-chip',
         `designbase-chip--${size}`,
         `designbase-chip--${variant}`,
-        `designbase-chip--${color}`,
         {
             'designbase-chip--deletable': deletable,
             'designbase-chip--disabled': disabled,
@@ -105,7 +120,9 @@ export const Chip: React.FC<ChipProps> = ({
         >
             {startIcon && (
                 <span className="designbase-chip__start-icon">
-                    {startIcon}
+                    {React.isValidElement(startIcon)
+                        ? React.cloneElement(startIcon as React.ReactElement<any>, { size: iconSize })
+                        : startIcon}
                 </span>
             )}
 
@@ -115,7 +132,9 @@ export const Chip: React.FC<ChipProps> = ({
 
             {endIcon && !deletable && (
                 <span className="designbase-chip__end-icon">
-                    {endIcon}
+                    {React.isValidElement(endIcon)
+                        ? React.cloneElement(endIcon as React.ReactElement<any>, { size: iconSize })
+                        : endIcon}
                 </span>
             )}
 
@@ -127,7 +146,21 @@ export const Chip: React.FC<ChipProps> = ({
                     disabled={disabled}
                     aria-label={`${label} 삭제`}
                 >
-                    <i className="designbase-icon-x" />
+                    <svg
+                        width={iconSize}
+                        height={iconSize}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M18 6L6 18M6 6l12 12"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
                 </button>
             )}
         </div>

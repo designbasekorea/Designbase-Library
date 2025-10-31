@@ -23,7 +23,7 @@
 
     &__track {
         width: 100%;
-        background-color: var(--db-bg-secondary);
+        background-color: var(--db-surface-layer-1);
         border-radius: var(--db-radius-full);
         overflow: hidden;
         position: relative;
@@ -31,7 +31,7 @@
 
     &__fill {
         height: 100%;
-        background-color: var(--db-blue-500);
+        background-color: var(--db-brand-primary);
         border-radius: var(--db-radius-full);
         transition: width var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
@@ -41,7 +41,7 @@
     }
 
     &__fill-label {
-        color: var(--db-text-inverse);
+        color: var(--db-text-inverse-primary);
         font-size: var(--db-text-xs);
         font-weight: var(--db-weight-medium);
         line-height: var(--db-leading-tight);
@@ -50,7 +50,7 @@
     }
 
     &__label {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         line-height: var(--db-leading-normal);
         color: var(--db-text-primary);
@@ -69,18 +69,7 @@
     }
 
     // Sizes
-    &--xs {
-        .designbase-progressbar__track {
-            height: 4px;
-        }
-
-        .designbase-progressbar__label {
-            font-size: var(--db-text-xs);
-            line-height: var(--db-leading-tight);
-        }
-    }
-
-    &--sm {
+    &--s {
         .designbase-progressbar__track {
             height: 6px;
         }
@@ -91,76 +80,60 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-progressbar__track {
             height: 8px;
         }
 
         .designbase-progressbar__label {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-normal);
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-progressbar__track {
             height: 12px;
         }
 
         .designbase-progressbar__label {
-            font-size: var(--db-text-base);
+            font-size: var(--db-text-m);
             line-height: var(--db-leading-normal);
-        }
-    }
-
-    &--xl {
-        .designbase-progressbar__track {
-            height: 16px;
-        }
-
-        .designbase-progressbar__label {
-            font-size: var(--db-text-lg);
-            line-height: var(--db-leading-relaxed);
         }
     }
 
     // Variants
     &--default {
         .designbase-progressbar__fill {
-            background-color: var(--db-blue-500);
+            background-color: var(--db-brand-primary);
         }
     }
 
     &--primary {
         .designbase-progressbar__fill {
-            background-color: var(--db-blue-500);
+            background-color: var(--db-brand-primary);
         }
     }
 
     &--success {
         .designbase-progressbar__fill {
-            background-color: var(--db-green-500);
+            background-color: var(--db-feedback-success-fg);
         }
     }
 
     &--warning {
         .designbase-progressbar__fill {
-            background-color: var(--db-yellow-500);
+            background-color: var(--db-feedback-warning-fg);
         }
     }
 
     &--danger {
         .designbase-progressbar__fill {
-            background-color: var(--db-red-500);
+            background-color: var(--db-feedback-error-fg);
         }
     }
 
-    // Styles
-    &--solid {
-        .designbase-progressbar__fill {
-            background: linear-gradient(90deg, currentColor, currentColor);
-        }
-    }
+
 
     &--striped {
         .designbase-progressbar__fill {
@@ -193,11 +166,11 @@
 
     // States
     &--disabled {
-        opacity: var(--db-opacity-60);
+        opacity: var(--db-opacity-disabled);
         cursor: not-allowed;
 
         .designbase-progressbar__track {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
         }
 
         .designbase-progressbar__fill {
@@ -213,6 +186,17 @@
         width: 100%;
     }
 
+    // 완료 상태
+    &--completed {
+        .designbase-progressbar__fill {
+            background-color: var(--db-feedback-success-fg);
+        }
+
+        .designbase-progressbar__label {
+            color: var(--db-feedback-success-fg);
+        }
+    }
+
     // Animations
     @keyframes progressbar-stripes {
         0% {
@@ -226,24 +210,13 @@
 
     // Responsive
     @media (max-width: 640px) {
-        &--lg {
+        &--l {
             .designbase-progressbar__track {
                 height: 10px;
             }
 
             .designbase-progressbar__label {
-                font-size: var(--db-text-sm);
-                line-height: var(--db-leading-normal);
-            }
-        }
-
-        &--xl {
-            .designbase-progressbar__track {
-                height: 14px;
-            }
-
-            .designbase-progressbar__label {
-                font-size: var(--db-text-base);
+                font-size: var(--db-text-s);
                 line-height: var(--db-leading-normal);
             }
         }
@@ -251,8 +224,8 @@
 
     // Focus styles for accessibility
     &:focus-visible {
-        outline: 2px solid var(--db-blue-500);
+        outline: 2px solid var(--db-brand-primary);
         outline-offset: 2px;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
     }
 }

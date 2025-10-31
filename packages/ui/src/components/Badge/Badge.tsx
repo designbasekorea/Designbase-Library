@@ -10,7 +10,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './Badge.scss';
 
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = 's' | 'm' | 'l';
 export type BadgeVariant = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger';
 export type BadgeStyle = 'dot' | 'number' | 'text' | 'outlined';
 
@@ -37,7 +37,7 @@ export interface BadgeProps {
 
 export const Badge: React.FC<BadgeProps> = ({
     children,
-    size = 'md',
+    size = 'm',
     variant = 'primary',
     style = 'text',
     count,

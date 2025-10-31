@@ -4,7 +4,7 @@
     gap: var(--db-gap-s);
     cursor: pointer;
     user-select: none;
-    font-size: var(--db-text-sm);
+    font-size: var(--db-text-s);
     line-height: var(--db-leading-tight);
     color: var(--db-text-primary);
 
@@ -23,8 +23,8 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        background-color: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
         border-radius: 50%;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
     }
@@ -44,23 +44,31 @@
 
     // Default styles
     .designbase-radio__visual {
-        background-color: var(--db-bg-primary);
-        border-color: var(--db-border-primary);
+        background-color: var(--db-surface-base);
+        border-color: var(--db-border-base);
     }
 
     &:hover:not(.designbase-radio--disabled) .designbase-radio__visual {
-        background-color: var(--db-bg-secondary);
-        border-color: var(--db-border-secondary);
+        background-color: var(--db-surface-layer-1);
+        border-color: var(--db-border-layer-1);
     }
 
     &.designbase-radio--selected .designbase-radio__visual {
-        background-color: var(--db-blue-500);
-        border-color: var(--db-blue-500);
+        background-color: var(--db-surface-base);
+        border-color: var(--db-brand-primary);
+    }
+
+    &.designbase-radio--selected .designbase-radio__dot {
+        background-color: var(--db-brand-primary);
     }
 
     &.designbase-radio--selected:hover:not(.designbase-radio--disabled) .designbase-radio__visual {
-        background-color: var(--db-blue-600);
-        border-color: var(--db-blue-600);
+        background-color: var(--db-surface-base);
+        border-color: var(--color-foundation-blue-800);
+    }
+
+    &.designbase-radio--selected:hover:not(.designbase-radio--disabled) .designbase-radio__dot {
+        background-color: var(--color-foundation-blue-800);
     }
 
     // No label variant
@@ -69,9 +77,8 @@
     }
 
     // Sizes
-    &--xs {
+    &--s {
         font-size: var(--db-text-xs);
-        line-height: var(--db-leading-tight);
 
         .designbase-radio__visual {
             width: var(--db-size-xs);
@@ -79,53 +86,31 @@
         }
     }
 
-    &--sm {
-        font-size: var(--db-text-sm);
-        line-height: var(--db-leading-normal);
+    &--m {
+        font-size: var(--db-text-s);
 
         .designbase-radio__visual {
-            width: var(--db-size-sm);
-            height: var(--db-size-sm);
+            width: var(--db-size-s);
+            height: var(--db-size-s);
         }
     }
 
-    &--md {
+    &--l {
         font-size: var(--db-text-base);
-        line-height: var(--db-leading-normal);
 
         .designbase-radio__visual {
-            width: var(--db-size-md);
-            height: var(--db-size-md);
-        }
-    }
-
-    &--lg {
-        font-size: var(--db-text-lg);
-        line-height: var(--db-leading-normal);
-
-        .designbase-radio__visual {
-            width: var(--db-size-lg);
-            height: var(--db-size-lg);
-        }
-    }
-
-    &--xl {
-        font-size: var(--db-text-xl);
-        line-height: var(--db-leading-normal);
-
-        .designbase-radio__visual {
-            width: var(--db-size-xl);
-            height: var(--db-size-xl);
+            width: var(--db-size-m);
+            height: var(--db-size-m);
         }
     }
 
     // States
     &--disabled {
         cursor: not-allowed;
-        opacity: 0.6;
+        opacity: var(--db-opacity-disabled);
 
         .designbase-radio__visual {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-muted);
             border-color: var(--db-border-muted);
         }
 

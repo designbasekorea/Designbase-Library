@@ -7,13 +7,9 @@ export interface ToggleProps {
     defaultSelected?: boolean;
     isDisabled?: boolean;
     isReadOnly?: boolean;
-    isRequired?: boolean;
-    hasLabel?: boolean;
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    size?: 's' | 'm' | 'l';
     children?: React.ReactNode;
     className?: string;
-    name?: string;
-    value?: string;
     onChange?: (isSelected: boolean) => void;
     [key: string]: any;
 }
@@ -25,13 +21,9 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
             defaultSelected,
             isDisabled = false,
             isReadOnly = false,
-            isRequired = false,
-            hasLabel = true,
-            size = 'md',
+            size = 'm',
             children,
             className,
-            name,
-            value,
             onChange,
             ...props
         },
@@ -60,7 +52,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
                 'designbase-toggle--selected': selected,
                 'designbase-toggle--disabled': isDisabled,
                 'designbase-toggle--readonly': isReadOnly,
-                'designbase-toggle--no-label': !hasLabel,
+                'designbase-toggle--no-label': !children,
             },
             className
         );
@@ -69,8 +61,6 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
             <button
                 {...props}
                 ref={forwardedRef}
-                name={name}
-                value={value}
                 className={classes}
                 onClick={handleClick}
                 disabled={isDisabled}

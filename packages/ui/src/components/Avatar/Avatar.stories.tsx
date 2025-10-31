@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Avatar } from './Avatar';
-import { UserIcon, SettingsIcon, BellIcon } from '@designbase/icons';
+import { UserIcon, SettingsIcon, BellIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Avatar> = {
     title: 'Components/Avatar',
@@ -12,7 +12,7 @@ const meta: Meta<typeof Avatar> = {
     argTypes: {
         size: {
             control: { type: 'select' },
-            options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+            options: ['xs', 's', 'm', 'l', 'xl', '2xl'],
         },
         variant: {
             control: { type: 'select' },
@@ -53,9 +53,9 @@ export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
             <Avatar size="xs" initials="XS" />
-            <Avatar size="sm" initials="SM" />
-            <Avatar size="md" initials="MD" />
-            <Avatar size="lg" initials="LG" />
+            <Avatar size="s" initials="S" />
+            <Avatar size="m" initials="M" />
+            <Avatar size="l" initials="L" />
             <Avatar size="xl" initials="XL" />
             <Avatar size="2xl" initials="2XL" />
         </div>
@@ -107,7 +107,7 @@ export const AllTypes: Story = {
                 <h3>로딩 상태 Avatar</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <Avatar loading={true} />
-                    <Avatar loading={true} size="lg" />
+                    <Avatar loading={true} size="l" />
                 </div>
             </div>
 
@@ -136,72 +136,72 @@ export const AvatarGroup: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
                 <h3>Small Group</h3>
-                <div className="designbase-avatar-group designbase-avatar-group--sm">
+                <div className="designbase-avatar-group designbase-avatar-group--s">
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="sm" initials="김" />
+                        <Avatar size="s" initials="김" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="sm" initials="이" />
+                        <Avatar size="s" initials="이" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="sm" initials="박" />
+                        <Avatar size="s" initials="박" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="sm" initials="최" />
+                        <Avatar size="s" initials="최" />
                     </div>
                 </div>
             </div>
 
             <div>
                 <h3>Medium Group</h3>
-                <div className="designbase-avatar-group designbase-avatar-group--md">
+                <div className="designbase-avatar-group designbase-avatar-group--m">
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" initials="김철수" />
+                        <Avatar size="m" initials="김철수" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" initials="이영희" />
+                        <Avatar size="m" initials="이영희" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" initials="박민수" />
+                        <Avatar size="m" initials="박민수" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" initials="최지영" />
+                        <Avatar size="m" initials="최지영" />
                     </div>
                 </div>
             </div>
 
             <div>
                 <h3>Large Group</h3>
-                <div className="designbase-avatar-group designbase-avatar-group--lg">
+                <div className="designbase-avatar-group designbase-avatar-group--l">
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="lg" initials="김철수" />
+                        <Avatar size="l" initials="김철수" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="lg" initials="이영희" />
+                        <Avatar size="l" initials="이영희" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="lg" initials="박민수" />
+                        <Avatar size="l" initials="박민수" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="lg" initials="최지영" />
+                        <Avatar size="l" initials="최지영" />
                     </div>
                 </div>
             </div>
 
             <div>
                 <h3>복합 Group (다양한 타입)</h3>
-                <div className="designbase-avatar-group designbase-avatar-group--md">
+                <div className="designbase-avatar-group designbase-avatar-group--m">
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" src="https://via.placeholder.com/40" alt="User 1" status="online" />
+                        <Avatar size="m" src="https://via.placeholder.com/40" alt="User 1" status="online" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" initials="김철수" variant="primary" />
+                        <Avatar size="m" initials="김철수" variant="primary" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" icon={<UserIcon />} variant="success" />
+                        <Avatar size="m" icon={<UserIcon />} variant="success" />
                     </div>
                     <div className="designbase-avatar-group__item">
-                        <Avatar size="md" initials="이영희" variant="warning" />
+                        <Avatar size="m" initials="이영희" variant="warning" />
                     </div>
                 </div>
             </div>

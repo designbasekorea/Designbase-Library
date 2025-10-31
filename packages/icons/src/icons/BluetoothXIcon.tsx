@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="m21.53 5.53-1.06-1.06L19 5.94l-1.47-1.47-1.06 1.06L17.94 7l-1.47 1.47 1.06 1.06L19 8.06l1.47 1.47 1.06-1.06L20.06 7zM13.09 12l2.43-2.31-1.04-1.09-1.73 1.65v-6.5l1.73 1.65 1.04-1.09-3-2.86a.74.74 0 0 0-1.26.54v8.25L7.28 6.45 6.25 7.54 10.93 12l-4.68 4.46 1.03 1.09 3.98-3.79v8.25c0 .3.18.57.45.69q.15.06.3.06c.19 0 .38-.07.52-.21l5.25-5c.15-.14.23-.34.23-.54s-.08-.4-.23-.54l-4.68-4.46zm-.34 8.25v-6.5L16.16 17z"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const BluetoothXIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="m20.47 9.53-4-4 1.06-1.06 4 4z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="m16.47 8.47 4-4 1.06 1.06-4 4zM6.233 16.457l8.25-7.857 1.034 1.086-8.25 7.857z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.705 1.31a.75.75 0 0 1 .812.147l3 2.857L14.483 5.4 12.75 3.75v7.929l5.017 4.778a.75.75 0 0 1 0 1.086l-5.25 5A.75.75 0 0 1 11.25 22v-9.679L6.233 7.543l1.034-1.086 3.983 3.793V2c0-.3.179-.571.455-.69m1.045 12.44v6.5L16.163 17z" clip-rule="evenodd"/></svg>
+);
 
 export default BluetoothXIcon;

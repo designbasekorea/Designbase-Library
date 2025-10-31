@@ -1,6 +1,6 @@
 {
-    "name": "@designbase/theme",
-    "version": "2.0.0",
+    "name": "@designbasekorea/theme",
+    "version": "0.1.25",
     "description": "Designbase 테마 시스템 - CSS 변수, 테마 프리셋, 유틸리티 클래스를 제공",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -13,11 +13,10 @@
             "require": "./dist/index.js",
             "default": "./dist/index.esm.js"
         },
-        "./css": "./dist/css/theme.css"
+        "./dist/css/theme.css": "./dist/css/theme.css"
     },
     "files": [
-        "dist",
-        "scss"
+        "dist"
     ],
     "scripts": {
         "build": "npm run build:css && node scripts/merge-tokens-into-theme.js && rollup -c",
@@ -25,7 +24,8 @@
         "dev": "npm run build:css -- --watch",
         "clean": "rimraf dist",
         "lint": "eslint src --ext .ts,.tsx",
-        "test": "jest"
+        "test": "jest",
+        "storybook": "echo 'Theme package does not have storybook'"
     },
     "dependencies": {},
     "devDependencies": {
@@ -42,7 +42,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/designbase/designbase-library.git",
+        "url": "https://github.com/designbasekorea/Designbase-Library.git",
         "directory": "packages/theme"
     }
 }

@@ -17,7 +17,7 @@ export interface ToastItem extends Omit<ToastProps, 'onClose'> {
 
 export interface ToastContainerProps {
     /** 토스트 위치 */
-    position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+    position?: 'top-right' | 'top-center' | 'bottom-center' | 'bottom-right';
     /** 최대 토스트 개수 */
     maxToasts?: number;
     /** 추가 CSS 클래스 */

@@ -12,22 +12,14 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /*
   2. Remove default margin
 */
 * {
-    margin: 0;
-}
-
-/*
-  3. Allow percentage-based heights in the application
-*/
-html,
-body {
-    height: 100%;
+  margin: 0;
 }
 
 /*
@@ -36,10 +28,10 @@ body {
   5. Improve text rendering
 */
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /*
@@ -50,8 +42,8 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 /*
@@ -61,7 +53,7 @@ input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 /*
@@ -74,7 +66,7 @@ h3,
 h4,
 h5,
 h6 {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /*
@@ -82,33 +74,33 @@ h6 {
 */
 #root,
 #__next {
-    isolation: isolate;
+  isolation: isolate;
 }
 
 /*
   10. Figma Plugin specific resets
 */
 body {
-    font-family: var(--font-family-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-    font-size: var(--font-size-sm, 14px);
-    color: var(--color-text-primary, #111827);
-    background-color: var(--color-bg-primary, #ffffff);
+  font-family: var(--db-font-primary);
+  font-size: var(--font-size-base);
+  color: var(--db-text-primary);
+  background-color: var(--db-surface-base);
 
-    /* Prevent text selection in UI elements (can be overridden) */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+  /* Prevent text selection in UI elements (can be overridden) */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 /*
   11. Button resets
 */
 button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    outline: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
 }
 
 /*
@@ -116,16 +108,16 @@ button {
 */
 ul,
 ol {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 /*
   13. Link resets
 */
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 /*
@@ -134,22 +126,22 @@ a {
 input,
 textarea,
 select {
-    background: transparent;
-    border: none;
-    outline: none;
-    appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
 
-    &::placeholder {
-        color: var(--color-text-muted, #6b7280);
-    }
+  &::placeholder {
+    color: var(--color-text-muted, #6b7280);
+  }
 }
 
 /*
   15. Table resets
 */
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /*
@@ -157,55 +149,119 @@ table {
 */
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /*
   17. Focus management for accessibility
 */
 *:focus {
-    outline: none;
-}
-
-*:focus-visible {
-    outline: 2px solid var(--color-border-focus, #3b82f6);
-    outline-offset: 2px;
+  outline: none;
 }
 
 /*
-  18. Scrollbar styling (Webkit)
+  18. Scrollbar hiding by default (Figma Plugin optimized)
 */
-::-webkit-scrollbar {
+/* 기본적으로 모든 스크롤바 숨김 */
+* {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+/* 스크롤바가 필요한 요소에만 표시하는 유틸리티 클래스 */
+.designbase-scrollable {
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
+
+  &::-webkit-scrollbar {
+    display: block;
     width: 8px;
     height: 8px;
-}
+  }
 
-::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background: var(--color-bg-secondary, #f3f4f6);
-}
+    border-radius: var(--border-radius-base, 4px);
+  }
 
-::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background: var(--color-border-secondary, #d1d5db);
     border-radius: var(--border-radius-base, 4px);
+
+    &:hover {
+      background: var(--color-border-primary, #9ca3af);
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: var(--color-bg-secondary, #f3f4f6);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-border-primary, #e5e7eb);
+/* 더 얇은 스크롤바 (모바일 친화적) */
+.designbase-scrollable--thin {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border-secondary, #d1d5db);
+    border-radius: 2px;
+
+    &:hover {
+      background: var(--color-border-primary, #9ca3af);
+    }
+  }
+}
+
+/* 커스텀 스크롤바 (더 세련된 디자인) */
+.designbase-scrollable--custom {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border-primary, #d1d5db);
+    border-radius: 3px;
+
+    &:hover {
+      background: var(--color-text-secondary, #9ca3af);
+    }
+  }
 }
 
 /*
   19. Selection styling
 */
 ::selection {
-    background-color: var(--color-text-link, #2563eb);
-    color: var(--color-text-inverse, #ffffff);
+  background-color: var(--color-text-link, #2563eb);
+  color: var(--color-text-inverse, #ffffff);
 }
 
 /*
@@ -213,33 +269,33 @@ table {
 */
 @media print {
 
-    *,
-    *::before,
-    *::after {
-        background: transparent !important;
-        color: black !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
 
-    img {
-        page-break-inside: avoid;
-    }
+  img {
+    page-break-inside: avoid;
+  }
 
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
 
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }

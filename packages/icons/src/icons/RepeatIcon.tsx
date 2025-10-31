@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m19 5.53-3.47-3.47L16.591 1l4.53 4.53-4.53 4.53L15.531 9z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M5.592 6.963c.587-.488 1.301-.783 1.969-.783h12.4v-1.5H7.56c-1.116 0-2.183.49-2.988 1.18l-.044.038-.038.044c-.673.785-1.18 1.752-1.18 2.888v1.7h1.5v-1.7c0-.648.278-1.266.781-1.867M5.121 17.53l3.47-3.47L7.531 13 3 17.53l4.53 4.53L8.591 21z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M19.31 14.23v-1.7h1.5v1.7c0 1.136-.507 2.103-1.18 2.888l-.037.044-.044.038c-.805.69-1.872 1.18-2.988 1.18H4.06v-1.5h12.5c.667 0 1.381-.294 1.968-.782.503-.601.782-1.22.782-1.868" clip-rule="evenodd"/></svg>
+import React from 'react';
+import type { IconProps } from '../types';
+
+const RepeatIcon = ({ size = 24, ...props }: IconProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="m18.94 6-3.47-3.47 1.06-1.06L21.06 6l-4.53 4.53-1.06-1.06z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M5.532 7.433c.587-.488 1.3-.783 1.968-.783h12.4v-1.5H7.5c-1.116 0-2.183.49-2.988 1.18l-.044.038-.037.044C3.757 7.197 3.25 8.164 3.25 9.3V11h1.5V9.3c0-.648.279-1.267.782-1.867M5.06 18l3.47-3.47-1.06-1.06L2.94 18l4.53 4.53 1.06-1.06z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M19.25 14.7V13h1.5v1.7c0 1.136-.508 2.103-1.18 2.888l-.038.044-.044.037c-.805.69-1.872 1.181-2.988 1.181H4v-1.5h12.5c.668 0 1.381-.295 1.968-.783.503-.6.782-1.22.782-1.867" clip-rule="evenodd"/></svg>
+);
 
 export default RepeatIcon;

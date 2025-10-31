@@ -1,0 +1,63 @@
+/**
+ * FigmaSidebar 컴포넌트 스타일
+ */
+
+.designbase-figma-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    background-color: var(--db-surface-base);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    flex-shrink: 0;
+
+    &__group {
+        margin-bottom: var(--db-margin-m);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__group-title {
+        margin: 0 0 var(--db-margin-xs) 0;
+        font-size: var(--db-text-xs);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-tertiary);
+    }
+
+    &__button {
+        display: block;
+        width: 100%;
+        padding: var(--db-padding-xs);
+        margin-bottom: var(--db-margin-xs);
+        border: none;
+        border-radius: var(--db-radius-m);
+        background-color: transparent;
+        color: var(--db-text-secondary);
+        cursor: pointer;
+        font-size: var(--db-text-s);
+        line-height: var(--db-leading-tight);
+        text-align: left;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover {
+            background-color: var(--db-surface-layer-1);
+            color: var(--db-text-primary);
+        }
+
+        &--active {
+            background-color: var(--db-surface-layer-1);
+            color: var(--db-text-primary);
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+}

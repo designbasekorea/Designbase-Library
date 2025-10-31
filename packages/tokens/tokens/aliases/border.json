@@ -1,0 +1,70 @@
+{
+    "border": {
+        "aliases": {
+            "radius": {
+                "none": {
+                    "value": "{border.foundation.radius.0}",
+                    "type": "borderRadius"
+                },
+                "xs": {
+                    "value": "{border.foundation.radius.1}",
+                    "type": "borderRadius"
+                },
+                "s": {
+                    "value": "{border.foundation.radius.2}",
+                    "type": "borderRadius"
+                },
+                "m": {
+                    "value": "{border.foundation.radius.3}",
+                    "type": "borderRadius"
+                },
+                "l": {
+                    "value": "{border.foundation.radius.4}",
+                    "type": "borderRadius"
+                },
+                "xl": {
+                    "value": "{border.foundation.radius.5}",
+                    "type": "borderRadius"
+                },
+                "2xl": {
+                    "value": "{border.foundation.radius.6}",
+                    "type": "borderRadius"
+                },
+                "3xl": {
+                    "value": "{border.foundation.radius.7}",
+                    "type": "borderRadius"
+                },
+                "full": {
+                    "value": "{border.foundation.radius.full}",
+                    "type": "borderRadius"
+                }
+            },
+            "width": {
+                "none": {
+                    "value": "{border.foundation.width.0}",
+                    "type": "borderWidth"
+                },
+                "hairline": {
+                    "value": "{border.foundation.width.1}",
+                    "type": "borderWidth"
+                },
+                "thin": {
+                    "value": "{border.foundation.width.2}",
+                    "type": "borderWidth"
+                },
+                "base": {
+                    "value": "{border.foundation.width.3}",
+                    "type": "borderWidth"
+                },
+                "thick": {
+                    "value": "{border.foundation.width.4}",
+                    "type": "borderWidth"
+                },
+                "thicker": {
+                    "value": "{border.foundation.width.5}",
+                    "type": "borderWidth"
+                }
+            }
+        }
+    }
+}

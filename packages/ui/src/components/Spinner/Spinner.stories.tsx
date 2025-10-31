@@ -16,7 +16,7 @@ const meta: Meta<typeof Spinner> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['xs', 'sm', 'md', 'lg', 'xl'],
+            options: ['xs', 's', 'm', 'l', 'xl'],
         },
         color: {
             control: { type: 'color' },
@@ -37,7 +37,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         type: 'circular',
-        size: 'md',
+        size: 'm',
     },
 };
 
@@ -46,23 +46,23 @@ export const Types: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
                 <h3>Circular</h3>
-                <Spinner type="circular" size="md" />
+                <Spinner type="circular" size="m" />
             </div>
             <div>
                 <h3>Dots</h3>
-                <Spinner type="dots" size="md" />
+                <Spinner type="dots" size="m" />
             </div>
             <div>
                 <h3>Bars</h3>
-                <Spinner type="bars" size="md" />
+                <Spinner type="bars" size="m" />
             </div>
             <div>
                 <h3>Pulse</h3>
-                <Spinner type="pulse" size="md" />
+                <Spinner type="pulse" size="m" />
             </div>
             <div>
                 <h3>Ripple</h3>
-                <Spinner type="ripple" size="md" />
+                <Spinner type="ripple" size="m" />
             </div>
         </div>
     ),
@@ -77,15 +77,15 @@ export const Sizes: Story = {
             </div>
             <div style={{ textAlign: 'center' }}>
                 <h4>SM</h4>
-                <Spinner type="circular" size="sm" />
+                <Spinner type="circular" size="s" />
             </div>
             <div style={{ textAlign: 'center' }}>
                 <h4>MD</h4>
-                <Spinner type="circular" size="md" />
+                <Spinner type="circular" size="m" />
             </div>
             <div style={{ textAlign: 'center' }}>
                 <h4>LG</h4>
-                <Spinner type="circular" size="lg" />
+                <Spinner type="circular" size="l" />
             </div>
             <div style={{ textAlign: 'center' }}>
                 <h4>XL</h4>
@@ -98,7 +98,7 @@ export const Sizes: Story = {
 export const WithLabel: Story = {
     args: {
         type: 'circular',
-        size: 'md',
+        size: 'm',
         label: '데이터를 불러오는 중...',
         showLabel: true,
     },
@@ -153,7 +153,7 @@ export const CustomSpeeds: Story = {
 export const AllTypesAndSizes: Story = {
     render: () => {
         const types = ['circular', 'dots', 'bars', 'pulse', 'ripple'] as const;
-        const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+        const sizes = ['xs', 's', 'm', 'l', 'xl'] as const;
 
         return (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
@@ -192,7 +192,7 @@ export const InContext: Story = {
                     borderRadius: '8px',
                     textAlign: 'center'
                 }}>
-                    <Spinner type="circular" size="lg" label="페이지를 불러오는 중..." showLabel={true} />
+                    <Spinner type="circular" size="l" label="페이지를 불러오는 중..." showLabel={true} />
                 </div>
             </div>
 
@@ -204,7 +204,7 @@ export const InContext: Story = {
                     borderRadius: '8px',
                     textAlign: 'center'
                 }}>
-                    <Spinner type="circular" size="sm" />
+                    <Spinner type="circular" size="s" />
                 </div>
             </div>
 
@@ -219,7 +219,7 @@ export const InContext: Story = {
                         alignItems: 'center',
                         gap: '8px'
                     }}>
-                        <Spinner type="circular" size="sm" />
+                        <Spinner type="circular" size="s" />
                         로딩 중...
                     </button>
                 </div>
@@ -228,7 +228,7 @@ export const InContext: Story = {
             <div>
                 <h3>인라인 로딩</h3>
                 <p>
-                    데이터를 처리하는 중입니다 <Spinner type="dots" size="sm" />
+                    데이터를 처리하는 중입니다 <Spinner type="dots" size="s" />
                 </p>
             </div>
         </div>
@@ -241,7 +241,7 @@ export const LabelExamples: Story = {
             <div>
                 <h3>기본 Spinner (텍스트 없음)</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <Spinner type="circular" size="md" />
+                    <Spinner type="circular" size="m" />
                     <span>기본적으로는 텍스트가 표시되지 않습니다</span>
                 </div>
             </div>
@@ -249,7 +249,7 @@ export const LabelExamples: Story = {
             <div>
                 <h3>텍스트 표시 Spinner</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <Spinner type="circular" size="md" label="데이터를 불러오는 중..." showLabel={true} />
+                    <Spinner type="circular" size="m" label="데이터를 불러오는 중..." showLabel={true} />
                     <span>showLabel={true}로 설정하면 텍스트가 표시됩니다</span>
                 </div>
             </div>
@@ -257,7 +257,7 @@ export const LabelExamples: Story = {
             <div>
                 <h3>커스텀 텍스트</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <Spinner type="dots" size="md" label="업로드 중..." showLabel={true} />
+                    <Spinner type="dots" size="m" label="업로드 중..." showLabel={true} />
                     <span>label prop으로 커스텀 텍스트를 설정할 수 있습니다</span>
                 </div>
             </div>
@@ -275,7 +275,7 @@ export const LabelExamples: Story = {
                         backgroundColor: '#3b82f6',
                         color: 'white'
                     }}>
-                        <Spinner type="circular" size="sm" />
+                        <Spinner type="circular" size="s" />
                         로딩 중...
                     </button>
                     <span>버튼에서는 Spinner만 사용하고 별도로 텍스트를 추가합니다</span>

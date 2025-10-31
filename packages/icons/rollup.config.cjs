@@ -40,7 +40,7 @@ const jsConfig = {
             },
         },
     ],
-    external: ['react', 'react-dom', 'react/jsx-runtime'],
+    external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
     plugins: [
         resolve({ browser: true, extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'] }),
         commonjs(),

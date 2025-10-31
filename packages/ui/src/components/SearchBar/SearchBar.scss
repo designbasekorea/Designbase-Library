@@ -12,9 +12,9 @@
         align-items: center;
         width: 100%;
         position: relative;
-        background-color: var(--db-bg-primary);
-        border: 1px solid var(--db-border-primary);
-        border-radius: var(--db-radius-md);
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover {
@@ -22,8 +22,8 @@
         }
 
         &:focus-within {
-            border-color: var(--db-blue-500);
-            box-shadow: 0 0 0 3px var(--db-blue-100);
+            border-color: var(--db-field-border-focus);
+            box-shadow: 0 0 0 3px var(--color-aliases-brand-primary-alpha-10);
         }
     }
 
@@ -36,6 +36,7 @@
         height: 100%;
         color: var(--db-text-secondary);
         pointer-events: none;
+        margin-right: -8px; // 아이콘과 입력 필드 간격 줄이기
     }
 
     &__input {
@@ -43,16 +44,17 @@
         width: 100%;
         min-width: 0;
         padding: var(--db-padding-s) var(--db-padding-m);
+        padding-left: var(--db-padding-xs); // 왼쪽 패딩 줄이기
         border: none;
         outline: none;
         background: transparent;
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-normal);
         color: var(--db-text-primary);
         line-height: 1.5;
 
         &::placeholder {
-            color: var(--db-text-muted);
+            color: var(--db-text-tertiary);
         }
 
         &:disabled {
@@ -74,29 +76,29 @@
         height: var(--db-size-xl);
         margin-right: var(--db-margin-xs);
         border: none;
-        border-radius: var(--db-radius-sm);
+        border-radius: var(--db-radius-s);
         background: transparent;
         color: var(--db-text-secondary);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
 
         &:hover {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
             color: var(--db-text-primary);
         }
 
         &:focus-visible {
-            outline: 2px solid var(--db-blue-500);
+            outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
         &:active {
-            background-color: var(--db-border-primary);
+            background-color: var(--db-border-base);
         }
     }
 
     // Sizes
-    &--sm {
+    &--s {
         .designbase-search-bar__container {
             min-height: 32px;
         }
@@ -107,6 +109,7 @@
 
         .designbase-search-bar__input {
             padding: var(--db-padding-xs) var(--db-padding-s);
+            padding-left: var(--db-padding-xxs);
             font-size: var(--db-text-xs);
         }
 
@@ -116,7 +119,7 @@
         }
     }
 
-    &--md {
+    &--m {
         .designbase-search-bar__container {
             min-height: 40px;
         }
@@ -127,7 +130,8 @@
 
         .designbase-search-bar__input {
             padding: var(--db-padding-s) var(--db-padding-m);
-            font-size: var(--db-text-sm);
+            padding-left: var(--db-padding-xs);
+            font-size: var(--db-text-s);
         }
 
         .designbase-search-bar__clear-button {
@@ -136,7 +140,7 @@
         }
     }
 
-    &--lg {
+    &--l {
         .designbase-search-bar__container {
             min-height: 48px;
         }
@@ -147,6 +151,7 @@
 
         .designbase-search-bar__input {
             padding: var(--db-padding-m) var(--db-padding-l);
+            padding-left: var(--db-padding-s);
             font-size: var(--db-text-base);
         }
 
@@ -159,38 +164,38 @@
     // Variants
     &--default {
         .designbase-search-bar__container {
-            background-color: var(--db-bg-primary);
-            border-color: var(--db-border-primary);
+            background-color: var(--db-surface-base);
+            border-color: var(--db-border-base);
         }
     }
 
     &--outlined {
         .designbase-search-bar__container {
             background-color: transparent;
-            border-color: var(--db-border-primary);
+            border-color: var(--db-border-base);
         }
     }
 
     &--filled {
         .designbase-search-bar__container {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
             border-color: transparent;
         }
 
         &:hover .designbase-search-bar__container {
-            background-color: var(--db-bg-tertiary);
+            background-color: var(--db-surface-layer-2);
         }
 
         &:focus-within .designbase-search-bar__container {
-            background-color: var(--db-bg-primary);
-            border-color: var(--db-blue-500);
+            background-color: var(--db-surface-base);
+            border-color: var(--db-field-border-focus);
         }
     }
 
     // States
     &--disabled {
         .designbase-search-bar__container {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
             border-color: var(--db-border-muted);
             cursor: not-allowed;
         }
@@ -206,7 +211,7 @@
 
     &--readonly {
         .designbase-search-bar__container {
-            background-color: var(--db-bg-secondary);
+            background-color: var(--db-surface-layer-1);
         }
 
         .designbase-search-bar__clear-button {
@@ -217,14 +222,174 @@
     // Focus states
     &:focus-within {
         .designbase-search-bar__search-icon {
-            color: var(--db-blue-600);
+            color: var(--db-icon-primary);
         }
     }
 
     // Value state
     &--has-value {
         .designbase-search-bar__search-icon {
-            color: var(--db-blue-600);
+            color: var(--db-icon-primary);
+        }
+    }
+
+    // 최근 검색어 드롭다운
+    &__recent-searches {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        margin-top: 4px;
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        box-shadow: var(--db-shadow-lg);
+        overflow: hidden;
+    }
+
+    &__recent-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--db-padding-s);
+        background-color: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
+    }
+
+    &__recent-title {
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-secondary);
+    }
+
+    &__clear-all-button {
+        padding: var(--db-padding-xs);
+        border: none;
+        background: transparent;
+        color: var(--db-text-tertiary);
+        font-size: var(--db-text-xs);
+        cursor: pointer;
+        border-radius: var(--db-radius-s);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover {
+            background-color: var(--db-surface-layer-2);
+            color: var(--db-text-secondary);
+        }
+    }
+
+    &__recent-list {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    &__recent-item {
+        display: flex;
+        align-items: center;
+        padding: var(--db-padding-xs);
+        border-bottom: 1px solid var(--db-border-muted);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: var(--db-surface-layer-1);
+        }
+    }
+
+    &__recent-search-button {
+        flex: 1;
+        padding: var(--db-padding-xs);
+        border: none;
+        background: transparent;
+        color: var(--db-text-primary);
+        font-size: var(--db-text-s);
+        text-align: left;
+        cursor: pointer;
+        transition: color var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover {
+            color: var(--db-brand-primary);
+        }
+    }
+
+    &__recent-remove-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        margin-left: var(--db-margin-s);
+        border: none;
+        background: transparent;
+        color: var(--db-text-tertiary);
+        cursor: pointer;
+        border-radius: var(--db-radius-s);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+
+        &:hover {
+            background-color: var(--db-surface-layer-2);
+            color: var(--db-text-secondary);
+        }
+    }
+
+    // 추천 검색어
+    &__suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        margin-top: 4px;
+        background-color: var(--db-surface-base);
+        border: 1px solid var(--db-border-base);
+        border-radius: var(--db-radius-m);
+        box-shadow: var(--db-shadow-lg);
+        overflow: hidden;
+    }
+
+    &__suggestions-header {
+        padding: var(--db-padding-s);
+        background-color: var(--db-surface-layer-1);
+        border-bottom: 1px solid var(--db-border-base);
+    }
+
+    &__suggestions-title {
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-semibold);
+        color: var(--db-text-secondary);
+    }
+
+    &__suggestions-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__suggestion-item {
+        padding: var(--db-padding-s);
+        border: none;
+        background: transparent;
+        color: var(--db-text-primary);
+        font-size: var(--db-text-s);
+        text-align: left;
+        cursor: pointer;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        border-bottom: 1px solid var(--db-border-muted);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: var(--db-surface-layer-1);
+        }
+
+        &--active {
+            background-color: var(--db-brand-primary-alpha-10);
+            color: var(--db-brand-primary);
+            font-weight: var(--db-weight-semibold);
         }
     }
 }

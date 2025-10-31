@@ -1,0 +1,128 @@
+{
+    "border": {
+        "semantic": {
+            "radius": {
+                "s": {
+                    "value": "{border.aliases.radius.s}",
+                    "type": "borderRadius"
+                },
+                "m": {
+                    "value": "{border.aliases.radius.m}",
+                    "type": "borderRadius"
+                },
+                "l": {
+                    "value": "{border.aliases.radius.l}",
+                    "type": "borderRadius"
+                },
+                "xl": {
+                    "value": "{border.aliases.radius.xl}",
+                    "type": "borderRadius"
+                },
+                "2xl": {
+                    "value": "{border.aliases.radius.2xl}",
+                    "type": "borderRadius"
+                },
+                "3xl": {
+                    "value": "{border.aliases.radius.3xl}",
+                    "type": "borderRadius"
+                },
+                "full": {
+                    "value": "{border.aliases.radius.full}",
+                    "type": "borderRadius"
+                },
+                "button": {
+                    "s": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "m": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "l": {
+                        "value": "{border.aliases.radius.l}",
+                        "type": "borderRadius"
+                    },
+                    "pill": {
+                        "value": "{border.aliases.radius.full}",
+                        "type": "borderRadius"
+                    }
+                },
+                "input": {
+                    "s": {
+                        "value": "{border.aliases.radius.s}",
+                        "type": "borderRadius"
+                    },
+                    "m": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "l": {
+                        "value": "{border.aliases.radius.l}",
+                        "type": "borderRadius"
+                    }
+                },
+                "card": {
+                    "s": {
+                        "value": "{border.aliases.radius.s}",
+                        "type": "borderRadius"
+                    },
+                    "m": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "l": {
+                        "value": "{border.aliases.radius.l}",
+                        "type": "borderRadius"
+                    }
+                },
+                "modal": {
+                    "s": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "m": {
+                        "value": "{border.aliases.radius.l}",
+                        "type": "borderRadius"
+                    },
+                    "l": {
+                        "value": "{border.aliases.radius.xl}",
+                        "type": "borderRadius"
+                    }
+                },
+                "checkbox": {
+                    "s": {
+                        "value": "{border.aliases.radius.s}",
+                        "type": "borderRadius"
+                    },
+                    "m": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "l": {
+                        "value": "{border.aliases.radius.l}",
+                        "type": "borderRadius"
+                    }
+                },
+                "action": {
+                    "s": {
+                        "value": "{border.aliases.radius.s}",
+                        "type": "borderRadius"
+                    },
+                    "m": {
+                        "value": "{border.aliases.radius.m}",
+                        "type": "borderRadius"
+                    },
+                    "l": {
+                        "value": "{border.aliases.radius.l}",
+                        "type": "borderRadius"
+                    },
+                    "pill": {
+                        "value": "{border.aliases.radius.full}",
+                        "type": "borderRadius"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,136 @@
+{
+    "spacing": {
+        "aliases": {
+            "scale": {
+                "xxs": {
+                    "value": "{spacing.foundation.05}",
+                    "type": "spacing"
+                },
+                "xs": {
+                    "value": "{spacing.foundation.1}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.foundation.2}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.foundation.3}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.foundation.5}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.foundation.8}",
+                    "type": "spacing"
+                },
+                "2xl": {
+                    "value": "{spacing.foundation.10}",
+                    "type": "spacing"
+                }
+            },
+            "gap": {
+                "xxs": {
+                    "value": "{spacing.aliases.scale.xxs}",
+                    "type": "spacing"
+                },
+                "xs": {
+                    "value": "{spacing.aliases.scale.xs}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.aliases.scale.s}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.aliases.scale.m}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.aliases.scale.l}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.aliases.scale.xl}",
+                    "type": "spacing"
+                },
+                "2xl": {
+                    "value": "{spacing.aliases.scale.2xl}",
+                    "type": "spacing"
+                }
+            },
+            "padding": {
+                "xxs": {
+                    "value": "{spacing.aliases.scale.xxs}",
+                    "type": "spacing"
+                },
+                "xs": {
+                    "value": "{spacing.aliases.scale.xs}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.aliases.scale.s}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.aliases.scale.m}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.aliases.scale.l}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.aliases.scale.xl}",
+                    "type": "spacing"
+                },
+                "2xl": {
+                    "value": "{spacing.aliases.scale.2xl}",
+                    "type": "spacing"
+                }
+            },
+            "margin": {
+                "xxs": {
+                    "value": "{spacing.aliases.scale.xxs}",
+                    "type": "spacing"
+                },
+                "xs": {
+                    "value": "{spacing.aliases.scale.xs}",
+                    "type": "spacing"
+                },
+                "s": {
+                    "value": "{spacing.aliases.scale.s}",
+                    "type": "spacing"
+                },
+                "m": {
+                    "value": "{spacing.aliases.scale.m}",
+                    "type": "spacing"
+                },
+                "l": {
+                    "value": "{spacing.aliases.scale.l}",
+                    "type": "spacing"
+                },
+                "xl": {
+                    "value": "{spacing.aliases.scale.xl}",
+                    "type": "spacing"
+                },
+                "2xl": {
+                    "value": "{spacing.aliases.scale.2xl}",
+                    "type": "spacing"
+                }
+            },
+            "containerPadding": {
+                "value": "{spacing.aliases.scale.m}",
+                "type": "spacing",
+                "description": "컨테이너 기본 좌우 패딩"
+            },
+            "gridGutter": {
+                "value": "{spacing.aliases.scale.m}",
+                "type": "spacing",
+                "description": "그리드 거터 간격"
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "shadow": {
+        "aliases": {
+            "card": {
+                "default": {
+                    "value": "{shadow.foundation.base}",
+                    "type": "boxShadow"
+                },
+                "hover": {
+                    "value": "{shadow.foundation.m}",
+                    "type": "boxShadow"
+                },
+                "elevated": {
+                    "value": "{shadow.foundation.l}",
+                    "type": "boxShadow"
+                }
+            },
+            "button": {
+                "default": {
+                    "value": "{shadow.foundation.none}",
+                    "type": "boxShadow"
+                },
+                "hover": {
+                    "value": "{shadow.foundation.s}",
+                    "type": "boxShadow"
+                },
+                "active": {
+                    "value": "{shadow.foundation.inner}",
+                    "type": "boxShadow"
+                }
+            }
+        }
+    }
+}

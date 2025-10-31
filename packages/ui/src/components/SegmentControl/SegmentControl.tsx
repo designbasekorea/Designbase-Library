@@ -25,7 +25,7 @@ export interface SegmentControlProps {
     /** 현재 선택된 값 (제어 컴포넌트용) */
     value?: string;
     /** 세그먼트 크기 */
-    size?: 'sm' | 'md' | 'lg';
+    size?: 's' | 'm' | 'l';
     /** 전체 너비 여부 */
     fullWidth?: boolean;
     /** 비활성화 여부 */
@@ -42,7 +42,7 @@ export const SegmentControl: React.FC<SegmentControlProps> = ({
     options,
     defaultValue,
     value,
-    size = 'md',
+    size = 'm',
     fullWidth = false,
     disabled = false,
     className,
@@ -190,7 +190,7 @@ export const SegmentControl: React.FC<SegmentControlProps> = ({
                     >
                         {option.icon && (
                             <span className="designbase-segment-control__segment-icon">
-                                <option.icon size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16} />
+                                <option.icon size={size === 's' ? 14 : size === 'l' ? 18 : 16} />
                             </span>
                         )}
                         <span className="designbase-segment-control__segment-label">

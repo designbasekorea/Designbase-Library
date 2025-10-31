@@ -8,8 +8,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import clsx from 'clsx';
-import { CloseIcon } from '@designbase/icons';
-import type { BaseIconProps } from '@designbase/icons';
+import { CloseIcon, CircleCheckFilledIcon, WarningIcon, InfoIcon, DeleteIcon } from '@designbasekorea/icons';
+import type { IconProps } from '@designbasekorea/icons';
 import './Toast.scss';
 
 export type ToastStatus = 'success' | 'error' | 'warning' | 'info';
@@ -24,7 +24,7 @@ export interface ToastProps {
     /** 토스트 설명 (서브 텍스트) */
     description?: string;
     /** 왼쪽 아이콘 */
-    icon?: React.ComponentType<BaseIconProps>;
+    icon?: React.ComponentType<IconProps>;
     /** 자동 닫힘 시간 (ms, 0이면 자동 닫힘 비활성화) */
     duration?: number;
     /** 프로그레스바 표시 여부 */
@@ -32,7 +32,7 @@ export interface ToastProps {
     /** 닫기 버튼 표시 여부 */
     showCloseButton?: boolean;
     /** 토스트 위치 */
-    position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+    position?: 'top-right' | 'top-center' | 'bottom-center' | 'bottom-right';
     /** 닫기 핸들러 */
     onClose: (id: string) => void;
     /** 추가 CSS 클래스 */
@@ -60,7 +60,7 @@ export const Toast: React.FC<ToastProps> = ({
 
     // 토스트 표시 애니메이션
     useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 100);
+        const timer = setTimeout(() => setIsVisible(true), 50);
         return () => clearTimeout(timer);
     }, []);
 
@@ -98,7 +98,7 @@ export const Toast: React.FC<ToastProps> = ({
         setIsVisible(false);
         setTimeout(() => {
             onClose(id);
-        }, 300); // 애니메이션 완료 후 제거
+        }, 300); // 애니메이션 완료 후 제거 (0.3s transition과 동일)
     };
 
     const handleCloseClick = () => {
@@ -122,21 +122,22 @@ export const Toast: React.FC<ToastProps> = ({
     const getStatusIcon = () => {
         if (Icon) return <Icon size={20} />;
 
-        // 기본 상태 아이콘 (실제로는 아이콘 패키지에서 가져와야 함)
+        // 기본 상태 아이콘 (아이콘 패키지에서 가져온 아이콘 사용)
         const iconMap = {
-            success: '✓',
-            error: '✕',
-            warning: '⚠',
-            info: 'ℹ',
+            success: CircleCheckFilledIcon,
+            error: DeleteIcon,
+            warning: WarningIcon,
+            info: InfoIcon,
         };
 
-        return <span className="designbase-toast__status-icon">{iconMap[status]}</span>;
+        const StatusIcon = iconMap[status];
+        return <StatusIcon size={20} />;
     };
 
     const getIconColor = () => {
         const colorMap = {
             success: 'success',
-            error: 'danger',
+            error: 'error',
             warning: 'warning',
             info: 'info',
         };

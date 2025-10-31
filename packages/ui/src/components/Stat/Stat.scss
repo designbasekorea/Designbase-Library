@@ -5,26 +5,26 @@
 .designbase-stat {
     display: flex;
     align-items: center;
-    gap: var(--db-gap-sm);
-    padding: var(--db-padding-md);
-    background: var(--db-bg-primary);
-    border: 1px solid var(--db-border-primary);
-    border-radius: var(--db-radius-md);
+    gap: var(--db-gap-s);
+    padding: var(--db-padding-m);
+    background: var(--db-surface-base);
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-m);
     font-family: var(--db-font-family);
     transition: all 0.2s ease;
 
     // 크기별 스타일
-    &--size-sm {
-        padding: var(--db-padding-sm);
+    &--size-s {
+        padding: var(--db-padding-s);
         gap: var(--db-gap-xs);
 
         .designbase-stat__value {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
             font-weight: var(--db-weight-semibold);
         }
 
         .designbase-stat__label {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
         }
 
         .designbase-stat__icon {
@@ -32,9 +32,9 @@
         }
     }
 
-    &--size-md {
-        padding: var(--db-padding-md);
-        gap: var(--db-gap-sm);
+    &--size-m {
+        padding: var(--db-padding-m);
+        gap: var(--db-gap-s);
 
         .designbase-stat__value {
             font-size: var(--db-text-xl);
@@ -50,9 +50,9 @@
         }
     }
 
-    &--size-lg {
-        padding: var(--db-padding-lg);
-        gap: var(--db-gap-md);
+    &--size-l {
+        padding: var(--db-padding-l);
+        gap: var(--db-gap-m);
 
         .designbase-stat__value {
             font-size: var(--db-text-2xl);
@@ -60,7 +60,7 @@
         }
 
         .designbase-stat__label {
-            font-size: var(--db-text-lg);
+            font-size: var(--db-text-l);
         }
 
         .designbase-stat__icon {
@@ -70,7 +70,7 @@
 
     &--size-xl {
         padding: var(--db-padding-xl);
-        gap: var(--db-gap-lg);
+        gap: var(--db-gap-l);
 
         .designbase-stat__value {
             font-size: var(--db-text-3xl);
@@ -87,9 +87,7 @@
     }
 
     // 변형별 스타일
-    &--variant-default {
-        // 기본 스타일
-    }
+    // 기본 variant 별도 규칙 제거 (기본 스타일 사용)
 
     &--variant-minimal {
         background: transparent;
@@ -104,22 +102,22 @@
 
     &--variant-card {
         box-shadow: var(--db-shadow-sm);
-        border: 1px solid var(--db-border-primary);
+        border: 1px solid var(--db-border-base);
     }
 
     &--variant-colored {
         border: none;
-        color: var(--db-text-inverse);
+        color: var(--db-text-inverse-primary);
 
         .designbase-stat__value,
         .designbase-stat__label,
         .designbase-stat__change,
         .designbase-stat__description {
-            color: var(--db-text-inverse);
+            color: var(--db-text-inverse-primary);
         }
 
         .designbase-stat__icon {
-            color: var(--db-text-inverse);
+            color: var(--db-text-inverse-primary);
         }
     }
 
@@ -140,9 +138,9 @@
         align-items: center;
     }
 
-    // 색상별 스타일 - @colors.json 토큰 사용
+    // 색상별 스타일 - Designbase 변수 연결
     &--color-primary {
-        --stat-color: var(--db-blue-600);
+        --stat-color: var(--db-brand-primary);
     }
 
     &--color-secondary {
@@ -150,24 +148,22 @@
     }
 
     &--color-success {
-        --stat-color: var(--db-green-600);
+        --stat-color: var(--db-feedback-success-fg);
     }
 
     &--color-warning {
-        --stat-color: var(--db-yellow-600);
+        --stat-color: var(--db-feedback-warning-fg);
     }
 
     &--color-error {
-        --stat-color: var(--db-red-600);
+        --stat-color: var(--db-feedback-error-fg);
     }
 
     &--color-info {
-        --stat-color: var(--db-blue-700);
+        --stat-color: var(--db-feedback-info-fg);
     }
 
-    &--color-custom {
-        // 커스텀 색상은 CSS 변수로 설정
-    }
+    // 커스텀 색상은 컴포넌트 인라인 변수로 처리
 
     // 상태별 스타일
     &--clickable {
@@ -199,7 +195,7 @@
     &--with-progress {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--db-gap-sm);
+        gap: var(--db-gap-s);
     }
 
     // 변화율이 있는 경우
@@ -265,7 +261,7 @@
 
     // 변화율
     &__change {
-        font-size: var(--db-text-sm);
+        font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
 
         &--increase {
@@ -279,26 +275,15 @@
 
     // 설명
     &__description {
-        font-size: var(--db-text-sm);
-        color: var(--db-text-muted);
+        font-size: var(--db-text-s);
+        color: var(--db-text-tertiary);
         line-height: 1.4;
     }
 
     // 진행률
+    // Progressbar 컴포넌트 사용으로 스타일 간소화
     &__progress {
         width: 100%;
-        height: 4px;
-        background: var(--db-border-muted);
-        border-radius: var(--db-radius-sm);
-        overflow: hidden;
-    }
-
-    // 진행률 바
-    &__progress-bar {
-        height: 100%;
-        background: var(--stat-color, var(--db-blue-600));
-        border-radius: var(--db-radius-sm);
-        transition: width 0.3s ease;
     }
 }
 
@@ -319,9 +304,9 @@
 // 반응형 스타일
 @media (max-width: 768px) {
     .designbase-stat {
-        &--size-lg {
-            padding: var(--db-padding-md);
-            gap: var(--db-gap-sm);
+        &--size-l {
+            padding: var(--db-padding-m);
+            gap: var(--db-gap-s);
 
             .designbase-stat__value {
                 font-size: var(--db-text-xl);
@@ -337,15 +322,15 @@
         }
 
         &--size-xl {
-            padding: var(--db-padding-lg);
-            gap: var(--db-gap-md);
+            padding: var(--db-padding-l);
+            gap: var(--db-gap-m);
 
             .designbase-stat__value {
                 font-size: var(--db-text-2xl);
             }
 
             .designbase-stat__label {
-                font-size: var(--db-text-lg);
+                font-size: var(--db-text-l);
             }
 
             .designbase-stat__icon {
@@ -362,16 +347,16 @@
 
 @media (max-width: 480px) {
     .designbase-stat {
-        &--size-md {
-            padding: var(--db-padding-sm);
+        &--size-m {
+            padding: var(--db-padding-s);
             gap: var(--db-gap-xs);
 
             .designbase-stat__value {
-                font-size: var(--db-text-lg);
+                font-size: var(--db-text-l);
             }
 
             .designbase-stat__label {
-                font-size: var(--db-text-sm);
+                font-size: var(--db-text-s);
             }
 
             .designbase-stat__icon {

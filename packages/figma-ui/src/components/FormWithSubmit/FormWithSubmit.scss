@@ -1,0 +1,18 @@
+.designbase-figma-form-with-submit {
+    display: flex;
+    flex-direction: column;
+    gap: var(--db-gap-s);
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-xs);
+    }
+
+    &__label {
+        font-size: var(--db-text-s);
+        font-weight: var(--db-weight-medium);
+        color: var(--db-text-primary);
+        margin-bottom: 0;
+    }
+}
