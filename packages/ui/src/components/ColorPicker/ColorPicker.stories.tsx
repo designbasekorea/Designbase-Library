@@ -22,6 +22,9 @@ const meta: Meta<typeof ColorPicker> = {
             control: { type: 'select' },
             options: ['bottom-left', 'bottom-right', 'top-left', 'top-right'],
         },
+        showEyedropper: {
+            control: { type: 'boolean' },
+        },
         showInput: {
             control: { type: 'boolean' },
         },
@@ -124,6 +127,11 @@ export const AllStates: Story = {
             <div>
                 <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>복사 버튼 없음</h4>
                 <ColorPicker showCopyButton={false} defaultValue="#F59E0B" />
+            </div>
+
+            <div>
+                <h4 style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>아이드로퍼 숨김</h4>
+                <ColorPicker showEyedropper={false} defaultValue="#0EA5E9" />
             </div>
 
             <div>

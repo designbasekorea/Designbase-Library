@@ -182,6 +182,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         width: 100%;
     }
 
@@ -324,6 +325,10 @@
             gap: var(--db-gap-xs);
         }
 
+        .designbase-color-picker__dropdown {
+            padding: var(--db-padding-xs);
+        }
+
         .designbase-color-picker__color-box {
             width: var(--db-size-s);
             height: var(--db-size-s);
@@ -345,6 +350,10 @@
             gap: var(--db-gap-s);
         }
 
+        .designbase-color-picker__dropdown {
+            padding: var(--db-padding-s);
+        }
+
         .designbase-color-picker__color-box {
             width: var(--db-size-m);
             height: var(--db-size-m);
@@ -364,6 +373,10 @@
         .designbase-color-picker__trigger {
             padding: var(--db-padding-m);
             gap: var(--db-gap-m);
+        }
+
+        .designbase-color-picker__dropdown {
+            padding: var(--db-padding-m);
         }
 
         .designbase-color-picker__color-box {

@@ -16,38 +16,46 @@ export interface ColorPickerProps {
     size?: ColorPickerSize;
     type?: ColorPickerType;
     position?: ColorPickerPosition;
-    value?: string;                // 제어형
-    defaultValue?: string;         // 비제어형 초기값
+
+    /** 제어형: 외부 값(권장 HEX) */
+    value?: string;
+    /** 비제어 초기값 */
+    defaultValue?: string;
+
     showInput?: boolean;
     showAlpha?: boolean;
     showFormatSelector?: boolean;
     showCopyButton?: boolean;
+    /** 아이드로퍼 표시 여부 (브라우저 미지원 시 자동 숨김) */
+    showEyedropper?: boolean;
     disabled?: boolean;
     readonly?: boolean;
-    /** 콜백 반환 포맷: 기본은 HEX, UI는 현재 선택 포맷 */
+
+    /** 콜백 반환 포맷: 기본 HEX, 'ui'면 현재 UI 포맷 */
     onChangeFormat?: 'hex' | 'ui';
-    /** 초기 마운트 시 onChange 발사 여부(기본 false) */
+    /** 마운트 시 onChange 발사 여부(기본 false) */
     fireOnInit?: boolean;
-    /** 과발사 방지 디바운스(ms). 0은 비활성 */
+    /** 디바운스(ms). 0이면 즉시 */
     changeDebounceMs?: number;
+    /** 드래그 중에도 onChange를 계속 보낼지(기본 true). false면 드래그 끝에서 1회 발사 */
+    emitDuringDrag?: boolean;
+
     onChange?: (color: string) => void;
-    onApply?: (color: string) => void; // type="modal" 전용
-    onCancel?: () => void;             // type="modal" 전용
+    onApply?: (color: string) => void; // type="modal"
+    onCancel?: () => void;             // type="modal"
     className?: string;
 }
 
 /* ----------------------- 유틸 ----------------------- */
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 const normalizeHex = (s?: string) => (s || '').trim().toUpperCase();
+const isHex = (s?: string) => /^#?[0-9A-Fa-f]{6}$/.test(s || '');
 
-/** #RRGGBB → {r,g,b} */
 const hexToRgb = (hex: string) => {
     const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
     if (!m) return null;
     return { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) };
 };
-
-/** RGB → HEX */
 const toHex = (r: number, g: number, b: number) => {
     const h = (x: number) => clamp(Math.round(x), 0, 255).toString(16).padStart(2, '0');
     return `#${h(r)}${h(g)}${h(b)}`.toUpperCase();
@@ -113,24 +121,30 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
     size = 'm',
     type = 'dropdown',
     position = 'bottom-left',
+
     value,
     defaultValue = '#006FFF',
+
     showInput = true,
     showAlpha = true,
     showFormatSelector = true,
     showCopyButton = true,
+    showEyedropper = true,
     disabled = false,
     readonly = false,
+
     onChangeFormat = 'hex',
     fireOnInit = false,
     changeDebounceMs = 0,
+    emitDuringDrag = true,
+
     onChange,
     onApply,
     onCancel,
     className,
 }) => {
-    /** 초기 HSV는 props에서 즉시 도출(StrictMode 안전) */
-    const initialHex = normalizeHex(value || defaultValue) || '#006FFF';
+    /** 초기 HSV — StrictMode에서도 안전하도록 lazy init */
+    const initialHex = (isHex(value) ? normalizeHex(value) : normalizeHex(defaultValue)) || '#006FFF';
     const initialRgb = hexToRgb(initialHex) || { r: 0, g: 111, b: 255 };
     const initialHsv = rgbToHsv(initialRgb.r, initialRgb.g, initialRgb.b);
 
@@ -149,21 +163,32 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
     const pickerRef = useRef<HTMLDivElement>(null);
     const areaRef = useRef<HTMLDivElement>(null);
+
+    /** 드래그 상태/자체 발사 억제 */
     const dragging = useRef(false);
+    const didMountRef = useRef(false);
+    const lastEmittedHexRef = useRef<string>(initialHex);
+    const suppressNextValueSyncRef = useRef(false);
+    const emitErrorCountRef = useRef(0);
+    const emitBlockedUntilRef = useRef(0);
+    const debounceTimerRef = useRef<number | null>(null);
 
-    /** onChange 보호 상태 */
-    const lastEmittedRef = useRef<string>(normalizeHex(initialHex)); // ✅ 초기값 미리 기록
-    const didMountRef = useRef<boolean>(false);                      // ✅ 첫 렌더 감지
-    const emitErrorCountRef = useRef<number>(0);
-    const emitBlockedUntilRef = useRef<number>(0);
-
-    /** 제어형(value) 변화 → HSV 반영 */
+    /** 외부 value 변화 → 내부 HSV 반영(자기 발사 직후는 무시 가능) */
     useEffect(() => {
         if (value == null) return;
         const norm = normalizeHex(value);
+        if (!isHex(norm)) return;
+
+        // 자기 자신이 방금 보낸 값이면 동기화 스킵(미세 진동 방지)
+        if (suppressNextValueSyncRef.current && norm === lastEmittedHexRef.current) {
+            suppressNextValueSyncRef.current = false;
+            return;
+        }
+
         const rgb = hexToRgb(norm);
         if (!rgb) return;
         const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+
         setH(hsv.h); setS(hsv.s); setV(hsv.v);
         setColorInput(norm);
     }, [value]);
@@ -173,7 +198,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
     const hex = useMemo(() => toHex(rgb.r, rgb.g, rgb.b), [rgb]);
     const hsl = useMemo(() => rgbToHsl(rgb.r, rgb.g, rgb.b), [rgb]);
 
-    /** UI 표시 문자열 */
+    /** 표시 문자열(UI 포맷) */
     const uiFormatted = useMemo(() => {
         const alpha = a / 100;
         switch (format) {
@@ -186,57 +211,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         }
     }, [format, hex, rgb, hsl, a]);
 
-    /** 콜백으로 내보낼 문자열 */
-    const outward = useMemo(() => {
-        if (onChangeFormat === 'hex') return hex;
-        return uiFormatted;
-    }, [hex, uiFormatted, onChangeFormat]);
+    /** 바깥으로 내보낼 문자열 */
+    const outward = useMemo(() => (onChangeFormat === 'hex' ? hex : uiFormatted), [hex, uiFormatted, onChangeFormat]);
 
-    /** 최초 렌더 스킵 + 동일값/레이트리밋 검사 후 onChange */
-    useEffect(() => {
-        if (!onChange) return;
-
-        // 첫 렌더는 기본 차단 (옵션으로 허용)
-        if (!didMountRef.current) {
-            didMountRef.current = true;
-            if (!fireOnInit) return; // 기본: 초기 발사 금지
-        }
-
-        const now = Date.now();
-        if (emitBlockedUntilRef.current > now) return;
-
-        const currentHexNorm = normalizeHex(outward);
-        const last = lastEmittedRef.current;
-
-        // 제어형: 부모 value와 동일하면 발사 금지
-        if (value && normalizeHex(value) === currentHexNorm) return;
-        // 직전 발사값과 동일하면 금지
-        if (last === currentHexNorm) return;
-
-        const fire = () => {
-            try {
-                lastEmittedRef.current = currentHexNorm;
-                onChange(onChangeFormat === 'hex' ? currentHexNorm : outward);
-                emitErrorCountRef.current = 0;
-            } catch (e) {
-                emitErrorCountRef.current += 1;
-                if (emitErrorCountRef.current >= 20) {
-                    emitBlockedUntilRef.current = Date.now() + 3000;
-                    // eslint-disable-next-line no-console
-                    console.warn('[ColorPicker] onChange errors too frequent; temporarily muted.');
-                }
-            }
-        };
-
-        if (changeDebounceMs > 0) {
-            const t = setTimeout(fire, changeDebounceMs);
-            return () => clearTimeout(t);
-        }
-        fire();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [outward]); // 의도적으로 onChange/value 제외
-
-    /** colorInput 동기화(표시 전용) */
+    /** colorInput(표시 전용) 동기화 — 순수 표시만, 포커스 중이면 건드리지 않는 게 안전하지만 간단히 비교 후 반영 */
     useEffect(() => {
         const next = format === 'hex' ? normalizeHex(uiFormatted) : uiFormatted;
         if (colorInput !== next) setColorInput(next);
@@ -252,7 +230,66 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         return () => document.removeEventListener('mousedown', handler);
     }, [isOpen, type]);
 
-    /** S/V 영역 업데이트 */
+    /** ===== onChange 발사 컨트롤러 ===== */
+    const actuallyEmit = useCallback(() => {
+        if (!onChange) return;
+
+        const now = Date.now();
+        if (emitBlockedUntilRef.current > now) return;
+
+        const currentHex = normalizeHex(hex);
+        const parentHex = isHex(value) ? normalizeHex(value) : null;
+
+        // 부모값과 동치면 발사 금지
+        if (parentHex && parentHex === currentHex) return;
+        // 직전 발사와 동일하면 발사 금지
+        if (lastEmittedHexRef.current === currentHex) return;
+
+        try {
+            lastEmittedHexRef.current = currentHex;
+            suppressNextValueSyncRef.current = true; // 다음 value 동기화 스킵(왕복 진동 방지)
+            onChange(onChangeFormat === 'hex' ? currentHex : outward);
+            emitErrorCountRef.current = 0;
+        } catch {
+            emitErrorCountRef.current += 1;
+            if (emitErrorCountRef.current >= 20) {
+                emitBlockedUntilRef.current = Date.now() + 3000;
+                console.warn('[ColorPicker] onChange errors too frequent; temporarily muted.');
+            }
+        }
+    }, [hex, outward, onChange, onChangeFormat, value]);
+
+    /** 변경 감지 → 발사(드래그 중 정책 + 디바운스 반영) */
+    useEffect(() => {
+        // 첫 렌더
+        if (!didMountRef.current) {
+            didMountRef.current = true;
+            if (!fireOnInit) return;
+        }
+
+        // 드래그 중이면 정책 적용
+        if (dragging.current && !emitDuringDrag) {
+            // 드래그 끝에서 발사하므로 지금은 무시
+            return;
+        }
+
+        if (!onChange) return;
+
+        if (changeDebounceMs > 0) {
+            if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+            debounceTimerRef.current = window.setTimeout(() => {
+                actuallyEmit();
+            }, changeDebounceMs) as unknown as number;
+            return () => {
+                if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+            };
+        } else {
+            actuallyEmit();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hex, a, format]); // h/s/v → hex로 수렴됨. a/format도 외부로 나갈 수 있으니 포함.
+
+    /** ===== SV 영역 ===== */
     const updateFromArea = (clientX: number, clientY: number) => {
         const el = areaRef.current;
         if (!el) return;
@@ -261,27 +298,65 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         const y = clamp(clientY - rect.top, 0, rect.height);
         const newS = (x / rect.width) * 100;
         const newV = 100 - (y / rect.height) * 100;
-        setS(newS); setV(newV);
+        // 소수점 그대로 보관 → 색 떨림 감소
+        setS(newS);
+        setV(newV);
     };
 
-    const onAreaMouseDown = (e: React.MouseEvent<HTMLDivElement>) => { dragging.current = true; updateFromArea(e.clientX, e.clientY); };
-    const onAreaMouseMove = (e: React.MouseEvent<HTMLDivElement>) => { if (dragging.current) updateFromArea(e.clientX, e.clientY); };
-    const onAreaMouseUp = () => { dragging.current = false; };
-    const onAreaLeave = () => { dragging.current = false; };
-    const onAreaTouchStart = (e: React.TouchEvent<HTMLDivElement>) => { dragging.current = true; const t = e.touches[0]; updateFromArea(t.clientX, t.clientY); };
-    const onAreaTouchMove = (e: React.TouchEvent<HTMLDivElement>) => { if (!dragging.current) return; const t = e.touches[0]; updateFromArea(t.clientX, t.clientY); };
-    const onAreaTouchEnd = () => { dragging.current = false; };
+    const onAreaMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (disabled || readonly) return;
+        dragging.current = true;
+        updateFromArea(e.clientX, e.clientY);
+    };
+    const onAreaMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!dragging.current || disabled || readonly) return;
+        updateFromArea(e.clientX, e.clientY);
+    };
+    const finishDrag = () => {
+        if (!dragging.current) return;
+        dragging.current = false;
+        // 드래그 종료 시 한 번만 발사
+        if (!emitDuringDrag) {
+            if (changeDebounceMs > 0) {
+                if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+                debounceTimerRef.current = window.setTimeout(() => {
+                    actuallyEmit();
+                }, changeDebounceMs) as unknown as number;
+            } else {
+                actuallyEmit();
+            }
+        }
+    };
+    const onAreaMouseUp = finishDrag;
+    const onAreaLeave = finishDrag;
+
+    const onAreaTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (disabled || readonly) return;
+        dragging.current = true;
+        const t = e.touches[0];
+        updateFromArea(t.clientX, t.clientY);
+    };
+    const onAreaTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!dragging.current || disabled || readonly) return;
+        const t = e.touches[0];
+        updateFromArea(t.clientX, t.clientY);
+    };
+    const onAreaTouchEnd = finishDrag;
 
     /** 슬라이더 */
-    const onHueChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) =>
-        setH(parseFloat(e.target.value)), []);
+    const onHueChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        if (disabled || readonly) return;
+        setH(parseFloat(e.target.value));
+    }, [disabled, readonly]);
+
     const onAlphaChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        if (disabled || readonly) return;
         const newAlpha = parseInt(e.target.value, 10);
         setA(newAlpha);
         setAlphaInput(String(newAlpha));
-    }, []);
+    }, [disabled, readonly]);
 
-    /** 컬러 인풋 확정 */
+    /** 입력 확정 */
     const commitColorInput = useCallback(() => {
         const str = colorInput.trim();
 
@@ -319,7 +394,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         }
 
         // 인식 실패 → 표시값으로 원복
-        setColorInput(format === 'hex' ? normalizeHex(uiFormatted) : uiFormatted);
+        const next = format === 'hex' ? normalizeHex(uiFormatted) : uiFormatted;
+        if (colorInput !== next) setColorInput(next);
     }, [colorInput, uiFormatted, format]);
 
     const onColorKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => { if (e.key === 'Enter') commitColorInput(); };
@@ -328,7 +404,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
         if (colorInput !== next) setColorInput(next);
     };
 
-    /** 알파 인풋 확정 */
+    /** 알파 입력 확정 */
     const commitAlphaInput = useCallback(() => {
         const n = Number(alphaInput.trim());
         if (!Number.isNaN(n) && n >= 0 && n <= 100) {
@@ -364,6 +440,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
             }
         } catch (e) { console.error(e); }
     }, []);
+
+    const isEyedropperAvailable = typeof window !== 'undefined' && 'EyeDropper' in window;
 
     /** 모달 */
     const handleModalOpen = useCallback(() => {
@@ -513,9 +591,17 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
             {/* 컨트롤 */}
             <div className="designbase-color-picker__controls">
-                <Button variant="tertiary" size="m" iconOnly onClick={onEyedrop} aria-label="Eyedropper tool">
-                    <EyedropperIcon />
-                </Button>
+                {showEyedropper && isEyedropperAvailable && (
+                    <Button
+                        variant="tertiary"
+                        size="m"
+                        iconOnly
+                        onClick={onEyedrop}
+                        aria-label="Eyedropper tool"
+                    >
+                        <EyedropperIcon />
+                    </Button>
+                )}
 
                 <div className="designbase-color-picker__slider-container">
                     <div className="designbase-color-picker__hue-slider">
