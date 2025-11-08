@@ -92,6 +92,7 @@ export * from './components/TimePicker';
 export * from './components/Timeline';
 export * from './components/Toast';
 export * from './components/Toggle';
+export * from './components/Testimonial';
 export * from './components/Toolbar';
 export * from './components/Tooltip';
 export * from './components/VideoPlayer';

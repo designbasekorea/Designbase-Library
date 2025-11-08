@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "icons": [
+    {
+      "id": "checklist",
+      "name": "Checklist",
+      "description": "체크리스트나 할 일 목록을 표현할 때 사용합니다.",
+      "categoryId": "2-action",
+      "tags": ["task", "todo", "list", "check"],
+      "keywords": ["체크리스트", "할일", "작업목록"],
+      "updatedAt": "2025-11-08",
+      "variants": [
+        {
+          "id": "checklist",
+          "style": "line",
+          "svg": "checklist.svg"
+        },
+        {
+          "id": "checklist-filled",
+          "style": "filled",
+          "svg": "checklist-filled.svg"
+        }
+      ]
+    }
+  ]
+}
+

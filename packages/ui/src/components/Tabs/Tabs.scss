@@ -16,6 +16,7 @@
         /* IE and Edge */
         cursor: grab;
         user-select: none;
+        position: relative;
 
         /* Webkit 스크롤바 완전 숨김 */
         &::-webkit-scrollbar {
@@ -25,6 +26,24 @@
         /* 드래그 중일 때 커서 변경 */
         &.designbase-tabs__list--dragging {
             cursor: grabbing;
+        }
+
+        /* 우측 그라데이션 */
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--db-animation-speed) var(--db-animation-ease);
+        }
+
+        &.designbase-tabs__list--show-gradient::after {
+            opacity: 1;
         }
 
         &--horizontal {
@@ -37,6 +56,16 @@
             border-right: 1px solid var(--db-border-base);
             width: 200px;
             min-width: 200px;
+
+            &::after {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: auto;
+                height: 40px;
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+            }
         }
 
         &--full-width {
@@ -57,11 +86,12 @@
         padding: var(--db-padding-m);
         background: none;
         border: none;
+        border-bottom: 2px solid transparent;
         color: var(--db-text-secondary);
         font-size: var(--db-text-s);
         font-weight: var(--db-weight-medium);
         line-height: var(--db-leading-normal);
-        cursor: pointer;
+        // cursor: grab;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         outline: none;
         position: relative;
@@ -74,7 +104,7 @@
         }
 
         &:focus {
-            outline: 2px solid var(--db-border-focus);
+            // outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
         }
 
@@ -90,13 +120,18 @@
                 left: 0;
                 right: 0;
                 height: 2px;
-                background-color: var(--db-surface-base);
+                background-color: var(--db-brand-primary);
+                animation: slideIn var(--db-animation-speed) var(--db-animation-ease);
             }
         }
 
         &--focused {
-            outline: 2px solid var(--db-border-focus);
+            // outline: 2px solid var(--db-border-focus);
             outline-offset: 2px;
+        }
+
+        &--dragging {
+            cursor: grabbing;
         }
 
         &--disabled {
@@ -143,29 +178,6 @@
                 background-color: var(--db-brand-primary);
                 color: var(--db-text-inverse-primary);
                 border-bottom: none;
-
-                &::after {
-                    display: none;
-                }
-            }
-        }
-    }
-
-    &--underline {
-        .designbase-tabs__list {
-            border-bottom: 1px solid var(--db-border-base);
-        }
-
-        .designbase-tabs__tab {
-            border-radius: 0;
-            border-bottom: 2px solid transparent;
-
-            &:hover:not(.designbase-tabs__tab--disabled) {
-                border-bottom-color: var(--db-border-layer-1);
-            }
-
-            &--selected {
-                border-bottom-color: var(--db-brand-primary);
 
                 &::after {
                     display: none;
@@ -318,5 +330,18 @@
                 border-radius: 0 0 var(--db-radius-m) var(--db-radius-m);
             }
         }
+    }
+}
+
+/* 탭 언더라인 애니메이션 */
+@keyframes slideIn {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    100% {
+        transform: scaleX(1);
+        transform-origin: left;
     }
 }

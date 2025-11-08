@@ -1,0 +1,185 @@
+[
+  {
+    "id": "0-etc",
+    "name": "Etc",
+    "description": "기타 혹은 분류가 아직 정해지지 않은 아이콘 모음",
+    "aliases": ["기타", "기본"],
+    "order": 0
+  },
+  {
+    "id": "1-navigation",
+    "name": "Navigation",
+    "description": "앱/웹 내 이동과 관련된 네비게이션 아이콘",
+    "aliases": ["네비게이션", "이동"],
+    "order": 10
+  },
+  {
+    "id": "2-action",
+    "name": "Action",
+    "description": "사용자 액션을 의미하는 동작 아이콘",
+    "aliases": ["액션", "행동"],
+    "order": 20
+  },
+  {
+    "id": "3-communications",
+    "name": "Communications",
+    "description": "연락, 커뮤니케이션과 관련된 아이콘",
+    "aliases": ["커뮤니케이션", "소통"],
+    "order": 30
+  },
+  {
+    "id": "4-settings",
+    "name": "Settings",
+    "description": "설정 및 환경 관련 제어 아이콘",
+    "aliases": ["설정"],
+    "order": 40
+  },
+  {
+    "id": "5-media-files",
+    "name": "Media & Files",
+    "description": "미디어, 파일, 문서 관리와 관련된 아이콘",
+    "aliases": ["미디어", "파일"],
+    "order": 50
+  },
+  {
+    "id": "6-status-alerts",
+    "name": "Status & Alerts",
+    "description": "상태, 알림, 경고 등을 표현하는 아이콘",
+    "aliases": ["상태", "알림"],
+    "order": 60
+  },
+  {
+    "id": "7-arrows",
+    "name": "Arrows",
+    "description": "방향성을 나타내는 화살표 아이콘",
+    "aliases": ["화살표"],
+    "order": 70
+  },
+  {
+    "id": "8-forms",
+    "name": "Forms",
+    "description": "입력, 폼, 데이터 작성과 관련된 아이콘",
+    "aliases": ["폼", "입력"],
+    "order": 80
+  },
+  {
+    "id": "9-layout",
+    "name": "Layout",
+    "description": "레이아웃, 구조, 정렬과 관련된 아이콘",
+    "aliases": ["레이아웃", "구성"],
+    "order": 90
+  },
+  {
+    "id": "10-data",
+    "name": "Data",
+    "description": "데이터, 분석, 통계와 관련된 아이콘",
+    "aliases": ["데이터", "통계"],
+    "order": 100
+  },
+  {
+    "id": "11-devices",
+    "name": "Devices",
+    "description": "기기, 하드웨어, 주변기기 아이콘",
+    "aliases": ["디바이스", "기기"],
+    "order": 110
+  },
+  {
+    "id": "12-commerce",
+    "name": "Commerce",
+    "description": "쇼핑, 결제, 재무와 관련된 아이콘",
+    "aliases": ["커머스", "쇼핑"],
+    "order": 120
+  },
+  {
+    "id": "13-profiles",
+    "name": "Profiles",
+    "description": "사용자, 계정, 멤버 관련 아이콘",
+    "aliases": ["프로필", "사용자"],
+    "order": 130
+  },
+  {
+    "id": "14-weather",
+    "name": "Weather",
+    "description": "날씨, 기후 상태를 표현하는 아이콘",
+    "aliases": ["날씨"],
+    "order": 140
+  },
+  {
+    "id": "15-gamification",
+    "name": "Gamification",
+    "description": "게임화 요소, 랭킹, 업적 아이콘",
+    "aliases": ["게이미피케이션", "게임"],
+    "order": 150
+  },
+  {
+    "id": "16-decoration",
+    "name": "Decoration",
+    "description": "장식, 분위기 연출, 일러스트 성향의 아이콘",
+    "aliases": ["데코레이션", "장식"],
+    "order": 160
+  },
+  {
+    "id": "17-food",
+    "name": "Food",
+    "description": "음식, 요리, 식품 관련 아이콘",
+    "aliases": ["음식"],
+    "order": 170
+  },
+  {
+    "id": "18-building",
+    "name": "Building",
+    "description": "건축물, 시설, 공간 관련 아이콘",
+    "aliases": ["빌딩", "시설"],
+    "order": 180
+  },
+  {
+    "id": "19-marketing",
+    "name": "Marketing",
+    "description": "마케팅, 캠페인, 광고 관련 아이콘",
+    "aliases": ["마케팅"],
+    "order": 190
+  },
+  {
+    "id": "20-sports",
+    "name": "Sports",
+    "description": "스포츠, 운동, 활동 관련 아이콘",
+    "aliases": ["스포츠", "운동"],
+    "order": 200
+  },
+  {
+    "id": "22-travel",
+    "name": "Travel",
+    "description": "여행, 이동, 관광 관련 아이콘",
+    "aliases": ["여행"],
+    "order": 210
+  },
+  {
+    "id": "23-furniture",
+    "name": "Furniture",
+    "description": "가구, 인테리어 소품 관련 아이콘",
+    "aliases": ["가구"],
+    "order": 220
+  },
+  {
+    "id": "24-nature",
+    "name": "Nature",
+    "description": "자연, 식물, 동물 관련 아이콘",
+    "aliases": ["자연"],
+    "order": 230
+  },
+  {
+    "id": "25-education",
+    "name": "Education",
+    "description": "교육, 학습, 학문 관련 아이콘",
+    "aliases": ["교육"],
+    "order": 240
+  },
+  {
+    "id": "26-health",
+    "name": "Health",
+    "description": "건강, 의료, 웰니스 관련 아이콘",
+    "aliases": ["건강", "헬스케어"],
+    "order": 250
+  }
+]
+

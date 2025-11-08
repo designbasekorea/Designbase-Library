@@ -49,7 +49,7 @@ export interface InputProps {
     /** 입력 필드 클래스 */
     inputClassName?: string;
     /** 값 변경 핸들러 */
-    onChange?: (value: string) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     /** 포커스 핸들러 */
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
     /** 블러 핸들러 */
@@ -91,7 +91,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         const [showPassword, setShowPassword] = useState(false);
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            onChange?.(e.target.value);
+            onChange?.(e);
         };
 
         const handlePasswordToggle = () => {

@@ -32,7 +32,7 @@ export interface TabsProps {
     /** 전체 너비 여부 */
     fullWidth?: boolean;
     /** 탭 스타일 */
-    variant?: 'default' | 'pills' | 'underline';
+    variant?: 'default' | 'pills';
     /** 추가 CSS 클래스 */
     className?: string;
     /** 탭 변경 핸들러 */
@@ -58,6 +58,8 @@ export const Tabs: React.FC<TabsProps> = ({
     );
     const [focusedTabId, setFocusedTabId] = useState<string>('');
     const [isDragging, setIsDragging] = useState(false);
+    const [isMouseDown, setIsMouseDown] = useState(false);
+    const [showRightGradient, setShowRightGradient] = useState(false);
 
     const tabListRef = useRef<HTMLDivElement>(null);
     const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
@@ -70,6 +72,34 @@ export const Tabs: React.FC<TabsProps> = ({
             setActiveTabId(selectedId);
         }
     }, [selectedId]);
+
+    // 스크롤 가능 여부 감지
+    useEffect(() => {
+        const checkScrollable = () => {
+            if (tabListRef.current) {
+                const isScrollable = tabListRef.current.scrollWidth > tabListRef.current.clientWidth;
+                const isScrolledToEnd =
+                    tabListRef.current.scrollLeft + tabListRef.current.clientWidth >=
+                    tabListRef.current.scrollWidth - 5; // 5px 여유
+                setShowRightGradient(isScrollable && !isScrolledToEnd);
+            }
+        };
+
+        checkScrollable();
+        window.addEventListener('resize', checkScrollable);
+
+        const listElement = tabListRef.current;
+        if (listElement) {
+            listElement.addEventListener('scroll', checkScrollable);
+        }
+
+        return () => {
+            window.removeEventListener('resize', checkScrollable);
+            if (listElement) {
+                listElement.removeEventListener('scroll', checkScrollable);
+            }
+        };
+    }, [items]);
 
     // 키보드 네비게이션
     const handleKeyDown = useCallback((event: React.KeyboardEvent, currentTabId: string) => {
@@ -172,6 +202,8 @@ export const Tabs: React.FC<TabsProps> = ({
             x: e.pageX - tabListRef.current.offsetLeft,
             scrollLeft: tabListRef.current.scrollLeft
         };
+
+        setIsMouseDown(true);
     }, [orientation]);
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -199,12 +231,14 @@ export const Tabs: React.FC<TabsProps> = ({
 
     const handleMouseUp = useCallback(() => {
         setIsDragging(false);
+        setIsMouseDown(false);
         dragStartRef.current = null;
         clickStartRef.current = null;
     }, []);
 
     const handleMouseLeave = useCallback(() => {
         setIsDragging(false);
+        setIsMouseDown(false);
         dragStartRef.current = null;
         clickStartRef.current = null;
     }, []);
@@ -226,6 +260,8 @@ export const Tabs: React.FC<TabsProps> = ({
             x: touch.pageX - tabListRef.current.offsetLeft,
             scrollLeft: tabListRef.current.scrollLeft
         };
+
+        setIsMouseDown(true);
     }, [orientation]);
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
@@ -255,13 +291,14 @@ export const Tabs: React.FC<TabsProps> = ({
 
     const handleTouchEnd = useCallback(() => {
         setIsDragging(false);
+        setIsMouseDown(false);
         dragStartRef.current = null;
         clickStartRef.current = null;
     }, []);
 
     // 드래그 이벤트 리스너 등록/해제
     useEffect(() => {
-        if (isDragging) {
+        if (isMouseDown) {
             document.addEventListener('mousemove', handleMouseMove);
             document.addEventListener('mouseup', handleMouseUp);
             document.addEventListener('mouseleave', handleMouseLeave);
@@ -276,7 +313,7 @@ export const Tabs: React.FC<TabsProps> = ({
             document.removeEventListener('touchmove', handleTouchMove);
             document.removeEventListener('touchend', handleTouchEnd);
         };
-    }, [isDragging, handleMouseMove, handleMouseUp, handleMouseLeave, handleTouchMove, handleTouchEnd]);
+    }, [isMouseDown, handleMouseMove, handleMouseUp, handleMouseLeave, handleTouchMove, handleTouchEnd]);
 
     const activeTab = items.find(item => item.id === activeTabId);
     const activeIndex = items.findIndex(item => item.id === activeTabId);
@@ -298,6 +335,7 @@ export const Tabs: React.FC<TabsProps> = ({
         {
             'designbase-tabs__list--full-width': fullWidth,
             'designbase-tabs__list--dragging': isDragging,
+            'designbase-tabs__list--show-gradient': showRightGradient,
         }
     );
 
@@ -323,6 +361,7 @@ export const Tabs: React.FC<TabsProps> = ({
                             'designbase-tabs__tab--selected': isSelected,
                             'designbase-tabs__tab--focused': isFocused,
                             'designbase-tabs__tab--disabled': isDisabled,
+                            'designbase-tabs__tab--dragging': isDragging,
                         }
                     );
 
@@ -344,6 +383,8 @@ export const Tabs: React.FC<TabsProps> = ({
                             id={`tab-${item.id}`}
                             tabIndex={isSelected ? 0 : -1}
                             disabled={isDisabled}
+                            onMouseDown={handleMouseDown}
+                            onTouchStart={handleTouchStart}
                             onClick={() => handleTabSelect(item.id)}
                             onKeyDown={(e) => handleKeyDown(e, item.id)}
                             onFocus={() => handleTabFocus(item.id)}

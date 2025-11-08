@@ -1,0 +1,88 @@
+/**
+ * FigmaPageHead 컴포넌트 스타일
+ */
+
+.designbase-figma-page-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--db-padding-s);
+    gap: var(--db-gap-s);
+    background-color: var(--db-surface-base);
+    border-bottom: 1px solid var(--db-border-base);
+    box-sizing: border-box;
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-s);
+        flex: 1;
+        min-width: 0; // 텍스트 오버플로우 방지
+    }
+
+    &__titles {
+        display: flex;
+        flex-direction: column;
+        gap: var(--db-gap-2xs);
+        min-width: 0; // 텍스트 오버플로우 방지
+        flex: 1;
+
+        h2 {
+            margin: 0;
+            font-size: var(--db-text-m);
+            font-weight: var(--db-weight-semibold);
+            line-height: var(--db-leading-normal);
+            color: var(--db-text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        p {
+            margin: 0;
+            font-size: var(--db-text-xs);
+            line-height: var(--db-leading-normal);
+            color: var(--db-text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: var(--db-gap-xs);
+        flex-shrink: 0;
+        position: relative; // 드롭다운 위치 컨텍스트
+        z-index: 10; // 드롭다운이 다른 요소 위에 표시되도록
+    }
+
+    &__more-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--db-padding-xs);
+        border: none;
+        background: none;
+        border-radius: var(--db-radius-s);
+        cursor: pointer;
+        color: var(--db-text-primary);
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        outline: none;
+
+        &:hover {
+            background-color: var(--db-surface-layer-1);
+        }
+
+        &:focus {
+            outline: 2px solid var(--db-border-focus);
+            outline-offset: 2px;
+        }
+
+        &:active {
+            background-color: var(--db-surface-layer-2);
+        }
+    }
+}

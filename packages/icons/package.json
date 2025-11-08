@@ -1,6 +1,6 @@
 {
   "name": "@designbasekorea/icons",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Designbase 아이콘 시스템 - 일관된 스타일의 SVG 아이콘과 React 컴포넌트를 제공",
   "type": "commonjs",
   "main": "dist/index.cjs.js",
@@ -23,13 +23,14 @@
     "prebuild": "rimraf dist && node scripts/gen-index.cjs",
     "build": "rollup -c rollup.config.cjs",
     "build:webfont": "node scripts/build-webfont.cjs",
+    "build:manifest": "node scripts/generate-manifest.cjs",
     "build:icons": "node scripts/build-icons.js",
     "build:sprites": "node scripts/build-sprites.js",
     "dev": "rollup -c rollup.config.cjs -w",
     "clean": "rimraf dist",
     "lint": "eslint src --ext .ts,.tsx",
     "test": "jest",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm run build:webfont && npm run build:manifest",
     "storybook": "echo 'Icons package does not have storybook'"
   },
   "peerDependencies": {

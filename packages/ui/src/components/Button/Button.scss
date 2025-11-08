@@ -17,6 +17,7 @@
     transition: all 150ms ease;
     cursor: pointer;
     outline: none;
+    flex-shrink: 0;
 
     &:focus {
         outline: none;
@@ -219,7 +220,8 @@
 
     // Full width
     &--full-width {
-        width: 100%;
+        // width: 100%;
+        flex: 1;
     }
 
     // Loading 상태

@@ -13,6 +13,7 @@ import './theme/theme.css';
 export * from './components/DonationBadge';
 export * from './components/FigmaContainer';
 export * from './components/FigmaHeader';
+export * from './components/FigmaPageHead';
 export * from './components/FigmaSection';
 export * from './components/FigmaSidebar';
 export * from './components/FigmaFooter';

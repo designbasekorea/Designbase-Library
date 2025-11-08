@@ -327,6 +327,14 @@ function NotificationIcon({ count }) {
 | CJS | `dist/index.js` | CommonJS |
 | Types | `dist/index.d.ts` | TypeScript 타입 정의 |
 | SVG 원본 | `svg/` | 원본 SVG 파일들 |
+| Manifest | `dist/icon-manifest.json` | 카테고리·태그 메타데이터 + CDN 경로 ([상세 가이드](./docs/manifest-integration.md)) |
+
+### Manifest 활용
+
+- WordPress, Next.js 등 웹 프로젝트에서 `https://cdn.jsdelivr.net/npm/@designbasekorea/icons@<버전>/dist/icon-manifest.json` URL로 불러와 검색/필터 UI 구성
+- 각 아이콘 변형(라인, 필드 등)마다 `dist/svg/<파일명>` 상대 경로 및 `cdn.jsdelivr`, `unpkg` 링크가 포함되어 있어 다운로드 버튼 구현이 간단합니다.
+- `searchText` 필드를 이용해 태그/키워드 통합 검색 인덱스를 생성할 수 있습니다.
+- Figma 플러그인에서는 manifest → SVG URL → `figma.createNodeFromSvg` 순서로 삽입 가능합니다.
 
 ## 🔗 관련 패키지
 

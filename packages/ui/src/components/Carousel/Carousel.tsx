@@ -458,9 +458,6 @@ const Carousel: React.FC<CarouselProps> = ({
         handleTouchEnd();
     }, [handleTouchEnd]);
 
-    // 현재 아이템
-    const currentItem = items[currentIndex];
-
     // 슬라이드 스타일 계산
     const getSlideStyle = () => {
         const containerWidth = containerRef.current?.offsetWidth || 1;
@@ -482,10 +479,6 @@ const Carousel: React.FC<CarouselProps> = ({
     // 네비게이션 버튼 비활성화 상태
     const isPrevDisabled = !infinite && currentIndex === 0;
     const isNextDisabled = !infinite && currentIndex === items.length - 1;
-
-    // 좋아요/북마크 상태
-    const isLiked = currentItem ? likedItems.has(currentItem.id) : false;
-    const isBookmarked = currentItem ? bookmarkedItems.has(currentItem.id) : false;
 
     if (items.length === 0) return null;
 
@@ -617,13 +610,15 @@ const Carousel: React.FC<CarouselProps> = ({
                                         className={clsx(
                                             'designbase-carousel__action-button',
                                             'designbase-carousel__action-button--like',
-                                            { 'designbase-carousel__action-button--active': isLiked }
+                                            {
+                                                'designbase-carousel__action-button--active': likedItems.has(item.id),
+                                            }
                                         )}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleLike(item, index);
                                         }}
-                                        title={isLiked ? "좋아요 취소" : "좋아요"}
+                                        title={likedItems.has(item.id) ? "좋아요 취소" : "좋아요"}
                                     >
                                         <HeartIcon size={iconSize} color="currentColor" />
                                     </button>
@@ -633,13 +628,15 @@ const Carousel: React.FC<CarouselProps> = ({
                                         className={clsx(
                                             'designbase-carousel__action-button',
                                             'designbase-carousel__action-button--bookmark',
-                                            { 'designbase-carousel__action-button--active': isBookmarked }
+                                            {
+                                                'designbase-carousel__action-button--active': bookmarkedItems.has(item.id),
+                                            }
                                         )}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleBookmark(item, index);
                                         }}
-                                        title={isBookmarked ? "북마크 해제" : "북마크"}
+                                        title={bookmarkedItems.has(item.id) ? "북마크 해제" : "북마크"}
                                     >
                                         <BookmarkIcon size={iconSize} color="currentColor" />
                                     </button>

@@ -347,10 +347,9 @@
 @media (max-width: 768px) {
     .designbase-ad-banner {
         &--type-hero {
-            padding: var(--db-padding-xl);
 
             .designbase-ad-banner__title {
-                font-size: var(--db-text-2xl);
+                font-size: var(--db-text-l);
             }
 
             .designbase-ad-banner__subtitle {

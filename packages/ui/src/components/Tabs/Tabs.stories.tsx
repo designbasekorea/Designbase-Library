@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Tabs, type TabItem } from './Tabs';
+import { HomeFilledIcon, UserFilledIcon, SettingsFilledIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Tabs> = {
     title: 'Components/Tabs',
@@ -20,7 +21,7 @@ const meta: Meta<typeof Tabs> = {
         },
         variant: {
             control: { type: 'select' },
-            options: ['default', 'pills', 'underline'],
+            options: ['default', 'pills'],
         },
         fullWidth: {
             control: { type: 'boolean' },
@@ -175,10 +176,6 @@ export const Variants: Story = {
                 <h3>Pills 탭</h3>
                 <Tabs items={sampleTabs} variant="pills" />
             </div>
-            <div>
-                <h3>Underline 탭</h3>
-                <Tabs items={sampleTabs} variant="underline" />
-            </div>
         </div>
     ),
 };
@@ -243,16 +240,19 @@ export const WithIcons: Story = {
                 id: 'home',
                 label: '홈',
                 content: <div>홈 페이지 내용</div>,
+                icon: HomeFilledIcon,
             },
             {
                 id: 'profile',
                 label: '프로필',
                 content: <div>프로필 페이지 내용</div>,
+                icon: UserFilledIcon,
             },
             {
                 id: 'settings',
                 label: '설정',
                 content: <div>설정 페이지 내용</div>,
+                icon: SettingsFilledIcon,
             },
         ];
 

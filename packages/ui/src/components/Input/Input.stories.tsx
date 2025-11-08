@@ -126,7 +126,7 @@ export const Interactive: Story = {
                     label="상호작용 가능한 입력"
                     placeholder="값을 입력해보세요"
                     value={value}
-                    onChange={setValue}
+                    onChange={(e) => setValue(e.target.value)}
                 />
                 <Input
                     label="비밀번호 토글 테스트"
