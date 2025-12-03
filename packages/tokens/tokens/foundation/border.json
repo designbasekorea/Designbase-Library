@@ -34,6 +34,18 @@
                     "value": "24px",
                     "type": "borderRadius"
                 },
+                "8": {
+                    "value": "32px",
+                    "type": "borderRadius"
+                },
+                "9": {
+                    "value": "40px",
+                    "type": "borderRadius"
+                },
+                "10": {
+                    "value": "48px",
+                    "type": "borderRadius"
+                },
                 "full": {
                     "value": "9999px",
                     "type": "borderRadius"

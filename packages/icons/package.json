@@ -1,6 +1,6 @@
 {
   "name": "@designbasekorea/icons",
-  "version": "0.2.8",
+  "version": "0.2.10",
   "description": "Designbase 아이콘 시스템 - 일관된 스타일의 SVG 아이콘과 React 컴포넌트를 제공",
   "type": "commonjs",
   "main": "dist/index.cjs.js",

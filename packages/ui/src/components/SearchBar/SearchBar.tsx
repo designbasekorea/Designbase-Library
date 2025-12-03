@@ -81,7 +81,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     onBlur,
     onKeyDown,
     className,
-    ...props
+    ...rest
 }) => {
     const [internalValue, setInternalValue] = useState(defaultValue);
     const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -276,7 +276,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                     onBlur={handleBlur}
                     onKeyDown={handleKeyDown}
                     aria-label="검색어 입력"
-                    {...props}
+                    {...rest}
                 />
 
                 {/* 클리어 버튼 */}

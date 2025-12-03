@@ -110,7 +110,6 @@ export const AllTypes: Story = {
     render: () => {
         const [singleValue, setSingleValue] = useState<string>('');
         const [multipleValue, setMultipleValue] = useState<string[]>([]);
-        const [searchableValue, setSearchableValue] = useState<string>('');
 
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -135,18 +134,25 @@ export const AllTypes: Story = {
                         placeholder="여러 개 선택하세요"
                     />
                 </div>
-                <div>
-                    <h3>검색 가능</h3>
-                    <Select
-                        label="검색 가능한 셀렉트"
-                        options={sampleOptions}
-                        value={searchableValue}
-                        onChange={(val) => setSearchableValue(val as string)}
-                        searchable
-                        placeholder="검색하거나 선택하세요"
-                    />
-                </div>
             </div>
+        );
+    },
+};
+
+export const Searchable: Story = {
+    render: () => {
+        const [value, setValue] = useState<string>('');
+
+        return (
+            <Select
+                label="검색 가능한 셀렉트"
+                options={sampleOptions}
+                value={value}
+                onChange={(val) => setValue(val as string)}
+                searchable
+                placeholder="옵션을 검색해보세요"
+                helperText="위 검색창을 사용해 옵션을 필터링할 수 있습니다"
+            />
         );
     },
 };

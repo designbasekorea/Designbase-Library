@@ -6,6 +6,8 @@ export interface LabelProps {
     children: React.ReactNode;
     /** input/textarea와 연결할 htmlFor */
     htmlFor?: string;
+    /** 라벨 요소 id */
+    id?: string;
     /** 필수 필드 표시 */
     required?: boolean;
     /** 라벨 크기 */
@@ -23,6 +25,7 @@ export interface LabelProps {
 export const Label: React.FC<LabelProps> = ({
     children,
     htmlFor,
+    id,
     required = false,
     size = 's',
     disabled = false,
@@ -43,6 +46,7 @@ export const Label: React.FC<LabelProps> = ({
     return (
         <label
             htmlFor={htmlFor}
+            id={id}
             className={classes}
             onClick={onClick}
         >

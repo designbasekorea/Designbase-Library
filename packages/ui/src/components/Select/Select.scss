@@ -29,6 +29,8 @@
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         outline: none;
+        height: var(--db-size-select-m);
+        box-sizing: border-box;
 
         &:hover:not(.designbase-select__trigger--disabled) {
             border-color: var(--db-border-layer-1);
@@ -236,7 +238,6 @@
         display: flex;
         align-items: center;
         gap: var(--db-gap-s);
-        padding: var(--db-padding-s) var(--db-padding-m);
         border-radius: var(--db-radius-s);
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
@@ -282,7 +283,6 @@
 
     &__option-label {
         flex: 1;
-        font-size: var(--db-text-s);
         line-height: var(--db-leading-tight);
         overflow: hidden;
         text-overflow: ellipsis;
@@ -311,46 +311,77 @@
         margin: 0;
     }
 
+    &__search {
+        padding: var(--db-padding-xs);
+    }
+
     // Sizes
     &--s {
         .designbase-select__trigger {
-            padding: var(--db-padding-xs) var(--db-padding-s);
+            padding: var(--db-padding-xs);
             font-size: var(--db-text-xs);
             line-height: var(--db-leading-tight);
+            height: var(--db-size-select-s);
         }
 
         .designbase-select__single-value,
         .designbase-select__search-input {
             font-size: var(--db-text-xs);
             line-height: var(--db-leading-tight);
+        }
+
+        .designbase-select__option {
+            padding: var(--db-padding-xs);
+        }
+
+        .designbase-select__option-label {
+            font-size: var(--db-text-xs);
         }
     }
 
     &--m {
         .designbase-select__trigger {
-            padding: var(--db-padding-s) var(--db-padding-m);
+            padding: var(--db-padding-s);
             font-size: var(--db-text-s);
             line-height: var(--db-leading-tight);
+            height: var(--db-size-select-m);
         }
 
         .designbase-select__single-value,
         .designbase-select__search-input {
             font-size: var(--db-text-s);
             line-height: var(--db-leading-tight);
+        }
+
+        .designbase-select__option {
+            padding: var(--db-padding-s);
+        }
+
+        .designbase-select__option-label {
+            font-size: var(--db-text-s);
         }
     }
 
     &--l {
         .designbase-select__trigger {
-            padding: var(--db-padding-m) var(--db-padding-l);
+            padding: var(--db-padding-m);
             font-size: var(--db-text-base);
             line-height: var(--db-leading-normal);
+            height: var(--db-size-select-l);
         }
 
         .designbase-select__single-value,
         .designbase-select__search-input {
             font-size: var(--db-text-base);
             line-height: var(--db-leading-normal);
+        }
+
+        .designbase-select__option {
+            padding: var(--db-padding-m);
+        }
+
+        .designbase-select__option-label {
+            font-size: var(--db-text-base);
         }
     }
 
@@ -393,24 +424,24 @@
 
     &--multiple {
         .designbase-select__trigger {
-            min-height: 40px;
+            height: var(--db-size-select-l);
         }
     }
 
     // Responsive
-    @media (max-width: 640px) {
-        .designbase-select__dropdown {
-            position: fixed;
-            top: auto;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border-radius: var(--db-radius-l) var(--db-radius-l) 0 0;
-            max-height: 50vh;
-        }
+    // @media (max-width: 640px) {
+    //     .designbase-select__dropdown {
+    //         position: fixed;
+    //         top: auto;
+    //         bottom: 0;
+    //         left: 0;
+    //         right: 0;
+    //         border-radius: var(--db-radius-l) var(--db-radius-l) 0 0;
+    //         max-height: 50vh;
+    //     }
 
-        .designbase-select__options {
-            max-height: none;
-        }
-    }
+    //     .designbase-select__options {
+    //         max-height: none;
+    //     }
+    // }
 }

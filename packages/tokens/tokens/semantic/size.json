@@ -36,6 +36,23 @@
                 "type": "dimension",
                 "description": "2XL 크기"
             },
+            "control": {
+                "s": {
+                    "value": "{size.aliases.m}",
+                    "type": "dimension",
+                    "description": "컴포넌트 제어 요소(폼 컨트롤) S 높이"
+                },
+                "m": {
+                    "value": "{size.aliases.l}",
+                    "type": "dimension",
+                    "description": "컴포넌트 제어 요소(폼 컨트롤) M 높이"
+                },
+                "l": {
+                    "value": "{size.aliases.xl}",
+                    "type": "dimension",
+                    "description": "컴포넌트 제어 요소(폼 컨트롤) L 높이"
+                }
+            },
             "icon": {
                 "xs": {
                     "value": "{size.aliases.xxs}",
@@ -64,57 +81,88 @@
                 }
             },
             "button": {
-                "xs": {
-                    "value": "{size.aliases.xs}",
-                    "type": "dimension",
-                    "description": "버튼 초소형 높이"
-                },
                 "s": {
-                    "value": "{size.aliases.s}",
+                    "value": "{size.semantic.control.s}",
                     "type": "dimension",
                     "description": "버튼 소형 높이"
                 },
                 "m": {
-                    "value": "{size.aliases.m}",
+                    "value": "{size.semantic.control.m}",
                     "type": "dimension",
                     "description": "버튼 중형 높이"
                 },
                 "l": {
-                    "value": "{size.aliases.l}",
+                    "value": "{size.semantic.control.l}",
                     "type": "dimension",
                     "description": "버튼 대형 높이"
-                },
-                "xl": {
-                    "value": "{size.aliases.xl}",
-                    "type": "dimension",
-                    "description": "버튼 초대형 높이"
                 }
             },
             "input": {
-                "xs": {
-                    "value": "{size.aliases.s}",
-                    "type": "dimension",
-                    "description": "입력 필드 초소형 높이"
-                },
                 "s": {
-                    "value": "{size.aliases.m}",
+                    "value": "{size.semantic.control.s}",
                     "type": "dimension",
                     "description": "입력 필드 소형 높이"
                 },
                 "m": {
-                    "value": "{size.aliases.l}",
+                    "value": "{size.semantic.control.m}",
                     "type": "dimension",
                     "description": "입력 필드 중형 높이"
                 },
                 "l": {
-                    "value": "{size.aliases.xl}",
+                    "value": "{size.semantic.control.l}",
                     "type": "dimension",
                     "description": "입력 필드 대형 높이"
-                },
-                "xl": {
-                    "value": "{size.aliases.xxl}",
+                }
+            },
+            "select": {
+                "s": {
+                    "value": "{size.semantic.control.s}",
                     "type": "dimension",
-                    "description": "입력 필드 초대형 높이"
+                    "description": "셀렉트 박스 소형 높이"
+                },
+                "m": {
+                    "value": "{size.semantic.control.m}",
+                    "type": "dimension",
+                    "description": "셀렉트 박스 중형 높이"
+                },
+                "l": {
+                    "value": "{size.semantic.control.l}",
+                    "type": "dimension",
+                    "description": "셀렉트 박스 대형 높이"
+                }
+            },
+            "dropdown": {
+                "s": {
+                    "value": "{size.semantic.control.s}",
+                    "type": "dimension",
+                    "description": "드롭다운 소형 높이"
+                },
+                "m": {
+                    "value": "{size.semantic.control.m}",
+                    "type": "dimension",
+                    "description": "드롭다운 중형 높이"
+                },
+                "l": {
+                    "value": "{size.semantic.control.l}",
+                    "type": "dimension",
+                    "description": "드롭다운 대형 높이"
+                }
+            },
+            "search": {
+                "s": {
+                    "value": "{size.semantic.control.s}",
+                    "type": "dimension",
+                    "description": "검색 입력창 소형 높이"
+                },
+                "m": {
+                    "value": "{size.semantic.control.m}",
+                    "type": "dimension",
+                    "description": "검색 입력창 중형 높이"
+                },
+                "l": {
+                    "value": "{size.semantic.control.l}",
+                    "type": "dimension",
+                    "description": "검색 입력창 대형 높이"
                 }
             },
             "avatar": {
@@ -194,11 +242,6 @@
                 }
             },
             "checkbox": {
-                "xs": {
-                    "value": "{size.aliases.xs}",
-                    "type": "dimension",
-                    "description": "체크박스 초소형 크기"
-                },
                 "s": {
                     "value": "{size.aliases.s}",
                     "type": "dimension",
@@ -213,11 +256,6 @@
                     "value": "{size.aliases.l}",
                     "type": "dimension",
                     "description": "체크박스 대형 크기"
-                },
-                "xl": {
-                    "value": "{size.aliases.xl}",
-                    "type": "dimension",
-                    "description": "체크박스 초대형 크기"
                 }
             }
         }

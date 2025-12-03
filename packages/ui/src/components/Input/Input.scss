@@ -18,6 +18,8 @@
         color: var(--db-field-text);
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         outline: none;
+        height: var(--db-size-input-m);
+        box-sizing: border-box;
 
         &::placeholder {
             color: var(--db-field-placeholder);
@@ -53,14 +55,22 @@
         color: var(--db-icon-muted);
         pointer-events: none;
         z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     &__start-icon {
-        left: var(--db-padding-s);
+        left: var(--db-padding-xs);
     }
 
     &__end-icon {
-        right: var(--db-padding-s);
+        right: var(--db-padding-xs);
     }
 
     &__password-toggle {
@@ -110,49 +120,70 @@
     // Sizes
     &--s {
         .designbase-input__field {
-            padding: var(--db-padding-xs) var(--db-padding-s);
-            font-size: var(--db-text-s);
+            padding: var(--db-padding-xs);
+            font-size: var(--db-text-xs);
             line-height: var(--db-leading-normal);
+            height: var(--db-size-input-s);
+        }
+
+        .designbase-input__start-icon,
+        .designbase-input__end-icon {
+            width: var(--db-size-icon-s);
+            height: var(--db-size-icon-s);
         }
 
         &.designbase-input--with-start-icon .designbase-input__field {
-            padding-left: calc(var(--db-padding-s) + 16px + var(--db-padding-xs));
+            padding-left: calc(var(--db-padding-s) + 12px + var(--db-padding-xs));
         }
 
         &.designbase-input--with-end-icon .designbase-input__field {
-            padding-right: calc(var(--db-padding-s) + 16px + var(--db-padding-xs));
+            padding-right: calc(var(--db-padding-s) + 12px + var(--db-padding-xs));
         }
     }
 
     &--m {
         .designbase-input__field {
-            padding: var(--db-padding-s) var(--db-padding-m);
+            padding: var(--db-padding-s);
             font-size: var(--db-text-s);
             line-height: var(--db-leading-normal);
+            height: var(--db-size-input-m);
+        }
+
+        .designbase-input__start-icon,
+        .designbase-input__end-icon {
+            width: var(--db-size-icon-m);
+            height: var(--db-size-icon-m);
         }
 
         &.designbase-input--with-start-icon .designbase-input__field {
-            padding-left: calc(var(--db-padding-m) + 20px + var(--db-padding-xs));
+            padding-left: calc(var(--db-padding-m) + 12px + var(--db-padding-xs));
         }
 
         &.designbase-input--with-end-icon .designbase-input__field {
-            padding-right: calc(var(--db-padding-m) + 20px + var(--db-padding-xs));
+            padding-right: calc(var(--db-padding-m) + 12px + var(--db-padding-xs));
         }
     }
 
     &--l {
         .designbase-input__field {
-            padding: var(--db-padding-m) var(--db-padding-l);
+            padding: var(--db-padding-m);
             font-size: var(--db-text-base);
             line-height: var(--db-leading-normal);
+            height: var(--db-size-input-l);
+        }
+
+        .designbase-input__start-icon,
+        .designbase-input__end-icon {
+            width: var(--db-size-icon-l);
+            height: var(--db-size-icon-l);
         }
 
         &.designbase-input--with-start-icon .designbase-input__field {
-            padding-left: calc(var(--db-padding-l) + 24px + var(--db-padding-xs));
+            padding-left: calc(var(--db-padding-l) + 16px + var(--db-padding-xs));
         }
 
         &.designbase-input--with-end-icon .designbase-input__field {
-            padding-right: calc(var(--db-padding-l) + 24px + var(--db-padding-xs));
+            padding-right: calc(var(--db-padding-l) + 16px + var(--db-padding-xs));
         }
     }
 
@@ -190,5 +221,21 @@
 
     &--full-width {
         width: 100%;
+    }
+
+    &--with-start-icon {
+        .designbase-input__field {
+            padding-left: calc(var(--db-input-padding-x) + var(--db-input-icon-size) + var(--db-input-icon-gap));
+        }
+    }
+
+    &--with-end-icon {
+        .designbase-input__field {
+            padding-right: calc(var(--db-input-padding-x) + var(--db-input-end-space));
+        }
+    }
+
+    &--with-password-toggle {
+        --db-input-end-space: var(--db-input-toggle-size);
     }
 }

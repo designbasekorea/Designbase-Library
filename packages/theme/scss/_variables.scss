@@ -22,6 +22,7 @@
     --db-text-disabled: var(--color-aliases-text-disabled);
     --db-text-link: var(--color-aliases-text-link);
     --db-text-link-hover: var(--color-aliases-text-link-hover);
+    --db-text-muted: var(--color-aliases-text-tertiary);
     --db-text-inverse-primary: var(--color-aliases-text-inverse-primary);
     --db-text-inverse-secondary: var(--color-aliases-text-inverse-secondary);
     --db-text-inverse-tertiary: var(--color-aliases-text-inverse-tertiary);
@@ -42,6 +43,16 @@
     --db-surface-transparent: var(--color-aliases-surface-transparent);
     --db-surface-alpha: var(--color-aliases-surface-alpha);
     --db-surface-alpha-inverse: var(--color-aliases-surface-alpha-inverse);
+
+    // Surface alpha 단계
+    --db-surface-alpha-10: var(--color-aliases-surface-alpha-10);
+    --db-surface-alpha-30: var(--color-aliases-surface-alpha-30);
+    --db-surface-alpha-50: var(--color-aliases-surface-alpha-50);
+    --db-surface-alpha-70: var(--color-aliases-surface-alpha-70);
+    --db-surface-alpha-inverse-10: var(--color-aliases-surface-alpha-inverse-10);
+    --db-surface-alpha-inverse-30: var(--color-aliases-surface-alpha-inverse-30);
+    --db-surface-alpha-inverse-50: var(--color-aliases-surface-alpha-inverse-50);
+    --db-surface-alpha-inverse-70: var(--color-aliases-surface-alpha-inverse-70);
 
     // 기존 호환성을 위한 별칭
     --db-bg-primary: var(--color-aliases-surface-base);
@@ -79,6 +90,16 @@
     --db-border-transparent: var(--color-aliases-border-transparent);
     --db-border-alpha: var(--color-aliases-border-alpha);
     --db-border-alpha-inverse: var(--color-aliases-border-alpha-inverse);
+
+    // Border alpha 단계
+    --db-border-alpha-10: var(--color-aliases-border-alpha-10);
+    --db-border-alpha-30: var(--color-aliases-border-alpha-30);
+    --db-border-alpha-50: var(--color-aliases-border-alpha-50);
+    --db-border-alpha-70: var(--color-aliases-border-alpha-70);
+    --db-border-alpha-inverse-10: var(--color-aliases-border-alpha-inverse-10);
+    --db-border-alpha-inverse-30: var(--color-aliases-border-alpha-inverse-30);
+    --db-border-alpha-inverse-50: var(--color-aliases-border-alpha-inverse-50);
+    --db-border-alpha-inverse-70: var(--color-aliases-border-alpha-inverse-70);
 
     // 기존 호환성을 위한 별칭
     --db-border-primary: var(--color-aliases-border-base);
@@ -190,6 +211,17 @@
     --db-color-primary: var(--color-aliases-brand-primary);
     --db-color-secondary: var(--color-aliases-brand-secondary);
     --db-color-tertiary: var(--color-aliases-brand-tertiary);
+
+    // Brand primary alpha 단계 (rgba 기반)
+    --db-color-primary-90: var(--color-aliases-brand-primary-alpha-90);
+    --db-color-primary-80: var(--color-aliases-brand-primary-alpha-80);
+    --db-color-primary-70: var(--color-aliases-brand-primary-alpha-70);
+    --db-color-primary-60: var(--color-aliases-brand-primary-alpha-60);
+    --db-color-primary-50: var(--color-aliases-brand-primary-alpha-50);
+    --db-color-primary-40: var(--color-aliases-brand-primary-alpha-40);
+    --db-color-primary-30: var(--color-aliases-brand-primary-alpha-30);
+    --db-color-primary-20: var(--color-aliases-brand-primary-alpha-20);
+    --db-color-primary-10: var(--color-aliases-brand-primary-alpha-10);
 
     // ============================================================================
     // Spacing 변수 (짧은 이름)
@@ -331,6 +363,11 @@
     --db-opacity-overlay-light: var(--opacity-semantic-overlay-light);
     --db-opacity-disabled: var(--opacity-semantic-disabled);
 
+    // Blur (overlay/background용)
+    --db-blur-overlay-s: var(--blur-semantic-overlay-s);
+    --db-blur-overlay-m: var(--blur-semantic-overlay-m);
+    --db-blur-overlay-l: var(--blur-semantic-overlay-l);
+
     // ============================================================================
     // Z-Index 변수 (짧은 이름) - Foundation 토큰은 빌드에서 제외되므로 직접 값 사용
     // ============================================================================
@@ -402,6 +439,11 @@
     --db-size-xl: var(--size-semantic-xl);
     --db-size-2xl: var(--size-semantic-2xl);
 
+    // Unified control heights (Buttons, Inputs, Selects 등)
+    --db-size-control-s: var(--size-semantic-control-s);
+    --db-size-control-m: var(--size-semantic-control-m);
+    --db-size-control-l: var(--size-semantic-control-l);
+
 
     // Icon sizes
     --db-size-icon-xs: var(--size-semantic-icon-xs);
@@ -411,18 +453,33 @@
     --db-size-icon-xl: var(--size-semantic-icon-xl);
 
     // Button sizes
-    --db-size-button-xs: var(--size-semantic-button-xs);
-    --db-size-button-s: var(--size-semantic-button-s);
-    --db-size-button-m: var(--size-semantic-button-m);
-    --db-size-button-l: var(--size-semantic-button-l);
-    --db-size-button-xl: var(--size-semantic-button-xl);
+    --db-size-button-xs: var(--db-size-control-s); // legacy alias
+    --db-size-button-s: var(--db-size-control-s);
+    --db-size-button-m: var(--db-size-control-m);
+    --db-size-button-l: var(--db-size-control-l);
+    --db-size-button-xl: var(--db-size-control-l); // legacy alias
 
     // Input sizes
-    --db-size-input-xs: var(--size-semantic-input-xs);
-    --db-size-input-s: var(--size-semantic-input-s);
-    --db-size-input-m: var(--size-semantic-input-m);
-    --db-size-input-l: var(--size-semantic-input-l);
-    --db-size-input-xl: var(--size-semantic-input-xl);
+    --db-size-input-xs: var(--db-size-control-s); // legacy alias
+    --db-size-input-s: var(--db-size-control-s);
+    --db-size-input-m: var(--db-size-control-m);
+    --db-size-input-l: var(--db-size-control-l);
+    --db-size-input-xl: var(--db-size-control-l); // legacy alias
+
+    // Select sizes
+    --db-size-select-s: var(--db-size-control-s);
+    --db-size-select-m: var(--db-size-control-m);
+    --db-size-select-l: var(--db-size-control-l);
+
+    // Dropdown trigger sizes
+    --db-size-dropdown-s: var(--db-size-control-s);
+    --db-size-dropdown-m: var(--db-size-control-m);
+    --db-size-dropdown-l: var(--db-size-control-l);
+
+    // Search field sizes
+    --db-size-search-s: var(--db-size-control-s);
+    --db-size-search-m: var(--db-size-control-m);
+    --db-size-search-l: var(--db-size-control-l);
 
     // Avatar sizes
     --db-size-avatar-xs: var(--size-semantic-avatar-xs);
@@ -445,9 +502,6 @@
     --db-size-modal-xl: var(--size-semantic-modal-xl);
 
     // Checkbox sizes
-    --db-size-checkbox-xs: var(--size-semantic-checkbox-xs);
     --db-size-checkbox-s: var(--size-semantic-checkbox-s);
     --db-size-checkbox-m: var(--size-semantic-checkbox-m);
-    --db-size-checkbox-l: var(--size-semantic-checkbox-l);
-    --db-size-checkbox-xl: var(--size-semantic-checkbox-xl);
 }

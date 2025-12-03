@@ -213,7 +213,7 @@ import { Button } from '@designbase/ui';
 import { CheckIcon } from '@designbase/icons';
 
 // 기본 버튼
-<Button variant="primary" size="md">
+<Button variant="primary" size="m">
   확인
 </Button>
 

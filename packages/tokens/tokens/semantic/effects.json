@@ -92,5 +92,23 @@
                 }
             }
         }
+    },
+    "blur": {
+        "semantic": {
+            "overlay": {
+                "s": {
+                    "value": "{blur.foundation.s}",
+                    "type": "dimension"
+                },
+                "m": {
+                    "value": "{blur.foundation.m}",
+                    "type": "dimension"
+                },
+                "l": {
+                    "value": "{blur.foundation.l}",
+                    "type": "dimension"
+                }
+            }
+        }
     }
 }

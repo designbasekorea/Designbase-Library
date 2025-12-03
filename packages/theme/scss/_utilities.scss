@@ -3,288 +3,75 @@
  * 
  * 목적: 자주 사용되는 스타일 패턴을 유틸리티 클래스로 제공
  * 기능: 간격, 색상, 타이포그래피, 레이아웃 등의 유틸리티
- * 사용법: class="p-4 text-primary bg-secondary"
  */
 
 @use 'variables';
 
-// ============================================================================
-// Spacing Utilities (토큰 기반)
-// ============================================================================
-
-// Padding utilities
-.p-0 {
-    padding: $spacing-0 !important;
-}
-
-.p-1 {
-    padding: $spacing-1 !important;
-}
-
-.p-2 {
-    padding: $spacing-2 !important;
-}
-
-.p-3 {
-    padding: $spacing-3 !important;
-}
-
-.p-4 {
-    padding: $spacing-4 !important;
-}
-
-.p-5 {
-    padding: $spacing-5 !important;
-}
-
-.p-6 {
-    padding: $spacing-6 !important;
-}
-
-.p-8 {
-    padding: $spacing-8 !important;
-}
-
-// Horizontal padding (좌우)
-.px-0 {
-    padding-left: $spacing-0 !important;
-    padding-right: $spacing-0 !important;
-}
-
-.px-1 {
-    padding-left: $spacing-1 !important;
-    padding-right: $spacing-1 !important;
-}
-
-.px-2 {
-    padding-left: $spacing-2 !important;
-    padding-right: $spacing-2 !important;
-}
-
-.px-3 {
-    padding-left: $spacing-3 !important;
-    padding-right: $spacing-3 !important;
-}
-
-.px-4 {
-    padding-left: $spacing-4 !important;
-    padding-right: $spacing-4 !important;
-}
-
-.px-5 {
-    padding-left: $spacing-5 !important;
-    padding-right: $spacing-5 !important;
-}
-
-.px-6 {
-    padding-left: $spacing-6 !important;
-    padding-right: $spacing-6 !important;
-}
-
-// Vertical padding (상하)
-.py-0 {
-    padding-top: $spacing-0 !important;
-    padding-bottom: $spacing-0 !important;
-}
-
-.py-1 {
-    padding-top: $spacing-1 !important;
-    padding-bottom: $spacing-1 !important;
-}
-
-.py-2 {
-    padding-top: $spacing-2 !important;
-    padding-bottom: $spacing-2 !important;
-}
-
-.py-3 {
-    padding-top: $spacing-3 !important;
-    padding-bottom: $spacing-3 !important;
-}
-
-.py-4 {
-    padding-top: $spacing-4 !important;
-    padding-bottom: $spacing-4 !important;
-}
-
-.py-5 {
-    padding-top: $spacing-5 !important;
-    padding-bottom: $spacing-5 !important;
-}
-
-.py-6 {
-    padding-top: $spacing-6 !important;
-    padding-bottom: $spacing-6 !important;
-}
-
-// Margin utilities
-.m-0 {
-    margin: $spacing-0 !important;
-}
-
-.m-1 {
-    margin: $spacing-1 !important;
-}
-
-.m-2 {
-    margin: $spacing-2 !important;
-}
-
-.m-3 {
-    margin: $spacing-3 !important;
-}
-
-.m-4 {
-    margin: $spacing-4 !important;
-}
-
-.m-5 {
-    margin: $spacing-5 !important;
-}
-
-.m-6 {
-    margin: $spacing-6 !important;
-}
-
-.m-8 {
-    margin: $spacing-8 !important;
-}
-
-// Horizontal margin (좌우)
-.mx-0 {
-    margin-left: $spacing-0 !important;
-    margin-right: $spacing-0 !important;
-}
-
-.mx-1 {
-    margin-left: $spacing-1 !important;
-    margin-right: $spacing-1 !important;
-}
-
-.mx-2 {
-    margin-left: $spacing-2 !important;
-    margin-right: $spacing-2 !important;
-}
-
-.mx-3 {
-    margin-left: $spacing-3 !important;
-    margin-right: $spacing-3 !important;
-}
-
-.mx-4 {
-    margin-left: $spacing-4 !important;
-    margin-right: $spacing-4 !important;
-}
-
-.mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-// Vertical margin (상하)
-.my-0 {
-    margin-top: $spacing-0 !important;
-    margin-bottom: $spacing-0 !important;
-}
-
-.my-1 {
-    margin-top: $spacing-1 !important;
-    margin-bottom: $spacing-1 !important;
-}
-
-.my-2 {
-    margin-top: $spacing-2 !important;
-    margin-bottom: $spacing-2 !important;
-}
-
-.my-3 {
-    margin-top: $spacing-3 !important;
-    margin-bottom: $spacing-3 !important;
-}
-
-.my-4 {
-    margin-top: $spacing-4 !important;
-    margin-bottom: $spacing-4 !important;
-}
-
-.my-5 {
-    margin-top: $spacing-5 !important;
-    margin-bottom: $spacing-5 !important;
-}
-
-.my-6 {
-    margin-top: $spacing-6 !important;
-    margin-bottom: $spacing-6 !important;
-}
-
-// ============================================================================
-// Color Utilities (토큰 기반)
-// ============================================================================
 
 // Text colors
 .text-primary {
-    color: $text-primary !important;
+    color: var(--db-text-primary) !important;
 }
 
 .text-secondary {
-    color: $text-secondary !important;
+    color: var(--db-text-secondary) !important;
 }
 
 .text-muted {
-    color: $text-muted !important;
+    color: var(--db-text-muted) !important;
 }
 
 .text-disabled {
-    color: $text-disabled !important;
+    color: var(--db-text-disabled) !important;
 }
 
 .text-inverse {
-    color: $text-inverse !important;
+    color: var(--db-text-inverse-primary) !important;
 }
 
 .text-link {
-    color: $text-link !important;
+    color: var(--db-text-link) !important;
 }
 
 .text-success {
-    color: $green-600 !important;
+    color: var(--db-text-success) !important;
 }
 
 .text-warning {
-    color: $yellow-600 !important;
+    color: var(--db-text-warning) !important;
 }
 
 .text-error {
-    color: $red-600 !important;
+    color: var(--db-text-error) !important;
 }
 
 // Background colors
 .bg-primary {
-    background-color: $bg-primary !important;
+    background-color: var(--db-bg-primary) !important;
 }
 
 .bg-secondary {
-    background-color: $bg-secondary !important;
+    background-color: var(--db-bg-secondary) !important;
 }
 
 .bg-tertiary {
-    background-color: $bg-tertiary !important;
+    background-color: var(--db-bg-tertiary) !important;
 }
 
 .bg-inverse {
-    background-color: $bg-inverse !important;
+    background-color: var(--db-bg-inverse) !important;
 }
 
 .bg-success {
-    background-color: $green-50 !important;
+    background-color: var(--db-bg-success) !important;
 }
 
 .bg-warning {
-    background-color: $yellow-50 !important;
+    background-color: var(--db-bg-warning) !important;
 }
 
 .bg-error {
-    background-color: $red-50 !important;
+    background-color: var(--db-bg-error) !important;
 }
 
 .bg-transparent {
@@ -293,31 +80,31 @@
 
 // Border colors
 .border-primary {
-    border-color: $border-primary !important;
+    border-color: var(--db-border-primary) !important;
 }
 
 .border-secondary {
-    border-color: $border-secondary !important;
+    border-color: var(--db-border-secondary) !important;
 }
 
 .border-muted {
-    border-color: $border-muted !important;
+    border-color: var(--db-border-muted) !important;
 }
 
 .border-focus {
-    border-color: $border-focus !important;
+    border-color: var(--db-border-focus) !important;
 }
 
 .border-success {
-    border-color: $green-300 !important;
+    border-color: var(--db-border-success) !important;
 }
 
 .border-warning {
-    border-color: $yellow-300 !important;
+    border-color: var(--db-border-warning) !important;
 }
 
 .border-error {
-    border-color: $color-red-300 !important;
+    border-color: var(--db-border-error) !important;
 }
 
 // ============================================================================
@@ -326,90 +113,90 @@
 
 // Font sizes
 .text-xs {
-    font-size: $font-size-xs !important;
+    font-size: var(--db-text-xs) !important;
 }
 
-.text-sm {
-    font-size: $font-size-sm !important;
+.text-s {
+    font-size: var(--db-text-s) !important;
 }
 
-.text-base {
-    font-size: $font-size-base !important;
+.text-m {
+    font-size: var(--db-text-base) !important;
 }
 
-.text-lg {
-    font-size: $font-size-lg !important;
+.text-l {
+    font-size: var(--db-text-l) !important;
 }
 
 .text-xl {
-    font-size: $font-size-xl !important;
+    font-size: var(--db-text-xl) !important;
 }
 
 .text-2xl {
-    font-size: $font-size-2xl !important;
+    font-size: var(--db-text-2xl) !important;
 }
 
 .text-3xl {
-    font-size: $font-size-3xl !important;
+    font-size: var(--db-text-3xl) !important;
 }
 
 .text-4xl {
-    font-size: $font-size-4xl !important;
+    font-size: var(--db-text-4xl) !important;
 }
 
 // Font weights
 .font-light {
-    font-weight: $font-weight-light !important;
+    font-weight: var(--db-weight-light) !important;
 }
 
 .font-normal {
-    font-weight: $font-weight-normal !important;
+    font-weight: var(--db-weight-normal) !important;
 }
 
 .font-medium {
-    font-weight: $font-weight-medium !important;
+    font-weight: var(--db-weight-medium) !important;
 }
 
 .font-semibold {
-    font-weight: $font-weight-semibold !important;
+    font-weight: var(--db-weight-semibold) !important;
 }
 
 .font-bold {
-    font-weight: $font-weight-bold !important;
+    font-weight: var(--db-weight-bold) !important;
 }
 
 // Font families
 .font-primary {
-    font-family: $font-family-primary !important;
+    font-family: var(--db-font-primary) !important;
 }
 
 .font-mono {
-    font-family: $font-family-mono !important;
+    font-family: var(--db-font-mono) !important;
 }
 
 // Line heights
 .leading-none {
-    line-height: $line-height-none !important;
+    line-height: var(--db-leading-none) !important;
 }
 
 .leading-tight {
-    line-height: $line-height-tight !important;
+    line-height: var(--db-leading-tight) !important;
 }
 
 .leading-snug {
-    line-height: $line-height-snug !important;
+    line-height: var(--db-leading-snug) !important;
 }
 
 .leading-normal {
-    line-height: $line-height-normal !important;
+    line-height: var(--db-leading-normal) !important;
 }
 
 .leading-relaxed {
-    line-height: $line-height-relaxed !important;
+    line-height: var(--db-leading-relaxed) !important;
 }
 
 .leading-loose {
-    line-height: $line-height-loose !important;
+    line-height: var(--db-leading-loose) !important;
 }
 
 // Text alignment
@@ -683,27 +470,11 @@
 // ============================================================================
 
 .border {
-    border: 1px solid var(--color-border-primary) !important;
+    border: 1px solid var(--db-border-primary) !important;
 }
 
 .border-0 {
     border: 0 !important;
-}
-
-.border-t {
-    border-top: 1px solid var(--color-border-primary) !important;
-}
-
-.border-r {
-    border-right: 1px solid var(--color-border-primary) !important;
-}
-
-.border-b {
-    border-bottom: 1px solid var(--color-border-primary) !important;
-}
-
-.border-l {
-    border-left: 1px solid var(--color-border-primary) !important;
 }
 
 // Border radius
@@ -910,10 +681,19 @@
 
 // Screen Reader Only
 .sr-only {
-    @include visually-hidden;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 // Focus styles
 .focus-ring:focus {
-    @include focus-ring;
+    outline: 2px solid var(--db-border-focus) !important;
+    outline-offset: 2px !important;
 }

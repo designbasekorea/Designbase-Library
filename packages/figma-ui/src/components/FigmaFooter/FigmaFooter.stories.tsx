@@ -13,7 +13,7 @@ const meta: Meta<typeof FigmaFooter> = {
     argTypes: {
         paymentStatus: {
             control: { type: 'select' },
-            options: ['PAID', 'FREE', 'TRIAL'],
+            options: ['PAID', 'FREE', 'TRIAL', 'BETA'],
         },
         showPaymentStatus: {
             control: { type: 'boolean' },
@@ -84,6 +84,7 @@ export const Default: Story = {
                 premium: '프리미엄',
                 free: '무료',
                 donationPrompt: '이 플러그인이 유용했나요?',
+                betaStatus: 'BETA',
             };
             return translations[key] || key;
         },
@@ -115,6 +116,33 @@ export const PremiumUser: Story = {
                 loading: '로딩 중...',
                 premium: '프리미엄',
                 free: '무료',
+                betaStatus: 'BETA',
+            };
+            return translations[key] || key;
+        },
+    },
+};
+
+export const BetaStatus: Story = {
+    args: {
+        logoType: 'designbase',
+        logoSize: 'xs',
+        logoLinks: defaultLogoLinks,
+        paymentStatus: 'BETA',
+        showPaymentStatus: true,
+        showDonation: true,
+        showDonationText: true,
+        donationText: '피드백 보내기',
+        onLicensePageClick: () => console.log('License page clicked (should not fire in beta)'),
+        t: (key: string) => {
+            const translations: Record<string, string> = {
+                officialWebsite: '공식 웹사이트',
+                youtube: '유튜브',
+                instagram: '인스타그램',
+                figmaCommunity: '피그마 커뮤니티',
+                contact: '문의하기',
+                betaStatus: 'BETA',
+                donationPrompt: '베타 테스트에 참여해 주셔서 감사합니다!',
             };
             return translations[key] || key;
         },
@@ -146,6 +174,7 @@ export const Loading: Story = {
                 loading: '로딩 중...',
                 premium: '프리미엄',
                 free: '무료',
+                betaStatus: 'BETA',
             };
             return translations[key] || key;
         },
@@ -177,6 +206,7 @@ export const WithChildren: Story = {
                 loading: '로딩 중...',
                 premium: '프리미엄',
                 free: '무료',
+                betaStatus: 'BETA',
             };
             return translations[key] || key;
         },
@@ -212,6 +242,7 @@ export const WithoutPaymentStatus: Story = {
                 loading: '로딩 중...',
                 premium: '프리미엄',
                 free: '무료',
+                betaStatus: 'BETA',
             };
             return translations[key] || key;
         },
@@ -238,6 +269,7 @@ export const WithDonation: Story = {
                 instagram: '인스타그램',
                 figmaCommunity: '피그마 커뮤니티',
                 contact: '문의하기',
+                betaStatus: 'BETA',
             };
             return translations[key] || key;
         },
@@ -260,6 +292,7 @@ export const FreePluginWithDonation: Story = {
                 instagram: '인스타그램',
                 figmaCommunity: '피그마 커뮤니티',
                 contact: '문의하기',
+                betaStatus: language === 'ko' ? 'BETA' : 'BETA',
             };
             return translations[key] || key;
         },
@@ -340,6 +373,7 @@ export const IndependentControls: Story = {
                                         loading: '로딩 중...',
                                         premium: '프리미엄',
                                         free: '무료',
+                                        betaStatus: 'BETA',
                                     };
                                     return translations[key] || key;
                                 }}
@@ -377,6 +411,7 @@ export const IndependentControls: Story = {
                                         loading: '로딩 중...',
                                         premium: '프리미엄',
                                         free: '무료',
+                                        betaStatus: 'BETA',
                                     };
                                     return translations[key] || key;
                                 }}
@@ -412,6 +447,7 @@ export const IndependentControls: Story = {
                                         loading: '로딩 중...',
                                         premium: '프리미엄',
                                         free: '무료',
+                                        betaStatus: 'BETA',
                                     };
                                     return translations[key] || key;
                                 }}
@@ -448,6 +484,7 @@ export const IndependentControls: Story = {
                                         loading: '로딩 중...',
                                         premium: '프리미엄',
                                         free: '무료',
+                                        betaStatus: 'BETA',
                                     };
                                     return translations[key] || key;
                                 }}

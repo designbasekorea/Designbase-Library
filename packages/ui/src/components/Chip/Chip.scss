@@ -68,6 +68,7 @@
         padding: var(--db-padding-xs) var(--db-padding-s);
         font-size: var(--db-text-xs);
         gap: var(--db-gap-xs);
+        height: var(--db-size-control-s);
 
         .designbase-chip__start-icon svg,
         .designbase-chip__end-icon svg {
@@ -86,6 +87,7 @@
         padding: var(--db-padding-s) var(--db-padding-m);
         font-size: var(--db-text-s);
         gap: var(--db-gap-s);
+        height: var(--db-size-control-m);
 
         .designbase-chip__start-icon svg,
         .designbase-chip__end-icon svg {
@@ -104,6 +106,7 @@
         padding: var(--db-padding-m) var(--db-padding-l);
         font-size: var(--db-text-base);
         gap: var(--db-gap-s);
+        height: var(--db-size-control-l);
 
         .designbase-chip__start-icon svg,
         .designbase-chip__end-icon svg {

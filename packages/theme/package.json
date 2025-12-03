@@ -1,6 +1,6 @@
 {
     "name": "@designbasekorea/theme",
-    "version": "0.1.25",
+    "version": "0.2.3",
     "description": "Designbase 테마 시스템 - CSS 변수, 테마 프리셋, 유틸리티 클래스를 제공",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",

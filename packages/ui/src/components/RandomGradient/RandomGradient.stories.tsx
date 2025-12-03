@@ -300,10 +300,10 @@ export const HeroSection: Story = {
                     디자인 시스템을 더 쉽고 빠르게 만들어보세요
                 </p>
                 <div style={{ display: 'flex', gap: '16px' }}>
-                    <Button variant="primary" size="xl">
+                    <Button variant="primary" size="l">
                         시작하기
                     </Button>
-                    <Button variant="secondary" size="xl">
+                    <Button variant="secondary" size="l">
                         더 알아보기
                     </Button>
                 </div>

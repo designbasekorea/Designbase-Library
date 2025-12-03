@@ -17,6 +17,8 @@
         border: 1px solid var(--db-border-base);
         border-radius: var(--db-radius-m);
         padding: var(--db-padding-s);
+        height: var(--db-size-control-m);
+        box-sizing: border-box;
     }
 
     &__icon-display,
@@ -175,7 +177,7 @@
         cursor: pointer;
         transition: all var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
-        min-height: 40px;
+        height: var(--db-size-xl);
         font-weight: var(--db-weight-medium);
         border-radius: 0; // 기본적으로 border-radius 제거
 
@@ -377,6 +379,7 @@
         .designbase-date-picker__trigger {
             padding: var(--db-padding-xs);
             gap: var(--db-gap-xs);
+            height: var(--db-size-control-s);
         }
 
         .designbase-date-picker__input {
@@ -389,6 +392,10 @@
     }
 
     &--m {
+        .designbase-date-picker__trigger {
+            height: var(--db-size-control-m);
+        }
+
         .designbase-date-picker__input {
             font-size: var(--db-text-s);
         }
@@ -397,6 +404,7 @@
     &--l {
         .designbase-date-picker__trigger {
             padding: var(--db-padding-m);
+            height: var(--db-size-control-l);
         }
 
         .designbase-date-picker__input {
@@ -468,7 +476,7 @@
         }
 
         .designbase-date-picker__date {
-            min-height: 32px;
+            height: var(--db-size-l);
             font-size: var(--db-text-xs);
         }
 
@@ -495,7 +503,7 @@
         }
 
         .designbase-date-picker__date {
-            min-height: 40px;
+            height: var(--db-size-xl);
             font-size: var(--db-text-s);
         }
 
@@ -522,7 +530,7 @@
         }
 
         .designbase-date-picker__date {
-            min-height: 48px;
+            height: var(--db-size-2xl);
             font-size: var(--db-text-m);
         }
 
@@ -613,7 +621,7 @@
             }
 
             .designbase-date-picker__date {
-                min-height: 40px;
+                height: var(--db-size-xl);
                 font-size: var(--db-text-base);
             }
 
@@ -653,7 +661,7 @@
             }
 
             .designbase-date-picker__date {
-                min-height: 32px;
+                height: var(--db-size-l);
                 font-size: var(--db-text-s);
             }
 

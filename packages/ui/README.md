@@ -44,7 +44,7 @@ import { Button, Card, Input, Accordion } from '@designbasekorea/ui';
 function App() {
   return (
     <div>
-      <Button variant="primary" size="lg">
+      <Button variant="primary" size="l">
         클릭하세요
       </Button>
       
@@ -173,15 +173,15 @@ export default App;
 ```tsx
 import { Button } from '@designbasekorea/ui';
 
-<Button variant="primary" size="lg" onClick={() => console.log('클릭!')}>
+<Button variant="primary" size="l" onClick={() => console.log('클릭!')}>
   Primary 버튼
 </Button>
 
-<Button variant="secondary" size="md" disabled>
+<Button variant="secondary" size="m" disabled>
   비활성 버튼
 </Button>
 
-<Button variant="outline" size="sm" fullWidth>
+<Button variant="outline" size="s" fullWidth>
   전체 너비 버튼
 </Button>
 ```

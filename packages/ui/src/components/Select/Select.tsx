@@ -10,6 +10,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 import { ChevronDownIcon, ChevronUpIcon, CloseIcon } from '@designbasekorea/icons';
 import { Checkbox } from '../Checkbox/Checkbox';
+import { SearchBar } from '../SearchBar/SearchBar';
 import type { IconProps } from '@designbasekorea/icons';
 import './Select.scss';
 
@@ -275,6 +276,7 @@ export const Select: React.FC<SelectProps> = ({
             'designbase-select--readonly': readOnly,
             'designbase-select--full-width': fullWidth,
             'designbase-select--multiple': multiple,
+            'designbase-select--searchable': searchable,
         },
         className
     );
@@ -283,6 +285,7 @@ export const Select: React.FC<SelectProps> = ({
         'designbase-select__trigger',
         {
             'designbase-select__trigger--focused': isOpen,
+            'designbase-select__trigger--searchable': searchable,
         }
     );
 
@@ -343,17 +346,6 @@ export const Select: React.FC<SelectProps> = ({
                                     </span>
                                 );
                             })}
-                            {searchable && isOpen && (
-                                <input
-                                    ref={inputRef}
-                                    type="text"
-                                    className="designbase-select__search-input"
-                                    value={searchTerm}
-                                    onChange={handleSearchChange}
-                                    placeholder="검색..."
-                                    onClick={(e) => e.stopPropagation()}
-                                />
-                            )}
                         </div>
                     ) : (
                         <span className="designbase-select__single-value">
@@ -379,7 +371,27 @@ export const Select: React.FC<SelectProps> = ({
                 </div>
             </div>
 
-            <div className={dropdownClasses} ref={dropdownRef}>
+            <div className={dropdownClasses} ref={dropdownRef} >
+                {searchable && (
+                    <div
+                        className="designbase-select__search"
+                        onMouseDown={(e) => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <SearchBar
+                            value={searchTerm}
+                            onChange={(value) => setSearchTerm(value)}
+                            onSearch={(val) => setSearchTerm(val)}
+                            placeholder="옵션 검색"
+                            size={size}
+                            variant="outlined"
+                            fullWidth
+                            onFocus={(e) => e.stopPropagation()}
+                            onBlur={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                )}
+
                 <div
                     className="designbase-select__options"
                     style={{ maxHeight: `${maxHeight}px` }}

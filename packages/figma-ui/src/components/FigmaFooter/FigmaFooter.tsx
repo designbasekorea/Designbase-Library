@@ -13,6 +13,7 @@ const defaultTranslations: Record<string, string> = {
     perDay: '일',
     resetsDaily: '매일 리셋',
     donationPrompt: '이 플러그인이 유용했나요?',
+    betaStatus: 'BETA',
 };
 
 const defaultT = (key: string) => defaultTranslations[key] || key;
@@ -21,7 +22,7 @@ export interface FigmaFooterProps {
     /** 라이선스 페이지 클릭 핸들러 */
     onLicensePageClick?: () => void;
     /** 결제 상태 */
-    paymentStatus?: 'PAID' | 'FREE' | 'TRIAL';
+    paymentStatus?: 'PAID' | 'FREE' | 'TRIAL' | 'BETA';
     /** 사용량 */
     usageCount?: number;
     /** 로딩 상태 */
@@ -96,6 +97,9 @@ export const FigmaFooter: React.FC<FigmaFooterProps> = ({
     children,
 }) => {
     const isActive = paymentStatus === 'PAID';
+    const isBeta = paymentStatus === 'BETA';
+    const resolvedShowUsageInfo = showUsageInfo && !isLoading && !isBeta;
+    const resolvedShowPaymentBadge = showPaymentStatus && showPaymentBadge;
     const hasChildren = React.Children.count(children) > 0;
 
     const classes = clsx(
@@ -130,7 +134,7 @@ export const FigmaFooter: React.FC<FigmaFooterProps> = ({
 
                 {showPaymentStatus && (
                     <div className="designbase-figma-footer__payment-states">
-                        {showUsageInfo && !isLoading && (
+                        {resolvedShowUsageInfo && (
                             <div className="designbase-figma-footer__usage-info">
                                 {isActive ? (
                                     <span
@@ -157,11 +161,12 @@ export const FigmaFooter: React.FC<FigmaFooterProps> = ({
                             </div>
                         )}
 
-                        {showPaymentBadge && (
+                        {resolvedShowPaymentBadge && (
                             <PaymentBadge
                                 isActive={isActive}
-                                onClick={onLicensePageClick}
+                                onClick={isBeta ? undefined : onLicensePageClick}
                                 isLoading={isLoading}
+                                text={isBeta ? (t('betaStatus') || 'BETA') : undefined}
                                 t={t}
                             />
                         )}

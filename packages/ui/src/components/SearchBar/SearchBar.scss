@@ -32,19 +32,16 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        width: 40px;
-        height: 100%;
         color: var(--db-text-secondary);
         pointer-events: none;
-        margin-right: -8px; // 아이콘과 입력 필드 간격 줄이기
+        margin-left: var(--db-margin-xs);
     }
 
     &__input {
         flex: 1;
         width: 100%;
         min-width: 0;
-        padding: var(--db-padding-s) var(--db-padding-m);
-        padding-left: var(--db-padding-xs); // 왼쪽 패딩 줄이기
+        padding: var(--db-padding-s);
         border: none;
         outline: none;
         background: transparent;
@@ -72,8 +69,6 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        width: var(--db-size-xl);
-        height: var(--db-size-xl);
         margin-right: var(--db-margin-xs);
         border: none;
         border-radius: var(--db-radius-s);
@@ -100,16 +95,16 @@
     // Sizes
     &--s {
         .designbase-search-bar__container {
-            min-height: 32px;
+            height: var(--db-size-input-s);
         }
 
         .designbase-search-bar__search-icon {
-            width: 32px;
+            width: var(--db-size-icon-s);
+            height: var(--db-size-icon-s);
         }
 
         .designbase-search-bar__input {
-            padding: var(--db-padding-xs) var(--db-padding-s);
-            padding-left: var(--db-padding-xxs);
+            padding: var(--db-padding-xs);
             font-size: var(--db-text-xs);
         }
 
@@ -121,43 +116,45 @@
 
     &--m {
         .designbase-search-bar__container {
-            min-height: 40px;
+            height: var(--db-size-input-m);
         }
 
         .designbase-search-bar__search-icon {
-            width: 40px;
+            width: var(--db-size-icon-m);
+            height: var(--db-size-icon-m);
         }
 
         .designbase-search-bar__input {
-            padding: var(--db-padding-s) var(--db-padding-m);
+            padding: var(--db-padding-s);
             padding-left: var(--db-padding-xs);
             font-size: var(--db-text-s);
         }
 
         .designbase-search-bar__clear-button {
-            width: 32px;
-            height: 32px;
+            width: var(--db-size-icon-m);
+            height: var(--db-size-icon-m);
         }
     }
 
     &--l {
         .designbase-search-bar__container {
-            min-height: 48px;
+            height: var(--db-size-input-l);
         }
 
         .designbase-search-bar__search-icon {
-            width: 48px;
+            width: var(--db-size-icon-l);
+            height: var(--db-size-icon-l);
         }
 
         .designbase-search-bar__input {
-            padding: var(--db-padding-m) var(--db-padding-l);
+            padding: var(--db-padding-m);
             padding-left: var(--db-padding-s);
             font-size: var(--db-text-base);
         }
 
         .designbase-search-bar__clear-button {
-            width: 40px;
-            height: 40px;
+            width: var(--db-size-icon-l);
+            height: var(--db-size-icon-l);
         }
     }
 

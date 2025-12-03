@@ -18,6 +18,8 @@
     cursor: pointer;
     outline: none;
     flex-shrink: 0;
+    height: var(--db-size-button-m);
+    box-sizing: border-box;
 
     &:focus {
         outline: none;
@@ -139,32 +141,24 @@
     }
 
     // Size 스타일
-    &--xs {
-        font-size: var(--db-text-xs);
-        padding: var(--db-padding-xxs);
-    }
-
     &--s {
         font-size: var(--db-text-s);
-        padding: var(--db-padding-xs);
-    }
-
-    &--m {
-        font-size: var(--db-text-base);
-        padding: var(--db-padding-s);
-        gap: var(--db-gap-s);
+        padding: 0 var(--db-padding-xs);
+        height: var(--db-size-button-s);
     }
 
     &--l {
         font-size: var(--db-text-l);
-        padding: var(--db-padding-m);
+        padding: 0 var(--db-padding-m);
         gap: var(--db-gap-s);
+        height: var(--db-size-button-l);
     }
 
-    &--xl {
-        font-size: var(--db-text-xl);
-        padding: var(--db-padding-l);
-        gap: var(--db-gap-m);
+    &--m {
+        font-size: var(--db-text-base);
+        padding: 0 var(--db-padding-s);
+        gap: var(--db-gap-s);
+        height: var(--db-size-button-m);
     }
 
     // Border radius variants
@@ -188,6 +182,7 @@
     &--icon-only {
         gap: 0;
         min-width: auto;
+        padding: 0;
 
         // 아이콘이 제대로 표시되도록 보장
         svg {
@@ -197,24 +192,22 @@
             max-width: 24px;
         }
 
-        &.designbase-button--xs {
-            padding: var(--db-padding-xxs);
-        }
-
         &.designbase-button--s {
-            padding: var(--db-padding-xs);
+            width: var(--db-size-button-s);
+            min-width: var(--db-size-button-s);
+            height: var(--db-size-button-s);
         }
 
         &.designbase-button--m {
-            padding: var(--db-padding-s);
+            width: var(--db-size-button-m);
+            min-width: var(--db-size-button-m);
+            height: var(--db-size-button-m);
         }
 
         &.designbase-button--l {
-            padding: var(--db-padding-m);
-        }
-
-        &.designbase-button--xl {
-            padding: var(--db-padding-l);
+            width: var(--db-size-button-l);
+            min-width: var(--db-size-button-l);
+            height: var(--db-size-button-l);
         }
     }
 

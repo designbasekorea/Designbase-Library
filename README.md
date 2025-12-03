@@ -162,7 +162,7 @@ import '@designbasekorea/theme/dist/css/theme.css';   // 필수
 function App() {
   return (
     <div>
-      <Button variant="primary" size="lg">
+      <Button variant="primary" size="l">
         클릭하세요
       </Button>
       

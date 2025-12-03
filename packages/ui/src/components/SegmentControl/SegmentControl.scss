@@ -26,6 +26,8 @@
         outline: none;
         z-index: 1;
         min-width: 0;
+        height: var(--db-size-control-m);
+        box-sizing: border-box;
 
         &:hover:not(.designbase-segment-control__segment--disabled) {
             color: var(--db-text-primary);
@@ -100,6 +102,7 @@
             padding: var(--db-padding-xs);
             font-size: var(--db-text-xs);
             line-height: var(--db-leading-tight);
+            height: var(--db-size-control-s);
         }
 
         .designbase-segment-control__indicator {
@@ -117,6 +120,7 @@
             padding: var(--db-padding-s);
             font-size: var(--db-text-s);
             line-height: var(--db-leading-tight);
+            height: var(--db-size-control-m);
         }
 
         .designbase-segment-control__indicator {
@@ -133,6 +137,7 @@
         .designbase-segment-control__segment {
             padding: var(--db-padding-m);
             font-size: var(--db-text-base);
+            height: var(--db-size-control-l);
         }
 
         .designbase-segment-control__indicator {

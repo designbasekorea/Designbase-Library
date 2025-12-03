@@ -10,13 +10,13 @@ const path = require('path');
 function resolveTokensCss() {
     // 1) 정식 export 경로 시도 (package.json exports { "./css": "./dist/css/tokens.css" })
     try {
-        const resolved = require.resolve('@designbase/tokens/css');
+        const resolved = require.resolve('@designbasekorea/tokens/css');
         return resolved;
     } catch (e) {
         // 2) 모노레포 로컬 경로 폴백
         const localPath = path.resolve(__dirname, '../../tokens/dist/css/tokens.css');
         if (fs.existsSync(localPath)) return localPath;
-        throw new Error('Cannot resolve tokens.css from @designbase/tokens');
+        throw new Error('Cannot resolve tokens.css from @designbasekorea/tokens');
     }
 }
 

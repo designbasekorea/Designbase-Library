@@ -141,5 +141,25 @@
                 "type": "opacity"
             }
         }
+    },
+    "blur": {
+        "foundation": {
+            "none": {
+                "value": "0px",
+                "type": "dimension"
+            },
+            "s": {
+                "value": "8px",
+                "type": "dimension"
+            },
+            "m": {
+                "value": "16px",
+                "type": "dimension"
+            },
+            "l": {
+                "value": "32px",
+                "type": "dimension"
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Input } from './Input';
-import { SearchIcon } from '@designbasekorea/icons';
+import { SearchIcon, ArrowRightIcon, CircleCheckedIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Input> = {
     title: 'Components/Input',
@@ -83,14 +83,29 @@ export const AllStates: Story = {
 
 export const WithIcons: Story = {
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '320px' }}>
             <Input
-                label="검색 (자동 아이콘)"
+                size="s"
+                label="작은 입력 (아이콘)"
                 placeholder="검색어를 입력하세요"
-                type="search"
+                startIcon={SearchIcon}
+                endIcon={ArrowRightIcon}
             />
             <Input
-                label="비밀번호 (토글 기능)"
+                size="m"
+                label="중간 입력 (시작 아이콘)"
+                placeholder="이메일을 입력하세요"
+                startIcon={SearchIcon}
+            />
+            <Input
+                size="l"
+                label="승인 코드"
+                placeholder="코드를 입력하세요"
+                endIcon={CircleCheckedIcon}
+            />
+            <Input
+                size="m"
+                label="비밀번호 (토글)"
                 placeholder="비밀번호를 입력하세요"
                 type="password"
             />

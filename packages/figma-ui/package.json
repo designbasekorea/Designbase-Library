@@ -1,6 +1,6 @@
 {
     "name": "@designbasekorea/figma-ui",
-    "version": "0.2.11",
+    "version": "0.3.1",
     "description": "Designbase 피그마 플러그인 전용 UI 컴포넌트 라이브러리",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -33,9 +33,9 @@
     },
     "dependencies": {
         "@designbasekorea/icons": "^0.2.8",
-        "@designbasekorea/theme": "^0.1.19",
-        "@designbasekorea/tokens": "^0.1.13",
-        "@designbasekorea/ui": "^0.2.41",
+        "@designbasekorea/theme": "^0.2.2",
+        "@designbasekorea/tokens": "^0.2.2",
+        "@designbasekorea/ui": "^0.3.1",
         "classnames": "^2.5.1",
         "clsx": "^2.0.0"
     },

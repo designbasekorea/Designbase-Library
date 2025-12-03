@@ -7,31 +7,31 @@
                     "type": "borderRadius"
                 },
                 "xs": {
-                    "value": "{border.foundation.radius.1}",
-                    "type": "borderRadius"
-                },
-                "s": {
                     "value": "{border.foundation.radius.2}",
                     "type": "borderRadius"
                 },
-                "m": {
+                "s": {
                     "value": "{border.foundation.radius.3}",
                     "type": "borderRadius"
                 },
-                "l": {
+                "m": {
                     "value": "{border.foundation.radius.4}",
                     "type": "borderRadius"
                 },
-                "xl": {
+                "l": {
                     "value": "{border.foundation.radius.5}",
                     "type": "borderRadius"
                 },
-                "2xl": {
+                "xl": {
                     "value": "{border.foundation.radius.6}",
                     "type": "borderRadius"
                 },
+                "2xl": {
+                    "value": "{border.foundation.radius.8}",
+                    "type": "borderRadius"
+                },
                 "3xl": {
-                    "value": "{border.foundation.radius.7}",
+                    "value": "{border.foundation.radius.10}",
                     "type": "borderRadius"
                 },
                 "full": {

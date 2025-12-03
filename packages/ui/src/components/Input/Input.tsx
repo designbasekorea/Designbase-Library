@@ -121,18 +121,19 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             className
         );
 
-        const inputClasses = clsx(
-            'designbase-input__field',
-            inputClassName
-        );
+        const inputClasses = clsx('designbase-input__field', inputClassName);
 
-        const iconSizeMap = {
-            sm: 14,
-            md: 16,
-            lg: 18,
-        } as const;
-
-        const iconSize = iconSizeMap[size as keyof typeof iconSizeMap];
+        const iconSize = React.useMemo(() => {
+            switch (size) {
+                case 's':
+                    return 16;
+                case 'l':
+                    return 24;
+                case 'm':
+                default:
+                    return 20;
+            }
+        }, [size]);
 
         return (
             <div className={classes}>

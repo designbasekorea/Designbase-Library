@@ -20,7 +20,7 @@ export interface ButtonProps {
     /** 버튼 variant */
     variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'ghost';
     /** 버튼 크기 */
-    size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+    size?: 's' | 'm' | 'l';
     /** 둥글기 variant */
     radius?: 's' | 'm' | 'l' | 'pill';
     /** 전체 너비 여부 */
@@ -29,6 +29,8 @@ export interface ButtonProps {
     disabled?: boolean;
     /** 로딩 상태 */
     loading?: boolean;
+    /** 로딩 중 표시할 텍스트 (다국어 지원) */
+    loadingText?: React.ReactNode;
     /** 아이콘 전용 버튼 여부 */
     iconOnly?: boolean;
     /** 시작 아이콘 */
@@ -60,6 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             fullWidth = false,
             disabled = false,
             loading = false,
+            loadingText,
             iconOnly = false,
             startIcon: StartIcon,
             endIcon: EndIcon,
@@ -91,7 +94,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 return `designbase-button--radius-${radius}`;
             }
             // 아이콘 전용 버튼도 일반 버튼과 동일한 radius 적용
-            return `designbase-button--radius-${size === 'xs' || size === 's' ? 's' : size === 'l' || size === 'xl' ? 'l' : 'm'}`;
+            if (size === 's') return 'designbase-button--radius-s';
+            if (size === 'l') return 'designbase-button--radius-l';
+            return 'designbase-button--radius-m';
         };
 
         const classes = clsx(
@@ -107,16 +112,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             className
         );
 
-        const iconSize = (() => {
-            switch (size) {
-                case 'xs': return 12;
-                case 's': return 14;
-                case 'm': return 16;
-                case 'l': return 18;
-                case 'xl': return 20;
-                default: return 16;
-            }
-        })();
+        const iconSize = size === 's' ? 14 : size === 'l' ? 18 : 16;
 
         // 아이콘 색상 결정
         const getIconColor = () => {
@@ -138,16 +134,23 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         const renderContent = () => {
             if (loading) {
+                // 로딩 중 표시할 텍스트 결정: loadingText > children > 기본값
+                const displayText = loadingText !== undefined
+                    ? loadingText
+                    : (!iconOnly && children)
+                        ? children
+                        : null;
+
                 return (
                     <>
                         <Spinner
                             type="circular"
-                            size={size === 'xs' ? 'xs' : size === 's' ? 's' : 'm'}
+                            size={size === 's' ? 's' : size === 'l' ? 'l' : 'm'}
                             color={getIconColor()}
                             speed={1}
                             showLabel={false}
                         />
-                        {!iconOnly && <span>로딩 중...</span>}
+                        {displayText && <span>{displayText}</span>}
                     </>
                 );
             }

@@ -30,7 +30,7 @@ const meta: Meta<typeof Button> = {
         },
         size: {
             control: { type: 'select' },
-            options: ['xs', 's', 'm', 'l', 'xl'],
+            options: ['s', 'm', 'l'],
         },
         radius: {
             control: { type: 'select' },
@@ -59,11 +59,9 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
     render: () => (
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-            <Button variant="primary" size="xs">XS</Button>
             <Button variant="primary" size="s">S</Button>
             <Button variant="primary" size="m">M</Button>
             <Button variant="primary" size="l">L</Button>
-            <Button variant="primary" size="xl">XL</Button>
         </div>
     ),
 };
@@ -105,6 +103,9 @@ export const AllTypes: Story = {
                     </Button>
                     <Button variant="primary" loading>
                         로딩 중...
+                    </Button>
+                    <Button variant="primary" loading loadingText="처리 중...">
+                        분석하기
                     </Button>
                 </div>
             </div>
@@ -170,9 +171,6 @@ export const IconButtons: Story = {
             <div>
                 <h3>아이콘 전용 버튼 크기별</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <Button variant="primary" size="xs" iconOnly aria-label="검색">
-                        <SearchIcon />
-                    </Button>
                     <Button variant="primary" size="s" iconOnly aria-label="검색">
                         <SearchIcon />
                     </Button>
@@ -180,9 +178,6 @@ export const IconButtons: Story = {
                         <SearchIcon />
                     </Button>
                     <Button variant="primary" size="l" iconOnly aria-label="검색">
-                        <SearchIcon />
-                    </Button>
-                    <Button variant="primary" size="xl" iconOnly aria-label="검색">
                         <SearchIcon />
                     </Button>
                 </div>
@@ -290,15 +285,6 @@ export const IconButtonsWithTooltips: Story = {
             <div>
                 <h3>툴팁 크기별 아이콘 버튼</h3>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <Button
-                        variant="primary"
-                        size="xs"
-                        iconOnly
-                        tooltip="작은 툴팁"
-                        tooltipProps={{ size: 's' }}
-                    >
-                        <SearchIcon />
-                    </Button>
                     <Button
                         variant="primary"
                         size="s"

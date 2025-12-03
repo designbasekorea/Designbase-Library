@@ -1,6 +1,6 @@
 {
   "name": "@designbasekorea/tokens",
-  "version": "0.1.16",
+  "version": "0.2.3",
   "description": "Designbase 디자인 토큰 시스템 - 색상, 타이포그래피, 간격, 그림자 등의 디자인 토큰을 정의",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

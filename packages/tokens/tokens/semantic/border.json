@@ -32,7 +32,7 @@
                 },
                 "button": {
                     "s": {
-                        "value": "{border.aliases.radius.m}",
+                        "value": "{border.aliases.radius.s}",
                         "type": "borderRadius"
                     },
                     "m": {

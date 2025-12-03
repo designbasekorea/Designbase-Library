@@ -83,7 +83,7 @@
     &--s {
         .designbase-textarea__field {
             padding: var(--db-padding-xs);
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-tight);
         }
 
@@ -113,7 +113,7 @@
         .designbase-textarea__helper-text,
         .designbase-textarea__error-message,
         .designbase-textarea__character-count {
-            font-size: var(--db-text-sm);
+            font-size: var(--db-text-s);
             line-height: var(--db-leading-normal);
         }
     }
