@@ -21,9 +21,11 @@ export interface DesignBaseLogoProps {
 export const DesignBaseLogo: React.FC<DesignBaseLogoProps> = ({
     width = 193,
     height = 40,
-    color = 'currentColor',
+    color,
     className,
 }) => {
+    // color가 전달되지 않으면 원본 색상(검정) 사용, 전달되면 해당 색상 사용
+    const fillColor = color || '#000000';
     return (
         <svg
             width={width}
@@ -34,7 +36,7 @@ export const DesignBaseLogo: React.FC<DesignBaseLogoProps> = ({
             className={className}
             aria-label="DesignBase Logo"
         >
-            <g fill={color}>
+            <g fill={fillColor}>
                 <polygon points="58.4,23.6 77.3,23.6 77.3,16.2 58.4,16.2 58.4,7.7 79.4,7.7 79.4,0.4 49.5,0.4 49.5,39.6 80,39.6 80,32.3 58.4,32.3" />
                 <path d="M95.6,10.8c0-2.1,2-3.2,5-3.2s8.1,1.6,12.2,4l3.4-7.3c-4.5-2.8-9.6-4.2-14.9-4.2c-9.1,0-15.2,4.5-15.2,11.6 c0,13.9,20.9,9.6,20.9,17c0,2.4-2.2,3.8-5.8,3.8c-4.2,0-9.9-2.3-13.9-5.9l-3.5,7.2c4.9,4,11,6.2,17.3,6.2c8.7,0,15.4-4.1,15.4-11.8 C116.5,13.9,95.6,18,95.6,10.8z" />
                 <rect x="122.7" y="0.4" width="8.8" height="39.2" />

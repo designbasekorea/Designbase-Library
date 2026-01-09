@@ -152,6 +152,13 @@ async function processIcon(relPath) {
     // SVGR 대신 직접 템플릿 생성
     let svgContent = optimized.data;
 
+    // React에서 인식하지 못하는 SVG 속성을 camelCase로 변환
+    svgContent = svgContent.replace(/fill-rule=/g, 'fillRule=');
+    svgContent = svgContent.replace(/clip-rule=/g, 'clipRule=');
+    svgContent = svgContent.replace(/stroke-width=/g, 'strokeWidth=');
+    svgContent = svgContent.replace(/stroke-linecap=/g, 'strokeLinecap=');
+    svgContent = svgContent.replace(/stroke-linejoin=/g, 'strokeLinejoin=');
+
     // SVG 태그에 width, height, props 추가
     svgContent = svgContent.replace(
       /<svg([^>]*)>/,

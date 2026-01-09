@@ -96,7 +96,10 @@ export const useToast = () => {
     return context;
 };
 
-export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ToastProvider: React.FC<{
+    children: React.ReactNode;
+    position?: 'top-right' | 'top-center' | 'bottom-center' | 'bottom-right';
+}> = ({ children, position = 'top-right' }) => {
     const [toasts, setToasts] = useState<ToastItem[]>([]);
 
     const addToast = useCallback((toast: Omit<ToastItem, 'id' | 'createdAt'>) => {
@@ -120,7 +123,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return (
         <ToastContext.Provider value={{ addToast, removeToast }}>
             {children}
-            <ToastContainer toasts={toasts} onRemoveToast={removeToast} />
+            <ToastContainer toasts={toasts} position={position} onRemoveToast={removeToast} />
         </ToastContext.Provider>
     );
 };

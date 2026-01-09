@@ -216,7 +216,7 @@ export const Avatar: React.FC<AvatarProps> = ({
                 <div className="designbase-avatar__icon">
                     {icon ? (
                         React.isValidElement(icon) ? (
-                            React.cloneElement(icon as React.ReactElement, {
+                            React.cloneElement(icon as React.ReactElement<any>, {
                                 size: iconSize,
                                 color: 'currentColor'
                             })
@@ -280,7 +280,7 @@ export const AvatarGroup: React.FC<AvatarGroupProps> = ({
         <div className={classes} {...props}>
             {childrenArray.slice(0, visibleCount).map((child, index) => (
                 <div key={index} className="designbase-avatar-group__item">
-                    {React.cloneElement(child as React.ReactElement, {
+                    {React.cloneElement(child as React.ReactElement<any>, {
                         size,
                         variant,
                     })}

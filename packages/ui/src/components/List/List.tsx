@@ -253,7 +253,7 @@ const List: React.FC<ListProps> = ({
                 {item.icon && (
                     <div className="designbase-list__item-icon">
                         {React.isValidElement(item.icon) ? (
-                            React.cloneElement(item.icon as React.ReactElement, {
+                            React.cloneElement(item.icon as React.ReactElement<any>, {
                                 size: iconSize,
                                 color: 'currentColor'
                             })

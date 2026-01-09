@@ -16,7 +16,7 @@ const meta: Meta<typeof Logo> = {
         },
         variant: {
             control: { type: 'select' },
-            options: ['default', 'primary', 'secondary', 'white', 'dark'],
+            options: ['original', 'light', 'dark', 'default', 'primary', 'secondary', 'white'],
         },
         clickable: {
             control: { type: 'boolean' },
@@ -68,6 +68,30 @@ export const DesignBaseVariants: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
             <div>
+                <h3>컬러 조정 옵션</h3>
+                <div style={{
+                    padding: '24px',
+                    backgroundColor: '#ffffff',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    gap: '24px',
+                    flexWrap: 'wrap'
+                }}>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Original (원본 색상)</p>
+                        <Logo type="designbase" variant="original" size="l" />
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Dark (검정)</p>
+                        <Logo type="designbase" variant="dark" size="l" />
+                    </div>
+                    <div style={{ backgroundColor: '#1f2937', padding: '8px', borderRadius: '4px' }}>
+                        <p style={{ fontSize: '12px', color: '#fff', marginBottom: '8px' }}>Light (흰색)</p>
+                        <Logo type="designbase" variant="light" size="l" />
+                    </div>
+                </div>
+            </div>
+            <div>
                 <h3>라이트 배경</h3>
                 <div style={{
                     padding: '24px',
@@ -102,6 +126,10 @@ export const DesignBaseVariants: Story = {
                     flexWrap: 'wrap'
                 }}>
                     <div>
+                        <p style={{ fontSize: '12px', color: '#fff', marginBottom: '8px' }}>Light (흰색)</p>
+                        <Logo type="designbase" variant="light" size="l" />
+                    </div>
+                    <div>
                         <p style={{ fontSize: '12px', color: '#fff', marginBottom: '8px' }}>White</p>
                         <Logo type="designbase" variant="white" size="l" />
                     </div>
@@ -113,10 +141,25 @@ export const DesignBaseVariants: Story = {
             </div>
             <div>
                 <h3>심볼 마크 - 다양한 색상</h3>
-                <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-                    <Logo type="designbase-mark" variant="default" size="l" />
-                    <Logo type="designbase-mark" variant="primary" size="l" />
-                    <Logo type="designbase-mark" variant="secondary" size="l" />
+                <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Original</p>
+                        <Logo type="designbase-mark" variant="original" size="l" />
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Light</p>
+                        <div style={{ backgroundColor: '#1f2937', padding: '8px', borderRadius: '4px', display: 'inline-block' }}>
+                            <Logo type="designbase-mark" variant="light" size="l" />
+                        </div>
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Dark</p>
+                        <Logo type="designbase-mark" variant="dark" size="l" />
+                    </div>
+                    <div>
+                        <p style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Primary</p>
+                        <Logo type="designbase-mark" variant="primary" size="l" />
+                    </div>
                 </div>
             </div>
         </div>

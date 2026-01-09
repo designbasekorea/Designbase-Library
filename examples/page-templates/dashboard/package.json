@@ -1,0 +1,27 @@
+{
+  "name": "page-template-dashboard",
+  "version": "1.0.0",
+  "description": "대시보드 페이지 템플릿 - Designbase UI 라이브러리 활용",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@designbasekorea/icons": "file:../../../packages/icons",
+    "@designbasekorea/theme": "file:../../../packages/theme",
+    "@designbasekorea/tokens": "file:../../../packages/tokens",
+    "@designbasekorea/ui": "file:../../../packages/ui",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  }
+}
+

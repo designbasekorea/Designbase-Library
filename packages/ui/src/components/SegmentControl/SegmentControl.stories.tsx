@@ -144,3 +144,61 @@ export const MixedContent: Story = {
         );
     },
 };
+
+export const IconOnly: Story = {
+    render: () => {
+        const [value, setValue] = useState('bar');
+
+        const iconOnlyOptions: SegmentOption[] = [
+            { value: 'bar', label: 'Bar Chart', icon: BarChartIcon },
+            { value: 'line', label: 'Line Chart', icon: LineChartUpIcon },
+            { value: 'pie', label: 'Pie Chart', icon: PieChartIcon },
+            { value: 'donut', label: 'Donut Chart', icon: DoughnutChartIcon },
+            { value: 'radar', label: 'Radar Chart', icon: ChartRadarIcon },
+        ];
+
+        return (
+            <div>
+                <SegmentControl
+                    options={iconOnlyOptions}
+                    variant="icon-only"
+                    value={value}
+                    onChange={setValue}
+                />
+                <div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#f3f4f6', borderRadius: '8px' }}>
+                    <p>선택된 차트 타입: <strong>{value}</strong></p>
+                    <p style={{ fontSize: '14px', color: '#666', marginTop: '8px' }}>
+                        아이콘만 표시되는 타입입니다. label은 접근성을 위해 aria-label로 제공됩니다.
+                    </p>
+                </div>
+            </div>
+        );
+    },
+};
+
+export const IconOnlyAllSizes: Story = {
+    render: () => {
+        const iconOnlyOptions: SegmentOption[] = [
+            { value: 'bar', label: 'Bar Chart', icon: BarChartIcon },
+            { value: 'line', label: 'Line Chart', icon: LineChartUpIcon },
+            { value: 'pie', label: 'Pie Chart', icon: PieChartIcon },
+        ];
+
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                <div>
+                    <h3>Small (Icon Only)</h3>
+                    <SegmentControl options={iconOnlyOptions} variant="icon-only" size="s" />
+                </div>
+                <div>
+                    <h3>Medium (Icon Only)</h3>
+                    <SegmentControl options={iconOnlyOptions} variant="icon-only" size="m" />
+                </div>
+                <div>
+                    <h3>Large (Icon Only)</h3>
+                    <SegmentControl options={iconOnlyOptions} variant="icon-only" size="l" />
+                </div>
+            </div>
+        );
+    },
+};

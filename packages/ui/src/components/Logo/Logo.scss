@@ -109,6 +109,28 @@
     }
 
     // Variants
+    &--original {
+        // SVG 원본 색상 사용 (검정)
+        // color prop을 전달하지 않으므로 SVG 원본 색상이 적용됨
+        .designbase-logo__text {
+            color: #000000;
+        }
+    }
+
+    &--light {
+        // 밝은 색상 (흰색)
+        .designbase-logo__text {
+            color: #ffffff;
+        }
+    }
+
+    &--dark {
+        // 어두운 색상 (검정)
+        .designbase-logo__text {
+            color: #000000;
+        }
+    }
+
     &--default {
         .designbase-logo__text {
             color: var(--db-text-primary);
@@ -128,14 +150,9 @@
     }
 
     &--white {
+        // white는 light와 동일
         .designbase-logo__text {
-            color: var(--db-text-inverse-primary);
-        }
-    }
-
-    &--dark {
-        .designbase-logo__text {
-            color: var(--db-text-primary);
+            color: #ffffff;
         }
     }
 

@@ -12,7 +12,7 @@ import { DesignBaseLogo, DesignBaseLogoMark } from './logos';
 import './Logo.scss';
 
 export type LogoSize = 'xs' | 's' | 'm' | 'l' | 'xl';
-export type LogoVariant = 'default' | 'primary' | 'secondary' | 'white' | 'dark';
+export type LogoVariant = 'original' | 'light' | 'dark' | 'default' | 'primary' | 'secondary' | 'white';
 export type LogoType = 'designbase' | 'designbase-mark' | 'custom';
 
 export interface LogoProps {
@@ -26,7 +26,7 @@ export interface LogoProps {
     alt?: string;
     /** 로고 크기 */
     size?: LogoSize;
-    /** 로고 스타일 variant */
+    /** 로고 스타일 variant (original: SVG 원본 색상, light: 밝은 색상/흰색, dark: 어두운 색상/검정) */
     variant?: LogoVariant;
     /** 클릭 가능 여부 */
     clickable?: boolean;
@@ -50,7 +50,7 @@ export const Logo: React.FC<LogoProps> = ({
     src,
     alt,
     size = 'm',
-    variant = 'default',
+    variant = 'original',
     clickable = false,
     href,
     target = '_self',
@@ -62,7 +62,7 @@ export const Logo: React.FC<LogoProps> = ({
     const classes = clsx(
         'designbase-logo',
         `designbase-logo--${size}`,
-        `designbase-logo--${variant}`,
+        variant && `designbase-logo--${variant}`,
         {
             'designbase-logo--clickable': clickable || href,
             'designbase-logo--full-width': fullWidth,
@@ -93,15 +93,22 @@ export const Logo: React.FC<LogoProps> = ({
     };
 
     // variant별 색상 매핑
-    const getLogoColor = () => {
-        const colors = {
+    const getLogoColor = (): string | undefined => {
+        // original일 때는 undefined를 반환하여 SVG 원본 색상(검정) 사용
+        // color prop을 전달하지 않으면 SVG 로고 컴포넌트가 원본 색상을 사용
+        if (variant === 'original') {
+            return undefined;
+        }
+
+        const colors: Record<Exclude<LogoVariant, 'original'>, string> = {
+            light: '#ffffff', // 밝은 색상 (흰색)
+            dark: '#000000', // 어두운 색상 (검정)
             default: 'var(--db-text-primary)',
             primary: 'var(--db-brand-primary)',
             secondary: 'var(--db-text-secondary)',
-            white: 'var(--db-text-inverse-primary)',
-            dark: 'var(--db-text-primary)',
+            white: '#ffffff', // white는 light와 동일하게 처리
         };
-        return colors[variant];
+        return colors[variant as Exclude<LogoVariant, 'original'>];
     };
 
     const renderLogo = () => {
@@ -114,7 +121,7 @@ export const Logo: React.FC<LogoProps> = ({
                 <DesignBaseLogo
                     width={width}
                     height={height}
-                    color={color}
+                    {...(color !== undefined && { color })}
                     className="designbase-logo__svg"
                 />
             );
@@ -125,7 +132,7 @@ export const Logo: React.FC<LogoProps> = ({
             return (
                 <DesignBaseLogoMark
                     size={markSize}
-                    color={color}
+                    {...(color !== undefined && { color })}
                     className="designbase-logo__svg"
                 />
             );

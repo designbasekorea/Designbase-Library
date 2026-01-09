@@ -1,0 +1,202 @@
+.example-view {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: var(--db-surface-base);
+
+    &__empty {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--db-text-secondary);
+    }
+
+    &__header {
+        padding: 24px;
+        border-bottom: 1px solid var(--db-border-base);
+        background-color: var(--db-surface-base);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--db-text-primary);
+        margin-bottom: 8px;
+    }
+
+    &__subtitle {
+        margin: 0;
+        font-size: 16px;
+        color: var(--db-text-secondary);
+    }
+
+    &__content {
+        padding: 40px;
+    }
+
+    &__spinner-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px;
+    }
+}
+
+// 예제 컨텐츠 공통 스타일
+.example-content {
+    max-width: 1000px;
+}
+
+.example-section {
+    margin-bottom: 60px;
+
+    &__title {
+        margin: 0 0 20px 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--db-text-primary);
+    }
+}
+
+.example-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+// 상태 그리드 레이아웃
+.example-state-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+
+    // 1단 레이아웃 (위아래로 표기)
+    &--single-column {
+        grid-template-columns: 1fr;
+    }
+
+    // 2개일 때 2칸 꽉 차게
+    &:has(.example-state-item:nth-child(2):last-child) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.example-state-item {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    gap: 12px;
+    padding: 8px;
+    border: 1px solid var(--db-border-base);
+    border-radius: var(--db-radius-m);
+    background-color: var(--db-surface-elevated);
+
+    &__label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--db-text-secondary);
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+}
+
+.designbase-select,
+.designbase-file-uploader {
+    width: 100%;
+}
+
+// 버튼 상태 강제 표시 (예제용)
+// Primary variant
+.designbase-button--primary.example-button--hover {
+    background-color: var(--db-btn-primary-bg-hover) !important;
+    border-color: var(--db-btn-primary-border-hover) !important;
+}
+
+.designbase-button--primary.example-button--active {
+    background-color: var(--db-btn-primary-bg-active) !important;
+    border-color: var(--db-btn-primary-border-active) !important;
+}
+
+// Secondary variant
+.designbase-button--secondary.example-button--hover {
+    background-color: var(--db-btn-secondary-bg-hover) !important;
+    border-color: var(--db-btn-secondary-border-hover) !important;
+    color: var(--db-btn-secondary-text-hover) !important;
+}
+
+.designbase-button--secondary.example-button--active {
+    background-color: var(--db-btn-secondary-bg-active) !important;
+}
+
+// Danger variant
+.designbase-button--danger.example-button--hover {
+    background-color: var(--db-btn-danger-bg-hover) !important;
+    border-color: var(--db-btn-danger-border-hover) !important;
+}
+
+.designbase-button--danger.example-button--active {
+    background-color: var(--db-btn-danger-bg-active) !important;
+    border-color: var(--db-btn-danger-border-active) !important;
+}
+
+// Input 상태 강제 표시 (예제용)
+.example-input--hover {
+    .designbase-input__wrapper {
+        .designbase-input__field {
+            background-color: var(--db-field-bg-hover) !important;
+            border-color: var(--db-field-border-hover) !important;
+        }
+    }
+}
+
+.example-input--focus {
+    .designbase-input__wrapper {
+        .designbase-input__field {
+            border-color: var(--db-field-border-focus) !important;
+            box-shadow: 0 0 0 3px var(--color-aliases-brand-primary-alpha-10) !important;
+        }
+    }
+}
+
+// Select 상태 강제 표시 (예제용)
+.example-select--hover {
+    .designbase-select__trigger {
+        border-color: var(--db-border-layer-1) !important;
+    }
+}
+
+.example-select--focus {
+    .designbase-select__trigger {
+        border-color: var(--db-brand-primary) !important;
+        box-shadow: 0 0 0 3px var(--db-brand-primary-alpha-10) !important;
+    }
+}
+
+// Textarea 상태 강제 표시 (예제용)
+.example-textarea--hover {
+    .designbase-textarea__wrapper {
+        .designbase-textarea__field {
+            background-color: var(--db-field-bg-hover) !important;
+            border-color: var(--db-field-border-hover) !important;
+        }
+    }
+}
+
+.example-textarea--focus {
+    .designbase-textarea__wrapper {
+        .designbase-textarea__field {
+            border-color: var(--db-field-border-focus) !important;
+            box-shadow: 0 0 0 3px var(--color-aliases-brand-primary-alpha-10) !important;
+        }
+    }
+}

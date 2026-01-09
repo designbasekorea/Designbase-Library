@@ -13,6 +13,7 @@
       "default": "./dist/index.esm.js"
     },
     "./css": "./dist/css/tokens.css",
+    "./dist/css/tokens.css": "./dist/css/tokens.css",
     "./scss": "./dist/scss/_tokens.scss",
     "./json": "./dist/json/tokens.json",
     "./package.json": "./package.json"

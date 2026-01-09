@@ -118,7 +118,7 @@ const Banner: React.FC<BannerProps> = ({
                 {icon && (
                     <div className="designbase-banner__icon">
                         {React.isValidElement(icon) ? (
-                            React.cloneElement(icon as React.ReactElement, {
+                            React.cloneElement(icon as React.ReactElement<any>, {
                                 size: iconSize,
                                 color: 'currentColor'
                             })

@@ -62,18 +62,65 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        opacity: 0;
         transition: all 0.15s ease-in-out;
-        width: 0;
-        overflow: hidden;
-        margin-right: 0;
     }
 
-    &__segment:hover:not(.designbase-segment-control__segment--disabled) &__segment-icon,
-    &__segment--selected &__segment-icon {
-        opacity: 1;
-        width: auto;
-        margin-right: var(--db-gap-xs);
+    // Default variant: 아이콘은 hover나 selected 시에만 표시
+    &--default {
+        .designbase-segment-control__segment-icon {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+            margin-right: 0;
+        }
+
+        .designbase-segment-control__segment:hover:not(.designbase-segment-control__segment--disabled) &__segment-icon,
+        .designbase-segment-control__segment--selected &__segment-icon {
+            opacity: 1;
+            width: auto;
+            margin-right: var(--db-gap-xs);
+        }
+    }
+
+    // Icon-only variant: 아이콘을 항상 표시
+    &--icon-only {
+        .designbase-segment-control__segment {
+            padding: var(--db-padding-xs);
+            min-width: var(--db-size-control-m);
+        }
+
+        .designbase-segment-control__segment-icon {
+            opacity: 1;
+            width: auto;
+            margin-right: 0;
+        }
+
+        .designbase-segment-control__segment-label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        // Icon-only 크기별 조정
+        &.designbase-segment-control--s {
+            .designbase-segment-control__segment {
+                padding: var(--db-padding-xxs);
+                min-width: var(--db-size-control-s);
+            }
+        }
+
+        &.designbase-segment-control--l {
+            .designbase-segment-control__segment {
+                padding: var(--db-padding-s);
+                min-width: var(--db-size-control-l);
+            }
+        }
     }
 
     &__segment-label {

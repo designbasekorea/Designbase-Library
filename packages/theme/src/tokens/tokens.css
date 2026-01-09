@@ -1,7 +1,7 @@
 /**
  * Designbase Korea Design Tokens
- * Generated: 2025-10-18T03:18:29.546Z
- * Version: 0.1.14
+ * Generated: 2026-01-09T01:10:53.123Z
+ * Version: 0.2.3
  *
  * Structure:
  * - Foundation: Raw scales (global)
@@ -135,6 +135,10 @@
   --layout-foundation-container-max-width-s: 40rem;
   --layout-foundation-container-max-width-xs: 30rem;
   --layout-foundation-container-max-width-fluid: 100%;
+  --blur-foundation-l: 2rem;
+  --blur-foundation-m: 1rem;
+  --blur-foundation-s: 0.5rem;
+  --blur-foundation-none: 0rem;
   --opacity-foundation-100: 1;
   --opacity-foundation-95: 0.95;
   --opacity-foundation-90: 0.9;
@@ -162,10 +166,26 @@
   --color-aliases-overlay-soft: rgba(0, 0, 0, 0.3);
   --color-aliases-overlay-base: rgba(0, 0, 0, 0.6);
   --color-aliases-text-link-hover: rgba(0, 111, 255, 0.9);
+  --color-aliases-surface-alpha-inverse-70: rgba(0, 0, 0, 0.7);
+  --color-aliases-surface-alpha-inverse-50: rgba(0, 0, 0, 0.5);
+  --color-aliases-surface-alpha-inverse-30: rgba(0, 0, 0, 0.3);
+  --color-aliases-surface-alpha-inverse-10: rgba(0, 0, 0, 0.1);
   --color-aliases-surface-alpha-inverse: rgba(0, 0, 0, 0.3);
+  --color-aliases-surface-alpha-70: rgba(255, 255, 255, 0.7);
+  --color-aliases-surface-alpha-50: rgba(255, 255, 255, 0.5);
+  --color-aliases-surface-alpha-30: rgba(255, 255, 255, 0.3);
+  --color-aliases-surface-alpha-10: rgba(255, 255, 255, 0.1);
   --color-aliases-surface-alpha: rgba(255, 255, 255, 0.3);
   --color-aliases-surface-transparent: rgba(255, 255, 255, 0);
+  --color-aliases-border-alpha-inverse-70: rgba(255, 255, 255, 0.7);
+  --color-aliases-border-alpha-inverse-50: rgba(255, 255, 255, 0.5);
+  --color-aliases-border-alpha-inverse-30: rgba(255, 255, 255, 0.3);
+  --color-aliases-border-alpha-inverse-10: rgba(255, 255, 255, 0.1);
   --color-aliases-border-alpha-inverse: rgba(255, 255, 255, 0.1);
+  --color-aliases-border-alpha-70: rgba(0, 0, 0, 0.7);
+  --color-aliases-border-alpha-50: rgba(0, 0, 0, 0.5);
+  --color-aliases-border-alpha-30: rgba(0, 0, 0, 0.3);
+  --color-aliases-border-alpha-10: rgba(0, 0, 0, 0.1);
   --color-aliases-border-alpha: rgba(0, 0, 0, 0.1);
   --color-aliases-border-transparent: rgba(0, 0, 0, 0);
   --color-aliases-brand-primary-alpha-90: rgba(0, 111, 255, 0.9);
@@ -270,6 +290,9 @@
   --border-foundation-width-1: 0.03125rem;
   --border-foundation-width-0: 0rem;
   --border-foundation-radius-full: 624.9375rem;
+  --border-foundation-radius-10: 3rem;
+  --border-foundation-radius-9: 2.5rem;
+  --border-foundation-radius-8: 2rem;
   --border-foundation-radius-7: 1.5rem;
   --border-foundation-radius-6: 1rem;
   --border-foundation-radius-5: 0.75rem;
@@ -357,6 +380,9 @@
   --layout-aliases-container-max-width-s: var(--layout-foundation-container-max-width-s);
   --layout-aliases-container-max-width-xs: var(--layout-foundation-container-max-width-xs);
   --layout-aliases-container-max-width-fluid: var(--layout-foundation-container-max-width-fluid);
+  --blur-semantic-overlay-l: var(--blur-foundation-l);
+  --blur-semantic-overlay-m: var(--blur-foundation-m);
+  --blur-semantic-overlay-s: var(--blur-foundation-s);
   --opacity-semantic-disabled: var(--opacity-foundation-50);
   --opacity-semantic-overlay-light: var(--opacity-foundation-25);
   --opacity-semantic-overlay-medium: var(--opacity-foundation-50);
@@ -417,13 +443,13 @@
   --border-aliases-width-hairline: var(--border-foundation-width-1);
   --border-aliases-width-none: var(--border-foundation-width-0);
   --border-aliases-radius-full: var(--border-foundation-radius-full);
-  --border-aliases-radius-3xl: var(--border-foundation-radius-7);
-  --border-aliases-radius-2xl: var(--border-foundation-radius-6);
-  --border-aliases-radius-xl: var(--border-foundation-radius-5);
-  --border-aliases-radius-l: var(--border-foundation-radius-4);
-  --border-aliases-radius-m: var(--border-foundation-radius-3);
-  --border-aliases-radius-s: var(--border-foundation-radius-2);
-  --border-aliases-radius-xs: var(--border-foundation-radius-1);
+  --border-aliases-radius-3xl: var(--border-foundation-radius-10);
+  --border-aliases-radius-2xl: var(--border-foundation-radius-8);
+  --border-aliases-radius-xl: var(--border-foundation-radius-6);
+  --border-aliases-radius-l: var(--border-foundation-radius-5);
+  --border-aliases-radius-m: var(--border-foundation-radius-4);
+  --border-aliases-radius-s: var(--border-foundation-radius-3);
+  --border-aliases-radius-xs: var(--border-foundation-radius-2);
   --border-aliases-radius-none: var(--border-foundation-radius-0);
   --spacing-aliases-grid-gutter: var(--spacing-aliases-scale-m);
   --spacing-aliases-container-padding: var(--spacing-aliases-scale-m);
@@ -448,11 +474,9 @@
   --spacing-aliases-gap-s: var(--spacing-aliases-scale-s);
   --spacing-aliases-gap-xs: var(--spacing-aliases-scale-xs);
   --spacing-aliases-gap-xxs: var(--spacing-aliases-scale-xxs);
-  --size-semantic-checkbox-xl: var(--size-aliases-xl);
   --size-semantic-checkbox-l: var(--size-aliases-l);
   --size-semantic-checkbox-m: var(--size-aliases-m);
   --size-semantic-checkbox-s: var(--size-aliases-s);
-  --size-semantic-checkbox-xs: var(--size-aliases-xs);
   --size-semantic-avatar-3xl: var(--size-aliases-3xl);
   --size-semantic-avatar-2xl: var(--size-aliases-xxl);
   --size-semantic-avatar-xl: var(--size-aliases-xl);
@@ -460,21 +484,14 @@
   --size-semantic-avatar-m: var(--size-aliases-m);
   --size-semantic-avatar-s: var(--size-aliases-s);
   --size-semantic-avatar-xs: var(--size-aliases-xs);
-  --size-semantic-input-xl: var(--size-aliases-xxl);
-  --size-semantic-input-l: var(--size-aliases-xl);
-  --size-semantic-input-m: var(--size-aliases-l);
-  --size-semantic-input-s: var(--size-aliases-m);
-  --size-semantic-input-xs: var(--size-aliases-s);
-  --size-semantic-button-xl: var(--size-aliases-xl);
-  --size-semantic-button-l: var(--size-aliases-l);
-  --size-semantic-button-m: var(--size-aliases-m);
-  --size-semantic-button-s: var(--size-aliases-s);
-  --size-semantic-button-xs: var(--size-aliases-xs);
   --size-semantic-icon-xl: var(--size-aliases-l);
   --size-semantic-icon-l: var(--size-aliases-m);
   --size-semantic-icon-m: var(--size-aliases-s);
   --size-semantic-icon-s: var(--size-aliases-xs);
   --size-semantic-icon-xs: var(--size-aliases-xxs);
+  --size-semantic-control-l: var(--size-aliases-xl);
+  --size-semantic-control-m: var(--size-aliases-l);
+  --size-semantic-control-s: var(--size-aliases-m);
   --size-semantic-2xl: var(--size-aliases-xxl);
   --size-semantic-xl: var(--size-aliases-xl);
   --size-semantic-l: var(--size-aliases-l);
@@ -627,6 +644,21 @@
   --spacing-semantic-gap-l: var(--spacing-aliases-gap-l);
   --spacing-semantic-gap-xl: var(--spacing-aliases-gap-xl);
   --spacing-semantic-gap-2xl: var(--spacing-aliases-gap-2xl);
+  --size-semantic-search-l: var(--size-semantic-control-l);
+  --size-semantic-search-m: var(--size-semantic-control-m);
+  --size-semantic-search-s: var(--size-semantic-control-s);
+  --size-semantic-dropdown-l: var(--size-semantic-control-l);
+  --size-semantic-dropdown-m: var(--size-semantic-control-m);
+  --size-semantic-dropdown-s: var(--size-semantic-control-s);
+  --size-semantic-select-l: var(--size-semantic-control-l);
+  --size-semantic-select-m: var(--size-semantic-control-m);
+  --size-semantic-select-s: var(--size-semantic-control-s);
+  --size-semantic-input-l: var(--size-semantic-control-l);
+  --size-semantic-input-m: var(--size-semantic-control-m);
+  --size-semantic-input-s: var(--size-semantic-control-s);
+  --size-semantic-button-l: var(--size-semantic-control-l);
+  --size-semantic-button-m: var(--size-semantic-control-m);
+  --size-semantic-button-s: var(--size-semantic-control-s);
 }
 
 [data-theme="dark"] {
@@ -634,10 +666,26 @@
   --color-aliases-overlay-soft: rgba(0, 0, 0, 0.3);
   --color-aliases-overlay-base: rgba(0, 0, 0, 0.6);
   --color-aliases-text-link-hover: rgba(0, 111, 255, 0.9);
+  --color-aliases-surface-alpha-inverse-70: rgba(255, 255, 255, 0.7);
+  --color-aliases-surface-alpha-inverse-50: rgba(255, 255, 255, 0.5);
+  --color-aliases-surface-alpha-inverse-30: rgba(255, 255, 255, 0.3);
+  --color-aliases-surface-alpha-inverse-10: rgba(255, 255, 255, 0.1);
   --color-aliases-surface-alpha-inverse: rgba(255, 255, 255, 0.3);
+  --color-aliases-surface-alpha-70: rgba(0, 0, 0, 0.7);
+  --color-aliases-surface-alpha-50: rgba(0, 0, 0, 0.5);
+  --color-aliases-surface-alpha-30: rgba(0, 0, 0, 0.3);
+  --color-aliases-surface-alpha-10: rgba(0, 0, 0, 0.1);
   --color-aliases-surface-alpha: rgba(0, 0, 0, 0.3);
   --color-aliases-surface-transparent: rgba(0, 0, 0, 0);
+  --color-aliases-border-alpha-inverse-70: rgba(0, 0, 0, 0.7);
+  --color-aliases-border-alpha-inverse-50: rgba(0, 0, 0, 0.5);
+  --color-aliases-border-alpha-inverse-30: rgba(0, 0, 0, 0.3);
+  --color-aliases-border-alpha-inverse-10: rgba(0, 0, 0, 0.1);
   --color-aliases-border-alpha-inverse: rgba(0, 0, 0, 0.1);
+  --color-aliases-border-alpha-70: rgba(255, 255, 255, 0.7);
+  --color-aliases-border-alpha-50: rgba(255, 255, 255, 0.5);
+  --color-aliases-border-alpha-30: rgba(255, 255, 255, 0.3);
+  --color-aliases-border-alpha-10: rgba(255, 255, 255, 0.1);
   --color-aliases-border-alpha: rgba(255, 255, 255, 0.1);
   --color-aliases-border-transparent: rgba(0, 0, 0, 0);
   --color-aliases-brand-primary-alpha-90: rgba(0, 111, 255, 0.9);

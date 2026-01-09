@@ -1,0 +1,106 @@
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: var(--db-surface-base);
+    border-right: 1px solid var(--db-border-base);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        padding: 16px;
+        border-bottom: 1px solid var(--db-border-base);
+        background-color: var(--db-surface-elevated);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--db-text-primary);
+    }
+
+    &__subtitle {
+        margin: 0;
+        font-size: 14px;
+        color: var(--db-text-secondary);
+    }
+
+    &__nav {
+        flex: 1;
+        padding: 16px 0;
+    }
+
+    &__category {
+        margin-bottom: 8px;
+    }
+
+    &__category-button {
+        width: 100%;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: var(--db-text-primary);
+        font-size: 14px;
+        font-weight: 600;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--db-surface-layer-1);
+        }
+    }
+
+    &__category-label {
+        flex: 1;
+        text-align: left;
+    }
+
+    &__category-arrow {
+        transition: transform 0.2s;
+
+        &--expanded {
+            transform: rotate(180deg);
+        }
+    }
+
+
+    &__example-button {
+        width: 100%;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: left;
+        transition: all 0.2s;
+        border-right: 3px solid transparent;
+        color: var(--db-text-secondary);
+
+        &:hover {
+            background-color: var(--db-surface-layer-1);
+        }
+
+        &--selected {
+            background-color: var(--db-surface-layer-1);
+            color: var(--db-text-primary);
+            border-right-color: var(--db-brand-primary);
+
+            &:hover {
+                background-color: var(--db-surface-layer-1);
+            }
+        }
+    }
+}

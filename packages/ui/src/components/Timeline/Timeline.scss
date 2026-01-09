@@ -6,42 +6,22 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        align-items: center;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 1px;
-            background-color: var(--db-border-muted);
-            transform: translateX(-50%);
-            opacity: 0.3;
-        }
+        gap: var(--db-gap-s);
     }
 
     &__item {
         position: relative;
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         width: 100%;
-        margin-bottom: 2rem;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+        gap: var(--db-gap-m);
 
         &--left {
             flex-direction: row;
 
             .designbase-timeline__content {
-                margin-right: 2rem;
-                text-align: right;
-            }
-
-            .designbase-timeline__separator {
-                order: 2;
+                flex: 1;
+                text-align: left;
             }
         }
 
@@ -49,13 +29,30 @@
             flex-direction: row-reverse;
 
             .designbase-timeline__content {
-                margin-left: 2rem;
-                text-align: left;
+                flex: 1;
+                text-align: right;
             }
+        }
+    }
 
-            .designbase-timeline__separator {
-                order: 1;
-            }
+    // 타임스탬프 래퍼 (alternate 타입에서 인디케이터 옆에 표시)
+    &__timestamp-wrapper {
+        display: flex;
+        align-items: flex-start;
+        padding-top: var(--db-padding-xs);
+        flex-shrink: 0;
+        width: 120px;
+
+        &--left {
+            justify-content: flex-end;
+            padding-right: var(--db-gap-m);
+            text-align: right;
+        }
+
+        &--right {
+            justify-content: flex-start;
+            padding-left: var(--db-gap-m);
+            text-align: left;
         }
 
         &--clickable {
@@ -77,48 +74,51 @@
         }
     }
 
+    // 인디케이터 컨테이너 (ProgressStep처럼)
+    &__indicator-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+
     &__content {
         flex: 1;
-        max-width: 45%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
 
         &-inner {
-            padding: 1rem;
+            padding: var(--db-padding-m);
             background-color: var(--db-surface-base);
             border-radius: var(--db-radius-m);
-            box-shadow: var(--db-shadow-sm);
             border: 1px solid var(--db-border-base);
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
 
             &:hover {
                 box-shadow: var(--db-shadow-md);
             }
         }
 
-        &--left {
-            .designbase-timeline__timestamp {
-                text-align: right;
-            }
-        }
-
-        &--right {
-            .designbase-timeline__timestamp {
-                text-align: left;
-            }
-        }
+        // &--left와 &--right는 타임스탬프 정렬이 필요 없음 (콘텐츠 위에 표시)
     }
 
     &__timestamp {
         font-size: var(--db-text-s);
         color: var(--db-text-secondary);
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--db-margin-xs);
         font-weight: 500;
+        white-space: nowrap;
     }
 
     &__title {
         font-size: var(--db-text-l);
         font-weight: 600;
         color: var(--db-text-primary);
-        margin: 0 0 0.5rem 0;
-        line-height: 1.4;
+        margin: 0;
+        line-height: 1.2;
     }
 
     &__description {
@@ -128,31 +128,42 @@
         line-height: 1.5;
     }
 
-    &__separator {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        z-index: 1;
-    }
-
     &__dot {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
+        width: var(--db-size-m);
+        height: var(--db-size-m);
+        border-radius: var(--db-radius-full);
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--db-surface-base);
-        border: 2px solid var(--db-border-base);
-        box-shadow: var(--db-shadow-sm);
-        transition: all 0.2s ease;
+        background-color: transparent;
+        border: none;
+        transition: all var(--db-animation-speed) var(--db-animation-ease);
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
 
-        &-inner {
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            background-color: var(--db-color-primary);
+        // 기본 점 (아이콘이나 숫자가 없을 때)
+        &::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: var(--db-radius-full);
+            background-color: var(--db-border-base);
+            transition: all var(--db-animation-speed) var(--db-animation-ease);
+        }
+
+        // 아이콘이 있을 때만 테두리 추가
+        &--with-icon {
+            background-color: var(--db-surface-base);
+            border: 1px solid var(--db-border-base);
+        }
+
+        // 아이콘이나 숫자가 있을 때는 점 숨김
+        &--with-icon,
+        &--with-number {
+            &::before {
+                display: none;
+            }
         }
 
         &--clickable {
@@ -235,34 +246,102 @@
                 background-color: var(--db-surface-base);
             }
         }
+
+        // 상태별 스타일 (점일 때만 적용)
+        &--completed {
+            &::before {
+                background-color: var(--db-brand-primary);
+            }
+        }
+
+        &--active {
+            &::before {
+                background-color: var(--db-brand-secondary);
+            }
+        }
+
+        &--pending {
+            &::before {
+                background-color: var(--db-border-base);
+            }
+        }
+    }
+
+    // Pulse 애니메이션 (진행중일 때)
+    &__pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: var(--db-size-m);
+        height: var(--db-size-m);
+        border-radius: var(--db-radius-full);
+        background-color: var(--db-brand-secondary);
+        opacity: 0.2;
+        animation: timeline-pulse 2s ease-in-out infinite;
+        z-index: -1;
+    }
+
+    @keyframes timeline-pulse {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.2;
+        }
+
+        50% {
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+        }
     }
 
     &__icon {
-        width: 1rem;
-        height: 1rem;
+        width: 60%;
+        height: 60%;
         color: inherit;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        z-index: 1;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+    }
+
+    &__number {
+        font-weight: var(--db-weight-semibold);
+        font-size: var(--db-text-s);
+        position: relative;
+        z-index: 1;
     }
 
     &__connector {
-        width: 2px;
-        height: 2rem;
+        width: 1px;
+        flex: 1;
+        min-height: var(--db-gap-m);
         background-color: var(--db-border-base);
-        margin-top: 0.5rem;
+        transition: background-color var(--db-animation-speed) var(--db-animation-ease);
+        position: relative;
+        z-index: 1;
     }
 
     // 크기 변형
     &--s {
         .designbase-timeline__dot {
-            width: 1.5rem;
-            height: 1.5rem;
+            width: var(--db-size-s);
+            height: var(--db-size-s);
+        }
 
-            .designbase-timeline__dot-inner {
-                width: 0.5rem;
-                height: 0.5rem;
-            }
+        .designbase-timeline__number {
+            font-size: var(--db-text-xs);
         }
 
         .designbase-timeline__title {
@@ -274,15 +353,25 @@
         }
     }
 
+    &--m {
+        .designbase-timeline__dot {
+            width: var(--db-size-m);
+            height: var(--db-size-m);
+        }
+
+        .designbase-timeline__number {
+            font-size: var(--db-text-s);
+        }
+    }
+
     &--l {
         .designbase-timeline__dot {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: var(--db-size-l);
+            height: var(--db-size-l);
+        }
 
-            .designbase-timeline__dot-inner {
-                width: 1rem;
-                height: 1rem;
-            }
+        .designbase-timeline__number {
+            font-size: var(--db-text-base);
         }
 
         .designbase-timeline__title {
@@ -290,124 +379,85 @@
         }
 
         .designbase-timeline__description {
-            font-size: var(--db-text-l);
+            font-size: var(--db-text-base);
         }
     }
 
-    // 위치 변형
+    // 타입별 스타일
     &--left {
-        .designbase-timeline__container::before {
-            left: 2rem;
-            transform: none;
-        }
-
         .designbase-timeline__item {
             flex-direction: row;
 
             .designbase-timeline__content {
-                margin-right: 2rem;
                 text-align: left;
-                max-width: calc(100% - 4rem);
-            }
-
-            .designbase-timeline__separator {
-                order: 2;
-            }
-        }
-    }
-
-    &--right {
-        .designbase-timeline__container::before {
-            right: 2rem;
-            left: auto;
-            transform: none;
-        }
-
-        .designbase-timeline__item {
-            flex-direction: row-reverse;
-
-            .designbase-timeline__content {
-                margin-left: 2rem;
-                text-align: right;
-                max-width: calc(100% - 4rem);
-            }
-
-            .designbase-timeline__separator {
-                order: 1;
             }
         }
     }
 
     &--alternate {
-        .designbase-timeline__item:nth-child(even) {
-            flex-direction: row-reverse;
-
-            .designbase-timeline__content {
-                margin-left: 2rem;
-                margin-right: 0;
-                text-align: left;
-            }
-
-            .designbase-timeline__separator {
-                order: 1;
-            }
+        .designbase-timeline__indicator-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            height: 100%;
         }
-    }
 
-    &--reverse-alternate {
-        .designbase-timeline__item:nth-child(odd) {
-            flex-direction: row-reverse;
+        .designbase-timeline__item {
+            position: relative;
+            padding: 0 var(--db-padding-l);
 
-            .designbase-timeline__content {
-                margin-left: 2rem;
-                margin-right: 0;
-                text-align: left;
+            &--left {
+                .designbase-timeline__content {
+                    margin-right: auto;
+                    margin-left: 0;
+                    max-width: calc(50% - var(--db-gap-l));
+                    text-align: right;
+                }
             }
 
-            .designbase-timeline__separator {
-                order: 1;
+            &--right {
+                .designbase-timeline__content {
+                    margin-left: auto;
+                    margin-right: 0;
+                    max-width: calc(50% - var(--db-gap-l));
+                    text-align: left;
+                }
             }
         }
     }
 
     // 전체 너비
     &--full-width {
-        .designbase-timeline__content {
-            max-width: 40%;
-        }
-
-        &.designbase-timeline--left,
-        &.designbase-timeline--right {
+        &.designbase-timeline--alternate {
             .designbase-timeline__content {
-                max-width: calc(100% - 4rem);
+                max-width: 45%;
             }
         }
     }
 
     // 반응형 디자인
     @media (max-width: 768px) {
-        &__container::before {
-            left: 1rem;
-            transform: none;
-        }
-
-        &__item {
-            flex-direction: row !important;
-
-            .designbase-timeline__content {
-                margin-right: 1.5rem !important;
-                margin-left: 0 !important;
-                text-align: left !important;
-                max-width: calc(100% - 3rem) !important;
+        &--alternate {
+            .designbase-timeline__indicator-container {
+                position: static;
+                transform: none;
             }
 
-            .designbase-timeline__separator {
-                order: 2 !important;
+            .designbase-timeline__item {
+                flex-direction: row !important;
+                padding: 0 !important;
+
+                .designbase-timeline__content {
+                    margin: 0 !important;
+                    max-width: 100% !important;
+                    text-align: left !important;
+                }
             }
         }
 
         &__content-inner {
-            padding: 0.75rem;
+            padding: var(--db-padding-s);
         }
 
         &__title {

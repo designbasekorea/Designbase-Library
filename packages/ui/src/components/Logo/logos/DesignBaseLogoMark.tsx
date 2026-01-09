@@ -18,13 +18,16 @@ export interface DesignBaseLogoMarkProps {
 
 export const DesignBaseLogoMark: React.FC<DesignBaseLogoMarkProps> = ({
     size = 38,
-    color = 'currentColor',
+    color,
     className,
 }) => {
     // 원본 비율 유지: 95:100
     const aspectRatio = 95 / 100;
     const width = size * aspectRatio;
     const height = size;
+    
+    // color가 전달되지 않으면 원본 색상(검정) 사용, 전달되면 해당 색상 사용
+    const fillColor = color || '#000000';
 
     return (
         <svg
@@ -37,7 +40,7 @@ export const DesignBaseLogoMark: React.FC<DesignBaseLogoMarkProps> = ({
             aria-label="DesignBase Mark"
         >
             <path
-                fill={color}
+                fill={fillColor}
                 d="M45,0H0V8l10,2V90L0,92v8H45A50,50,0,0,0,45,0ZM43.12,90H20V10H38.33a15,15,0,0,1,0,30H30.11V50h13a20,20,0,0,1,0,40ZM71.4,80A30,30,0,0,0,55.83,42.83,24.93,24.93,0,0,0,60.27,13,40,40,0,0,1,71.4,80Z"
             />
         </svg>

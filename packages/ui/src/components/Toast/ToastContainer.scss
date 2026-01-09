@@ -2,27 +2,35 @@
     position: fixed;
     z-index: var(--db-z-toast);
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
 
     &--top-right {
         top: var(--db-padding-m);
         right: var(--db-padding-m);
+        align-items: flex-end;
     }
 
     &--top-center {
         top: var(--db-padding-m);
         left: 50%;
         transform: translateX(-50%);
+        align-items: center;
     }
 
     &--bottom-center {
         bottom: var(--db-padding-m);
         left: 50%;
         transform: translateX(-50%);
+        align-items: center;
+        flex-direction: column-reverse;
     }
 
     &--bottom-right {
         bottom: var(--db-padding-m);
         right: var(--db-padding-m);
+        align-items: flex-end;
+        flex-direction: column-reverse;
     }
 
     .designbase-toast {

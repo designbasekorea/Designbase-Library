@@ -63,7 +63,7 @@ export const AllVariants: Story = {
 export const AllPositions: Story = {
     render: () => (
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Tooltip content="위쪽" position="top">
+            <Tooltip content="위쪽" position="top" >
                 <Button>Top</Button>
             </Tooltip>
             <Tooltip content="아래쪽" position="bottom">

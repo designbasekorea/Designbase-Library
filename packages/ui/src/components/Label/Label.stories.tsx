@@ -56,6 +56,7 @@ export const Default: Story = {
 };
 
 export const AllSizes: Story = {
+    args: { children: '' },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Label size="s">S 크기 라벨</Label>
@@ -66,6 +67,7 @@ export const AllSizes: Story = {
 };
 
 export const AllStates: Story = {
+    args: { children: '' },
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Label>기본 라벨</Label>
@@ -78,6 +80,7 @@ export const AllStates: Story = {
 };
 
 export const WithInput: Story = {
+    args: { children: '' },
     render: () => (
         <div style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
@@ -118,6 +121,7 @@ export const WithInput: Story = {
 };
 
 export const FormExample: Story = {
+    args: { children: '' },
     render: () => (
         <div style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>

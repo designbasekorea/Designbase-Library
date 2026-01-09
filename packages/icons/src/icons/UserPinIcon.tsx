@@ -2,7 +2,7 @@ import React from 'react';
 import type { IconProps } from '../types';
 
 const UserPinIcon = ({ size = 24, ...props }: IconProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M12 10c-1.1 0-2-.8-2-2s.9-2 2-2 2 .8 2 2-.8 2-2 2M12 11c2.2 0 4 1.6 4 3.6v.4H8v-.4c0-2 1.8-3.6 4-3.6" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M5 3.75c-.686 0-1.25.564-1.25 1.25v11c0 .686.564 1.25 1.25 1.25h4.31L12 19.94l2.69-2.69H19c.686 0 1.25-.564 1.25-1.25V5c0-.686-.564-1.25-1.25-1.25zM2.25 5A2.756 2.756 0 0 1 5 2.25h14A2.756 2.756 0 0 1 21.75 5v11A2.756 2.756 0 0 1 19 18.75h-3.69L12 22.06l-3.31-3.31H5A2.756 2.756 0 0 1 2.25 16z" clip-rule="evenodd"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fillRule="evenodd" d="M12 10c-1.1 0-2-.8-2-2s.9-2 2-2 2 .8 2 2-.8 2-2 2M12 11c2.2 0 4 1.6 4 3.6v.4H8v-.4c0-2 1.8-3.6 4-3.6" clipRule="evenodd"/><path fill="currentColor" fillRule="evenodd" d="M5 3.75c-.686 0-1.25.564-1.25 1.25v11c0 .686.564 1.25 1.25 1.25h4.31L12 19.94l2.69-2.69H19c.686 0 1.25-.564 1.25-1.25V5c0-.686-.564-1.25-1.25-1.25zM2.25 5A2.756 2.756 0 0 1 5 2.25h14A2.756 2.756 0 0 1 21.75 5v11A2.756 2.756 0 0 1 19 18.75h-3.69L12 22.06l-3.31-3.31H5A2.756 2.756 0 0 1 2.25 16z" clipRule="evenodd"/></svg>
 );
 
 export default UserPinIcon;

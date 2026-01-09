@@ -181,14 +181,14 @@
 
         &--active {
             .designbase-progress-step__indicator {
-                background-color: var(--db-brand-primary);
-                border-color: var(--db-brand-primary);
-                color: var(--db-text-inverse-primary);
-                box-shadow: 0 0 0 4px var(--db-brand-primary-alpha-20);
+                background-color: var(--db-brand-secondary);
+                border-color: var(--db-brand-secondary);
+                color: var(--db-brand-primary);
+                position: relative;
             }
 
             .designbase-progress-step__connector {
-                background-color: var(--db-brand-primary);
+                background-color: var(--db-border-base);
             }
 
             .designbase-progress-step__title {
@@ -199,17 +199,13 @@
 
         &--completed {
             .designbase-progress-step__indicator {
-                background-color: var(--db-feedback-success-bg);
-                border-color: var(--db-feedback-success-bg);
-                color: var(--db-feedback-success-fg);
-            }
-
-            .designbase-progress-step__connector {
-                background-color: var(--db-feedback-success-bg);
+                background-color: var(--db-brand-primary);
+                border-color: var(--db-brand-primary);
+                color: var(--db-text-inverse-primary);
             }
 
             .designbase-progress-step__title {
-                color: var(--db-feedback-success-fg);
+                color: var(--db-text-primary);
             }
         }
 
@@ -261,12 +257,31 @@
         }
     }
 
+    // 펄스 애니메이션 (active 상태용)
+    &__pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: var(--db-radius-full);
+        background-color: var(--db-brand-primary);
+        opacity: 0.3;
+        animation: progress-step-pulse 2s ease-in-out infinite;
+        z-index: -1;
+    }
+
     // 연결선
     &__connector {
         background-color: var(--db-border-base);
         transition: background-color var(--db-animation-speed) var(--db-animation-ease);
         position: relative;
         z-index: 1;
+
+        &--completed {
+            background-color: var(--db-brand-primary);
+        }
     }
 
     // 콘텐츠 영역
@@ -280,8 +295,8 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        gap: var(--db-gap-s);
-        margin-bottom: var(--db-margin-xs);
+        gap: 0;
+        margin-bottom: 0;
     }
 
     // 제목
@@ -314,6 +329,8 @@
         justify-content: center;
         width: 100%;
         height: 100%;
+        position: relative;
+        z-index: 1;
 
         svg {
             width: 60%;
@@ -325,6 +342,22 @@
     // 번호
     &__number {
         font-weight: var(--db-weight-semibold);
+        position: relative;
+        z-index: 1;
+    }
+}
+
+// 펄스 애니메이션 키프레임
+@keyframes progress-step-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.2;
+    }
+
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
     }
 }
 

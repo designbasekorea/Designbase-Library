@@ -26,7 +26,7 @@ export interface UseContextMenuReturn {
 export const useContextMenu = (): UseContextMenuReturn => {
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const timeoutRef = useRef<NodeJS.Timeout>();
+    const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
     const handleContextMenu = useCallback((event: React.MouseEvent) => {
         event.preventDefault();

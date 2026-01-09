@@ -184,7 +184,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
                 />
                 {hasSubMenu && (
                     <div
-                        ref={(el) => (subMenuRefs.current[item.id] = el)}
+                        ref={(el) => { subMenuRefs.current[item.id] = el; }}
                         className={clsx(
                             'designbase-context-menu__submenu',
                             {

@@ -31,8 +31,6 @@ export interface ToastProps {
     showProgress?: boolean;
     /** 닫기 버튼 표시 여부 */
     showCloseButton?: boolean;
-    /** 토스트 위치 */
-    position?: 'top-right' | 'top-center' | 'bottom-center' | 'bottom-right';
     /** 닫기 핸들러 */
     onClose: (id: string) => void;
     /** 추가 CSS 클래스 */
@@ -48,15 +46,14 @@ export const Toast: React.FC<ToastProps> = ({
     duration = 5000,
     showProgress = false,
     showCloseButton = true,
-    position = 'top-right',
     onClose,
     className,
 }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [progress, setProgress] = useState(100);
     const progressRef = useRef<HTMLDivElement>(null);
-    const timeoutRef = useRef<NodeJS.Timeout>();
-    const progressIntervalRef = useRef<NodeJS.Timeout>();
+    const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+    const progressIntervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
     // 토스트 표시 애니메이션
     useEffect(() => {
@@ -110,7 +107,6 @@ export const Toast: React.FC<ToastProps> = ({
     const classes = clsx(
         'designbase-toast',
         `designbase-toast--${status}`,
-        `designbase-toast--${position}`,
         {
             'designbase-toast--visible': isVisible,
             'designbase-toast--with-icon': Icon,

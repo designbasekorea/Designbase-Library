@@ -5,7 +5,6 @@
     opacity: 0;
     visibility: hidden;
     overflow: visible;
-    /* ✅ 화살표가 박스 밖으로 나와도 보이게 */
     transform: translate3d(0, 0, 0) scale(0.98);
     will-change: transform, opacity;
     transition:
@@ -43,9 +42,7 @@
 
     &__content {
         position: relative;
-        /* ✅ 화살표 보더 보정용 ::after 기준 */
         overflow: visible;
-        /* ✅ 내용이 화살표를 가리지 않도록 */
         background-color: var(--db-surface-inverse);
         color: var(--db-text-inverse-primary);
         padding: var(--db-padding-s) var(--db-padding-m);
@@ -66,42 +63,37 @@
         height: 0;
         border: 6px solid transparent;
         pointer-events: none;
-        z-index: 1;
+        z-index: 2;
 
-        /* 외곽선 제거 - 스트로크 없음 */
         &::after {
             display: none;
         }
 
-        /* TOP */
+        /* TOP (arrow points DOWN) : 네 요구대로 유지 */
         &--top,
         &--top-start,
         &--top-end {
-            top: 100%;
             border-top-color: var(--db-surface-inverse);
         }
 
-        /* BOTTOM */
+        /* BOTTOM (arrow points UP) : 네 요구대로 유지 */
         &--bottom,
         &--bottom-start,
         &--bottom-end {
-            bottom: 100%;
             border-bottom-color: var(--db-surface-inverse);
         }
 
-        /* LEFT */
+        /* LEFT (arrow points RIGHT) : 네 요구대로 유지 */
         &--left,
         &--left-start,
         &--left-end {
-            left: 100%;
             border-left-color: var(--db-surface-inverse);
         }
 
-        /* RIGHT */
+        /* RIGHT (arrow points LEFT) : 네 요구대로 유지 */
         &--right,
         &--right-start,
         &--right-end {
-            right: 100%;
             border-right-color: var(--db-surface-inverse);
         }
     }

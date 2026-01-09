@@ -2,7 +2,7 @@ import React from 'react';
 import type { IconProps } from '../types';
 
 const CalendarPlusIcon = ({ size = 24, ...props }: IconProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M16.25 8V2h1.5v6zM6.25 8V2h1.5v6zM21 11.75H3v-1.5h18z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M4 5.75a.25.25 0 0 0-.25.25v14c0 .138.112.25.25.25h16a.25.25 0 0 0 .25-.25V6a.25.25 0 0 0-.25-.25zM2.25 6c0-.966.784-1.75 1.75-1.75h16c.966 0 1.75.784 1.75 1.75v14A1.75 1.75 0 0 1 20 21.75H4A1.75 1.75 0 0 1 2.25 20z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M15 16.75H9v-1.5h6z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.25 19v-6h1.5v6z" clip-rule="evenodd"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fillRule="evenodd" d="M16.25 8V2h1.5v6zM6.25 8V2h1.5v6zM21 11.75H3v-1.5h18z" clipRule="evenodd"/><path fill="currentColor" fillRule="evenodd" d="M4 5.75a.25.25 0 0 0-.25.25v14c0 .138.112.25.25.25h16a.25.25 0 0 0 .25-.25V6a.25.25 0 0 0-.25-.25zM2.25 6c0-.966.784-1.75 1.75-1.75h16c.966 0 1.75.784 1.75 1.75v14A1.75 1.75 0 0 1 20 21.75H4A1.75 1.75 0 0 1 2.25 20z" clipRule="evenodd"/><path fill="currentColor" fillRule="evenodd" d="M15 16.75H9v-1.5h6z" clipRule="evenodd"/><path fill="currentColor" fillRule="evenodd" d="M11.25 19v-6h1.5v6z" clipRule="evenodd"/></svg>
 );
 
 export default CalendarPlusIcon;

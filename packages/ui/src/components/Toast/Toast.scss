@@ -1,5 +1,5 @@
 .designbase-toast {
-    position: fixed;
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--db-gap-s);
@@ -13,7 +13,7 @@
     transform: translateY(-20px) scale(0.95);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: var(--db-z-toast);
+    z-index: 1;
 
     &--visible {
         transform: translateY(0) scale(1);
@@ -177,19 +177,7 @@
         }
     }
 
-    // Position variants - 모든 위치에서 동일한 애니메이션 사용
-    &--top-right,
-    &--top-center,
-    &--bottom-center,
-    &--bottom-right {
-        transform: translateY(-20px) scale(0.95);
-        opacity: 0;
-
-        &.designbase-toast--visible {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
-    }
+    // 애니메이션은 모든 위치에서 동일하게 적용
 
     // Responsive
     @media (max-width: 768px) {

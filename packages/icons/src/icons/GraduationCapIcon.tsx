@@ -2,7 +2,7 @@ import React from 'react';
 import type { IconProps } from '../types';
 
 const GraduationCapIcon = ({ size = 24, ...props }: IconProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M1.25 16V8h1.5v8zM5.25 16v-6h1.5v6c0 .391.337.948 1.343 1.45.96.481 2.341.8 3.907.8s2.946-.319 3.907-.8c1.006-.502 1.343-1.059 1.343-1.45v-6h1.5v6c0 1.266-1.006 2.21-2.172 2.792-1.21.605-2.83.958-4.578.958s-3.368-.353-4.578-.958C6.256 18.21 5.25 17.266 5.25 16" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M11.722 3.304a.75.75 0 0 1 .556 0l10 4a.75.75 0 0 1 .057 1.367l-10 5a.75.75 0 0 1-.67 0l-10-5a.75.75 0 0 1 .056-1.367zM3.829 8.076 12 12.161l8.17-4.085L12 4.808z" clip-rule="evenodd"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fillRule="evenodd" d="M1.25 16V8h1.5v8zM5.25 16v-6h1.5v6c0 .391.337.948 1.343 1.45.96.481 2.341.8 3.907.8s2.946-.319 3.907-.8c1.006-.502 1.343-1.059 1.343-1.45v-6h1.5v6c0 1.266-1.006 2.21-2.172 2.792-1.21.605-2.83.958-4.578.958s-3.368-.353-4.578-.958C6.256 18.21 5.25 17.266 5.25 16" clipRule="evenodd"/><path fill="currentColor" fillRule="evenodd" d="M11.722 3.304a.75.75 0 0 1 .556 0l10 4a.75.75 0 0 1 .057 1.367l-10 5a.75.75 0 0 1-.67 0l-10-5a.75.75 0 0 1 .056-1.367zM3.829 8.076 12 12.161l8.17-4.085L12 4.808z" clipRule="evenodd"/></svg>
 );
 
 export default GraduationCapIcon;

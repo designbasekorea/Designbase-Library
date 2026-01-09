@@ -26,6 +26,8 @@ export interface SegmentControlProps {
     value?: string;
     /** 세그먼트 크기 */
     size?: 's' | 'm' | 'l';
+    /** 세그먼트 타입: 'default' (텍스트+아이콘) | 'icon-only' (아이콘만) */
+    variant?: 'default' | 'icon-only';
     /** 전체 너비 여부 */
     fullWidth?: boolean;
     /** 비활성화 여부 */
@@ -43,6 +45,7 @@ export const SegmentControl: React.FC<SegmentControlProps> = ({
     defaultValue,
     value,
     size = 'm',
+    variant = 'default',
     fullWidth = false,
     disabled = false,
     className,
@@ -138,6 +141,7 @@ export const SegmentControl: React.FC<SegmentControlProps> = ({
     const classes = clsx(
         'designbase-segment-control',
         `designbase-segment-control--${size}`,
+        `designbase-segment-control--${variant}`,
         {
             'designbase-segment-control--full-width': fullWidth,
             'designbase-segment-control--disabled': disabled,
@@ -193,9 +197,16 @@ export const SegmentControl: React.FC<SegmentControlProps> = ({
                                 <option.icon size={size === 's' ? 14 : size === 'l' ? 18 : 16} />
                             </span>
                         )}
-                        <span className="designbase-segment-control__segment-label">
-                            {option.label}
-                        </span>
+                        {variant === 'default' && (
+                            <span className="designbase-segment-control__segment-label">
+                                {option.label}
+                            </span>
+                        )}
+                        {variant === 'icon-only' && !option.icon && (
+                            <span className="designbase-segment-control__segment-label" aria-label={option.label}>
+                                {option.label}
+                            </span>
+                        )}
                     </button>
                 );
             })}

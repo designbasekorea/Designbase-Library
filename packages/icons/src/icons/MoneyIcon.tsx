@@ -2,7 +2,7 @@ import React from 'react';
 import type { IconProps } from '../types';
 
 const MoneyIcon = ({ size = 24, ...props }: IconProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M1.25 8A2.756 2.756 0 0 1 4 5.25h16A2.756 2.756 0 0 1 22.75 8v8A2.756 2.756 0 0 1 20 18.75H4A2.756 2.756 0 0 1 1.25 16zM4 6.75c-.686 0-1.25.564-1.25 1.25v8c0 .686.564 1.25 1.25 1.25h16c.686 0 1.25-.564 1.25-1.25V8c0-.686-.564-1.25-1.25-1.25z" clip-rule="evenodd"/><path fill="currentColor" fill-rule="evenodd" d="M8.25 12c0-2.114 1.636-3.75 3.75-3.75s3.75 1.636 3.75 3.75-1.636 3.75-3.75 3.75S8.25 14.114 8.25 12M12 9.75c-1.286 0-2.25.964-2.25 2.25s.964 2.25 2.25 2.25 2.25-.964 2.25-2.25-.964-2.25-2.25-2.25M7 12.75H5v-1.5h2zM19 12.75h-2v-1.5h2z" clip-rule="evenodd"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fillRule="evenodd" d="M1.25 8A2.756 2.756 0 0 1 4 5.25h16A2.756 2.756 0 0 1 22.75 8v8A2.756 2.756 0 0 1 20 18.75H4A2.756 2.756 0 0 1 1.25 16zM4 6.75c-.686 0-1.25.564-1.25 1.25v8c0 .686.564 1.25 1.25 1.25h16c.686 0 1.25-.564 1.25-1.25V8c0-.686-.564-1.25-1.25-1.25z" clipRule="evenodd"/><path fill="currentColor" fillRule="evenodd" d="M8.25 12c0-2.114 1.636-3.75 3.75-3.75s3.75 1.636 3.75 3.75-1.636 3.75-3.75 3.75S8.25 14.114 8.25 12M12 9.75c-1.286 0-2.25.964-2.25 2.25s.964 2.25 2.25 2.25 2.25-.964 2.25-2.25-.964-2.25-2.25-2.25M7 12.75H5v-1.5h2zM19 12.75h-2v-1.5h2z" clipRule="evenodd"/></svg>
 );
 
 export default MoneyIcon;

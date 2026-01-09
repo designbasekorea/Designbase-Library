@@ -303,15 +303,16 @@ export const Popover: React.FC<PopoverProps> = ({
     const arrowClasses = clsx('designbase-popover__arrow', `designbase-popover__arrow--${position}`);
 
     // 자식에 트리거 이벤트 주입
-    const enhancedChildren = React.cloneElement(children, {
+    const childProps = children.props as any;
+    const enhancedChildren = React.cloneElement(children as React.ReactElement<any>, {
         ref: triggerRef,
-        onClick: (e: any) => { children.props.onClick?.(e); handleClick(e); },
-        onMouseEnter: (e: any) => { children.props.onMouseEnter?.(e); handleMouseEnter(); },
-        onMouseLeave: (e: any) => { children.props.onMouseLeave?.(e); handleMouseLeave(); },
-        onFocus: (e: any) => { children.props.onFocus?.(e); handleFocus(); },
-        onBlur: (e: any) => { children.props.onBlur?.(e); handleBlur(); },
-        onKeyDown: (e: any) => { children.props.onKeyDown?.(e); handleKeyDown(e); },
-        tabIndex: children.props.tabIndex ?? 0,
+        onClick: (e: any) => { childProps.onClick?.(e); handleClick(e); },
+        onMouseEnter: (e: any) => { childProps.onMouseEnter?.(e); handleMouseEnter(); },
+        onMouseLeave: (e: any) => { childProps.onMouseLeave?.(e); handleMouseLeave(); },
+        onFocus: (e: any) => { childProps.onFocus?.(e); handleFocus(); },
+        onBlur: (e: any) => { childProps.onBlur?.(e); handleBlur(); },
+        onKeyDown: (e: any) => { childProps.onKeyDown?.(e); handleKeyDown(e); },
+        tabIndex: childProps.tabIndex ?? 0,
         'aria-expanded': isOpen,
         'aria-haspopup': 'dialog',
     });

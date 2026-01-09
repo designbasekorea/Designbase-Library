@@ -95,6 +95,10 @@ const ProgressStep: React.FC<ProgressStepProps> = ({
                 const isLast = index === items.length - 1;
                 const isClickable = clickable && !disabled && !item.disabled;
 
+                // 연결선의 상태 결정: 현재 단계가 완료되었으면 completed로 표시
+                const prevStatus = index > 0 ? getStepStatus(index - 1, items[index - 1].status) : 'pending';
+                const connectorStatus = prevStatus === 'completed' ? 'completed' : status;
+
                 const stepClasses = clsx(
                     'designbase-progress-step__item',
                     `designbase-progress-step__item--${status}`,
@@ -102,6 +106,11 @@ const ProgressStep: React.FC<ProgressStepProps> = ({
                         'designbase-progress-step__item--clickable': isClickable,
                         'designbase-progress-step__item--disabled': item.disabled,
                     }
+                );
+
+                const connectorClasses = clsx(
+                    'designbase-progress-step__connector',
+                    `designbase-progress-step__connector--${connectorStatus}`
                 );
 
                 return (
@@ -122,6 +131,9 @@ const ProgressStep: React.FC<ProgressStepProps> = ({
                                     }
                                 }}
                             >
+                                {status === 'active' && (
+                                    <div className="designbase-progress-step__pulse" />
+                                )}
                                 {item.icon ? (
                                     <div className="designbase-progress-step__icon">
                                         {item.icon}
@@ -135,7 +147,7 @@ const ProgressStep: React.FC<ProgressStepProps> = ({
 
                             {/* 연결선 - 마지막 아이템이 아닐 때만 표시 */}
                             {!isLast && (
-                                <div className="designbase-progress-step__connector" />
+                                <div className={connectorClasses} />
                             )}
                         </div>
 

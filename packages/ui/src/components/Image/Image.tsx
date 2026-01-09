@@ -118,24 +118,7 @@ export const Image: React.FC<ImageProps> = ({
         }
     };
 
-    // aspect ratio 계산
-    const getAspectRatioStyle = () => {
-        if (ratio === 'auto') return {};
-
-        const ratios: Record<ImageRatio, string> = {
-            '1:1': '100%',
-            '16:9': '56.25%',
-            '4:3': '75%',
-            '3:2': '66.67%',
-            '3:4': '133.33%',
-            '2:1': '50%',
-            'auto': 'auto',
-        };
-
-        return {
-            paddingBottom: ratios[ratio],
-        };
-    };
+    // aspect ratio는 CSS 클래스로 처리되므로 인라인 스타일 불필요
 
     // 둥근 모서리 클래스 계산
     const getRoundedClass = () => {
@@ -162,7 +145,6 @@ export const Image: React.FC<ImageProps> = ({
         height: fullHeight ? '100%' : height,
         maxWidth,
         maxHeight,
-        ...getAspectRatioStyle(),
     };
 
     const getRatioClass = () => {

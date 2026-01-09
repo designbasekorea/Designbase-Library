@@ -92,10 +92,9 @@
         }
     }
 
-    // 포커스 효과
+    // 포커스 효과 제거
     &:focus-within {
-        outline: 2px solid var(--db-border-focus);
-        outline-offset: 2px;
+        outline: none;
     }
 
     // 버튼 스타일
@@ -122,8 +121,7 @@
         }
 
         &:focus {
-            outline: 2px solid var(--db-border-focus);
-            outline-offset: 2px;
+            outline: none;
         }
 
         &:disabled {

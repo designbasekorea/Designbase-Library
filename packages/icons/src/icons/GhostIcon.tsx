@@ -2,7 +2,7 @@ import React from 'react';
 import type { IconProps } from '../types';
 
 const GhostIcon = ({ size = 24, ...props }: IconProps) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fill-rule="evenodd" d="M3.25 10c0-4.814 3.936-8.75 8.75-8.75s8.75 3.936 8.75 8.75v12a.75.75 0 0 1-1.2.6l-3.48-2.61-1.54 1.54a.75.75 0 0 1-1.06 0L12 20.06l-1.47 1.47a.75.75 0 0 1-1.06 0l-1.54-1.54-3.48 2.61a.75.75 0 0 1-1.2-.6zM12 2.75c-3.986 0-7.25 3.264-7.25 7.25v10.5l2.8-2.1a.75.75 0 0 1 .98.07L10 19.94l1.47-1.47a.75.75 0 0 1 1.06 0L14 19.94l1.47-1.47a.75.75 0 0 1 .98-.07l2.8 2.1V10c0-3.986-3.264-7.25-7.25-7.25" clip-rule="evenodd"/><path fill="currentColor" d="M9 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2M15 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width={size} height={size} {...props}><path fill="currentColor" fillRule="evenodd" d="M3.25 10c0-4.814 3.936-8.75 8.75-8.75s8.75 3.936 8.75 8.75v12a.75.75 0 0 1-1.2.6l-3.48-2.61-1.54 1.54a.75.75 0 0 1-1.06 0L12 20.06l-1.47 1.47a.75.75 0 0 1-1.06 0l-1.54-1.54-3.48 2.61a.75.75 0 0 1-1.2-.6zM12 2.75c-3.986 0-7.25 3.264-7.25 7.25v10.5l2.8-2.1a.75.75 0 0 1 .98.07L10 19.94l1.47-1.47a.75.75 0 0 1 1.06 0L14 19.94l1.47-1.47a.75.75 0 0 1 .98-.07l2.8 2.1V10c0-3.986-3.264-7.25-7.25-7.25" clipRule="evenodd"/><path fill="currentColor" d="M9 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2M15 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/></svg>
 );
 
 export default GhostIcon;

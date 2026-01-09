@@ -257,7 +257,7 @@ const Masonry: React.FC<MasonryProps> = ({
     const renderImage = (image: MasonryItem, index: number, columnIndex: number) => (
         <div
             key={`${image.src}-${index}`}
-            ref={(el) => (imageRefs.current[index] = el)}
+            ref={(el) => { imageRefs.current[index] = el; }}
             className={clsx(
                 'designbase-masonry__item',
                 {
