@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import './Section.scss';
 
 export type SectionSize = 's' | 'm' | 'l' | 'xl';
-export type SectionVariant = 'default' | 'elevated' | 'outlined' | 'filled';
+export type SectionVariant = 'default' | 'outlined' | 'filled';
 
 export interface SectionProps {
     /** 섹션 제목 */

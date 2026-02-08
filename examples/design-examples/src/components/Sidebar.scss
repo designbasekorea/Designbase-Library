@@ -8,12 +8,12 @@
     flex-direction: column;
 
     &__header {
-        padding: 16px;
+        padding: 12px;
         border-bottom: 1px solid var(--db-border-base);
-        background-color: var(--db-surface-elevated);
+        background-color: var(--db-surface-base);
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 2px;
         align-items: flex-start;
         position: sticky;
         top: 0;

@@ -132,7 +132,8 @@ node scripts/generate-component-index.js packages/figma-ui
 
 ### `@designbasekorea/ui` (78개 컴포넌트)
 
-모든 컴포넌트에 `index.ts` 추가 완료 ✅
+모든 컴포넌트에 `index.ts` 추가 완료 ✅  
+(AnimationBackground는 0.5.1부터 types.ts, renderers.ts, CanvasLayer, CSSGradientLayer, MeshAuroraLayer, GridOverlay 등 레이어 구조 사용)
 
 <details>
 <summary>전체 컴포넌트 목록 보기</summary>

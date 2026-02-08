@@ -130,7 +130,7 @@ export const examples: ExampleItem[] = [
   {
     id: 'dropdown',
     title: 'Dropdown',
-    category: 'Navigation',
+    category: 'Action',
     component: lazy(() => import('../examples/DropdownExample')),
   },
   {
@@ -160,19 +160,19 @@ export const examples: ExampleItem[] = [
   {
     id: 'contextmenu',
     title: 'ContextMenu',
-    category: 'Navigation',
+    category: 'Action',
     component: lazy(() => import('../examples/ContextMenuExample')),
   },
   {
     id: 'floatingactionbutton',
     title: 'FloatingActionButton',
-    category: 'Navigation',
+    category: 'Action',
     component: lazy(() => import('../examples/FloatingActionButtonExample')),
   },
   {
     id: 'menuitem',
     title: 'MenuItem',
-    category: 'Navigation',
+    category: 'Action',
     component: lazy(() => import('../examples/MenuItemExample')),
   },
   // {
@@ -259,7 +259,7 @@ export const examples: ExampleItem[] = [
   {
     id: 'reorder',
     title: 'Reorder',
-    category: 'Layout',
+    category: 'Action',
     component: lazy(() => import('../examples/ReorderExample')),
   },
   // {
@@ -357,7 +357,7 @@ export const examples: ExampleItem[] = [
   {
     id: 'popover',
     title: 'Popover',
-    category: 'Feedback',
+    category: 'Action',
     component: lazy(() => import('../examples/PopoverExample')),
   },
   {
@@ -513,6 +513,7 @@ export const examples: ExampleItem[] = [
 export const categories = [
   'Form',
   'Navigation',
+  'Action',
   'Layout',
   'Feedback',
   'Data Display',

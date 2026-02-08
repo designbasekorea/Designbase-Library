@@ -8,7 +8,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import clsx from 'clsx';
-import { CloseIcon, CircleCheckFilledIcon, WarningIcon, InfoIcon, DeleteIcon } from '@designbasekorea/icons';
+import { CloseIcon, CircleCheckFilledIcon, WarningIcon, InfoIcon, ErrorIcon } from '@designbasekorea/icons';
 import type { IconProps } from '@designbasekorea/icons';
 import './Toast.scss';
 
@@ -121,7 +121,7 @@ export const Toast: React.FC<ToastProps> = ({
         // 기본 상태 아이콘 (아이콘 패키지에서 가져온 아이콘 사용)
         const iconMap = {
             success: CircleCheckFilledIcon,
-            error: DeleteIcon,
+            error: ErrorIcon,
             warning: WarningIcon,
             info: InfoIcon,
         };

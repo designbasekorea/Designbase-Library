@@ -165,6 +165,7 @@ export default App;
 - **Rating** - 별점
 - **Stepper** - 단계 표시
 - **Popover** - 팝오버
+- **AnimationBackground** - 애니메이션 배경 (그라디언트, 펄스, 파도, 파티클, 별, 오로라 + 테마/그리드)
 
 ## 🎯 컴포넌트 사용 예시
 
@@ -224,6 +225,47 @@ import { Input } from '@designbasekorea/ui';
 - `disabled`: boolean
 - `prefix`: ReactNode
 - `suffix`: ReactNode
+
+### AnimationBackground
+
+애니메이션 배경 (그라디언트, 펄스, 파도, 파티클, 별, 오로라). 테마(light/dark)와 그리드 오버레이 지원.
+
+```tsx
+import { AnimationBackground } from '@designbasekorea/ui';
+
+// 그라디언트
+<AnimationBackground type="gradient" colors={['#667eea', '#764ba2', '#f093fb']}>
+  <div>콘텐츠</div>
+</AnimationBackground>
+
+// 오로라 (다크/라이트 테마)
+<AnimationBackground type="aurora" theme="dark" intensity="vivid" colors={['#6366f1', '#a855f7', '#ec4899']} />
+
+// Light Aurora Mesh (라이트 테마 + 은은한 그리드)
+<AnimationBackground
+  type="aurora"
+  theme="light"
+  colors={['#c084fc', '#f472b6', '#38bdf8']}
+  intensity="medium"
+  showGrid
+  gridOpacity={0.12}
+/>
+
+// Blueprint (다크 그라디언트 + 그리드)
+<AnimationBackground
+  type="gradient"
+  theme="dark"
+  colors={['#1e293b', '#0f172a']}
+  direction="up"
+  showGrid
+  gridColor="#60a5fa"
+  gridSize={20}
+  gridOpacity={0.2}
+/>
+```
+
+**타입**: `'gradient' | 'pulse' | 'wave' | 'particles' | 'stars' | 'aurora'`  
+**주요 Props**: `type`, `theme` ('light' | 'dark'), `colors`, `intensity` ('subtle' | 'medium' | 'vivid'), `showGrid`, `gridSize`, `gridColor`, `gridOpacity`, `speed`, `direction`, `particleCount`, `starCount`, `clickable`
 
 ### Card
 
@@ -431,7 +473,16 @@ npm run storybook
 
 ## 🔄 버전 히스토리
 
-### 0.1.0 (Latest)
+### 0.5.1 (Latest)
+- ✅ AnimationBackground: 레이어 구조(CanvasLayer, CSSGradientLayer, MeshAuroraLayer, GridOverlay)
+- ✅ theme(light/dark), showGrid, gridSize, gridColor, gridOpacity 지원
+- ✅ Light Aurora Mesh / Blueprint 스타일 및 그리드 라인 전 영역 표시
+- ✅ 타입 정리: gradient, pulse, wave, particles, stars, aurora (레인보우·파이어·오션·선셋 제거)
+
+### 0.5.0
+- ✅ Select 모바일 바텀시트 지원 (useMobileBottomSheet)
+
+### 0.1.0
 - ✅ 20+ React 컴포넌트 제공
 - ✅ 테마 시스템 통합
 - ✅ TypeScript 지원
@@ -458,14 +509,14 @@ import { Button } from '@designbasekorea/ui';
 
 | UI | Tokens | Theme |
 |----|--------|-------|
-| 0.1.0+ | 0.1.7+ | 0.1.11+ |
+| 0.5.1+ | 0.2.x | 0.2.x |
 
 호환되는 버전을 함께 사용하세요.
 
 ### 3. React 버전
 
-- React `18.0.0+` 필요
-- React DOM `18.0.0+` 필요
+- React `19.0.0+` 필요 (peerDependencies)
+- React DOM `19.0.0+` 필요
 
 ## 🤝 기여
 

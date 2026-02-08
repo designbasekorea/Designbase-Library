@@ -2,6 +2,7 @@
 
 ## 🎉 새로운 버전 배포 완료!
 
+- **`@designbasekorea/ui@0.5.1`** (Latest) - AnimationBackground 레이어 구조, theme(light/dark), 그리드 오버레이(showGrid, gridSize, gridColor, gridOpacity), Light Aurora Mesh / Blueprint 스타일. 타입 정리(gradient, pulse, wave, particles, stars, aurora).
 - **`@designbasekorea/ui@0.1.9`** - DesignBase 실제 로고 SVG 추가, Logo 컴포넌트 개선
 - **`@designbasekorea/figma-ui@0.1.5`** - Footer, LogoDropdown에 DesignBase 로고 자동 적용
 
@@ -25,7 +26,7 @@ npm install @designbasekorea/figma-ui@latest
 ```
 
 이 명령어는 자동으로 의존성들도 함께 업데이트합니다:
-- `@designbasekorea/ui` → 0.1.9
+- `@designbasekorea/ui` → 0.5.1 (최신)
 - `@designbasekorea/icons` → 최신
 - `@designbasekorea/theme` → 최신
 - `@designbasekorea/tokens` → 최신
@@ -44,8 +45,8 @@ npm view @designbasekorea/figma-ui version
 npm view @designbasekorea/ui version
 
 # 특정 버전으로 업데이트
-npm install @designbasekorea/figma-ui@0.1.5
-npm install @designbasekorea/ui@0.1.9
+npm install @designbasekorea/figma-ui@latest
+npm install @designbasekorea/ui@0.5.1
 ```
 
 ---
@@ -57,7 +58,7 @@ npm install @designbasekorea/ui@0.1.9
 {
   "dependencies": {
     "@designbasekorea/figma-ui": "^0.1.5",
-    "@designbasekorea/ui": "^0.1.9"
+    "@designbasekorea/ui": "^0.5.1"
   }
 }
 ```

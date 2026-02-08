@@ -53,6 +53,7 @@
     &--size-l {
         padding: var(--db-padding-l);
         gap: var(--db-gap-m);
+        border-radius: var(--db-radius-l);
 
         .designbase-stat__value {
             font-size: var(--db-text-2xl);
@@ -118,6 +119,61 @@
 
         .designbase-stat__icon {
             color: var(--db-text-inverse-primary);
+        }
+    }
+
+    // 왼쪽 그래픽 아이콘 타입: 아이콘이 둥근 박스 안에 있고, 라벨 위·값 아래
+    &--variant-iconBox {
+        flex-direction: row; // 아이콘 항상 왼쪽
+
+        .designbase-stat__icon {
+            width: var(--db-size-icon-xl);
+            height: var(--db-size-icon-xl);
+            min-width: var(--db-size-icon-l);
+            min-height: var(--db-size-icon-l);
+            border-radius: var(--db-radius-s);
+            padding: var(--db-padding-xs);
+            background-color: color-mix(in srgb, var(--stat-color) 14%, transparent);
+            color: var(--stat-color);
+
+            svg {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .designbase-stat__main {
+            gap: var(--db-gap-xxs);
+        }
+
+        .designbase-stat__label {
+            font-size: var(--db-text-s);
+            font-weight: var(--db-weight-regular);
+            color: var(--db-text-secondary);
+        }
+
+        .designbase-stat__value {
+            font-size: var(--db-text-xl);
+            font-weight: var(--db-weight-semibold);
+            color: var(--db-text-primary);
+        }
+
+        &.designbase-stat--size-s .designbase-stat__icon {
+            width: var(--db-size-icon-m);
+            height: var(--db-size-icon-m);
+            min-width: var(--db-size-icon-m);
+            min-height: var(--db-size-icon-m);
+            padding: var(--db-padding-xs);
+        }
+
+        &.designbase-stat--size-l .designbase-stat__icon,
+        &.designbase-stat--size-xl .designbase-stat__icon {
+            width: var(--db-size-icon-xl);
+            height: var(--db-size-icon-xl);
+            min-width: var(--db-size-icon-xl);
+            min-height: var(--db-size-icon-xl);
+            padding: var(--db-padding-m);
         }
     }
 
@@ -216,7 +272,7 @@
         }
     }
 
-    // 아이콘
+    // 아이콘 (order: 0으로 왼쪽, content는 order: 1로 오른쪽)
     &__icon {
         display: flex;
         align-items: center;
@@ -225,11 +281,11 @@
         flex-shrink: 0;
 
         &--left {
-            order: 1;
+            order: 0;
         }
 
         &--right {
-            order: 3;
+            order: 2;
         }
     }
 
@@ -237,6 +293,7 @@
     &__content {
         flex: 1;
         min-width: 0;
+        order: 1;
     }
 
     // 메인 영역

@@ -61,6 +61,8 @@ export interface SelectProps {
     maxHeight?: number;
     /** 클리어 버튼 표시 여부 */
     showClearButton?: boolean;
+    /** 모바일에서 바텀 시트로 표시 여부 */
+    useMobileBottomSheet?: boolean;
     /** 추가 CSS 클래스 */
     className?: string;
     /** 값 변경 핸들러 */
@@ -93,6 +95,7 @@ export const Select: React.FC<SelectProps> = ({
     position = 'bottom',
     maxHeight = 200,
     showClearButton = true,
+    useMobileBottomSheet = false,
     className,
     onChange,
     onFocus,
@@ -295,6 +298,7 @@ export const Select: React.FC<SelectProps> = ({
         `designbase-select__dropdown--${position}`,
         {
             'designbase-select__dropdown--open': isOpen,
+            'designbase-select__dropdown--mobile-sheet': useMobileBottomSheet,
         }
     );
 

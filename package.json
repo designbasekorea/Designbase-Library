@@ -2,7 +2,7 @@
     "name": "@designbasekorea/library",
     "version": "0.1.0",
     "description": "Designbase 피그마 플러그인 공통 디자인시스템 및 컴포넌트 라이브러리",
-    "private": false,
+    "private": true,
     "workspaces": [
         "packages/*",
         "apps/*"

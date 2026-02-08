@@ -9,10 +9,10 @@
 - [x] 각 패키지의 `dist` 폴더 생성 확인
 
 ### ✅ 패키지별 확인
-- [x] `@designbase/tokens` - CSS 변수, JSON, TypeScript 타입 생성
-- [x] `@designbase/theme` - CSS 파일 생성
-- [x] `@designbase/icons` - 384개 아이콘 컴포넌트 생성
-- [x] `@designbase/ui` - React 컴포넌트 빌드
+- [x] `@designbasekorea/tokens` - CSS 변수, JSON, TypeScript 타입 생성
+- [x] `@designbasekorea/theme` - CSS 파일 생성
+- [x] `@designbasekorea/icons` - 아이콘 컴포넌트 생성
+- [x] `@designbasekorea/ui` - React 컴포넌트 빌드 (0.5.1+ AnimationBackground 포함)
 - [x] `@designbase/utils` - 유틸리티 함수 빌드
 - [x] `@designbase/figma-bridge` - Figma 브리지 빌드
 
@@ -44,7 +44,8 @@
 - [x] Input (기본, 포커스, 비활성화 상태)
 - [x] Card 컴포넌트
 - [x] Modal 컴포넌트
-- [x] 아이콘 컴포넌트 (384개)
+- [x] AnimationBackground (gradient, pulse, wave, particles, stars, aurora + theme, showGrid)
+- [x] 아이콘 컴포넌트
 
 ## 📚 문서화 확인
 

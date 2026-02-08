@@ -13,7 +13,7 @@
     }
 
     &__header {
-        padding: 24px;
+        padding: 16px;
         border-bottom: 1px solid var(--db-border-base);
         background-color: var(--db-surface-base);
         position: sticky;
@@ -23,20 +23,20 @@
 
     &__title {
         margin: 0;
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 600;
         color: var(--db-text-primary);
-        margin-bottom: 8px;
+        margin-bottom: 0;
     }
 
     &__subtitle {
         margin: 0;
-        font-size: 16px;
+        font-size: 14px;
         color: var(--db-text-secondary);
     }
 
     &__content {
-        padding: 40px;
+        padding: 24px;
     }
 
     &__spinner-wrapper {
@@ -53,11 +53,11 @@
 }
 
 .example-section {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 
     &__title {
-        margin: 0 0 20px 0;
-        font-size: 20px;
+        margin: 0 0 16px 0;
+        font-size: 18px;
         font-weight: 600;
         color: var(--db-text-primary);
     }

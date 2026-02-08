@@ -6,7 +6,9 @@ import {
     LocationIcon,
     PackageIcon,
     UserIcon,
-    HelpIcon
+    HelpIcon,
+    PieChartIcon,
+    MoneyIcon,
 } from '@designbasekorea/icons';
 import Stat from './Stat';
 
@@ -33,7 +35,7 @@ const meta: Meta<typeof Stat> = {
             options: ['sm', 'md', 'lg', 'xl'],
             description: '통계 크기',
         },
-        variant: { control: { type: 'select' }, options: ['default', 'minimal'] },
+        variant: { control: { type: 'select' }, options: ['default', 'minimal', 'card', 'colored', 'iconBox'] },
         layout: { control: { type: 'select' }, options: ['horizontal', 'vertical'] },
         color: { control: { type: 'select' }, options: ['primary', 'secondary', 'success', 'warning', 'error', 'info'] },
         customColor: { control: false },
@@ -341,6 +343,46 @@ export const ComplexStats: Story = {
             </div>
         );
     },
+};
+
+// 왼쪽 그래픽 아이콘 타입 (둥근 박스 + 라벨 위·값 아래)
+export const GraphicIconType: Story = {
+    render: () => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <h2>그래픽 아이콘 타입 (iconBox)</h2>
+            <p>왼쪽에 둥근 박스로 감싼 아이콘, 라벨은 위·값은 아래로 표시합니다.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                <Stat
+                    value="29.2"
+                    label="PER"
+                    icon={<PieChartIcon size={24} />}
+                    variant="iconBox"
+                    color="primary"
+                />
+                <Stat
+                    value="0.26%"
+                    label="배당수익률"
+                    icon={<MoneyIcon size={24} />}
+                    variant="iconBox"
+                    color="success"
+                />
+                <Stat
+                    value="278"
+                    label="New Posts"
+                    icon={<WriteIcon size={24} />}
+                    variant="iconBox"
+                    color="info"
+                />
+                <Stat
+                    value="64.89%"
+                    label="Bounce Rate"
+                    icon={<BarChartIcon size={24} />}
+                    variant="iconBox"
+                    color="warning"
+                />
+            </div>
+        </div>
+    ),
 };
 
 // 카드 스타일 예제

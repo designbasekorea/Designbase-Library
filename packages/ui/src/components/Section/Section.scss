@@ -122,17 +122,10 @@
 
     // 변형별 스타일
     &--variant-default {
-        background-color: transparent;
+        background-color: var(--db-surface-base);
         border: none;
         border-radius: 0;
         box-shadow: none;
-    }
-
-    &--variant-elevated {
-        background-color: var(--db-surface-base);
-        border: 1px solid var(--db-border-secondary);
-        border-radius: var(--db-radius-l);
-        box-shadow: var(--db-shadow-sm);
     }
 
     &--variant-outlined {
@@ -144,7 +137,7 @@
 
     &--variant-filled {
         background-color: var(--db-surface-layer-1);
-        border: 1px solid var(--db-border-secondary);
+        border: none;
         border-radius: var(--db-radius-m);
         box-shadow: none;
     }
@@ -155,7 +148,7 @@
         align-items: flex-start;
         justify-content: space-between;
         gap: var(--db-gap-m);
-        border-bottom: 1px solid var(--db-border-secondary);
+        border-bottom: 1px solid var(--db-border-primary);
         margin-bottom: 0;
 
         .designbase-section--variant-default & {

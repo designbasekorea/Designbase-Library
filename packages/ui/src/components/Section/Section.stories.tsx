@@ -17,7 +17,7 @@ const meta: Meta<typeof Section> = {
         },
         variant: {
             control: { type: 'select' },
-            options: ['default', 'elevated', 'outlined', 'filled'],
+            options: ['default', 'outlined', 'filled'],
         },
     },
 };
@@ -128,10 +128,6 @@ export const DifferentVariants: Story = {
                 <SampleContent />
             </Section>
 
-            <Section variant="elevated" title="들어올린 변형" description="그림자와 테두리가 있는 섹션입니다.">
-                <SampleContent />
-            </Section>
-
             <Section variant="outlined" title="테두리 변형" description="테두리만 있는 섹션입니다.">
                 <SampleContent />
             </Section>
@@ -178,7 +174,7 @@ export const FullWidth: Story = {
         title: '전체 너비 섹션',
         description: '전체 너비를 사용하는 섹션입니다.',
         fullWidth: true,
-        variant: 'elevated',
+        variant: 'outlined',
         children: <SampleContent />,
     },
     parameters: {

@@ -73,10 +73,12 @@ design-examples/
 - Button, Input, Checkbox, Radio, Select, Textarea, Toggle
 - FileUploader, RangeSlider, ColorPicker, Label
 
-### Navigation (10개)
-- Breadcrumb, Tabs, Pagination, Dropdown, Navbar
+### Navigation (6개)
+- Breadcrumb, Tabs, Pagination, Navbar
 - SearchBar, SegmentControl, BottomNavigation
-- ContextMenu, FloatingActionButton
+
+### Action (6개)
+- Dropdown, ContextMenu, FloatingActionButton, Popover, MenuItem, Reorder
 
 ### Layout (15개)
 - Card, Modal, Accordion, Divider, Drawer

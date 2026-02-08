@@ -35,7 +35,7 @@
         "@designbasekorea/icons": "^0.2.8",
         "@designbasekorea/theme": "^0.2.2",
         "@designbasekorea/tokens": "^0.2.2",
-        "@designbasekorea/ui": "^0.3.1",
+        "@designbasekorea/ui": "^0.5.0",
         "classnames": "^2.5.1",
         "clsx": "^2.0.0"
     },

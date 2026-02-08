@@ -25,11 +25,43 @@
         pointer-events: none;
     }
 
-    // Canvas 스타일
+    // 레이어 공통: 전체 영역
+    &__canvas-layer,
+    &__css-layer {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
     &__canvas {
         display: block;
         width: 100%;
         height: 100%;
+    }
+
+    // Mesh Aurora (블롭) 레이어
+    &__aurora-mesh {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    &__aurora-blob {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: designbase-aurora-blob ease-in-out infinite;
+    }
+
+    &__aurora-noise {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
     }
 
     // ===== 애니메이션 타입 =====
@@ -42,17 +74,6 @@
 
         &.designbase-animation-background--animating {
             animation: gradientPulse var(--db-animation-speed) ease-in-out;
-        }
-    }
-
-    // Rainbow 애니메이션
-    &--rainbow {
-        &.designbase-animation-background--visible {
-            animation: rainbowMove var(--db-animation-speed) ease-in-out infinite;
-        }
-
-        &.designbase-animation-background--animating {
-            animation: rainbowPulse var(--db-animation-speed) ease-in-out;
         }
     }
 
@@ -93,107 +114,77 @@
         }
     }
 
-    // Aurora 애니메이션
+    // Aurora 애니메이션 (은은한 블러 + 앱스트랙트, UI 배경용)
     &--aurora {
-        &::before {
-            content: '';
+        background-color: var(--db-surface-base, #f8fafc);
+        isolation: isolate;
+
+        .designbase-animation-background__aurora-layer {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--aurora-colors));
-            background-size: 400% 400%;
-            animation: auroraMove var(--db-animation-speed) ease-in-out infinite;
-            z-index: -1;
-        }
+            inset: -20%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: var(--aurora-opacity, 0.35);
+            filter: blur(var(--aurora-blur, 80px));
+            animation: auroraDrift var(--aurora-speed, 25s) ease-in-out infinite;
+            will-change: transform;
 
-        &.designbase-animation-background--visible {
-            animation: auroraFadeIn var(--db-animation-speed) ease-out;
-        }
-
-        &.designbase-animation-background--animating {
+            // 레이어 1: 부드러운 오로라 오브 (청록·인디고·바이올렛)
             &::before {
-                animation: auroraIntense var(--db-animation-speed) ease-in-out infinite;
+                content: '';
+                position: absolute;
+                width: 90%;
+                height: 90%;
+                top: -15%;
+                left: -10%;
+                border-radius: 50%;
+                background:
+                    radial-gradient(ellipse 70% 50% at 20% 30%,
+                        rgba(6, 182, 212, 0.25),
+                        transparent 55%),
+                    radial-gradient(ellipse 60% 70% at 70% 60%,
+                        rgba(99, 102, 241, 0.2),
+                        transparent 50%),
+                    radial-gradient(ellipse 50% 50% at 50% 80%,
+                        rgba(139, 92, 246, 0.18),
+                        transparent 55%);
+            }
+
+            // 레이어 2: 은은한 보조 오브
+            &::after {
+                content: '';
+                position: absolute;
+                width: 80%;
+                height: 80%;
+                bottom: -20%;
+                right: -15%;
+                border-radius: 50%;
+                background:
+                    radial-gradient(ellipse 60% 60% at 60% 20%,
+                        rgba(236, 72, 153, 0.12),
+                        transparent 50%),
+                    radial-gradient(ellipse 50% 50% at 30% 70%,
+                        rgba(14, 165, 233, 0.15),
+                        transparent 50%);
             }
         }
-    }
 
-    // Fire 애니메이션
-    &--fire {
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, var(--fire-colors));
-            background-size: 200% 200%;
-            animation: fireMove var(--db-animation-speed) ease-in-out infinite;
-            z-index: -1;
+        // 자식(콘텐츠)이 오로라 레이어 위에 오도록
+        >*:not(.designbase-animation-background__aurora-layer) {
+            position: relative;
+            z-index: 1;
         }
 
-        &.designbase-animation-background--visible {
-            animation: fireFadeIn var(--db-animation-speed) ease-out;
+        &.designbase-animation-background--visible .designbase-animation-background__aurora-layer {
+            animation: auroraDrift var(--aurora-speed, 25s) ease-in-out infinite;
         }
 
-        &.designbase-animation-background--animating {
-            &::before {
-                animation: fireIntense var(--db-animation-speed) ease-in-out infinite;
-            }
-        }
-    }
-
-    // Ocean 애니메이션
-    &--ocean {
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, var(--ocean-colors));
-            background-size: 200% 200%;
-            animation: oceanMove var(--db-animation-speed) ease-in-out infinite;
-            z-index: -1;
+        &.designbase-animation-background--aurora-vivid .designbase-animation-background__aurora-layer {
+            opacity: var(--aurora-opacity, 0.75);
         }
 
-        &.designbase-animation-background--visible {
-            animation: oceanFadeIn var(--db-animation-speed) ease-out;
-        }
-
-        &.designbase-animation-background--animating {
-            &::before {
-                animation: oceanIntense var(--db-animation-speed) ease-in-out infinite;
-            }
-        }
-    }
-
-    // Sunset 애니메이션
-    &--sunset {
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, var(--sunset-colors));
-            background-size: 200% 200%;
-            animation: sunsetMove var(--db-animation-speed) ease-in-out infinite;
-            z-index: -1;
-        }
-
-        &.designbase-animation-background--visible {
-            animation: sunsetFadeIn var(--db-animation-speed) ease-out;
-        }
-
-        &.designbase-animation-background--animating {
-            &::before {
-                animation: sunsetIntense var(--db-animation-speed) ease-in-out infinite;
-            }
+        &.designbase-animation-background--aurora-medium .designbase-animation-background__aurora-layer {
+            opacity: var(--aurora-opacity, 0.55);
         }
     }
 
@@ -225,40 +216,6 @@
     50% {
         background-position: 100% 50%;
         opacity: 0.8;
-    }
-}
-
-@keyframes rainbowMove {
-
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-
-    25% {
-        background-position: 100% 50%;
-    }
-
-    50% {
-        background-position: 100% 100%;
-    }
-
-    75% {
-        background-position: 0% 100%;
-    }
-}
-
-@keyframes rainbowPulse {
-
-    0%,
-    100% {
-        background-position: 0% 50%;
-        transform: scale(1);
-    }
-
-    50% {
-        background-position: 100% 50%;
-        transform: scale(1.05);
     }
 }
 
@@ -330,163 +287,37 @@
     }
 }
 
-@keyframes auroraMove {
+// Mesh Aurora 블롭 이동 (레이어 컴포넌트용)
+@keyframes designbase-aurora-blob {
 
     0%,
     100% {
-        background-position: 0% 50%;
-        filter: hue-rotate(0deg);
+        transform: translate(0, 0) scale(1);
     }
 
-    50% {
-        background-position: 100% 50%;
-        filter: hue-rotate(180deg);
-    }
-}
-
-@keyframes auroraFadeIn {
-    0% {
-        opacity: 0;
-        filter: blur(10px);
+    33% {
+        transform: translate(30px, -30px) scale(1.05);
     }
 
-    100% {
-        opacity: 1;
-        filter: blur(0);
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
     }
 }
 
-@keyframes auroraIntense {
+// 오로라 은은한 드리프트 (UI 배경용)
+@keyframes auroraDrift {
 
     0%,
     100% {
-        background-position: 0% 50%;
-        filter: hue-rotate(0deg) brightness(1);
+        transform: translate(0, 0) scale(1);
     }
 
-    50% {
-        background-position: 100% 50%;
-        filter: hue-rotate(360deg) brightness(1.2);
-    }
-}
-
-@keyframes fireMove {
-
-    0%,
-    100% {
-        background-position: 50% 100%;
-        filter: brightness(1);
+    33% {
+        transform: translate(2%, -1.5%) scale(1.02);
     }
 
-    50% {
-        background-position: 50% 0%;
-        filter: brightness(1.3);
-    }
-}
-
-@keyframes fireFadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes fireIntense {
-
-    0%,
-    100% {
-        background-position: 50% 100%;
-        filter: brightness(1) saturate(1);
-    }
-
-    50% {
-        background-position: 50% 0%;
-        filter: brightness(1.5) saturate(1.5);
-    }
-}
-
-@keyframes oceanMove {
-
-    0%,
-    100% {
-        background-position: 0% 100%;
-        filter: hue-rotate(0deg);
-    }
-
-    50% {
-        background-position: 100% 0%;
-        filter: hue-rotate(30deg);
-    }
-}
-
-@keyframes oceanFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes oceanIntense {
-
-    0%,
-    100% {
-        background-position: 0% 100%;
-        filter: hue-rotate(0deg) brightness(1);
-    }
-
-    50% {
-        background-position: 100% 0%;
-        filter: hue-rotate(60deg) brightness(1.2);
-    }
-}
-
-@keyframes sunsetMove {
-
-    0%,
-    100% {
-        background-position: 0% 0%;
-        filter: brightness(1);
-    }
-
-    50% {
-        background-position: 100% 100%;
-        filter: brightness(1.2);
-    }
-}
-
-@keyframes sunsetFadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes sunsetIntense {
-
-    0%,
-    100% {
-        background-position: 0% 0%;
-        filter: brightness(1) saturate(1);
-    }
-
-    50% {
-        background-position: 100% 100%;
-        filter: brightness(1.4) saturate(1.3);
+    66% {
+        transform: translate(-1.5%, 2%) scale(0.98);
     }
 }
 

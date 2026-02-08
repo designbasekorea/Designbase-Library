@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown, Button } from '@designbasekorea/ui';
-import { MoreVerticalIcon, EditIcon, CopyIcon, DeleteIcon, SettingsIcon } from '@designbasekorea/icons';
+import { MoreVerticalIcon, EditIcon, CopyIcon, DeleteIcon } from '@designbasekorea/icons';
 
 export default function DropdownExample() {
   const [isOpen1, setIsOpen1] = useState(false);
@@ -9,7 +9,6 @@ export default function DropdownExample() {
   const [isOpen4, setIsOpen4] = useState(false);
   const [isOpen5, setIsOpen5] = useState(false);
   const [isOpen6, setIsOpen6] = useState(false);
-  const [isOpen7, setIsOpen7] = useState(false);
 
   const items = [
     { 
@@ -24,7 +23,6 @@ export default function DropdownExample() {
         setIsOpen4(false);
         setIsOpen5(false);
         setIsOpen6(false);
-        setIsOpen7(false);
       }
     },
     { 
@@ -39,7 +37,6 @@ export default function DropdownExample() {
         setIsOpen4(false);
         setIsOpen5(false);
         setIsOpen6(false);
-        setIsOpen7(false);
       }
     },
     { 
@@ -54,7 +51,6 @@ export default function DropdownExample() {
         setIsOpen4(false);
         setIsOpen5(false);
         setIsOpen6(false);
-        setIsOpen7(false);
       }
     },
   ];
@@ -91,19 +87,6 @@ export default function DropdownExample() {
       </section>
 
       <section className="example-section">
-        <h3 className="example-section__title">아이콘 전용</h3>
-        <div className="example-list">
-          <Dropdown
-            isOpen={isOpen3}
-            onToggle={setIsOpen3}
-            items={items}
-            triggerIcon={SettingsIcon}
-            iconOnly
-          />
-        </div>
-      </section>
-
-      <section className="example-section">
         <h3 className="example-section__title">다양한 위치</h3>
         <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
           <div style={{ marginBottom: '100px' }}>
@@ -135,8 +118,8 @@ export default function DropdownExample() {
           </div>
           <div>
             <Dropdown
-              isOpen={isOpen7}
-              onToggle={setIsOpen7}
+              isOpen={isOpen3}
+              onToggle={setIsOpen3}
               items={items}
               trigger={<Button>Top-Right</Button>}
               placement="top-right"

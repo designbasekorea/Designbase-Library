@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Toast } from './Toast';
 import { ToastContainer, ToastProvider, useToast } from './ToastContainer';
 import { Button } from '../Button/Button';
-import { CircleCheckFilledIcon, WarningIcon, InfoIcon, CloseIcon, XIcon } from '@designbasekorea/icons';
+import { CircleCheckFilledIcon, WarningIcon, InfoIcon, ErrorIcon } from '@designbasekorea/icons';
 
 const meta: Meta<typeof Toast> = {
     title: 'Components/Toast',
@@ -72,7 +72,7 @@ const StatusesExample = () => {
             error: {
                 title: '오류 발생',
                 description: '작업 중 오류가 발생했습니다.',
-                icon: XIcon,
+                icon: ErrorIcon,
             },
             warning: {
                 title: '경고',
@@ -127,7 +127,7 @@ const InteractiveExample = () => {
             error: {
                 title: '오류 발생',
                 description: '작업 중 오류가 발생했습니다.',
-                icon: XIcon,
+                icon: ErrorIcon,
             },
             warning: {
                 title: '경고',

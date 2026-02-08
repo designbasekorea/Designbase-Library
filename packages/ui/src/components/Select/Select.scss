@@ -429,19 +429,43 @@
     }
 
     // Responsive
-    // @media (max-width: 640px) {
-    //     .designbase-select__dropdown {
-    //         position: fixed;
-    //         top: auto;
-    //         bottom: 0;
-    //         left: 0;
-    //         right: 0;
-    //         border-radius: var(--db-radius-l) var(--db-radius-l) 0 0;
-    //         max-height: 50vh;
-    //     }
+    @media (max-width: 640px) {
+        &__dropdown--mobile-sheet {
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-height: 50vh;
+            border-radius: var(--db-radius-l) var(--db-radius-l) 0 0;
+            border: none;
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            z-index: var(--db-z-modal);
+            display: flex;
+            flex-direction: column;
 
-    //     .designbase-select__options {
-    //         max-height: none;
-    //     }
-    // }
+            &.designbase-select__dropdown--open {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            // Backdrop effect (using box-shadow spread or pseudo if needed, 
+            // but structure limits pseudo on sibling. 
+            // For now, strong shadow and modal z-index ensures it sits on top)
+        }
+
+        &__dropdown--mobile-sheet .designbase-select__options {
+            max-height: none; // Limit handled by dropdown max-height
+            flex: 1;
+            overscroll-behavior: contain;
+        }
+
+        &__dropdown--mobile-sheet .designbase-select__search {
+             border-bottom: 1px solid var(--db-border-base);
+             padding: var(--db-padding-m);
+        }
+    }
 }

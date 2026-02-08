@@ -3,8 +3,8 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = resolve(__dirname, '..');
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const root = resolve(currentDir, '..');
 
 const config: StorybookConfig = {
     stories: [

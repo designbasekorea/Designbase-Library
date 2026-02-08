@@ -178,6 +178,10 @@
             height: var(--db-size-icon-l);
         }
 
+        .designbase-input__end-icon {
+            right: var(--db-padding-s);
+        }
+
         &.designbase-input--with-start-icon .designbase-input__field {
             padding-left: calc(var(--db-padding-l) + 16px + var(--db-padding-xs));
         }

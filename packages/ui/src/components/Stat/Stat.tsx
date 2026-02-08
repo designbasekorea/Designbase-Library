@@ -12,7 +12,7 @@ import { Progressbar } from '../Progressbar/Progressbar';
 
 // 타입 정의
 export type StatSize = 's' | 'm' | 'l' | 'xl';
-export type StatVariant = 'default' | 'minimal' | 'card' | 'colored';
+export type StatVariant = 'default' | 'minimal' | 'card' | 'colored' | 'iconBox';
 export type StatLayout = 'horizontal' | 'vertical' | 'reverse';
 export type StatColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'custom';
 
@@ -147,14 +147,27 @@ const Stat: React.FC<StatProps> = ({
 
             {/* 콘텐츠 */}
             <div className="designbase-stat__content">
-                {/* 값과 라벨 */}
+                {/* 값과 라벨 (iconBox는 라벨 위·값 아래) */}
                 <div className="designbase-stat__main">
-                    <div className="designbase-stat__value">
-                        {value}
-                    </div>
-                    <div className="designbase-stat__label">
-                        {label}
-                    </div>
+                    {variant === 'iconBox' ? (
+                        <>
+                            <div className="designbase-stat__label">
+                                {label}
+                            </div>
+                            <div className="designbase-stat__value">
+                                {value}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="designbase-stat__value">
+                                {value}
+                            </div>
+                            <div className="designbase-stat__label">
+                                {label}
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {/* 변화율 */}
